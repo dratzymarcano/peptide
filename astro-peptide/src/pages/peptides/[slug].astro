@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import AddToCartButton from '../../components/AddToCartButton';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(product => ({
+    params: { slug: product.slug.replace('/peptides/', '').replace(/\/$/, '').replace(/^\//, '') },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await product.render();
+
+const priceRange = product.data.price_range;
+const productId = product.data.id;
+const productTitle = product.data.title;
+const productSlug = product.slug;
+
+const isResearch = !['skincare-cosmetics', 'wellness-supplements'].includes(product.data.category);
+const isSkincare = product.data.category === 'skincare-cosmetics';
+
+---
+
+<Layout 
+  title={product.data.meta.title} 
+  description={product.data.meta.description}
+  image={product.data.images && product.data.images[0]}
+  article={true}
+>
+  <section class="page-title bg-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">|</span></li>
+              <li class="list-inline-item"><a href="/peptides/" class="text-color text-uppercase text-sm letter-spacing">Peptides</a></li>
+            </ul>
+             <h1 class="text-lg text-white mt-2">{productTitle}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section course">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12">
+          <div class="single-course">
+            {product.data.images && product.data.images[0] && (
+              <img src={product.data.images[0]} alt={productTitle} class="img-fluid rounded mb-4" />
+            )}
+
+            <h2 class="mb-4">{productTitle}</h2>
+            
+            <div class="content">
+                <Content />
+            </div>
+
+            <div class="mt-5">
+                <h3>Product Specifications</h3>
+                <table class="table table-striped mt-3">
+                    <tbody>
+                        <tr>
+                            <th>CAS Number</th>
+                            <td>{product.data.cas}</td>
+                        </tr>
+                        <tr>
+                            <th>Molecular Weight</th>
+                            <td>{product.data.molecular_weight}</td>
+                        </tr>
+                        <tr>
+                            <th>Purity</th>
+                            <td>{product.data.purity}</td>
+                        </tr>
+                        <tr>
+                            <th>Storage</th>
+                            <td>{product.data.storage}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class= "course-widget border py-4 px-2 mt-5 mt-lg-0">
+            <h3 class="text-center mb-3">Product Details</h3>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center text-black">
+                Price Range<span class="text-black-50">{priceRange}</span>
+              </li>
+               <li class="list-group-item d-flex justify-content-between align-items-center text-black">
+                MOQ<span class="text-black-50">{product.data.moq}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center text-black">
+                Category<span class="text-black-50">{product.data.category}</span>
+              </li>
+            </ul>
+            <div class="text-center mt-3">
+                <AddToCartButton client:load id={productId} title={productTitle} priceRange={priceRange} slug={productSlug} />
+            </div>
+            
+            {product.data.coa_url && (
+                <div class="text-center mt-3">
+                    <a href={product.data.coa_url} class="btn btn-outline-primary btn-sm w-100" target="_blank">Download COA</a>
+                </div>
+            )}
+          </div>
+          
+          <div class="course-widget py-4 px-2 mt-3">
+              <div class="alert alert-warning">
+                  <strong>Research Use Only:</strong> This product is intended for laboratory research use only. Not for human consumption.
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

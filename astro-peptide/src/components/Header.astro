@@ -1,0 +1,40 @@
+---
+import EnquiryCartIcon from './EnquiryCartIcon';
+---
+
+<nav class="navbar navbar-expand-lg navigation fixed-top" id="navbar">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">
+			<h2 class="text-white text-capitalize">Peptide<span class="text-color">Research</span></h2>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsid"
+			aria-controls="navbarsid" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="ti-view-list"></span>
+		</button>
+		<div class="collapse text-center navbar-collapse" id="navbarsid">
+			<ul class="navbar-nav mx-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false">Peptides</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/peptides/">All Peptides</a></li>
+						<li><a class="dropdown-item" href="/peptides/wellness-supplements/">Wellness</a></li>
+						<li><a class="dropdown-item" href="/peptides/skincare-cosmetics/">Skincare</a></li>
+					</ul>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="/research/">Research Hub</a></li>
+				<li class="nav-item"><a class="nav-link" href="/quality/">Quality</a></li>
+				<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+			</ul>
+			<div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
+				<a href="/contact">
+					<h3 class="text-color mb-0"><i class="ti-email mr-2"></i>Contact Us</h3>
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>

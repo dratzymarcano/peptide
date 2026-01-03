@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    question: "Are your products safe for human consumption?",
+    answer: "It depends on the product category. Our **Research Peptides** are strictly for laboratory use only and not for human consumption. Our **Wellness & Skincare** products are formulated for their respective intended uses (e.g., topical application for skincare)."
+  },
+  {
+    question: "Do you provide protocols for reconstitution?",
+    answer: "For research peptides, we provide general solubility guidelines, but experimental protocols are the researcher's responsibility. For wellness and skincare products, usage instructions are provided on the product label."
+  },
+  {
+    question: "What is the purity of your peptides?",
+    answer: "We guarantee a minimum purity of 98% for all research peptides and supplements, verified by HPLC analysis. Skincare products are formulated with cosmetic-grade ingredients."
+  },
+  {
+    question: "Do you ship internationally?",
+    answer: "We ship to most countries within the EU. Please check your local regulations regarding the import of specific products before ordering."
+  },
+  {
+    question: "How are the peptides shipped?",
+    answer: "Most products are stable at room temperature during transit. Temperature-sensitive items are shipped with cold packs. Upon receipt, please follow the storage instructions on the label (usually -20°C for research peptides, 4°C or room temp for others)."
+  },
+  {
+    question: "Can I order in bulk?",
+    answer: "Yes, we offer bulk pricing for all our product lines. Please contact us for a custom quote."
+  }
+];
+---
+
+<Layout title="FAQ | PeptideResearch.eu" description="Frequently asked questions about our research peptides, shipping, and quality control.">
+  <section class="page-title bg-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">|</span></li>
+              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">FAQ</a></li>
+            </ul>
+             <h1 class="text-lg text-white mt-2">Frequently Asked Questions</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="accordion" id="accordionExample">
+                {faqs.map((faq, index) => (
+                    <div class="card border-0 mb-2 shadow-sm">
+                        <div class="card-header bg-white border-0 p-0" id={`heading${index}`}>
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold text-decoration-none p-4" type="button" data-toggle="collapse" data-target={`#collapse${index}`} aria-expanded="true" aria-controls={`collapse${index}`}>
+                                    {faq.question}
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id={`collapse${index}`} class={`collapse ${index === 0 ? 'show' : ''}`} aria-labelledby={`heading${index}`} data-parent="#accordionExample">
+                            <div class="card-body p-4 pt-0 text-muted">
+                                {faq.answer}
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  })} />
+</Layout>

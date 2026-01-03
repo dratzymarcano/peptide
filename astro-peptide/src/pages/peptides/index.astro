@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const products = await getCollection('products');
+const categories = [...new Set(products.map((product) => product.data.category))];
+
+---
+
+<Layout title="Research Peptides Catalog | PeptideResearch.eu" description="Browse our catalog of high-purity research peptides. Growth factors, fragments, and hormonal peptides for laboratory use.">
+  <section class="page-title bg-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
+              <li class="list-inline-item"><span class="text-white">|</span></li>
+              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">Peptides</a></li>
+            </ul>
+             <h1 class="text-lg text-white mt-2">Research Peptide Catalog</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <!-- Sidebar Filters -->
+        <div class="col-lg-3 col-md-4">
+            <div class="sidebar-widget bg-white p-4 rounded shadow-sm mb-5">
+                <h4 class="mb-4">Categories</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="/peptides/" class="text-color font-weight-bold">All Peptides</a></li>
+                    {categories.map(cat => (
+                        <li class="mb-2">
+                            <a href={`/peptides/${cat}/`} class="text-black hover-text-primary text-capitalize">
+                                {cat.replace('-', ' ')}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row">
+                {products.map((product) => (
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                             <div class="card-img-top position-relative">
+                                {product.data.images[0] ? (
+                                    <img src={product.data.images[0]} alt={product.data.title} class="img-fluid w-100" style="height: 200px; object-fit: contain;" />
+                                ) : (
+                                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <i class="ti-image text-muted" style="font-size: 3rem;"></i>
+                                    </div>
+                                )}
+                             </div>
+                            <div class="card-body">
+                                <span class="badge badge-primary mb-2 text-uppercase">{product.data.category.replace('-', ' ')}</span>
+                                <h4 class="card-title mt-2">
+                                    <a href={`/peptides/${product.slug.replace('/peptides/', '').replace(/^\//, '')}`} class="text-dark">
+                                        {product.data.title}
+                                    </a>
+                                </h4>
+                                <p class="card-text text-muted small">{product.data.short_description}</p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <span class="font-weight-bold text-primary">{product.data.price}</span>
+                                    <a href={`/peptides/${product.slug.replace('/peptides/', '').replace(/^\//, '')}`} class="btn btn-sm btn-outline-primary">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,66 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+
+interface Props {
+	title: string;
+	description?: string;
+	image?: string;
+	article?: boolean;
+}
+
+const { title, description, image, article } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<SEO title={title} description={description} image={image} article={article} />
+		
+		<!-- bootstrap.min css -->
+		<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+		<!-- Icofont Css -->
+		<link rel="stylesheet" href="/plugins/icofont/icofont.min.css">
+		<!-- Themify Css -->
+		<link rel="stylesheet" href="/plugins/themify/css/themify-icons.css">
+		<!-- animate.css -->
+		<link rel="stylesheet" href="/plugins/animate-css/animate.css">
+		<!-- Magnify Popup -->
+		<link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
+		<!-- Owl Carousel CSS -->
+		<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
+		<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="/css/style.css">
+	</head>
+	<body>
+		<Header />
+		<div class="main-wrapper">
+			<slot />
+			<Footer />
+		</div>
+
+		<!-- Essential Scripts -->
+		<!-- Main jQuery -->
+		<script is:inline src="/plugins/jquery/jquery.js"></script>
+		<!-- Bootstrap 4.3.1 -->
+		<script is:inline src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- Slick Slider -->
+		<script is:inline src="/plugins/slick-carousel/slick/slick.min.js"></script>
+		<!--  Magnific Popup-->
+		<script is:inline src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+		<!-- Form Validator -->
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<!-- Google Map -->
+		<!-- <script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script> -->
+		<script is:inline src="/plugins/google-map/gmap.js"></script>
+
+		<script is:inline src="/js/script.js"></script>
+	</body>
+</html>
