@@ -1,0 +1,641 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageTitle from '../../components/PageTitle.astro';
+
+const peptideCategories = [
+  {
+    name: "GLP-1 Agonists",
+    description: "Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects",
+    examples: ["Semaglutide", "Tirzepatide", "Retatrutide", "Cagrilintide"],
+    icon: "scale"
+  },
+  {
+    name: "Growth Hormone Secretagogues",
+    description: "Peptides that stimulate the release of growth hormone from the pituitary gland",
+    examples: ["Ipamorelin", "GHRP-2", "GHRP-6", "CJC-1295"],
+    icon: "trending-up"
+  },
+  {
+    name: "Recovery Peptides",
+    description: "Peptides researched for tissue repair, healing, and recovery applications",
+    examples: ["BPC-157", "TB-500", "GHK-Cu"],
+    icon: "heart"
+  },
+  {
+    name: "Nootropic Peptides",
+    description: "Peptides studied for cognitive enhancement and neuroprotection",
+    examples: ["Semax", "Selank", "DSIP", "Epitalon"],
+    icon: "brain"
+  },
+  {
+    name: "Melanocortin Peptides",
+    description: "Peptides that interact with melanocortin receptors, researched for pigmentation",
+    examples: ["Melanotan 2", "PT-141"],
+    icon: "sun"
+  }
+];
+
+const faqs = [
+  {
+    question: "What is the difference between peptides and proteins?",
+    answer: "The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions."
+  },
+  {
+    question: "How are synthetic peptides made?",
+    answer: "Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence."
+  },
+  {
+    question: "What does HPLC purity mean?",
+    answer: "HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results."
+  },
+  {
+    question: "Are research peptides the same as pharmaceutical peptides?",
+    answer: "Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications."
+  },
+  {
+    question: "How should peptides be stored?",
+    answer: "Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis."
+  }
+];
+---
+
+<Layout 
+  title="What Are Peptides? Complete Guide to Research Peptides | Peptide Shop" 
+  description="Learn about peptides, amino acid chains, and peptide research. Comprehensive guide covering peptide types, synthesis, applications, and storage from Peptide Shop."
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Learn", url: "/learn" },
+    { name: "What Are Peptides", url: "/learn/what-are-peptides" }
+  ]}
+>
+  <style>
+    .learn-hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+      padding: 100px 0 80px;
+      position: relative;
+    }
+    
+    .hero-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .hero-label {
+      display: inline-block;
+      background: #0077b6;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1e293b;
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #475569;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+    
+    .content-section {
+      padding: 80px 0;
+    }
+    
+    .content-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 24px;
+    }
+    
+    .section-text {
+      font-size: 1.125rem;
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      border-left: 4px solid #0077b6;
+      padding: 24px 32px;
+      border-radius: 0 12px 12px 0;
+      margin: 32px 0;
+    }
+    
+    .highlight-box p {
+      margin: 0;
+      color: #1e293b;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .diagram-section {
+      background: #f8fafc;
+      padding: 60px 0;
+    }
+    
+    .amino-diagram {
+      background: white;
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    
+    .amino-chain {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 32px 0;
+    }
+    
+    .amino-acid {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 12px;
+      color: white;
+    }
+    
+    .peptide-bond {
+      width: 24px;
+      height: 4px;
+      background: #94a3b8;
+    }
+    
+    .diagram-caption {
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    
+    .categories-section {
+      padding: 80px 0;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 767px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .category-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    
+    .category-card:hover {
+      border-color: #0077b6;
+      box-shadow: 0 8px 24px rgba(0,119,182,0.1);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .category-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: #0077b6;
+    }
+    
+    .category-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    
+    .category-description {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .category-examples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .example-tag {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    
+    .synthesis-section {
+      background: #f8fafc;
+      padding: 80px 0;
+    }
+    
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 991px) {
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 575px) {
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .step-card {
+      text-align: center;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: #0077b6;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin: 0 auto 16px;
+    }
+    
+    .step-title {
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    
+    .step-description {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .faq-section {
+      padding: 80px 0;
+    }
+    
+    .faq-list {
+      margin-top: 40px;
+    }
+    
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 24px 0;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faq-question {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .faq-question::before {
+      content: 'Q';
+      width: 28px;
+      height: 28px;
+      background: #0077b6;
+      color: white;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .faq-answer {
+      color: #64748b;
+      line-height: 1.7;
+      padding-left: 44px;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .cta-title {
+      color: white;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    
+    .cta-subtitle {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.125rem;
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: #0077b6;
+      padding: 16px 40px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    @media (max-width: 767px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+      }
+      
+      .amino-diagram {
+        padding: 24px;
+      }
+    }
+  </style>
+
+  <PageTitle 
+    title="What Are Peptides?"
+    subtitle="A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research. Learn about peptide synthesis, categories, and applications in modern research."
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "Learn", url: "/learn" },
+      { name: "What Are Peptides" }
+    ]}
+  />
+
+  <!-- Introduction -->
+  <section class="content-section">
+    <div class="container">
+      <div class="content-container">
+        <h2 class="section-title">Understanding Peptides</h2>
+        <p class="section-text">
+          Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins 
+          and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino 
+          acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their 
+          biological activities.
+        </p>
+        <p class="section-text">
+          The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin 
+          (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, 
+          cell signaling, and tissue repair.
+        </p>
+        
+        <div class="highlight-box">
+          <p>
+            <strong>Key Point:</strong> Research peptides are synthetic versions of natural or novel peptide sequences, 
+            manufactured to precise specifications for laboratory research. They allow scientists to study biological 
+            mechanisms that would otherwise be difficult to investigate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amino Acid Diagram -->
+  <section class="diagram-section">
+    <div class="container">
+      <div class="content-container">
+        <div class="amino-diagram">
+          <h3 class="section-title" style="margin-bottom: 16px;">The Peptide Structure</h3>
+          <p style="color: #64748b; margin-bottom: 24px;">Amino acids connected by peptide bonds form a peptide chain</p>
+          
+          <div class="amino-chain">
+            <div class="amino-acid" style="background: #0077b6;">Gly</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #0891b2;">Ala</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #0d9488;">Leu</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #059669;">Val</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #16a34a;">Ile</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #65a30d;">Pro</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #ca8a04;">Ser</div>
+            <div class="peptide-bond"></div>
+            <div class="amino-acid" style="background: #ea580c;">Thr</div>
+          </div>
+          
+          <p class="diagram-caption">
+            Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Peptide Categories -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="content-container">
+        <h2 class="section-title">Categories of Research Peptides</h2>
+        <p class="section-text">
+          Research peptides are typically classified by their primary area of study or mechanism of action. 
+          Here are the main categories available for scientific research:
+        </p>
+        
+        <div class="categories-grid">
+          {peptideCategories.map((cat) => (
+            <div class="category-card">
+              <div class="category-header">
+                <div class="category-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    {cat.icon === 'scale' && <><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></>}
+                    {cat.icon === 'trending-up' && <><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></>}
+                    {cat.icon === 'heart' && <><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></>}
+                    {cat.icon === 'brain' && <><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.54"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.54"></path></>}
+                    {cat.icon === 'sun' && <><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></>}
+                  </svg>
+                </div>
+                <h3 class="category-name">{cat.name}</h3>
+              </div>
+              <p class="category-description">{cat.description}</p>
+              <div class="category-examples">
+                {cat.examples.map((ex) => (
+                  <span class="example-tag">{ex}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Synthesis Section -->
+  <section class="synthesis-section">
+    <div class="container">
+      <div class="content-container">
+        <h2 class="section-title">How Are Peptides Synthesized?</h2>
+        <p class="section-text">
+          Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique 
+          developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.
+        </p>
+        
+        <div class="process-steps">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h4 class="step-title">Attach to Resin</h4>
+            <p class="step-description">The first amino acid is attached to an insoluble polymer resin</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h4 class="step-title">Deprotection</h4>
+            <p class="step-description">Protective groups are removed from the amino acid</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h4 class="step-title">Coupling</h4>
+            <p class="step-description">Next amino acid is coupled to the growing chain</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h4 class="step-title">Cleavage</h4>
+            <p class="step-description">Completed peptide is cleaved from the resin and purified</p>
+          </div>
+        </div>
+        
+        <div class="highlight-box" style="margin-top: 40px;">
+          <p>
+            <strong>Quality Control:</strong> After synthesis, peptides undergo rigorous testing including HPLC analysis 
+            for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict 
+            purity standards (typically ≥98%) are released for research use.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="content-container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <div class="faq-item">
+              <h3 class="faq-question">{faq.question}</h3>
+              <p class="faq-answer">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to Start Your Research?</h2>
+      <p class="cta-subtitle">
+        Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.
+      </p>
+      <a href="/peptides/" class="cta-btn">Browse Peptides</a>
+    </div>
+  </section>
+  
+  <!-- Article Schema -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Are Peptides? Complete Guide to Research Peptides",
+    "description": "A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research. Learn about peptide synthesis, categories, and applications.",
+    "image": "https://peptide-shop.net/images/what-are-peptides.jpg",
+    "author": {
+      "@type": "Organization",
+      "name": "Peptide Shop"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Peptide Shop",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://peptide-shop.net/images/logo.png"
+      }
+    },
+    "datePublished": "2024-01-15",
+    "dateModified": "2024-01-15",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://peptide-shop.net/learn/what-are-peptides"
+    }
+  }
+  </script>
+</Layout>

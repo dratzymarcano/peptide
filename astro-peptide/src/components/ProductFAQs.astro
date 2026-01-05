@@ -1,0 +1,183 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  productName: string;
+  faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+---
+
+{faqs.length > 0 && (
+  <div class="product-faqs">
+    <h3 class="mb-4 d-flex align-items-center" style="color: #023e8a;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" style="color: #0077b6;">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      Frequently Asked Questions
+    </h3>
+    
+    <div class="faq-accordion">
+      {faqs.map((faq, index) => (
+        <div class="faq-item">
+          <button 
+            class={`faq-question ${index === 0 ? 'active' : ''}`}
+            type="button"
+            aria-expanded={index === 0 ? "true" : "false"}
+          >
+            <span class="faq-question-text">{faq.question}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class={`faq-answer ${index === 0 ? 'open' : ''}`}>
+            <div class="faq-answer-content">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Schema.org FAQ markup for SEO -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    })} />
+  </div>
+)}
+
+<style>
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .faq-item {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+  }
+  
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+    transition: background-color 0.2s ease;
+  }
+  
+  .faq-question:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .faq-question.active {
+    background-color: #f8f9fa;
+  }
+  
+  .faq-question-text {
+    flex: 1;
+    padding-right: 1rem;
+  }
+  
+  .faq-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: #0077b6;
+  }
+  
+  .faq-question.active .faq-chevron {
+    transform: rotate(180deg);
+  }
+  
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  .faq-answer.open {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+  }
+  
+  .faq-answer-content {
+    padding: 0 1.25rem 1.25rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+  }
+  
+  .faq-answer-content p {
+    margin: 0;
+    padding-top: 1rem;
+    line-height: 1.7;
+    color: #555;
+  }
+</style>
+
+<script>
+  // Use event delegation for FAQ accordion - works regardless of when elements are added
+  document.addEventListener('click', function(e: MouseEvent) {
+    const target = e.target as Element;
+    if (!target) return;
+    
+    const questionBtn = target.closest('.faq-question');
+    if (!questionBtn) return;
+    
+    e.preventDefault();
+    
+    const faqItem = questionBtn.closest('.faq-item');
+    if (!faqItem) return;
+    
+    const answer = faqItem.querySelector('.faq-answer');
+    if (!answer) return;
+    
+    const isActive = questionBtn.classList.contains('active');
+    
+    // Close all other FAQs in the same accordion
+    const accordion = questionBtn.closest('.faq-accordion');
+    if (accordion) {
+      accordion.querySelectorAll('.faq-item').forEach((item: Element) => {
+        if (item !== faqItem) {
+          item.querySelector('.faq-question')?.classList.remove('active');
+          item.querySelector('.faq-answer')?.classList.remove('open');
+        }
+      });
+    }
+    
+    // Toggle current FAQ
+    if (isActive) {
+      questionBtn.classList.remove('active');
+      questionBtn.setAttribute('aria-expanded', 'false');
+      answer.classList.remove('open');
+    } else {
+      questionBtn.classList.add('active');
+      questionBtn.setAttribute('aria-expanded', 'true');
+      answer.classList.add('open');
+    }
+  });
+</script>

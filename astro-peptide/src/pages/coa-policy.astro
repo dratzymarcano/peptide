@@ -1,22 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/PageTitle.astro';
 ---
 
-<Layout title="COA Policy | PeptideResearch.eu">
-  <section class="page-title bg-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
-              <li class="list-inline-item"><span class="text-white">|</span></li>
-              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">Policy</a></li>
-            </ul>
-             <h1 class="text-lg text-white mt-2">Certificate of Analysis (COA) Policy</h1>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout 
+  title="COA Policy | Peptide Shop"
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "COA Policy", url: "/coa-policy" }
+  ]}
+>
+  <PageTitle 
+    title="Certificate of Analysis (COA) Policy"
+    subtitle="Our commitment to transparency and quality documentation."
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "COA Policy" }
+    ]}
+  />
 
   <section class="section">
     <div class="container">
@@ -29,8 +30,8 @@ import Layout from '../layouts/Layout.astro';
 
           <h2 class="mt-4 mb-3">Verification Methods</h2>
           <ul class="list-unstyled">
-            <li class="mb-2"><i class="ti-check mr-2 text-color"></i><strong>HPLC (High-Performance Liquid Chromatography):</strong> Used to quantify purity and identify impurities.</li>
-            <li class="mb-2"><i class="ti-check mr-2 text-color"></i><strong>MS (Mass Spectrometry):</strong> Used to confirm the molecular mass and identity of the peptide.</li>
+            <li class="mb-2 d-flex align-items-start"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>HPLC (High-Performance Liquid Chromatography):</strong> Used to quantify purity and identify impurities.</span></li>
+            <li class="mb-2 d-flex align-items-start"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>MS (Mass Spectrometry):</strong> Used to confirm the molecular mass and identity of the peptide.</span></li>
           </ul>
 
           <h2 class="mt-4 mb-3">Availability</h2>

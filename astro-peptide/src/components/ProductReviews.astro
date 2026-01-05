@@ -1,0 +1,187 @@
+---
+interface Review {
+  author: string;
+  rating: number;
+  date: string;
+  title: string;
+  content: string;
+  verified: boolean;
+}
+
+interface Props {
+  productName: string;
+  reviews: Review[];
+}
+
+const { productName, reviews } = Astro.props;
+
+// Calculate average rating
+const avgRating = reviews.length > 0 
+  ? (reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length).toFixed(1)
+  : 0;
+
+// Rating distribution
+const ratingDist = [5, 4, 3, 2, 1].map(star => ({
+  star,
+  count: reviews.filter(r => r.rating === star).length,
+  percentage: reviews.length > 0 
+    ? Math.round((reviews.filter(r => r.rating === star).length / reviews.length) * 100) 
+    : 0
+}));
+---
+
+{reviews.length > 0 && (
+  <div class="product-reviews">
+    <h3 class="mb-4 d-flex align-items-center" style="color: #023e8a;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" style="color: #0077b6;">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+      Customer Reviews ({reviews.length})
+    </h3>
+    
+    <!-- Reviews Summary -->
+    <div class="row mb-4">
+      <div class="col-md-4 text-center">
+        <div class="display-4 font-weight-bold" style="color: #0077b6;">{avgRating}</div>
+        <div class="d-flex justify-content-center mb-2">
+          {[1, 2, 3, 4, 5].map(star => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill={star <= Math.round(Number(avgRating)) ? "#ffc107" : "none"} stroke="#ffc107" stroke-width="2" class="mx-1">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          ))}
+        </div>
+        <p class="text-muted small mb-0">Based on {reviews.length} reviews</p>
+      </div>
+      <div class="col-md-8">
+        {ratingDist.map(({ star, count, percentage }) => (
+          <div class="d-flex align-items-center mb-1">
+            <span class="small mr-2" style="width: 50px;">{star} stars</span>
+            <div class="progress flex-grow-1" style="height: 8px;">
+              <div class="progress-bar" role="progressbar" style={`width: ${percentage}%; background-color: #ffc107;`}></div>
+            </div>
+            <span class="small ml-2 text-muted" style="width: 40px;">({count})</span>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Individual Reviews -->
+    <div class="reviews-list">
+      {reviews.slice(0, 5).map((review) => (
+        <div class="review-item bg-light p-4 rounded mb-3">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <div class="d-flex align-items-center mb-1">
+                {[1, 2, 3, 4, 5].map(star => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill={star <= review.rating ? "#ffc107" : "none"} stroke="#ffc107" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                ))}
+                <strong class="ml-2">{review.title}</strong>
+              </div>
+              <p class="mb-0 small text-muted">
+                By <strong>{review.author}</strong> on {review.date}
+                {review.verified && (
+                  <span class="verified-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>Verified Purchase</span>
+                  </span>
+                )}
+              </p>
+            </div>
+          </div>
+          <p class="mb-0 mt-2">{review.content}</p>
+        </div>
+      ))}
+      
+      {reviews.length > 5 && (
+        <div class="text-center mt-3">
+          <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#moreReviews">
+            Show All {reviews.length} Reviews
+          </button>
+          <div class="collapse mt-3" id="moreReviews">
+            {reviews.slice(5).map((review) => (
+              <div class="review-item bg-light p-4 rounded mb-3 text-left">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <div class="d-flex align-items-center mb-1">
+                      {[1, 2, 3, 4, 5].map(star => (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill={star <= review.rating ? "#ffc107" : "none"} stroke="#ffc107" stroke-width="2">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      ))}
+                      <strong class="ml-2">{review.title}</strong>
+                    </div>
+                    <p class="mb-0 small text-muted">
+                      By <strong>{review.author}</strong> on {review.date}
+                      {review.verified && (
+                        <span class="verified-badge">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                          <span>Verified Purchase</span>
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <p class="mb-0 mt-2">{review.content}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+    
+    <!-- Schema.org Review markup -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": productName,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": avgRating,
+        "reviewCount": reviews.length,
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": reviews.slice(0, 5).map(r => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": r.author },
+        "datePublished": r.date,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": r.rating,
+          "bestRating": "5"
+        },
+        "reviewBody": r.content
+      }))
+    })} />
+  </div>
+)}
+
+<style>
+  .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  
+  .verified-badge svg {
+    flex-shrink: 0;
+  }
+  
+  .verified-badge span {
+    line-height: 1;
+  }
+</style>

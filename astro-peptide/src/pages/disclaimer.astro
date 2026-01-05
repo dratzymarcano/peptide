@@ -1,22 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/PageTitle.astro';
 ---
 
-<Layout title="Research Use Disclaimer | PeptideResearch.eu">
-  <section class="page-title bg-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
-              <li class="list-inline-item"><span class="text-white">|</span></li>
-              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">Disclaimer</a></li>
-            </ul>
-             <h1 class="text-lg text-white mt-2">Research Use Only Disclaimer</h1>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout 
+  title="Research Use Disclaimer | Peptide Shop"
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Disclaimer", url: "/disclaimer" }
+  ]}
+>
+  <PageTitle 
+    title="Research Use Only Disclaimer"
+    subtitle="Important information about the intended use of our products."
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "Disclaimer" }
+    ]}
+  />
 
   <section class="section">
     <div class="container">
@@ -24,7 +25,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="col-lg-10">
           
           <div class="alert alert-danger border-0 shadow-sm mb-5" role="alert">
-            <h4 class="alert-heading"><i class="ti-alert mr-2"></i>WARNING: NOT FOR HUMAN CONSUMPTION</h4>
+            <h4 class="alert-heading d-flex align-items-center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>WARNING: NOT FOR HUMAN CONSUMPTION</h4>
             <p class="mb-0">The products offered by PeptideResearch.eu are intended exclusively for laboratory research and development purposes.</p>
           </div>
 

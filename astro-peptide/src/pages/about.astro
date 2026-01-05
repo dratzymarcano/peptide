@@ -1,48 +1,223 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/PageTitle.astro';
 ---
 
-<Layout title="About Us | PeptideResearch.eu" description="Leading European supplier of high-purity research peptides. Dedicated to quality, transparency, and scientific excellence.">
-  <section class="page-title bg-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
-              <li class="list-inline-item"><span class="text-white">|</span></li>
-              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">About us</a></li>
-            </ul>
-             <h1 class="text-lg text-white mt-2">About PeptideResearch</h1>
-        </div>
-      </div>
-    </div>
-  </section>
+<Layout 
+  title="About Us | Peptide Shop" 
+  description="Leading supplier of high-purity research peptides. Dedicated to quality, transparency, and scientific excellence."
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "About Us", url: "/about" }
+  ]}
+>
+  
+  <style>
+    /* Mobile-first responsive styles for About page */
+    @media (max-width: 767px) {
+      section[style*="padding: 80px 0"] {
+        padding: 40px 0 !important;
+      }
+      
+      div[style*="padding: 40px"] {
+        padding: 24px !important;
+      }
+      
+      div[style*="padding: 32px"] {
+        padding: 20px !important;
+      }
+      
+      h2 {
+        font-size: 1.5rem !important;
+      }
+      
+      h3 {
+        font-size: 1.25rem !important;
+      }
+      
+      p[style*="font-size: 1.25rem"] {
+        font-size: 1rem !important;
+      }
+      
+      p[style*="font-size: 1.125rem"] {
+        font-size: 1rem !important;
+      }
+      
+      /* Sidebar on mobile goes above content */
+      .col-lg-4 {
+        margin-bottom: 32px;
+        order: -1;
+      }
+      
+      .col-lg-4 > div[style*="position: sticky"] {
+        position: relative !important;
+        top: 0 !important;
+      }
+      
+      /* Feature cards full width on mobile */
+      .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 575px) {
+      div[style*="padding: 40px"] {
+        padding: 16px !important;
+      }
+      
+      div[style*="padding: 20px"] {
+        padding: 14px !important;
+      }
+      
+      .breadcrumb {
+        font-size: 12px;
+      }
+    }
+  </style>
 
-  <section class="section about-page">
+  <PageTitle 
+    title="About Peptide Shop"
+    subtitle="Leading European supplier of premium research peptides with verified purity and complete transparency."
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "About Us" }
+    ]}
+  />
+
+  <!-- Main Content Section -->
+  <section style="padding: 80px 0; background: white;">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <h2 class="title-color">Commitment to Scientific Excellence</h2>
-          <p class="mt-4 mb-5">We are a dedicated team of scientists and supply chain experts committed to providing the highest quality peptides for the European research community.</p>
-                  
-          <h3 class="mt-4">Our Mission</h3>
-          <p>Our mission is to accelerate scientific discovery by removing the variables of reagent quality. We believe that reproducible research starts with pure, verified materials. That's why we focus exclusively on supplying research-grade peptides with complete transparency.</p>
-          
-          <h3 class="mt-4">Quality First</h3>
-          <p>In an industry often plagued by opacity, we stand apart by providing comprehensive analytical data for every batch. We don't just claim purity; we prove it.</p>
-          <ul class="list-unstyled mt-3">
-              <li class="mb-2"><i class="ti-check mr-3 text-color"></i>HPLC Analysis: To verify purity ≥98%.</li>
-              <li class="mb-2"><i class="ti-check mr-3 text-color"></i>Mass Spectrometry: To confirm molecular identity.</li>
-              <li class="mb-2"><i class="ti-check mr-3 text-color"></i>Strict Storage: All inventory is stored at -20°C.</li>
-          </ul>
+          <div style="background: white; border-radius: 10px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 40px;">
+            <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 24px; font-size: 2rem;">
+              Commitment to Scientific Excellence
+            </h2>
+            <p style="color: #64748b; font-size: 1.125rem; line-height: 1.8; margin-bottom: 32px;">
+              We are a dedicated team of scientists and supply chain experts committed to providing the highest quality peptides for the UK research community.
+            </p>
+            
+            <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
+              Our Mission
+            </h3>
+            <p style="color: #64748b; line-height: 1.8;">
+              Our mission is to accelerate scientific discovery by removing the variables of reagent quality. We believe that reproducible research starts with pure, verified materials. That's why we focus exclusively on supplying research-grade peptides with complete transparency.
+            </p>
+            
+            <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
+              Quality First
+            </h3>
+            <p style="color: #64748b; line-height: 1.8; margin-bottom: 24px;">
+              In an industry often plagued by opacity, we stand apart by providing comprehensive analytical data for every batch. We don't just claim purity; we prove it.
+            </p>
+            
+            <div class="row g-3 mt-4">
+              <div class="col-md-6">
+                <div style="background: rgba(0, 119, 182, 0.05); border-left: 4px solid #0077b6; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">HPLC Analysis</strong>
+                      <span style="color: #64748b; font-size: 14px;">To verify purity ≥99%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background: rgba(0, 150, 199, 0.05); border-left: 4px solid #0096c7; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0096c7" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">Mass Spectrometry</strong>
+                      <span style="color: #64748b; font-size: 14px;">To confirm molecular identity</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background: rgba(16, 185, 129, 0.05); border-left: 4px solid #10b981; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">Strict Storage</strong>
+                      <span style="color: #64748b; font-size: 14px;">All inventory at -20°C</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background: rgba(245, 158, 11, 0.05); border-left: 4px solid #f59e0b; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">Third-Party Testing</strong>
+                      <span style="color: #64748b; font-size: 14px;">Independent verification</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <div class="alert alert-info mt-5" role="alert">
-            <h4 class="alert-heading">Research Use Only</h4>
-            <p>Please note that all products on this website are sold strictly for laboratory research and development purposes. They are not intended for human use, veterinary use, or for any form of therapy or diagnosis.</p>
+          <div style="background: linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1)); border-radius: 10px; padding: 32px; border: 2px solid rgba(0, 119, 182, 0.2);">
+            <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 16px; font-size: 1.25rem;">
+              Research Use Only
+            </h4>
+            <p style="color: #64748b; margin: 0; line-height: 1.7;">
+              Please note that all products on this website are sold strictly for laboratory research and development purposes. They are not intended for human use, veterinary use, or for any form of therapy or diagnosis.
+            </p>
           </div>
         </div>
+
+        <!-- Sidebar -->
         <div class="col-lg-4">
-            <img src="/images/about/about.jpg" alt="" class="img-fluid rounded shadow">
+          <div style="position: sticky; top: 100px;">
+            <img src="/images/about/about.jpg" alt="Peptide Shop laboratory and quality control facility" loading="lazy" decoding="async" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 32px;">
+            
+            <div style="background: linear-gradient(135deg, #0077b6, #023e8a); border-radius: 10px; padding: 32px; color: white;">
+              <h4 style="color: white; font-weight: 700; margin-bottom: 20px; font-size: 1.25rem;">
+                Why Choose Us?
+              </h4>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span style="line-height: 1.6;">≥99% purity guaranteed</span>
+                </li>
+                <li style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span style="line-height: 1.6;">COA with every order</span>
+                </li>
+                <li style="display: flex; align-items: start; gap: 12px; margin-bottom: 16px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span style="line-height: 1.6;">Fast EU & UK delivery</span>
+                </li>
+                <li style="display: flex; align-items: start; gap: 12px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span style="line-height: 1.6;">Expert support team</span>
+                </li>
+              </ul>
+              <a href="/peptides/" style="display: inline-block; background: white; color: #0077b6; padding: 12px 28px; border-radius: 10px; font-weight: 700; text-decoration: none; margin-top: 24px; width: 100%; text-align: center;">
+                Browse Products
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

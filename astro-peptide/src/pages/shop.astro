@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/PageTitle.astro';
+import ProductCard from '../components/ProductCard';
+import Sidebar from '../components/Sidebar.astro';
+
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+const products = await getCollection('products');
+---
+
+<Layout 
+  title="Shop Research Peptides | Peptide Shop" 
+  description="Browse our complete catalog of research-grade peptides with 98%+ purity guaranteed."
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Shop", url: "/shop" }
+  ]}
+>
+  <PageTitle 
+    title="All Products"
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "Shop" }
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <!-- Filters Sidebar -->
+        <div class="col-lg-3 mb-5">
+          <Sidebar />
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-lg-9">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <p class="mb-0 text-muted">Showing {products.length} products</p>
+            <select class="form-control" style="width: 200px;">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Name: A-Z</option>
+            </select>
+          </div>
+
+          <div class="row product-grid">
+            {products.map(product => {
+              const extractPrice = (priceStr: string): number => {
+                const match = priceStr?.match(/[\d,]+/);
+                return match ? parseFloat(match[0].replace(',', '')) : 99;
+              };
+              const price = product.data.moq || extractPrice(product.data.price_range);
+              const image = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
+              const slug = cleanSlug(product.slug);
+              
+              return (
+                <div class="col-6 col-md-6 col-lg-4 mb-4">
+                  <ProductCard 
+                    client:load
+                    id={product.data.id}
+                    title={product.data.title}
+                    price={product.data.price || price}
+                    image={image}
+                    slug={slug}
+                    category={product.data.category}
+                    purity={product.data.purity}
+                    reviewCount={product.data.reviews?.length || 0}
+                    packageSize={product.data.package_sizes?.[0]}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Mobile First Shop Page Styles */
+  /* Hide sidebar filters on mobile, show as collapsible or off-canvas */
+  @media (max-width: 991px) {
+    .col-lg-3.mb-5 {
+      display: none;
+    }
+    
+    .col-lg-9 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* Mobile product grid spacing */
+  .product-grid {
+    margin: 0 -6px;
+  }
+
+  .product-grid > [class*="col-"] {
+    padding: 0 6px;
+  }
+
+  .product-grid .mb-4 {
+    margin-bottom: 12px !important;
+  }
+
+  @media (min-width: 576px) {
+    .product-grid {
+      margin: 0 -10px;
+    }
+
+    .product-grid > [class*="col-"] {
+      padding: 0 10px;
+    }
+
+    .product-grid .mb-4 {
+      margin-bottom: 20px !important;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .product-grid {
+      margin: 0 -12px;
+    }
+
+    .product-grid > [class*="col-"] {
+      padding: 0 12px;
+    }
+
+    .product-grid .mb-4 {
+      margin-bottom: 24px !important;
+    }
+  }
+
+  /* Mobile sort/filter bar */
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .d-flex.justify-content-between select {
+    width: 100% !important;
+  }
+
+  @media (min-width: 576px) {
+    .d-flex.justify-content-between {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    .d-flex.justify-content-between select {
+      width: 200px !important;
+    }
+  }
+</style>

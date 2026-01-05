@@ -1,0 +1,188 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  variant?: 'dark' | 'light';
+}
+
+const { 
+  title, 
+  subtitle, 
+  breadcrumbs = [],
+  variant = 'dark'
+} = Astro.props;
+---
+
+<section class={`page-title-section ${variant}`}>
+  <div class="container">
+    {breadcrumbs.length > 0 && (
+      <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb-list">
+          {breadcrumbs.map((item, index) => (
+            <li class={`breadcrumb-item ${!item.url ? 'active' : ''}`}>
+              {item.url ? (
+                <a href={item.url}>
+                  {index === 0 ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                  ) : (
+                    item.name
+                  )}
+                </a>
+              ) : (
+                <span>{item.name}</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+    <h1 class="page-heading">{title}</h1>
+    {subtitle && (
+      <p class="page-subtitle">{subtitle}</p>
+    )}
+    <slot />
+  </div>
+</section>
+
+<style>
+  /* Reset Bootstrap breadcrumb styles */
+  .page-title-section .breadcrumb-item + .breadcrumb-item::before {
+    content: none;
+  }
+
+  /* Dark variant (default) - blue gradient with white text */
+  .page-title-section.dark {
+    background: linear-gradient(135deg, #023e8a 0%, #0077b6 100%);
+    padding: 1.5rem 0 2rem;
+  }
+  
+  .page-title-section.dark .breadcrumb-item {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .page-title-section.dark .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .page-title-section.dark .breadcrumb-item a:hover {
+    color: white;
+  }
+  
+  .page-title-section.dark .breadcrumb-item.active {
+    color: white;
+  }
+  
+  .page-title-section.dark .page-heading {
+    color: white;
+  }
+  
+  .page-title-section.dark .page-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  
+  /* Light variant - light gradient with dark text */
+  .page-title-section.light {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    padding: 1.5rem 0 2rem;
+    border-bottom: 1px solid #e0e7ff;
+  }
+  
+  .page-title-section.light .breadcrumb-item {
+    color: #64748b;
+  }
+  
+  .page-title-section.light .breadcrumb-item a {
+    color: #64748b;
+  }
+  
+  .page-title-section.light .breadcrumb-item a:hover {
+    color: #0077b6;
+  }
+  
+  .page-title-section.light .breadcrumb-item.active {
+    color: #1e293b;
+  }
+  
+  .page-title-section.light .page-heading {
+    color: #1e293b;
+  }
+  
+  .page-title-section.light .page-subtitle {
+    color: #475569;
+  }
+  
+  /* Common styles */
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+  }
+  
+  .breadcrumb-list .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+  
+  .breadcrumb-list .breadcrumb-item a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  
+  .breadcrumb-list .breadcrumb-item:not(:last-child)::after {
+    content: '>';
+    display: inline-block;
+    margin: 0 0.5rem;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  
+  .breadcrumb-list .breadcrumb-item:last-child::before {
+    content: '/';
+    display: inline-block;
+    margin-right: 0.4rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+  
+  .page-heading {
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .page-subtitle {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .page-title-section {
+      padding: 1rem 0 1.5rem;
+    }
+    
+    .page-heading {
+      font-size: 1.5rem;
+    }
+    
+    .page-subtitle {
+      font-size: 0.9rem;
+    }
+  }
+</style>

@@ -1,0 +1,704 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageTitle from '../components/PageTitle.astro';
+
+const bundles = [
+  {
+    id: "recovery-stack",
+    name: "Recovery Research Stack",
+    tagline: "The Complete Healing Protocol",
+    description: "Our most popular bundle for tissue repair and recovery research. Combines BPC-157's gastric protective properties with TB-500's systemic healing effects.",
+    products: [
+      { name: "BPC-157", size: "10mg", href: "/peptides/buy-bpc-157", price: 65 },
+      { name: "TB-500", size: "10mg", href: "/peptides/buy-tb-500", price: 55 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: "/peptides/buy-bacteriostatic-water", price: 16 }
+    ],
+    originalPrice: 136,
+    bundlePrice: 115,
+    savings: 21,
+    savingsPercent: 15,
+    features: [
+      "Synergistic healing mechanisms",
+      "Complementary research pathways",
+      "Complete reconstitution supplies",
+      "Popular research combination"
+    ],
+    color: "#0077b6"
+  },
+  {
+    id: "weight-research-stack",
+    name: "Metabolic Research Stack",
+    tagline: "Advanced GLP-1 Research",
+    description: "Comprehensive bundle for metabolic and weight loss research. Features the leading GLP-1 agonist alongside a dual-agonist for comparative studies.",
+    products: [
+      { name: "Semaglutide", size: "5mg", href: "/peptides/buy-semaglutide", price: 85 },
+      { name: "Tirzepatide", size: "5mg", href: "/peptides/buy-tirzepatide", price: 95 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: "/peptides/buy-bacteriostatic-water", price: 16 }
+    ],
+    originalPrice: 196,
+    bundlePrice: 165,
+    savings: 31,
+    savingsPercent: 16,
+    features: [
+      "GLP-1 receptor research",
+      "Dual-agonist comparison",
+      "Metabolic pathway studies",
+      "All supplies included"
+    ],
+    color: "#7c3aed",
+    popular: true
+  },
+  {
+    id: "gh-stack",
+    name: "Growth Hormone Stack",
+    tagline: "Complete GHRH Research",
+    description: "Ideal for growth hormone secretagogue research. Combines long-acting GHRH analogue with GHRP for synergistic GH release studies.",
+    products: [
+      { name: "CJC-1295 (No DAC)", size: "5mg", href: "/peptides/buy-cjc-1295-no-dac", price: 45 },
+      { name: "Ipamorelin", size: "5mg", href: "/peptides/buy-ipamorelin", price: 40 },
+      { name: "GHRP-6", size: "5mg", href: "/peptides/buy-ghrp-6", price: 35 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: "/peptides/buy-bacteriostatic-water", price: 16 }
+    ],
+    originalPrice: 136,
+    bundlePrice: 115,
+    savings: 21,
+    savingsPercent: 15,
+    features: [
+      "GHRH + GHRP synergy",
+      "Multiple secretagogues",
+      "GH pulse research",
+      "All reconstitution supplies"
+    ],
+    color: "#059669"
+  },
+  {
+    id: "cognitive-stack",
+    name: "Cognitive Research Stack",
+    tagline: "Nootropic Research Bundle",
+    description: "Comprehensive collection for cognitive and neuroprotection research. Features leading nootropic peptides studied for memory and neural function.",
+    products: [
+      { name: "Semax", size: "30mg", href: "/peptides/buy-semax", price: 55 },
+      { name: "Selank", size: "10mg", href: "/peptides/buy-selank", price: 50 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: "/peptides/buy-bacteriostatic-water", price: 16 }
+    ],
+    originalPrice: 121,
+    bundlePrice: 99,
+    savings: 22,
+    savingsPercent: 18,
+    features: [
+      "BDNF pathway research",
+      "Neuroprotection studies",
+      "Complementary mechanisms",
+      "Cognitive enhancement research"
+    ],
+    color: "#0891b2"
+  },
+  {
+    id: "starter-kit",
+    name: "Peptide Starter Kit",
+    tagline: "Perfect for New Researchers",
+    description: "An excellent introduction to peptide research. Includes our most popular recovery peptide with all necessary reconstitution supplies.",
+    products: [
+      { name: "BPC-157", size: "5mg", href: "/peptides/buy-bpc-157", price: 35 },
+      { name: "Bacteriostatic Water", size: "10ml x3", href: "/peptides/buy-bacteriostatic-water", price: 24 }
+    ],
+    originalPrice: 59,
+    bundlePrice: 49,
+    savings: 10,
+    savingsPercent: 17,
+    features: [
+      "Beginner-friendly",
+      "Complete supplies",
+      "Popular research peptide",
+      "Excellent value"
+    ],
+    color: "#f59e0b"
+  }
+];
+---
+
+<Layout 
+  title="Peptide Bundles | Research Stacks | Peptide Shop" 
+  description="Save on peptide research bundles. Curated stacks for recovery, weight loss, growth hormone, and cognitive research. Up to 20% off with bundled pricing."
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Bundles", url: "/bundles" }
+  ]}
+>
+  <style>
+    .bundles-hero {
+      background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bundles-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    
+    .hero-title {
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    
+    .hero-description {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    
+    .bundles-section {
+      padding: 80px 0;
+      background: #f8fafc;
+    }
+    
+    .bundles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    
+    @media (max-width: 991px) {
+      .bundles-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .bundle-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .bundle-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    
+    .bundle-card.featured {
+      border: 3px solid #7c3aed;
+    }
+    
+    .popular-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #7c3aed;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    
+    .bundle-header {
+      padding: 32px 32px 24px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .bundle-tagline {
+      color: #64748b;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    
+    .bundle-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+    
+    .bundle-description {
+      color: #64748b;
+      line-height: 1.6;
+    }
+    
+    .bundle-products {
+      padding: 24px 32px;
+      background: #f8fafc;
+    }
+    
+    .product-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .product-row:last-child {
+      border-bottom: none;
+    }
+    
+    .product-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .product-link {
+      color: #1e293b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .product-link:hover {
+      color: #0077b6;
+    }
+    
+    .product-size {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .product-price {
+      color: #64748b;
+      font-size: 14px;
+    }
+    
+    .bundle-features {
+      padding: 24px 32px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    
+    @media (max-width: 575px) {
+      .features-list {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #475569;
+      font-size: 14px;
+    }
+    
+    .feature-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    
+    .bundle-footer {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    @media (max-width: 575px) {
+      .bundle-footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+    
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    
+    .original-price {
+      color: #94a3b8;
+      font-size: 1rem;
+      text-decoration: line-through;
+    }
+    
+    .bundle-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+    
+    .savings-badge {
+      background: #dcfce7;
+      color: #16a34a;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .add-bundle-btn {
+      background: #0077b6;
+      color: white;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .add-bundle-btn:hover {
+      background: #005f8a;
+      transform: translateY(-2px);
+    }
+    
+    .why-bundles {
+      padding: 80px 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-label {
+      color: #0077b6;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+    
+    .section-subtitle {
+      color: #64748b;
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    
+    @media (max-width: 991px) {
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 575px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .benefit-card {
+      text-align: center;
+      padding: 32px;
+      background: #f8fafc;
+      border-radius: 16px;
+    }
+    
+    .benefit-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    
+    .benefit-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: #0077b6;
+    }
+    
+    .benefit-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    
+    .benefit-description {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .custom-bundle-cta {
+      background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      padding: 60px 0;
+      text-align: center;
+    }
+    
+    .cta-title {
+      color: white;
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    
+    .cta-text {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+      font-size: 1.125rem;
+    }
+    
+    .cta-btn {
+      display: inline-block;
+      background: #0077b6;
+      color: white;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .cta-btn:hover {
+      background: #005f8a;
+      transform: translateY(-2px);
+    }
+    
+    @media (max-width: 767px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+      }
+      
+      .bundle-header,
+      .bundle-products,
+      .bundle-features,
+      .bundle-footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+
+  <PageTitle 
+    title="Research Peptide Bundles"
+    subtitle="Curated research stacks combining complementary peptides for advanced studies. Save money and get all the supplies you need in one convenient package."
+    breadcrumbs={[
+      { name: "Home", url: "/" },
+      { name: "Bundles" }
+    ]}
+  />
+
+  <!-- Bundles Grid -->
+  <section class="bundles-section">
+    <div class="container">
+      <div class="bundles-grid">
+        {bundles.map((bundle) => (
+          <div class={`bundle-card ${bundle.popular ? 'featured' : ''}`}>
+            {bundle.popular && <span class="popular-tag">Most Popular</span>}
+            
+            <div class="bundle-header">
+              <p class="bundle-tagline" style={`color: ${bundle.color}`}>{bundle.tagline}</p>
+              <h2 class="bundle-name">{bundle.name}</h2>
+              <p class="bundle-description">{bundle.description}</p>
+            </div>
+            
+            <div class="bundle-products">
+              {bundle.products.map((product) => (
+                <div class="product-row">
+                  <div class="product-info">
+                    <a href={product.href} class="product-link">{product.name}</a>
+                    <span class="product-size">{product.size}</span>
+                  </div>
+                  <span class="product-price">£{product.price}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div class="bundle-features">
+              <div class="features-list">
+                {bundle.features.map((feature) => (
+                  <div class="feature-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke={bundle.color} stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div class="bundle-footer">
+              <div>
+                <div class="price-block">
+                  <span class="original-price">£{bundle.originalPrice}</span>
+                  <span class="bundle-price">£{bundle.bundlePrice}</span>
+                </div>
+                <span class="savings-badge">Save £{bundle.savings} ({bundle.savingsPercent}%)</span>
+              </div>
+              <button 
+                class="add-bundle-btn" 
+                data-bundle-id={bundle.id}
+                data-bundle-name={bundle.name}
+                data-bundle-price={bundle.bundlePrice}
+                onclick={`window.addBundleToCart('${bundle.id}', '${bundle.name}', ${bundle.bundlePrice})`}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Bundles -->
+  <section class="why-bundles">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Benefits</p>
+        <h2 class="section-title">Why Choose Bundles?</h2>
+        <p class="section-subtitle">Research bundles offer significant advantages for your laboratory needs.</p>
+      </div>
+      
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="m16 8-4 4-4-4"></path>
+              <path d="m16 16-4-4-4 4"></path>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Save Money</h3>
+          <p class="benefit-description">Up to 20% discount compared to individual products</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Expert Curated</h3>
+          <p class="benefit-description">Peptides selected for synergistic research applications</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7.5 4.27 9 5.15"></path>
+              <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+              <path d="m3.3 7 8.7 5 8.7-5"></path>
+              <path d="M12 22V12"></path>
+            </svg>
+          </div>
+          <h3 class="benefit-title">Complete Supplies</h3>
+          <p class="benefit-description">All reconstitution materials included</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path>
+              <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path>
+              <circle cx="7" cy="18" r="2"></circle>
+              <circle cx="17" cy="18" r="2"></circle>
+            </svg>
+          </div>
+          <h3 class="benefit-title">One Shipment</h3>
+          <p class="benefit-description">Everything arrives together for convenience</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Bundle CTA -->
+  <section class="custom-bundle-cta">
+    <div class="container">
+      <h2 class="cta-title">Need a Custom Bundle?</h2>
+      <p class="cta-text">Contact us for personalized research bundles tailored to your specific requirements.</p>
+      <a href="/contact/" class="cta-btn">Request Custom Quote</a>
+    </div>
+  </section>
+
+  <script is:inline>
+    // @ts-ignore - Called via onclick attribute in HTML
+    window.addBundleToCart = function addBundleToCart(bundleId, bundleName, bundlePrice) {
+      // Get existing cart or create new
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      
+      // Check if bundle already in cart
+      const existingIndex = cart.findIndex(item => item.id === bundleId);
+      
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push({
+          id: bundleId,
+          name: bundleName,
+          price: bundlePrice,
+          quantity: 1,
+          type: 'bundle'
+        });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart count in header if exists
+      const cartCount = document.querySelector('.cart-count');
+      if (cartCount) {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+      }
+      
+      // Show confirmation
+      alert(`${bundleName} added to cart!`);
+    }
+  </script>
+</Layout>

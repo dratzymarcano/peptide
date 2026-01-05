@@ -1,40 +1,595 @@
 ---
-import EnquiryCartIcon from './EnquiryCartIcon';
+import CartIcon from './CartIcon';
+import CartModal from './CartModal';
+import CartNotification from './CartNotification';
+import AccountButton from './AccountButton';
+import SearchBar from './SearchBar';
 ---
 
-<nav class="navbar navbar-expand-lg navigation fixed-top" id="navbar">
-	<div class="container-fluid">
-		<a class="navbar-brand" href="/">
-			<h2 class="text-white text-capitalize">Peptide<span class="text-color">Research</span></h2>
-		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsid"
-			aria-controls="navbarsid" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="ti-view-list"></span>
-		</button>
-		<div class="collapse text-center navbar-collapse" id="navbarsid">
-			<ul class="navbar-nav mx-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Peptides</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="/peptides/">All Peptides</a></li>
-						<li><a class="dropdown-item" href="/peptides/wellness-supplements/">Wellness</a></li>
-						<li><a class="dropdown-item" href="/peptides/skincare-cosmetics/">Skincare</a></li>
-					</ul>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="/research/">Research Hub</a></li>
-				<li class="nav-item"><a class="nav-link" href="/quality/">Quality</a></li>
-				<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-			</ul>
-			<div class="my-md-0 ml-lg-4 mt-4 mt-lg-0 ml-auto text-lg-right mb-3 mb-lg-0">
-				<a href="/contact">
-					<h3 class="text-color mb-0"><i class="ti-email mr-2"></i>Contact Us</h3>
-				</a>
+<!-- Top Announcement Bar -->
+<div class="top-bar">
+	<div class="container-fluid px-4">
+		<div class="top-bar-content">
+			<div class="top-bar-left">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+					<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+				</svg>
+				<span>+44 123 456 7890</span>
+			</div>
+			<div class="top-bar-center">
+					<span>✓ Trusted by Researchers Across Europe | Lab-Verified Purity</span>
+			</div>
+			<div class="top-bar-right">
+				<span>✉ info@peptide-shop.net | Telegram: @peptideshop</span>
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Main Navigation Bar -->
+<nav class="main-nav" id="navbar">
+	<div class="container-fluid px-4">
+		<div class="nav-wrapper">
+			<!-- Logo -->
+			<a class="nav-logo" href="/">
+				<div class="logo-icon">
+					<svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+						<circle cx="12" cy="12" r="10" fill="#0077b6"/>
+						<path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 4-4 4" stroke="#fff" stroke-width="2" fill="none"/>
+						<circle cx="12" cy="12" r="2" fill="#90e0ef"/>
+					</svg>
+				</div>
+				<span class="logo-text">Peptide<span class="logo-highlight">Shop</span></span>
+			</a>
+
+			<!-- Navigation Links - Center -->
+			<ul class="nav-links">
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="/peptides/">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="3" width="7" height="7"></rect>
+							<rect x="14" y="3" width="7" height="7"></rect>
+							<rect x="14" y="14" width="7" height="7"></rect>
+							<rect x="3" y="14" width="7" height="7"></rect>
+						</svg>
+						Categories
+						<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<polyline points="6 9 12 15 18 9"></polyline>
+						</svg>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/peptides/">All Peptides</a></li>
+						<li><a class="dropdown-item" href="/peptides/weight-loss/">Weight Loss</a></li>
+						<li><a class="dropdown-item" href="/peptides/muscle-recovery/">Muscle & Recovery</a></li>
+						<li><a class="dropdown-item" href="/peptides/growth-hormone/">Growth Hormone</a></li>
+						<li><a class="dropdown-item" href="/peptides/tanning/">Tanning</a></li>
+						<li><a class="dropdown-item" href="/peptides/cognitive/">Cognitive</a></li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/blog/">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about/">About Us</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/quality/">Quality</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/contact/">Contact</a>
+				</li>
+			</ul>
+
+			<!-- Right Actions - Search, Account, Cart -->
+			<div class="nav-actions">
+				<!-- Search - React Component -->
+				<SearchBar client:load />
+
+				<!-- Account - React Component for Auth State -->
+				<AccountButton client:load />
+
+				<!-- Cart with Count - React Component for Real-time Updates -->
+				<div class="cart-wrapper">
+					<CartIcon client:load />
+				</div>
+			</div>
+
+			<!-- Mobile Toggle -->
+			<button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e293b" stroke-width="2">
+					<line x1="4" x2="20" y1="12" y2="12"></line>
+					<line x1="4" x2="20" y1="6" y2="6"></line>
+					<line x1="4" x2="20" y1="18" y2="18"></line>
+				</svg>
+			</button>
+		</div>
+	</div>
 </nav>
+
+<!-- Cart Modal - React Component -->
+<CartModal client:load />
+
+<!-- Cart Notification - React Component -->
+<CartNotification client:load />
+
+<style>
+	/* ===== MOBILE FIRST - Base styles are for mobile ===== */
+	
+	/* Top Announcement Bar */
+	.top-bar {
+		background: #0077b6;
+		color: white;
+		padding: 8px 0;
+		font-size: 11px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 10001;
+	}
+
+	.top-bar-content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	.top-bar-left,
+	.top-bar-right {
+		display: none;
+	}
+
+	.top-bar-center {
+		font-weight: 500;
+		color: white !important;
+	}
+
+	.top-bar-center span {
+		color: white !important;
+	}
+
+	/* Main Navigation - Mobile First */
+	.main-nav {
+		background: white;
+		border-bottom: 1px solid #e5e7eb;
+		padding: 10px 0;
+		position: fixed;
+		top: 32px;
+		left: 0;
+		right: 0;
+		z-index: 10000;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+	}
+
+	.nav-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		padding: 0 12px;
+	}
+
+	/* Logo - Mobile */
+	.nav-logo {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		text-decoration: none;
+		flex-shrink: 0;
+	}
+
+	.logo-icon svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	.logo-text {
+		font-size: 18px;
+		font-weight: 800;
+		color: #0077b6;
+	}
+
+	.logo-highlight {
+		color: #0077b6;
+	}
+
+	/* Nav Links - Hidden on mobile by default */
+	.nav-links {
+		display: none;
+		position: fixed;
+		top: 85px;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: white;
+		flex-direction: column;
+		align-items: stretch;
+		list-style: none;
+		margin: 0;
+		padding: 20px;
+		overflow-y: auto;
+		z-index: 9999;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.nav-links.show {
+		display: flex;
+	}
+
+	.nav-item {
+		position: relative;
+		border-bottom: 1px solid #f1f5f9;
+	}
+
+	.nav-item:last-child {
+		border-bottom: none;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		color: #1e293b;
+		font-weight: 600;
+		font-size: 16px;
+		padding: 16px 0;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+
+	.nav-link:hover {
+		color: #0077b6;
+	}
+
+	.nav-link svg {
+		flex-shrink: 0;
+	}
+
+	/* Mobile Dropdown - Accordion style */
+	.nav-item .dropdown-menu {
+		display: none;
+		position: static;
+		background: #f8fafc;
+		border-radius: 8px;
+		box-shadow: none;
+		padding: 8px 0;
+		margin: 0 0 10px 0;
+		list-style: none;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+
+	.nav-item.dropdown.open .dropdown-menu {
+		display: block;
+	}
+
+	.dropdown-item {
+		display: block;
+		padding: 12px 16px;
+		color: #374151;
+		text-decoration: none;
+		font-size: 15px;
+		font-weight: 500;
+		transition: all 0.2s;
+	}
+
+	.dropdown-item:hover {
+		background: rgba(0, 119, 182, 0.08);
+		color: #0077b6;
+	}
+
+	/* Right Actions - Mobile */
+	.nav-actions {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		flex-shrink: 0;
+	}
+
+	.nav-action-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		color: #1e293b;
+		text-decoration: none;
+		background: none;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: all 0.2s;
+		padding: 0;
+	}
+
+	.nav-action-btn:hover {
+		background: rgba(0, 119, 182, 0.08);
+		color: #0077b6;
+	}
+
+	.nav-action-btn svg {
+		width: 22px;
+		height: 22px;
+	}
+
+	.action-label {
+		display: none;
+	}
+
+	/* Cart wrapper */
+	.cart-wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	.cart-wrapper :global(button) {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.cart-wrapper :global(button:hover) {
+		background: rgba(0, 119, 182, 0.08);
+	}
+
+	/* Mobile Toggle */
+	.mobile-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		border-radius: 8px;
+		transition: background 0.2s;
+	}
+
+	.mobile-toggle:hover {
+		background: rgba(0, 119, 182, 0.08);
+	}
+
+	/* Body padding for fixed headers */
+	:global(body) {
+		padding-top: 85px !important;
+	}
+
+	/* Mobile overlay when menu is open */
+	:global(body.menu-open) {
+		overflow: hidden;
+	}
+
+	/* ===== TABLET BREAKPOINT (768px+) ===== */
+	@media (min-width: 768px) {
+		.top-bar {
+			padding: 10px 0;
+			font-size: 12px;
+		}
+
+		.main-nav {
+			padding: 12px 0;
+			top: 36px;
+		}
+
+		.nav-wrapper {
+			padding: 0 20px;
+			gap: 16px;
+		}
+
+		.logo-icon svg {
+			width: 32px;
+			height: 32px;
+		}
+
+		.logo-text {
+			font-size: 22px;
+		}
+
+		.nav-links {
+			top: 95px;
+		}
+
+		:global(body) {
+			padding-top: 95px !important;
+		}
+	}
+
+	/* ===== DESKTOP BREAKPOINT (992px+) ===== */
+	@media (min-width: 992px) {
+		.top-bar {
+			font-size: 13px;
+		}
+
+		.top-bar-content {
+			justify-content: space-between;
+		}
+
+		.top-bar-left {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-weight: 500;
+		}
+
+		.top-bar-left span {
+			color: white !important;
+		}
+
+		.top-bar-right {
+			display: block;
+			font-weight: 500;
+			color: white !important;
+		}
+
+		.top-bar-right span {
+			color: white !important;
+		}
+
+		.main-nav {
+			padding: 16px 0;
+			top: 38px;
+		}
+
+		.nav-wrapper {
+			gap: 40px;
+			padding: 0 24px;
+		}
+
+		.logo-text {
+			font-size: 24px;
+		}
+
+		/* Desktop Nav Links */
+		.nav-links {
+			display: flex !important;
+			position: static;
+			flex-direction: row;
+			align-items: center;
+			gap: 4px;
+			background: transparent;
+			padding: 0;
+			flex: 1;
+			justify-content: center;
+			overflow: visible;
+		}
+
+		.nav-item {
+			border-bottom: none;
+		}
+
+		.nav-link {
+			padding: 10px 16px;
+			font-size: 15px;
+			border-radius: 8px;
+			white-space: nowrap;
+		}
+
+		.nav-link:hover {
+			background: rgba(0, 119, 182, 0.05);
+		}
+
+		/* Desktop Dropdown */
+		.nav-item .dropdown-menu {
+			display: block;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			min-width: 220px;
+			background: white;
+			border-radius: 12px;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+			padding: 12px 0;
+			margin: 0;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition: all 0.2s ease;
+			z-index: 1000;
+		}
+
+		.nav-item.dropdown:hover .dropdown-menu {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		/* Desktop Actions */
+		.nav-actions {
+			gap: 8px;
+		}
+
+		.nav-action-btn {
+			width: auto;
+			height: auto;
+			padding: 10px 12px;
+			gap: 6px;
+		}
+
+		.cart-wrapper :global(button) {
+			width: auto;
+			height: auto;
+			padding: 10px 12px;
+		}
+
+		.mobile-toggle {
+			display: none !important;
+		}
+
+		:global(body) {
+			padding-top: 102px !important;
+		}
+	}
+
+	/* ===== LARGE DESKTOP (1200px+) ===== */
+	@media (min-width: 1200px) {
+		.action-label {
+			display: inline;
+		}
+
+		.nav-action-btn {
+			font-size: 14px;
+			font-weight: 500;
+		}
+	}
+</style>
+
+<script is:inline>
+	// Mobile menu toggle with improved UX
+	document.addEventListener('DOMContentLoaded', function() {
+		const toggle = document.querySelector('.mobile-toggle');
+		const navLinks = document.querySelector('.nav-links');
+		const body = document.body;
+		const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+		
+		if (toggle && navLinks) {
+			toggle.addEventListener('click', function() {
+				navLinks.classList.toggle('show');
+				body.classList.toggle('menu-open');
+				
+				// Animate hamburger icon
+				this.classList.toggle('active');
+			});
+
+			// Close menu when clicking a link (mobile)
+			navLinks.querySelectorAll('a:not(.dropdown > .nav-link)').forEach(link => {
+				link.addEventListener('click', function() {
+					if (window.innerWidth < 992) {
+						navLinks.classList.remove('show');
+						body.classList.remove('menu-open');
+						toggle.classList.remove('active');
+					}
+				});
+			});
+		}
+
+		// Mobile dropdown accordion behavior
+		dropdowns.forEach(dropdown => {
+			const link = dropdown.querySelector('.nav-link');
+			if (link) {
+				link.addEventListener('click', function(e) {
+					if (window.innerWidth < 992) {
+						e.preventDefault();
+						dropdown.classList.toggle('open');
+					}
+				});
+			}
+		});
+
+		// Close menu on resize to desktop
+		window.addEventListener('resize', function() {
+			if (window.innerWidth >= 992) {
+				navLinks.classList.remove('show');
+				body.classList.remove('menu-open');
+				toggle?.classList.remove('active');
+				dropdowns.forEach(d => d.classList.remove('open'));
+			}
+		});
+	});
+</script>

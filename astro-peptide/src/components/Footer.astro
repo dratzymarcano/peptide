@@ -2,75 +2,346 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer bg-black-50">
+<footer class="site-footer">
 	<div class="container">
 		<div class="row">
+			<!-- Brand Column -->
 			<div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-				<h2 class="text-white mb-4">PeptideResearch</h2>
-				<p>High-purity peptides for research and laboratory use only. Not for human consumption or therapeutic use.</p>
-
-				<p>Dedicated to providing the highest purity research peptides for scientific study.</p>
-			</div>
-			
-
-			<div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-				<div class="footer-widget recent-blog">
-					<h4 class="mb-4 text-white letter-spacing text-uppercase">Products</h4>
-					<div>
-						<a href="/peptides/" class="text-white">All Peptides</a>
-					</div>
-					<div class="mt-4">
-						<a href="/peptides/growth-factors/" class="text-white">Growth Factors</a>
-					</div>
-                    <div class="mt-4">
-						<a href="/peptides/peptide-fragments/" class="text-white">Peptide Fragments</a>
+				<div class="footer-brand">
+					<div class="footer-logo">
+						<svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+							<circle cx="12" cy="12" r="10" fill="#0077b6"/>
+							<path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 4-4 4" stroke="#fff" stroke-width="2" fill="none"/>
+							<circle cx="12" cy="12" r="2" fill="#90e0ef"/>
+						</svg>
+						<span class="footer-logo-text">Peptide<span class="highlight">Shop</span></span>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-2 col-md-5 mb-5 mb-lg-0">
-				<div class="footer-widget">
-					<h4 class="mb-4 text-white letter-spacing text-uppercase">Quick Links</h4>
-					<ul class="list-unstyled footer-menu lh-40 mb-0">
-						<li><a href="/about"><i class="ti-angle-double-right mr-2"></i>About Us</a></li>
-						<li><a href="/quality/"><i class="ti-angle-double-right mr-2"></i>Quality</a></li>
-						<li><a href="/shipping/"><i class="ti-angle-double-right mr-2"></i>Shipping</a></li>
-						<li><a href="/terms/"><i class="ti-angle-double-right mr-2"></i>Terms</a></li>
-						<li><a href="/contact"><i class="ti-angle-double-right mr-2"></i>Contact us</a></li>
-					</ul>
+				<p class="footer-description">
+					The UK's trusted supplier of premium research peptides. All products undergo rigorous third-party testing with ≥99% purity guaranteed.
+				</p>
+				<div class="footer-socials">
+					<a href="#" class="social-link" aria-label="Email">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect width="20" height="16" x="2" y="4" rx="2"></rect>
+							<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+						</svg>
+					</a>
+					<a href="#" class="social-link" aria-label="Phone">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+					</a>
+					<a href="#" class="social-link" aria-label="Twitter">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+						</svg>
+					</a>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-5">
-				<div class="footer-widget">
-					<h4 class="mb-4 text-white letter-spacing text-uppercase">Contact Info</h4>
-					<p>Research Institute, Science Park</p>
-					<span class="text-white">info@peptideresearch.eu</span>
+
+			<!-- Products Column -->
+			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+				<h4 class="footer-heading">Products</h4>
+				<ul class="footer-links">
+					<li><a href="/peptides/">All Peptides</a></li>
+					<li><a href="/peptides/weight-loss/">Weight Loss</a></li>
+					<li><a href="/peptides/muscle-recovery/">Muscle & Recovery</a></li>
+					<li><a href="/peptides/growth-hormone/">Growth Hormone</a></li>
+					<li><a href="/peptides/tanning/">Tanning</a></li>
+				</ul>
+			</div>
+
+			<!-- Company Column -->
+			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+				<h4 class="footer-heading">Company</h4>
+				<ul class="footer-links">
+					<li><a href="/about/">About Us</a></li>
+					<li><a href="/quality/">Quality Assurance</a></li>
+					<li><a href="/contact/">Contact Us</a></li>
+					<li><a href="/faq/">FAQ</a></li>
+					<li><a href="/shipping/">Shipping Info</a></li>
+				</ul>
+			</div>
+
+			<!-- Legal Column -->
+			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+				<h4 class="footer-heading">Legal</h4>
+				<ul class="footer-links">
+					<li><a href="/terms/">Terms & Conditions</a></li>
+					<li><a href="/privacy/">Privacy Policy</a></li>
+					<li><a href="/disclaimer/">Disclaimer</a></li>
+					<li><a href="/coa-policy/">COA Policy</a></li>
+				</ul>
+			</div>
+
+			<!-- Contact Column -->
+			<div class="col-lg-2 col-md-6">
+				<h4 class="footer-heading">Contact</h4>
+				<div class="footer-contact">
+					<div class="contact-item">
+						<strong>Email:</strong><br>
+						<a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a>
+					</div>
+					<div class="contact-item">
+						<strong>Hours:</strong><br>
+						Mon - Fri: 9AM - 5PM GMT
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="row align-items-center mt-5 px-3 bg-black mx-1">
-			<div class="col-lg-4">
-				<p class="text-white mt-3">© {currentYear} PeptideResearch.eu</p>
+		<!-- Bottom Bar -->
+		<div class="footer-bottom">
+			<div class="row align-items-center">
+				<div class="col-lg-6 mb-3 mb-lg-0">
+					<p class="copyright">
+						© {currentYear} Peptide Shop. All rights reserved.
+					</p>
+				</div>
+				<div class="col-lg-6 text-lg-end">
+					<p class="disclaimer">
+						<strong>Disclaimer:</strong> Research use only. Not for human consumption.
+					</p>
+				</div>
 			</div>
-            <div class="col-lg-8">
-                <p class="text-white-50 text-sm mt-3">
-                    <strong>Disclaimer:</strong> All products listed on this website are for research and laboratory use only. 
-                    They are not intended for human or animal consumption, or for any therapeutic or diagnostic use.
-                </p>
-            </div>
 		</div>
 	</div>
 </footer>
-<script type="application/ld+json">
+
+<style>
+	/* ===== MOBILE FIRST FOOTER ===== */
+	.site-footer {
+		background: linear-gradient(180deg, #0077b6 0%, #023e8a 100%);
+		color: #e2e8f0;
+		padding-top: 48px;
+		margin-top: 0;
+	}
+
+	.footer-brand {
+		margin-bottom: 16px;
+	}
+
+	.footer-logo {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		justify-content: center;
+	}
+
+	.footer-logo-text {
+		font-size: 22px;
+		font-weight: 800;
+		color: white;
+	}
+
+	.footer-logo-text .highlight {
+		color: #90e0ef;
+	}
+
+	.footer-description {
+		color: rgba(255, 255, 255, 0.8);
+		line-height: 1.7;
+		margin-bottom: 20px;
+		font-size: 14px;
+		text-align: center;
+	}
+
+	.footer-socials {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		margin-bottom: 32px;
+	}
+
+	.social-link {
+		width: 44px;
+		height: 44px;
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		transition: all 0.3s ease;
+	}
+
+	.social-link:hover {
+		background: #f59e0b;
+		transform: translateY(-2px);
+	}
+
+	.footer-heading {
+		color: white;
+		font-size: 14px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-bottom: 16px;
+		text-align: center;
+	}
+
+	.footer-links {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 32px 0;
+		text-align: center;
+	}
+
+	.footer-links li {
+		margin-bottom: 10px;
+	}
+
+	.footer-links a {
+		color: rgba(255, 255, 255, 0.75);
+		text-decoration: none;
+		font-size: 14px;
+		transition: all 0.2s ease;
+		display: inline-block;
+		padding: 4px 0;
+	}
+
+	.footer-links a:hover {
+		color: #f59e0b;
+	}
+
+	.footer-contact {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 14px;
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.contact-item {
+		margin-bottom: 14px;
+		line-height: 1.6;
+	}
+
+	.contact-item strong {
+		color: white;
+	}
+
+	.contact-item a {
+		color: rgba(255, 255, 255, 0.8);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.contact-item a:hover {
+		color: #f59e0b;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		margin-top: 20px;
+		padding: 24px 0;
+		text-align: center;
+	}
+
+	.copyright {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 13px;
+		margin: 0 0 12px 0;
+	}
+
+	.disclaimer {
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 12px;
+		margin: 0;
+	}
+
+	.disclaimer strong {
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	/* ===== TABLET (768px+) ===== */
+	@media (min-width: 768px) {
+		.site-footer {
+			padding-top: 60px;
+		}
+
+		.footer-logo {
+			justify-content: flex-start;
+		}
+
+		.footer-description {
+			text-align: left;
+		}
+
+		.footer-socials {
+			justify-content: flex-start;
+			margin-bottom: 0;
+		}
+
+		.footer-heading {
+			text-align: left;
+		}
+
+		.footer-links {
+			text-align: left;
+			margin-bottom: 0;
+		}
+
+		.footer-contact {
+			text-align: left;
+			margin-bottom: 0;
+		}
+
+		.footer-bottom {
+			margin-top: 40px;
+		}
+
+		.copyright {
+			margin-bottom: 8px;
+		}
+	}
+
+	/* ===== DESKTOP (992px+) ===== */
+	@media (min-width: 992px) {
+		.site-footer {
+			padding-top: 80px;
+		}
+
+		.footer-logo-text {
+			font-size: 24px;
+		}
+
+		.footer-heading {
+			font-size: 15px;
+			margin-bottom: 20px;
+		}
+
+		.footer-links li {
+			margin-bottom: 12px;
+		}
+
+		.footer-bottom {
+			margin-top: 50px;
+			padding: 30px 0;
+		}
+
+		.copyright {
+			margin-bottom: 0;
+		}
+
+		.disclaimer {
+			font-size: 13px;
+		}
+	}
+</style>
+
+<script type="application/ld+json" is:inline>
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "PeptideResearch.eu",
-      "url": "https://peptideresearch.eu",
-      "logo": "https://peptideresearch.eu/logo.png",
+      "name": "Peptide Shop",
+      "url": "https://peptide-shop.net",
+      "logo": "https://peptide-shop.net/logo.png",
+      "description": "Buy research peptides online. Premium quality Semaglutide, Tirzepatide, BPC-157, Melanotan 2 and more. Fast EU & UK delivery.",
+      "areaServed": ["GB", "DE", "FR", "NL", "ES", "IT", "PT", "PL", "CZ", "AT"],
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-555-555-5555",
+        "email": "info@peptide-shop.net",
         "contactType": "customer service"
       }
     }

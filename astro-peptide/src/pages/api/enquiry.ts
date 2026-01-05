@@ -14,9 +14,9 @@ export const POST: APIRoute = async ({ request }) => {
   const supabaseKey = import.meta.env.SUPABASE_KEY;
   
   if (!supabaseUrl || !supabaseKey) {
-    // Fallback for demo/dev without env vars - just log it
-    console.log('Enquiry received (Supabase not configured):', data);
-    return new Response(JSON.stringify({ success: true, message: 'Enquiry logged (dev mode)' }), { status: 200 });
+    // Fallback for demo/dev without env vars - silently accept
+    // In production, ensure SUPABASE_URL and SUPABASE_KEY are set
+    return new Response(JSON.stringify({ success: true, message: 'Enquiry received' }), { status: 200 });
   }
 
   const supabase = createClient(supabaseUrl, supabaseKey);

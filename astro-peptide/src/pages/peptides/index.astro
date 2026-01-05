@@ -1,82 +1,459 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import ProductCard from '../../components/ProductCard';
+import Sidebar from '../../components/Sidebar.astro';
 
 const products = await getCollection('products');
-const categories = [...new Set(products.map((product) => product.data.category))];
 
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+// Page SEO
+const metaTitle = "Buy Peptides UK | Research Peptides for Sale | Peptide Shop";
+const metaDescription = "Buy peptides UK. Premium Semaglutide, Tirzepatide, BPC-157, Melanotan 2 & more. ≥99% purity, COA included. Fast UK delivery. Trusted by researchers.";
+const productCount = products.length;
 ---
 
-<Layout title="Research Peptides Catalog | PeptideResearch.eu" description="Browse our catalog of high-purity research peptides. Growth factors, fragments, and hormonal peptides for laboratory use.">
-  <section class="page-title bg-2">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><a href="/" class="text-sm letter-spacing text-white text-uppercase font-weight-bold">Home</a></li>
-              <li class="list-inline-item"><span class="text-white">|</span></li>
-              <li class="list-inline-item"><a href="#" class="text-color text-uppercase text-sm letter-spacing">Peptides</a></li>
-            </ul>
-             <h1 class="text-lg text-white mt-2">Research Peptide Catalog</h1>
+<Layout 
+  title={metaTitle} 
+  description={metaDescription}
+  breadcrumbs={[
+    { name: "Home", url: "/" },
+    { name: "Peptides", url: "/peptides" }
+  ]}
+>
+  <!-- Hero Header -->
+  <section class="peptides-hero">
+    <div class="container mx-auto px-4">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Home</a></li>
+          <li><span class="current">All Peptides</span></li>
+        </ol>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Buy Research Peptides UK</h1>
+          <p class="hero-description">
+            Explore our complete collection of premium research peptides. From GLP-1 agonists like Semaglutide and Tirzepatide to recovery peptides like BPC-157, all compounds are HPLC-verified with ≥99% purity and include Certificates of Analysis.
+          </p>
+          
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              ≥99% HPLC Purity
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              COA Included
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Fast UK Delivery
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Secure Checkout
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">{productCount}</span>
+            <span class="stat-label">Products</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">≥99%</span>
+            <span class="stat-label">Purity</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">24h</span>
+            <span class="stat-label">UK Dispatch</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="row">
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container mx-auto px-4">
+      <div class="products-layout">
         <!-- Sidebar Filters -->
-        <div class="col-lg-3 col-md-4">
-            <div class="sidebar-widget bg-white p-4 rounded shadow-sm mb-5">
-                <h4 class="mb-4">Categories</h4>
-                <ul class="list-unstyled">
-                    <li class="mb-2"><a href="/peptides/" class="text-color font-weight-bold">All Peptides</a></li>
-                    {categories.map(cat => (
-                        <li class="mb-2">
-                            <a href={`/peptides/${cat}/`} class="text-black hover-text-primary text-capitalize">
-                                {cat.replace('-', ' ')}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
+        <Sidebar />
 
         <!-- Product Grid -->
-        <div class="col-lg-9 col-md-8">
-            <div class="row">
-                {products.map((product) => (
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card border-0 shadow-sm h-100">
-                             <div class="card-img-top position-relative">
-                                {product.data.images[0] ? (
-                                    <img src={product.data.images[0]} alt={product.data.title} class="img-fluid w-100" style="height: 200px; object-fit: contain;" />
-                                ) : (
-                                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                                        <i class="ti-image text-muted" style="font-size: 3rem;"></i>
-                                    </div>
-                                )}
-                             </div>
-                            <div class="card-body">
-                                <span class="badge badge-primary mb-2 text-uppercase">{product.data.category.replace('-', ' ')}</span>
-                                <h4 class="card-title mt-2">
-                                    <a href={`/peptides/${product.slug.replace('/peptides/', '').replace(/^\//, '')}`} class="text-dark">
-                                        {product.data.title}
-                                    </a>
-                                </h4>
-                                <p class="card-text text-muted small">{product.data.short_description}</p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="font-weight-bold text-primary">{product.data.price}</span>
-                                    <a href={`/peptides/${product.slug.replace('/peptides/', '').replace(/^\//, '')}`} class="btn btn-sm btn-outline-primary">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
+        <div class="products-main">
+          <div class="products-header">
+            <p class="showing-text">Showing <strong>{productCount}</strong> research peptides</p>
+          </div>
+
+          <div class="products-grid">
+            {products.map((product) => {
+              const price = product.data.price || product.data.moq || 45;
+              const image = product.data.images[0] || '/images/peptide-default.jpg';
+              const slug = cleanSlug(product.slug);
+              
+              return (
+                <ProductCard 
+                  client:visible
+                  id={product.data.id}
+                  title={product.data.title}
+                  price={price}
+                  image={image}
+                  slug={slug}
+                  category={product.data.category}
+                  purity={product.data.purity}
+                  reviewCount={product.data.reviews?.length || 0}
+                  packageSize={product.data.package_sizes?.[0]}
+                />
+              );
+            })}
+          </div>
+
+          <!-- SEO Content -->
+          <div class="seo-content">
+            <h2>Buy Research Peptides UK - Premium Quality Guaranteed</h2>
+            <p>
+              Peptide Shop is your trusted source for premium research-grade peptides in the United Kingdom. Our extensive catalogue includes popular compounds such as Semaglutide, Tirzepatide, BPC-157, TB-500, Melanotan 2, and many more specialised peptides for scientific research.
+            </p>
+            <p>
+              Every peptide we supply undergoes rigorous HPLC testing to verify ≥99% purity. Each order includes a comprehensive Certificate of Analysis (COA) documenting batch purity, identity verification, and quality metrics. Our peptides are stored in optimal conditions and shipped in temperature-controlled packaging to maintain integrity.
+            </p>
+            <p>
+              Whether you're conducting metabolic research, tissue repair studies, or molecular investigations, our research-grade compounds meet the highest standards for scientific applications. With fast UK delivery and expert customer support, Peptide Shop is the preferred choice for researchers across the United Kingdom and Europe.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <style>
+    .peptides-hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 40px 0 50px;
+      border-bottom: 1px solid #e0e7ff;
+    }
+
+    .breadcrumb {
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .breadcrumb-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb-list li:not(:last-child)::after {
+      content: '/';
+      color: #94a3b8;
+    }
+
+    .breadcrumb-list a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-list a:hover {
+      color: #0077b6;
+    }
+
+    .breadcrumb-list .current {
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 650px;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      color: #0077b6;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .trust-badge svg {
+      color: #0077b6;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      min-width: 100px;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #0077b6;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    /* Products Section */
+    .products-section {
+      background: #f8fafc;
+      padding: 50px 0 80px;
+    }
+
+    .products-layout {
+      display: flex;
+      gap: 40px;
+    }
+
+    .sidebar {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-widget {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-list li {
+      margin-bottom: 8px;
+    }
+
+    .category-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: #475569;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .category-link:hover {
+      background: #f1f5f9;
+      color: #0077b6;
+    }
+
+    .category-link.active {
+      background: #0077b6;
+      color: white;
+      font-weight: 600;
+    }
+
+    .category-link .count {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .why-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .products-main {
+      flex: 1;
+    }
+
+    .products-header {
+      margin-bottom: 24px;
+    }
+
+    .showing-text {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+    }
+
+    .seo-content p {
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .seo-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .peptides-hero {
+        padding: 30px 0 40px;
+      }
+
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .hero-content {
+        flex-direction: column;
+      }
+
+      .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .stat-card {
+        flex: 1;
+        padding: 16px 12px;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+
+      .trust-badges {
+        gap: 8px;
+      }
+
+      .trust-badge {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      .products-layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </Layout>
