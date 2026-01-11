@@ -137,7 +137,8 @@ const organizationSchema = {
 
     @media (max-width: 768px) {
       .section-padding {
-        padding: 60px 20px;
+        /* Compensate for any negative margins in rows and ensure visible safe zone */
+        padding: 48px 32px;
       }
     }
 
