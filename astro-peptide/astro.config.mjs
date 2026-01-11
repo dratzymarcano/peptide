@@ -9,12 +9,9 @@ export default defineConfig({
   site: 'https://peptide-shop.net',
   integrations: [react(), sitemap(), tailwind()],
   output: 'server', // Hybrid rendering for API endpoints
-  adapter: cloudflare(),
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/noop'
-    }
-  },
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'nl', 'de', 'fr', 'es', 'it'],
