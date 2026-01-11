@@ -10,6 +10,11 @@ export default defineConfig({
   integrations: [react(), sitemap(), tailwind()],
   output: 'server', // Hybrid rendering for API endpoints
   adapter: cloudflare(),
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/noop'
+    }
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'nl', 'de', 'fr', 'es', 'it'],
