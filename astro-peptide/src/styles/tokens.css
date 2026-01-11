@@ -1,0 +1,57 @@
+:root {
+  /* ===== Enterprise Mobile Design Tokens ===== */
+  /* 8px baseline grid, touch targets, type scale, motion */
+
+  /* Spacing (8px grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Layout */
+  --page-pad-x: 16px;
+  --section-pad-y: 48px;
+
+  /* Touch targets */
+  --touch-min: 48px;
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  /* Typography */
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+  --letter-tight: -0.02em;
+
+  /* Breakpoints */
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 150ms;
+  --dur-md: 240ms;
+  --dur-slow: 320ms;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-pad-x: 20px;
+    --section-pad-y: 56px;
+  }
+}
+
+@media (min-width: 992px) {
+  :root {
+    --page-pad-x: 24px;
+    --section-pad-y: 64px;
+  }
+}

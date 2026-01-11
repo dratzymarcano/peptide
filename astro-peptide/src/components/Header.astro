@@ -42,38 +42,37 @@ const currentLang = getLangFromUrl(Astro.url);
 				<span class="logo-text">Peptide<span class="logo-highlight">Shop</span></span>
 			</a>
 
-			<!-- Right Actions - Only Cart visible on mobile, others in menu -->
-			<div class="nav-actions">
-				<!-- Search - Hidden on mobile, shown in menu -->
+			<!-- Right Actions (desktop only) -->
+			<div class="nav-actions" aria-label="Header actions">
 				<div class="desktop-only-action">
 					<SearchBar client:load lang={currentLang} />
 				</div>
-				
-				<!-- Language Switcher - Hidden on mobile, shown in menu -->
 				<div class="desktop-only-action">
 					<LanguageSwitcher client:load currentLang={currentLang} />
 				</div>
-
-				<!-- Account - Hidden on mobile, shown in menu -->
 				<div class="desktop-only-action">
 					<AccountButton client:load lang={currentLang} />
 				</div>
-
-				<!-- Cart with Count - Always visible -->
-				<div class="cart-wrapper">
+				<div class="desktop-only-action cart-wrapper">
 					<CartIcon client:load lang={currentLang} />
 				</div>
 			</div>
 
 			<!-- Mobile Toggle - Clean hamburger -->
-			<button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+			<button
+				class="mobile-toggle"
+				type="button"
+				aria-label="Open menu"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+			>
 				<span class="hamburger-line"></span>
 				<span class="hamburger-line"></span>
 				<span class="hamburger-line"></span>
 			</button>
 
-			<!-- Mobile Menu - Full-screen slide-out -->
-			<div class="mobile-menu">
+			<!-- Mobile Menu - slide-out drawer -->
+			<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile menu" tabindex="-1">
 				<div class="mobile-menu-header">
 					<span class="mobile-menu-title">Menu</span>
 					<button class="mobile-menu-close" type="button" aria-label="Close menu">
@@ -84,9 +83,24 @@ const currentLang = getLangFromUrl(Astro.url);
 					</button>
 				</div>
 
-				<!-- Search in mobile menu -->
-				<div class="mobile-menu-search">
+				<!-- Search + Language at top for discoverability -->
+				<div class="mobile-menu-search" aria-label="Search">
 					<SearchBar client:load lang={currentLang} />
+				</div>
+				<div class="mobile-menu-primary">
+					<div class="primary-row" aria-label="Primary actions">
+						<div class="primary-action mobile-lang-switch" aria-label="Language">
+							<LanguageSwitcher client:load currentLang={currentLang} />
+						</div>
+					</div>
+					<div class="primary-row">
+						<div class="primary-action" aria-label="Account">
+							<AccountButton client:load lang={currentLang} />
+						</div>
+						<div class="primary-action" aria-label="Cart">
+							<CartIcon client:load lang={currentLang} />
+						</div>
+					</div>
 				</div>
 
 				<!-- Navigation Links -->
@@ -154,16 +168,9 @@ const currentLang = getLangFromUrl(Astro.url);
 
 				<!-- Mobile Menu Footer Actions -->
 				<div class="mobile-menu-footer">
-					<!-- Account Button -->
-					<div class="mobile-menu-action">
-						<AccountButton client:load lang={currentLang} />
-						<span class="action-label-text">{t(currentLang, 'nav.account')}</span>
-					</div>
-					
-					<!-- Language Switcher -->
-					<div class="mobile-menu-action mobile-lang-switch">
-						<LanguageSwitcher client:load currentLang={currentLang} />
-					</div>
+					<a class="nav-link" href={getLocalizedPath('/shop/', currentLang)}>
+						<span>{t(currentLang, 'nav.shop')}</span>
+					</a>
 				</div>
 			</div>
 
@@ -208,6 +215,14 @@ const currentLang = getLangFromUrl(Astro.url);
 		--shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
 		--shadow-md: 0 4px 12px rgba(0,0,0,0.08);
 		--shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			scroll-behavior: auto !important;
+			transition-duration: 1ms !important;
+			animation-duration: 1ms !important;
+		}
 	}
 
 	/* Top Announcement Bar - Slim & Professional */
@@ -271,6 +286,13 @@ const currentLang = getLangFromUrl(Astro.url);
 		height: 100%;
 	}
 
+	/* Enterprise mobile header: logo + hamburger only */
+	@media (max-width: 767.98px) {
+		.nav-actions {
+			display: none !important;
+		}
+	}
+
 	/* Logo - Prominent but not overwhelming */
 	.nav-logo {
 		display: flex;
@@ -303,7 +325,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		display: none;
 	}
 
-	/* Right Actions - Minimal on mobile */
+	/* Right Actions - desktop only */
 	.nav-actions {
 		display: flex;
 		align-items: center;
@@ -311,7 +333,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		height: 100%;
 	}
 
-	/* Cart Wrapper - 48px touch target */
+	/* Cart Wrapper - touch target */
 	.cart-wrapper {
 		display: flex;
 		align-items: center;
@@ -385,7 +407,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		transform: translateY(-7px) rotate(-45deg);
 	}
 
-	/* Mobile Menu - Full-screen slide-out */
+	/* Mobile Menu - slide-out drawer */
 	.mobile-menu {
 		position: fixed;
 		top: 0;
@@ -398,13 +420,14 @@ const currentLang = getLangFromUrl(Astro.url);
 		flex-direction: column;
 		transform: translateX(100%);
 		transition: transform var(--transition-smooth);
+		will-change: transform;
 		box-shadow: var(--shadow-lg);
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 	}
 
 	.mobile-menu.open {
-		transform: translateX(0);
+		transform: translate3d(0, 0, 0);
 	}
 
 	.mobile-menu-header {
@@ -444,6 +467,45 @@ const currentLang = getLangFromUrl(Astro.url);
 	.mobile-menu-search {
 		padding: var(--spacing-lg);
 		border-bottom: 1px solid var(--color-border);
+	}
+
+	/* Primary actions area inside menu (cart/account/lang) */
+	.mobile-menu-primary {
+		padding: var(--spacing-lg);
+		border-bottom: 1px solid var(--color-border);
+		display: grid;
+		gap: var(--spacing-md);
+	}
+
+	.mobile-menu-primary .primary-row {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-md);
+	}
+
+	@media (min-width: 420px) {
+		.mobile-menu-primary .primary-row:last-child {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.mobile-menu-primary .primary-action {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--touch-target);
+		padding: var(--spacing-md);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		background: var(--color-surface);
+		width: 100%;
+	}
+
+	/* Make embedded controls fit the tile */
+	.mobile-menu-primary .primary-action :global(button),
+	.mobile-menu-primary .primary-action :global(a) {
+		width: 100%;
+		justify-content: center;
 	}
 
 	.mobile-menu-search :global(input),
@@ -594,6 +656,15 @@ const currentLang = getLangFromUrl(Astro.url);
 	.mobile-menu-overlay.active {
 		opacity: 1;
 		visibility: visible;
+	}
+
+	/* Focus styles (WCAG AA) */
+	:global(a:focus-visible),
+	:global(button:focus-visible),
+	:global(input:focus-visible),
+	:global(select:focus-visible) {
+		outline: 3px solid rgba(0, 119, 182, 0.35);
+		outline-offset: 2px;
 	}
 
 	/* Body padding for fixed headers */
@@ -780,23 +851,52 @@ const currentLang = getLangFromUrl(Astro.url);
 		const dropdowns = document.querySelectorAll('.nav-item.dropdown');
 		
 		let scrollPosition = 0;
+		let lastActiveElement = null;
+
+		function getFocusableElements() {
+			if (!mobileMenu) return [];
+			const nodes = mobileMenu.querySelectorAll(
+				'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+			);
+			return Array.from(nodes).filter((el) => {
+				if (!(el instanceof HTMLElement)) return false;
+				const style = window.getComputedStyle(el);
+				return style.visibility !== 'hidden' && style.display !== 'none';
+			});
+		}
+
+		function focusFirstInMenu() {
+			const focusables = getFocusableElements();
+			const first = focusables[0];
+			if (first && first instanceof HTMLElement) {
+				first.focus();
+				return;
+			}
+			mobileMenu?.focus();
+		}
 
 		function openMenu() {
 			scrollPosition = window.pageYOffset;
+			lastActiveElement = document.activeElement;
 			body.style.top = `-${scrollPosition}px`;
 			mobileMenu?.classList.add('open');
 			overlay?.classList.add('active');
 			toggle?.classList.add('active');
+			toggle?.setAttribute('aria-expanded', 'true');
 			body.classList.add('menu-open');
+			window.setTimeout(() => focusFirstInMenu(), 0);
 		}
 
 		function closeMenu() {
 			mobileMenu?.classList.remove('open');
 			overlay?.classList.remove('active');
 			toggle?.classList.remove('active');
+			toggle?.setAttribute('aria-expanded', 'false');
 			body.classList.remove('menu-open');
 			body.style.top = '';
 			window.scrollTo(0, scrollPosition);
+			const restoreTarget = (lastActiveElement && lastActiveElement instanceof HTMLElement) ? lastActiveElement : toggle;
+			restoreTarget?.focus();
 		}
 
 		// Toggle button click
@@ -847,10 +947,34 @@ const currentLang = getLangFromUrl(Astro.url);
 			}
 		});
 
-		// Escape key handler
+		// Escape key handler + focus trap
 		document.addEventListener('keydown', function(e) {
-			if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+			if (!mobileMenu?.classList.contains('open')) return;
+			if (e.key === 'Escape') {
 				closeMenu();
+				return;
+			}
+			if (e.key === 'Tab') {
+				const focusables = getFocusableElements();
+				if (focusables.length === 0) {
+					e.preventDefault();
+					mobileMenu?.focus();
+					return;
+				}
+				const first = focusables[0];
+				const last = focusables[focusables.length - 1];
+				const active = document.activeElement;
+				if (e.shiftKey) {
+					if (active === first || active === mobileMenu) {
+						e.preventDefault();
+						last.focus();
+					}
+				} else {
+					if (active === last) {
+						e.preventDefault();
+						first.focus();
+					}
+				}
 			}
 		});
 	});

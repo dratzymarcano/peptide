@@ -1,1 +1,0 @@
-import{c as n,a as e}from"./currencyStore.Bt_PHIZe.js";import{c as r}from"./translations.DwwPAycK.js";import"./index.CEvxOxeV.js";const t=async()=>{r(new URL(window.location.href))==="en"?n.set("GBP"):(n.set("EUR"),await e())};t();

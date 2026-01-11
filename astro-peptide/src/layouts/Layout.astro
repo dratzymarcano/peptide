@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import { getLangFromUrl } from '../i18n/translations';
 import { getMarket } from '../i18n/market';
+import '../styles/tokens.css';
 
 interface BreadcrumbItem {
 	name: string;
@@ -71,14 +72,13 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 		<!-- Main Stylesheet -->
 		<link rel="stylesheet" href="/css/style.css">
 		<style is:global>
-			:root {
-				/* Enterprise mobile spacing + touch targets */
-				--m-page-pad-x: 16px;
-				--m-section-pad-y: 48px;
-				--m-card-radius: 16px;
-				--m-touch: 48px;
-				--m-gap: 16px;
-				--m-gap-sm: 12px;
+			/* Global mobile-first baseline */
+			html {
+				font-size: var(--font-size-base);
+			}
+
+			body {
+				line-height: var(--line-height-base);
 			}
 
 			/* Prevent horizontal scroll from legacy styles */
@@ -91,8 +91,8 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 			@media (max-width: 575.98px) {
 				.container,
 				.container-fluid {
-					padding-left: var(--m-page-pad-x) !important;
-					padding-right: var(--m-page-pad-x) !important;
+					padding-left: var(--page-pad-x) !important;
+					padding-right: var(--page-pad-x) !important;
 				}
 
 				.row {
@@ -103,7 +103,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 				h1 {
 					font-size: clamp(1.9rem, 7vw, 2.6rem);
 					line-height: 1.1;
-					letter-spacing: -0.02em;
+					letter-spacing: var(--letter-tight);
 				}
 
 				h2 {

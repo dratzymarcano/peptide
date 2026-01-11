@@ -1,1 +1,10 @@
 node_modules
+
+# Astro build output / caches
+astro-peptide/dist
+astro-peptide/.astro
+
+# Local tooling
+astro-peptide/.wrangler
+*.log
+.DS_Store
