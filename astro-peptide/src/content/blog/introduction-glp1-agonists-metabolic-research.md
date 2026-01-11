@@ -5,7 +5,7 @@ publishDate: "2025-11-15"
 author: "Dr. James Wright"
 category: "Research Insights"
 tags: ["GLP-1", "semaglutide", "tirzepatide", "metabolic", "research"]
-image: "/images/blog/glp1-research.jpg"
+image: "/images/blog/post1.jpg"
 featured: true
 meta:
   title: "GLP-1 Agonists in Metabolic Research | Peptide Shop"

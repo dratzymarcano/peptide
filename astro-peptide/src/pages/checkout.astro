@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CheckoutComponent from '../components/Checkout';
+import { getLangFromUrl, getLocalizedPath, t } from '../i18n/translations';
+
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title="Checkout | Peptide Shop" description="Complete your order securely. Fast EU & UK delivery on all research peptides.">
+<Layout title={`${t(currentLang, 'cart.checkout')} | Peptide Shop`} description={t(currentLang, 'cart.checkoutSubtitle')}>
   <!-- Modern Hero Section -->
   <section style="background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%); padding: 100px 0 60px; margin-top: 70px;">
     <div class="container">
@@ -11,16 +14,16 @@ import CheckoutComponent from '../components/Checkout';
         <div class="col-lg-8">
           <nav aria-label="breadcrumb" style="margin-bottom: 20px;">
             <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0;">
-              <li class="breadcrumb-item"><a href="/" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a></li>
-              <li class="breadcrumb-item"><a href="/cart/" style="color: rgba(255,255,255,0.8); text-decoration: none;">Cart</a></li>
-              <li class="breadcrumb-item active" style="color: white;">Checkout</li>
+              <li class="breadcrumb-item"><a href={getLocalizedPath('/', currentLang)} style="color: white; text-decoration: none; font-weight: 500;">{t(currentLang, 'nav.home')}</a></li>
+              <li class="breadcrumb-item"><a href={getLocalizedPath('/cart/', currentLang)} style="color: white; text-decoration: none; font-weight: 500;">{t(currentLang, 'nav.cart')}</a></li>
+              <li class="breadcrumb-item active" style="color: white; font-weight: 600;">{t(currentLang, 'cart.checkout')}</li>
             </ol>
           </nav>
           <h1 style="color: white; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1;">
-            Secure Checkout
+            {t(currentLang, 'cart.secureCheckout')}
           </h1>
           <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 600px; line-height: 1.6; margin: 0;">
-            Complete your order with confidence. All payments are encrypted and secure.
+            {t(currentLang, 'cart.checkoutSubtitle')}
           </p>
         </div>
         <div class="col-lg-4 text-lg-right mt-4 mt-lg-0">
@@ -29,7 +32,7 @@ import CheckoutComponent from '../components/Checkout';
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
-              <span style="color: white; font-weight: 600; font-size: 14px;">Secure</span>
+              <span style="color: white; font-weight: 600; font-size: 14px;">{t(currentLang, 'cart.secureBadge')}</span>
             </div>
             <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 12px 20px; border-radius: 12px; backdrop-filter: blur(10px);">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -46,13 +49,13 @@ import CheckoutComponent from '../components/Checkout';
 
   <!-- Checkout Section -->
   <section style="padding: 60px 0 80px; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
-    <CheckoutComponent client:only="react" />
+    <CheckoutComponent client:only="react" lang={currentLang} />
   </section>
 </Layout>
 
 <style>
   .breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255,255,255,0.6);
+    color: white;
     content: "›";
   }
 </style>

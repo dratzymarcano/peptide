@@ -1,7 +1,7 @@
 ---
 id: "peptide-dsip"
-title: "Buy DSIP UK | Delta Sleep-Inducing Peptide"
-primary_keyword: "buy dsip uk"
+title: "Buy DSIP | Delta Sleep-Inducing Peptide"
+primary_keyword: "buy dsip"
 search_volume: "2200"
 slug: "/peptides/buy-dsip"
 aliases: ["Delta Sleep Inducing Peptide", "DSIP"]
@@ -14,13 +14,13 @@ moq: 200
 price: 220
 price_range: "£220 per pack"
 coa_url: "/coa/dsip.pdf"
-short_description: "Buy DSIP UK. Delta sleep-inducing peptide for sleep research. ≥99% purity. Fast UK delivery."
+short_description: "Buy DSIP. Delta sleep-inducing peptide for sleep research. ≥99% purity. Fast UK & EU delivery."
 category: "cognitive"
 tags: ["research-peptide", "dsip-uk", "sleep", "buy-peptides-uk", "cognitive", "nootropic"]
-images: ["/images/products/dsip.jpg"]
+images: ["/images/products/dsip.png"]
 meta:
-  title: "Buy DSIP UK | Sleep Peptide | Fast Delivery"
-  description: "Buy DSIP UK. Premium delta sleep-inducing peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: "Buy DSIP | Sleep Peptide | Fast Delivery"
+  description: "Buy DSIP. Premium delta sleep-inducing peptide for research. ≥99% purity, COA included. Fast UK & EU delivery."
 faqs:
   - question: "What is DSIP used for in research?"
     answer: "DSIP is studied for its effects on sleep regulation, circadian rhythms, stress response, and neuroendocrine function. It was originally isolated from rabbit brain."

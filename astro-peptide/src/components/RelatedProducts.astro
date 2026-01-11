@@ -1,14 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import ProductCard from './ProductCard';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize } from '../i18n/translations';
 
 interface Props {
   currentSlug: string;
   category: string;
   limit?: number;
+  lang: SupportedLanguage;
 }
 
-const { currentSlug, category, limit = 4 } = Astro.props;
+const { currentSlug, category, limit = 4, lang } = Astro.props;
 
 // Helper to clean slug
 const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
@@ -41,10 +43,10 @@ const displayProducts = [...relatedProducts, ...otherProducts];
           <rect x="14" y="14" width="7" height="7"></rect>
           <rect x="3" y="14" width="7" height="7"></rect>
         </svg>
-        Related Peptides
+        {t(lang, 'product.relatedProducts')}
       </h3>
-      <a href="/peptides/" class="btn btn-sm btn-outline-primary">
-        View All Peptides
+      <a href={getLocalizedPath('/peptides/', lang)} class="btn btn-sm btn-outline-primary">
+        {t(lang, 'home.bestSellers.viewAllPeptides')}
       </a>
     </div>
     
@@ -59,13 +61,14 @@ const displayProducts = [...relatedProducts, ...otherProducts];
             <ProductCard 
               client:visible
               id={product.data.id}
-              title={product.data.title.split('|')[0].trim()}
+              title={cleanProductTitle(product.data.title.split('|')[0].trim(), lang)}
               slug={slug}
               price={price}
               category={product.data.category}
               image={image}
               purity={product.data.purity}
-              packageSize={product.data.package_sizes?.[0]}
+              packageSize={translatePackageSize(product.data.package_sizes?.[0] || '', lang)}
+              lang={lang}
             />
           </div>
         );

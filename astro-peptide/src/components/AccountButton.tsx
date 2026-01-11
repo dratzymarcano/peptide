@@ -1,8 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { useStore } from '@nanostores/react';
 import { currentUser, isAuthenticated, logout, loginWithGoogle, loginWithFacebook } from '../store/authStore';
+import { t, type SupportedLanguage } from '../i18n/translations';
 
-export default function AccountButton() {
+interface AccountButtonProps {
+  lang?: SupportedLanguage;
+}
+
+export default function AccountButton({ lang = 'en' }: AccountButtonProps) {
   const $currentUser = useStore(currentUser);
   const $isAuthenticated = useStore(isAuthenticated);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -133,7 +138,7 @@ export default function AccountButton() {
               <rect width="7" height="9" x="14" y="12" rx="1"></rect>
               <rect width="7" height="5" x="3" y="16" rx="1"></rect>
             </svg>
-            Dashboard
+            {t(lang, 'common.dashboard')}
           </a>
           
           <a 
@@ -146,7 +151,7 @@ export default function AccountButton() {
               <path d="M3 6h18"></path>
               <path d="M16 10a4 4 0 0 1-8 0"></path>
             </svg>
-            My Orders
+            {t(lang, 'common.myOrders')}
           </a>
           
           <a 
@@ -158,7 +163,7 @@ export default function AccountButton() {
               <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
-            Settings
+            {t(lang, 'common.settings')}
           </a>
           
           <div style={{ borderTop: '1px solid #f1f5f9', marginTop: '8px', paddingTop: '8px' }}>
@@ -182,7 +187,7 @@ export default function AccountButton() {
                 <polyline points="16 17 21 12 16 7"></polyline>
                 <line x1="21" x2="9" y1="12" y2="12"></line>
               </svg>
-              Sign Out
+              {t(lang, 'common.signOut')}
             </button>
           </div>
         </div>
@@ -207,7 +212,7 @@ export default function AccountButton() {
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
-        <span className="action-label">Account</span>
+        <span className="action-label">{t(lang, 'nav.account')}</span>
       </a>
 
       {/* Not Logged In Dropdown */}
@@ -228,8 +233,8 @@ export default function AccountButton() {
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
-          <div style={{ fontWeight: '600', color: '#1e293b', marginBottom: '4px' }}>Welcome!</div>
-          <div style={{ fontSize: '13px', color: '#64748b' }}>Sign in for the best experience</div>
+          <div style={{ fontWeight: '600', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'common.welcome')}</div>
+          <div style={{ fontSize: '13px', color: '#64748b' }}>{t(lang, 'common.signInForBestExperience')}</div>
         </div>
         
         <a 
@@ -247,7 +252,7 @@ export default function AccountButton() {
             marginBottom: '8px'
           }}
         >
-          Sign In
+          {t(lang, 'common.signIn')}
         </a>
         
         <a 
@@ -265,7 +270,7 @@ export default function AccountButton() {
             border: '1px solid #e2e8f0'
           }}
         >
-          Create Account
+          {t(lang, 'common.createAccount')}
         </a>
 
         <div style={{ 
@@ -276,7 +281,7 @@ export default function AccountButton() {
           marginTop: '8px'
         }}>
           <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
-          <span style={{ fontSize: '12px', color: '#94a3b8' }}>or</span>
+            <span style={{ fontSize: '12px', color: '#94a3b8' }}>{t(lang, 'common.or')}</span>
           <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
         </div>
 

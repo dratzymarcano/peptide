@@ -1,0 +1,168 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageTitle from '../../components/PageTitle.astro';
+import { t } from '../../i18n/translations';
+import type { SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+
+const breadcrumbs = [
+  { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
+  { name: t(lang, 'nav.about'), url: lang === 'en' ? '/about' : `/${lang}/about` }
+];
+---
+
+<Layout 
+  title={`${t(lang, 'aboutPage.title')} | Peptide Shop`}
+  description={t(lang, 'aboutPage.subtitle')}
+  breadcrumbs={breadcrumbs}
+>
+  
+  <style>
+    /* Mobile-first responsive styles for About page */
+    @media (max-width: 767px) {
+      section[style*="padding: 80px 0"] {
+        padding: 40px 0 !important;
+      }
+      
+      div[style*="padding: 40px"] {
+        padding: 24px !important;
+      }
+      
+      div[style*="padding: 32px"] {
+        padding: 20px !important;
+      }
+      
+      h2 {
+        font-size: 1.5rem !important;
+      }
+      
+      h3 {
+        font-size: 1.25rem !important;
+      }
+      
+      p[style*="font-size: 1.25rem"] {
+        font-size: 1rem !important;
+      }
+      
+      p[style*="font-size: 1.125rem"] {
+        font-size: 1rem !important;
+      }
+      
+      /* Sidebar on mobile goes above content */
+      .col-lg-4 {
+        margin-bottom: 32px;
+        order: -1;
+      }
+      
+      .col-lg-4 > div[style*="position: sticky"] {
+        position: relative !important;
+        top: 0 !important;
+      }
+      
+      /* Feature cards full width on mobile */
+      .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 575px) {
+      div[style*="padding: 40px"] {
+        padding: 16px !important;
+      }
+      
+      div[style*="padding: 20px"] {
+        padding: 14px !important;
+      }
+      
+      .breadcrumb {
+        font-size: 12px;
+      }
+    }
+  </style>
+
+  <PageTitle 
+    title={t(lang, 'aboutPage.title')}
+    subtitle={t(lang, 'aboutPage.subtitle')}
+    breadcrumbs={breadcrumbs}
+  />
+
+  <!-- Main Content Section -->
+  <section style="padding: 80px 0; background: white;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div style="background: white; border-radius: 10px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 40px;">
+            <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 24px; font-size: 2rem;">
+              {t(lang, 'aboutPage.sections.excellence')}
+            </h2>
+            <p style="color: #64748b; font-size: 1.125rem; line-height: 1.8; margin-bottom: 32px;">
+              {t(lang, 'aboutPage.content.excellence')}
+            </p>
+            
+            <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
+              {t(lang, 'aboutPage.sections.mission')}
+            </h3>
+            <p style="color: #64748b; line-height: 1.8;">
+              {t(lang, 'aboutPage.content.mission')}
+            </p>
+            
+            <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
+              {t(lang, 'aboutPage.sections.quality')}
+            </h3>
+            <p style="color: #64748b; line-height: 1.8; margin-bottom: 24px;">
+              {t(lang, 'aboutPage.content.quality')}
+            </p>
+            
+            <div class="row g-3 mt-4">
+              <div class="col-md-6">
+                <div style="background: rgba(0, 119, 182, 0.05); border-left: 4px solid #0077b6; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.hplc')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.hplcSubtitle')}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background: rgba(0, 150, 199, 0.05); border-left: 4px solid #0096c7; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0096c7" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.massSpec')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.massSpecSubtitle')}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="background: rgba(16, 185, 129, 0.05); border-left: 4px solid #10b981; padding: 20px; border-radius: 10px;">
+                  <div style="display: flex; align-items: start; gap: 12px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.storage')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.storageSubtitle')}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

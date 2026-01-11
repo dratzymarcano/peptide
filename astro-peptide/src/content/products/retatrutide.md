@@ -17,7 +17,7 @@ coa_url: "/coa/retatrutide.pdf"
 short_description: "Buy Retatrutide UK. Triple GLP-1/GIP/Glucagon agonist for metabolic research. ≥99% purity. Fast UK delivery."
 category: "weight-loss"
 tags: ["research-peptide", "triple-agonist", "retatrutide-uk", "buy-peptides-uk", "weight-loss"]
-images: ["/images/products/retatrutide.jpg"]
+images: ["/images/products/retatrutide.png"]
 meta:
   title: "Buy Retatrutide UK | Triple Agonist Peptide | Fast Delivery"
   description: "Buy Retatrutide UK. Premium triple GLP-1/GIP/Glucagon agonist for weight loss research. ≥99% purity, COA included."

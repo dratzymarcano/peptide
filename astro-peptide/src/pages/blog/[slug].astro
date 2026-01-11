@@ -193,16 +193,18 @@ const articleSchema = {
     display: flex;
     align-items: center;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: white;
+    font-weight: 500;
   }
   
   .breadcrumb-list .breadcrumb-item a {
-    color: rgba(255, 255, 255, 0.7);
+    color: white;
     text-decoration: none;
+    font-weight: 500;
   }
   
   .breadcrumb-list .breadcrumb-item a:hover {
-    color: white;
+    color: #ffd700;
   }
   
   .breadcrumb-list .breadcrumb-item:not(:last-child)::after {
@@ -210,14 +212,15 @@ const articleSchema = {
     display: inline-block;
     width: 6px;
     height: 6px;
-    border-right: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-right: 1.5px solid white;
+    border-top: 1.5px solid white;
     transform: rotate(45deg);
     margin: 0 0.75rem;
   }
   
   .breadcrumb-list .breadcrumb-item.active {
     color: white;
+    font-weight: 600;
     max-width: 200px;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -1,7 +1,7 @@
 ---
 id: "peptide-cjc-1295-no-dac"
-title: "Buy CJC-1295 No DAC UK | Modified GRF 1-29"
-primary_keyword: "buy cjc-1295 uk"
+title: "Buy CJC-1295 No DAC | Modified GRF 1-29"
+primary_keyword: "buy cjc-1295 no dac"
 search_volume: "5100"
 slug: "/peptides/buy-cjc-1295-no-dac"
 aliases: ["Mod GRF 1-29", "Modified GRF", "CJC-1295 without DAC"]
@@ -14,13 +14,13 @@ moq: 200
 price: 250
 price_range: "£250 per pack"
 coa_url: "/coa/cjc-1295-no-dac.pdf"
-short_description: "Buy CJC-1295 No DAC UK. Modified GRF 1-29 for GH research. ≥99% purity. Fast UK delivery."
+short_description: "Buy CJC-1295 No DAC. Modified GRF 1-29 for GH research. ≥99% purity. Fast UK & EU delivery."
 category: "growth-hormone"
 tags: ["research-peptide", "cjc-1295-uk", "ghrh", "buy-peptides-uk", "growth-hormone"]
-images: ["/images/products/cjc-1295-no-dac.jpg"]
+images: ["/images/products/cjc-1295-no-dac.png"]
 meta:
-  title: "Buy CJC-1295 No DAC UK | Mod GRF | Fast Delivery"
-  description: "Buy CJC-1295 No DAC (Mod GRF 1-29) UK. Premium GHRH analog for research. ≥99% purity, COA included."
+  title: "Buy CJC-1295 No DAC | Mod GRF | Fast Delivery"
+  description: "Buy CJC-1295 No DAC (Mod GRF 1-29). Premium GHRH analog for research. ≥99% purity, COA included."
 faqs:
   - question: "What is CJC-1295 No DAC used for in research?"
     answer: "CJC-1295 No DAC (Modified GRF 1-29) is used to study GHRH receptor activation and pulsatile growth hormone release. It's a modified GHRH analog with enhanced stability for research applications."

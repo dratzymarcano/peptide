@@ -17,7 +17,7 @@ coa_url: "/coa/tesofensine.pdf"
 short_description: "Buy Tesofensine UK. Triple reuptake inhibitor for weight and neuroscience research. ≥99% purity. Fast UK delivery."
 category: "weight-loss"
 tags: ["research-compound", "tesofensine-uk", "weight-loss", "buy-research-uk", "triple-reuptake"]
-images: ["/images/products/tesofensine.jpg"]
+images: ["/images/products/tesofensine.png"]
 meta:
   title: "Buy Tesofensine UK | Triple Reuptake Inhibitor | Fast Delivery"
   description: "Buy Tesofensine UK. Premium triple reuptake inhibitor for weight research. ≥99% purity, COA included. Fast UK delivery."

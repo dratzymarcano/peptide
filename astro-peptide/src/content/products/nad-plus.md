@@ -1,7 +1,7 @@
 ---
 id: "peptide-nad-plus"
-title: "Buy NAD+ UK | Nicotinamide Adenine Dinucleotide"
-primary_keyword: "buy nad+ uk"
+title: "Buy NAD+ | Nicotinamide Adenine Dinucleotide"
+primary_keyword: "buy nad+"
 search_volume: "5400"
 slug: "/peptides/buy-nad-plus"
 aliases: ["NAD+", "Nicotinamide Adenine Dinucleotide", "NAD"]
@@ -14,13 +14,13 @@ moq: 200
 price: 2500
 price_range: "£2500 per pack"
 coa_url: "/coa/nad-plus.pdf"
-short_description: "Buy NAD+ UK. Nicotinamide adenine dinucleotide for cellular research. ≥99% purity. Fast UK delivery."
+short_description: "Buy NAD+. Nicotinamide adenine dinucleotide for cellular research. ≥99% purity. Fast UK delivery."
 category: "cognitive"
 tags: ["research-peptide", "nad-uk", "longevity", "buy-peptides-uk", "cognitive", "cellular-energy"]
-images: ["/images/products/nad-plus.jpg"]
+images: ["/images/products/nad-plus.png"]
 meta:
-  title: "Buy NAD+ UK | Cellular Energy Research | Fast Delivery"
-  description: "Buy NAD+ UK. Premium NAD+ for cellular and longevity research. ≥99% purity, COA included. Fast UK delivery."
+  title: "Buy NAD+ | Cellular Energy Research | Fast Delivery"
+  description: "Buy NAD+. Premium NAD+ for cellular and longevity research. ≥99% purity, COA included. Fast UK delivery."
 faqs:
   - question: "What is NAD+ used for in research?"
     answer: "NAD+ is studied for cellular energy metabolism, sirtuin activation, DNA repair, mitochondrial function, and longevity mechanisms."

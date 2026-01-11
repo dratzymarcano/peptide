@@ -1,0 +1,1903 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProductCard from '../ProductCard';
+import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize } from '../../i18n/translations';
+import { getLocalizedPath } from '../../i18n/config';
+import { getMarket } from '../../i18n/market';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const market = getMarket(lang);
+
+function t(key: string): string {
+  const keys = key.split('.');
+  let value: any = translations[lang];
+  for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+          value = value[k];
+      } else {
+          return key;
+      }
+  }
+  return typeof value === 'string' ? value : key;
+}
+
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+// Fetch products for "Best Sellers" (simulated by taking first 8)
+const allProducts = await getCollection('products');
+const featuredProducts = allProducts.slice(0, 8);
+
+const categories = [
+  { name: t('nav.weightLoss'), slug: 'weight-loss', icon: 'scale', desc: t('home.categories.desc.weightLoss'), gradient: 'from-purple-500 to-pink-500' },
+  { name: t('nav.muscleRecovery'), slug: 'muscle-recovery', icon: 'activity', desc: t('home.categories.desc.muscleRecovery'), gradient: 'from-blue-500 to-cyan-500' },
+  { name: t('nav.cognitive'), slug: 'cognitive', icon: 'brain', desc: t('home.categories.desc.cognitive'), gradient: 'from-green-500 to-emerald-500' },
+  { name: t('nav.growthHormone'), slug: 'growth-hormone', icon: 'clock', desc: t('home.categories.desc.antiAging'), gradient: 'from-orange-500 to-red-500' },
+];
+
+const testimonials = [
+  { name: 'Dr. Sarah Mitchell', role: t('home.testimonials.role1'), text: t('home.testimonials.text1'), rating: 5 },
+  { name: 'Prof. James Chen', role: t('home.testimonials.role2'), text: t('home.testimonials.text2'), rating: 5 },
+  { name: 'Dr. Emma Rodriguez', role: t('home.testimonials.role3'), text: t('home.testimonials.text3'), rating: 5 },
+];
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": `Peptide Shop - Buy Peptides ${market.marketName} & Europe`,
+  "url": "https://peptide-shop.net",
+  "description": `Buy peptides ${market.marketName} & Europe. Premium research peptides for sale with 99% purity. Fast delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`,
+  "inLanguage": ["en-GB", "nl-NL", "de-DE", "fr-FR", "es-ES", "it-IT"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://peptide-shop.net/peptides?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Peptide Shop",
+  "alternateName": `PeptideShop ${market.marketName}`,
+  "url": "https://peptide-shop.net",
+  "logo": "https://peptide-shop.net/favicon.png",
+  "description": `Buy peptides ${market.marketName} & Europe. Leading supplier of research peptides with 99% purity. Fast delivery across ${market.geoPlacename} and Europe.`,
+  "areaServed": [
+    {"@type": "Country", "name": "United Kingdom"},
+    {"@type": "Country", "name": "Netherlands"},
+    {"@type": "Country", "name": "Germany"},
+    {"@type": "Country", "name": "France"},
+    {"@type": "Country", "name": "Spain"},
+    {"@type": "Country", "name": "Italy"},
+    {"@type": "Country", "name": "Belgium"},
+    {"@type": "Country", "name": "Ireland"},
+    {"@type": "Country", "name": "Austria"},
+    {"@type": "Country", "name": "Portugal"}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+44-123-456-7890",
+    "contactType": "customer service",
+    "areaServed": ["GB", "NL", "DE", "FR", "ES", "IT"],
+    "availableLanguage": ["English", "Dutch", "German", "French", "Spanish", "Italian"]
+  },
+  "sameAs": [
+    "https://t.me/peptideshop"
+  ]
+};
+---
+
+<Layout 
+  title={t('home.heroTitle') + ' | ' + t('home.heroTitleHighlight') + ' | Peptide Shop'}
+  description={t('home.heroSubtitle')}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+  <!-- SHOPCART-INSPIRED E-COMMERCE STYLES -->
+  <style is:global>
+    :root {
+      --shop-primary: #0077b6;
+      --shop-primary-light: rgba(0, 119, 182, 0.1);
+      --shop-secondary: #1e293b;
+      --shop-accent: #f59e0b;
+      --shop-bg: #ffffff;
+      --shop-surface: #f9fafb;
+      --shop-border: #e5e7eb;
+      --shop-text: #1e293b;
+      --shop-text-muted: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--shop-bg);
+      color: var(--shop-text);
+      font-family: 'Raleway', -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Full-width sections */
+    .full-width-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+
+    .section-padding {
+      padding: 80px 60px;
+    }
+
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 60px 20px;
+      }
+    }
+
+    .inner-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Shopcart Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #d1fae5 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 119, 182, 0.05) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--shop-primary);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--shop-secondary);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--shop-text-muted);
+      max-width: 500px;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .btn-shop-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--shop-primary);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-shop-primary:hover {
+      background: #15503a;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.25);
+    }
+
+    .btn-shop-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--shop-secondary);
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--shop-border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-shop-outline:hover {
+      border-color: var(--shop-primary);
+      color: var(--shop-primary);
+      background: var(--shop-primary-light);
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--shop-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--shop-secondary);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--shop-text-muted);
+      max-width: 600px;
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1200px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+
+    /* Category Cards - Shopcart Style - 4 columns */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1200px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Hero Image Styles */
+    .hero-image-wrapper {
+      position: relative;
+    }
+
+    .hero-image-container {
+      position: relative;
+      background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+      border-radius: 24px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-main-image {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    }
+
+    .floating-card {
+      position: absolute;
+      background: white;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .floating-card-1 {
+      bottom: -10px;
+      left: -20px;
+    }
+
+    .floating-card-2 {
+      top: 20px;
+      right: -10px;
+    }
+
+    .floating-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--shop-primary-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-card {
+      background: white;
+      border: 1px solid var(--shop-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .category-card:hover {
+      border-color: var(--shop-primary);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .category-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      background: var(--shop-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .category-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--shop-secondary);
+      margin: 0 0 4px 0;
+    }
+
+    .category-info p {
+      font-size: 13px;
+      color: var(--shop-text-muted);
+      margin: 0;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: var(--shop-surface);
+      border-top: 1px solid var(--shop-border);
+      border-bottom: 1px solid var(--shop-border);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--shop-primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--shop-text-muted);
+      font-weight: 500;
+    }
+
+    /* Feature Cards */
+    .feature-card {
+      background: white;
+      border: 1px solid var(--shop-border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--shop-primary);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--shop-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    /* Testimonial Cards */
+    .testimonial-card {
+      background: white;
+      border: 1px solid var(--shop-border);
+      border-radius: 12px;
+      padding: 28px;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--shop-primary);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .star-rating {
+      color: var(--shop-primary);
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: white;
+      border: 1px solid var(--shop-border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--shop-primary);
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--shop-secondary);
+    }
+
+    .faq-question:hover {
+      color: var(--shop-primary);
+    }
+
+    .faq-answer {
+      padding: 0 24px;
+      color: var(--shop-text-muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 0 24px 20px 24px;
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(45deg);
+    }
+
+    /* CTA Section - Green Theme */
+    .cta-full-section {
+      background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+    }
+
+    .cta-box {
+      position: relative;
+      text-align: center;
+      padding: 40px 20px;
+      overflow: hidden;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .cta-subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 550px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .cta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 576px) {
+      .cta-form {
+        flex-direction: row;
+      }
+    }
+
+    .cta-input {
+      flex: 1;
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      background: white;
+      color: #1e293b;
+    }
+
+    .cta-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .cta-button {
+      padding: 16px 32px;
+      background: #f59e0b;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .cta-button:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    .cta-privacy {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .cta-decoration {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+    }
+
+    .cta-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-circle-1 {
+      width: 400px;
+      height: 400px;
+      top: -200px;
+      right: -100px;
+    }
+
+    .cta-circle-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -150px;
+      left: -50px;
+    }
+
+    /* About Us Section Styles */
+    .about-image-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-image-main {
+      grid-column: span 2;
+    }
+
+    .about-image-secondary {
+      grid-column: span 1;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #0077b6;
+      color: white;
+      padding: 20px 24px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 119, 182, 0.3);
+    }
+
+    .about-badge-number {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .about-badge-text {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.3;
+      margin-top: 4px;
+    }
+
+    .about-stat {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .about-stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--shop-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Blog Cards */
+    .blog-card {
+      background: white;
+      border: 1px solid var(--shop-border);
+      border-radius: 12px;
+      overflow: hidden;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      border-color: var(--shop-primary);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .blog-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Quality Section */
+    .quality-feature {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .quality-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--shop-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Utilities */
+    .text-shop-primary { color: var(--shop-primary); }
+    .bg-shop-surface { background: var(--shop-surface); }
+    
+    /* Feature Icons */
+    .feature-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background: var(--shop-primary-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Scroll Reveal Animation */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== ENTERPRISE MOBILE-FIRST RESPONSIVE STYLES ===== */
+    /* Based on 8px grid system with generous whitespace */
+    
+    :root {
+      --mobile-padding-x: 20px;
+      --mobile-padding-section: 48px;
+      --mobile-gap-sm: 12px;
+      --mobile-gap-md: 20px;
+      --mobile-gap-lg: 32px;
+      --touch-target: 48px;
+    }
+    
+    /* Extra Small Mobile (up to 575px) */
+    @media (max-width: 575px) {
+      .section-padding {
+        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+      }
+      
+      .inner-container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      
+      /* Hero section - Generous spacing */
+      .hero-banner .section-padding {
+        padding-top: 40px;
+        padding-bottom: 56px;
+      }
+      
+      .hero-badge {
+        font-size: 12px;
+        padding: 8px 16px;
+        margin-bottom: 16px;
+        border-radius: 24px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        margin-bottom: var(--mobile-gap-md);
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: var(--mobile-gap-lg);
+        line-height: 1.7;
+        color: var(--shop-text-muted);
+      }
+      
+      /* Buttons - Full width with proper touch targets */
+      .btn-shop-primary,
+      .btn-shop-outline {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 24px;
+        font-size: 16px;
+        min-height: var(--touch-target);
+        border-radius: 12px;
+        margin-bottom: var(--mobile-gap-sm);
+      }
+      
+      .d-flex.flex-wrap.gap-3 {
+        gap: var(--mobile-gap-sm) !important;
+        flex-direction: column;
+      }
+      
+      .btn-shop-primary:active,
+      .btn-shop-outline:active {
+        transform: scale(0.98);
+      }
+      
+      /* Section headers - Clear hierarchy */
+      .section-header {
+        margin-bottom: var(--mobile-gap-lg);
+        text-align: center;
+      }
+      
+      .section-label {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+        display: block;
+      }
+      
+      .section-title {
+        font-size: 1.625rem;
+        line-height: 1.3;
+        letter-spacing: -0.3px;
+        margin-bottom: var(--mobile-gap-sm);
+      }
+      
+      .section-desc {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        max-width: 100%;
+      }
+      
+      /* Stats bar - Clean 2x2 grid with breathing room */
+      .stats-bar {
+        padding: 0 !important;
+      }
+      
+      .stats-bar .inner-container {
+        padding: var(--mobile-gap-lg) var(--mobile-padding-x) !important;
+      }
+      
+      .stats-bar .row {
+        margin: 0;
+        gap: 0;
+      }
+      
+      .stats-bar .row > [class*="col-"] {
+        padding: var(--mobile-gap-sm);
+      }
+      
+      .stat-item {
+        padding: 16px 12px;
+        background: rgba(0, 119, 182, 0.03);
+        border-radius: 12px;
+        text-align: center;
+      }
+      
+      .stat-number {
+        font-size: 1.75rem;
+        margin-bottom: 4px;
+        line-height: 1.1;
+      }
+      
+      .stat-label {
+        font-size: 12px;
+        line-height: 1.35;
+        color: var(--shop-text-muted);
+      }
+      
+      /* Category cards - Stacked with proper spacing */
+      .category-grid {
+        grid-template-columns: 1fr;
+        gap: var(--mobile-gap-sm);
+      }
+      
+      .category-card {
+        padding: var(--mobile-gap-md);
+        border-radius: 16px;
+        min-height: 80px;
+      }
+      
+      .category-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+      }
+      
+      .category-info h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      
+      .category-info p {
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      
+      /* Products grid - 2 column with proper gap */
+      .products-grid {
+        gap: var(--mobile-gap-sm);
+      }
+      
+      /* Feature/icon elements */
+      .feature-icon-wrapper,
+      .floating-icon,
+      .quality-icon,
+      .about-stat-icon,
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+      }
+      
+      /* Hide decorative elements on mobile for cleaner look */
+      .cta-circle,
+      .floating-card {
+        display: none;
+      }
+      
+      /* Filter buttons - Horizontal scroll with proper spacing */
+      #product-filters {
+        display: flex;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: var(--mobile-gap-sm);
+        margin-bottom: var(--mobile-gap-lg) !important;
+        margin-left: calc(-1 * var(--mobile-padding-x));
+        margin-right: calc(-1 * var(--mobile-padding-x));
+        padding-left: var(--mobile-padding-x);
+        padding-right: var(--mobile-padding-x);
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        gap: 8px;
+      }
+      
+      #product-filters::-webkit-scrollbar {
+        display: none;
+      }
+      
+      #product-filters button {
+        flex-shrink: 0;
+        padding: 12px 20px !important;
+        font-size: 14px !important;
+        white-space: nowrap;
+        border-radius: 12px !important;
+        min-height: var(--touch-target);
+        font-weight: 500;
+      }
+      
+      /* About section - Cards with breathing room */
+      .about-image-grid {
+        display: none;
+      }
+      
+      .about-stat {
+        gap: 16px;
+        margin-bottom: var(--mobile-gap-md);
+        padding: var(--mobile-gap-md);
+        background: var(--shop-surface);
+        border-radius: 16px;
+        border: 1px solid var(--shop-border);
+      }
+      
+      .about-stat h4 {
+        font-size: 1rem !important;
+        margin-bottom: 4px !important;
+      }
+      
+      .about-stat p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+      
+      /* Blog cards - Proper card spacing */
+      .blog-image {
+        height: 180px;
+      }
+      
+      .blog-card {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      
+      .blog-card .p-4 {
+        padding: var(--mobile-gap-md) !important;
+      }
+      
+      .blog-card h3 {
+        font-size: 1.1rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 8px !important;
+      }
+      
+      .blog-card p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      
+      /* Quality features - Clear visual separation */
+      .quality-feature {
+        gap: 16px;
+        padding: var(--mobile-gap-md) 0;
+        border-bottom: 1px solid var(--shop-border);
+      }
+      
+      .quality-feature:last-child {
+        border-bottom: none;
+      }
+      
+      /* Testimonials - Cards with proper padding */
+      .testimonial-card {
+        padding: var(--mobile-gap-lg) !important;
+        border-radius: 16px;
+        margin-bottom: var(--mobile-gap-sm);
+      }
+      
+      .testimonial-card p {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+        margin-bottom: var(--mobile-gap-md) !important;
+      }
+      
+      .star-rating {
+        font-size: 16px;
+        margin-bottom: var(--mobile-gap-md);
+      }
+      
+      /* FAQ - Generous spacing */
+      .faq-item {
+        margin-bottom: var(--mobile-gap-sm);
+        border-radius: 16px;
+      }
+      
+      .faq-question {
+        padding: var(--mobile-gap-md) var(--mobile-gap-md);
+        font-size: 1rem;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .faq-question span {
+        flex: 1;
+        padding-right: 16px;
+        line-height: 1.4;
+      }
+      
+      .faq-answer {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding: 0 var(--mobile-gap-md) !important;
+      }
+      
+      .faq-item.active .faq-answer {
+        padding-bottom: var(--mobile-gap-md) !important;
+      }
+      
+      /* CTA section - Prominent with proper spacing */
+      .cta-box {
+        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+      }
+      
+      .cta-title {
+        font-size: 1.625rem !important;
+        line-height: 1.3;
+        margin-bottom: var(--mobile-gap-md) !important;
+      }
+      
+      .cta-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.65;
+        margin-bottom: var(--mobile-gap-lg) !important;
+      }
+      
+      .cta-form {
+        gap: var(--mobile-gap-sm);
+      }
+      
+      .cta-input {
+        padding: 16px var(--mobile-gap-md);
+        border-radius: 12px;
+        font-size: 16px;
+      }
+      
+      .cta-button {
+        width: 100%;
+        padding: 16px 24px;
+        border-radius: 12px;
+        min-height: var(--touch-target);
+      }
+      
+      .cta-privacy {
+        margin-top: var(--mobile-gap-md);
+        font-size: 13px;
+      }
+      
+      /* Feature cards */
+      .feature-card {
+        padding: var(--mobile-gap-md);
+        border-radius: 16px;
+        margin-bottom: var(--mobile-gap-sm);
+      }
+      
+      .feature-card h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+      
+      .feature-card p {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      
+      /* Row gutters on mobile */
+      .row.g-4 {
+        --bs-gutter-y: var(--mobile-gap-md);
+        --bs-gutter-x: var(--mobile-gap-md);
+      }
+      
+      .row.g-5 {
+        --bs-gutter-y: var(--mobile-gap-lg);
+        --bs-gutter-x: var(--mobile-gap-lg);
+      }
+    }
+    
+    /* Small Mobile (576px - 767px) */
+    @media (min-width: 576px) and (max-width: 767px) {
+      :root {
+        --mobile-padding-x: 24px;
+        --mobile-padding-section: 56px;
+      }
+      
+      .section-padding {
+        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+      }
+      
+      .hero-title {
+        font-size: 2.25rem;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--mobile-gap-md);
+      }
+      
+      .btn-shop-primary,
+      .btn-shop-outline {
+        min-height: 52px;
+      }
+      
+      .products-grid {
+        gap: var(--mobile-gap-md);
+      }
+      
+      .testimonial-card {
+        margin-bottom: 0;
+      }
+    }
+    
+    /* Tablet (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      :root {
+        --mobile-padding-x: 40px;
+        --mobile-padding-section: 64px;
+      }
+      
+      .section-padding {
+        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      
+      /* Show hero image on tablet */
+      .col-lg-6.d-none.d-lg-block {
+        display: block !important;
+      }
+      
+      .testimonial-card {
+        padding: 28px !important;
+      }
+    }
+    
+    /* Touch-friendly interactions */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-shop-primary:hover,
+      .btn-shop-outline:hover,
+      .category-card:hover,
+      .blog-card:hover,
+      .testimonial-card:hover,
+      .faq-item:hover {
+        transform: none;
+      }
+      
+      /* Larger tap targets - WCAG AA compliance */
+      a, button {
+        min-height: 44px;
+      }
+      
+      /* Remove hover shadows on touch devices */
+      .blog-card:hover,
+      .category-card:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+      
+      /* Active states for touch feedback */
+      .btn-shop-primary:active {
+        transform: scale(0.98);
+        background: #005a8c;
+      }
+      
+      .btn-shop-outline:active {
+        transform: scale(0.98);
+        background: rgba(0, 119, 182, 0.08);
+      }
+      
+      .category-card:active,
+      .blog-card:active {
+        transform: scale(0.99);
+      }
+    }
+  </style>
+
+  <!-- SECTION 1: SHOPCART-STYLE HERO -->
+  <section class="full-width-section hero-banner">
+    <div class="inner-container section-padding">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 hero-content">
+          <span class="hero-badge">{t('home.heroBadge')}</span>
+          <h1 class="hero-title">
+            {t('home.heroTitle')}<br>
+            <span class="text-shop-primary">{t('home.heroTitleHighlight')}</span>
+          </h1>
+          <p class="hero-subtitle">
+            {t('home.heroSubtitle')}
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href={getLocalizedPath('/peptides/', lang)} class="btn-shop-primary">
+              {t('home.shopNow')}
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href={getLocalizedPath('/quality/', lang)} class="btn-shop-outline">
+              {t('home.viewLabReports')}
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block">
+          <div class="hero-image-wrapper">
+            <div class="hero-image-container">
+              <img src="/images/hero-image.webp" alt={t('home.heroTitle') + ' - ' + t('home.heroTitleHighlight') + ' - Peptide Shop'} class="hero-main-image">
+              <!-- Floating Product Cards -->
+              <div class="floating-card floating-card-1">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="floating-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      <polyline points="9 12 11 14 15 10"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style="font-weight: 700; color: #1e293b; font-size: 16px;">99.9% Purity</div>
+                    <div style="font-size: 13px; color: #6b7280;">Lab Verified</div>
+                  </div>
+                </div>
+              </div>
+              <div class="floating-card floating-card-2">
+                <div class="d-flex align-items-center gap-2">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                    <polyline points="16 8 20 8 23 11 23 16 16 16 16 8"></polyline>
+                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                  </svg>
+                  <span style="font-weight: 600; color: #1e293b; font-size: 14px;">24h Dispatch</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: STATS BAR -->
+  <section class="full-width-section stats-bar">
+    <div class="inner-container" style="padding: 40px 60px;">
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">50K+</div>
+              <div class="stat-label">{t('home.stats.ordersDelivered')}</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">99.9%</div>
+              <div class="stat-label">{t('home.stats.purityGuarantee')}</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">24h</div>
+              <div class="stat-label">{t('home.stats.expressShipping')}</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+              <div class="stat-label">{t('home.stats.researchLabs')}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: POPULAR CATEGORIES -->
+  <section class="full-width-section" style="background: var(--shop-surface);">
+    <div class="inner-container section-padding">
+      <div class="section-header">
+        <div class="section-label">{t('home.categories.subtitle')}</div>
+        <h2 class="section-title">{t('home.categories.title')}</h2>
+      </div>
+
+      <div class="category-grid">
+        {categories.map((cat) => (
+          <a href={getLocalizedPath('/peptides/' + cat.slug, lang)} class="category-card">
+            <div class="category-icon">
+              <i data-lucide={cat.icon} style="width: 28px; height: 28px; color: var(--shop-primary);"></i>
+            </div>
+            <div class="category-info">
+              <h3>{cat.name}</h3>
+              <p>{cat.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: FEATURED PRODUCTS - "Peptides For You!" -->
+  <section class="full-width-section" style="background: white;">
+    <div class="inner-container section-padding">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <div class="section-header mb-0">
+          <div class="section-label">{t('home.bestSellers.subtitle')}</div>
+          <h2 class="section-title">{t('home.bestSellers.title')}</h2>
+        </div>
+        <a href={getLocalizedPath('/peptides/', lang)} class="btn-shop-outline d-none d-md-inline-flex">
+          {t('home.bestSellers.viewAll')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4 pb-3 border-bottom" id="product-filters">
+        <button class="btn-shop-primary filter-btn active" data-category="all" style="padding: 8px 20px; font-size: 14px;">{t('common.all')}</button>
+        <button class="btn-shop-outline filter-btn" data-category="weight-loss" style="padding: 8px 20px; font-size: 14px;">{t('nav.weightLoss')}</button>
+        <button class="btn-shop-outline filter-btn" data-category="muscle-recovery" style="padding: 8px 20px; font-size: 14px;">{t('nav.muscleRecovery')}</button>
+        <button class="btn-shop-outline filter-btn" data-category="cognitive" style="padding: 8px 20px; font-size: 14px;">{t('nav.cognitive')}</button>
+        <button class="btn-shop-outline filter-btn" data-category="growth-hormone" style="padding: 8px 20px; font-size: 14px;">{t('home.filters.antiAging')}</button>
+      </div>
+
+      <div class="products-grid" id="products-container">
+        {featuredProducts.map(product => {
+          const price = product.data.moq || parseFloat(product.data.price_range?.match(/[\d,]+/)?.[0]?.replace(',', '') || '0');
+          const productSlug = cleanSlug(product.slug);
+          return (
+            <div class="product-item" data-category={product.data.category}>
+              <ProductCard 
+                id={product.data.id}
+                title={cleanProductTitle(product.data.title, lang)}
+                price={product.data.price || price}
+                image={product.data.images?.[0] || '/images/peptide-default.jpg'}
+                slug={productSlug}
+                category={product.data.category}
+                purity={product.data.purity}
+                reviewCount={product.data.reviews?.length || 0}
+                packageSize={translatePackageSize(product.data.package_sizes?.[0] || '', lang)}
+                lang={lang}
+                client:visible 
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="text-center mt-4 d-md-none">
+        <a href={getLocalizedPath('/peptides/', lang)} class="btn-shop-outline w-100">{t('home.bestSellers.viewAllPeptides')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: ABOUT US -->
+  <section class="full-width-section" id="about" style="background: var(--shop-surface);">
+    <div class="inner-container section-padding">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="about-image-grid">
+            <div class="about-image-main">
+              <img src="/images/about/about-peptide-shop.jpg" alt="About Peptide Shop - Premium Research Peptides Supplier" class="img-fluid" loading="lazy" decoding="async" style="border-radius: 16px; width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <!-- Experience Badge -->
+            <div class="about-badge">
+              <div class="about-badge-number">10+</div>
+              <div class="about-badge-text">Years<br>Experience</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="section-header">
+            <div class="section-label">{t('home.about.subtitle')}</div>
+            <h2 class="section-title">{t('home.about.title')}</h2>
+            <p class="section-desc mb-4">
+              {t('aboutPage.subtitle')}
+            </p>
+          </div>
+
+          <p style="color: #6b7280; margin-bottom: 24px; line-height: 1.8;">
+            {t('home.about.description')}
+          </p>
+
+          <div class="row g-4 mb-4">
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="about-stat-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 12 11 14 15 10"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px 0; color: #1e293b;">{t('home.about.features.isoCertified')}</h4>
+                  <p style="color: #6b7280; margin: 0; font-size: 13px;">{t('home.about.features.isoCertifiedDesc')}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="about-stat-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px 0; color: #1e293b;">{t('home.about.features.fastDispatch')}</h4>
+                  <p style="color: #6b7280; margin: 0; font-size: 13px;">{t('home.about.features.fastDispatchDesc')}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="about-stat-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px 0; color: #1e293b;">{t('home.about.features.expertTeam')}</h4>
+                  <p style="color: #6b7280; margin: 0; font-size: 13px;">{t('home.about.features.expertTeamDesc')}</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="about-stat-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 style="font-size: 1rem; font-weight: 600; margin: 0 0 4px 0; color: #1e293b;">{t('home.about.features.globalReach')}</h4>
+                  <p style="color: #6b7280; margin: 0; font-size: 13px;">{t('home.about.features.globalReachDesc')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href={getLocalizedPath('/about/', lang)} class="btn-shop-primary">
+            {t('home.about.learnMore')}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: BLOG POSTS -->
+  <section class="full-width-section" style="background: white;">
+    <div class="inner-container section-padding">
+      <div class="section-header text-center mb-5">
+        <div class="section-label">{t('home.blog.subtitle')}</div>
+        <h2 class="section-title mx-auto">{t('home.blog.title')}</h2>
+        <p class="section-desc mx-auto" style="text-align: center;">
+          Stay updated with the latest peptide research, industry insights, and scientific breakthroughs.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="blog-card">
+            <img src="/images/blog/post1.jpg" alt="Blog Post" class="blog-image">
+            <div class="p-4">
+              <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">RESEARCH</span>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
+                Understanding Peptide Purity
+              </h3>
+              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+                Discover how peptide purity directly impacts research outcomes.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="blog-card">
+            <img src="/images/blog/post2.jpg" alt="Blog Post" class="blog-image">
+            <div class="p-4">
+              <span class="badge mb-3" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">GUIDE</span>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
+                Storage Best Practices
+              </h3>
+              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+                Learn the optimal storage conditions for peptide integrity.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="blog-card">
+            <img src="/images/blog/post3.jpg" alt="Blog Post" class="blog-image">
+            <div class="p-4">
+              <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">INDUSTRY</span>
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
+                Future of Therapeutics
+              </h3>
+              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+                Explore emerging trends in peptide-based treatments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href={getLocalizedPath('/blog/', lang)} class="btn-shop-outline">{t('home.blog.viewAll')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: TESTIMONIALS -->
+  <section class="full-width-section" style="background: var(--shop-surface);">
+    <div class="inner-container section-padding">
+      <div class="section-header text-center mb-5">
+        <div class="section-label">{t('home.testimonials.subtitle')}</div>
+        <h2 class="section-title mx-auto">{t('home.testimonials.title')}</h2>
+      </div>
+
+      <div class="row g-4">
+        {testimonials.map(testimonial => (
+          <div class="col-lg-4">
+            <div class="testimonial-card">
+              <div class="star-rating mb-3">{'★'.repeat(testimonial.rating)}</div>
+              <p style="font-size: 1rem; line-height: 1.7; color: #374151; margin-bottom: 20px; font-style: italic;">
+                "{testimonial.text}"
+              </p>
+              <div class="d-flex align-items-center">
+                <div class="rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 44px; height: 44px; background: var(--shop-primary); font-weight: 600; font-size: 16px; color: white;">
+                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h5 style="margin: 0; font-size: 0.9rem; font-weight: 600; color: #1e293b;">{testimonial.name}</h5>
+                  <p style="margin: 0; font-size: 12px; color: #6b7280;">{testimonial.role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FAQ -->
+  <section class="full-width-section" style="background: white;">
+    <div class="inner-container section-padding">
+      <div class="section-header text-center mb-5">
+        <div class="section-label">{t('home.faq.subtitle')}</div>
+        <h2 class="section-title mx-auto">{t('home.faq.title')}</h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What makes your peptides different from competitors?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              Our peptides undergo rigorous HPLC and Mass Spectrometry analysis with third-party verification. Every batch comes with a Certificate of Analysis (COA) showing 99.9%+ purity.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How quickly can I receive my order?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              All orders are dispatched within 24 hours. We offer standard delivery (3-5 business days) and express shipping (1-2 business days) options.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Do you provide Certificates of Analysis (COA)?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              Yes, every product includes a batch-specific COA with HPLC chromatogram, mass spectrometry data, purity percentage, and storage recommendations.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Where can I buy peptides in Europe?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              You can buy peptides online from Peptide Shop with fast delivery across Europe. Delivery times vary by destination and service level, and we offer both standard and express options.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What payment methods do you accept?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for institutional orders. All transactions are securely processed.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How should I store my peptides?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              Lyophilized peptides should be stored at -20°C for long-term storage. Once reconstituted, store at 2-8°C and use within the timeframe specified in the product documentation. Always protect from light and repeated freeze-thaw cycles.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Are your peptides for human consumption?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              No. All our peptides are sold strictly for research and laboratory use only. They are not intended for human or veterinary use, food additives, drugs, or cosmetic applications.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Can I get a refund or replacement if there's an issue?</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              Absolutely. If you receive a product that doesn't meet our advertised purity specifications, we offer a full refund or replacement. Please contact our support team with your COA and any supporting documentation within 30 days of receipt.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO CONTENT SECTION - Hidden but indexable -->
+  <section class="full-width-section" style="background: white;">
+    <div class="inner-container section-padding">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="section-title text-center mb-4">Buy Peptides Online {market.marketName} & Europe - Your Complete Guide</h2>
+          
+          <div class="row g-4">
+            <div class="col-md-6">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Buy Peptides {market.marketName}</h3>
+              <p style="color: #6b7280; line-height: 1.8; margin-bottom: 20px;">
+                Looking to buy peptides in {market.geoPlacename}? Peptide Shop offers premium research peptides with 99% purity verified by HPLC analysis.
+                Our best-selling peptides include Semaglutide, Tirzepatide, BPC-157, TB-500, and Melanotan 2. All orders include a Certificate of Analysis (COA)
+                and are dispatched within 24 hours.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Buy Peptides Europe</h3>
+              <p style="color: #6b7280; line-height: 1.8; margin-bottom: 20px;">
+                Buy peptides online with fast European delivery. We ship to Netherlands, Germany, France, Spain, Italy, Belgium, Austria, Ireland, and Portugal. 
+                Whether you need GLP-1 peptides for weight loss research, BPC-157 for muscle recovery studies, or growth hormone peptides, 
+                Peptide Shop is your trusted European peptide supplier with discreet, temperature-controlled shipping.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Peptides for Weight Loss Research</h3>
+              <p style="color: #6b7280; line-height: 1.8; margin-bottom: 20px;">
+                Our weight loss peptides for sale include the latest GLP-1 receptor agonists: Semaglutide, Tirzepatide, Retatrutide, and Cagrilintide. 
+                These research peptides are HPLC-verified and come with full documentation for metabolic research applications. 
+                Buy peptides for weight loss studies with confidence from a trusted European peptide supplier.
+              </p>
+            </div>
+            <div class="col-md-6">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: #1e293b; margin-bottom: 12px;">Peptides for Muscle Growth Research</h3>
+              <p style="color: #6b7280; line-height: 1.8; margin-bottom: 20px;">
+                Buy peptides for muscle growth and recovery research including BPC-157, TB-500, and IGF-1 variants. 
+                Our bodybuilding peptides are research-grade with 99% purity, ideal for tissue repair and regeneration studies. 
+                Fast dispatch and competitive prices make us the preferred choice for researchers studying anabolic pathways.
+              </p>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <a href={getLocalizedPath('/peptides/', lang)} class="btn-shop-primary">
+              Browse All Peptides for Sale
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: CTA -->
+  <section class="full-width-section cta-full-section">
+    <div class="inner-container section-padding">
+      <div class="cta-box">
+        <div class="cta-content">
+          <h2 class="cta-title">{t('home.cta.title')}</h2>
+          <p class="cta-subtitle">
+            {t('home.cta.subtitle')}
+          </p>
+          <form class="cta-form">
+            <input type="email" class="cta-input" placeholder={t('home.cta.placeholder')}>
+            <button type="submit" class="cta-button">{t('home.cta.button')}</button>
+          </form>
+          <p class="cta-privacy">🔒 We respect your privacy. Unsubscribe anytime.</p>
+        </div>
+        <div class="cta-decoration">
+          <div class="cta-circle cta-circle-1"></div>
+          <div class="cta-circle cta-circle-2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+          question.addEventListener('click', () => {
+            faqItems.forEach(otherItem => {
+              if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+              }
+            });
+            item.classList.toggle('active');
+          });
+        }
+      });
+
+      // Product Filter Tabs
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const productItems = document.querySelectorAll('.product-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Update active button styles
+          filterBtns.forEach(b => {
+            b.classList.remove('active', 'btn-shop-primary');
+            b.classList.add('btn-shop-outline');
+          });
+          btn.classList.add('active', 'btn-shop-primary');
+          btn.classList.remove('btn-shop-outline');
+
+          // Filter products
+          const category = btn.dataset.category;
+          
+          productItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = '';
+              item.style.opacity = '0';
+              item.style.transform = 'translateY(10px)';
+              setTimeout(() => {
+                item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+              }, 50);
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</Layout>

@@ -1,12 +1,20 @@
 import { useStore } from '@nanostores/react';
 import { cartItems, deleteCartItem, updateCartItemQuantity, cartTotal } from '../scripts/cartStore';
+import { getLocalizedPath, t, type SupportedLanguage } from '../i18n/translations';
+import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
 
 // Free delivery threshold
 const FREE_DELIVERY_THRESHOLD = 500;
 
-export default function ShoppingCart() {
+interface ShoppingCartProps {
+  lang?: SupportedLanguage;
+}
+
+export default function ShoppingCart({ lang = 'en' }: ShoppingCartProps) {
   const $cartItems = useStore(cartItems);
   const $cartTotal = useStore(cartTotal);
+  const currency = useStore(currentCurrency);
+  useStore(exchangeRate);
   const products = Object.values($cartItems);
   
   // Products can only be added to cart after meeting £200 threshold at product page
@@ -48,10 +56,12 @@ export default function ShoppingCart() {
               </svg>
               <div>
                 <div style={{ fontWeight: '700', color: '#1e293b', fontSize: '16px' }}>
-                  ✓ Ready to checkout
+                  {t(lang, 'cart.readyToCheckout')}
                 </div>
                 <div style={{ color: '#64748b', fontSize: '14px' }}>
-                  {qualifiesForFreeDelivery ? 'FREE delivery included!' : `Add £${(FREE_DELIVERY_THRESHOLD - $cartTotal).toFixed(2)} more for FREE delivery`}
+                  {qualifiesForFreeDelivery
+                    ? t(lang, 'cart.freeDeliveryIncluded')
+                    : t(lang, 'cart.addMoreForFreeDelivery').replace('{amount}', (FREE_DELIVERY_THRESHOLD - $cartTotal).toFixed(2))}
                 </div>
               </div>
             </div>
@@ -63,7 +73,7 @@ export default function ShoppingCart() {
               fontWeight: '700',
               fontSize: '14px'
             }}>
-              £{$cartTotal.toFixed(2)}
+              {formatPrice($cartTotal, currency)}
             </div>
           </div>
         </div>
@@ -91,13 +101,13 @@ export default function ShoppingCart() {
                 </svg>
               </div>
               <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '12px', fontSize: '1.75rem' }}>
-                Your cart is empty
+                {t(lang, 'cart.empty')}
               </h3>
               <p style={{ color: '#64748b', marginBottom: '32px', fontSize: '1.1rem', maxWidth: '400px', margin: '0 auto 32px' }}>
-                Explore our premium research peptides with ≥99% purity and comprehensive COA documentation.
+                {t(lang, 'shopPage.subtitle')}
               </p>
               <a 
-                href="/shop/" 
+                href={getLocalizedPath('/shop/', lang)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -117,7 +127,7 @@ export default function ShoppingCart() {
                   <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
-                Browse Peptides
+                {t(lang, 'cart.browsePeptides')}
               </a>
             </div>
           ) : (
@@ -129,10 +139,10 @@ export default function ShoppingCart() {
                     <circle cx="19" cy="21" r="1"></circle>
                     <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
                   </svg>
-                  Cart Items
+                  {t(lang, 'cart.cartItemsLabel')}
                 </h4>
                 <span style={{ color: '#64748b', fontSize: '14px', fontWeight: '600' }}>
-                  {products.length} {products.length === 1 ? 'item' : 'items'}
+                  {products.length} {products.length === 1 ? t(lang, 'cart.item') : t(lang, 'cart.items')}
                 </span>
               </div>
 
@@ -212,7 +222,7 @@ export default function ShoppingCart() {
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            In Stock • Fast UK Delivery
+                            {t(lang, 'cart.inStockFastDelivery')}
                           </div>
                         </div>
                         <div style={{ textAlign: 'right' }}>
@@ -221,11 +231,11 @@ export default function ShoppingCart() {
                             fontWeight: '800', 
                             fontSize: '1.35rem'
                           }}>
-                            £{(product.price * product.quantity).toFixed(2)}
+                            {formatPrice(product.price * product.quantity, currency)}
                           </div>
                           {product.quantity > 1 && (
                             <div style={{ color: '#64748b', fontSize: '13px' }}>
-                              £{product.price.toFixed(2)} each
+                              {formatPrice(product.price, currency)} {t(lang, 'cart.each')}
                             </div>
                           )}
                         </div>
@@ -234,7 +244,7 @@ export default function ShoppingCart() {
                       {/* Quantity & Remove */}
                       <div className="d-flex align-items-center justify-content-between" style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #f1f5f9' }}>
                         <div className="d-flex align-items-center" style={{ gap: '12px' }}>
-                          <span style={{ color: '#64748b', fontSize: '14px', fontWeight: '600' }}>Quantity:</span>
+                          <span style={{ color: '#64748b', fontSize: '14px', fontWeight: '600' }}>{t(lang, 'cart.quantity')}:</span>
                           <div style={{ 
                             display: 'flex', 
                             alignItems: 'center',
@@ -313,7 +323,7 @@ export default function ShoppingCart() {
                             <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                             <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
                           </svg>
-                          Remove
+                          {t(lang, 'cart.remove')}
                         </button>
                       </div>
                     </div>
@@ -323,7 +333,7 @@ export default function ShoppingCart() {
 
               {/* Continue Shopping Link */}
               <a 
-                href="/shop/" 
+                href={getLocalizedPath('/shop/', lang)}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -338,7 +348,7 @@ export default function ShoppingCart() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="m15 18-6-6 6-6"></path>
                 </svg>
-                Continue Shopping
+                {t(lang, 'cart.continueShopping')}
               </a>
             </>
           )}
@@ -364,21 +374,23 @@ export default function ShoppingCart() {
                     <path d="M6 9.01V9"></path>
                     <path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"></path>
                   </svg>
-                  Order Summary
+                  {t(lang, 'cart.orderSummary')}
                 </h5>
                 
                 <div style={{ marginBottom: '20px' }}>
                   <div className="d-flex justify-content-between" style={{ marginBottom: '12px' }}>
-                    <span style={{ color: '#64748b' }}>Subtotal ({products.length} {products.length === 1 ? 'item' : 'items'})</span>
-                    <span style={{ color: '#1e293b', fontWeight: '600' }}>£{$cartTotal.toFixed(2)}</span>
+                    <span style={{ color: '#64748b' }}>
+                      {t(lang, 'cart.subtotal')} ({products.length} {products.length === 1 ? t(lang, 'cart.item') : t(lang, 'cart.items')})
+                    </span>
+                    <span style={{ color: '#1e293b', fontWeight: '600' }}>{formatPrice($cartTotal, currency)}</span>
                   </div>
                   
                   <div className="d-flex justify-content-between" style={{ marginBottom: '12px' }}>
-                    <span style={{ color: '#64748b' }}>Shipping</span>
+                    <span style={{ color: '#64748b' }}>{t(lang, 'cart.shipping')}</span>
                     {qualifiesForFreeDelivery ? (
                       <span style={{ color: '#10b981', fontWeight: '600' }}>FREE</span>
                     ) : (
-                      <span style={{ color: '#64748b', fontSize: '14px' }}>Calculated at checkout</span>
+                      <span style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'cart.calculatedAtCheckout')}</span>
                     )}
                   </div>
 
@@ -393,7 +405,7 @@ export default function ShoppingCart() {
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
-                      Bulk Discounts Applied
+                      {t(lang, 'cart.bulkDiscountsApplied')}
                     </span>
                     <span style={{ color: '#059669', fontWeight: '700' }}>✓</span>
                   </div>
@@ -405,13 +417,13 @@ export default function ShoppingCart() {
                   marginBottom: '24px' 
                 }}>
                   <div className="d-flex justify-content-between align-items-center">
-                    <span style={{ color: '#1e293b', fontWeight: '700', fontSize: '1.1rem' }}>Total</span>
+                    <span style={{ color: '#1e293b', fontWeight: '700', fontSize: '1.1rem' }}>{t(lang, 'cart.total')}</span>
                     <span style={{ 
                       color: '#0077b6', 
                       fontWeight: '800', 
                       fontSize: '1.5rem'
                     }}>
-                      £{$cartTotal.toFixed(2)}
+                      {formatPrice($cartTotal, currency)}
                     </span>
                   </div>
                   {qualifiesForFreeDelivery && (
@@ -421,14 +433,14 @@ export default function ShoppingCart() {
                         fontSize: '14px',
                         fontWeight: '600'
                       }}>
-                        + FREE Delivery
+                        + {t(lang, 'cart.freeDelivery')}
                       </span>
                     </div>
                   )}
                 </div>
                 
                 <a 
-                  href="/checkout/"
+                  href={getLocalizedPath('/checkout/', lang)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -451,7 +463,7 @@ export default function ShoppingCart() {
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
                   </svg>
-                  Proceed to Checkout
+                  {t(lang, 'cart.proceedToCheckout')}
                 </a>
                 
                 <div style={{ 
@@ -468,7 +480,7 @@ export default function ShoppingCart() {
                     <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                   </svg>
-                  Secure SSL encrypted checkout
+                  {t(lang, 'cart.secureSslEncryptedCheckout')}
                 </div>
               </div>
 
@@ -489,7 +501,7 @@ export default function ShoppingCart() {
                     <circle cx="17" cy="18" r="2"></circle>
                     <circle cx="7" cy="18" r="2"></circle>
                   </svg>
-                  UK Delivery Options
+                  {t(lang, 'cart.deliveryOptions')}
                 </h6>
                 <div style={{ 
                   display: 'flex', 
@@ -500,10 +512,10 @@ export default function ShoppingCart() {
                   marginBottom: '10px'
                 }}>
                   <div>
-                    <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px' }}>Standard Delivery</div>
-                    <div style={{ color: '#64748b', fontSize: '13px' }}>3-5 business days</div>
+                    <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px' }}>{t(lang, 'cart.standardDelivery')}</div>
+                    <div style={{ color: '#64748b', fontSize: '13px' }}>{t(lang, 'cart.standardDeliveryTime')}</div>
                   </div>
-                  <div style={{ fontWeight: '700', color: '#0077b6' }}>£5.99</div>
+                  <div style={{ fontWeight: '700', color: '#0077b6' }}>{formatPrice(5.99, currency)}</div>
                 </div>
                 <div style={{ 
                   display: 'flex', 
@@ -515,7 +527,7 @@ export default function ShoppingCart() {
                 }}>
                   <div>
                     <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      Express Delivery
+                      {t(lang, 'cart.expressDelivery')}
                       <span style={{ 
                         background: '#0077b6', 
                         color: 'white', 
@@ -525,9 +537,9 @@ export default function ShoppingCart() {
                         fontWeight: '700'
                       }}>FAST</span>
                     </div>
-                    <div style={{ color: '#64748b', fontSize: '13px' }}>1-2 business days</div>
+                    <div style={{ color: '#64748b', fontSize: '13px' }}>{t(lang, 'cart.expressDeliveryTime')}</div>
                   </div>
-                  <div style={{ fontWeight: '700', color: '#0077b6' }}>£12.99</div>
+                  <div style={{ fontWeight: '700', color: '#0077b6' }}>{formatPrice(12.99, currency)}</div>
                 </div>
                 {/* Free delivery note */}
                 <div style={{ 
@@ -543,7 +555,7 @@ export default function ShoppingCart() {
                 }}>
                   <div>
                     <div style={{ fontWeight: '600', color: qualifiesForFreeDelivery ? '#059669' : '#64748b', fontSize: '14px' }}>
-                      Orders over £{FREE_DELIVERY_THRESHOLD}
+                      {t(lang, 'cart.ordersOverThreshold').replace('{amount}', String(FREE_DELIVERY_THRESHOLD))}
                     </div>
                   </div>
                   <div style={{ fontWeight: '700', color: '#10b981' }}>FREE</div>
@@ -565,7 +577,7 @@ export default function ShoppingCart() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>Secure</div>
+                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.secureBadge')}</div>
                 </div>
                 <div style={{ 
                   ...cardStyle, 
@@ -576,7 +588,7 @@ export default function ShoppingCart() {
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>≥99% Pure</div>
+                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.pureBadge')}</div>
                 </div>
                 <div style={{ 
                   ...cardStyle, 
@@ -590,7 +602,7 @@ export default function ShoppingCart() {
                     <circle cx="17" cy="18" r="2"></circle>
                     <circle cx="7" cy="18" r="2"></circle>
                   </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>Fast UK</div>
+                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.fastDeliveryBadge')}</div>
                 </div>
               </div>
             </div>

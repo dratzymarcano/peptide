@@ -17,7 +17,7 @@ coa_url: "/coa/ghk-cu.pdf"
 short_description: "Buy GHK-Cu UK. Copper peptide for skin and tissue research. ≥99% purity. Fast UK delivery."
 category: "muscle-recovery"
 tags: ["research-peptide", "ghk-cu-uk", "copper-peptide", "buy-peptides-uk", "skin", "collagen"]
-images: ["/images/products/ghk-cu.jpg"]
+images: ["/images/products/ghk-cu.png"]
 meta:
   title: "Buy GHK-Cu UK | Copper Peptide | Fast Delivery"
   description: "Buy GHK-Cu UK. Premium copper peptide for research. ≥99% purity, COA included. Fast UK delivery."

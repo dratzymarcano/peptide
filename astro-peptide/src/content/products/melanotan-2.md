@@ -17,7 +17,7 @@ coa_url: "/coa/peptide-mt2.pdf"
 short_description: "Buy Melanotan 2 UK. Premium MT-2 tanning peptide for melanogenesis research. ≥99% purity. Fast UK delivery."
 category: "tanning"
 tags: ["research-peptide", "melanotan-uk", "tanning-peptide", "buy-peptides-uk", "mt2"]
-images: ["/images/products/melanotan-2.jpg"]
+images: ["/images/products/melanotan-2.png"]
 meta:
   title: "Buy Melanotan 2 UK | MT-2 Peptide | Fast Delivery"
   description: "Buy Melanotan 2 UK. Premium MT-2 tanning peptide for research. ≥99% purity, COA included. Next day UK delivery."

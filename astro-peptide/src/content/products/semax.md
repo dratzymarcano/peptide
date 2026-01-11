@@ -17,7 +17,7 @@ coa_url: "/coa/semax.pdf"
 short_description: "Buy Semax UK. Nootropic peptide for cognitive research. ≥99% purity. Fast UK delivery."
 category: "cognitive"
 tags: ["research-peptide", "semax-uk", "nootropic", "buy-peptides-uk", "cognitive", "neuroprotection"]
-images: ["/images/products/semax.jpg"]
+images: ["/images/products/semax.png"]
 meta:
   title: "Buy Semax UK | Cognitive Peptide | Fast Delivery"
   description: "Buy Semax UK. Premium nootropic peptide for research. ≥99% purity, COA included. Fast UK delivery."

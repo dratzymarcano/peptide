@@ -52,7 +52,7 @@ const siteUrl = import.meta.env.SITE || 'https://peptide-shop.net';
 const productUrl = `${siteUrl}/peptides/${currentSlug}/`;
 const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
 
-// Product structured data for SEO
+// Product structured data for SEO with enhanced geo-targeting
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -60,16 +60,41 @@ const productSchema = {
   "description": product.data.meta.description,
   "image": productImageUrl,
   "sku": productId,
+  "mpn": product.data.cas || productId,
   "brand": {
     "@type": "Brand",
     "name": "Peptide Shop"
   },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Peptide Shop",
+    "url": siteUrl
+  },
+  "category": product.data.category.replace(/-/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) + " Peptides",
   "offers": {
     "@type": "Offer",
     "url": productUrl,
     "priceCurrency": "GBP",
     "price": productPrice,
     "availability": "https://schema.org/InStock",
+    "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+    "itemCondition": "https://schema.org/NewCondition",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": [
+        {"@type": "DefinedRegion", "addressCountry": "GB"},
+        {"@type": "DefinedRegion", "addressCountry": "NL"},
+        {"@type": "DefinedRegion", "addressCountry": "DE"},
+        {"@type": "DefinedRegion", "addressCountry": "FR"},
+        {"@type": "DefinedRegion", "addressCountry": "ES"},
+        {"@type": "DefinedRegion", "addressCountry": "IT"}
+      ],
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY"}
+      }
+    },
     "seller": {
       "@type": "Organization",
       "name": "Peptide Shop"
@@ -85,6 +110,20 @@ const productSchema = {
     }
   })
 };
+
+// FAQ Schema for Answer Engine Optimization (AEO)
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq: any) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
 ---
 
 <Layout 
@@ -96,14 +135,17 @@ const productSchema = {
     { name: "Home", url: "/" },
     { name: "Peptides", url: "/peptides" },
     { name: product.data.category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()), url: `/peptides/${product.data.category}` },
-    { name: product.data.title, url: `/peptides/${product.slug}` }
+    { name: product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', ''), url: `/peptides/${currentSlug}/` }
   ]}
 >
   <!-- Product Schema JSON-LD -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   
+  <!-- FAQ Schema for AEO -->
+  {faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  
   <PageTitle 
-    title={product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', '')}
+    title={product.data.title.split('|')[0].trim()}
     subtitle={product.data.short_description}
     breadcrumbs={[
       { name: "Home", url: "/" },
@@ -214,12 +256,12 @@ const productSchema = {
 
                 <!-- FAQs Tab -->
                 <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
-                  <ProductFAQs productName={productTitle} faqs={faqs} />
+                  <ProductFAQs productName={product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', '')} faqs={faqs} />
                 </div>
 
                 <!-- Reviews Tab -->
                 <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                  <ProductReviews productName={productTitle} reviews={reviews} />
+                  <ProductReviews productName={product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', '')} reviews={reviews} />
                 </div>
               </div>
             </div>
@@ -241,6 +283,7 @@ const productSchema = {
               moq={product.data.moq}
               image={productImage}
               category={product.data.category}
+              lang="en"
             />
             
             <!-- Quick Info -->
@@ -323,7 +366,7 @@ const productSchema = {
       </div>
       
       <!-- Related Products Section -->
-      <RelatedProducts currentSlug={currentSlug} category={product.data.category} limit={4} />
+      <RelatedProducts currentSlug={currentSlug} category={product.data.category} limit={4} lang="en" />
     </div>
   </section>
 </Layout>
@@ -363,19 +406,20 @@ const productSchema = {
   }
   
   .breadcrumb-list .breadcrumb-item a {
-    color: rgba(255, 255, 255, 0.7);
+    color: white;
     text-decoration: none;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
+    font-weight: 500;
   }
   
   .breadcrumb-list .breadcrumb-item a:hover {
-    color: white;
+    color: #ffd700;
   }
   
   .breadcrumb-list .breadcrumb-item a svg {
-    opacity: 0.8;
+    opacity: 1;
   }
   
   .breadcrumb-list .breadcrumb-item:not(:last-child)::after {
@@ -383,15 +427,15 @@ const productSchema = {
     display: inline-block;
     width: 6px;
     height: 6px;
-    border-right: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-right: 1.5px solid white;
+    border-top: 1.5px solid white;
     transform: rotate(45deg);
     margin: 0 0.75rem;
   }
   
   .breadcrumb-list .breadcrumb-item.active {
     color: white;
-    font-weight: 500;
+    font-weight: 600;
   }
   
   /* Product Title */

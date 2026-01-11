@@ -5,7 +5,7 @@ publishDate: "2025-12-01"
 author: "Peptide Shop Team"
 category: "Lab Techniques"
 tags: ["storage", "handling", "stability", "protocols", "laboratory"]
-image: "/images/blog/peptide-storage.jpg"
+image: "/images/blog/post2.jpg"
 featured: false
 meta:
   title: "Peptide Storage Guide | Best Practices for Researchers"

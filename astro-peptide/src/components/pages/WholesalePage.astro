@@ -1,0 +1,639 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+
+const tiers = [
+  {
+    name: "Starter",
+    minOrder: "£500",
+    discount: "10%",
+    features: [
+      t(lang, 'wholesalePage.tiers.starter.feature1'),
+      t(lang, 'wholesalePage.tiers.starter.feature2'),
+      t(lang, 'wholesalePage.tiers.starter.feature3'),
+      t(lang, 'wholesalePage.tiers.starter.feature4'),
+    ],
+    color: "#0077b6"
+  },
+  {
+    name: "Professional",
+    minOrder: "£1,000",
+    discount: "15%",
+    features: [
+      t(lang, 'wholesalePage.tiers.professional.feature1'),
+      t(lang, 'wholesalePage.tiers.professional.feature2'),
+      t(lang, 'wholesalePage.tiers.professional.feature3'),
+      t(lang, 'wholesalePage.tiers.professional.feature4'),
+      t(lang, 'wholesalePage.tiers.professional.feature5'),
+    ],
+    color: "#023e8a",
+    popular: true
+  },
+  {
+    name: "Enterprise",
+    minOrder: "£2,500+",
+    discount: "20%+",
+    features: [
+      t(lang, 'wholesalePage.tiers.enterprise.feature1'),
+      t(lang, 'wholesalePage.tiers.enterprise.feature2'),
+      t(lang, 'wholesalePage.tiers.enterprise.feature3'),
+      t(lang, 'wholesalePage.tiers.enterprise.feature4'),
+      t(lang, 'wholesalePage.tiers.enterprise.feature5'),
+      t(lang, 'wholesalePage.tiers.enterprise.feature6'),
+    ],
+    color: "#1e293b"
+  }
+];
+
+const benefits = [
+  {
+    icon: "shield",
+    title: t(lang, 'wholesalePage.benefits.quality.title'),
+    description: t(lang, 'wholesalePage.benefits.quality.description')
+  },
+  {
+    icon: "truck",
+    title: t(lang, 'wholesalePage.benefits.supply.title'),
+    description: t(lang, 'wholesalePage.benefits.supply.description')
+  },
+  {
+    icon: "users",
+    title: t(lang, 'wholesalePage.benefits.support.title'),
+    description: t(lang, 'wholesalePage.benefits.support.description')
+  },
+  {
+    icon: "file-text",
+    title: t(lang, 'wholesalePage.benefits.documentation.title'),
+    description: t(lang, 'wholesalePage.benefits.documentation.description')
+  },
+  {
+    icon: "credit-card",
+    title: t(lang, 'wholesalePage.benefits.payment.title'),
+    description: t(lang, 'wholesalePage.benefits.payment.description')
+  },
+  {
+    icon: "package",
+    title: t(lang, 'wholesalePage.benefits.custom.title'),
+    description: t(lang, 'wholesalePage.benefits.custom.description')
+  }
+];
+---
+
+<Layout 
+  title={`${t(lang, 'wholesalePage.title')} | Peptide Shop`}
+  description={t(lang, 'wholesalePage.description')}
+  breadcrumbs={[
+    { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
+    { name: t(lang, 'wholesalePage.title'), url: getLocalizedPath('/wholesale', lang) }
+  ]}
+>
+  <style>
+    .wholesale-hero {
+      background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .wholesale-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -30%;
+      width: 80%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+    
+    .hero-title {
+      color: white;
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    
+    .hero-description {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    
+    .hero-cta {
+      display: inline-block;
+      background: white;
+      color: #0077b6;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .tiers-section {
+      padding: 80px 0;
+      background: #f8fafc;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-label {
+      color: #0077b6;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    
+    .section-title {
+      color: #1e293b;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    
+    .section-subtitle {
+      color: #64748b;
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 991px) {
+      .tiers-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .tier-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      position: relative;
+      transition: all 0.3s;
+    }
+    
+    .tier-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    .tier-card.popular {
+      border: 2px solid #0077b6;
+      transform: scale(1.05);
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0077b6;
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .tier-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 8px;
+    }
+    
+    .tier-min {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .tier-discount {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    
+    .tier-discount span {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+    }
+    
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+      text-align: left;
+    }
+    
+    .tier-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      color: #475569;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .tier-features li svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+    
+    .tier-btn {
+      display: block;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .tier-btn-outline {
+      border: 2px solid #e2e8f0;
+      color: #475569;
+    }
+    
+    .tier-btn-primary {
+      background: #0077b6;
+      color: white;
+    }
+    
+    .tier-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .benefits-section {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    
+    @media (max-width: 991px) {
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 575px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .benefit-card {
+      padding: 32px;
+      border-radius: 12px;
+      background: #f8fafc;
+      transition: all 0.3s;
+    }
+    
+    .benefit-card:hover {
+      background: white;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+    
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .benefit-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: white;
+    }
+    
+    .benefit-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+    
+    .benefit-description {
+      color: #64748b;
+      line-height: 1.7;
+    }
+    
+    .apply-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    
+    .apply-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .apply-form {
+      background: white;
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    
+    @media (max-width: 575px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      color: #1e293b;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+    
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #0077b6;
+    }
+    
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #0077b6, #023e8a);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 119, 182, 0.3);
+    }
+    
+    .form-note {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    
+    @media (max-width: 767px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .apply-form {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="wholesale-hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 hero-content">
+          <span class="hero-badge">{t(lang, 'wholesalePage.heroBadge')}</span>
+          <h1 class="hero-title">{t(lang, 'wholesalePage.heroTitle')}</h1>
+          <p class="hero-description">{t(lang, 'wholesalePage.heroDescription')}</p>
+          <a href="#apply" class="hero-cta">{t(lang, 'wholesalePage.applyNow')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Tiers -->
+  <section class="tiers-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">{t(lang, 'wholesalePage.tiersLabel')}</p>
+        <h2 class="section-title">{t(lang, 'wholesalePage.tiersTitle')}</h2>
+        <p class="section-subtitle">{t(lang, 'wholesalePage.tiersSubtitle')}</p>
+      </div>
+      
+      <div class="tiers-grid">
+        {tiers.map((tier) => (
+          <div class={`tier-card ${tier.popular ? 'popular' : ''}`}>
+            {tier.popular && <span class="popular-badge">{t(lang, 'wholesalePage.mostPopular')}</span>}
+            <h3 class="tier-name">{tier.name}</h3>
+            <p class="tier-min">{t(lang, 'wholesalePage.minOrder')}: {tier.minOrder}</p>
+            <p class="tier-discount" style={`color: ${tier.color}`}>
+              {tier.discount} <span>{t(lang, 'wholesalePage.offAllProducts')}</span>
+            </p>
+            <ul class="tier-features">
+              {tier.features.map((feature) => (
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke={tier.color} stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <a href="#apply" class={tier.popular ? 'tier-btn tier-btn-primary' : 'tier-btn tier-btn-outline'}>
+              {t(lang, 'wholesalePage.getStarted')}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">{t(lang, 'wholesalePage.benefitsLabel')}</p>
+        <h2 class="section-title">{t(lang, 'wholesalePage.benefitsTitle')}</h2>
+        <p class="section-subtitle">{t(lang, 'wholesalePage.benefitsSubtitle')}</p>
+      </div>
+      
+      <div class="benefits-grid">
+        {benefits.map((benefit) => (
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                {benefit.icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></>}
+                {benefit.icon === 'truck' && <><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></>}
+                {benefit.icon === 'users' && <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></>}
+                {benefit.icon === 'file-text' && <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></>}
+                {benefit.icon === 'credit-card' && <><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></>}
+                {benefit.icon === 'package' && <><path d="m7.5 4.27 9 5.15"></path><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></>}
+              </svg>
+            </div>
+            <h3 class="benefit-title">{benefit.title}</h3>
+            <p class="benefit-description">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form -->
+  <section class="apply-section" id="apply">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">{t(lang, 'wholesalePage.applyLabel')}</p>
+        <h2 class="section-title">{t(lang, 'wholesalePage.applyTitle')}</h2>
+        <p class="section-subtitle">{t(lang, 'wholesalePage.applySubtitle')}</p>
+      </div>
+      
+      <div class="apply-container">
+        <form class="apply-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div>
+              <label class="form-label">{t(lang, 'wholesalePage.form.firstName')} *</label>
+              <input type="text" name="firstName" class="form-input" required>
+            </div>
+            <div>
+              <label class="form-label">{t(lang, 'wholesalePage.form.lastName')} *</label>
+              <input type="text" name="lastName" class="form-input" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">{t(lang, 'wholesalePage.form.email')} *</label>
+            <input type="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">{t(lang, 'wholesalePage.form.organization')} *</label>
+            <input type="text" name="organization" class="form-input" required>
+          </div>
+          
+          <div class="form-row">
+            <div>
+              <label class="form-label">{t(lang, 'wholesalePage.form.country')} *</label>
+              <select name="country" class="form-select" required>
+                <option value="">{t(lang, 'wholesalePage.form.selectCountry')}</option>
+                <option value="UK">United Kingdom</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="NL">Netherlands</option>
+                <option value="ES">Spain</option>
+                <option value="IT">Italy</option>
+                <option value="PT">Portugal</option>
+                <option value="PL">Poland</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="AT">Austria</option>
+                <option value="BE">Belgium</option>
+                <option value="IE">Ireland</option>
+                <option value="other">{t(lang, 'wholesalePage.form.otherEU')}</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">{t(lang, 'wholesalePage.form.volume')} *</label>
+              <select name="volume" class="form-select" required>
+                <option value="">{t(lang, 'wholesalePage.form.selectVolume')}</option>
+                <option value="500-1000">£500 - £1,000</option>
+                <option value="1000-2500">£1,000 - £2,500</option>
+                <option value="2500-5000">£2,500 - £5,000</option>
+                <option value="5000+">£5,000+</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">{t(lang, 'wholesalePage.form.products')}</label>
+            <textarea name="products" class="form-textarea" placeholder={t(lang, 'wholesalePage.form.productsPlaceholder')}></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">{t(lang, 'wholesalePage.form.additional')}</label>
+            <textarea name="message" class="form-textarea" placeholder={t(lang, 'wholesalePage.form.additionalPlaceholder')}></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">{t(lang, 'wholesalePage.form.submit')}</button>
+          
+          <p class="form-note">{t(lang, 'wholesalePage.form.responseTime')}</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

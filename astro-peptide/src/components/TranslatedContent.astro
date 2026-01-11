@@ -1,0 +1,21 @@
+---
+/**
+ * TranslatedContent.astro
+ * Wraps rendered markdown content and translates it to the target language
+ */
+import { translateProductContent, type SupportedLanguage } from '../i18n/translations';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+
+// Get the slot content as HTML string
+const slotContent = await Astro.slots.render('default');
+
+// Translate the content if not English
+const translatedContent = lang !== 'en' ? translateProductContent(slotContent, lang) : slotContent;
+---
+
+<Fragment set:html={translatedContent} />

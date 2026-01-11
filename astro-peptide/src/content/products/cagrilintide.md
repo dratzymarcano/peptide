@@ -1,7 +1,7 @@
 ---
 id: "peptide-cagrilintide"
-title: "Buy Cagrilintide UK | Research Grade Amylin Analog"
-primary_keyword: "buy cagrilintide uk"
+title: "Buy Cagrilintide | Research Grade Amylin Analog"
+primary_keyword: "buy cagrilintide"
 search_volume: "2900"
 slug: "/peptides/buy-cagrilintide"
 aliases: ["AM833", "NN9838", "Amylin Analog"]
@@ -14,13 +14,13 @@ moq: 200
 price: 1200
 price_range: "£1200 per pack"
 coa_url: "/coa/cagrilintide.pdf"
-short_description: "Buy Cagrilintide UK. Long-acting amylin analog for satiety and metabolic research. ≥99% purity. Fast UK delivery."
+short_description: "Buy Cagrilintide. Long-acting amylin analog for satiety and metabolic research. ≥99% purity. Fast UK & EU delivery."
 category: "weight-loss"
 tags: ["research-peptide", "cagrilintide-uk", "amylin", "buy-peptides-uk", "weight-loss"]
-images: ["/images/products/cagrilintide.jpg"]
+images: ["/images/products/cagrilintide.png"]
 meta:
-  title: "Buy Cagrilintide UK | Amylin Analog | Fast Delivery"
-  description: "Buy Cagrilintide UK. Premium long-acting amylin analog for weight research. ≥99% purity, COA included. Fast UK delivery."
+  title: "Buy Cagrilintide | Amylin Analog | Fast Delivery"
+  description: "Buy Cagrilintide. Premium long-acting amylin analog for weight research. ≥99% purity, COA included. Fast UK & EU delivery."
 faqs:
   - question: "What is Cagrilintide used for in research?"
     answer: "Cagrilintide is used in metabolic research to study amylin receptor signalling, appetite regulation, gastric emptying, and glucagon suppression. It provides a long-acting tool for investigating amylin's role in energy homeostasis."

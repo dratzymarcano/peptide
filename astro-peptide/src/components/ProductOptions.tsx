@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { useStore } from '@nanostores/react';
 import { addCartItem } from '../scripts/cartStore';
+import { t, type SupportedLanguage } from '../i18n/translations';
+import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
 
 interface ProductOptionsProps {
   id: string;
@@ -9,6 +12,7 @@ interface ProductOptionsProps {
   moq: number;
   image: string;
   category: string;
+  lang: SupportedLanguage;
 }
 
 // Global minimum order threshold
@@ -29,11 +33,11 @@ const getDiscountPercent = (orderTotal: number): number => {
 const PACK_OPTIONS = [1, 2, 3, 4, 5];
 
 // Determine unit label based on package size string
-const getPackLabel = (packageSize: string): string => {
+const getPackLabel = (packageSize: string): 'pack' | 'bottle' | 'unit' => {
   const sizeLower = packageSize.toLowerCase();
   if (sizeLower.includes('vial')) return 'pack';
   if (sizeLower.includes('cap')) return 'bottle';
-  if (sizeLower.includes('month')) return 'month';
+  if (sizeLower.includes('month')) return 'unit';
   if (sizeLower.includes('powder')) return 'unit';
   return 'pack';
 };
@@ -59,9 +63,11 @@ const getUnitName = (packageSize: string): string => {
   return 'unit';
 };
 
-export default function ProductOptions({ id, title, basePrice, packageSizes, image }: ProductOptionsProps) {
+export default function ProductOptions({ id, title, basePrice, packageSizes, image, lang }: ProductOptionsProps) {
   // Pack quantity (1-5 packs)
   const [packQuantity, setPackQuantity] = useState(1);
+  const currency = useStore(currentCurrency);
+  useStore(exchangeRate);
   const [added, setAdded] = useState(false);
   
   // The price per pack is the basePrice (what's shown on the card)
@@ -98,11 +104,23 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
   // Calculate how many packs needed to meet £200 minimum
   const minPacksForThreshold = Math.ceil(MIN_ORDER_THRESHOLD / pricePerPack);
   const packsNeededForMinimum = Math.max(0, minPacksForThreshold - packQuantity);
+
+  const getTranslatedPackLabel = () => {
+    if (packLabel === 'pack') return t(lang, 'product.pack');
+    if (packLabel === 'bottle') return t(lang, 'product.bottle');
+    return t(lang, 'product.unit');
+  };
   
   const handleAddToCart = () => {
     // Check minimum order threshold
     if (!meetsThreshold) {
-      alert(`Minimum purchase of £${MIN_ORDER_THRESHOLD} required. Please add ${packsNeededForMinimum} more ${packLabel}(s).`);
+      const unitLabel = getTranslatedPackLabel();
+      alert(
+        `${t(lang, 'product.minRequired')}: ${formatPrice(MIN_ORDER_THRESHOLD, currency)}. ` +
+          t(lang, 'product.addMore')
+            .replace('{count}', String(packsNeededForMinimum))
+            .replace('{unit}', unitLabel)
+      );
       return;
     }
     
@@ -121,17 +139,18 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
   };
 
   return (
+    <>
     <div className="product-options">
       {/* Price Display */}
       <div className="price-display mb-4 p-4 rounded" style={{ background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)', border: '1px solid #bae6fd' }}>
         <div className="d-flex justify-content-between align-items-center mb-2">
-          <span className="text-muted">Price per {packLabel}:</span>
+          <span className="text-muted">{t(lang, 'product.pricePer')} {t(lang, `product.${packLabel}` as any)}:</span>
           <div className="text-right">
             {meetsThreshold && discountPercent > 0 && (
-              <span className="text-muted text-decoration-line-through mr-2" style={{ fontSize: '0.9rem' }}>£{pricePerPack.toFixed(0)}</span>
+              <span className="text-muted text-decoration-line-through mr-2" style={{ fontSize: '0.9rem' }}>{formatPrice(pricePerPack, currency)}</span>
             )}
             <span className="font-weight-bold text-primary" style={{ fontSize: '1.5rem' }}>
-              £{meetsThreshold ? discountedPricePerPack.toFixed(0) : pricePerPack.toFixed(0)}
+              {meetsThreshold ? formatPrice(discountedPricePerPack, currency) : formatPrice(pricePerPack, currency)}
             </span>
           </div>
         </div>
@@ -141,7 +160,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
           </span>
           {pricePerUnit && (
             <span className="small" style={{ color: '#64748b' }}>
-              (£{pricePerUnit.toFixed(2)} per {unitName})
+              ({formatPrice(pricePerUnit, currency)} {t(lang, 'product.perUnit')} {t(lang, `product.${unitName}` as any)})
             </span>
           )}
         </div>
@@ -155,7 +174,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
             <line x1="7" x2="7.01" y1="7" y2="7"></line>
           </svg>
           <span className="font-weight-bold">
-            Up to 15% OFF + FREE delivery on orders £{FREE_DELIVERY_THRESHOLD}+
+            {t(lang, 'product.discountBanner').replace('{amount}', FREE_DELIVERY_THRESHOLD.toString())}
           </span>
         </div>
       </div>
@@ -163,7 +182,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
       {/* Pack Quantity Selector */}
       <div className="option-group mb-4">
         <label className="option-label font-weight-bold mb-3 d-block">
-          Select Quantity:
+          {t(lang, 'product.selectQuantity')}:
         </label>
         <div className="pack-options d-flex flex-wrap" style={{ gap: '8px' }}>
           {PACK_OPTIONS.map((qty) => {
@@ -181,22 +200,31 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
                 onClick={() => setPackQuantity(qty)}
                 style={{
                   flex: '1 1 calc(20% - 8px)',
-                  minWidth: '90px',
-                  padding: '12px 8px',
+                  minWidth: '100px',
+                  padding: '12px 4px',
                   border: packQuantity === qty ? '2px solid #0077b6' : '2px solid #e2e8f0',
                   borderRadius: '10px',
                   background: packQuantity === qty ? 'rgba(0, 119, 182, 0.1)' : 'white',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
                   textAlign: 'center',
-                  position: 'relative'
+                  position: 'relative',
+                  overflow: 'visible'
                 }}
               >
                 <div className="pack-qty font-weight-bold" style={{ fontSize: '1rem', color: '#1e293b' }}>
-                  {qty} {packLabel}{qty > 1 ? 's' : ''}
+                  {qty}
+                  <span style={{ 
+                    display: 'block', 
+                    fontWeight: 'normal', 
+                    fontSize: '0.75rem', 
+                    lineHeight: '1.2' 
+                  }}>
+                    {t(lang, (qty > 1 ? `product.${packLabel}s` : `product.${packLabel}`) as any)}
+                  </span>
                 </div>
                 <div className="pack-price" style={{ color: packMeetsThreshold ? '#0077b6' : '#64748b', fontWeight: '600' }}>
-                  £{packFinalPrice.toFixed(0)}
+                  {formatPrice(packFinalPrice, currency)}
                 </div>
                 {packMeetsThreshold && packDiscount > 0 && (
                   <span style={{
@@ -210,12 +238,12 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
                     padding: '2px 6px',
                     borderRadius: '10px'
                   }}>
-                    {packDiscount}% OFF
+                    {packDiscount}% {t(lang, 'product.off')}
                   </span>
                 )}
                 {!packMeetsThreshold && (
                   <div className="small text-danger mt-1" style={{ fontSize: '10px' }}>
-                    Below £{MIN_ORDER_THRESHOLD} min
+                    {t(lang, 'product.belowMin')} {formatPrice(MIN_ORDER_THRESHOLD, currency)}
                   </div>
                 )}
               </button>
@@ -226,13 +254,13 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
       
       {/* Order Summary */}
       <div className="order-summary mb-4 p-4 rounded" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
-        <h6 className="font-weight-bold mb-3" style={{ color: '#1e293b' }}>Order Summary</h6>
+        <h6 className="font-weight-bold mb-3" style={{ color: '#1e293b' }}>{t(lang, 'cart.orderSummary')}</h6>
         
         {/* Subtotal */}
         <div className="d-flex justify-content-between align-items-center mb-2">
           <span className="text-muted">{packQuantity}x {packageDescription}</span>
           <span className={meetsThreshold && discountPercent > 0 ? 'text-muted text-decoration-line-through' : 'font-weight-bold'}>
-            £{subtotal.toFixed(2)}
+            {formatPrice(subtotal, currency)}
           </span>
         </div>
         
@@ -243,9 +271,9 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
               </svg>
-              {discountPercent}% Discount
+              {discountPercent}% {t(lang, 'product.off')}
             </span>
-            <span className="font-weight-bold">-£{discountAmount.toFixed(2)}</span>
+            <span className="font-weight-bold">-{formatPrice(discountAmount, currency)}</span>
           </div>
         )}
         
@@ -259,17 +287,17 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
               </svg>
-              FREE Delivery
+              {t(lang, 'cart.freeDelivery')}
             </span>
-            <span className="font-weight-bold">£0.00</span>
+            <span className="font-weight-bold">{formatPrice(0, currency)}</span>
           </div>
         )}
         
         {/* Total */}
         <div className="d-flex justify-content-between align-items-center pt-3 mt-2" style={{ borderTop: '2px solid #e2e8f0' }}>
-          <span className="font-weight-bold" style={{ fontSize: '1.1rem', color: '#1e293b' }}>Total</span>
+          <span className="font-weight-bold" style={{ fontSize: '1.1rem', color: '#1e293b' }}>{t(lang, 'cart.total')}</span>
           <span className="font-weight-bold text-primary" style={{ fontSize: '1.5rem' }}>
-            £{totalPrice.toFixed(2)}
+            {formatPrice(totalPrice, currency)}
           </span>
         </div>
         
@@ -277,11 +305,11 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
         {meetsThreshold && discountAmount > 0 && (
           <div className="text-center mt-3">
             <span className="badge" style={{ background: '#10b981', color: 'white', padding: '8px 16px', fontSize: '0.85rem' }}>
-              🎉 You save £{discountAmount.toFixed(2)}!
+              🎉 {t(lang, 'product.youSave')} {formatPrice(discountAmount, currency)}!
             </span>
             {qualifiesForFreeDelivery && (
               <span className="badge ml-2" style={{ background: '#3b82f6', color: 'white', padding: '8px 16px', fontSize: '0.85rem' }}>
-                + FREE Delivery
+                + {t(lang, 'cart.freeDelivery')}
               </span>
             )}
           </div>
@@ -296,7 +324,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
               <line x1="12" x2="12.01" y1="16" y2="16"></line>
             </svg>
             <span className="small font-weight-bold">
-              Add {packsNeededForMinimum} more {packLabel}(s) to reach £{MIN_ORDER_THRESHOLD} minimum
+              {t(lang, 'product.addMore').replace('{count}', packsNeededForMinimum.toString()).replace('{unit}', t(lang, `product.${packLabel}${packsNeededForMinimum > 1 ? 's' : ''}` as any))} {t(lang, 'product.minRequired')} {formatPrice(MIN_ORDER_THRESHOLD, currency)}
             </span>
           </div>
         )}
@@ -319,7 +347,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-2">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            Added to Cart!
+            {t(lang, 'product.addedToCart')}!
           </>
         ) : (
           <>
@@ -328,7 +356,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
               <circle cx="19" cy="21" r="1"></circle>
               <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
             </svg>
-            {meetsThreshold ? 'Add to Cart' : `Minimum £${MIN_ORDER_THRESHOLD} Required`}
+            {meetsThreshold ? t(lang, 'product.addToCart') : `${t(lang, 'product.minRequired')} ${formatPrice(MIN_ORDER_THRESHOLD, currency)}`}
           </>
         )}
       </button>
@@ -340,19 +368,19 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" className="mr-1">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            ≥99% Purity
+            {t(lang, 'product.trust.purity')}
           </span>
           <span className="d-flex align-items-center small" style={{ color: '#64748b' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" className="mr-1">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            COA Included
+            {t(lang, 'product.trust.coa')}
           </span>
           <span className="d-flex align-items-center small" style={{ color: '#64748b' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" className="mr-1">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            Fast UK Delivery
+            {t(lang, 'product.trust.delivery')}
           </span>
         </div>
       </div>
@@ -393,6 +421,64 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
           }
         }
       `}</style>
+
+      {/* Mobile Sticky Add-to-Cart Bar */}
+      <div 
+        className="fixed-bottom d-md-none bg-white border-top shadow-lg"
+        style={{ 
+          zIndex: 9999, 
+          padding: '12px 16px',
+          paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+          boxShadow: '0 -4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}
+      >
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="d-flex flex-column">
+            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Total</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0077b6', lineHeight: 1 }}>
+              {formatPrice(totalPrice, currency)}
+            </span>
+          </div>
+          
+          <div className="d-flex align-items-center gap-2">
+            <div className="d-flex align-items-center border rounded" style={{ height: '40px' }}>
+               <button 
+                className="btn btn-link text-dark p-0" 
+                style={{ width: '32px', textDecoration: 'none' }}
+                onClick={() => setPackQuantity(Math.max(1, packQuantity - 1))}
+              >−</button>
+              <span className="font-weight-bold px-1">{packQuantity}</span>
+              <button 
+                className="btn btn-link text-dark p-0"
+                style={{ width: '32px', textDecoration: 'none' }}
+                onClick={() => setPackQuantity(Math.min(5, packQuantity + 1))}
+              >+</button>
+            </div>
+            
+            <button 
+              onClick={handleAddToCart}
+              className={`btn ${added ? 'btn-success' : 'btn-primary'} d-flex align-items-center justify-content-center`}
+              style={{ 
+                height: '40px', 
+                minWidth: '130px',
+                backgroundColor: added ? '#22c55e' : '#0077b6', 
+                borderColor: added ? '#22c55e' : '#0077b6'
+              }}
+              disabled={added}
+            >
+              {added ? (
+                <>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  Added
+                </>
+              ) : 'Add to Cart'}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+    </>
   );
 }

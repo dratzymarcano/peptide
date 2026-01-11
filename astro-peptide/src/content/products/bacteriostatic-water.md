@@ -17,7 +17,7 @@ coa_url: "/coa/bacteriostatic-water.pdf"
 short_description: "Buy bacteriostatic water UK. USP grade, 0.9% benzyl alcohol for peptide reconstitution. Sterile 10ml vials. Fast UK delivery."
 category: "supplies"
 tags: ["supplies", "bac-water", "reconstitution", "bacteriostatic-water-uk", "peptide-supplies"]
-images: ["/images/products/bacteriostatic-water.jpg"]
+images: ["/images/products/bacteriostatic-water.png"]
 meta:
   title: "Buy Bacteriostatic Water UK | 10ml | Peptide Reconstitution"
   description: "Buy bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."

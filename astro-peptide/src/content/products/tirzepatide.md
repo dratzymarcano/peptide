@@ -17,7 +17,7 @@ coa_url: "/coa/tirzepatide.pdf"
 short_description: "Buy Tirzepatide UK. Dual GIP/GLP-1 receptor agonist for weight loss research. ≥99% purity verified. Fast UK delivery."
 category: "weight-loss"
 tags: ["research-peptide", "weight-loss", "tirzepatide-uk", "buy-peptides-uk", "dual-agonist"]
-images: ["/images/products/tirzepatide.jpg"]
+images: ["/images/products/tirzepatide.png"]
 meta:
   title: "Buy Tirzepatide UK | Research Peptide | Fast Delivery"
   description: "Buy Tirzepatide UK. Premium dual GIP/GLP-1 agonist for weight loss research. ≥99% purity, COA included. Next day UK delivery."

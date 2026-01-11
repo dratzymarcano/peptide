@@ -1,9 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ShoppingCart from '../components/ShoppingCart';
+import { getLangFromUrl, getLocalizedPath, t } from '../i18n/translations';
+
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title="Shopping Cart | Peptide Shop" description="Review your cart and proceed to checkout. Premium research peptides with fast EU & UK delivery.">
+<Layout title={`${t(currentLang, 'cart.title')} | Peptide Shop`} description={t(currentLang, 'cart.heroSubtitle')}>
   <!-- Modern Hero Section -->
   <section style="background: linear-gradient(135deg, #0077b6 0%, #023e8a 100%); padding: 100px 0 60px; margin-top: 70px;">
     <div class="container">
@@ -11,15 +14,15 @@ import ShoppingCart from '../components/ShoppingCart';
         <div class="col-lg-8">
           <nav aria-label="breadcrumb" style="margin-bottom: 20px;">
             <ol class="breadcrumb" style="background: transparent; padding: 0; margin: 0;">
-              <li class="breadcrumb-item"><a href="/" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a></li>
-              <li class="breadcrumb-item active" style="color: white;">Cart</li>
+              <li class="breadcrumb-item"><a href={getLocalizedPath('/', currentLang)} style="color: white; text-decoration: none; font-weight: 500;">{t(currentLang, 'nav.home')}</a></li>
+              <li class="breadcrumb-item active" style="color: white; font-weight: 600;">{t(currentLang, 'nav.cart')}</li>
             </ol>
           </nav>
           <h1 style="color: white; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1;">
-            Your Shopping Cart
+            {t(currentLang, 'cart.heroTitle')}
           </h1>
           <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; max-width: 600px; line-height: 1.6; margin: 0;">
-            Review your research peptides before checkout. All orders include COA documentation.
+            {t(currentLang, 'cart.heroSubtitle')}
           </p>
         </div>
         <div class="col-lg-4 text-lg-right mt-4 mt-lg-0">
@@ -29,8 +32,8 @@ import ShoppingCart from '../components/ShoppingCart';
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
             <div style="text-align: left;">
-              <div style="color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Secure Checkout</div>
-              <div style="color: white; font-weight: 600;">SSL Encrypted</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;">{t(currentLang, 'cart.secureCheckout')}</div>
+              <div style="color: white; font-weight: 600;">{t(currentLang, 'cart.sslEncrypted')}</div>
             </div>
           </div>
         </div>
@@ -40,13 +43,13 @@ import ShoppingCart from '../components/ShoppingCart';
 
   <!-- Cart Section -->
   <section style="padding: 60px 0 80px; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);">
-    <ShoppingCart client:only="react" />
+    <ShoppingCart client:only="react" lang={currentLang} />
   </section>
 </Layout>
 
 <style>
   .breadcrumb-item + .breadcrumb-item::before {
-    color: rgba(255,255,255,0.6);
+    color: white;
     content: "›";
   }
 </style>

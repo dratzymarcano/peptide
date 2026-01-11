@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="My Account | UK Peptide Store">
+<Layout title="My Account | Peptide Shop" description="Manage your Peptide Shop account. View orders, track shipments, update addresses and access order history. Secure account management for researchers.">
   <!-- Hero Section -->
   <section class="page-hero" style="background: linear-gradient(135deg, #0077b6, #023e8a); padding: 60px 0;">
     <div class="container">
@@ -10,8 +10,8 @@ import Layout from "../../layouts/Layout.astro";
         <div class="col-lg-8">
           <nav aria-label="breadcrumb" style="margin-bottom: 1rem;">
             <ol class="breadcrumb" style="margin-bottom: 0; background: transparent; padding: 0;">
-              <li class="breadcrumb-item"><a href="/" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page" style="color: white;">My Account</li>
+              <li class="breadcrumb-item"><a href="/" style="color: white; text-decoration: none; font-weight: 500;">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page" style="color: white; font-weight: 600;">My Account</li>
             </ol>
           </nav>
           <h1 style="color: white; font-weight: 800; font-size: 2.5rem; margin-bottom: 1rem;">My Account</h1>
@@ -69,7 +69,7 @@ import Layout from "../../layouts/Layout.astro";
 
   .breadcrumb-item + .breadcrumb-item::before {
     content: "›";
-    color: rgba(255,255,255,0.6);
+    color: white;
     padding: 0 0.5rem;
   }
 

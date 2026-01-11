@@ -1,4 +1,6 @@
 ---
+import { t, type SupportedLanguage } from '../i18n/translations';
+
 interface Review {
   author: string;
   rating: number;
@@ -11,9 +13,10 @@ interface Review {
 interface Props {
   productName: string;
   reviews: Review[];
+  lang?: SupportedLanguage;
 }
 
-const { productName, reviews } = Astro.props;
+const { productName, reviews, lang = 'en' } = Astro.props;
 
 // Calculate average rating
 const avgRating = reviews.length > 0 
@@ -36,7 +39,7 @@ const ratingDist = [5, 4, 3, 2, 1].map(star => ({
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" style="color: #0077b6;">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
       </svg>
-      Customer Reviews ({reviews.length})
+      {t(lang, 'reviews.title')} ({reviews.length})
     </h3>
     
     <!-- Reviews Summary -->
@@ -50,12 +53,12 @@ const ratingDist = [5, 4, 3, 2, 1].map(star => ({
             </svg>
           ))}
         </div>
-        <p class="text-muted small mb-0">Based on {reviews.length} reviews</p>
+        <p class="text-muted small mb-0">{t(lang, 'reviews.basedOn').replace('{count}', reviews.length.toString())}</p>
       </div>
       <div class="col-md-8">
         {ratingDist.map(({ star, count, percentage }) => (
           <div class="d-flex align-items-center mb-1">
-            <span class="small mr-2" style="width: 50px;">{star} stars</span>
+            <span class="small mr-2" style="width: 50px;">{star} {t(lang, 'reviews.stars')}</span>
             <div class="progress flex-grow-1" style="height: 8px;">
               <div class="progress-bar" role="progressbar" style={`width: ${percentage}%; background-color: #ffc107;`}></div>
             </div>
@@ -80,13 +83,13 @@ const ratingDist = [5, 4, 3, 2, 1].map(star => ({
                 <strong class="ml-2">{review.title}</strong>
               </div>
               <p class="mb-0 small text-muted">
-                By <strong>{review.author}</strong> on {review.date}
+                <strong>{review.author}</strong> • {review.date}
                 {review.verified && (
                   <span class="verified-badge">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span>Verified Purchase</span>
+                    <span>{t(lang, 'reviews.verified')}</span>
                   </span>
                 )}
               </p>
@@ -99,7 +102,7 @@ const ratingDist = [5, 4, 3, 2, 1].map(star => ({
       {reviews.length > 5 && (
         <div class="text-center mt-3">
           <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#moreReviews">
-            Show All {reviews.length} Reviews
+            {t(lang, 'reviews.showAll').replace('{count}', reviews.length.toString())}
           </button>
           <div class="collapse mt-3" id="moreReviews">
             {reviews.slice(5).map((review) => (
@@ -115,13 +118,13 @@ const ratingDist = [5, 4, 3, 2, 1].map(star => ({
                       <strong class="ml-2">{review.title}</strong>
                     </div>
                     <p class="mb-0 small text-muted">
-                      By <strong>{review.author}</strong> on {review.date}
+                      <strong>{review.author}</strong> • {review.date}
                       {review.verified && (
                         <span class="verified-badge">
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"></polyline>
                           </svg>
-                          <span>Verified Purchase</span>
+                            <span>{t(lang, 'reviews.verified')}</span>
                         </span>
                       )}
                     </p>

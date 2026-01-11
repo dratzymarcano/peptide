@@ -1,0 +1,368 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProductCard from '../../../components/ProductCard';
+import Sidebar from '../../../components/Sidebar.astro';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize } from '../../../i18n/translations';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  return languages.map(lang => ({
+    params: { lang },
+    props: { lang }
+  }));
+}
+
+const { lang } = Astro.props;
+const products = await getCollection('products');
+
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+// Page SEO - dynamic based on language
+const metaTitle = t(lang, 'shopPage.title');
+const metaDescription = t(lang, 'shopPage.subtitle');
+const productCount = products.length;
+
+// Pre-calculate localized trust badges texts
+const purityText = t(lang, 'product.trust.purity');
+const coaText = t(lang, 'product.trust.coa');
+const deliveryText = t(lang, 'product.trust.delivery');
+const secureText = t(lang, 'cart.secureCheckout');
+const purityLabel = t(lang, 'product.purity');
+---
+
+<Layout 
+  title={metaTitle} 
+  description={metaDescription}
+  breadcrumbs={[
+    { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
+    { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) }
+  ]}
+>
+  <!-- Hero Header -->
+  <section class="peptides-hero">
+    <div class="container mx-auto px-4">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href={lang === 'en' ? '/' : `/${lang}`}>{t(lang, 'nav.home')}</a></li>
+          <li><span class="current">{t(lang, 'nav.peptides')}</span></li>
+        </ol>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">{t(lang, 'shopPage.title')}</h1>
+          <p class="hero-description">
+            {t(lang, 'shopPage.subtitle')}
+          </p>
+          
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              {purityText}
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              {coaText}
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              {deliveryText}
+            </span>
+            <span class="trust-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              {secureText}
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">{productCount}</span>
+            <span class="stat-label">{t(lang, 'cart.items')}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">≥99%</span>
+            <span class="stat-label">{purityLabel}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">24h</span>
+            <span class="stat-label">{t(lang, 'home.stats.expressShipping')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container mx-auto px-4">
+      <div class="products-layout">
+        <!-- Sidebar Filters -->
+        <Sidebar />
+
+        <!-- Product Grid -->
+        <div class="products-main">
+          <div class="products-header">
+            <p class="showing-text">{t(lang, 'shopPage.showing').replace('{count}', productCount.toString())}</p>
+          </div>
+
+          <div class="products-grid">
+            {products.map((product) => {
+              const price = product.data.price || product.data.moq || 45;
+              const image = product.data.images[0] || '/images/peptide-default.jpg';
+              const slug = cleanSlug(product.slug);
+              
+              return (
+                <ProductCard 
+                  client:visible
+                  id={product.data.id}
+                  title={cleanProductTitle(product.data.title, lang)}
+                  price={price}
+                  image={image}
+                  slug={slug}
+                  category={product.data.category}
+                  purity={product.data.purity}
+                  reviewCount={product.data.reviews?.length || 0}
+                  packageSize={translatePackageSize(product.data.package_sizes?.[0] || '', lang)}
+                  lang={lang}
+                />
+              );
+            })}
+          </div>
+
+          <!-- SEO Content -->
+          <div class="seo-content">
+             <!-- TODO: Add localized SEO content here -->
+             <h2>{t(lang, 'home.title')}</h2>
+             <p>{t(lang, 'home.heroSubtitle')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .peptides-hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 40px 0 50px;
+      border-bottom: 1px solid #e0e7ff;
+    }
+
+    .breadcrumb {
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .breadcrumb-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb-list li:not(:last-child)::after {
+      content: '/';
+      color: #94a3b8;
+    }
+
+    .breadcrumb-list a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-list a:hover {
+      color: #0077b6;
+    }
+
+    .breadcrumb-list .current {
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 650px;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      color: #0077b6;
+    }
+
+    .trust-badge svg {
+      color: #0077b6;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      min-width: 100px;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #0077b6;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    /* Products Section */
+    .products-section {
+      background: #f8fafc;
+      padding: 50px 0 80px;
+    }
+
+    .products-layout {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .products-main {
+      width: 100%;
+      max-width: 1200px;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .seo-content {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .seo-content h2 {
+      font-size: 1.5rem;
+      color: #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .seo-content p {
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .products-layout {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+      }
+
+      .hero-content {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .stat-card {
+        flex: 1;
+        min-width: 0;
+        padding: 16px 12px;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-stats {
+        gap: 8px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</Layout>

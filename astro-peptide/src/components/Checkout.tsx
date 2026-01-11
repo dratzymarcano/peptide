@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useStore } from '@nanostores/react';
 import { cartItems, cartTotal, clearCart } from '../scripts/cartStore';
+import { type SupportedLanguage, t } from '../i18n/translations';
+import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
 import { 
   currentUser, 
   isAuthenticated, 
@@ -19,6 +21,10 @@ type PaymentMethod = 'bank-transfer' | 'bitcoin';
 type ShippingMethod = 'standard' | 'express';
 type CheckoutMode = 'guest' | 'login' | 'register';
 
+interface CheckoutProps {
+  lang?: SupportedLanguage;
+}
+
 // Shipping costs
 const SHIPPING_COSTS = {
   standard: { price: 5.99, name: 'Standard Delivery', time: '3-5 business days' },
@@ -27,6 +33,15 @@ const SHIPPING_COSTS = {
 
 const MIN_ORDER_AMOUNT = 200;
 const FREE_DELIVERY_THRESHOLD = 500;
+
+const DEFAULT_COUNTRY_BY_LANG: Record<SupportedLanguage, string> = {
+  en: 'GB',
+  nl: 'NL',
+  de: 'DE',
+  fr: 'FR',
+  es: 'ES',
+  it: 'IT',
+};
 
 const cardStyle: React.CSSProperties = {
   background: 'white',
@@ -53,8 +68,10 @@ const labelStyle: React.CSSProperties = {
   fontSize: '14px',
 };
 
-export default function Checkout() {
+export default function Checkout({ lang = 'en' }: CheckoutProps) {
   const $cartItems = useStore(cartItems);
+  const currency = useStore(currentCurrency);
+  useStore(exchangeRate);
   const $cartTotal = useStore(cartTotal);
   const $currentUser = useStore(currentUser);
   const $isAuthenticated = useStore(isAuthenticated);
@@ -107,7 +124,7 @@ export default function Checkout() {
     city: '',
     county: '',
     postcode: '',
-    country: 'GB'
+    country: DEFAULT_COUNTRY_BY_LANG[lang] ?? 'GB'
   });
 
   const subtotal = $cartTotal;
@@ -120,7 +137,7 @@ export default function Checkout() {
   const canCheckout = products.length > 0;
 
   const generateOrderId = () => {
-    return 'UKP-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+    return 'PS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
   };
 
   const handleShippingSubmit = (e: React.FormEvent) => {
@@ -182,16 +199,12 @@ export default function Checkout() {
       setBitcoinInvoice(invoice);
       // Store totals before clearing cart
       setFinalOrderTotal(total * 0.9); // Bitcoin gets 10% off
-      setFinalSubtotal($cartTotal);
-      setFinalShipping(shippingCost);
       setIsProcessing(false);
       setOrderComplete(true);
     } else {
       await new Promise(resolve => setTimeout(resolve, 1000));
       // Store totals before clearing cart
       setFinalOrderTotal(total);
-      setFinalSubtotal($cartTotal);
-      setFinalShipping(shippingCost);
       clearCart();
       setOrderComplete(true);
       setIsProcessing(false);
@@ -359,8 +372,8 @@ export default function Checkout() {
                 Minimum Order Required
               </h3>
               <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '1.1rem', maxWidth: '450px', margin: '0 auto 24px' }}>
-                Our minimum order value is <strong style={{ color: '#1e293b' }}>£{MIN_ORDER_AMOUNT.toFixed(2)}</strong>.<br />
-                Your current cart total is <strong style={{ color: '#0077b6' }}>£{subtotal.toFixed(2)}</strong>.
+                Our minimum order value is <strong style={{ color: '#1e293b' }}>{formatPrice(MIN_ORDER_AMOUNT, currency)}</strong>.<br />
+                Your current cart total is <strong style={{ color: '#0077b6' }}>{formatPrice(subtotal, currency)}</strong>.
               </p>
               <div style={{ 
                 background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1))',
@@ -370,7 +383,7 @@ export default function Checkout() {
                 marginBottom: '32px'
               }}>
                 <span style={{ color: '#92400e', fontWeight: '600' }}>
-                  Add <strong>£{(MIN_ORDER_AMOUNT - subtotal).toFixed(2)}</strong> more to proceed
+                  Add <strong>{formatPrice(MIN_ORDER_AMOUNT - subtotal, currency)}</strong> more to proceed
                 </span>
               </div>
               <br />
@@ -554,7 +567,7 @@ export default function Checkout() {
                 <div style={{ borderTop: '2px solid #f1f5f9', paddingTop: '24px', textAlign: 'center' }}>
                   <p style={{ color: '#64748b', marginBottom: '8px' }}>Order Summary</p>
                   <p style={{ color: '#0077b6', fontWeight: '800', fontSize: '1.5rem', margin: 0 }}>
-                    £{finalOrderTotal.toFixed(2)} <span style={{ color: '#64748b', fontWeight: '500', fontSize: '14px' }}>(≈ {bitcoinInvoice.amount} BTC)</span>
+                    {formatPrice(finalOrderTotal, currency)} <span style={{ color: '#64748b', fontWeight: '500', fontSize: '14px' }}>(≈ {bitcoinInvoice.amount} BTC)</span>
                   </p>
                 </div>
               </div>
@@ -641,7 +654,7 @@ export default function Checkout() {
                     <div>
                       <p style={{ color: '#1e293b', fontWeight: '600', marginBottom: '4px' }}>What happens next?</p>
                       <p style={{ color: '#64748b', margin: 0, fontSize: '14px', lineHeight: '1.6' }}>
-                        Check your inbox for an email with our bank details and the amount to transfer: <strong style={{ color: '#0077b6' }}>£{finalOrderTotal.toFixed(2)}</strong>. 
+                        Check your inbox for an email with our bank details and the amount to transfer: <strong style={{ color: '#0077b6' }}>{formatPrice(finalOrderTotal, currency)}</strong>. 
                         Once we receive your payment, we'll send you a confirmation and dispatch your order.
                       </p>
                     </div>
@@ -1243,17 +1256,17 @@ export default function Checkout() {
                       </svg>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>Standard Delivery</div>
+                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.shipping.standard')}</div>
                       <div style={{ color: '#64748b', fontSize: '14px' }}>3-5 business days</div>
                     </div>
                     <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
                       {qualifiesForFreeDelivery ? (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>£{SHIPPING_COSTS.standard.price.toFixed(2)}</span>
-                          FREE
+                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>{formatPrice(SHIPPING_COSTS.standard.price, currency)}</span>
+                          {t(lang, 'common.free')}
                         </span>
                       ) : (
-                        `£${SHIPPING_COSTS.standard.price.toFixed(2)}`
+                        formatPrice(SHIPPING_COSTS.standard.price, currency)
                       )}
                     </div>
                   </div>
@@ -1296,7 +1309,7 @@ export default function Checkout() {
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                        <span style={{ fontWeight: '700', color: '#1e293b' }}>Express Delivery</span>
+                        <span style={{ fontWeight: '700', color: '#1e293b' }}>{t(lang, 'checkout.shipping.express')}</span>
                         <span style={{ 
                           background: 'linear-gradient(135deg, #f59e0b, #d97706)',
                           color: 'white',
@@ -1311,11 +1324,11 @@ export default function Checkout() {
                     <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
                       {qualifiesForFreeDelivery ? (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>£{SHIPPING_COSTS.express.price.toFixed(2)}</span>
-                          FREE
+                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>{formatPrice(SHIPPING_COSTS.express.price, currency)}</span>
+                          {t(lang, 'common.free')}
                         </span>
                       ) : (
-                        `£${SHIPPING_COSTS.express.price.toFixed(2)}`
+                        formatPrice(SHIPPING_COSTS.express.price, currency)
                       )}
                     </div>
                   </div>
@@ -1340,7 +1353,7 @@ export default function Checkout() {
                     boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
                   }}
                 >
-                  Continue to Payment
+                  {t(lang, 'checkout.actions.continue')}
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14"></path>
                     <path d="m12 5 7 7-7 7"></path>
@@ -1529,7 +1542,7 @@ export default function Checkout() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="m15 18-6-6 6-6"></path>
                     </svg>
-                    Back
+                    {t(lang, 'checkout.actions.back')}
                   </button>
                   <button 
                     type="submit" 
@@ -1665,7 +1678,7 @@ export default function Checkout() {
                     borderBottom: '1px solid #e2e8f0'
                   }}>
                     <span style={{ color: '#1e293b' }}>{product.title} × {product.quantity}</span>
-                    <span style={{ fontWeight: '600', color: '#0077b6' }}>£{(product.price * product.quantity).toFixed(2)}</span>
+                    <span style={{ fontWeight: '600', color: '#0077b6' }}>{formatPrice(product.price * product.quantity, currency)}</span>
                   </div>
                 ))}
               </div>
@@ -1699,7 +1712,7 @@ export default function Checkout() {
                   {qualifiesForFreeDelivery ? (
                     <strong style={{ marginLeft: '4px', color: '#10b981' }}>FREE</strong>
                   ) : (
-                    <strong style={{ marginLeft: '4px' }}>£{SHIPPING_COSTS[shippingMethod].price.toFixed(2)}</strong>
+                    <strong style={{ marginLeft: '4px' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</strong>
                   )}
                 </p>
               </div>
@@ -1725,7 +1738,7 @@ export default function Checkout() {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="m15 18-6-6 6-6"></path>
                   </svg>
-                  Back
+                  {t(lang, 'checkout.actions.back')}
                 </button>
                 <button 
                   onClick={handlePlaceOrder}
@@ -1762,7 +1775,7 @@ export default function Checkout() {
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                       </svg>
-                      Place Order — £{(paymentMethod === 'bitcoin' ? total * 0.9 : total).toFixed(2)}
+                      {t(lang, 'checkout.actions.placeOrder')} — {formatPrice((paymentMethod === 'bitcoin' ? total * 0.9 : total), currency)}
                     </>
                   )}
                 </button>
@@ -1804,7 +1817,7 @@ export default function Checkout() {
                       <div style={{ color: '#1e293b', fontWeight: '500' }}>{product.title}</div>
                       <div style={{ color: '#94a3b8', fontSize: '13px' }}>Qty: {product.quantity}</div>
                     </div>
-                    <span style={{ fontWeight: '600', color: '#0077b6' }}>£{(product.price * product.quantity).toFixed(2)}</span>
+                    <span style={{ fontWeight: '600', color: '#0077b6' }}>{formatPrice(product.price * product.quantity, currency)}</span>
                   </div>
                 ))}
               </div>
@@ -1818,7 +1831,7 @@ export default function Checkout() {
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <span style={{ color: '#64748b' }}>Subtotal</span>
-                  <span style={{ color: '#1e293b', fontWeight: '500' }}>£{$cartTotal.toFixed(2)}</span>
+                  <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice($cartTotal, currency)}</span>
                 </div>
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
@@ -1828,7 +1841,7 @@ export default function Checkout() {
                   {qualifiesForFreeDelivery ? (
                     <span style={{ color: '#10b981', fontWeight: '600' }}>FREE</span>
                   ) : (
-                    <span style={{ color: '#1e293b', fontWeight: '500' }}>£{SHIPPING_COSTS[shippingMethod].price.toFixed(2)}</span>
+                    <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</span>
                   )}
                 </div>
 
@@ -1843,7 +1856,7 @@ export default function Checkout() {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span style={{ color: '#10b981', fontSize: '13px', fontWeight: '500' }}>Free delivery on orders over £{FREE_DELIVERY_THRESHOLD}</span>
+                    <span style={{ color: '#10b981', fontSize: '13px', fontWeight: '500' }}>Free delivery on orders over {formatPrice(FREE_DELIVERY_THRESHOLD, currency)}</span>
                   </div>
                 )}
 
@@ -1856,7 +1869,7 @@ export default function Checkout() {
                     borderTop: '1px dashed #cbd5e1'
                   }}>
                     <span style={{ color: '#10b981', fontWeight: '600' }}>Bitcoin Discount (10%)</span>
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>-£{(total * 0.1).toFixed(2)}</span>
+                    <span style={{ color: '#10b981', fontWeight: '600' }}>-{formatPrice(total * 0.1, currency)}</span>
                   </div>
                 )}
               </div>
@@ -1878,7 +1891,7 @@ export default function Checkout() {
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text'
                 }}>
-                  £{(paymentMethod === 'bitcoin' ? total * 0.9 : total).toFixed(2)}
+                  {formatPrice((paymentMethod === 'bitcoin' ? total * 0.9 : total), currency)}
                 </span>
               </div>
 

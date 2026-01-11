@@ -1,7 +1,7 @@
 ---
 id: "peptide-ghrp-6"
-title: "Buy GHRP-6 UK | Growth Hormone Releasing Peptide"
-primary_keyword: "buy ghrp-6 uk"
+title: "Buy GHRP-6 | Growth Hormone Releasing Peptide"
+primary_keyword: "buy ghrp-6"
 search_volume: "3200"
 slug: "/peptides/buy-ghrp-6"
 aliases: ["Growth Hormone Releasing Peptide 6", "GHRP6"]
@@ -14,13 +14,13 @@ moq: 200
 price: 220
 price_range: "£220 per pack"
 coa_url: "/coa/ghrp-6.pdf"
-short_description: "Buy GHRP-6 UK. Growth hormone releasing peptide for GH research. ≥99% purity. Fast UK delivery."
+short_description: "Buy GHRP-6. Growth hormone releasing peptide for GH research. ≥99% purity. Fast UK delivery."
 category: "growth-hormone"
 tags: ["research-peptide", "ghrp-6-uk", "ghrp", "buy-peptides-uk", "growth-hormone"]
-images: ["/images/products/ghrp-6.jpg"]
+images: ["/images/products/ghrp-6.png"]
 meta:
-  title: "Buy GHRP-6 UK | GH Peptide | Fast Delivery"
-  description: "Buy GHRP-6 UK. Premium growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: "Buy GHRP-6 | GH Peptide | Fast Delivery"
+  description: "Buy GHRP-6. Premium growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."
 faqs:
   - question: "What is GHRP-6 used for in research?"
     answer: "GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology."

@@ -1,15 +1,18 @@
 ---
+import { t, type SupportedLanguage } from '../i18n/translations';
+
 interface FAQ {
   question: string;
   answer: string;
 }
 
 interface Props {
-  productName: string;
+  productName?: string;
   faqs: FAQ[];
+  lang?: SupportedLanguage;
 }
 
-const { faqs } = Astro.props;
+const { faqs, lang = 'en' } = Astro.props;
 ---
 
 {faqs.length > 0 && (
@@ -20,7 +23,7 @@ const { faqs } = Astro.props;
         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
         <line x1="12" y1="17" x2="12.01" y2="17"></line>
       </svg>
-      Frequently Asked Questions
+      {t(lang, 'product.faq')}
     </h3>
     
     <div class="faq-accordion">

@@ -1,7 +1,7 @@
 ---
 id: "peptide-epitalon"
-title: "Buy Epitalon UK | Epithalon Telomerase Peptide"
-primary_keyword: "buy epitalon uk"
+title: "Buy Epitalon | Epithalon Telomerase Peptide"
+primary_keyword: "buy epitalon"
 search_volume: "3600"
 slug: "/peptides/buy-epitalon"
 aliases: ["Epithalon", "Epithalone", "AEDG Peptide"]
@@ -14,13 +14,13 @@ moq: 200
 price: 200
 price_range: "£200 per pack"
 coa_url: "/coa/epitalon.pdf"
-short_description: "Buy Epitalon UK. Telomerase-activating peptide for longevity research. ≥99% purity. Fast UK delivery."
+short_description: "Buy Epitalon. Telomerase-activating peptide for longevity research. ≥99% purity. Fast UK & EU delivery."
 category: "cognitive"
 tags: ["research-peptide", "epitalon-uk", "longevity", "buy-peptides-uk", "cognitive", "telomerase"]
-images: ["/images/products/epitalon.jpg"]
+images: ["/images/products/epitalon.png"]
 meta:
-  title: "Buy Epitalon UK | Longevity Peptide | Fast Delivery"
-  description: "Buy Epitalon UK. Premium telomerase peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: "Buy Epitalon | Longevity Peptide | Fast Delivery"
+  description: "Buy Epitalon. Premium telomerase peptide for research. ≥99% purity, COA included. Fast UK & EU delivery."
 faqs:
   - question: "What is Epitalon used for in research?"
     answer: "Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research."

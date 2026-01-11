@@ -1,0 +1,400 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import PageTitle from '../../../components/PageTitle.astro';
+import ProductOptions from '../../../components/ProductOptions';
+import ProductFAQs from '../../../components/ProductFAQs.astro';
+import ProductReviews from '../../../components/ProductReviews.astro';
+import RelatedProducts from '../../../components/RelatedProducts.astro';
+import Sidebar from '../../../components/Sidebar.astro';
+import TranslatedContent from '../../../components/TranslatedContent.astro';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize, translateProductContent, getLocalizedMetaDescription, getLocalizedPageTitle, translateCategory, translateFAQs, translateReviews, getLocalizedProductSlug } from '../../../i18n/translations';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  
+  return languages.flatMap(lang => 
+    products.map(product => {
+      const originalSlug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+      const localizedSlug = getLocalizedProductSlug(originalSlug, lang);
+      
+      return {
+        params: { 
+          lang,
+          slug: localizedSlug 
+        },
+        props: { product, lang },
+      };
+    })
+  );
+}
+
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+const { product, lang } = Astro.props;
+const { Content } = await product.render();
+
+const priceRange = product.data.price_range;
+const productId = product.data.id;
+const productTitle = cleanProductTitle(product.data.title, lang);
+const currentSlug = cleanSlug(product.slug);
+const productImage = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
+
+// Get SEO-optimized meta content
+// Clean the name by removing "Buy", "UK" and any pipe content
+const cleanName = product.data.title.split('|')[0]
+  .replace(/^Buy\s+/i, '')
+  .replace(/\s+UK\s*$/i, '')
+  .trim();
+const translatedName = translateProductContent(cleanName, lang);
+const localizedMetaTitle = getLocalizedPageTitle(translatedName, lang);
+const localizedMetaDescription = getLocalizedMetaDescription(translatedName, product.data.category, lang);
+
+// Translate short description
+const translatedShortDescription = translateProductContent(product.data.short_description || '', lang);
+
+// Extract numeric price from price_range
+const extractPrice = (priceStr: string): number => {
+  const match = priceStr?.match(/[\d,]+/);
+  return match ? parseFloat(match[0].replace(',', '')) : 99;
+};
+const productPrice = product.data.price ?? extractPrice(priceRange);
+
+// Translated category
+const categoryTitle = translateCategory(product.data.category, lang);
+
+// Get FAQs and Reviews from frontmatter - translated
+const faqs = translateFAQs(product.data.faqs || [], lang);
+const reviews = translateReviews(product.data.reviews || [], lang);
+
+// Calculate average rating
+const avgRating = reviews.length > 0 
+  ? (reviews.reduce((sum: number, r: any) => sum + r.rating, 0) / reviews.length).toFixed(1)
+  : '5.0';
+
+// Site URL for structured data
+const siteUrl = Astro.site ? Astro.site.toString() : 'https://peptide-shop.net';
+
+const schema = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": productTitle,
+  "image": new URL(productImage, siteUrl).toString(),
+  "description": translatedShortDescription || localizedMetaDescription || `Buy ${productTitle} online. High purity research peptides.`,
+  "brand": {
+    "@type": "Brand",
+    "name": "Peptide Shop"
+  },
+  "sku": productId,
+  "offers": {
+    "@type": "Offer",
+    "url": new URL(Astro.url.pathname, siteUrl).toString(),
+    "priceCurrency": "GBP",
+    "price": productPrice,
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": avgRating,
+    "reviewCount": reviews.length > 0 ? reviews.length : 1
+  }
+};
+---
+
+<Layout 
+  title={localizedMetaTitle}
+  description={localizedMetaDescription}
+  breadcrumbs={[
+    { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
+    { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
+    { name: categoryTitle, url: getLocalizedPath(`/peptides/${product.data.category}`, lang) },
+    { name: productTitle, url: Astro.url.pathname }
+  ]}
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <PageTitle 
+    title={productTitle}
+    subtitle={translatedShortDescription}
+    breadcrumbs={[
+      { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
+      { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
+      { name: categoryTitle, url: getLocalizedPath(`/peptides/${product.data.category}`, lang) },
+      { name: productTitle }
+    ]}
+  />
+
+  <section class="section course">
+    <div class="container">
+      <div class="row">
+        <!-- Left: Sidebar (Sticky) -->
+        <div class="col-lg-3 col-md-4 d-none d-md-block">
+          <div class="sticky-top" style="top: 100px;">
+            <Sidebar 
+              activeCategory={product.data.category} 
+              showProductInfo={true}
+              productInfo={{
+                cas: product.data.cas || undefined,
+                purity: product.data.purity || undefined,
+                rating: parseFloat(avgRating),
+                reviewCount: reviews.length
+              }}
+              lang={lang}
+            />
+          </div>
+        </div>
+
+        <!-- Center: Image + Tabs -->
+        <div class="col-lg-5 col-md-8">
+          <div class="single-course">
+            <div class="product-image-container mb-4 text-center bg-white p-4 rounded shadow-sm">
+              <img src={productImage} alt={productTitle} class="img-fluid rounded" style="max-height: 450px; width: 100%; object-fit: contain;" />
+            </div>
+
+            <div class="product-tabs bg-white rounded shadow-sm">
+              <ul class="nav nav-tabs nav-justified" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="description-tab" data-toggle="tab" data-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">
+                    {t(lang, 'product.description')}
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="specs-tab" data-toggle="tab" data-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
+                    {t(lang, 'product.specifications')}
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="faqs-tab" data-toggle="tab" data-target="#faqs" type="button" role="tab" aria-controls="faqs" aria-selected="false">
+                    {t(lang, 'product.faq')}
+                    {faqs.length > 0 && <span class="tab-badge">{faqs.length}</span>}
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="reviews-tab" data-toggle="tab" data-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">
+                    {t(lang, 'product.reviews')}
+                    {reviews.length > 0 && <span class="tab-badge tab-badge-reviews">{reviews.length}</span>}
+                  </button>
+                </li>
+              </ul>
+
+              <div class="tab-content p-4" id="productTabsContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                  <div class="product-description">
+                    <TranslatedContent lang={lang}>
+                      <Content />
+                    </TranslatedContent>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
+                  <h4 class="mb-4" style="color: #023e8a;">{t(lang, 'product.specifications')}</h4>
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <th scope="row" style="width: 40%;">{t(lang, 'product.casNo')}</th>
+                        <td>{product.data.cas || 'N/A'}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{t(lang, 'product.molecularWeight')}</th>
+                        <td>{product.data.molecular_weight || 'N/A'}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{t(lang, 'product.purity')}</th>
+                        <td class="text-success font-weight-bold">{product.data.purity}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{t(lang, 'product.storage')}</th>
+                        <td>{product.data.storage}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{t(lang, 'product.availableSizes')}</th>
+                        <td>{product.data.package_sizes?.map(size => translatePackageSize(size, lang)).join(', ') || '—'}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">{t(lang, 'product.priceRangeLabel')}</th>
+                        <td class="font-weight-bold" style="color: #0077b6;">{priceRange}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+                  <ProductFAQs productName={productTitle} faqs={faqs} lang={lang} />
+                </div>
+
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                  <ProductReviews productName={productTitle} reviews={reviews} lang={lang} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Purchase (sticky) -->
+        <div class="col-lg-4">
+          <div class="course-widget border py-4 px-3 mt-5 mt-lg-0 sticky-top bg-white rounded shadow-sm" style="top: 100px;">
+            <h3 class="text-center mb-4" style="color: #023e8a;">{t(lang, 'product.selectQuantity')}</h3>
+
+            <ProductOptions 
+              client:load
+              id={productId}
+              title={productTitle}
+              basePrice={product.data.price || productPrice}
+              packageSizes={product.data.package_sizes || []}
+              moq={product.data.moq}
+              image={productImage}
+              category={product.data.category}
+              lang={lang}
+            />
+
+            <div class="mt-4 pt-3 border-top">
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <span class="text-muted">{t(lang, 'nav.categories')}</span>
+                  <a href={getLocalizedPath(`/peptides/${product.data.category}/`, lang)} class="text-capitalize" style="color: #0077b6;">
+                    {categoryTitle}
+                  </a>
+                </li>
+                <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <span class="text-muted">{t(lang, 'product.purity')}</span>
+                  <span class="text-success font-weight-bold">{product.data.purity}</span>
+                </li>
+                <li class="d-flex justify-content-between align-items-center py-2">
+                  <span class="text-muted">{t(lang, 'product.inStock')}</span>
+                  <span class="text-success font-weight-bold">{t(lang, 'product.inStock')}</span>
+                </li>
+              </ul>
+            </div>
+
+            {product.data.coa_url && (
+              <div class="text-center mt-3">
+                <a href={product.data.coa_url} class="btn btn-outline-primary btn-sm w-100 d-flex align-items-center justify-content-center" target="_blank">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" x2="12" y1="15" y2="3"></line>
+                  </svg>
+                  {t(lang, 'product.downloadCoa')}
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div class="course-widget py-4 px-3 mt-3 bg-white rounded shadow-sm">
+            <div class="alert alert-warning d-flex align-items-start mb-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 flex-shrink-0" style="margin-top: 2px;">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                <line x1="12" x2="12" y1="9" y2="13"></line>
+                <line x1="12" x2="12.01" y1="17" y2="17"></line>
+              </svg>
+              <div>
+                <strong>{t(lang, 'product.researchOnlyTitle')}:</strong> {t(lang, 'product.researchOnlyText')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <RelatedProducts currentSlug={currentSlug} category={product.data.category} limit={4} lang={lang} />
+    </div>
+  </section>
+</Layout>
+
+
+<style>
+  .nav-tabs {
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  .nav-tabs .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #6c757d;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+
+  .nav-tabs .nav-link:hover {
+    border-color: transparent;
+    color: #0077b6;
+    background: transparent;
+  }
+
+  .nav-tabs .nav-link.active {
+    color: #0077b6;
+    background: transparent;
+    border-bottom: 3px solid #0077b6;
+  }
+
+  .tab-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    background-color: #0077b6;
+    border-radius: 10px;
+    vertical-align: middle;
+  }
+
+  .tab-badge-reviews {
+    background-color: #f5a623;
+  }
+
+  .tab-content {
+    min-height: 400px;
+  }
+
+  .product-description :global(h1),
+  .product-description :global(h2),
+  .product-description :global(h3),
+  .product-description :global(h4) {
+    color: #023e8a;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-description :global(h2) {
+    font-size: 1.4rem;
+    border-bottom: 2px solid #0077b6;
+    padding-bottom: 0.5rem;
+  }
+
+  .product-description :global(h3) {
+    font-size: 1.15rem;
+  }
+
+  .product-description :global(ul) {
+    padding-left: 1.5rem;
+  }
+
+  .product-description :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .product-description :global(p) {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .product-description :global(strong) {
+    color: #023e8a;
+  }
+
+  .product-description :global(table) {
+    width: 100%;
+    margin: 1rem 0;
+  }
+</style>

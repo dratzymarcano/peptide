@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { t, type SupportedLanguage } from '../i18n/translations';
 
 interface SearchResult {
   id: string;
@@ -8,7 +9,11 @@ interface SearchResult {
   type: 'product' | 'blog' | 'page';
 }
 
-export default function SearchBar() {
+interface SearchBarProps {
+  lang?: SupportedLanguage;
+}
+
+export default function SearchBar({ lang = 'en' }: SearchBarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -75,7 +80,7 @@ export default function SearchBar() {
           onClick={() => setIsOpen(true)}
           className="btn btn-link text-dark p-0"
           style={{ textDecoration: 'none' }}
-          aria-label="Search"
+          aria-label={t(lang, 'common.searchLabel')}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -89,7 +94,7 @@ export default function SearchBar() {
               ref={inputRef}
               type="text"
               className="form-control form-control-sm"
-              placeholder="Search peptides..."
+              placeholder={t(lang, 'nav.search')}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -132,7 +137,7 @@ export default function SearchBar() {
             >
               {isLoading ? (
                 <div className="p-3 text-center text-muted">
-                  <small>Searching...</small>
+                  <small>{t(lang, 'common.searching')}</small>
                 </div>
               ) : (
                 results.map((result) => (
@@ -203,7 +208,7 @@ export default function SearchBar() {
               }}
             >
               <div className="text-center text-muted">
-                <small>No results found for "{query}"</small>
+                <small>{t(lang, 'common.noResultsFound').replace('{query}', query)}</small>
               </div>
             </div>
           )}

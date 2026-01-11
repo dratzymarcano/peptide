@@ -17,7 +17,7 @@ coa_url: "/coa/selank.pdf"
 short_description: "Buy Selank UK. Anxiolytic nootropic peptide for cognitive research. ≥99% purity. Fast UK delivery."
 category: "cognitive"
 tags: ["research-peptide", "selank-uk", "nootropic", "buy-peptides-uk", "cognitive", "anxiolytic"]
-images: ["/images/products/selank.jpg"]
+images: ["/images/products/selank.png"]
 meta:
   title: "Buy Selank UK | Nootropic Peptide | Fast Delivery"
   description: "Buy Selank UK. Premium anxiolytic peptide for research. ≥99% purity, COA included. Fast UK delivery."

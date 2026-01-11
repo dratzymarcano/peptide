@@ -1,7 +1,7 @@
 ---
 id: "peptide-5-amino-1mq"
-title: "Buy 5-Amino-1MQ UK | NNMT Inhibitor for Research"
-primary_keyword: "buy 5-amino-1mq uk"
+title: "Buy 5-Amino-1MQ | NNMT Inhibitor for Research"
+primary_keyword: "buy 5-amino-1mq"
 search_volume: "2400"
 slug: "/peptides/buy-5-amino-1mq"
 aliases: ["5-Amino-1-Methylquinolinium", "NNMT Inhibitor"]
@@ -14,13 +14,13 @@ moq: 200
 price: 40
 price_range: "£40 per bottle"
 coa_url: "/coa/5-amino-1mq.pdf"
-short_description: "Buy 5-Amino-1MQ UK. Available as oral capsules (50mg) or high-purity powder (99%). NNMT inhibitor for metabolism and longevity research. Fast UK delivery."
+short_description: "Buy 5-Amino-1MQ. Available as oral capsules (50mg) or high-purity powder (99%). NNMT inhibitor for metabolism and longevity research. Fast UK delivery."
 category: "weight-loss"
 tags: ["research-compound", "5-amino-1mq-uk", "nnmt-inhibitor", "buy-research-uk", "metabolism", "oral-capsules", "powder"]
-images: ["/images/products/5-amino-1mq.jpg"]
+images: ["/images/products/5-amino-1mq.png"]
 meta:
-  title: "Buy 5-Amino-1MQ UK | Capsules & Powder | Fast Delivery"
-  description: "Buy 5-Amino-1MQ UK. Available as oral capsules (50mg) or high-purity powder (99%). Premium NNMT inhibitor for metabolic research. Fast UK delivery."
+  title: "Buy 5-Amino-1MQ | Capsules & Powder | Fast Delivery"
+  description: "Buy 5-Amino-1MQ. Available as oral capsules (50mg) or high-purity powder (99%). Premium NNMT inhibitor for metabolic research. Fast UK delivery."
 faqs:
   - question: "What forms of 5-Amino-1MQ are available?"
     answer: "We offer 5-Amino-1MQ in two convenient forms: Oral Capsules (50mg per capsule) for precise dosing convenience, and High-Purity Powder (99%) for flexible research applications. Both forms maintain the same exceptional purity standards."

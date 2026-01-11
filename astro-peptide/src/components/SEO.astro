@@ -4,39 +4,86 @@ interface Props {
 	description?: string;
 	image?: string;
 	article?: boolean;
+	lang?: string;
 }
 
 const { title, description, image, article } = Astro.props;
+import { getLangFromUrl, supportedLanguages, type SupportedLanguage } from '../i18n/translations';
+import { getMarket } from '../i18n/market';
+
+const currentLang = getLangFromUrl(Astro.url);
+
+// Allow explicit override, but default to URL language.
+const langProp = (Astro.props.lang ?? currentLang) as SupportedLanguage;
+const langForMeta = supportedLanguages.includes(langProp) ? langProp : currentLang;
+const marketForMeta = getMarket(langForMeta);
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = Astro.site?.origin || 'https://peptide-shop.net';
+
+// Default description if none provided
+const metaDescription = description || `Buy peptides ${marketForMeta.marketName} & Europe. Premium research peptides for sale with 99% purity. Fast delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`;
+
+// Default image
+const ogImage = image || '/images/hero-image.webp';
+
+// Supported languages for hreflang
+const languages = supportedLanguages;
+const currentPath = Astro.url.pathname.replace(/^\/(en|nl|de|fr|es|it)\//, '/');
+
+// Keywords
+const keywords = marketForMeta.keywords ? marketForMeta.keywords.join(', ') : '';
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
 <meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#0077b6" />
+{keywords && <meta name="keywords" content={keywords} />}
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Hreflang Tags for Internationalization -->
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}${currentPath}`} />
+{languages.map((langCode) => {
+	const hreflang = getMarket(langCode).hreflang;
+	const href = langCode === 'en' ? `${siteUrl}${currentPath}` : `${siteUrl}/${langCode}${currentPath}`;
+	return <link rel="alternate" hreflang={hreflang} href={href} />;
+})}
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
-<meta name="description" content={description} />
+<meta name="description" content={metaDescription} />
+<meta name="keywords" content={`${marketForMeta.keywordHint}, peptides for sale, buy peptides europe, research peptides, semaglutide, bpc-157, tirzepatide, peptide shop`} />
+<meta name="author" content="Peptide Shop" />
+
+<!-- Geo Meta Tags -->
+<meta name="geo.region" content={marketForMeta.geoRegion} />
+<meta name="geo.placename" content={marketForMeta.geoPlacename} />
+{marketForMeta.icbm && <meta name="ICBM" content={marketForMeta.icbm} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+<meta property="og:description" content={metaDescription} />
+<meta property="og:image" content={new URL(ogImage, siteUrl)} />
+<meta property="og:site_name" content="Peptide Shop" />
+<meta property="og:locale" content={marketForMeta.hreflang.replace('-', '_')} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
+<meta property="twitter:description" content={metaDescription} />
+<meta property="twitter:image" content={new URL(ogImage, siteUrl)} />
 
 <!-- Robots -->
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />

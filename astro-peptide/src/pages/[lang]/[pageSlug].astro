@@ -1,0 +1,83 @@
+---
+/**
+ * Dynamic route for localized static pages with translated slugs.
+ * 
+ * Maps translated slugs to their respective page components:
+ * - /nl/kwaliteit -> QualityPage
+ * - /de/versand -> ShippingPage
+ * - /fr/conditions -> TermsPage
+ * - /nl/over-ons -> AboutPage
+ * - /de/kontakt -> ContactPage
+ * - /nl/winkelwagen -> CartPage
+ * - /de/kasse -> CheckoutPage
+ * - /nl/bundels -> BundlesPage
+ * - /nl/leren -> LearnPage
+ * - etc.
+ */
+import QualityPage from '../../components/pages/QualityPage.astro';
+import ShippingPage from '../../components/pages/ShippingPage.astro';
+import TermsPage from '../../components/pages/TermsPage.astro';
+import PrivacyPage from '../../components/pages/PrivacyPage.astro';
+import DisclaimerPage from '../../components/pages/DisclaimerPage.astro';
+import CoaPolicyPage from '../../components/pages/CoaPolicyPage.astro';
+import AboutPage from '../../components/pages/AboutPage.astro';
+import ContactPage from '../../components/pages/ContactPage.astro';
+import FAQPage from '../../components/pages/FAQPage.astro';
+import ShopPage from '../../components/pages/ShopPage.astro';
+import WholesalePage from '../../components/pages/WholesalePage.astro';
+import CartPage from '../../components/pages/CartPage.astro';
+import CheckoutPage from '../../components/pages/CheckoutPage.astro';
+import BundlesPage from '../../components/pages/BundlesPage.astro';
+import LearnPage from '../../components/pages/LearnPage.astro';
+import { supportedLanguages, pageSlugTranslations } from '../../i18n/translations';
+import type { SupportedLanguage } from '../../i18n/translations';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  // List of page keys that this route handles
+  const handledPageKeys = [
+    'quality', 'shipping', 'terms', 'privacy', 'disclaimer', 'coa-policy',
+    'about', 'contact', 'faq', 'shop', 'wholesale', 'cart', 'checkout',
+    'bundles', 'learn'
+  ];
+  
+  const paths: { params: { lang: string; pageSlug: string }; props: { pageKey: string } }[] = [];
+  
+  for (const lang of supportedLanguages.filter(l => l !== 'en') as SupportedLanguage[]) {
+    for (const pageKey of handledPageKeys) {
+      const localizedSlug = pageSlugTranslations[lang]?.[pageKey] || pageKey;
+      paths.push({
+        params: { lang, pageSlug: localizedSlug },
+        props: { pageKey }
+      });
+    }
+  }
+  
+  return paths;
+}
+
+interface Props {
+  pageKey: string;
+}
+
+const { lang } = Astro.params;
+const { pageKey } = Astro.props;
+const typedLang = lang as SupportedLanguage;
+---
+
+{pageKey === 'quality' && <QualityPage lang={typedLang} />}
+{pageKey === 'shipping' && <ShippingPage lang={typedLang} />}
+{pageKey === 'terms' && <TermsPage lang={typedLang} />}
+{pageKey === 'privacy' && <PrivacyPage lang={typedLang} />}
+{pageKey === 'disclaimer' && <DisclaimerPage lang={typedLang} />}
+{pageKey === 'coa-policy' && <CoaPolicyPage lang={typedLang} />}
+{pageKey === 'about' && <AboutPage lang={typedLang} />}
+{pageKey === 'contact' && <ContactPage lang={typedLang} />}
+{pageKey === 'faq' && <FAQPage lang={typedLang} />}
+{pageKey === 'shop' && <ShopPage lang={typedLang} />}
+{pageKey === 'wholesale' && <WholesalePage lang={typedLang} />}
+{pageKey === 'cart' && <CartPage lang={typedLang} />}
+{pageKey === 'checkout' && <CheckoutPage lang={typedLang} />}
+{pageKey === 'bundles' && <BundlesPage lang={typedLang} />}
+{pageKey === 'learn' && <LearnPage lang={typedLang} />}

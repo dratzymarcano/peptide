@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useStore } from '@nanostores/react';
+import { t, getLocalizedPath, type SupportedLanguage, translatePackageSize, translateCategory } from '../i18n/translations';
+import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
 
 interface ProductCardProps {
   id: string;
@@ -11,6 +14,7 @@ interface ProductCardProps {
   rating?: number;
   reviewCount?: number;
   packageSize?: string;
+  lang?: SupportedLanguage;
 }
 
 // Global minimum order threshold - must match ProductOptions
@@ -25,11 +29,13 @@ const getDiscountPercent = (unitPrice: number): number => {
   return 5; // Products below threshold: 5% off when bulk ordering
 };
 
-export default function ProductCard({ id, title, price, image, slug, category, rating = 4.5, reviewCount = 121, packageSize }: ProductCardProps) {
+export default function ProductCard({ id, title, price, image, slug, category, rating = 4.5, reviewCount = 121, packageSize, lang = 'en' }: ProductCardProps) {
   const [wishlisted, setWishlisted] = useState(false);
+  const currency = useStore(currentCurrency);
+  useStore(exchangeRate);
   
   // Slug should already be clean (e.g., "buy-semaglutide"), just ensure no double slashes
-  const productUrl = `/peptides/${slug.replace(/^\//, '')}`;
+  const productUrl = getLocalizedPath(`/peptides/${slug.replace(/^\//, '')}`, lang);
   
   // Check if product is already at or above threshold
   const isAboveThreshold = price >= MIN_ORDER_THRESHOLD;
@@ -42,14 +48,14 @@ export default function ProductCard({ id, title, price, image, slug, category, r
   const minOrderTotal = price * minQuantity;
   
   // Determine unit label based on package size
-  const getUnitLabel = () => {
-    if (!packageSize) return 'pack';
+  const getUnitLabel = (plural: boolean = false) => {
+    if (!packageSize) return plural ? t(lang, 'product.packs') : t(lang, 'product.pack');
     const sizeLower = packageSize.toLowerCase();
-    if (sizeLower.includes('vial')) return 'pack';
-    if (sizeLower.includes('cap')) return 'bottle';
-    if (sizeLower.includes('powder')) return 'unit';
-    if (sizeLower.includes('month')) return 'month';
-    return 'pack';
+    if (sizeLower.includes('vial')) return plural ? t(lang, 'product.packs') : t(lang, 'product.pack');
+    if (sizeLower.includes('cap')) return plural ? t(lang, 'product.bottles') : t(lang, 'product.bottle');
+    if (sizeLower.includes('powder')) return plural ? t(lang, 'product.units') : t(lang, 'product.unit');
+    if (sizeLower.includes('month')) return plural ? t(lang, 'product.units') : t(lang, 'product.unit');
+    return plural ? t(lang, 'product.packs') : t(lang, 'product.pack');
   };
 
   const handleWishlist = (e: React.MouseEvent) => {
@@ -100,7 +106,7 @@ export default function ProductCard({ id, title, price, image, slug, category, r
       <button 
         className={`wishlist-btn ${wishlisted ? 'active' : ''}`}
         onClick={handleWishlist}
-        aria-label="Add to wishlist"
+        aria-label={wishlisted ? t(lang, 'product.wishlistRemove') : t(lang, 'product.wishlistAdd')}
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill={wishlisted ? "#ef4444" : "none"} stroke={wishlisted ? "#ef4444" : "#6b7280"} strokeWidth="2">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -130,31 +136,31 @@ export default function ProductCard({ id, title, price, image, slug, category, r
         </a>
         
         {category && (
-          <p className="product-category">{category.replace(/-/g, ' ')}</p>
+          <p className="product-category">{translateCategory(category, lang)}</p>
         )}
 
         {/* Price with Discount */}
         <div className="product-price-row">
-          <span className="product-price">£{price.toFixed(0)}</span>
+          <span className="product-price">{formatPrice(price, currency)}</span>
           {isAboveThreshold ? (
-            <span className="discount-badge">{discountPercent}% OFF</span>
+            <span className="discount-badge">{discountPercent}% {t(lang, 'product.off')}</span>
           ) : (
-            <span className="discount-badge">{discountPercent}% OFF</span>
+            <span className="discount-badge">{discountPercent}% {t(lang, 'product.off')}</span>
           )}
         </div>
         
         {/* Min Order Info - Only show for products under £200 */}
         {!isAboveThreshold && (
           <div className="min-order-info">
-            <span className="min-qty">Min {minQuantity} {getUnitLabel()}s</span>
-            <span className="min-total">= £{minOrderTotal.toFixed(0)}+</span>
+            <span className="min-qty">{t(lang, 'product.minQuantity').replace('{qty}', String(minQuantity))} {getUnitLabel(minQuantity > 1)}</span>
+            <span className="min-total">= {formatPrice(minOrderTotal, currency)}+</span>
           </div>
         )}
         
         {/* Package Info - Show for products at £200+ */}
         {isAboveThreshold && packageSize && (
           <div className="package-info">
-            <span className="package-size">{packageSize}</span>
+            <span className="package-size">{translatePackageSize(packageSize, lang)}</span>
           </div>
         )}
 
@@ -171,7 +177,7 @@ export default function ProductCard({ id, title, price, image, slug, category, r
           href={productUrl}
           className="view-options-btn"
         >
-          View Options
+          {t(lang, 'product.viewOptions')}
         </a>
       </div>
 
@@ -243,25 +249,24 @@ export default function ProductCard({ id, title, price, image, slug, category, r
         }
 
         .product-image-wrapper {
-          height: 160px;
+          aspect-ratio: 1 / 1;
           overflow: hidden;
           background: #f9fafb;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px;
+          padding: 12px;
         }
 
         @media (min-width: 576px) {
           .product-image-wrapper {
-            height: 180px;
-            padding: 20px;
+            padding: 16px;
           }
         }
 
         @media (min-width: 992px) {
           .product-image-wrapper {
-            height: 200px;
+            padding: 20px;
           }
         }
 

@@ -5,7 +5,7 @@ publishDate: "2025-12-15"
 author: "Dr. Sarah Mitchell"
 category: "Quality Control"
 tags: ["HPLC", "purity", "quality", "laboratory", "analysis"]
-image: "/images/blog/hplc-analysis.jpg"
+image: "/images/blog/post3.jpg"
 featured: true
 meta:
   title: "How to Read HPLC Purity Reports | Peptide Quality Guide"

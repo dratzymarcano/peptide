@@ -1,8 +1,13 @@
 import { useStore } from '@nanostores/react';
 import { useEffect, useState } from 'react';
 import { cartNotification, clearNotification, isCartOpen } from '../scripts/cartStore';
+import { getLocalizedPath, t, type SupportedLanguage } from '../i18n/translations';
 
-export default function CartNotification() {
+interface CartNotificationProps {
+  lang?: SupportedLanguage;
+}
+
+export default function CartNotification({ lang = 'en' }: CartNotificationProps) {
   const $notification = useStore(cartNotification);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -26,7 +31,7 @@ export default function CartNotification() {
 
   const handleCheckout = () => {
     clearNotification();
-    window.location.href = '/checkout';
+    window.location.href = getLocalizedPath('/checkout/', lang);
   };
 
   const handleClose = () => {
@@ -64,7 +69,7 @@ export default function CartNotification() {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
-        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>Added to Cart!</span>
+        <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{t(lang, 'cart.addedToCart')}</span>
         <button
           onClick={handleClose}
           style={{
@@ -76,7 +81,7 @@ export default function CartNotification() {
             padding: '4px',
             display: 'flex',
           }}
-          aria-label="Close"
+          aria-label={t(lang, 'cart.closeCart')}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -140,7 +145,7 @@ export default function CartNotification() {
             transition: 'all 0.2s',
           }}
         >
-          View Cart
+          {t(lang, 'cart.viewCart')}
         </button>
         <button
           onClick={handleCheckout}
@@ -156,7 +161,7 @@ export default function CartNotification() {
             cursor: 'pointer',
           }}
         >
-          Checkout
+          {t(lang, 'cart.checkout')}
         </button>
       </div>
     </div>

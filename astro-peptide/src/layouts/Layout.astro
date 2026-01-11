@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import { getLangFromUrl } from '../i18n/translations';
+import { getMarket } from '../i18n/market';
 
 interface BreadcrumbItem {
 	name: string;
@@ -19,6 +21,9 @@ interface Props {
 const { title, description, image, article, breadcrumbs } = Astro.props;
 const siteUrl = 'https://peptide-shop.net';
 
+const currentLang = getLangFromUrl(Astro.url);
+const market = getMarket(currentLang);
+
 // Generate breadcrumb schema if breadcrumbs are provided
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 	"@context": "https://schema.org",
@@ -33,13 +38,9 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang={market.hreflang}>
 	<head>
-		<meta name="geo.region" content="GB" />
-		<meta name="geo.placename" content="United Kingdom" />
-		<link rel="alternate" hreflang="en" href={Astro.url.href} />
-		<link rel="alternate" hreflang="x-default" href={Astro.url.href} />
-		<SEO title={title} description={description} image={image} article={article} />
+		<SEO title={title} description={description} image={image} article={article} lang={currentLang} />
 		
 		{breadcrumbSchema && (
 			<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -99,20 +100,41 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 
 		<!-- Essential Scripts -->
 		<!-- Main jQuery -->
-		<script is:inline src="/plugins/jquery/jquery.js"></script>
+		<script is:inline src="/plugins/jquery/jquery.js" defer></script>
 		<!-- Bootstrap 4.3.1 -->
-		<script is:inline src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script is:inline src="/plugins/bootstrap/js/bootstrap.min.js" defer></script>
 		<!-- Slick Slider -->
-		<script is:inline src="/plugins/slick-carousel/slick/slick.min.js"></script>
+		<script is:inline src="/plugins/slick-carousel/slick/slick.min.js" defer></script>
 		<!--  Magnific Popup-->
-		<script is:inline src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+		<script is:inline src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js" defer></script>
 		<!-- Form Validator -->
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js" defer></script>
+		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js" defer></script>
 		<!-- Google Map -->
 		<!-- <script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script> -->
-		<script is:inline src="/plugins/google-map/gmap.js"></script>
+		<script is:inline src="/plugins/google-map/gmap.js" defer></script>
 
-		<script is:inline src="/js/script.js"></script>
+		<script is:inline src="/js/script.js" defer></script>
+
+		<script>
+			import { currentCurrency, fetchExchangeRate } from '../store/currencyStore';
+			import { getLangFromUrl } from '../i18n/translations';
+
+			// Initialize currency based on language
+			const initCurrency = async () => {
+				const lang = getLangFromUrl(new URL(window.location.href));
+				
+				if (lang === 'en') {
+					currentCurrency.set('GBP');
+				} else {
+					// For all other supported European languages, set to EUR
+					currentCurrency.set('EUR');
+					await fetchExchangeRate();
+				}
+			};
+
+			// Run on initial load
+			initCurrency();
+		</script>
 	</body>
 </html>

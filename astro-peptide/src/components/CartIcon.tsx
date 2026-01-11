@@ -1,7 +1,12 @@
 import { useStore } from '@nanostores/react';
 import { cartItems, isCartOpen } from '../scripts/cartStore';
+import { t, type SupportedLanguage } from '../i18n/translations';
 
-export default function CartIcon() {
+interface CartIconProps {
+  lang?: SupportedLanguage;
+}
+
+export default function CartIcon({ lang = 'en' }: CartIconProps) {
   const $cartItems = useStore(cartItems);
   const totalItems = Object.values($cartItems).reduce((acc, item) => acc + item.quantity, 0);
 
@@ -14,7 +19,7 @@ export default function CartIcon() {
     <button 
       onClick={handleClick}
       className="cart-icon-btn"
-      aria-label="Shopping Cart"
+      aria-label={t(lang, 'nav.cart')}
       style={{
         display: 'flex',
         alignItems: 'center',

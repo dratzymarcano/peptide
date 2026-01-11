@@ -17,7 +17,7 @@ coa_url: "/coa/ghrp-2.pdf"
 short_description: "Buy GHRP-2 UK. Growth hormone releasing peptide for GH research. ≥99% purity. Fast UK delivery."
 category: "growth-hormone"
 tags: ["research-peptide", "ghrp-2-uk", "ghrp", "buy-peptides-uk", "growth-hormone"]
-images: ["/images/products/ghrp-2.jpg"]
+images: ["/images/products/ghrp-2.png"]
 meta:
   title: "Buy GHRP-2 UK | GH Peptide | Fast Delivery"
   description: "Buy GHRP-2 UK. Premium growth hormone releasing peptide for research. ≥99% purity, COA included."

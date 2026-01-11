@@ -17,7 +17,7 @@ coa_url: "/coa/ipamorelin.pdf"
 short_description: "Buy Ipamorelin UK. Selective growth hormone secretagogue for GH research. ≥99% purity. Fast UK delivery."
 category: "growth-hormone"
 tags: ["research-peptide", "ipamorelin-uk", "ghrp", "buy-peptides-uk", "growth-hormone"]
-images: ["/images/products/ipamorelin.jpg"]
+images: ["/images/products/ipamorelin.png"]
 meta:
   title: "Buy Ipamorelin UK | GHRP Peptide | Fast Delivery"
   description: "Buy Ipamorelin UK. Selective growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."

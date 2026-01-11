@@ -1,0 +1,338 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import ProductCard from '../../../components/ProductCard';
+import Sidebar from '../../../components/Sidebar.astro';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize } from '../../../i18n/translations';
+
+export const prerender = true;
+
+// Helper to clean slug - removes /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  const categories = [...new Set(products.map((product) => product.data.category))];
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  
+  return languages.flatMap(lang => 
+    categories.map(category => ({
+      params: { lang, category },
+      props: { category, lang },
+    }))
+  );
+}
+
+const { category, lang } = Astro.props;
+const products = await getCollection('products');
+const filteredProducts = products.filter(p => p.data.category === category);
+
+// Map category to translation key
+const getCategoryKey = (cat: string) => {
+  const map: Record<string, string> = {
+    'weight-loss': 'weightLoss',
+    'muscle-recovery': 'muscleRecovery',
+    'growth-hormone': 'growthHormone',
+    'tanning': 'tanning',
+    'cognitive': 'cognitive',
+    'supplies': 'supplies'
+  };
+  return map[cat] || cat;
+};
+
+const categoryKey = getCategoryKey(category);
+const categoryTitle = t(lang, `nav.${categoryKey}` as any) || category;
+
+// SEO Construction (Basic Localization)
+// Ideally these should be in translations.ts, but for now we construct them or default to English structure with translated keywords if available
+const metaTitle = `${t(lang, 'product.buyNow')} ${categoryTitle} | Peptide Shop`;
+const metaDescription = `${t(lang, 'product.buyNow')} ${categoryTitle}. ${t(lang, 'home.heroSubtitle')}`;
+const productCount = filteredProducts.length;
+
+const featurePoints = [
+  t(lang, 'product.trust.purity'),
+  t(lang, 'product.trust.coa'),
+  t(lang, 'product.trust.delivery'),
+  t(lang, 'cart.secureCheckout')
+];
+---
+
+<Layout 
+  title={metaTitle} 
+  description={metaDescription}
+  breadcrumbs={[
+    { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
+    { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
+    { name: categoryTitle, url: getLocalizedPath(`/peptides/${category}`, lang) }
+  ]}
+>
+  <!-- Category Hero Header -->
+  <section class="category-hero">
+    <div class="container mx-auto px-4">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href={lang === 'en' ? '/' : `/${lang}`}>{t(lang, 'nav.home')}</a></li>
+          <li><a href={getLocalizedPath('/peptides/', lang)}>{t(lang, 'nav.peptides')}</a></li>
+          <li><span class="current">{categoryTitle}</span></li>
+        </ol>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">{categoryTitle}</h1>
+          <p class="hero-description">
+             {t(lang, 'shopPage.subtitle')}
+          </p>
+          
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            {featurePoints.map(benefit => (
+              <span class="trust-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                {benefit}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-number">{productCount}</span>
+            <span class="stat-label">{t(lang, 'cart.items')}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">≥99%</span>
+            <span class="stat-label">{t(lang, 'product.purity')}</span>
+          </div>
+          <div class="stat-card">
+             <span class="stat-number">24h</span>
+             <span class="stat-label">{t(lang, 'home.stats.expressShipping')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <div class="bg-slate-50 py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- Sidebar Filters -->
+        <Sidebar activeCategory={category} />
+
+        <!-- Product Grid -->
+        <div class="flex-1">
+          <div class="flex justify-between items-center mb-6">
+            <p class="text-slate-600">{t(lang, 'shopPage.showing').replace('{count}', productCount.toString())}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredProducts.map((product) => {
+              const price = product.data.price || product.data.moq || 45;
+              const image = product.data.images[0] || '/images/peptide-default.jpg';
+              const slug = cleanSlug(product.slug);
+              return (
+                <ProductCard 
+                  client:visible
+                  id={product.data.id}
+                  title={cleanProductTitle(product.data.title, lang)}
+                  price={price}
+                  image={image}
+                  slug={slug}
+                  category={product.data.category}
+                  purity={product.data.purity}
+                  reviewCount={product.data.reviews?.length || 0}
+                  packageSize={translatePackageSize(product.data.package_sizes?.[0] || '', lang)}
+                  lang={lang}
+                />
+              );
+            })}
+          </div>
+
+          <!-- SEO Content Section (Placeholder for now) -->
+          <div class="seo-content mt-12 bg-white rounded-lg p-8 border border-slate-200">
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">{categoryTitle}</h2>
+            <p class="text-slate-600 mb-4">{t(lang, 'home.heroSubtitle')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .category-hero {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      padding: 40px 0 50px;
+      border-bottom: 1px solid #e0e7ff;
+    }
+
+    .breadcrumb {
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .breadcrumb-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb-list li:not(:last-child)::after {
+      content: '/';
+      color: #94a3b8;
+    }
+
+    .breadcrumb-list a {
+      color: #64748b;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb-list a:hover {
+      color: #0077b6;
+    }
+
+    .breadcrumb-list .current {
+      color: #1e293b;
+      font-weight: 500;
+    }
+
+    .hero-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 600px;
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      color: #0077b6;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .trust-badge svg {
+      color: #0077b6;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      border: 1px solid #e0e7ff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      min-width: 100px;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #0077b6;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+
+    .seo-content h2 {
+      color: #0f172a;
+    }
+
+    @media (max-width: 768px) {
+      .category-hero {
+        padding: 30px 0 40px;
+      }
+
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .hero-content {
+        flex-direction: column;
+      }
+
+      .hero-stats {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .stat-card {
+        flex: 1;
+        padding: 16px 12px;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+
+      .trust-badges {
+        gap: 8px;
+      }
+
+      .trust-badge {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</Layout>

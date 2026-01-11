@@ -17,7 +17,7 @@ coa_url: "/coa/peptide-semaglutide.pdf"
 short_description: "Premium Semaglutide UK. Long-acting GLP-1 receptor agonist for weight loss research. Fast UK delivery. Lab verified ≥99% purity."
 category: "weight-loss"
 tags: ["research-peptide", "glp-1", "weight-loss", "semaglutide-uk", "buy-peptides-uk"]
-images: ["/images/products/semaglutide.jpg"]
+images: ["/images/products/semaglutide.png"]
 meta:
   title: "Buy Semaglutide UK | Research Grade Peptide | Fast UK Delivery"
   description: "Buy Semaglutide UK. Premium research grade GLP-1 peptide for weight loss studies. ≥99% purity, COA included. Next day UK delivery available."
