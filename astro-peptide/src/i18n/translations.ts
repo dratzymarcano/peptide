@@ -259,6 +259,7 @@ interface Translations {
     cart: string;
     account: string;
     search: string;
+    menu: string;
   };
   aboutPage: {
     title: string;
@@ -710,6 +711,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       cart: 'Cart',
       account: 'Account',
       search: 'Search peptides...',
+      menu: 'Menu',
     },
     aboutPage: {
       title: 'About Peptide Shop',

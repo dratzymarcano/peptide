@@ -42,6 +42,48 @@ const currentLang = getLangFromUrl(Astro.url);
 				<span class="logo-text">Peptide<span class="logo-highlight">Shop</span></span>
 			</a>
 
+			<!-- Desktop Navigation Links -->
+			<div class="desktop-nav">
+				<ul class="nav-links">
+					<li class="nav-item dropdown">
+						<a class="nav-link" href={getLocalizedPath('/peptides/', currentLang)}>
+							<span>{t(currentLang, 'nav.categories')}</span>
+							<svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<polyline points="6 9 12 15 18 9"></polyline>
+							</svg>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/', currentLang)}>{t(currentLang, 'nav.allPeptides')}</a></li>
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
+							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/cognitive/', currentLang)}>{t(currentLang, 'nav.cognitive')}</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href={getLocalizedPath('/blog/', currentLang)}>
+							<span>{t(currentLang, 'nav.blog')}</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href={getLocalizedPath('/about/', currentLang)}>
+							<span>{t(currentLang, 'nav.about')}</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href={getLocalizedPath('/quality/', currentLang)}>
+							<span>{t(currentLang, 'nav.quality')}</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href={getLocalizedPath('/contact/', currentLang)}>
+							<span>{t(currentLang, 'nav.contact')}</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+
 			<!-- Right Actions (desktop only) -->
 			<div class="nav-actions" aria-label="Header actions">
 				<div class="desktop-only-action">
@@ -72,9 +114,9 @@ const currentLang = getLangFromUrl(Astro.url);
 			</button>
 
 			<!-- Mobile Menu - slide-out drawer -->
-			<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile menu" tabindex="-1">
+			<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t(currentLang, 'nav.menu')} tabindex="-1">
 				<div class="mobile-menu-header">
-					<span class="mobile-menu-title">Menu</span>
+					<span class="mobile-menu-title">{t(currentLang, 'nav.menu')}</span>
 					<button class="mobile-menu-close" type="button" aria-label="Close menu">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 							<line x1="18" y1="6" x2="6" y2="18"></line>
@@ -84,7 +126,7 @@ const currentLang = getLangFromUrl(Astro.url);
 				</div>
 
 				<!-- Search + Language at top for discoverability -->
-				<div class="mobile-menu-search" aria-label="Search">
+				<div class="mobile-menu-search" aria-label={t(currentLang, 'nav.search')}>
 					<SearchBar client:load lang={currentLang} />
 				</div>
 				<div class="mobile-menu-primary">
@@ -94,10 +136,10 @@ const currentLang = getLangFromUrl(Astro.url);
 						</div>
 					</div>
 					<div class="primary-row">
-						<div class="primary-action" aria-label="Account">
+						<div class="primary-action" aria-label={t(currentLang, 'nav.account')}>
 							<AccountButton client:load lang={currentLang} />
 						</div>
-						<div class="primary-action" aria-label="Cart">
+						<div class="primary-action" aria-label={t(currentLang, 'nav.cart')}>
 							<CartIcon client:load lang={currentLang} />
 						</div>
 					</div>
@@ -318,6 +360,11 @@ const currentLang = getLangFromUrl(Astro.url);
 
 	.logo-highlight {
 		color: var(--color-primary);
+	}
+
+	/* Desktop Nav - Hidden on mobile */
+	.desktop-nav {
+		display: none;
 	}
 
 	/* Desktop-only actions - Hidden on mobile */
@@ -756,15 +803,21 @@ const currentLang = getLangFromUrl(Astro.url);
 		}
 
 		/* Desktop Nav Links - Show inline */
-		.nav-links {
+		.desktop-nav {
+			display: block;
+			flex: 1;
+		}
+
+		.desktop-nav .nav-links {
 			display: flex !important;
 			position: static;
 			flex-direction: row;
 			align-items: center;
 			gap: var(--spacing-xs);
 			padding: 0;
-			flex: 1;
+			margin: 0;
 			justify-content: center;
+			list-style: none;
 		}
 
 		.nav-link {
