@@ -1144,6 +1144,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
   },
   nl: {
     nav: {
+      menu: 'Menu',
       home: 'Home',
       peptides: 'Peptiden',
       categories: 'Categorieën',
@@ -1593,6 +1594,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
   },
   de: {
     nav: {
+      menu: 'Menü',
       home: 'Startseite',
       peptides: 'Peptide kaufen',
       categories: 'Kategorien',
@@ -2042,6 +2044,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
   },
   fr: {
     nav: {
+      menu: 'Menu',
       home: 'Accueil',
       peptides: 'Peptides',
       categories: 'Catégories',
@@ -2491,6 +2494,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
   },
   es: {
     nav: {
+      menu: 'Menú',
       home: 'Inicio',
       peptides: 'Péptidos',
       categories: 'Categorías',
@@ -2939,7 +2943,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
   },
   it: {
-    nav: {
+    namenu: 'Menu',
+      v: {
       home: 'Home',
       peptides: 'Peptidi',
       categories: 'Categorie',
