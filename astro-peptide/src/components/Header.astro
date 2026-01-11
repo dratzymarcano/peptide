@@ -307,7 +307,7 @@ const currentLang = getLangFromUrl(Astro.url);
 	.nav-actions {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-xs);
+		gap: var(--spacing-sm);
 		height: 100%;
 	}
 
@@ -352,7 +352,14 @@ const currentLang = getLangFromUrl(Astro.url);
 		-webkit-tap-highlight-color: transparent;
 		position: relative;
 		z-index: 10003;
-		margin-left: var(--spacing-xs);
+		margin-left: var(--spacing-sm);
+	}
+
+	/* Defensive: ensure desktop-only actions never appear on mobile */
+	@media (max-width: 991.98px) {
+		.desktop-only-action {
+			display: none !important;
+		}
 	}
 
 	.hamburger-line {
