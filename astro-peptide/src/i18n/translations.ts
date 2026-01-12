@@ -417,12 +417,53 @@ interface Translations {
     title: string;
     description: string;
     whatArePeptides: string;
+    whatArePeptidesDescription: string;
     browsePeptides: string;
     understandingPeptides: string;
+    badge: string;
+    readTime: string;
   };
   bundlesPage: {
     title: string;
     description: string;
+    heroTitle: string;
+    heroDescription: string;
+    mostPopular: string;
+    save: string;
+    saveBadge: string;
+    addToCart: string;
+    recoveryTagline: string;
+    recoveryDescription: string;
+    metabolicTagline: string;
+    metabolicDescription: string;
+    ghTagline: string;
+    ghDescription: string;
+    cognitiveTagline: string;
+    cognitiveDescription: string;
+    starterTagline: string;
+    starterDescription: string;
+    features: {
+      synergistic: string;
+      complementary: string;
+      complete: string;
+      popular: string;
+      glp1: string;
+      dualAgonist: string;
+      metabolic: string;
+      suppliesIncluded: string;
+      ghrhSynergy: string;
+      multipleSecretagogues: string;
+      ghPulse: string;
+      reconstitution: string;
+      bdnf: string;
+      neuroprotection: string;
+      complementaryMechanisms: string;
+      cognitiveEnhancement: string;
+      beginnerFriendly: string;
+      completeSupplies: string;
+      popularPeptide: string;
+      excellentValue: string;
+    };
   };
   wholesalePage: {
     title: string;
@@ -430,6 +471,69 @@ interface Translations {
     description: string;
     applyNow: string;
     getStarted: string;
+    heroBadge: string;
+    heroTitle: string;
+    heroDescription: string;
+    minOrder: string;
+    mostPopular: string;
+    offAllProducts: string;
+    tiersLabel: string;
+    tiersTitle: string;
+    tiersSubtitle: string;
+    tiers: {
+      starter: {
+        feature1: string;
+        feature2: string;
+        feature3: string;
+        feature4: string;
+      };
+      professional: {
+        feature1: string;
+        feature2: string;
+        feature3: string;
+        feature4: string;
+        feature5: string;
+      };
+      enterprise: {
+        feature1: string;
+        feature2: string;
+        feature3: string;
+        feature4: string;
+        feature5: string;
+        feature6: string;
+      };
+    };
+    benefitsLabel: string;
+    benefitsTitle: string;
+    benefitsSubtitle: string;
+    benefits: {
+      quality: { title: string; description: string };
+      supply: { title: string; description: string };
+      support: { title: string; description: string };
+      documentation: { title: string; description: string };
+      payment: { title: string; description: string };
+      custom: { title: string; description: string };
+    };
+    applyLabel: string;
+    applyTitle: string;
+    applySubtitle: string;
+    form: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      organization: string;
+      country: string;
+      selectCountry: string;
+      otherEU: string;
+      volume: string;
+      selectVolume: string;
+      products: string;
+      productsPlaceholder: string;
+      additional: string;
+      additionalPlaceholder: string;
+      submit: string;
+      responseTime: string;
+    };
   };
   accountPage: {
     title: string;
@@ -942,12 +1046,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Learn About Peptides',
       description: 'Educational resources about peptides and peptide research.',
       whatArePeptides: 'What Are Peptides?',
+      whatArePeptidesDescription: 'Peptides are short chains of amino acids, typically containing 2-50 amino acids linked by peptide bonds. They play crucial roles in biological processes and are widely used in scientific research to study cellular signaling, metabolism, and various physiological functions.',
       browsePeptides: 'Browse Peptides',
       understandingPeptides: 'Understanding Peptides',
+      badge: 'Research Education',
+      readTime: 'min read',
     },
     bundlesPage: {
       title: 'Peptide Bundles',
       description: 'Save with our curated research peptide bundles.',
+      heroTitle: 'Research Peptide Bundles',
+      heroDescription: 'Carefully curated peptide combinations for comprehensive research protocols. Save up to 20% compared to individual purchases.',
+      mostPopular: 'Most Popular',
+      save: 'Save',
+      saveBadge: 'Bundle Savings',
+      addToCart: 'Add Bundle to Cart',
+      recoveryTagline: 'Complete recovery research protocol',
+      recoveryDescription: 'The most popular combination for tissue repair and recovery research. BPC-157 and TB-500 work through complementary mechanisms.',
+      metabolicTagline: 'Advanced metabolic research protocol',
+      metabolicDescription: 'Comprehensive metabolic research with the latest GLP-1 receptor agonists. Ideal for studying appetite regulation and metabolic pathways.',
+      ghTagline: 'Growth hormone secretagogue stack',
+      ghDescription: 'A complete growth hormone research protocol combining GHRH and GHRP peptides for synergistic GH release studies.',
+      cognitiveTagline: 'Nootropic peptide research protocol',
+      cognitiveDescription: 'Russian-developed cognitive peptides for neuroscience research. Complementary mechanisms targeting BDNF and anxiolytic pathways.',
+      starterTagline: 'Perfect introduction to peptide research',
+      starterDescription: 'Everything you need to begin your peptide research journey. Includes the most studied peptide with all necessary supplies.',
+      features: {
+        synergistic: 'Synergistic Effects',
+        complementary: 'Complementary Mechanisms',
+        complete: 'Complete Protocol',
+        popular: 'Most Researched',
+        glp1: 'GLP-1 Receptor Agonist',
+        dualAgonist: 'Dual GLP-1/GIP Agonist',
+        metabolic: 'Metabolic Research',
+        suppliesIncluded: 'Supplies Included',
+        ghrhSynergy: 'GHRH + GHRP Synergy',
+        multipleSecretagogues: 'Multiple Secretagogues',
+        ghPulse: 'GH Pulse Research',
+        reconstitution: 'Reconstitution Supplies',
+        bdnf: 'BDNF Enhancement',
+        neuroprotection: 'Neuroprotective',
+        complementaryMechanisms: 'Complementary Mechanisms',
+        cognitiveEnhancement: 'Cognitive Research',
+        beginnerFriendly: 'Beginner Friendly',
+        completeSupplies: 'Complete Supplies',
+        popularPeptide: 'Popular Research Peptide',
+        excellentValue: 'Excellent Value',
+      },
     },
     wholesalePage: {
       title: 'Wholesale',
@@ -955,6 +1100,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Wholesale research peptides for laboratories and institutions. Bulk pricing, dedicated support, and flexible payment terms.',
       applyNow: 'Apply for Wholesale Account',
       getStarted: 'Get Started',
+      heroBadge: 'B2B Research Peptides',
+      heroTitle: 'Wholesale Peptides for Research Institutions',
+      heroDescription: 'Partner with Europe\'s trusted peptide supplier. Volume discounts up to 30%, dedicated account management, and priority fulfillment for laboratories and research institutions.',
+      minOrder: 'Minimum Order',
+      mostPopular: 'Most Popular',
+      offAllProducts: 'off all products',
+      tiersLabel: 'Volume Pricing',
+      tiersTitle: 'Wholesale Pricing Tiers',
+      tiersSubtitle: 'The more you order, the more you save. All tiers include free shipping and priority processing.',
+      tiers: {
+        starter: {
+          feature1: '10% discount on all peptides',
+          feature2: 'Free standard shipping',
+          feature3: 'Email support',
+          feature4: 'COA included with every order',
+        },
+        professional: {
+          feature1: '20% discount on all peptides',
+          feature2: 'Free express shipping',
+          feature3: 'Priority email & phone support',
+          feature4: 'Dedicated account manager',
+          feature5: 'Net 30 payment terms',
+        },
+        enterprise: {
+          feature1: '30% discount on all peptides',
+          feature2: 'Same-day dispatch priority',
+          feature3: '24/7 dedicated support line',
+          feature4: 'Custom formulations available',
+          feature5: 'Net 60 payment terms',
+          feature6: 'Quarterly business reviews',
+        },
+      },
+      benefitsLabel: 'Partnership Benefits',
+      benefitsTitle: 'Why Partner With Us',
+      benefitsSubtitle: 'Join leading research institutions across Europe who trust us for their peptide supply needs.',
+      benefits: {
+        quality: {
+          title: 'Guaranteed Purity',
+          description: 'Every batch tested to ≥99% purity with full COA documentation.',
+        },
+        supply: {
+          title: 'Reliable Supply',
+          description: 'Consistent stock levels and priority allocation for wholesale partners.',
+        },
+        support: {
+          title: 'Dedicated Support',
+          description: 'Your own account manager for personalized service and quick issue resolution.',
+        },
+        documentation: {
+          title: 'Complete Documentation',
+          description: 'Full COA, MSDS, and compliance documentation for your records.',
+        },
+        payment: {
+          title: 'Flexible Payment',
+          description: 'Net 30/60 terms, multiple payment methods, and credit facilities.',
+        },
+        custom: {
+          title: 'Custom Solutions',
+          description: 'Custom formulations, labeling, and packaging available on request.',
+        },
+      },
+      applyLabel: 'Get Started',
+      applyTitle: 'Apply for a Wholesale Account',
+      applySubtitle: 'Complete the form below and our team will review your application within 24 hours.',
+      form: {
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Business Email',
+        organization: 'Organization / Institution',
+        country: 'Country',
+        selectCountry: 'Select your country',
+        otherEU: 'Other EU Country',
+        volume: 'Expected Monthly Volume',
+        selectVolume: 'Select expected volume',
+        products: 'Products of Interest',
+        productsPlaceholder: 'Which peptides are you interested in?',
+        additional: 'Additional Information',
+        additionalPlaceholder: 'Tell us about your research needs or any specific requirements...',
+        submit: 'Submit Application',
+        responseTime: 'We typically respond within 24 business hours.',
+      },
     },
     accountPage: {
       title: 'My Account',
@@ -1465,12 +1691,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Leer over peptiden',
       description: 'Educatieve bronnen over peptiden en peptideonderzoek.',
       whatArePeptides: 'Wat zijn peptiden?',
+      whatArePeptidesDescription: 'Peptiden zijn korte ketens van aminozuren, meestal bestaande uit 2-50 aminozuren verbonden door peptidebindingen. Ze spelen cruciale rollen in biologische processen en worden veel gebruikt in wetenschappelijk onderzoek om cellulaire signalering, metabolisme en verschillende fysiologische functies te bestuderen.',
       browsePeptides: 'Blader door peptiden',
       understandingPeptides: 'Peptiden begrijpen',
+      badge: 'Onderzoeksonderwijs',
+      readTime: 'min leestijd',
     },
     bundlesPage: {
       title: 'Peptidebundels',
       description: 'Bespaar met onze samengestelde onderzoekspeptidebundels.',
+      heroTitle: 'Onderzoekspeptidebundels',
+      heroDescription: 'Zorgvuldig samengestelde peptidecombinaties voor uitgebreide onderzoeksprotocollen. Bespaar tot 20% vergeleken met individuele aankopen.',
+      mostPopular: 'Meest populair',
+      save: 'Bespaar',
+      saveBadge: 'Bundelbesparing',
+      addToCart: 'Bundel toevoegen aan winkelwagen',
+      recoveryTagline: 'Compleet herstelonderzoeksprotocol',
+      recoveryDescription: 'De meest populaire combinatie voor weefselreparatie en herstelonderzoek. BPC-157 en TB-500 werken via complementaire mechanismen.',
+      metabolicTagline: 'Geavanceerd metabool onderzoeksprotocol',
+      metabolicDescription: 'Uitgebreid metabool onderzoek met de nieuwste GLP-1 receptor agonisten. Ideaal voor het bestuderen van eetlustregulatie en metabole routes.',
+      ghTagline: 'Groeihormoon secretagoog stack',
+      ghDescription: 'Een compleet groeihormoononderzoeksprotocol dat GHRH en GHRP peptiden combineert voor synergetische GH-afgifte studies.',
+      cognitiveTagline: 'Nootropisch peptide onderzoeksprotocol',
+      cognitiveDescription: 'Russisch ontwikkelde cognitieve peptiden voor neurowetenschappelijk onderzoek. Complementaire mechanismen gericht op BDNF en anxiolytische routes.',
+      starterTagline: 'Perfecte introductie tot peptideonderzoek',
+      starterDescription: 'Alles wat u nodig heeft om uw peptideonderzoeksreis te beginnen. Inclusief het meest bestudeerde peptide met alle benodigde benodigdheden.',
+      features: {
+        synergistic: 'Synergetische effecten',
+        complementary: 'Complementaire mechanismen',
+        complete: 'Compleet protocol',
+        popular: 'Meest onderzocht',
+        glp1: 'GLP-1 receptor agonist',
+        dualAgonist: 'Dubbele GLP-1/GIP agonist',
+        metabolic: 'Metabool onderzoek',
+        suppliesIncluded: 'Benodigdheden inbegrepen',
+        ghrhSynergy: 'GHRH + GHRP synergie',
+        multipleSecretagogues: 'Meerdere secretagogen',
+        ghPulse: 'GH pulsonderzoek',
+        reconstitution: 'Reconstitutiebenodigdheden',
+        bdnf: 'BDNF verhoging',
+        neuroprotection: 'Neuroprotectief',
+        complementaryMechanisms: 'Complementaire mechanismen',
+        cognitiveEnhancement: 'Cognitief onderzoek',
+        beginnerFriendly: 'Beginnersvriendelijk',
+        completeSupplies: 'Complete benodigdheden',
+        popularPeptide: 'Populair onderzoekspeptide',
+        excellentValue: 'Uitstekende waarde',
+      },
     },
     wholesalePage: {
       title: 'Groothandel',
@@ -1478,6 +1745,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Groothandel onderzoekspeptiden voor laboratoria en instellingen. Bulkprijzen, toegewijde ondersteuning en flexibele betalingsvoorwaarden.',
       applyNow: 'Aanvragen voor groothandelsaccount',
       getStarted: 'Aan de slag',
+      heroBadge: 'B2B onderzoekspeptiden',
+      heroTitle: 'Groothandel peptiden voor onderzoeksinstellingen',
+      heroDescription: 'Partner met Europa\'s betrouwbare peptideleverancier. Volumekortingen tot 30%, toegewijd accountbeheer en prioritaire afhandeling voor laboratoria en onderzoeksinstellingen.',
+      minOrder: 'Minimale bestelling',
+      mostPopular: 'Meest populair',
+      offAllProducts: 'korting op alle producten',
+      tiersLabel: 'Volumeprijzen',
+      tiersTitle: 'Groothandelsprijsniveaus',
+      tiersSubtitle: 'Hoe meer u bestelt, hoe meer u bespaart. Alle niveaus inclusief gratis verzending en prioritaire verwerking.',
+      tiers: {
+        starter: {
+          feature1: '10% korting op alle peptiden',
+          feature2: 'Gratis standaard verzending',
+          feature3: 'E-mail ondersteuning',
+          feature4: 'COA inbegrepen bij elke bestelling',
+        },
+        professional: {
+          feature1: '20% korting op alle peptiden',
+          feature2: 'Gratis express verzending',
+          feature3: 'Prioritaire e-mail & telefoonondersteuning',
+          feature4: 'Toegewijde accountmanager',
+          feature5: 'Netto 30 betalingsvoorwaarden',
+        },
+        enterprise: {
+          feature1: '30% korting op alle peptiden',
+          feature2: 'Zelfde dag verzending prioriteit',
+          feature3: '24/7 toegewijde ondersteuningslijn',
+          feature4: 'Aangepaste formuleringen beschikbaar',
+          feature5: 'Netto 60 betalingsvoorwaarden',
+          feature6: 'Kwartaal zakelijke reviews',
+        },
+      },
+      benefitsLabel: 'Partnerschapsvoordelen',
+      benefitsTitle: 'Waarom met ons samenwerken',
+      benefitsSubtitle: 'Sluit u aan bij toonaangevende onderzoeksinstellingen in heel Europa die op ons vertrouwen voor hun peptidebehoeften.',
+      benefits: {
+        quality: {
+          title: 'Gegarandeerde zuiverheid',
+          description: 'Elke batch getest op ≥99% zuiverheid met volledige COA-documentatie.',
+        },
+        supply: {
+          title: 'Betrouwbare levering',
+          description: 'Consistente voorraadniveaus en prioritaire toewijzing voor groothandelspartners.',
+        },
+        support: {
+          title: 'Toegewijde ondersteuning',
+          description: 'Uw eigen accountmanager voor persoonlijke service en snelle probleemoplossing.',
+        },
+        documentation: {
+          title: 'Volledige documentatie',
+          description: 'Volledige COA, MSDS en compliance-documentatie voor uw administratie.',
+        },
+        payment: {
+          title: 'Flexibele betaling',
+          description: 'Netto 30/60 voorwaarden, meerdere betaalmethoden en kredietfaciliteiten.',
+        },
+        custom: {
+          title: 'Maatwerkoplossingen',
+          description: 'Aangepaste formuleringen, etikettering en verpakking op aanvraag beschikbaar.',
+        },
+      },
+      applyLabel: 'Aan de slag',
+      applyTitle: 'Aanvragen voor een groothandelsaccount',
+      applySubtitle: 'Vul het onderstaande formulier in en ons team beoordeelt uw aanvraag binnen 24 uur.',
+      form: {
+        firstName: 'Voornaam',
+        lastName: 'Achternaam',
+        email: 'Zakelijk e-mailadres',
+        organization: 'Organisatie / Instelling',
+        country: 'Land',
+        selectCountry: 'Selecteer uw land',
+        otherEU: 'Ander EU-land',
+        volume: 'Verwacht maandelijks volume',
+        selectVolume: 'Selecteer verwacht volume',
+        products: 'Producten van interesse',
+        productsPlaceholder: 'In welke peptiden bent u geïnteresseerd?',
+        additional: 'Aanvullende informatie',
+        additionalPlaceholder: 'Vertel ons over uw onderzoeksbehoeften of specifieke vereisten...',
+        submit: 'Aanvraag indienen',
+        responseTime: 'We reageren meestal binnen 24 werkuren.',
+      },
     },
     accountPage: {
       title: 'Mijn account',
@@ -1988,12 +2336,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Über Peptide lernen',
       description: 'Bildungsressourcen über Peptide und Peptidforschung.',
       whatArePeptides: 'Was sind Peptide?',
+      whatArePeptidesDescription: 'Peptide sind kurze Ketten von Aminosäuren, typischerweise bestehend aus 2-50 Aminosäuren, die durch Peptidbindungen verbunden sind. Sie spielen entscheidende Rollen in biologischen Prozessen und werden in der wissenschaftlichen Forschung weitgehend verwendet, um Zellsignalübertragung, Stoffwechsel und verschiedene physiologische Funktionen zu untersuchen.',
       browsePeptides: 'Peptide durchsuchen',
       understandingPeptides: 'Peptide verstehen',
+      badge: 'Forschungsbildung',
+      readTime: 'Min. Lesezeit',
     },
     bundlesPage: {
       title: 'Peptid-Bundles',
       description: 'Sparen Sie mit unseren kuratierten Forschungspeptid-Bundles.',
+      heroTitle: 'Forschungspeptid-Bundles',
+      heroDescription: 'Sorgfältig kuratierte Peptidkombinationen für umfassende Forschungsprotokolle. Sparen Sie bis zu 20% im Vergleich zu Einzelkäufen.',
+      mostPopular: 'Am beliebtesten',
+      save: 'Sparen',
+      saveBadge: 'Bundle-Ersparnis',
+      addToCart: 'Bundle in den Warenkorb',
+      recoveryTagline: 'Komplettes Erholungsforschungsprotokoll',
+      recoveryDescription: 'Die beliebteste Kombination für Gewebereparatur- und Erholungsforschung. BPC-157 und TB-500 wirken über komplementäre Mechanismen.',
+      metabolicTagline: 'Fortgeschrittenes metabolisches Forschungsprotokoll',
+      metabolicDescription: 'Umfassende metabolische Forschung mit den neuesten GLP-1-Rezeptoragonisten. Ideal für die Untersuchung von Appetitregulierung und Stoffwechselwegen.',
+      ghTagline: 'Wachstumshormon-Sekretagogen-Stack',
+      ghDescription: 'Ein komplettes Wachstumshormon-Forschungsprotokoll, das GHRH- und GHRP-Peptide für synergistische GH-Freisetzungsstudien kombiniert.',
+      cognitiveTagline: 'Nootropisches Peptid-Forschungsprotokoll',
+      cognitiveDescription: 'Russisch entwickelte kognitive Peptide für neurowissenschaftliche Forschung. Komplementäre Mechanismen, die auf BDNF und anxiolytische Wege abzielen.',
+      starterTagline: 'Perfekte Einführung in die Peptidforschung',
+      starterDescription: 'Alles, was Sie brauchen, um Ihre Peptidforschungsreise zu beginnen. Enthält das am meisten erforschte Peptid mit allem notwendigen Zubehör.',
+      features: {
+        synergistic: 'Synergistische Effekte',
+        complementary: 'Komplementäre Mechanismen',
+        complete: 'Vollständiges Protokoll',
+        popular: 'Am meisten erforscht',
+        glp1: 'GLP-1-Rezeptoragonist',
+        dualAgonist: 'Dualer GLP-1/GIP-Agonist',
+        metabolic: 'Metabolische Forschung',
+        suppliesIncluded: 'Zubehör inklusive',
+        ghrhSynergy: 'GHRH + GHRP Synergie',
+        multipleSecretagogues: 'Mehrere Sekretagogen',
+        ghPulse: 'GH-Puls-Forschung',
+        reconstitution: 'Rekonstitutionszubehör',
+        bdnf: 'BDNF-Verbesserung',
+        neuroprotection: 'Neuroprotektiv',
+        complementaryMechanisms: 'Komplementäre Mechanismen',
+        cognitiveEnhancement: 'Kognitive Forschung',
+        beginnerFriendly: 'Anfängerfreundlich',
+        completeSupplies: 'Komplettes Zubehör',
+        popularPeptide: 'Beliebtes Forschungspeptid',
+        excellentValue: 'Ausgezeichnetes Preis-Leistungs-Verhältnis',
+      },
     },
     wholesalePage: {
       title: 'Großhandel',
@@ -2001,6 +2390,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Großhandel-Forschungspeptide für Labore und Institutionen. Mengenpreise, dedizierter Support und flexible Zahlungsbedingungen.',
       applyNow: 'Großhandelskonto beantragen',
       getStarted: 'Loslegen',
+      heroBadge: 'B2B-Forschungspeptide',
+      heroTitle: 'Großhandelspeptide für Forschungseinrichtungen',
+      heroDescription: 'Partnern Sie mit Europas vertrauenswürdigem Peptidlieferanten. Mengenrabatte bis zu 30%, dediziertes Account-Management und Prioritätsabwicklung für Labore und Forschungseinrichtungen.',
+      minOrder: 'Mindestbestellung',
+      mostPopular: 'Am beliebtesten',
+      offAllProducts: 'Rabatt auf alle Produkte',
+      tiersLabel: 'Mengenpreise',
+      tiersTitle: 'Großhandels-Preisstufen',
+      tiersSubtitle: 'Je mehr Sie bestellen, desto mehr sparen Sie. Alle Stufen beinhalten kostenlosen Versand und Prioritätsverarbeitung.',
+      tiers: {
+        starter: {
+          feature1: '10% Rabatt auf alle Peptide',
+          feature2: 'Kostenloser Standardversand',
+          feature3: 'E-Mail-Support',
+          feature4: 'COA bei jeder Bestellung inklusive',
+        },
+        professional: {
+          feature1: '20% Rabatt auf alle Peptide',
+          feature2: 'Kostenloser Expressversand',
+          feature3: 'Prioritäts-E-Mail- & Telefonsupport',
+          feature4: 'Dedizierter Account-Manager',
+          feature5: 'Netto 30 Zahlungsbedingungen',
+        },
+        enterprise: {
+          feature1: '30% Rabatt auf alle Peptide',
+          feature2: 'Gleichtägiger Versand Priorität',
+          feature3: '24/7 dedizierte Supportlinie',
+          feature4: 'Kundenspezifische Formulierungen verfügbar',
+          feature5: 'Netto 60 Zahlungsbedingungen',
+          feature6: 'Vierteljährliche Geschäftsreviews',
+        },
+      },
+      benefitsLabel: 'Partnerschaftsvorteile',
+      benefitsTitle: 'Warum mit uns partnern',
+      benefitsSubtitle: 'Schließen Sie sich führenden Forschungseinrichtungen in ganz Europa an, die uns für ihre Peptidversorgung vertrauen.',
+      benefits: {
+        quality: {
+          title: 'Garantierte Reinheit',
+          description: 'Jede Charge auf ≥99% Reinheit getestet mit vollständiger COA-Dokumentation.',
+        },
+        supply: {
+          title: 'Zuverlässige Versorgung',
+          description: 'Konstante Lagerbestände und Prioritätszuteilung für Großhandelspartner.',
+        },
+        support: {
+          title: 'Dedizierter Support',
+          description: 'Ihr eigener Account-Manager für persönlichen Service und schnelle Problemlösung.',
+        },
+        documentation: {
+          title: 'Vollständige Dokumentation',
+          description: 'Vollständige COA, MSDS und Compliance-Dokumentation für Ihre Unterlagen.',
+        },
+        payment: {
+          title: 'Flexible Zahlung',
+          description: 'Netto 30/60 Bedingungen, mehrere Zahlungsmethoden und Kreditfazilitäten.',
+        },
+        custom: {
+          title: 'Maßgeschneiderte Lösungen',
+          description: 'Kundenspezifische Formulierungen, Etikettierung und Verpackung auf Anfrage verfügbar.',
+        },
+      },
+      applyLabel: 'Loslegen',
+      applyTitle: 'Großhandelskonto beantragen',
+      applySubtitle: 'Füllen Sie das untenstehende Formular aus und unser Team prüft Ihre Bewerbung innerhalb von 24 Stunden.',
+      form: {
+        firstName: 'Vorname',
+        lastName: 'Nachname',
+        email: 'Geschäftliche E-Mail',
+        organization: 'Organisation / Institution',
+        country: 'Land',
+        selectCountry: 'Wählen Sie Ihr Land',
+        otherEU: 'Anderes EU-Land',
+        volume: 'Erwartetes monatliches Volumen',
+        selectVolume: 'Erwartetes Volumen wählen',
+        products: 'Interessante Produkte',
+        productsPlaceholder: 'An welchen Peptiden sind Sie interessiert?',
+        additional: 'Zusätzliche Informationen',
+        additionalPlaceholder: 'Erzählen Sie uns von Ihren Forschungsbedürfnissen oder spezifischen Anforderungen...',
+        submit: 'Bewerbung einreichen',
+        responseTime: 'Wir antworten in der Regel innerhalb von 24 Geschäftsstunden.',
+      },
     },
     accountPage: {
       title: 'Mein Konto',
@@ -2511,12 +2981,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Apprendre sur les peptides',
       description: 'Ressources éducatives sur les peptides et la recherche peptidique.',
       whatArePeptides: 'Que sont les peptides ?',
+      whatArePeptidesDescription: 'Les peptides sont de courtes chaînes d\'acides aminés, contenant généralement de 2 à 50 acides aminés liés par des liaisons peptidiques. Ils jouent des rôles cruciaux dans les processus biologiques et sont largement utilisés dans la recherche scientifique pour étudier la signalisation cellulaire, le métabolisme et diverses fonctions physiologiques.',
       browsePeptides: 'Parcourir les peptides',
       understandingPeptides: 'Comprendre les peptides',
+      badge: 'Éducation à la recherche',
+      readTime: 'min de lecture',
     },
     bundlesPage: {
       title: 'Lots de peptides',
       description: 'Économisez avec nos lots de peptides de recherche.',
+      heroTitle: 'Lots de peptides de recherche',
+      heroDescription: 'Combinaisons de peptides soigneusement sélectionnées pour des protocoles de recherche complets. Économisez jusqu\'à 20% par rapport aux achats individuels.',
+      mostPopular: 'Le plus populaire',
+      save: 'Économiser',
+      saveBadge: 'Économies de lot',
+      addToCart: 'Ajouter le lot au panier',
+      recoveryTagline: 'Protocole complet de recherche sur la récupération',
+      recoveryDescription: 'La combinaison la plus populaire pour la recherche sur la réparation tissulaire et la récupération. BPC-157 et TB-500 fonctionnent via des mécanismes complémentaires.',
+      metabolicTagline: 'Protocole de recherche métabolique avancé',
+      metabolicDescription: 'Recherche métabolique complète avec les derniers agonistes du récepteur GLP-1. Idéal pour étudier la régulation de l\'appétit et les voies métaboliques.',
+      ghTagline: 'Stack de sécrétagogues de l\'hormone de croissance',
+      ghDescription: 'Un protocole complet de recherche sur l\'hormone de croissance combinant les peptides GHRH et GHRP pour des études synergiques de libération de GH.',
+      cognitiveTagline: 'Protocole de recherche peptidique nootropique',
+      cognitiveDescription: 'Peptides cognitifs développés en Russie pour la recherche en neurosciences. Mécanismes complémentaires ciblant le BDNF et les voies anxiolytiques.',
+      starterTagline: 'Introduction parfaite à la recherche peptidique',
+      starterDescription: 'Tout ce dont vous avez besoin pour commencer votre parcours de recherche peptidique. Comprend le peptide le plus étudié avec toutes les fournitures nécessaires.',
+      features: {
+        synergistic: 'Effets synergiques',
+        complementary: 'Mécanismes complémentaires',
+        complete: 'Protocole complet',
+        popular: 'Le plus recherché',
+        glp1: 'Agoniste du récepteur GLP-1',
+        dualAgonist: 'Agoniste double GLP-1/GIP',
+        metabolic: 'Recherche métabolique',
+        suppliesIncluded: 'Fournitures incluses',
+        ghrhSynergy: 'Synergie GHRH + GHRP',
+        multipleSecretagogues: 'Multiples sécrétagogues',
+        ghPulse: 'Recherche sur les pulsations de GH',
+        reconstitution: 'Fournitures de reconstitution',
+        bdnf: 'Amélioration du BDNF',
+        neuroprotection: 'Neuroprotecteur',
+        complementaryMechanisms: 'Mécanismes complémentaires',
+        cognitiveEnhancement: 'Recherche cognitive',
+        beginnerFriendly: 'Adapté aux débutants',
+        completeSupplies: 'Fournitures complètes',
+        popularPeptide: 'Peptide de recherche populaire',
+        excellentValue: 'Excellent rapport qualité-prix',
+      },
     },
     wholesalePage: {
       title: 'Grossiste',
@@ -2524,6 +3035,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Peptides de recherche en gros pour laboratoires et institutions. Prix de gros, support dédié et conditions de paiement flexibles.',
       applyNow: 'Demander un compte grossiste',
       getStarted: 'Commencer',
+      heroBadge: 'Peptides de recherche B2B',
+      heroTitle: 'Peptides en gros pour institutions de recherche',
+      heroDescription: 'Partenariat avec le fournisseur de peptides de confiance en Europe. Remises sur volume jusqu\'à 30%, gestion de compte dédiée et traitement prioritaire pour les laboratoires et institutions de recherche.',
+      minOrder: 'Commande minimum',
+      mostPopular: 'Le plus populaire',
+      offAllProducts: 'de réduction sur tous les produits',
+      tiersLabel: 'Prix par volume',
+      tiersTitle: 'Niveaux de prix grossiste',
+      tiersSubtitle: 'Plus vous commandez, plus vous économisez. Tous les niveaux incluent la livraison gratuite et le traitement prioritaire.',
+      tiers: {
+        starter: {
+          feature1: '10% de réduction sur tous les peptides',
+          feature2: 'Livraison standard gratuite',
+          feature3: 'Support par e-mail',
+          feature4: 'COA inclus avec chaque commande',
+        },
+        professional: {
+          feature1: '20% de réduction sur tous les peptides',
+          feature2: 'Livraison express gratuite',
+          feature3: 'Support prioritaire par e-mail et téléphone',
+          feature4: 'Gestionnaire de compte dédié',
+          feature5: 'Conditions de paiement net 30',
+        },
+        enterprise: {
+          feature1: '30% de réduction sur tous les peptides',
+          feature2: 'Priorité d\'expédition le jour même',
+          feature3: 'Ligne de support dédiée 24/7',
+          feature4: 'Formulations personnalisées disponibles',
+          feature5: 'Conditions de paiement net 60',
+          feature6: 'Revues commerciales trimestrielles',
+        },
+      },
+      benefitsLabel: 'Avantages du partenariat',
+      benefitsTitle: 'Pourquoi devenir partenaire',
+      benefitsSubtitle: 'Rejoignez les principales institutions de recherche à travers l\'Europe qui nous font confiance pour leurs besoins en peptides.',
+      benefits: {
+        quality: {
+          title: 'Pureté garantie',
+          description: 'Chaque lot testé à ≥99% de pureté avec documentation COA complète.',
+        },
+        supply: {
+          title: 'Approvisionnement fiable',
+          description: 'Niveaux de stock constants et allocation prioritaire pour les partenaires grossistes.',
+        },
+        support: {
+          title: 'Support dédié',
+          description: 'Votre propre gestionnaire de compte pour un service personnalisé et une résolution rapide des problèmes.',
+        },
+        documentation: {
+          title: 'Documentation complète',
+          description: 'COA complet, MSDS et documentation de conformité pour vos dossiers.',
+        },
+        payment: {
+          title: 'Paiement flexible',
+          description: 'Conditions net 30/60, multiples méthodes de paiement et facilités de crédit.',
+        },
+        custom: {
+          title: 'Solutions personnalisées',
+          description: 'Formulations, étiquetage et emballage personnalisés disponibles sur demande.',
+        },
+      },
+      applyLabel: 'Commencer',
+      applyTitle: 'Demander un compte grossiste',
+      applySubtitle: 'Remplissez le formulaire ci-dessous et notre équipe examinera votre demande dans les 24 heures.',
+      form: {
+        firstName: 'Prénom',
+        lastName: 'Nom',
+        email: 'E-mail professionnel',
+        organization: 'Organisation / Institution',
+        country: 'Pays',
+        selectCountry: 'Sélectionnez votre pays',
+        otherEU: 'Autre pays de l\'UE',
+        volume: 'Volume mensuel prévu',
+        selectVolume: 'Sélectionnez le volume prévu',
+        products: 'Produits d\'intérêt',
+        productsPlaceholder: 'Quels peptides vous intéressent ?',
+        additional: 'Informations supplémentaires',
+        additionalPlaceholder: 'Parlez-nous de vos besoins de recherche ou exigences spécifiques...',
+        submit: 'Soumettre la demande',
+        responseTime: 'Nous répondons généralement dans les 24 heures ouvrables.',
+      },
     },
     accountPage: {
       title: 'Mon compte',
@@ -3034,12 +3626,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Aprende sobre péptidos',
       description: 'Recursos educativos sobre péptidos e investigación peptídica.',
       whatArePeptides: '¿Qué son los péptidos?',
+      whatArePeptidesDescription: 'Los péptidos son cadenas cortas de aminoácidos, típicamente conteniendo de 2 a 50 aminoácidos unidos por enlaces peptídicos. Juegan roles cruciales en los procesos biológicos y son ampliamente utilizados en la investigación científica para estudiar la señalización celular, el metabolismo y diversas funciones fisiológicas.',
       browsePeptides: 'Explorar péptidos',
       understandingPeptides: 'Entendiendo los péptidos',
+      badge: 'Educación en investigación',
+      readTime: 'min de lectura',
     },
     bundlesPage: {
       title: 'Paquetes de péptidos',
       description: 'Ahorra con nuestros paquetes de péptidos de investigación.',
+      heroTitle: 'Paquetes de péptidos de investigación',
+      heroDescription: 'Combinaciones de péptidos cuidadosamente seleccionadas para protocolos de investigación integrales. Ahorra hasta un 20% en comparación con compras individuales.',
+      mostPopular: 'Más popular',
+      save: 'Ahorra',
+      saveBadge: 'Ahorro de paquete',
+      addToCart: 'Añadir paquete al carrito',
+      recoveryTagline: 'Protocolo completo de investigación de recuperación',
+      recoveryDescription: 'La combinación más popular para investigación de reparación de tejidos y recuperación. BPC-157 y TB-500 funcionan a través de mecanismos complementarios.',
+      metabolicTagline: 'Protocolo avanzado de investigación metabólica',
+      metabolicDescription: 'Investigación metabólica integral con los últimos agonistas del receptor GLP-1. Ideal para estudiar la regulación del apetito y las vías metabólicas.',
+      ghTagline: 'Stack de secretagogos de hormona de crecimiento',
+      ghDescription: 'Un protocolo completo de investigación de hormona de crecimiento que combina péptidos GHRH y GHRP para estudios sinérgicos de liberación de GH.',
+      cognitiveTagline: 'Protocolo de investigación de péptidos nootrópicos',
+      cognitiveDescription: 'Péptidos cognitivos desarrollados en Rusia para investigación en neurociencias. Mecanismos complementarios dirigidos a BDNF y vías ansiolíticas.',
+      starterTagline: 'Introducción perfecta a la investigación peptídica',
+      starterDescription: 'Todo lo que necesitas para comenzar tu viaje de investigación peptídica. Incluye el péptido más estudiado con todos los suministros necesarios.',
+      features: {
+        synergistic: 'Efectos sinérgicos',
+        complementary: 'Mecanismos complementarios',
+        complete: 'Protocolo completo',
+        popular: 'Más investigado',
+        glp1: 'Agonista del receptor GLP-1',
+        dualAgonist: 'Agonista dual GLP-1/GIP',
+        metabolic: 'Investigación metabólica',
+        suppliesIncluded: 'Suministros incluidos',
+        ghrhSynergy: 'Sinergia GHRH + GHRP',
+        multipleSecretagogues: 'Múltiples secretagogos',
+        ghPulse: 'Investigación de pulsos de GH',
+        reconstitution: 'Suministros de reconstitución',
+        bdnf: 'Mejora del BDNF',
+        neuroprotection: 'Neuroprotector',
+        complementaryMechanisms: 'Mecanismos complementarios',
+        cognitiveEnhancement: 'Investigación cognitiva',
+        beginnerFriendly: 'Amigable para principiantes',
+        completeSupplies: 'Suministros completos',
+        popularPeptide: 'Péptido de investigación popular',
+        excellentValue: 'Excelente relación calidad-precio',
+      },
     },
     wholesalePage: {
       title: 'Mayorista',
@@ -3047,6 +3680,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Péptidos de investigación al por mayor para laboratorios e instituciones. Precios de volumen, soporte dedicado y condiciones de pago flexibles.',
       applyNow: 'Solicitar cuenta mayorista',
       getStarted: 'Comenzar',
+      heroBadge: 'Péptidos de investigación B2B',
+      heroTitle: 'Péptidos al por mayor para instituciones de investigación',
+      heroDescription: 'Asóciese con el proveedor de péptidos de confianza de Europa. Descuentos por volumen hasta un 30%, gestión de cuenta dedicada y procesamiento prioritario para laboratorios e instituciones de investigación.',
+      minOrder: 'Pedido mínimo',
+      mostPopular: 'Más popular',
+      offAllProducts: 'de descuento en todos los productos',
+      tiersLabel: 'Precios por volumen',
+      tiersTitle: 'Niveles de precios mayoristas',
+      tiersSubtitle: 'Cuanto más pides, más ahorras. Todos los niveles incluyen envío gratis y procesamiento prioritario.',
+      tiers: {
+        starter: {
+          feature1: '10% de descuento en todos los péptidos',
+          feature2: 'Envío estándar gratuito',
+          feature3: 'Soporte por correo electrónico',
+          feature4: 'COA incluido con cada pedido',
+        },
+        professional: {
+          feature1: '20% de descuento en todos los péptidos',
+          feature2: 'Envío exprés gratuito',
+          feature3: 'Soporte prioritario por correo y teléfono',
+          feature4: 'Gestor de cuenta dedicado',
+          feature5: 'Condiciones de pago neto 30',
+        },
+        enterprise: {
+          feature1: '30% de descuento en todos los péptidos',
+          feature2: 'Prioridad de envío el mismo día',
+          feature3: 'Línea de soporte dedicada 24/7',
+          feature4: 'Formulaciones personalizadas disponibles',
+          feature5: 'Condiciones de pago neto 60',
+          feature6: 'Revisiones comerciales trimestrales',
+        },
+      },
+      benefitsLabel: 'Beneficios de asociación',
+      benefitsTitle: 'Por qué asociarse con nosotros',
+      benefitsSubtitle: 'Únase a las principales instituciones de investigación de toda Europa que confían en nosotros para sus necesidades de péptidos.',
+      benefits: {
+        quality: {
+          title: 'Pureza garantizada',
+          description: 'Cada lote probado con ≥99% de pureza con documentación COA completa.',
+        },
+        supply: {
+          title: 'Suministro confiable',
+          description: 'Niveles de stock consistentes y asignación prioritaria para socios mayoristas.',
+        },
+        support: {
+          title: 'Soporte dedicado',
+          description: 'Su propio gestor de cuenta para servicio personalizado y resolución rápida de problemas.',
+        },
+        documentation: {
+          title: 'Documentación completa',
+          description: 'COA completo, MSDS y documentación de cumplimiento para sus registros.',
+        },
+        payment: {
+          title: 'Pago flexible',
+          description: 'Condiciones neto 30/60, múltiples métodos de pago y facilidades de crédito.',
+        },
+        custom: {
+          title: 'Soluciones personalizadas',
+          description: 'Formulaciones personalizadas, etiquetado y embalaje disponibles bajo pedido.',
+        },
+      },
+      applyLabel: 'Comenzar',
+      applyTitle: 'Solicitar una cuenta mayorista',
+      applySubtitle: 'Complete el formulario a continuación y nuestro equipo revisará su solicitud en 24 horas.',
+      form: {
+        firstName: 'Nombre',
+        lastName: 'Apellido',
+        email: 'Correo electrónico empresarial',
+        organization: 'Organización / Institución',
+        country: 'País',
+        selectCountry: 'Seleccione su país',
+        otherEU: 'Otro país de la UE',
+        volume: 'Volumen mensual esperado',
+        selectVolume: 'Seleccione el volumen esperado',
+        products: 'Productos de interés',
+        productsPlaceholder: '¿Qué péptidos le interesan?',
+        additional: 'Información adicional',
+        additionalPlaceholder: 'Cuéntenos sobre sus necesidades de investigación o requisitos específicos...',
+        submit: 'Enviar solicitud',
+        responseTime: 'Normalmente respondemos en 24 horas hábiles.',
+      },
     },
     accountPage: {
       title: 'Mi cuenta',
@@ -3557,12 +4271,53 @@ export const translations: Record<SupportedLanguage, Translations> = {
       title: 'Impara sui peptidi',
       description: 'Risorse educative sui peptidi e la ricerca peptidica.',
       whatArePeptides: 'Cosa sono i peptidi?',
+      whatArePeptidesDescription: 'I peptidi sono catene corte di amminoacidi, tipicamente contenenti da 2 a 50 amminoacidi legati da legami peptidici. Svolgono ruoli cruciali nei processi biologici e sono ampiamente utilizzati nella ricerca scientifica per studiare la segnalazione cellulare, il metabolismo e varie funzioni fisiologiche.',
       browsePeptides: 'Sfoglia i peptidi',
       understandingPeptides: 'Capire i peptidi',
+      badge: 'Educazione alla ricerca',
+      readTime: 'min di lettura',
     },
     bundlesPage: {
       title: 'Pacchetti di peptidi',
       description: 'Risparmia con i nostri pacchetti di peptidi da ricerca.',
+      heroTitle: 'Pacchetti di peptidi da ricerca',
+      heroDescription: 'Combinazioni di peptidi accuratamente selezionate per protocolli di ricerca completi. Risparmia fino al 20% rispetto agli acquisti singoli.',
+      mostPopular: 'Più popolare',
+      save: 'Risparmia',
+      saveBadge: 'Risparmio pacchetto',
+      addToCart: 'Aggiungi pacchetto al carrello',
+      recoveryTagline: 'Protocollo completo di ricerca sul recupero',
+      recoveryDescription: 'La combinazione più popolare per la ricerca sulla riparazione dei tessuti e il recupero. BPC-157 e TB-500 funzionano attraverso meccanismi complementari.',
+      metabolicTagline: 'Protocollo avanzato di ricerca metabolica',
+      metabolicDescription: 'Ricerca metabolica completa con i più recenti agonisti del recettore GLP-1. Ideale per studiare la regolazione dell\'appetito e le vie metaboliche.',
+      ghTagline: 'Stack di secretagoghi dell\'ormone della crescita',
+      ghDescription: 'Un protocollo completo di ricerca sull\'ormone della crescita che combina peptidi GHRH e GHRP per studi sinergici sul rilascio di GH.',
+      cognitiveTagline: 'Protocollo di ricerca su peptidi nootropici',
+      cognitiveDescription: 'Peptidi cognitivi sviluppati in Russia per la ricerca in neuroscienze. Meccanismi complementari mirati a BDNF e vie ansiolitiche.',
+      starterTagline: 'Introduzione perfetta alla ricerca sui peptidi',
+      starterDescription: 'Tutto ciò di cui hai bisogno per iniziare il tuo percorso di ricerca sui peptidi. Include il peptide più studiato con tutte le forniture necessarie.',
+      features: {
+        synergistic: 'Effetti sinergici',
+        complementary: 'Meccanismi complementari',
+        complete: 'Protocollo completo',
+        popular: 'Più ricercato',
+        glp1: 'Agonista del recettore GLP-1',
+        dualAgonist: 'Agonista duale GLP-1/GIP',
+        metabolic: 'Ricerca metabolica',
+        suppliesIncluded: 'Forniture incluse',
+        ghrhSynergy: 'Sinergia GHRH + GHRP',
+        multipleSecretagogues: 'Molteplici secretagoghi',
+        ghPulse: 'Ricerca sui pulsazioni di GH',
+        reconstitution: 'Forniture per ricostituzione',
+        bdnf: 'Potenziamento del BDNF',
+        neuroprotection: 'Neuroprotettivo',
+        complementaryMechanisms: 'Meccanismi complementari',
+        cognitiveEnhancement: 'Ricerca cognitiva',
+        beginnerFriendly: 'Adatto ai principianti',
+        completeSupplies: 'Forniture complete',
+        popularPeptide: 'Peptide di ricerca popolare',
+        excellentValue: 'Eccellente rapporto qualità-prezzo',
+      },
     },
     wholesalePage: {
       title: 'Ingrosso',
@@ -3570,6 +4325,87 @@ export const translations: Record<SupportedLanguage, Translations> = {
       description: 'Peptidi da ricerca all\'ingrosso per laboratori e istituzioni. Prezzi all\'ingrosso, supporto dedicato e condizioni di pagamento flessibili.',
       applyNow: 'Richiedi account ingrosso',
       getStarted: 'Inizia',
+      heroBadge: 'Peptidi da ricerca B2B',
+      heroTitle: 'Peptidi all\'ingrosso per istituti di ricerca',
+      heroDescription: 'Collabora con il fornitore di peptidi di fiducia in Europa. Sconti sul volume fino al 30%, gestione account dedicata ed elaborazione prioritaria per laboratori e istituti di ricerca.',
+      minOrder: 'Ordine minimo',
+      mostPopular: 'Più popolare',
+      offAllProducts: 'di sconto su tutti i prodotti',
+      tiersLabel: 'Prezzi per volume',
+      tiersTitle: 'Livelli di prezzo all\'ingrosso',
+      tiersSubtitle: 'Più ordini, più risparmi. Tutti i livelli includono spedizione gratuita ed elaborazione prioritaria.',
+      tiers: {
+        starter: {
+          feature1: '10% di sconto su tutti i peptidi',
+          feature2: 'Spedizione standard gratuita',
+          feature3: 'Supporto via email',
+          feature4: 'COA incluso con ogni ordine',
+        },
+        professional: {
+          feature1: '20% di sconto su tutti i peptidi',
+          feature2: 'Spedizione express gratuita',
+          feature3: 'Supporto prioritario via email e telefono',
+          feature4: 'Account manager dedicato',
+          feature5: 'Condizioni di pagamento netto 30',
+        },
+        enterprise: {
+          feature1: '30% di sconto su tutti i peptidi',
+          feature2: 'Priorità di spedizione in giornata',
+          feature3: 'Linea di supporto dedicata 24/7',
+          feature4: 'Formulazioni personalizzate disponibili',
+          feature5: 'Condizioni di pagamento netto 60',
+          feature6: 'Revisioni commerciali trimestrali',
+        },
+      },
+      benefitsLabel: 'Vantaggi della partnership',
+      benefitsTitle: 'Perché collaborare con noi',
+      benefitsSubtitle: 'Unisciti ai principali istituti di ricerca in tutta Europa che si affidano a noi per le loro esigenze di peptidi.',
+      benefits: {
+        quality: {
+          title: 'Purezza garantita',
+          description: 'Ogni lotto testato al ≥99% di purezza con documentazione COA completa.',
+        },
+        supply: {
+          title: 'Fornitura affidabile',
+          description: 'Livelli di stock costanti e allocazione prioritaria per i partner all\'ingrosso.',
+        },
+        support: {
+          title: 'Supporto dedicato',
+          description: 'Il tuo account manager personale per un servizio personalizzato e una rapida risoluzione dei problemi.',
+        },
+        documentation: {
+          title: 'Documentazione completa',
+          description: 'COA completo, MSDS e documentazione di conformità per i tuoi archivi.',
+        },
+        payment: {
+          title: 'Pagamento flessibile',
+          description: 'Condizioni netto 30/60, metodi di pagamento multipli e facilitazioni di credito.',
+        },
+        custom: {
+          title: 'Soluzioni personalizzate',
+          description: 'Formulazioni personalizzate, etichettatura e imballaggio disponibili su richiesta.',
+        },
+      },
+      applyLabel: 'Inizia',
+      applyTitle: 'Richiedi un account all\'ingrosso',
+      applySubtitle: 'Compila il modulo sottostante e il nostro team esaminerà la tua richiesta entro 24 ore.',
+      form: {
+        firstName: 'Nome',
+        lastName: 'Cognome',
+        email: 'Email aziendale',
+        organization: 'Organizzazione / Istituzione',
+        country: 'Paese',
+        selectCountry: 'Seleziona il tuo paese',
+        otherEU: 'Altro paese UE',
+        volume: 'Volume mensile previsto',
+        selectVolume: 'Seleziona il volume previsto',
+        products: 'Prodotti di interesse',
+        productsPlaceholder: 'Quali peptidi ti interessano?',
+        additional: 'Informazioni aggiuntive',
+        additionalPlaceholder: 'Raccontaci delle tue esigenze di ricerca o requisiti specifici...',
+        submit: 'Invia richiesta',
+        responseTime: 'Di solito rispondiamo entro 24 ore lavorative.',
+      },
     },
     accountPage: {
       title: 'Il mio account',

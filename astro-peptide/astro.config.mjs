@@ -1,13 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://peptide-shop.net',
-  integrations: [react(), sitemap(), tailwind()],
+  integrations: [react(), tailwind()],
   output: 'server', // Hybrid rendering for API endpoints
   adapter: cloudflare({
     imageService: 'compile',
