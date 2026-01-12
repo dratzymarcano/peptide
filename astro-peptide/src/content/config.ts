@@ -23,6 +23,8 @@ const productsCollection = defineCollection({
     title: z.string(),
     primary_keyword: z.string(),
     search_volume: z.union([z.number(), z.string()]),
+    urlPath: z.string().optional(), // URL path for the product page (renamed from 'slug' to avoid Astro collision)
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']).optional(), // Language identifier
     aliases: z.array(z.string()).optional(),
     cas: z.string().nullable(),
     molecular_weight: z.string().nullable(),

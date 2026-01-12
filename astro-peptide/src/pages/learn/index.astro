@@ -1,24 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getLangFromUrl, t, getLocalizedPath } from '../../i18n/translations';
+
+const currentLang = getLangFromUrl(Astro.url);
 
 const guides = [
   {
-    title: "What Are Peptides?",
-    description: "A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research.",
-    href: "/learn/what-are-peptides",
+    title: t(currentLang, 'learnPage.whatArePeptides'),
+    description: t(currentLang, 'learnPage.description'),
+    href: getLocalizedPath('/learn/what-are-peptides/', currentLang),
     icon: "book-open",
-    readTime: "8 min read"
+    readTime: "8 min"
   }
 ];
 ---
 
 <Layout 
-  title="Learn About Peptides | Educational Resources | Peptide Shop" 
-  description="Educational resources about research peptides, synthesis, storage, and applications. Comprehensive guides for researchers and scientists."
+  title={`${t(currentLang, 'learnPage.title')} | Peptide Shop`}
+  description={t(currentLang, 'learnPage.description')}
   breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Learn", url: "/learn" }
+    { name: t(currentLang, 'common.home'), url: getLocalizedPath('/', currentLang) },
+    { name: t(currentLang, 'learnPage.title'), url: getLocalizedPath('/learn/', currentLang) }
   ]}
 >
   <style>
@@ -116,11 +119,11 @@ const guides = [
   </style>
 
   <PageTitle 
-    title="Learn About Peptides"
-    subtitle="Educational resources and guides about research peptides, synthesis methods, storage protocols, and scientific applications."
+    title={t(currentLang, 'learnPage.title')}
+    subtitle={t(currentLang, 'learnPage.description')}
     breadcrumbs={[
-      { name: "Home", url: "/" },
-      { name: "Learn" }
+      { name: t(currentLang, 'common.home'), url: getLocalizedPath('/', currentLang) },
+      { name: t(currentLang, 'learnPage.title') }
     ]}
   />
 

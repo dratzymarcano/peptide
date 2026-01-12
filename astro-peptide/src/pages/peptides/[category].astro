@@ -6,8 +6,8 @@ import Sidebar from '../../components/Sidebar.astro';
 
 export const prerender = true;
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes en/ lang prefix, /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^en\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 // Comprehensive category SEO data with keywords and search volumes
 const categorySEO: Record<string, {
@@ -97,7 +97,9 @@ const categorySEO: Record<string, {
 };
 
 export async function getStaticPaths() {
-  const products = await getCollection('products');
+  const allProducts = await getCollection('products');
+  // Filter to English products only (stored in en/ folder)
+  const products = allProducts.filter(p => p.slug.startsWith('en/'));
   const categories = [...new Set(products.map((product) => product.data.category))];
   
   return categories.map(category => ({
@@ -107,7 +109,9 @@ export async function getStaticPaths() {
 }
 
 const { category } = Astro.props;
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+// Filter to English products only (stored in en/ folder)
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
 const filteredProducts = products.filter(p => p.data.category === category);
 
 // Get SEO data for this category (with fallback)

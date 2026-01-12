@@ -29,6 +29,7 @@ import CartPage from '../../components/pages/CartPage.astro';
 import CheckoutPage from '../../components/pages/CheckoutPage.astro';
 import BundlesPage from '../../components/pages/BundlesPage.astro';
 import LearnPage from '../../components/pages/LearnPage.astro';
+import SitemapPage from '../../components/pages/SitemapPage.astro';
 import { supportedLanguages, pageSlugTranslations } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
@@ -39,7 +40,7 @@ export function getStaticPaths() {
   const handledPageKeys = [
     'quality', 'shipping', 'terms', 'privacy', 'disclaimer', 'coa-policy',
     'about', 'contact', 'faq', 'shop', 'wholesale', 'cart', 'checkout',
-    'bundles', 'learn'
+    'bundles', 'learn', 'sitemap'
   ];
   
   const paths: { params: { lang: string; pageSlug: string }; props: { pageKey: string } }[] = [];
@@ -81,3 +82,4 @@ const typedLang = lang as SupportedLanguage;
 {pageKey === 'checkout' && <CheckoutPage lang={typedLang} />}
 {pageKey === 'bundles' && <BundlesPage lang={typedLang} />}
 {pageKey === 'learn' && <LearnPage lang={typedLang} />}
+{pageKey === 'sitemap' && <SitemapPage lang={typedLang} />}

@@ -13,49 +13,70 @@ import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, transla
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const products = await getCollection('products');
+  const allProducts = await getCollection('products');
+  // Get English products as the base (for generating routes)
+  const englishProducts = allProducts.filter(p => p.slug.startsWith('en/'));
   const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
   
   return languages.flatMap(lang => 
-    products.map(product => {
-      const originalSlug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
-      const localizedSlug = getLocalizedProductSlug(originalSlug, lang);
+    englishProducts.map(enProduct => {
+      // Get base slug without the en/ prefix
+      const baseSlug = enProduct.slug.replace(/^en\//, '');
+      const localizedSlug = getLocalizedProductSlug(`buy-${baseSlug}`, lang);
+      
+      // Check if a localized version exists
+      const localizedProduct = allProducts.find(p => p.slug === `${lang}/${baseSlug}`);
+      // Use localized product if available, otherwise fall back to English
+      const product = localizedProduct || enProduct;
       
       return {
         params: { 
           lang,
           slug: localizedSlug 
         },
-        props: { product, lang },
+        props: { product, lang, hasLocalizedContent: !!localizedProduct },
       };
     })
   );
 }
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes lang/ prefix, /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^(en|nl|de|fr|es|it)\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
-const { product, lang } = Astro.props;
+const { product, lang, hasLocalizedContent } = Astro.props;
 const { Content } = await product.render();
 
 const priceRange = product.data.price_range;
 const productId = product.data.id;
-const productTitle = cleanProductTitle(product.data.title, lang);
+// If content is natively localized, use title as-is; otherwise translate
+const productTitle = hasLocalizedContent 
+  ? product.data.title 
+  : cleanProductTitle(product.data.title, lang);
 const currentSlug = cleanSlug(product.slug);
 const productImage = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
 
 // Get SEO-optimized meta content
-// Clean the name by removing "Buy", "UK" and any pipe content
-const cleanName = product.data.title.split('|')[0]
-  .replace(/^Buy\s+/i, '')
-  .replace(/\s+UK\s*$/i, '')
-  .trim();
-const translatedName = translateProductContent(cleanName, lang);
-const localizedMetaTitle = getLocalizedPageTitle(translatedName, lang);
-const localizedMetaDescription = getLocalizedMetaDescription(translatedName, product.data.category, lang);
+// If natively localized, use the meta fields directly
+let localizedMetaTitle: string;
+let localizedMetaDescription: string;
+let translatedShortDescription: string;
 
-// Translate short description
-const translatedShortDescription = translateProductContent(product.data.short_description || '', lang);
+if (hasLocalizedContent) {
+  // Use native localized content
+  localizedMetaTitle = product.data.meta.title;
+  localizedMetaDescription = product.data.meta.description;
+  translatedShortDescription = product.data.short_description || '';
+} else {
+  // Fall back to translation functions
+  const cleanName = product.data.title.split('|')[0]
+    .replace(/^Buy\s+/i, '')
+    .replace(/\s+UK\s*$/i, '')
+    .trim();
+  const translatedName = translateProductContent(cleanName, lang);
+  localizedMetaTitle = getLocalizedPageTitle(translatedName, lang);
+  localizedMetaDescription = getLocalizedMetaDescription(translatedName, product.data.category, lang);
+  translatedShortDescription = translateProductContent(product.data.short_description || '', lang);
+}
 
 // Extract numeric price from price_range
 const extractPrice = (priceStr: string): number => {
@@ -67,9 +88,13 @@ const productPrice = product.data.price ?? extractPrice(priceRange);
 // Translated category
 const categoryTitle = translateCategory(product.data.category, lang);
 
-// Get FAQs and Reviews from frontmatter - translated
-const faqs = translateFAQs(product.data.faqs || [], lang);
-const reviews = translateReviews(product.data.reviews || [], lang);
+// Get FAQs and Reviews from frontmatter - translate only if not natively localized
+const faqs = hasLocalizedContent 
+  ? (product.data.faqs || []) 
+  : translateFAQs(product.data.faqs || [], lang);
+const reviews = hasLocalizedContent 
+  ? (product.data.reviews || []) 
+  : translateReviews(product.data.reviews || [], lang);
 
 // Calculate average rating
 const avgRating = reviews.length > 0 

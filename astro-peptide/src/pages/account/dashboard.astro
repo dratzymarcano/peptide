@@ -1,8 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getLangFromUrl, t, getLocalizedPath } from '../../i18n/translations';
+
+const currentLang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title="My Account | Peptide Shop" description="Manage your Peptide Shop account. View orders, track shipments, update addresses and access order history. Secure account management for researchers.">
+<Layout title={`${t(currentLang, 'accountPage.title')} | Peptide Shop`} description={t(currentLang, 'accountPage.description')}>
   <!-- Hero Section -->
   <section class="page-hero" style="background: linear-gradient(135deg, #0077b6, #023e8a); padding: 60px 0;">
     <div class="container">
@@ -10,13 +13,13 @@ import Layout from "../../layouts/Layout.astro";
         <div class="col-lg-8">
           <nav aria-label="breadcrumb" style="margin-bottom: 1rem;">
             <ol class="breadcrumb" style="margin-bottom: 0; background: transparent; padding: 0;">
-              <li class="breadcrumb-item"><a href="/" style="color: white; text-decoration: none; font-weight: 500;">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page" style="color: white; font-weight: 600;">My Account</li>
+              <li class="breadcrumb-item"><a href={getLocalizedPath('/', currentLang)} style="color: white; text-decoration: none; font-weight: 500;">{t(currentLang, 'common.home')}</a></li>
+              <li class="breadcrumb-item active" aria-current="page" style="color: white; font-weight: 600;">{t(currentLang, 'accountPage.title')}</li>
             </ol>
           </nav>
-          <h1 style="color: white; font-weight: 800; font-size: 2.5rem; margin-bottom: 1rem;">My Account</h1>
+          <h1 style="color: white; font-weight: 800; font-size: 2.5rem; margin-bottom: 1rem;">{t(currentLang, 'accountPage.title')}</h1>
           <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 0; max-width: 600px;">
-            Manage your orders, addresses, and account settings in one place.
+            {t(currentLang, 'accountPage.description')}
           </p>
         </div>
         <div class="col-lg-4 text-lg-end d-none d-lg-block">
@@ -25,7 +28,7 @@ import Layout from "../../layouts/Layout.astro";
               <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
-            <span style="color: white; font-weight: 600;">Account Dashboard</span>
+            <span style="color: white; font-weight: 600;">{t(currentLang, 'accountPage.dashboard')}</span>
           </div>
         </div>
       </div>
@@ -34,7 +37,7 @@ import Layout from "../../layouts/Layout.astro";
 
   <!-- Dashboard Content -->
   <section style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); min-height: 70vh;">
-    <div id="dashboard-root"></div>
+    <div id="dashboard-root" data-lang={currentLang}></div>
   </section>
 </Layout>
 
@@ -45,8 +48,9 @@ import Layout from "../../layouts/Layout.astro";
 
   const container = document.getElementById('dashboard-root');
   if (container) {
+    const lang = container.dataset.lang || 'en';
     const root = createRoot(container);
-    root.render(createElement(Dashboard));
+    root.render(createElement(Dashboard, { lang }));
   }
 </script>
 

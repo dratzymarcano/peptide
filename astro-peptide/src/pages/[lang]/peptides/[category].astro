@@ -7,11 +7,13 @@ import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, transla
 
 export const prerender = true;
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes en/ lang prefix, /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^en\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 export async function getStaticPaths() {
-  const products = await getCollection('products');
+  const allProducts = await getCollection('products');
+  // Use English products as base for categories
+  const products = allProducts.filter(p => p.slug.startsWith('en/'));
   const categories = [...new Set(products.map((product) => product.data.category))];
   const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
   
@@ -24,7 +26,9 @@ export async function getStaticPaths() {
 }
 
 const { category, lang } = Astro.props;
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+// Use English products as base for all language category pages
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
 const filteredProducts = products.filter(p => p.data.category === category);
 
 // Map category to translation key

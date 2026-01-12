@@ -118,101 +118,102 @@ const currentLang = getLangFromUrl(Astro.url);
 				<div class="mobile-menu-header">
 					<span class="mobile-menu-title">{t(currentLang, 'nav.menu')}</span>
 					<button class="mobile-menu-close" type="button" aria-label="Close menu">
-						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
 							<line x1="18" y1="6" x2="6" y2="18"></line>
 							<line x1="6" y1="6" x2="18" y2="18"></line>
 						</svg>
 					</button>
 				</div>
 
-				<!-- Search + Language at top for discoverability -->
-				<div class="mobile-menu-search" aria-label={t(currentLang, 'nav.search')}>
-					<SearchBar client:load lang={currentLang} />
-				</div>
-				<div class="mobile-menu-primary">
-					<div class="primary-row" aria-label="Primary actions">
-						<div class="primary-action mobile-lang-switch" aria-label="Language">
-							<LanguageSwitcher client:load currentLang={currentLang} />
-						</div>
+				<!-- Navigation Links - Primary content at top -->
+				<nav class="mobile-nav-section" aria-label="Main navigation">
+					<ul class="mobile-nav-links">
+						<li class="mobile-nav-item">
+							<a class="mobile-nav-link" href={getLocalizedPath('/peptides/', currentLang)}>
+								<span class="nav-link-text">{t(currentLang, 'nav.allPeptides')}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</a>
+						</li>
+						<li class="mobile-nav-item dropdown">
+							<button class="mobile-nav-link dropdown-toggle" type="button" aria-expanded="false">
+								<span class="nav-link-text">{t(currentLang, 'nav.categories')}</span>
+								<svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="6 9 12 15 18 9"></polyline>
+								</svg>
+							</button>
+							<ul class="mobile-dropdown-menu">
+								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/cognitive/', currentLang)}>{t(currentLang, 'nav.cognitive')}</a></li>
+							</ul>
+						</li>
+						<li class="mobile-nav-item">
+							<a class="mobile-nav-link" href={getLocalizedPath('/blog/', currentLang)}>
+								<span class="nav-link-text">{t(currentLang, 'nav.blog')}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</a>
+						</li>
+						<li class="mobile-nav-item">
+							<a class="mobile-nav-link" href={getLocalizedPath('/about/', currentLang)}>
+								<span class="nav-link-text">{t(currentLang, 'nav.about')}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</a>
+						</li>
+						<li class="mobile-nav-item">
+							<a class="mobile-nav-link" href={getLocalizedPath('/quality/', currentLang)}>
+								<span class="nav-link-text">{t(currentLang, 'nav.quality')}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</a>
+						</li>
+						<li class="mobile-nav-item">
+							<a class="mobile-nav-link" href={getLocalizedPath('/contact/', currentLang)}>
+								<span class="nav-link-text">{t(currentLang, 'nav.contact')}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</nav>
+
+				<!-- Spacer to push footer to bottom -->
+				<div class="mobile-menu-spacer"></div>
+
+				<!-- Footer Section - Search, Language, Account, Cart -->
+				<div class="mobile-menu-footer">
+					<!-- Search -->
+					<div class="mobile-footer-search">
+						<SearchBar client:load lang={currentLang} />
 					</div>
-					<div class="primary-row">
-						<div class="primary-action" aria-label={t(currentLang, 'nav.account')}>
-							<AccountButton client:load lang={currentLang} />
-						</div>
-						<div class="primary-action" aria-label={t(currentLang, 'nav.cart')}>
+
+					<!-- Action Grid -->
+					<div class="mobile-footer-actions">
+						<a href={getLocalizedPath('/account/', currentLang)} class="mobile-action-btn">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+								<circle cx="12" cy="7" r="4"></circle>
+							</svg>
+							<span>{t(currentLang, 'nav.account')}</span>
+						</a>
+						<div class="mobile-action-btn cart-action">
 							<CartIcon client:load lang={currentLang} />
 						</div>
 					</div>
-				</div>
 
-				<!-- Navigation Links -->
-				<ul class="nav-links">
-					<li class="nav-item dropdown">
-						<a class="nav-link" href={getLocalizedPath('/peptides/', currentLang)}>
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<rect x="3" y="3" width="7" height="7"></rect>
-								<rect x="14" y="3" width="7" height="7"></rect>
-								<rect x="14" y="14" width="7" height="7"></rect>
-								<rect x="3" y="14" width="7" height="7"></rect>
-							</svg>
-							<span>{t(currentLang, 'nav.categories')}</span>
-							<svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/', currentLang)}>{t(currentLang, 'nav.allPeptides')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/cognitive/', currentLang)}>{t(currentLang, 'nav.cognitive')}</a></li>
-						</ul>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/blog/', currentLang)}>
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-								<polyline points="14 2 14 8 20 8"></polyline>
-								<line x1="16" y1="13" x2="8" y2="13"></line>
-								<line x1="16" y1="17" x2="8" y2="17"></line>
-							</svg>
-							<span>{t(currentLang, 'nav.blog')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/about/', currentLang)}>
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="12" y1="16" x2="12" y2="12"></line>
-								<line x1="12" y1="8" x2="12.01" y2="8"></line>
-							</svg>
-							<span>{t(currentLang, 'nav.about')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/quality/', currentLang)}>
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-							</svg>
-							<span>{t(currentLang, 'nav.quality')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/contact/', currentLang)}>
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-							</svg>
-							<span>{t(currentLang, 'nav.contact')}</span>
-						</a>
-					</li>
-				</ul>
-
-				<!-- Mobile Menu Footer Actions -->
-				<div class="mobile-menu-footer">
-					<a class="nav-link" href={getLocalizedPath('/shop/', currentLang)}>
-						<span>{t(currentLang, 'nav.shop')}</span>
-					</a>
+					<!-- Language Switcher -->
+					<div class="mobile-footer-lang">
+						<LanguageSwitcher client:load currentLang={currentLang} />
+					</div>
 				</div>
 			</div>
 
@@ -257,6 +258,9 @@ const currentLang = getLangFromUrl(Astro.url);
 		--shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
 		--shadow-md: 0 4px 12px rgba(0,0,0,0.08);
 		--shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+		--safe-area-left: env(safe-area-inset-left, 0px);
+		--safe-area-right: env(safe-area-inset-right, 0px);
+		--safe-area-top: env(safe-area-inset-top, 0px);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
@@ -272,6 +276,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
 		color: white;
 		padding: var(--spacing-sm) 0;
+		padding-top: calc(var(--spacing-sm) + var(--safe-area-top));
 		font-size: 11px;
 		position: fixed;
 		top: 0;
@@ -286,7 +291,8 @@ const currentLang = getLangFromUrl(Astro.url);
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		padding: 0 var(--spacing-md);
+		padding: 0 calc(var(--spacing-md) + var(--safe-area-left)) 0 calc(var(--spacing-md) + var(--safe-area-right));
+		min-height: 24px;
 	}
 
 	.top-bar-left,
@@ -297,6 +303,8 @@ const currentLang = getLangFromUrl(Astro.url);
 	.top-bar-center {
 		font-weight: 600;
 		color: white !important;
+		font-size: clamp(10px, 2.5vw, 11px);
+		line-height: 1.3;
 	}
 
 	.top-bar-center span {
@@ -309,7 +317,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		border-bottom: 1px solid var(--color-border);
 		padding: 0;
 		position: fixed;
-		top: var(--topbar-height-mobile);
+		top: calc(var(--topbar-height-mobile) + var(--safe-area-top));
 		left: 0;
 		right: 0;
 		z-index: 10000;
@@ -324,8 +332,9 @@ const currentLang = getLangFromUrl(Astro.url);
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
-		padding: 0 var(--spacing-md);
+		padding: 0 calc(var(--spacing-md) + var(--safe-area-right)) 0 calc(var(--spacing-md) + var(--safe-area-left));
 		height: 100%;
+		gap: var(--spacing-sm);
 	}
 
 	/* Enterprise mobile header: logo + hamburger only */
@@ -433,8 +442,8 @@ const currentLang = getLangFromUrl(Astro.url);
 
 	.hamburger-line {
 		display: block;
-		width: 22px;
-		height: 2px;
+		width: 24px;
+		height: 2.5px;
 		background: var(--color-text);
 		border-radius: 2px;
 		transition: var(--transition-smooth);
@@ -442,7 +451,7 @@ const currentLang = getLangFromUrl(Astro.url);
 	}
 
 	.mobile-toggle.active .hamburger-line:nth-child(1) {
-		transform: translateY(7px) rotate(45deg);
+		transform: translateY(7.5px) rotate(45deg);
 	}
 
 	.mobile-toggle.active .hamburger-line:nth-child(2) {
@@ -451,24 +460,24 @@ const currentLang = getLangFromUrl(Astro.url);
 	}
 
 	.mobile-toggle.active .hamburger-line:nth-child(3) {
-		transform: translateY(-7px) rotate(-45deg);
+		transform: translateY(-7.5px) rotate(-45deg);
 	}
 
-	/* Mobile Menu - slide-out drawer */
+	/* Mobile Menu - Professional slide-out drawer */
 	.mobile-menu {
 		position: fixed;
 		top: 0;
 		right: 0;
 		bottom: 0;
-		width: min(320px, 85vw);
-		background: white;
+		width: min(340px, 90vw);
+		background: #ffffff;
 		z-index: 10002;
 		display: flex;
 		flex-direction: column;
 		transform: translateX(100%);
 		transition: transform var(--transition-smooth);
 		will-change: transform;
-		box-shadow: var(--shadow-lg);
+		box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 	}
@@ -477,149 +486,114 @@ const currentLang = getLangFromUrl(Astro.url);
 		transform: translate3d(0, 0, 0);
 	}
 
+	/* Mobile Menu Header - Logo + Close */
 	.mobile-menu-header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: var(--spacing-lg) var(--spacing-lg);
+		padding: 20px 24px;
 		border-bottom: 1px solid var(--color-border);
 		flex-shrink: 0;
+		background: #ffffff;
 	}
 
 	.mobile-menu-title {
-		font-size: 18px;
+		font-size: 17px;
 		font-weight: 700;
 		color: var(--color-text);
+		letter-spacing: -0.3px;
 	}
 
 	.mobile-menu-close {
-		width: var(--touch-target);
-		height: var(--touch-target);
+		width: 44px;
+		height: 44px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background: var(--color-surface);
 		border: none;
-		border-radius: var(--radius-md);
+		border-radius: 10px;
 		cursor: pointer;
 		-webkit-tap-highlight-color: transparent;
-		color: var(--color-text);
-	}
-
-	.mobile-menu-close:active {
-		background: var(--color-border);
-	}
-
-	/* Search in mobile menu */
-	.mobile-menu-search {
-		padding: var(--spacing-lg);
-		border-bottom: 1px solid var(--color-border);
-	}
-
-	/* Primary actions area inside menu (cart/account/lang) */
-	.mobile-menu-primary {
-		padding: var(--spacing-lg);
-		border-bottom: 1px solid var(--color-border);
-		display: grid;
-		gap: var(--spacing-md);
-	}
-
-	.mobile-menu-primary .primary-row {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: var(--spacing-md);
-	}
-
-	@media (min-width: 420px) {
-		.mobile-menu-primary .primary-row:last-child {
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	.mobile-menu-primary .primary-action {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		min-height: var(--touch-target);
-		padding: var(--spacing-md);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-md);
-		background: var(--color-surface);
-		width: 100%;
-	}
-
-	/* Make embedded controls fit the tile */
-	.mobile-menu-primary .primary-action :global(button),
-	.mobile-menu-primary .primary-action :global(a) {
-		width: 100%;
-		justify-content: center;
-	}
-
-	.mobile-menu-search :global(input),
-	.mobile-menu-search :global(form) {
-		width: 100%;
-	}
-
-	.mobile-menu-search :global(button) {
-		min-height: var(--touch-target);
-	}
-
-	/* Nav Links inside mobile menu */
-	.nav-links {
-		list-style: none;
-		margin: 0;
-		padding: var(--spacing-md) 0;
-		flex: 1;
-	}
-
-	.nav-item {
-		position: relative;
-	}
-
-	.nav-link {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-md);
-		color: var(--color-text);
-		font-weight: 600;
-		font-size: 16px;
-		padding: var(--spacing-lg) var(--spacing-lg);
-		text-decoration: none;
-		transition: var(--transition-fast);
-		min-height: 56px;
-	}
-
-	.nav-link:hover,
-	.nav-link:active {
-		background: var(--color-surface);
-		color: var(--color-primary);
-	}
-
-	.nav-link svg {
-		flex-shrink: 0;
 		color: var(--color-text-muted);
 		transition: var(--transition-fast);
 	}
 
-	.nav-link:hover svg,
-	.nav-link:active svg {
+	.mobile-menu-close:hover,
+	.mobile-menu-close:active {
+		background: var(--color-border);
+		color: var(--color-text);
+	}
+
+	/* Navigation Section */
+	.mobile-nav-section {
+		padding: 16px 0;
+		flex-shrink: 0;
+	}
+
+	.mobile-nav-links {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.mobile-nav-item {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+	}
+
+	.mobile-nav-item:last-child {
+		border-bottom: none;
+	}
+
+	.mobile-nav-link {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 16px 24px;
+		background: none;
+		border: none;
+		color: var(--color-text);
+		font-size: 15px;
+		font-weight: 600;
+		text-decoration: none;
+		cursor: pointer;
+		transition: var(--transition-fast);
+		min-height: 52px;
+	}
+
+	.mobile-nav-link:hover,
+	.mobile-nav-link:active {
+		background: var(--color-surface);
 		color: var(--color-primary);
 	}
 
-	.nav-link span {
-		flex: 1;
+	.mobile-nav-link svg {
+		color: var(--color-text-muted);
+		flex-shrink: 0;
+		transition: var(--transition-fast);
 	}
 
-	.dropdown-arrow {
+	.mobile-nav-link:hover svg {
+		color: var(--color-primary);
+	}
+
+	.nav-link-text {
+		flex: 1;
+		text-align: left;
+	}
+
+	/* Dropdown Toggle */
+	.mobile-nav-link.dropdown-toggle .dropdown-arrow {
 		transition: transform var(--transition-smooth);
 	}
 
-	.nav-item.dropdown.open .dropdown-arrow {
+	.mobile-nav-item.dropdown.open .dropdown-toggle .dropdown-arrow {
 		transform: rotate(180deg);
 	}
 
-	/* Mobile Dropdown - Accordion */
-	.nav-item .dropdown-menu {
+	/* Dropdown Menu */
+	.mobile-dropdown-menu {
 		display: grid;
 		grid-template-rows: 0fr;
 		list-style: none;
@@ -630,60 +604,141 @@ const currentLang = getLangFromUrl(Astro.url);
 		overflow: hidden;
 	}
 
-	.nav-item .dropdown-menu > * {
+	.mobile-dropdown-menu > li {
 		overflow: hidden;
 	}
 
-	.nav-item.dropdown.open .dropdown-menu {
+	.mobile-nav-item.dropdown.open .mobile-dropdown-menu {
 		grid-template-rows: 1fr;
 	}
 
-	.dropdown-item {
-		display: flex;
-		align-items: center;
-		padding: var(--spacing-md) var(--spacing-lg) var(--spacing-md) 60px;
+	.mobile-dropdown-item {
+		display: block;
+		padding: 14px 24px 14px 40px;
 		color: var(--color-text-muted);
 		text-decoration: none;
-		font-size: 15px;
+		font-size: 14px;
 		font-weight: 500;
 		transition: var(--transition-fast);
-		min-height: 48px;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 	}
 
-	.dropdown-item:hover,
-	.dropdown-item:active {
-		background: rgba(0, 119, 182, 0.08);
+	.mobile-dropdown-item:last-child {
+		border-bottom: none;
+	}
+
+	.mobile-dropdown-item:hover,
+	.mobile-dropdown-item:active {
+		background: rgba(0, 119, 182, 0.06);
 		color: var(--color-primary);
+	}
+
+	/* Spacer to push footer down */
+	.mobile-menu-spacer {
+		flex: 1;
+		min-height: 24px;
 	}
 
 	/* Mobile Menu Footer */
 	.mobile-menu-footer {
-		padding: var(--spacing-lg);
+		padding: 20px 24px;
+		padding-bottom: calc(20px + var(--safe-area-bottom, 0px));
+		background: var(--color-surface);
 		border-top: 1px solid var(--color-border);
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-md);
-		background: var(--color-surface);
+		gap: 16px;
+		flex-shrink: 0;
 	}
 
-	.mobile-menu-action {
+	/* Footer Search */
+	.mobile-footer-search {
+		width: 100%;
+	}
+
+	.mobile-footer-search :global(input),
+	.mobile-footer-search :global(form) {
+		width: 100%;
+	}
+
+	.mobile-footer-search :global(input) {
+		min-height: 48px;
+		border-radius: 12px;
+		font-size: 15px;
+		border: 1px solid var(--color-border);
+		background: #ffffff;
+	}
+
+	/* Footer Actions Grid */
+	.mobile-footer-actions {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+
+	.mobile-action-btn {
 		display: flex;
 		align-items: center;
-		gap: var(--spacing-md);
-		padding: var(--spacing-md);
-		background: white;
-		border-radius: var(--radius-md);
-		border: 1px solid var(--color-border);
-	}
-
-	.action-label-text {
-		font-size: 15px;
-		font-weight: 500;
-		color: var(--color-text);
-	}
-
-	.mobile-lang-switch {
 		justify-content: center;
+		gap: 10px;
+		padding: 14px 16px;
+		background: #ffffff;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		color: var(--color-text);
+		font-size: 14px;
+		font-weight: 600;
+		text-decoration: none;
+		cursor: pointer;
+		transition: var(--transition-fast);
+		min-height: 52px;
+	}
+
+	.mobile-action-btn:hover,
+	.mobile-action-btn:active {
+		border-color: var(--color-primary);
+		color: var(--color-primary);
+		background: rgba(0, 119, 182, 0.04);
+	}
+
+	.mobile-action-btn svg {
+		color: var(--color-text-muted);
+		flex-shrink: 0;
+	}
+
+	.mobile-action-btn:hover svg {
+		color: var(--color-primary);
+	}
+
+	/* Cart action special styling */
+	.cart-action {
+		padding: 0;
+	}
+
+	.cart-action :global(button) {
+		width: 100%;
+		height: 100%;
+		min-height: 52px;
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	/* Footer Language */
+	.mobile-footer-lang {
+		display: flex;
+		justify-content: center;
+		padding-top: 4px;
+	}
+
+	.mobile-footer-lang :global(button),
+	.mobile-footer-lang :global(select) {
+		min-height: 44px;
+		border-radius: 10px;
 	}
 
 	/* Mobile Menu Overlay */
@@ -968,7 +1023,7 @@ const currentLang = getLangFromUrl(Astro.url);
 		overlay?.addEventListener('click', closeMenu);
 
 		// Close menu when clicking nav links
-		mobileMenu?.querySelectorAll('a:not(.dropdown > .nav-link)').forEach(link => {
+		mobileMenu?.querySelectorAll('a.mobile-nav-link, a.mobile-dropdown-item').forEach(link => {
 			link.addEventListener('click', function() {
 				if (window.innerWidth < 992) {
 					closeMenu();
@@ -976,7 +1031,24 @@ const currentLang = getLangFromUrl(Astro.url);
 			});
 		});
 
-		// Mobile dropdown accordion
+		// Mobile dropdown accordion - handle both old and new selectors
+		const mobileDropdowns = document.querySelectorAll('.mobile-nav-item.dropdown');
+		mobileDropdowns.forEach(dropdown => {
+			const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+			if (toggleBtn) {
+				toggleBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					mobileDropdowns.forEach(d => {
+						if (d !== dropdown) d.classList.remove('open');
+					});
+					dropdown.classList.toggle('open');
+					const isOpen = dropdown.classList.contains('open');
+					toggleBtn.setAttribute('aria-expanded', String(isOpen));
+				});
+			}
+		});
+
+		// Legacy dropdown support
 		dropdowns.forEach(dropdown => {
 			const link = dropdown.querySelector('.nav-link');
 			if (link) {

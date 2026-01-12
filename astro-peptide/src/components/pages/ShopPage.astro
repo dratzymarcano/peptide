@@ -12,10 +12,12 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes en/ lang prefix for display
+const cleanSlug = (slug: string) => slug.replace(/^en\//, '');
 
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+// English products are in the en/ folder
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
 
 const title = t(lang, 'shopPage.title');
 const subtitle = t(lang, 'shopPage.subtitle');

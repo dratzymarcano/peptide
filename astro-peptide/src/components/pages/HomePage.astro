@@ -121,24 +121,32 @@ const organizationSchema = {
       overflow-x: hidden;
     }
 
-    /* Full-width sections */
+    /* Full-width sections - Avoid 100vw to prevent horizontal scrollbar */
     .full-width-section {
-      width: 100vw;
+      width: 100%;
       position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
+      box-sizing: border-box;
     }
 
     .section-padding {
-      padding: 80px 60px;
+      padding: 80px 60px !important;
     }
 
     @media (max-width: 768px) {
       .section-padding {
-        /* Compensate for any negative margins in rows and ensure visible safe zone */
-        padding: 48px 32px;
+        padding: 48px 28px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-padding {
+        padding: 40px 24px !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .section-padding {
+        padding: 32px 20px !important;
       }
     }
 
@@ -146,6 +154,13 @@ const organizationSchema = {
       max-width: 1400px;
       margin: 0 auto;
       width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Prevent horizontal overflow globally */
+    img, svg, video, iframe, embed, object {
+      max-width: 100%;
+      height: auto;
     }
 
     /* Shopcart Hero Banner */
@@ -175,43 +190,54 @@ const organizationSchema = {
       display: inline-block;
       background: var(--shop-primary);
       color: white;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: clamp(11px, 3vw, 13px);
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      max-width: 100%;
+      word-break: break-word;
+      box-sizing: border-box;
+      line-height: 1.4;
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: clamp(24px, 7.5vw, 56px);
       font-weight: 800;
       color: var(--shop-secondary);
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 24px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+      letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
-      font-size: 1.125rem;
+      font-size: clamp(15px, 4vw, 18px);
       color: var(--shop-text-muted);
-      max-width: 500px;
+      max-width: min(520px, 100%);
       margin-bottom: 32px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .btn-shop-primary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: var(--shop-primary);
       color: white;
-      padding: 14px 32px;
-      border-radius: 10px;
+      padding: 16px 32px;
+      border-radius: 12px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
       text-decoration: none;
       transition: all 0.3s ease;
       border: none;
       cursor: pointer;
+      min-height: 48px;
+      box-sizing: border-box;
     }
 
     .btn-shop-primary:hover {
@@ -224,17 +250,20 @@ const organizationSchema = {
     .btn-shop-outline {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: transparent;
       color: var(--shop-secondary);
-      padding: 14px 32px;
-      border-radius: 10px;
+      padding: 16px 32px;
+      border-radius: 12px;
       font-weight: 600;
-      font-size: 15px;
+      font-size: 16px;
       text-decoration: none;
       border: 2px solid var(--shop-border);
       transition: all 0.3s ease;
       cursor: pointer;
+      min-height: 48px;
+      box-sizing: border-box;
     }
 
     .btn-shop-outline:hover {
@@ -412,6 +441,22 @@ const organizationSchema = {
       background: var(--shop-surface);
       border-top: 1px solid var(--shop-border);
       border-bottom: 1px solid var(--shop-border);
+    }
+
+    .stats-container {
+      padding: 40px 60px;
+    }
+
+    @media (max-width: 768px) {
+      .stats-container {
+        padding: 32px 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-container {
+        padding: 24px 24px;
+      }
     }
 
     .stat-item {
@@ -772,52 +817,59 @@ const organizationSchema = {
 
     /* ===== ENTERPRISE MOBILE-FIRST RESPONSIVE STYLES ===== */
     /* Based on 8px grid system with generous whitespace */
+    /* Uses CSS tokens from mobile-fixes.css for consistency */
     
-    :root {
-      --mobile-padding-x: 20px;
-      --mobile-padding-section: 48px;
-      --mobile-gap-sm: 12px;
-      --mobile-gap-md: 20px;
-      --mobile-gap-lg: 32px;
-      --touch-target: 48px;
+    /* Very small phones (320px) */
+    @media (max-width: 360px) {
+      .section-padding {
+        padding: 36px 16px !important;
+      }
     }
     
     /* Extra Small Mobile (up to 575px) */
     @media (max-width: 575px) {
-      .section-padding {
-        padding: var(--mobile-padding-section) var(--mobile-padding-x);
-      }
+      /* Section padding uses mobile-fixes.css tokens */
       
-      .inner-container {
-        padding-left: 0;
-        padding-right: 0;
-      }
-      
-      /* Hero section - Generous spacing */
+      /* Hero section - Generous spacing, no overflow */
       .hero-banner .section-padding {
-        padding-top: 40px;
-        padding-bottom: 56px;
+        padding-top: 32px;
+        padding-bottom: 48px;
+      }
+
+      .hero-content {
+        max-width: 100%;
       }
       
       .hero-badge {
-        font-size: 12px;
-        padding: 8px 16px;
-        margin-bottom: 16px;
+        font-size: 11px;
+        padding: 8px 14px;
+        margin-bottom: 20px;
         border-radius: 24px;
+        max-width: calc(100% - 8px);
+        white-space: normal;
+        line-height: 1.4;
       }
       
       .hero-title {
-        font-size: 2rem;
-        line-height: 1.2;
-        letter-spacing: -0.5px;
-        margin-bottom: var(--mobile-gap-md);
+        font-size: clamp(24px, 7.5vw, 40px) !important;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* Prevent title line break issues */
+      .hero-title br {
+        display: none;
       }
       
       .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: var(--mobile-gap-lg);
-        line-height: 1.7;
+        font-size: 15px;
+        margin-bottom: 32px;
+        line-height: 1.65;
         color: var(--shop-text-muted);
+        max-width: 100%;
       }
       
       /* Buttons - Full width with proper touch targets */
@@ -827,24 +879,53 @@ const organizationSchema = {
         justify-content: center;
         padding: 16px 24px;
         font-size: 16px;
-        min-height: var(--touch-target);
-        border-radius: 12px;
-        margin-bottom: var(--mobile-gap-sm);
+        min-height: 48px;
+        border-radius: 14px;
+        margin-bottom: 0;
+        text-align: center;
       }
-      
+
+      /* CTA container - stack vertically with consistent gap */
+      .hero-content .d-flex.flex-wrap.gap-3,
       .d-flex.flex-wrap.gap-3 {
-        gap: var(--mobile-gap-sm) !important;
+        gap: 12px !important;
         flex-direction: column;
+        align-items: stretch;
+        width: 100%;
       }
       
       .btn-shop-primary:active,
       .btn-shop-outline:active {
         transform: scale(0.98);
+        opacity: 0.92;
+      }
+
+      /* Ensure focus states are visible for accessibility */
+      .btn-shop-primary:focus-visible,
+      .btn-shop-outline:focus-visible {
+        outline: 3px solid rgba(0, 119, 182, 0.4);
+        outline-offset: 2px;
+      }
+
+      /* Fix Bootstrap row negative margins causing overflow */
+      .row {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .row > [class*="col-"] {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+      /* Hero row fix */
+      .hero-banner .row {
+        margin: 0;
       }
       
       /* Section headers - Clear hierarchy */
       .section-header {
-        margin-bottom: var(--mobile-gap-lg);
+        margin-bottom: 32px;
         text-align: center;
       }
       
@@ -856,14 +937,14 @@ const organizationSchema = {
       }
       
       .section-title {
-        font-size: 1.625rem;
-        line-height: 1.3;
-        letter-spacing: -0.3px;
-        margin-bottom: var(--mobile-gap-sm);
+        font-size: clamp(20px, 5.5vw, 28px);
+        line-height: 1.25;
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
       }
       
       .section-desc {
-        font-size: 0.95rem;
+        font-size: 15px;
         line-height: 1.65;
         max-width: 100%;
       }
@@ -874,7 +955,7 @@ const organizationSchema = {
       }
       
       .stats-bar .inner-container {
-        padding: var(--mobile-gap-lg) var(--mobile-padding-x) !important;
+        padding: 32px var(--m-pad-x, 24px) !important;
       }
       
       .stats-bar .row {
@@ -883,7 +964,7 @@ const organizationSchema = {
       }
       
       .stats-bar .row > [class*="col-"] {
-        padding: var(--mobile-gap-sm);
+        padding: 6px;
       }
       
       .stat-item {
@@ -956,20 +1037,17 @@ const organizationSchema = {
         display: none;
       }
       
-      /* Filter buttons - Horizontal scroll with proper spacing */
+      /* Filter buttons - Wrap to show all on mobile */
       #product-filters {
         display: flex;
-        flex-wrap: nowrap !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        flex-wrap: wrap !important;
+        overflow-x: visible;
         padding-bottom: var(--mobile-gap-sm);
         margin-bottom: var(--mobile-gap-lg) !important;
-        margin-left: calc(-1 * var(--mobile-padding-x));
-        margin-right: calc(-1 * var(--mobile-padding-x));
-        padding-left: var(--mobile-padding-x);
-        padding-right: var(--mobile-padding-x);
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
         gap: 8px;
       }
       
@@ -979,11 +1057,11 @@ const organizationSchema = {
       
       #product-filters button {
         flex-shrink: 0;
-        padding: 12px 20px !important;
-        font-size: 14px !important;
+        padding: 10px 16px !important;
+        font-size: 13px !important;
         white-space: nowrap;
-        border-radius: 12px !important;
-        min-height: var(--touch-target);
+        border-radius: 10px !important;
+        min-height: 40px;
         font-weight: 500;
       }
       
@@ -994,8 +1072,8 @@ const organizationSchema = {
       
       .about-stat {
         gap: 16px;
-        margin-bottom: var(--mobile-gap-md);
-        padding: var(--mobile-gap-md);
+        margin-bottom: 20px;
+        padding: 20px;
         background: var(--shop-surface);
         border-radius: 16px;
         border: 1px solid var(--shop-border);
@@ -1022,7 +1100,7 @@ const organizationSchema = {
       }
       
       .blog-card .p-4 {
-        padding: var(--mobile-gap-md) !important;
+        padding: 20px !important;
       }
       
       .blog-card h3 {
@@ -1039,7 +1117,7 @@ const organizationSchema = {
       /* Quality features - Clear visual separation */
       .quality-feature {
         gap: 16px;
-        padding: var(--mobile-gap-md) 0;
+        padding: 20px 0;
         border-bottom: 1px solid var(--shop-border);
       }
       
@@ -1049,30 +1127,30 @@ const organizationSchema = {
       
       /* Testimonials - Cards with proper padding */
       .testimonial-card {
-        padding: var(--mobile-gap-lg) !important;
+        padding: 32px !important;
         border-radius: 16px;
-        margin-bottom: var(--mobile-gap-sm);
+        margin-bottom: 12px;
       }
       
       .testimonial-card p {
         font-size: 0.95rem !important;
         line-height: 1.7 !important;
-        margin-bottom: var(--mobile-gap-md) !important;
+        margin-bottom: 20px !important;
       }
       
       .star-rating {
         font-size: 16px;
-        margin-bottom: var(--mobile-gap-md);
+        margin-bottom: 20px;
       }
       
       /* FAQ - Generous spacing */
       .faq-item {
-        margin-bottom: var(--mobile-gap-sm);
+        margin-bottom: 12px;
         border-radius: 16px;
       }
       
       .faq-question {
-        padding: var(--mobile-gap-md) var(--mobile-gap-md);
+        padding: 20px;
         font-size: 1rem;
         min-height: 60px;
         display: flex;
@@ -1088,57 +1166,57 @@ const organizationSchema = {
       .faq-answer {
         font-size: 0.95rem;
         line-height: 1.7;
-        padding: 0 var(--mobile-gap-md) !important;
+        padding: 0 20px !important;
       }
       
       .faq-item.active .faq-answer {
-        padding-bottom: var(--mobile-gap-md) !important;
+        padding-bottom: 20px !important;
       }
       
       /* CTA section - Prominent with proper spacing */
       .cta-box {
-        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+        padding: 48px 24px;
       }
       
       .cta-title {
-        font-size: 1.625rem !important;
-        line-height: 1.3;
-        margin-bottom: var(--mobile-gap-md) !important;
+        font-size: clamp(20px, 5.5vw, 28px) !important;
+        line-height: 1.25;
+        margin-bottom: 20px !important;
       }
       
       .cta-subtitle {
         font-size: 1rem !important;
         line-height: 1.65;
-        margin-bottom: var(--mobile-gap-lg) !important;
+        margin-bottom: 32px !important;
       }
       
       .cta-form {
-        gap: var(--mobile-gap-sm);
+        gap: 12px;
       }
       
       .cta-input {
-        padding: 16px var(--mobile-gap-md);
-        border-radius: 12px;
+        padding: 16px 20px;
+        border-radius: 14px;
         font-size: 16px;
       }
       
       .cta-button {
         width: 100%;
         padding: 16px 24px;
-        border-radius: 12px;
-        min-height: var(--touch-target);
+        border-radius: 14px;
+        min-height: 48px;
       }
       
       .cta-privacy {
-        margin-top: var(--mobile-gap-md);
+        margin-top: 20px;
         font-size: 13px;
       }
       
       /* Feature cards */
       .feature-card {
-        padding: var(--mobile-gap-md);
+        padding: 20px;
         border-radius: 16px;
-        margin-bottom: var(--mobile-gap-sm);
+        margin-bottom: 12px;
       }
       
       .feature-card h3 {
@@ -1153,34 +1231,29 @@ const organizationSchema = {
       
       /* Row gutters on mobile */
       .row.g-4 {
-        --bs-gutter-y: var(--mobile-gap-md);
-        --bs-gutter-x: var(--mobile-gap-md);
+        --bs-gutter-y: 20px;
+        --bs-gutter-x: 20px;
       }
       
       .row.g-5 {
-        --bs-gutter-y: var(--mobile-gap-lg);
-        --bs-gutter-x: var(--mobile-gap-lg);
+        --bs-gutter-y: 32px;
+        --bs-gutter-x: 32px;
       }
     }
     
     /* Small Mobile (576px - 767px) */
     @media (min-width: 576px) and (max-width: 767px) {
-      :root {
-        --mobile-padding-x: 24px;
-        --mobile-padding-section: 56px;
-      }
-      
       .section-padding {
-        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+        padding: 56px 28px !important;
       }
       
       .hero-title {
-        font-size: 2.25rem;
+        font-size: clamp(28px, 6vw, 36px);
       }
       
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--mobile-gap-md);
+        gap: 20px;
       }
       
       .btn-shop-primary,
@@ -1189,7 +1262,7 @@ const organizationSchema = {
       }
       
       .products-grid {
-        gap: var(--mobile-gap-md);
+        gap: 20px;
       }
       
       .testimonial-card {
@@ -1199,17 +1272,12 @@ const organizationSchema = {
     
     /* Tablet (768px - 991px) */
     @media (min-width: 768px) and (max-width: 991px) {
-      :root {
-        --mobile-padding-x: 40px;
-        --mobile-padding-section: 64px;
-      }
-      
       .section-padding {
-        padding: var(--mobile-padding-section) var(--mobile-padding-x);
+        padding: 64px 40px;
       }
       
       .hero-title {
-        font-size: 2.5rem;
+        font-size: clamp(32px, 5vw, 40px);
       }
       
       .section-title {
@@ -1336,7 +1404,7 @@ const organizationSchema = {
 
   <!-- SECTION 2: STATS BAR -->
   <section class="full-width-section stats-bar">
-    <div class="inner-container" style="padding: 40px 60px;">
+    <div class="inner-container stats-container">
       <div class="row g-4">
         <div class="col-6 col-md-3">
           <div class="stat-item">

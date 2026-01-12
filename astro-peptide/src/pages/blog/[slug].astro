@@ -2,8 +2,11 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getLangFromUrl, t, getLocalizedPath } from '../../i18n/translations';
 
 export const prerender = true;
+
+const currentLang = getLangFromUrl(Astro.url);
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -135,13 +138,13 @@ const articleSchema = {
             <!-- Related Posts -->
             {relatedPosts.length > 0 && (
               <div class="sidebar-widget">
-                <h4>Related Articles</h4>
+                <h4>{t(currentLang, 'blogPage.relatedArticles')}</h4>
                 <ul class="related-posts">
                   {relatedPosts.map(related => (
                     <li>
-                      <a href={`/blog/${related.slug}/`}>
+                      <a href={getLocalizedPath(`/blog/${related.slug}/`, currentLang)}>
                         <span class="related-title">{related.data.title}</span>
-                        <span class="related-date">{new Date(related.data.publishDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</span>
+                        <span class="related-date">{new Date(related.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'short' })}</span>
                       </a>
                     </li>
                   ))}
@@ -151,20 +154,20 @@ const articleSchema = {
 
             <!-- Back to Blog -->
             <div class="sidebar-widget">
-              <a href="/blog/" class="btn btn-outline-primary btn-block w-100">
+              <a href={getLocalizedPath('/blog/', currentLang)} class="btn btn-outline-primary btn-block w-100">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
                   <line x1="19" y1="12" x2="5" y2="12"></line>
                   <polyline points="12 19 5 12 12 5"></polyline>
                 </svg>
-                Back to Blog
+                {t(currentLang, 'common.backTo')} {t(currentLang, 'nav.blog')}
               </a>
             </div>
 
             <!-- CTA -->
             <div class="sidebar-widget cta-widget">
-              <h4>Research Peptides</h4>
-              <p>Browse our selection of high-purity research peptides with guaranteed ≥99% purity.</p>
-              <a href="/peptides/" class="btn btn-primary btn-block w-100">Shop Peptides</a>
+              <h4>{t(currentLang, 'nav.peptides')}</h4>
+              <p>{t(currentLang, 'blogPage.shopPeptidesDesc')}</p>
+              <a href={getLocalizedPath('/peptides/', currentLang)} class="btn btn-primary btn-block w-100">{t(currentLang, 'blogPage.shopPeptides')}</a>
             </div>
           </div>
         </div>

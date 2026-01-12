@@ -29,7 +29,10 @@ export const defaultLang: SupportedLanguage = 'en';
 export const productSlugTranslations: Record<SupportedLanguage, Record<string, string>> = {
   en: {},
   nl: {
+    'buy-5-amino-1mq': '5-amino-1mq-kopen',
+    'buy-aod-9604': 'aod-9604-kopen',
     'buy-bacteriostatic-water': 'bacteriostatic-water-kopen',
+    'buy-bpc-157': 'bpc-157-kopen',
     'buy-cjc-1295-no-dac': 'cjc-1295-no-dac-kopen',
     'buy-epitalon': 'epitalon-kopen',
     'buy-cagrilintide': 'cagrilintide-kopen',
@@ -51,7 +54,10 @@ export const productSlugTranslations: Record<SupportedLanguage, Record<string, s
     'buy-tirzepatide': 'tirzepatide-kopen',
   },
   de: {
+    'buy-5-amino-1mq': '5-amino-1mq-kaufen',
+    'buy-aod-9604': 'aod-9604-kaufen',
     'buy-bacteriostatic-water': 'bacteriostatic-water-kaufen',
+    'buy-bpc-157': 'bpc-157-kaufen',
     'buy-cjc-1295-no-dac': 'cjc-1295-no-dac-kaufen',
     'buy-epitalon': 'epitalon-kaufen',
     'buy-cagrilintide': 'cagrilintide-kaufen',
@@ -73,7 +79,10 @@ export const productSlugTranslations: Record<SupportedLanguage, Record<string, s
     'buy-tirzepatide': 'tirzepatide-kaufen',
   },
   fr: {
+    'buy-5-amino-1mq': 'acheter-5-amino-1mq',
+    'buy-aod-9604': 'acheter-aod-9604',
     'buy-bacteriostatic-water': 'acheter-de-l-eau-bacteriostatique',
+    'buy-bpc-157': 'acheter-bpc-157',
     'buy-cjc-1295-no-dac': 'acheter-cjc-1295-no-dac',
     'buy-epitalon': 'acheter-epitalon',
     'buy-cagrilintide': 'acheter-cagrilintide',
@@ -95,7 +104,10 @@ export const productSlugTranslations: Record<SupportedLanguage, Record<string, s
     'buy-tirzepatide': 'acheter-tirzepatide',
   },
   es: {
+    'buy-5-amino-1mq': '5-amino-1mq-comprar',
+    'buy-aod-9604': 'aod-9604-comprar',
     'buy-bacteriostatic-water': 'agua-bacteriostatica-comprar',
+    'buy-bpc-157': 'bpc-157-comprar',
     'buy-cjc-1295-no-dac': 'cjc-1295-no-dac-comprar',
     'buy-epitalon': 'epitalon-comprar',
     'buy-cagrilintide': 'cagrilintide-comprar',
@@ -117,7 +129,10 @@ export const productSlugTranslations: Record<SupportedLanguage, Record<string, s
     'buy-tirzepatide': 'tirzepatide-comprar',
   },
   it: {
+    'buy-5-amino-1mq': 'acquista-5-amino-1mq',
+    'buy-aod-9604': 'acquista-aod-9604',
     'buy-bacteriostatic-water': 'acquisto-acqua-batteriostatica',
+    'buy-bpc-157': 'acquista-bpc-157',
     'buy-cjc-1295-no-dac': 'acquista-cjc-1295-no-dac',
     'buy-epitalon': 'acquista-epitalon',
     'buy-cagrilintide': 'acquista-cagrilintide',
@@ -161,6 +176,7 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
     'shop': 'winkel',
     'cart': 'winkelwagen',
     'checkout': 'afrekenen',
+    'sitemap': 'sitemap',
   },
   de: {
     'quality': 'qualitaet',
@@ -180,6 +196,7 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
     'shop': 'shop',
     'cart': 'warenkorb',
     'checkout': 'kasse',
+    'sitemap': 'sitemap',
   },
   fr: {
     'quality': 'qualite',
@@ -199,6 +216,7 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
     'shop': 'boutique',
     'cart': 'panier',
     'checkout': 'paiement',
+    'sitemap': 'plan-du-site',
   },
   es: {
     'quality': 'calidad',
@@ -218,6 +236,7 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
     'shop': 'tienda',
     'cart': 'carrito',
     'checkout': 'pago',
+    'sitemap': 'mapa-del-sitio',
   },
   it: {
     'quality': 'qualita',
@@ -237,6 +256,7 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
     'shop': 'negozio',
     'cart': 'carrello',
     'checkout': 'cassa',
+    'sitemap': 'mappa-del-sito',
   },
 };
 
@@ -379,11 +399,26 @@ interface Translations {
     recentPosts: string;
     searchPosts: string;
     noPosts: string;
+    featuredArticles: string;
+    latestArticles: string;
+    comingSoon: string;
+    comingSoonDesc: string;
+    aboutBlog: string;
+    aboutBlogDesc: string;
+    stayUpdated: string;
+    stayUpdatedDesc: string;
+    subscribe: string;
+    emailPlaceholder: string;
+    relatedArticles: string;
+    shopPeptides: string;
+    shopPeptidesDesc: string;
   };
   learnPage: {
     title: string;
     description: string;
     whatArePeptides: string;
+    browsePeptides: string;
+    understandingPeptides: string;
   };
   bundlesPage: {
     title: string;
@@ -394,6 +429,48 @@ interface Translations {
     subtitle: string;
     description: string;
     applyNow: string;
+    getStarted: string;
+  };
+  accountPage: {
+    title: string;
+    description: string;
+    dashboard: string;
+    totalOrders: string;
+    inProgress: string;
+    recentOrders: string;
+    myOrders: string;
+    savedAddresses: string;
+    addressesSavedDuringCheckout: string;
+    accountSettings: string;
+    profileInfo: string;
+    firstName: string;
+    lastName: string;
+    memberSince: string;
+    dangerZone: string;
+    overview: string;
+    orders: string;
+    addresses: string;
+    settings: string;
+    logout: string;
+    googleAccount: string;
+    facebookAccount: string;
+    noOrders: string;
+    noOrdersDesc: string;
+    shopNow: string;
+    noAddresses: string;
+    noAddressesDesc: string;
+    editProfile: string;
+    saveChanges: string;
+    cancel: string;
+    phone: string;
+    deleteAccount: string;
+    deleteAccountDesc: string;
+    redirecting: string;
+    completed: string;
+    viewAll: string;
+    welcomeBack: string;
+    dashboardDesc: string;
+    phoneOptional: string;
   };
   checkout: {
     steps: {
@@ -460,6 +537,14 @@ interface Translations {
     categories: {
       title: string;
       subtitle: string;
+      desc: {
+        weightLoss: string;
+        muscleRecovery: string;
+        cognitive: string;
+        antiAging: string;
+        tanning: string;
+        growthHormone: string;
+      };
     };
     bestSellers: {
       title: string;
@@ -610,6 +695,7 @@ interface Translations {
     privacyPolicy: string;
     disclaimer: string;
     coaPolicy: string;
+    sitemap: string;
     emailLabel: string;
     hoursLabel: string;
     hoursValue: string;
@@ -623,6 +709,7 @@ interface Translations {
     loading: string;
     error: string;
     success: string;
+    skipToMainContent: string;
     free: string;
     searchLabel: string;
     searching: string;
@@ -636,6 +723,12 @@ interface Translations {
     myOrders: string;
     settings: string;
     signOut: string;
+    backTo: string;
+    home: string;
+    name: string;
+    email: string;
+    phone: string;
+    notSet: string;
   };
   legalPages: {
     lastUpdated: string;
@@ -831,11 +924,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Recent Posts',
       searchPosts: 'Search posts...',
       noPosts: 'No posts found.',
+      featuredArticles: 'Featured Articles',
+      latestArticles: 'Latest Articles',
+      comingSoon: 'Coming Soon',
+      comingSoonDesc: 'We\'re working on exciting new content. Check back soon for research insights and guides.',
+      aboutBlog: 'About Our Blog',
+      aboutBlogDesc: 'Our research blog provides educational content for laboratory professionals and researchers. From peptide handling protocols to the latest scientific developments, we share expert insights to support your research.',
+      stayUpdated: 'Stay Updated',
+      stayUpdatedDesc: 'Get the latest research insights delivered to your inbox.',
+      subscribe: 'Subscribe',
+      emailPlaceholder: 'Your email address',
+      relatedArticles: 'Related Articles',
+      shopPeptides: 'Shop Peptides',
+      shopPeptidesDesc: 'Browse our selection of high-purity research peptides with guaranteed ≥99% purity.',
     },
     learnPage: {
       title: 'Learn About Peptides',
       description: 'Educational resources about peptides and peptide research.',
       whatArePeptides: 'What Are Peptides?',
+      browsePeptides: 'Browse Peptides',
+      understandingPeptides: 'Understanding Peptides',
     },
     bundlesPage: {
       title: 'Peptide Bundles',
@@ -846,6 +954,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Bulk Research Peptides for Laboratories',
       description: 'Wholesale research peptides for laboratories and institutions. Bulk pricing, dedicated support, and flexible payment terms.',
       applyNow: 'Apply for Wholesale Account',
+      getStarted: 'Get Started',
+    },
+    accountPage: {
+      title: 'My Account',
+      description: 'Manage your Peptide Shop account. View orders, track shipments, and update your information.',
+      dashboard: 'Account Dashboard',
+      totalOrders: 'Total Orders',
+      inProgress: 'In Progress',
+      recentOrders: 'Recent Orders',
+      myOrders: 'My Orders',
+      savedAddresses: 'Saved Addresses',
+      addressesSavedDuringCheckout: 'Addresses will be saved during checkout.',
+      accountSettings: 'Account Settings',
+      profileInfo: 'Profile Information',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      memberSince: 'Member Since',
+      dangerZone: 'Danger Zone',
+      overview: 'Overview',
+      orders: 'My Orders',
+      addresses: 'Addresses',
+      settings: 'Settings',
+      logout: 'Logout',
+      googleAccount: 'Google Account',
+      facebookAccount: 'Facebook Account',
+      noOrders: 'No orders yet',
+      noOrdersDesc: 'When you make a purchase, your orders will appear here.',
+      shopNow: 'Shop Now',
+      noAddresses: 'No saved addresses',
+      noAddressesDesc: 'Your shipping addresses will appear here after your first order.',
+      editProfile: 'Edit Profile',
+      saveChanges: 'Save Changes',
+      cancel: 'Cancel',
+      phone: 'Phone',
+      deleteAccount: 'Delete Account',
+      deleteAccountDesc: 'Once you delete your account, there is no going back. Please be certain.',
+      redirecting: 'Redirecting to login...',
+      completed: 'Completed',
+      viewAll: 'View All',
+      welcomeBack: 'Welcome back',
+      dashboardDesc: 'Manage your orders, addresses, and account settings from your dashboard.',
+      phoneOptional: 'Phone (Optional)',
     },
     checkout: {
       steps: {
@@ -897,7 +1047,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       noReviews: 'No reviews yet',
     },
     home: {
-      heroBadge: 'European Research Peptide Supplier',
+      heroBadge: 'UK Research Peptide Supplier',
       heroTitle: 'Premium',
       heroTitleHighlight: 'Research Peptides',
       heroSubtitle: 'High-purity, research-grade peptides with batch-tested COAs and fast dispatch.',
@@ -912,6 +1062,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Peptide Categories',
         subtitle: 'Browse peptides by research focus',
+        desc: {
+          weightLoss: 'Research peptides for metabolic studies',
+          muscleRecovery: 'Peptides for tissue repair research',
+          cognitive: 'Compounds for neurological studies',
+          antiAging: 'Peptides for longevity research',
+          tanning: 'Melanocyte-stimulating peptides',
+          growthHormone: 'Growth hormone secretagogues',
+        },
       },
       bestSellers: {
         title: 'Best Sellers',
@@ -1061,6 +1219,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Privacy Policy',
       disclaimer: 'Disclaimer',
       coaPolicy: 'COA Policy',
+      sitemap: 'Sitemap',
       emailLabel: 'Email',
       hoursLabel: 'Hours',
       hoursValue: 'Mon - Fri: 9AM - 5PM',
@@ -1075,6 +1234,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Loading...',
       error: 'An error occurred',
       success: 'Success!',
+      skipToMainContent: 'Skip to main content',
       free: 'Free',
       searchLabel: 'Search',
       searching: 'Searching...',
@@ -1088,6 +1248,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'My Orders',
       settings: 'Settings',
       signOut: 'Sign Out',
+      backTo: 'Back to',
+      home: 'Home',
+      name: 'Name',
+      email: 'Email',
+      phone: 'Phone',
+      notSet: 'Not set',
     },
     legalPages: {
       lastUpdated: 'Last updated',
@@ -1281,11 +1447,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Recente berichten',
       searchPosts: 'Zoek berichten...',
       noPosts: 'Geen berichten gevonden.',
+      featuredArticles: 'Uitgelichte artikelen',
+      latestArticles: 'Laatste artikelen',
+      comingSoon: 'Binnenkort beschikbaar',
+      comingSoonDesc: 'We werken aan spannende nieuwe content. Kom binnenkort terug voor onderzoeksinzichten en gidsen.',
+      aboutBlog: 'Over onze blog',
+      aboutBlogDesc: 'Onze onderzoeksblog biedt educatieve inhoud voor laboratoriummedewerkers en onderzoekers. Van peptide-hanteringsprotocollen tot de nieuwste wetenschappelijke ontwikkelingen, we delen expertinzichten om uw onderzoek te ondersteunen.',
+      stayUpdated: 'Blijf op de hoogte',
+      stayUpdatedDesc: 'Ontvang de nieuwste onderzoeksinzichten in uw inbox.',
+      subscribe: 'Abonneren',
+      emailPlaceholder: 'Uw e-mailadres',
+      relatedArticles: 'Gerelateerde artikelen',
+      shopPeptides: 'Shop Peptiden',
+      shopPeptidesDesc: 'Bekijk onze selectie van hoogzuivere onderzoekspeptiden met gegarandeerd ≥99% zuiverheid.',
     },
     learnPage: {
       title: 'Leer over peptiden',
       description: 'Educatieve bronnen over peptiden en peptideonderzoek.',
       whatArePeptides: 'Wat zijn peptiden?',
+      browsePeptides: 'Blader door peptiden',
+      understandingPeptides: 'Peptiden begrijpen',
     },
     bundlesPage: {
       title: 'Peptidebundels',
@@ -1296,6 +1477,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Bulk onderzoekspeptiden voor laboratoria',
       description: 'Groothandel onderzoekspeptiden voor laboratoria en instellingen. Bulkprijzen, toegewijde ondersteuning en flexibele betalingsvoorwaarden.',
       applyNow: 'Aanvragen voor groothandelsaccount',
+      getStarted: 'Aan de slag',
+    },
+    accountPage: {
+      title: 'Mijn account',
+      description: 'Beheer uw Peptide Shop-account. Bekijk bestellingen, volg zendingen en werk uw gegevens bij.',
+      dashboard: 'Accountdashboard',
+      totalOrders: 'Totaal bestellingen',
+      inProgress: 'In behandeling',
+      recentOrders: 'Recente bestellingen',
+      myOrders: 'Mijn bestellingen',
+      savedAddresses: 'Opgeslagen adressen',
+      addressesSavedDuringCheckout: 'Adressen worden opgeslagen tijdens het afrekenen.',
+      accountSettings: 'Accountinstellingen',
+      profileInfo: 'Profielinformatie',
+      firstName: 'Voornaam',
+      lastName: 'Achternaam',
+      memberSince: 'Lid sinds',
+      dangerZone: 'Gevarenzone',
+      overview: 'Overzicht',
+      orders: 'Mijn Bestellingen',
+      addresses: 'Adressen',
+      settings: 'Instellingen',
+      logout: 'Uitloggen',
+      googleAccount: 'Google Account',
+      facebookAccount: 'Facebook Account',
+      noOrders: 'Nog geen bestellingen',
+      noOrdersDesc: 'Wanneer u een aankoop doet, verschijnen uw bestellingen hier.',
+      shopNow: 'Nu Winkelen',
+      noAddresses: 'Geen opgeslagen adressen',
+      noAddressesDesc: 'Uw verzendadressen verschijnen hier na uw eerste bestelling.',
+      editProfile: 'Profiel Bewerken',
+      saveChanges: 'Wijzigingen Opslaan',
+      cancel: 'Annuleren',
+      phone: 'Telefoon',
+      deleteAccount: 'Account Verwijderen',
+      deleteAccountDesc: 'Zodra u uw account verwijdert, is er geen weg terug. Wees alstublieft zeker.',
+      redirecting: 'Doorsturen naar inloggen...',
+      completed: 'Voltooid',
+      viewAll: 'Alles Bekijken',
+      welcomeBack: 'Welkom terug',
+      dashboardDesc: 'Beheer uw bestellingen, adressen en accountinstellingen vanuit uw dashboard.',
+      phoneOptional: 'Telefoon (Optioneel)',
     },
     checkout: {
       steps: {
@@ -1362,6 +1585,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Categorieën',
         subtitle: 'Zoek op onderzoeksdoel',
+        desc: {
+          weightLoss: 'Onderzoekspeptiden voor metabolische studies',
+          muscleRecovery: 'Peptiden voor weefselherstelonderzoek',
+          cognitive: 'Verbindingen voor neurologische studies',
+          antiAging: 'Peptiden voor levensduuronderzoek',
+          tanning: 'Melanocyt-stimulerende peptiden',
+          growthHormone: 'Groeihormoon-secretagogen',
+        },
       },
       bestSellers: {
         title: 'Best verkocht',
@@ -1511,6 +1742,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Privacybeleid',
       disclaimer: 'Disclaimer',
       coaPolicy: 'COA-beleid',
+      sitemap: 'Sitemap',
       emailLabel: 'E-mail',
       hoursLabel: 'Openingstijden',
       hoursValue: 'Ma - Vr: 9:00 - 17:00',
@@ -1525,6 +1757,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Laden...',
       error: 'Er is een fout opgetreden',
       success: 'Gelukt!',
+      skipToMainContent: 'Naar hoofdinhoud',
       free: 'Gratis',
       searchLabel: 'Zoeken',
       searching: 'Zoeken...',
@@ -1538,6 +1771,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'Mijn bestellingen',
       settings: 'Instellingen',
       signOut: 'Uitloggen',
+      backTo: 'Terug naar',
+      home: 'Home',
+      name: 'Naam',
+      email: 'E-mail',
+      phone: 'Telefoon',
+      notSet: 'Niet ingesteld',
     },
     legalPages: {
       lastUpdated: 'Laatst bijgewerkt',
@@ -1731,11 +1970,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Neueste Beiträge',
       searchPosts: 'Beiträge suchen...',
       noPosts: 'Keine Beiträge gefunden.',
+      featuredArticles: 'Empfohlene Artikel',
+      latestArticles: 'Neueste Artikel',
+      comingSoon: 'Demnächst verfügbar',
+      comingSoonDesc: 'Wir arbeiten an spannenden neuen Inhalten. Schauen Sie bald wieder vorbei für Forschungseinblicke und Leitfäden.',
+      aboutBlog: 'Über unseren Blog',
+      aboutBlogDesc: 'Unser Forschungsblog bietet Bildungsinhalte für Laborprofis und Forscher. Von Peptid-Handhabungsprotokollen bis zu den neuesten wissenschaftlichen Entwicklungen teilen wir Experteneinblicke zur Unterstützung Ihrer Forschung.',
+      stayUpdated: 'Bleiben Sie informiert',
+      stayUpdatedDesc: 'Erhalten Sie die neuesten Forschungseinblicke direkt in Ihr Postfach.',
+      subscribe: 'Abonnieren',
+      emailPlaceholder: 'Ihre E-Mail-Adresse',
+      relatedArticles: 'Verwandte Artikel',
+      shopPeptides: 'Peptide kaufen',
+      shopPeptidesDesc: 'Stöbern Sie in unserer Auswahl an hochreinen Forschungspeptiden mit garantiert ≥99% Reinheit.',
     },
     learnPage: {
       title: 'Über Peptide lernen',
       description: 'Bildungsressourcen über Peptide und Peptidforschung.',
       whatArePeptides: 'Was sind Peptide?',
+      browsePeptides: 'Peptide durchsuchen',
+      understandingPeptides: 'Peptide verstehen',
     },
     bundlesPage: {
       title: 'Peptid-Bundles',
@@ -1746,6 +2000,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Bulk-Forschungspeptide für Labore',
       description: 'Großhandel-Forschungspeptide für Labore und Institutionen. Mengenpreise, dedizierter Support und flexible Zahlungsbedingungen.',
       applyNow: 'Großhandelskonto beantragen',
+      getStarted: 'Loslegen',
+    },
+    accountPage: {
+      title: 'Mein Konto',
+      description: 'Verwalten Sie Ihr Peptide Shop-Konto. Bestellungen einsehen, Sendungen verfolgen und Ihre Daten aktualisieren.',
+      dashboard: 'Konto-Dashboard',
+      totalOrders: 'Gesamtbestellungen',
+      inProgress: 'In Bearbeitung',
+      recentOrders: 'Letzte Bestellungen',
+      myOrders: 'Meine Bestellungen',
+      savedAddresses: 'Gespeicherte Adressen',
+      addressesSavedDuringCheckout: 'Adressen werden beim Checkout gespeichert.',
+      accountSettings: 'Kontoeinstellungen',
+      profileInfo: 'Profilinformationen',
+      firstName: 'Vorname',
+      lastName: 'Nachname',
+      memberSince: 'Mitglied seit',
+      dangerZone: 'Gefahrenzone',
+      overview: 'Übersicht',
+      orders: 'Meine Bestellungen',
+      addresses: 'Adressen',
+      settings: 'Einstellungen',
+      logout: 'Abmelden',
+      googleAccount: 'Google-Konto',
+      facebookAccount: 'Facebook-Konto',
+      noOrders: 'Noch keine Bestellungen',
+      noOrdersDesc: 'Wenn Sie einen Kauf tätigen, erscheinen Ihre Bestellungen hier.',
+      shopNow: 'Jetzt Einkaufen',
+      noAddresses: 'Keine gespeicherten Adressen',
+      noAddressesDesc: 'Ihre Lieferadressen erscheinen hier nach Ihrer ersten Bestellung.',
+      editProfile: 'Profil Bearbeiten',
+      saveChanges: 'Änderungen Speichern',
+      cancel: 'Abbrechen',
+      phone: 'Telefon',
+      deleteAccount: 'Konto Löschen',
+      deleteAccountDesc: 'Sobald Sie Ihr Konto löschen, gibt es kein Zurück. Bitte seien Sie sich sicher.',
+      redirecting: 'Weiterleitung zur Anmeldung...',
+      completed: 'Abgeschlossen',
+      viewAll: 'Alle Anzeigen',
+      welcomeBack: 'Willkommen zurück',
+      dashboardDesc: 'Verwalten Sie Ihre Bestellungen, Adressen und Kontoeinstellungen über Ihr Dashboard.',
+      phoneOptional: 'Telefon (Optional)',
     },
     checkout: {
       steps: {
@@ -1812,6 +2108,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Peptide Kategorien',
         subtitle: 'Wo kann man Peptide kaufen? Hier nach Forschungsfokus:',
+        desc: {
+          weightLoss: 'Forschungspeptide für Stoffwechselstudien',
+          muscleRecovery: 'Peptide für Gewebereparaturforschung',
+          cognitive: 'Verbindungen für neurologische Studien',
+          antiAging: 'Peptide für Langlebigkeitsforschung',
+          tanning: 'Melanozyt-stimulierende Peptide',
+          growthHormone: 'Wachstumshormon-Sekretagogen',
+        },
       },
       bestSellers: {
         title: 'Meistverkaufte Peptide',
@@ -1961,6 +2265,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Datenschutz (DSGVO)',
       disclaimer: 'Haftungsausschluss',
       coaPolicy: 'COA-Zertifikate',
+      sitemap: 'Seitenübersicht',
       emailLabel: 'E-Mail',
       hoursLabel: 'Erreichbarkeit',
       hoursValue: 'Mo – Fr: 9:00 – 17:00 Uhr',
@@ -1975,6 +2280,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Lädt...',
       error: 'Ein Fehler ist aufgetreten',
       success: 'Erfolg!',
+      skipToMainContent: 'Zum Hauptinhalt springen',
       free: 'Kostenlos',
       searchLabel: 'Suche',
       searching: 'Suche…',
@@ -1988,6 +2294,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'Meine Bestellungen',
       settings: 'Einstellungen',
       signOut: 'Abmelden',
+      backTo: 'Zurück zu',
+      home: 'Startseite',
+      name: 'Name',
+      email: 'E-Mail',
+      phone: 'Telefon',
+      notSet: 'Nicht festgelegt',
     },
     legalPages: {
       lastUpdated: 'Zuletzt aktualisiert',
@@ -2181,11 +2493,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Articles récents',
       searchPosts: 'Rechercher...',
       noPosts: 'Aucun article trouvé.',
+      featuredArticles: 'Articles en vedette',
+      latestArticles: 'Derniers articles',
+      comingSoon: 'Bientôt disponible',
+      comingSoonDesc: 'Nous travaillons sur du nouveau contenu passionnant. Revenez bientôt pour des aperçus de recherche et des guides.',
+      aboutBlog: 'À propos de notre blog',
+      aboutBlogDesc: 'Notre blog de recherche fournit du contenu éducatif pour les professionnels de laboratoire et les chercheurs. Des protocoles de manipulation des peptides aux dernières avancées scientifiques, nous partageons des informations d\'experts pour soutenir votre recherche.',
+      stayUpdated: 'Restez informé',
+      stayUpdatedDesc: 'Recevez les dernières informations de recherche dans votre boîte mail.',
+      subscribe: 'S\'abonner',
+      emailPlaceholder: 'Votre adresse e-mail',
+      relatedArticles: 'Articles connexes',
+      shopPeptides: 'Acheter des peptides',
+      shopPeptidesDesc: 'Parcourez notre sélection de peptides de recherche de haute pureté avec une pureté garantie ≥99%.',
     },
     learnPage: {
       title: 'Apprendre sur les peptides',
       description: 'Ressources éducatives sur les peptides et la recherche peptidique.',
       whatArePeptides: 'Que sont les peptides ?',
+      browsePeptides: 'Parcourir les peptides',
+      understandingPeptides: 'Comprendre les peptides',
     },
     bundlesPage: {
       title: 'Lots de peptides',
@@ -2196,6 +2523,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Peptides de recherche en gros pour laboratoires',
       description: 'Peptides de recherche en gros pour laboratoires et institutions. Prix de gros, support dédié et conditions de paiement flexibles.',
       applyNow: 'Demander un compte grossiste',
+      getStarted: 'Commencer',
+    },
+    accountPage: {
+      title: 'Mon compte',
+      description: 'Gérez votre compte Peptide Shop. Consultez vos commandes, suivez vos envois et mettez à jour vos informations.',
+      dashboard: 'Tableau de bord du compte',
+      totalOrders: 'Total des commandes',
+      inProgress: 'En cours',
+      recentOrders: 'Commandes récentes',
+      myOrders: 'Mes commandes',
+      savedAddresses: 'Adresses enregistrées',
+      addressesSavedDuringCheckout: 'Les adresses seront enregistrées lors du paiement.',
+      accountSettings: 'Paramètres du compte',
+      profileInfo: 'Informations de profil',
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      memberSince: 'Membre depuis',
+      dangerZone: 'Zone de danger',
+      overview: 'Aperçu',
+      orders: 'Mes Commandes',
+      addresses: 'Adresses',
+      settings: 'Paramètres',
+      logout: 'Déconnexion',
+      googleAccount: 'Compte Google',
+      facebookAccount: 'Compte Facebook',
+      noOrders: 'Pas encore de commandes',
+      noOrdersDesc: 'Lorsque vous effectuez un achat, vos commandes apparaîtront ici.',
+      shopNow: 'Acheter Maintenant',
+      noAddresses: 'Aucune adresse enregistrée',
+      noAddressesDesc: 'Vos adresses de livraison apparaîtront ici après votre première commande.',
+      editProfile: 'Modifier le Profil',
+      saveChanges: 'Enregistrer les Modifications',
+      cancel: 'Annuler',
+      phone: 'Téléphone',
+      deleteAccount: 'Supprimer le Compte',
+      deleteAccountDesc: 'Une fois votre compte supprimé, il n\'y a pas de retour possible. Soyez certain.',
+      redirecting: 'Redirection vers la connexion...',
+      completed: 'Terminé',
+      viewAll: 'Voir Tout',
+      welcomeBack: 'Bienvenue',
+      dashboardDesc: 'Gérez vos commandes, adresses et paramètres de compte depuis votre tableau de bord.',
+      phoneOptional: 'Téléphone (Optionnel)',
     },
     checkout: {
       steps: {
@@ -2262,6 +2631,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Catégories',
         subtitle: 'Par focus de recherche',
+        desc: {
+          weightLoss: 'Peptides de recherche pour études métaboliques',
+          muscleRecovery: 'Peptides pour la recherche sur la réparation tissulaire',
+          cognitive: 'Composés pour études neurologiques',
+          antiAging: 'Peptides pour la recherche sur la longévité',
+          tanning: 'Peptides stimulant les mélanocytes',
+          growthHormone: 'Sécrétagogues de l\'hormone de croissance',
+        },
       },
       bestSellers: {
         title: 'Meilleures ventes',
@@ -2411,6 +2788,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Confidentialité',
       disclaimer: 'Avertissement',
       coaPolicy: 'Politique COA',
+      sitemap: 'Plan du site',
       emailLabel: 'E-mail',
       hoursLabel: 'Horaires',
       hoursValue: 'Lun - Ven : 9:00 - 17:00',
@@ -2425,6 +2803,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Chargement...',
       error: 'Une erreur est survenue',
       success: 'Succès !',
+      skipToMainContent: 'Aller au contenu principal',
       free: 'Gratuit',
       searchLabel: 'Recherche',
       searching: 'Recherche…',
@@ -2438,6 +2817,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'Mes commandes',
       settings: 'Paramètres',
       signOut: 'Se déconnecter',
+      backTo: 'Retour à',
+      home: 'Accueil',
+      name: 'Nom',
+      email: 'E-mail',
+      phone: 'Téléphone',
+      notSet: 'Non défini',
     },
     legalPages: {
       lastUpdated: 'Dernière mise à jour',
@@ -2631,11 +3016,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Publicaciones recientes',
       searchPosts: 'Buscar...',
       noPosts: 'No se encontraron publicaciones.',
+      featuredArticles: 'Artículos destacados',
+      latestArticles: 'Últimos artículos',
+      comingSoon: 'Próximamente',
+      comingSoonDesc: 'Estamos trabajando en contenido nuevo y emocionante. Vuelve pronto para conocer perspectivas de investigación y guías.',
+      aboutBlog: 'Sobre nuestro blog',
+      aboutBlogDesc: 'Nuestro blog de investigación proporciona contenido educativo para profesionales de laboratorio e investigadores. Desde protocolos de manejo de péptidos hasta los últimos desarrollos científicos, compartimos conocimientos expertos para apoyar su investigación.',
+      stayUpdated: 'Mantente informado',
+      stayUpdatedDesc: 'Recibe las últimas perspectivas de investigación en tu correo.',
+      subscribe: 'Suscribirse',
+      emailPlaceholder: 'Tu correo electrónico',
+      relatedArticles: 'Artículos relacionados',
+      shopPeptides: 'Comprar péptidos',
+      shopPeptidesDesc: 'Explora nuestra selección de péptidos de investigación de alta pureza con pureza garantizada ≥99%.',
     },
     learnPage: {
       title: 'Aprende sobre péptidos',
       description: 'Recursos educativos sobre péptidos e investigación peptídica.',
       whatArePeptides: '¿Qué son los péptidos?',
+      browsePeptides: 'Explorar péptidos',
+      understandingPeptides: 'Entendiendo los péptidos',
     },
     bundlesPage: {
       title: 'Paquetes de péptidos',
@@ -2646,6 +3046,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Péptidos de investigación al por mayor para laboratorios',
       description: 'Péptidos de investigación al por mayor para laboratorios e instituciones. Precios de volumen, soporte dedicado y condiciones de pago flexibles.',
       applyNow: 'Solicitar cuenta mayorista',
+      getStarted: 'Comenzar',
+    },
+    accountPage: {
+      title: 'Mi cuenta',
+      description: 'Administra tu cuenta de Peptide Shop. Ver pedidos, rastrear envíos y actualizar tu información.',
+      dashboard: 'Panel de cuenta',
+      totalOrders: 'Total de pedidos',
+      inProgress: 'En progreso',
+      recentOrders: 'Pedidos recientes',
+      myOrders: 'Mis pedidos',
+      savedAddresses: 'Direcciones guardadas',
+      addressesSavedDuringCheckout: 'Las direcciones se guardarán durante el pago.',
+      accountSettings: 'Configuración de cuenta',
+      profileInfo: 'Información de perfil',
+      firstName: 'Nombre',
+      lastName: 'Apellido',
+      memberSince: 'Miembro desde',
+      dangerZone: 'Zona de peligro',
+      overview: 'Resumen',
+      orders: 'Mis Pedidos',
+      addresses: 'Direcciones',
+      settings: 'Configuración',
+      logout: 'Cerrar Sesión',
+      googleAccount: 'Cuenta de Google',
+      facebookAccount: 'Cuenta de Facebook',
+      noOrders: 'Aún no hay pedidos',
+      noOrdersDesc: 'Cuando realice una compra, sus pedidos aparecerán aquí.',
+      shopNow: 'Comprar Ahora',
+      noAddresses: 'Sin direcciones guardadas',
+      noAddressesDesc: 'Sus direcciones de envío aparecerán aquí después de su primer pedido.',
+      editProfile: 'Editar Perfil',
+      saveChanges: 'Guardar Cambios',
+      cancel: 'Cancelar',
+      phone: 'Teléfono',
+      deleteAccount: 'Eliminar Cuenta',
+      deleteAccountDesc: 'Una vez que elimine su cuenta, no hay vuelta atrás. Por favor, esté seguro.',
+      redirecting: 'Redirigiendo al inicio de sesión...',
+      completed: 'Completado',
+      viewAll: 'Ver Todo',
+      welcomeBack: 'Bienvenido de nuevo',
+      dashboardDesc: 'Administra tus pedidos, direcciones y configuración de cuenta desde tu panel.',
+      phoneOptional: 'Teléfono (Opcional)',
     },
     checkout: {
       steps: {
@@ -2712,6 +3154,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Categorías',
         subtitle: 'Por enfoque de investigación',
+        desc: {
+          weightLoss: 'Péptidos de investigación para estudios metabólicos',
+          muscleRecovery: 'Péptidos para investigación de reparación tisular',
+          cognitive: 'Compuestos para estudios neurológicos',
+          antiAging: 'Péptidos para investigación de longevidad',
+          tanning: 'Péptidos estimuladores de melanocitos',
+          growthHormone: 'Secretagogos de hormona de crecimiento',
+        },
       },
       bestSellers: {
         title: 'Más vendidos',
@@ -2861,6 +3311,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Política de privacidad',
       disclaimer: 'Aviso legal',
       coaPolicy: 'Política COA',
+      sitemap: 'Mapa del sitio',
       emailLabel: 'Correo',
       hoursLabel: 'Horario',
       hoursValue: 'Lun - Vie: 9:00 - 17:00',
@@ -2875,6 +3326,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Cargando...',
       error: 'Ocurrió un error',
       success: '¡Éxito!',
+      skipToMainContent: 'Ir al contenido principal',
       free: 'Gratis',
       searchLabel: 'Buscar',
       searching: 'Buscando…',
@@ -2888,6 +3340,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'Mis pedidos',
       settings: 'Ajustes',
       signOut: 'Cerrar sesión',
+      backTo: 'Volver a',
+      home: 'Inicio',
+      name: 'Nombre',
+      email: 'Correo electrónico',
+      phone: 'Teléfono',
+      notSet: 'No establecido',
     },
     legalPages: {
       lastUpdated: 'Última actualización',
@@ -2943,8 +3401,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
   },
   it: {
-    namenu: 'Menu',
-      v: {
+    nav: {
+      menu: 'Menu',
       home: 'Home',
       peptides: 'Peptidi',
       categories: 'Categorie',
@@ -3081,11 +3539,26 @@ export const translations: Record<SupportedLanguage, Translations> = {
       recentPosts: 'Post recenti',
       searchPosts: 'Cerca...',
       noPosts: 'Nessun post trovato.',
+      featuredArticles: 'Articoli in evidenza',
+      latestArticles: 'Ultimi articoli',
+      comingSoon: 'Prossimamente',
+      comingSoonDesc: 'Stiamo lavorando a nuovi contenuti entusiasmanti. Torna presto per approfondimenti di ricerca e guide.',
+      aboutBlog: 'Informazioni sul nostro blog',
+      aboutBlogDesc: 'Il nostro blog di ricerca fornisce contenuti educativi per professionisti di laboratorio e ricercatori. Dai protocolli di manipolazione dei peptidi agli ultimi sviluppi scientifici, condividiamo approfondimenti esperti per supportare la tua ricerca.',
+      stayUpdated: 'Rimani aggiornato',
+      stayUpdatedDesc: 'Ricevi le ultime informazioni sulla ricerca nella tua casella di posta.',
+      subscribe: 'Iscriviti',
+      emailPlaceholder: 'Il tuo indirizzo email',
+      relatedArticles: 'Articoli correlati',
+      shopPeptides: 'Acquista peptidi',
+      shopPeptidesDesc: 'Sfoglia la nostra selezione di peptidi da ricerca ad alta purezza con purezza garantita ≥99%.',
     },
     learnPage: {
       title: 'Impara sui peptidi',
       description: 'Risorse educative sui peptidi e la ricerca peptidica.',
       whatArePeptides: 'Cosa sono i peptidi?',
+      browsePeptides: 'Sfoglia i peptidi',
+      understandingPeptides: 'Capire i peptidi',
     },
     bundlesPage: {
       title: 'Pacchetti di peptidi',
@@ -3096,6 +3569,48 @@ export const translations: Record<SupportedLanguage, Translations> = {
       subtitle: 'Peptidi da ricerca all\'ingrosso per laboratori',
       description: 'Peptidi da ricerca all\'ingrosso per laboratori e istituzioni. Prezzi all\'ingrosso, supporto dedicato e condizioni di pagamento flessibili.',
       applyNow: 'Richiedi account ingrosso',
+      getStarted: 'Inizia',
+    },
+    accountPage: {
+      title: 'Il mio account',
+      description: 'Gestisci il tuo account Peptide Shop. Visualizza ordini, traccia spedizioni e aggiorna le tue informazioni.',
+      dashboard: 'Dashboard account',
+      totalOrders: 'Ordini totali',
+      inProgress: 'In corso',
+      recentOrders: 'Ordini recenti',
+      myOrders: 'I miei ordini',
+      savedAddresses: 'Indirizzi salvati',
+      addressesSavedDuringCheckout: 'Gli indirizzi verranno salvati durante il checkout.',
+      accountSettings: 'Impostazioni account',
+      profileInfo: 'Informazioni profilo',
+      firstName: 'Nome',
+      lastName: 'Cognome',
+      memberSince: 'Membro dal',
+      dangerZone: 'Zona pericolosa',
+      overview: 'Panoramica',
+      orders: 'I Miei Ordini',
+      addresses: 'Indirizzi',
+      settings: 'Impostazioni',
+      logout: 'Esci',
+      googleAccount: 'Account Google',
+      facebookAccount: 'Account Facebook',
+      noOrders: 'Nessun ordine ancora',
+      noOrdersDesc: 'Quando effettui un acquisto, i tuoi ordini appariranno qui.',
+      shopNow: 'Acquista Ora',
+      noAddresses: 'Nessun indirizzo salvato',
+      noAddressesDesc: 'I tuoi indirizzi di spedizione appariranno qui dopo il primo ordine.',
+      editProfile: 'Modifica Profilo',
+      saveChanges: 'Salva Modifiche',
+      cancel: 'Annulla',
+      phone: 'Telefono',
+      deleteAccount: 'Elimina Account',
+      deleteAccountDesc: 'Una volta eliminato il tuo account, non si può tornare indietro. Per favore, sii sicuro.',
+      redirecting: 'Reindirizzamento al login...',
+      completed: 'Completato',
+      viewAll: 'Vedi Tutto',
+      welcomeBack: 'Bentornato',
+      dashboardDesc: 'Gestisci i tuoi ordini, indirizzi e impostazioni account dalla tua dashboard.',
+      phoneOptional: 'Telefono (Opzionale)',
     },
     checkout: {
       steps: {
@@ -3162,6 +3677,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       categories: {
         title: 'Categorie',
         subtitle: 'Per focus di ricerca',
+        desc: {
+          weightLoss: 'Peptidi di ricerca per studi metabolici',
+          muscleRecovery: 'Peptidi per la ricerca sulla riparazione tissutale',
+          cognitive: 'Composti per studi neurologici',
+          antiAging: 'Peptidi per la ricerca sulla longevità',
+          tanning: 'Peptidi stimolatori dei melanociti',
+          growthHormone: 'Secretagoghi dell\'ormone della crescita',
+        },
       },
       bestSellers: {
         title: 'Più venduti',
@@ -3311,6 +3834,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       privacyPolicy: 'Privacy',
       disclaimer: 'Disclaimer',
       coaPolicy: 'Politica COA',
+      sitemap: 'Mappa del sito',
       emailLabel: 'Email',
       hoursLabel: 'Orari',
       hoursValue: 'Lun - Ven: 9:00 - 17:00',
@@ -3325,6 +3849,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       loading: 'Caricamento...',
       error: 'Si è verificato un errore',
       success: 'Successo!',
+      skipToMainContent: 'Vai al contenuto principale',
       free: 'Gratis',
       searchLabel: 'Cerca',
       searching: 'Ricerca…',
@@ -3338,6 +3863,12 @@ export const translations: Record<SupportedLanguage, Translations> = {
       myOrders: 'I miei ordini',
       settings: 'Impostazioni',
       signOut: 'Esci',
+      backTo: 'Torna a',
+      home: 'Home',
+      name: 'Nome',
+      email: 'E-mail',
+      phone: 'Telefono',
+      notSet: 'Non impostato',
     },
     legalPages: {
       lastUpdated: 'Ultimo aggiornamento',

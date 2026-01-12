@@ -121,9 +121,27 @@ h6, .h6 {
 .icon-2xl { width: 48px; height: 48px; }
 .icon-3xl { width: 64px; height: 64px; }
 
+/* ===== MOBILE OVERFLOW FIX ===== */
 html, body {
   overflow-x: hidden;
   width: 100%;
+  max-width: 100vw;
+}
+
+/* Prevent images and media from causing overflow */
+img, svg, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Box sizing reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove iOS tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .navbar-toggle .icon-bar {
@@ -171,23 +189,23 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 }
 
 .btn-main, .btn-small, .btn-transparent {
-  background: linear-gradient(90deg, rgb(245, 99, 75) 0%, #fe9418 100%);
+  background: linear-gradient(90deg, #1a6b4e 0%, #22865f 100%);
   color: #fff;
 }
 .btn-main:hover, .btn-small:hover, .btn-transparent:hover {
-  background: linear-gradient(90deg, #fe9418 0%, rgb(245, 99, 75) 100%);
+  background: linear-gradient(90deg, #15503a 0%, #1a6b4e 100%);
   color: #fff !important;
   transform: translateY(-5px);
 }
 
 .btn-solid-border {
-  border: 2px solid rgb(245, 99, 75);
+  border: 2px solid #1a6b4e;
   background: transparent;
   color: #fff;
 }
 .btn-solid-border:hover {
-  border: 2px solid rgb(245, 99, 75);
-  background: rgb(245, 99, 75);
+  border: 2px solid #1a6b4e;
+  background: #1a6b4e;
 }
 
 .btn-white {
@@ -196,19 +214,19 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   color: #232323;
 }
 .btn-white:hover {
-  border: 1px solid rgb(245, 99, 75);
-  background: rgb(245, 99, 75);
+  border: 1px solid #1a6b4e;
+  background: #1a6b4e;
   color: #fff !important;
 }
 
 .btn-transparent {
   background: transparent;
   padding: 0;
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
 }
 .btn-transparent:hover {
   background: transparent;
-  color: rgb(245, 99, 75);
+  color: #15503a;
 }
 
 .btn-large {
@@ -248,7 +266,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 }
 
 .bg-primary {
-  background: rgb(245, 99, 75) !important;
+  background: #1a6b4e !important;
 }
 
 .section {
@@ -308,7 +326,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
 }
 
 .text-color {
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
 }
 
 .text-black {
@@ -338,7 +356,7 @@ a {
 }
 
 a:hover, a:focus {
-  color: rgb(245, 99, 75) !important;
+  color: #1a6b4e !important;
   text-decoration: none !important;
   outline: 0;
 }
@@ -523,8 +541,8 @@ ul.dropdown-menu li {
   width: 100%;
   height: 0px;
   transition: all 600ms ease;
-  background: linear-gradient(90deg, rgb(245, 99, 75) 0%, #fe9418 100%);
-  border-color: rgb(245, 99, 75);
+  background: linear-gradient(90deg, #1a6b4e 0%, #22865f 100%);
+  border-color: #1a6b4e;
 }
 .hover-style-1 h3, .hover-style-1 p, .hover-style-1 a, .hover-style-1 i, .hover-style-1 h4 {
   position: relative;
@@ -553,7 +571,7 @@ ul.dropdown-menu li {
 }
 
 .course .card-body a h4:hover {
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
 }
 
 .course-widget li a {
@@ -565,7 +583,7 @@ ul.dropdown-menu li {
   color: #fff;
 }
 .team-content-overlay li a:hover {
-  background: rgb(245, 99, 75);
+  background: #1a6b4e;
 }
 
 .team-item .card-body {
@@ -625,14 +643,14 @@ ul.dropdown-menu li {
   padding-top: 6px;
 }
 .team-wrap ul li a:hover {
-  background: rgb(245, 99, 75);
-  border-color: rgb(245, 99, 75);
+  background: #1a6b4e;
+  border-color: #1a6b4e;
   color: #fff !important;
 }
 
 .divider {
   margin: 0 auto;
-  background: rgb(245, 99, 75);
+  background: #1a6b4e;
   width: 45px;
   height: 4px;
 }
@@ -651,7 +669,7 @@ ul.dropdown-menu li {
 }
 
 .slick-dots li.slick-active button::before {
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
 }
 
 .slick-dots li button::before {
@@ -697,7 +715,7 @@ ul.dropdown-menu li {
   font-weight: 700;
 }
 .blog .card a h4:hover {
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
 }
 
 .blog-post-meta span {
@@ -740,8 +758,8 @@ ul.dropdown-menu li {
   color: #232323;
 }
 .pagination .page-item.active .page-link {
-  background-color: rgb(245, 99, 75);
-  border-color: rgb(245, 99, 75);
+  background-color: #1a6b4e;
+  border-color: #1a6b4e;
   color: #fff !important;
 }
 .pagination .page-item:last-child .page-link {
@@ -797,7 +815,7 @@ ul.dropdown-menu li {
   font-size: 14px;
 }
 .footer-menu li a:hover {
-  color: rgb(245, 99, 75);
+  color: #1a6b4e;
   opacity: 1;
 }
 
@@ -1308,7 +1326,7 @@ left: 30px;
   --space-10: 64px;
   
   /* Mobile-specific variables */
-  --mobile-padding-x: 20px;
+  --mobile-padding-x: 24px;
   --mobile-section-padding: 48px;
   --touch-target: 48px;
   --safe-area-bottom: env(safe-area-inset-bottom, 0);
@@ -1379,10 +1397,10 @@ left: 30px;
     margin-bottom: var(--space-3);
   }
   
-  /* Container - Professional padding */
+  /* Container - Professional padding - !important to override Bootstrap */
   .container {
-    padding-left: var(--mobile-padding-x);
-    padding-right: var(--mobile-padding-x);
+    padding-left: var(--mobile-padding-x) !important;
+    padding-right: var(--mobile-padding-x) !important;
   }
   
   /* Section spacing - Generous breathing room */

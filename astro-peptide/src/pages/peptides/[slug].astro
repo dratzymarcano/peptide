@@ -11,16 +11,23 @@ import Sidebar from '../../components/Sidebar.astro';
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const products = await getCollection('products');
+  const allProducts = await getCollection('products');
   
-  return products.map(product => ({
-    params: { slug: product.slug.replace(/^\/peptides\//, '').replace(/^\//, '') },
-    props: { product },
-  }));
+  // English products are in the en/ folder
+  const products = allProducts.filter(p => p.slug.startsWith('en/'));
+  
+  return products.map(product => {
+    // Remove the "en/" prefix to get the base slug
+    const slug = product.slug.replace(/^en\//, '');
+    return {
+      params: { slug },
+      props: { product },
+    };
+  });
 }
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes en/ prefix, /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^en\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 const { product } = Astro.props;
 const { Content } = await product.render();

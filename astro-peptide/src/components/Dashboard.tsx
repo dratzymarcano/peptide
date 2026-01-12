@@ -9,10 +9,15 @@ import {
   updateProfile
 } from '../store/authStore';
 import type { Order } from '../store/authStore';
+import { type SupportedLanguage, t } from '../i18n/translations';
 
 type Tab = 'overview' | 'orders' | 'addresses' | 'settings';
 
-export default function Dashboard() {
+interface DashboardProps {
+  lang?: SupportedLanguage;
+}
+
+export default function Dashboard({ lang = 'en' }: DashboardProps) {
   const $currentUser = useStore(currentUser);
   const $isAuthenticated = useStore(isAuthenticated);
   const $userOrders = useStore(userOrders);
@@ -43,7 +48,7 @@ export default function Dashboard() {
     }
     return (
       <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-        <p>Redirecting to login...</p>
+        <p>{t(lang, 'accountPage.redirecting')}</p>
       </div>
     );
   }
@@ -95,7 +100,7 @@ export default function Dashboard() {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: (
+    { id: 'overview', label: t(lang, 'accountPage.overview'), icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect width="7" height="9" x="3" y="3" rx="1"></rect>
         <rect width="7" height="5" x="14" y="3" rx="1"></rect>
@@ -103,20 +108,20 @@ export default function Dashboard() {
         <rect width="7" height="5" x="3" y="16" rx="1"></rect>
       </svg>
     )},
-    { id: 'orders', label: 'My Orders', icon: (
+    { id: 'orders', label: t(lang, 'accountPage.orders'), icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
         <path d="M3 6h18"></path>
         <path d="M16 10a4 4 0 0 1-8 0"></path>
       </svg>
     )},
-    { id: 'addresses', label: 'Addresses', icon: (
+    { id: 'addresses', label: t(lang, 'accountPage.addresses'), icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
         <circle cx="12" cy="10" r="3"></circle>
       </svg>
     )},
-    { id: 'settings', label: 'Settings', icon: (
+    { id: 'settings', label: t(lang, 'accountPage.settings'), icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
         <circle cx="12" cy="12" r="3"></circle>
@@ -167,7 +172,7 @@ export default function Dashboard() {
                   fontSize: '12px',
                   fontWeight: '500'
                 }}>
-                  {$currentUser.provider === 'google' ? 'Google Account' : 'Facebook Account'}
+                  {$currentUser.provider === 'google' ? t(lang, 'accountPage.googleAccount') : t(lang, 'accountPage.facebookAccount')}
                 </span>
               )}
             </div>
@@ -225,7 +230,7 @@ export default function Dashboard() {
               <polyline points="16 17 21 12 16 7"></polyline>
               <line x1="21" x2="9" y1="12" y2="12"></line>
             </svg>
-            Sign Out
+            {t(lang, 'accountPage.logout')}
           </button>
         </div>
 
@@ -242,10 +247,10 @@ export default function Dashboard() {
                 marginBottom: '24px'
               }}>
                 <h3 style={{ color: 'white', fontWeight: '700', marginBottom: '8px' }}>
-                  Welcome back, {$currentUser?.firstName}! 👋
+                  {t(lang, 'accountPage.welcomeBack')}, {$currentUser?.firstName}! 👋
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '0' }}>
-                  Manage your orders, addresses, and account settings from your dashboard.
+                  {t(lang, 'accountPage.dashboardDesc')}
                 </p>
               </div>
 
@@ -270,7 +275,7 @@ export default function Dashboard() {
                       </svg>
                     </div>
                     <h2 style={{ color: '#1e293b', fontWeight: '800', marginBottom: '4px' }}>{$userOrders.length}</h2>
-                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>Total Orders</p>
+                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>{t(lang, 'accountPage.totalOrders')}</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4">
@@ -293,7 +298,7 @@ export default function Dashboard() {
                     <h2 style={{ color: '#1e293b', fontWeight: '800', marginBottom: '4px' }}>
                       {$userOrders.filter(o => o.status === 'delivered').length}
                     </h2>
-                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>Completed</p>
+                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>{t(lang, 'accountPage.completed')}</p>
                   </div>
                 </div>
                 <div className="col-md-4 mb-4">
@@ -316,7 +321,7 @@ export default function Dashboard() {
                     <h2 style={{ color: '#1e293b', fontWeight: '800', marginBottom: '4px' }}>
                       {$userOrders.filter(o => o.status === 'pending' || o.status === 'processing').length}
                     </h2>
-                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>In Progress</p>
+                    <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '0' }}>{t(lang, 'accountPage.inProgress')}</p>
                   </div>
                 </div>
               </div>
@@ -324,7 +329,7 @@ export default function Dashboard() {
               {/* Recent Orders */}
               <div style={{ ...cardStyle, padding: '24px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                  <h5 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '0' }}>Recent Orders</h5>
+                  <h5 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '0' }}>{t(lang, 'accountPage.recentOrders')}</h5>
                   <button
                     onClick={() => setActiveTab('orders')}
                     style={{
@@ -336,7 +341,7 @@ export default function Dashboard() {
                       fontSize: '14px'
                     }}
                   >
-                    View All →
+                    {t(lang, 'accountPage.viewAll')} →
                   </button>
                 </div>
                 {$userOrders.length === 0 ? (
@@ -346,7 +351,7 @@ export default function Dashboard() {
                       <path d="M3 6h18"></path>
                       <path d="M16 10a4 4 0 0 1-8 0"></path>
                     </svg>
-                    <p style={{ color: '#64748b', marginBottom: '16px' }}>No orders yet</p>
+                    <p style={{ color: '#64748b', marginBottom: '16px' }}>{t(lang, 'accountPage.noOrders')}</p>
                     <a
                       href="/shop/"
                       style={{
@@ -362,7 +367,7 @@ export default function Dashboard() {
                         fontSize: '14px'
                       }}
                     >
-                      Start Shopping
+                      {t(lang, 'accountPage.shopNow')}
                     </a>
                   </div>
                 ) : (
@@ -408,7 +413,7 @@ export default function Dashboard() {
           {/* Orders Tab */}
           {activeTab === 'orders' && (
             <div style={{ ...cardStyle, padding: '24px' }}>
-              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '24px' }}>My Orders</h4>
+              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '24px' }}>{t(lang, 'accountPage.myOrders')}</h4>
               {$userOrders.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '60px 20px' }}>
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" style={{ marginBottom: '20px' }}>
@@ -416,7 +421,7 @@ export default function Dashboard() {
                     <path d="M3 6h18"></path>
                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                   </svg>
-                  <h5 style={{ color: '#1e293b', marginBottom: '8px' }}>No orders yet</h5>
+                  <h5 style={{ color: '#1e293b', marginBottom: '8px' }}>{t(lang, 'accountPage.noOrders')}</h5>
                   <p style={{ color: '#64748b', marginBottom: '24px' }}>Your order history will appear here after your first purchase.</p>
                   <a
                     href="/shop/"
@@ -513,15 +518,15 @@ export default function Dashboard() {
           {/* Addresses Tab */}
           {activeTab === 'addresses' && (
             <div style={{ ...cardStyle, padding: '24px' }}>
-              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '24px' }}>Saved Addresses</h4>
+              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '24px' }}>{t(lang, 'accountPage.savedAddresses')}</h4>
               {$userAddresses.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '60px 20px' }}>
                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" style={{ marginBottom: '20px' }}>
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
-                  <h5 style={{ color: '#1e293b', marginBottom: '8px' }}>No saved addresses</h5>
-                  <p style={{ color: '#64748b', marginBottom: '0' }}>Addresses will be saved during checkout.</p>
+                  <h5 style={{ color: '#1e293b', marginBottom: '8px' }}>{t(lang, 'accountPage.noAddresses')}</h5>
+                  <p style={{ color: '#64748b', marginBottom: '0' }}>{t(lang, 'accountPage.addressesSavedDuringCheckout')}</p>
                 </div>
               ) : (
                 <div className="row">
@@ -561,15 +566,15 @@ export default function Dashboard() {
           {/* Settings Tab */}
           {activeTab === 'settings' && (
             <div style={{ ...cardStyle, padding: '32px' }}>
-              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '28px' }}>Account Settings</h4>
+              <h4 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '28px' }}>{t(lang, 'accountPage.accountSettings')}</h4>
               
               <div style={{ marginBottom: '32px' }}>
-                <h5 style={{ color: '#1e293b', fontWeight: '600', marginBottom: '20px' }}>Profile Information</h5>
+                <h5 style={{ color: '#1e293b', fontWeight: '600', marginBottom: '20px' }}>{t(lang, 'accountPage.profileInfo')}</h5>
                 {isEditing ? (
                   <div>
                     <div className="row">
                       <div className="col-md-6 mb-3">
-                        <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>First Name</label>
+                        <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>{t(lang, 'accountPage.firstName')}</label>
                         <input 
                           type="text"
                           value={editForm.firstName}
@@ -584,7 +589,7 @@ export default function Dashboard() {
                         />
                       </div>
                       <div className="col-md-6 mb-3">
-                        <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>Last Name</label>
+                        <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>{t(lang, 'accountPage.lastName')}</label>
                         <input 
                           type="text"
                           value={editForm.lastName}
@@ -600,7 +605,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <div className="mb-3">
-                      <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>Phone (Optional)</label>
+                      <label style={{ display: 'block', color: '#64748b', fontWeight: '600', marginBottom: '8px', fontSize: '14px' }}>{t(lang, 'accountPage.phoneOptional')}</label>
                       <input 
                         type="tel"
                         value={editForm.phone}
@@ -628,7 +633,7 @@ export default function Dashboard() {
                           cursor: 'pointer'
                         }}
                       >
-                        Save Changes
+                        {t(lang, 'accountPage.saveChanges')}
                       </button>
                       <button
                         onClick={() => setIsEditing(false)}
@@ -642,7 +647,7 @@ export default function Dashboard() {
                           cursor: 'pointer'
                         }}
                       >
-                        Cancel
+                        {t(lang, 'accountPage.cancel')}
                       </button>
                     </div>
                   </div>
@@ -650,19 +655,19 @@ export default function Dashboard() {
                   <div>
                     <div style={{ display: 'grid', gap: '16px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px' }}>
-                        <span style={{ color: '#64748b' }}>Name</span>
+                        <span style={{ color: '#64748b' }}>{t(lang, 'common.name')}</span>
                         <span style={{ fontWeight: '600', color: '#1e293b' }}>{$currentUser?.firstName} {$currentUser?.lastName}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px' }}>
-                        <span style={{ color: '#64748b' }}>Email</span>
+                        <span style={{ color: '#64748b' }}>{t(lang, 'common.email')}</span>
                         <span style={{ fontWeight: '600', color: '#1e293b' }}>{$currentUser?.email}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px' }}>
-                        <span style={{ color: '#64748b' }}>Phone</span>
-                        <span style={{ fontWeight: '600', color: '#1e293b' }}>{$currentUser?.phone || 'Not set'}</span>
+                        <span style={{ color: '#64748b' }}>{t(lang, 'common.phone')}</span>
+                        <span style={{ fontWeight: '600', color: '#1e293b' }}>{$currentUser?.phone || t(lang, 'common.notSet')}</span>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 16px', background: '#f8fafc', borderRadius: '10px' }}>
-                        <span style={{ color: '#64748b' }}>Member Since</span>
+                        <span style={{ color: '#64748b' }}>{t(lang, 'accountPage.memberSince')}</span>
                         <span style={{ fontWeight: '600', color: '#1e293b' }}>{$currentUser?.createdAt ? formatDate($currentUser.createdAt) : 'N/A'}</span>
                       </div>
                     </div>
@@ -679,7 +684,7 @@ export default function Dashboard() {
                         cursor: 'pointer'
                       }}
                     >
-                      Edit Profile
+                      {t(lang, 'accountPage.editProfile')}
                     </button>
                   </div>
                 )}
@@ -692,9 +697,9 @@ export default function Dashboard() {
                 borderRadius: '12px',
                 background: 'rgba(239, 68, 68, 0.05)'
               }}>
-                <h6 style={{ color: '#ef4444', fontWeight: '600', marginBottom: '8px' }}>Danger Zone</h6>
+                <h6 style={{ color: '#ef4444', fontWeight: '600', marginBottom: '8px' }}>{t(lang, 'accountPage.dangerZone')}</h6>
                 <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '16px' }}>
-                  Once you delete your account, there is no going back. Please be certain.
+                  {t(lang, 'accountPage.deleteAccountDesc')}
                 </p>
                 <button
                   style={{
@@ -708,7 +713,7 @@ export default function Dashboard() {
                     fontSize: '14px'
                   }}
                 >
-                  Delete Account
+                  {t(lang, 'accountPage.deleteAccount')}
                 </button>
               </div>
             </div>
