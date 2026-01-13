@@ -687,6 +687,34 @@ interface Translations {
     faq: {
       title: string;
       subtitle: string;
+      q1: string;
+      a1: string;
+      q2: string;
+      a2: string;
+      q3: string;
+      a3: string;
+      q4: string;
+      a4: string;
+      q5: string;
+      a5: string;
+      q6: string;
+      a6: string;
+      q7: string;
+      a7: string;
+      q8: string;
+      a8: string;
+    };
+    seo: {
+      title: string;
+      buyLocal: string;
+      buyLocalDesc: string;
+      buyEurope: string;
+      buyEuropeDesc: string;
+      weightLoss: string;
+      weightLossDesc: string;
+      muscleGrowth: string;
+      muscleGrowthDesc: string;
+      browseAll: string;
     };
     cta: {
       title: string;
@@ -1334,6 +1362,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'FAQ',
         subtitle: 'Frequently Asked Questions',
+        q1: 'What makes your peptides different from competitors?',
+        a1: 'Our peptides undergo rigorous HPLC and Mass Spectrometry analysis with third-party verification. Every batch comes with a Certificate of Analysis (COA) showing 99.9%+ purity.',
+        q2: 'How quickly can I receive my order?',
+        a2: 'All orders are dispatched within 24 hours. We offer standard delivery (3-5 business days) and express shipping (1-2 business days) options.',
+        q3: 'Do you provide Certificates of Analysis (COA)?',
+        a3: 'Yes, every product includes a batch-specific COA with HPLC chromatogram, mass spectrometry data, purity percentage, and storage recommendations.',
+        q4: 'Where can I buy peptides in Europe?',
+        a4: 'You can buy peptides online from Peptide Shop with fast delivery across Europe. Delivery times vary by destination and service level, and we offer both standard and express options.',
+        q5: 'What payment methods do you accept?',
+        a5: 'We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for institutional orders. All transactions are securely processed.',
+        q6: 'How should I store my peptides?',
+        a6: 'Lyophilized peptides should be stored at -20°C for long-term storage. Once reconstituted, store at 2-8°C and use within the timeframe specified in the product documentation. Always protect from light and repeated freeze-thaw cycles.',
+        q7: 'Are your peptides for human consumption?',
+        a7: 'No. All our peptides are sold strictly for research and laboratory use only. They are not intended for human or veterinary use, food additives, drugs, or cosmetic applications.',
+        q8: 'Can I get a refund or replacement if there\'s an issue?',
+        a8: 'Absolutely. If you receive a product that doesn\'t meet our advertised purity specifications, we offer a full refund or replacement. Please contact our support team with your COA and any supporting documentation within 30 days of receipt.',
+      },
+      seo: {
+        title: 'Buy Peptides Online {market} & Europe - Your Complete Guide',
+        buyLocal: 'Buy Peptides {market}',
+        buyLocalDesc: 'Looking to buy peptides in {location}? Peptide Shop offers premium research peptides with 99% purity verified by HPLC analysis. Our best-selling peptides include Semaglutide, Tirzepatide, BPC-157, TB-500, and Melanotan 2. All orders include a Certificate of Analysis (COA) and are dispatched within 24 hours.',
+        buyEurope: 'Buy Peptides Europe',
+        buyEuropeDesc: 'Buy peptides online with fast European delivery. We ship to Netherlands, Germany, France, Spain, Italy, Belgium, Austria, Ireland, and Portugal. Whether you need GLP-1 peptides for weight loss research, BPC-157 for muscle recovery studies, or growth hormone peptides, Peptide Shop is your trusted European peptide supplier with discreet, temperature-controlled shipping.',
+        weightLoss: 'Peptides for Weight Loss Research',
+        weightLossDesc: 'Our weight loss peptides for sale include the latest GLP-1 receptor agonists: Semaglutide, Tirzepatide, Retatrutide, and Cagrilintide. These research peptides are HPLC-verified and come with full documentation for metabolic research applications. Buy peptides for weight loss studies with confidence from a trusted European peptide supplier.',
+        muscleGrowth: 'Peptides for Muscle Growth Research',
+        muscleGrowthDesc: 'Buy peptides for muscle growth and recovery research including BPC-157, TB-500, and IGF-1 variants. Our bodybuilding peptides are research-grade with 99% purity, ideal for tissue repair and regeneration studies. Fast dispatch and competitive prices make us the preferred choice for researchers studying anabolic pathways.',
+        browseAll: 'Browse All Peptides for Sale',
       },
       cta: {
         title: 'Get 10% Off Your First Order',
@@ -1979,6 +2035,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'FAQ',
         subtitle: 'Veelgestelde vragen',
+        q1: 'Wat maakt jullie peptiden anders dan die van concurrenten?',
+        a1: 'Onze peptiden ondergaan strenge HPLC- en massaspectrometrie-analyse met verificatie door derden. Elke batch wordt geleverd met een analysecertificaat (COA) dat 99,9%+ zuiverheid aantoont.',
+        q2: 'Hoe snel kan ik mijn bestelling ontvangen?',
+        a2: 'Alle bestellingen worden binnen 24 uur verzonden. We bieden standaardlevering (3-5 werkdagen) en expresverzending (1-2 werkdagen) aan.',
+        q3: 'Leveren jullie analysecertificaten (COA)?',
+        a3: 'Ja, elk product bevat een batchspecifiek COA met HPLC-chromatogram, massaspectrometriegegevens, zuiverheidspercentage en opslagaanbevelingen.',
+        q4: 'Waar kan ik peptiden kopen in Europa?',
+        a4: 'U kunt online peptiden kopen bij Peptide Shop met snelle levering in heel Europa. Levertijden variëren per bestemming en serviceniveau, en we bieden zowel standaard als express opties.',
+        q5: 'Welke betaalmethoden accepteren jullie?',
+        a5: 'We accepteren alle gangbare creditcards (Visa, MasterCard, American Express), PayPal en bankoverschrijvingen voor institutionele bestellingen. Alle transacties worden veilig verwerkt.',
+        q6: 'Hoe moet ik mijn peptiden bewaren?',
+        a6: 'Gelyofiliseerde peptiden moeten worden bewaard bij -20°C voor langdurige opslag. Na reconstitutie bewaren bij 2-8°C en gebruiken binnen de in de productdocumentatie aangegeven termijn. Altijd beschermen tegen licht en herhaalde vries-dooi cycli.',
+        q7: 'Zijn jullie peptiden voor menselijke consumptie?',
+        a7: 'Nee. Al onze peptiden worden uitsluitend verkocht voor onderzoeks- en laboratoriumgebruik. Ze zijn niet bedoeld voor menselijk of veterinair gebruik, voedseladditieven, medicijnen of cosmetische toepassingen.',
+        q8: 'Kan ik een terugbetaling of vervanging krijgen bij problemen?',
+        a8: 'Absoluut. Als u een product ontvangt dat niet voldoet aan onze geadverteerde zuiverheidsspecificaties, bieden we een volledige terugbetaling of vervanging. Neem contact op met ons supportteam met uw COA en eventuele ondersteunende documentatie binnen 30 dagen na ontvangst.',
+      },
+      seo: {
+        title: 'Peptiden Online Kopen {market} & Europa - Uw Complete Gids',
+        buyLocal: 'Peptiden Kopen {market}',
+        buyLocalDesc: 'Wilt u peptiden kopen in {location}? Peptide Shop biedt premium onderzoekspeptiden met 99% zuiverheid geverifieerd door HPLC-analyse. Onze bestverkochte peptiden zijn onder andere Semaglutide, Tirzepatide, BPC-157, TB-500 en Melanotan 2. Alle bestellingen bevatten een analysecertificaat (COA) en worden binnen 24 uur verzonden.',
+        buyEurope: 'Peptiden Kopen Europa',
+        buyEuropeDesc: 'Koop peptiden online met snelle Europese levering. We verzenden naar Nederland, Duitsland, Frankrijk, Spanje, Italië, België, Oostenrijk, Ierland en Portugal. Of u nu GLP-1 peptiden nodig heeft voor gewichtsverliesonderzoek, BPC-157 voor spierherstelstudies of groeihormoonpeptiden, Peptide Shop is uw betrouwbare Europese peptidenleverancier met discrete, temperatuurgecontroleerde verzending.',
+        weightLoss: 'Peptiden voor Gewichtsverliesonderzoek',
+        weightLossDesc: 'Onze gewichtsverliespeptiden te koop omvatten de nieuwste GLP-1 receptoragonisten: Semaglutide, Tirzepatide, Retatrutide en Cagrilintide. Deze onderzoekspeptiden zijn HPLC-geverifieerd en worden geleverd met volledige documentatie voor metabole onderzoekstoepassingen. Koop peptiden voor gewichtsverliesstudies met vertrouwen bij een betrouwbare Europese peptidenleverancier.',
+        muscleGrowth: 'Peptiden voor Spiergroeionderzoek',
+        muscleGrowthDesc: 'Koop peptiden voor spiergroei- en herstelonderzoek waaronder BPC-157, TB-500 en IGF-1 varianten. Onze bodybuildingpeptiden zijn onderzoekskwaliteit met 99% zuiverheid, ideaal voor weefselherstel- en regeneratiestudies. Snelle verzending en concurrerende prijzen maken ons de voorkeurskeuze voor onderzoekers die anabole routes bestuderen.',
+        browseAll: 'Bekijk Alle Peptiden te Koop',
       },
       cta: {
         title: '10% korting op uw eerste bestelling',
@@ -2624,6 +2708,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'Häufige Fragen',
         subtitle: 'Häufig gestellte Fragen',
+        q1: 'Was unterscheidet Ihre Peptide von denen der Konkurrenz?',
+        a1: 'Unsere Peptide durchlaufen eine strenge HPLC- und Massenspektrometrie-Analyse mit Drittanbieterverifizierung. Jede Charge wird mit einem Analysezertifikat (COA) geliefert, das eine Reinheit von 99,9%+ belegt.',
+        q2: 'Wie schnell kann ich meine Bestellung erhalten?',
+        a2: 'Alle Bestellungen werden innerhalb von 24 Stunden versandt. Wir bieten Standardlieferung (3-5 Werktage) und Expressversand (1-2 Werktage) an.',
+        q3: 'Stellen Sie Analysezertifikate (COA) bereit?',
+        a3: 'Ja, jedes Produkt enthält ein chargenspezifisches COA mit HPLC-Chromatogramm, Massenspektrometrie-Daten, Reinheitsprozentsatz und Lagerungsempfehlungen.',
+        q4: 'Wo kann ich Peptide in Europa kaufen?',
+        a4: 'Sie können Peptide online bei Peptide Shop mit schneller Lieferung in ganz Europa kaufen. Die Lieferzeiten variieren je nach Zielort und Serviceniveau, und wir bieten sowohl Standard- als auch Expressoptionen an.',
+        q5: 'Welche Zahlungsmethoden akzeptieren Sie?',
+        a5: 'Wir akzeptieren alle gängigen Kreditkarten (Visa, MasterCard, American Express), PayPal und Banküberweisungen für institutionelle Bestellungen. Alle Transaktionen werden sicher verarbeitet.',
+        q6: 'Wie sollte ich meine Peptide lagern?',
+        a6: 'Lyophilisierte Peptide sollten bei -20°C für die Langzeitlagerung aufbewahrt werden. Nach der Rekonstitution bei 2-8°C lagern und innerhalb des in der Produktdokumentation angegebenen Zeitraums verwenden. Immer vor Licht und wiederholten Einfrier-Auftau-Zyklen schützen.',
+        q7: 'Sind Ihre Peptide für den menschlichen Verzehr bestimmt?',
+        a7: 'Nein. Alle unsere Peptide werden ausschließlich für Forschungs- und Laborzwecke verkauft. Sie sind nicht für den menschlichen oder tierärztlichen Gebrauch, als Lebensmittelzusatzstoffe, Medikamente oder kosmetische Anwendungen bestimmt.',
+        q8: 'Kann ich bei Problemen eine Rückerstattung oder einen Ersatz erhalten?',
+        a8: 'Absolut. Wenn Sie ein Produkt erhalten, das nicht unseren beworbenen Reinheitsspezifikationen entspricht, bieten wir eine vollständige Rückerstattung oder einen Ersatz an. Bitte kontaktieren Sie unser Support-Team mit Ihrem COA und allen unterstützenden Unterlagen innerhalb von 30 Tagen nach Erhalt.',
+      },
+      seo: {
+        title: 'Peptide Online Kaufen {market} & Europa - Ihr Kompletter Leitfaden',
+        buyLocal: 'Peptide Kaufen {market}',
+        buyLocalDesc: 'Möchten Sie Peptide in {location} kaufen? Peptide Shop bietet Premium-Forschungspeptide mit 99% Reinheit, verifiziert durch HPLC-Analyse. Unsere meistverkauften Peptide sind Semaglutide, Tirzepatide, BPC-157, TB-500 und Melanotan 2. Alle Bestellungen enthalten ein Analysezertifikat (COA) und werden innerhalb von 24 Stunden versandt.',
+        buyEurope: 'Peptide Kaufen Europa',
+        buyEuropeDesc: 'Kaufen Sie Peptide online mit schneller europäischer Lieferung. Wir versenden nach Deutschland, Niederlande, Frankreich, Spanien, Italien, Belgien, Österreich, Irland und Portugal. Ob Sie GLP-1-Peptide für Gewichtsverlustforschung, BPC-157 für Muskelerholungsstudien oder Wachstumshormonpeptide benötigen, Peptide Shop ist Ihr vertrauenswürdiger europäischer Peptidlieferant mit diskretem, temperaturkontrolliertem Versand.',
+        weightLoss: 'Peptide für Gewichtsverlustforschung',
+        weightLossDesc: 'Unsere Gewichtsverlustpeptide zum Verkauf umfassen die neuesten GLP-1-Rezeptoragonisten: Semaglutide, Tirzepatide, Retatrutide und Cagrilintide. Diese Forschungspeptide sind HPLC-verifiziert und werden mit vollständiger Dokumentation für metabolische Forschungsanwendungen geliefert. Kaufen Sie Peptide für Gewichtsverluststudien mit Vertrauen von einem vertrauenswürdigen europäischen Peptidlieferanten.',
+        muscleGrowth: 'Peptide für Muskelwachstumsforschung',
+        muscleGrowthDesc: 'Kaufen Sie Peptide für Muskelwachstums- und Erholungsforschung einschließlich BPC-157, TB-500 und IGF-1-Varianten. Unsere Bodybuilding-Peptide sind forschungsqualität mit 99% Reinheit, ideal für Gewebereparatur- und Regenerationsstudien. Schneller Versand und wettbewerbsfähige Preise machen uns zur bevorzugten Wahl für Forscher, die anabole Wege untersuchen.',
+        browseAll: 'Alle Peptide zum Verkauf Durchsuchen',
       },
       cta: {
         title: '10% Rabatt auf Ihre erste Bestellung',
@@ -3269,6 +3381,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'FAQ',
         subtitle: 'Questions fréquentes',
+        q1: 'Qu\'est-ce qui distingue vos peptides de la concurrence ?',
+        a1: 'Nos peptides sont soumis à une analyse HPLC et de spectrométrie de masse rigoureuse avec vérification par des tiers. Chaque lot est accompagné d\'un certificat d\'analyse (COA) confirmant une pureté de 99,9%+.',
+        q2: 'Combien de temps faut-il pour recevoir ma commande ?',
+        a2: 'Toutes les commandes sont expédiées dans les 24 heures. Nous proposons une livraison standard (3-5 jours ouvrables) et une livraison express (1-2 jours ouvrables).',
+        q3: 'Fournissez-vous des certificats d\'analyse (COA) ?',
+        a3: 'Oui, chaque produit inclut un COA spécifique au lot avec le chromatogramme HPLC, les données de spectrométrie de masse, le pourcentage de pureté et les recommandations de stockage.',
+        q4: 'Où puis-je acheter des peptides en Europe ?',
+        a4: 'Vous pouvez acheter des peptides en ligne chez Peptide Shop avec une livraison rapide dans toute l\'Europe. Les délais de livraison varient selon la destination et le niveau de service, et nous proposons des options standard et express.',
+        q5: 'Quels modes de paiement acceptez-vous ?',
+        a5: 'Nous acceptons toutes les principales cartes de crédit (Visa, MasterCard, American Express), PayPal et les virements bancaires pour les commandes institutionnelles. Toutes les transactions sont traitées de manière sécurisée.',
+        q6: 'Comment dois-je stocker mes peptides ?',
+        a6: 'Les peptides lyophilisés doivent être conservés à -20°C pour un stockage à long terme. Après reconstitution, conservez à 2-8°C et utilisez dans le délai spécifié dans la documentation du produit. Toujours protéger de la lumière et des cycles répétés de congélation-décongélation.',
+        q7: 'Vos peptides sont-ils destinés à la consommation humaine ?',
+        a7: 'Non. Tous nos peptides sont vendus exclusivement à des fins de recherche et de laboratoire. Ils ne sont pas destinés à un usage humain ou vétérinaire, comme additifs alimentaires, médicaments ou applications cosmétiques.',
+        q8: 'Puis-je obtenir un remboursement ou un remplacement en cas de problème ?',
+        a8: 'Absolument. Si vous recevez un produit qui ne répond pas à nos spécifications de pureté annoncées, nous vous offrons un remboursement complet ou un remplacement. Veuillez contacter notre équipe d\'assistance avec votre COA et toute documentation à l\'appui dans les 30 jours suivant la réception.',
+      },
+      seo: {
+        title: 'Acheter des Peptides en Ligne {market} & Europe - Votre Guide Complet',
+        buyLocal: 'Acheter des Peptides {market}',
+        buyLocalDesc: 'Vous souhaitez acheter des peptides en {location} ? Peptide Shop propose des peptides de recherche premium avec une pureté de 99%, vérifiée par analyse HPLC. Nos peptides les plus vendus sont Semaglutide, Tirzepatide, BPC-157, TB-500 et Melanotan 2. Toutes les commandes incluent un certificat d\'analyse (COA) et sont expédiées sous 24 heures.',
+        buyEurope: 'Acheter des Peptides en Europe',
+        buyEuropeDesc: 'Achetez des peptides en ligne avec une livraison rapide en Europe. Nous expédions en Allemagne, Pays-Bas, France, Espagne, Italie, Belgique, Autriche, Irlande et Portugal. Que vous ayez besoin de peptides GLP-1 pour la recherche sur la perte de poids, de BPC-157 pour les études de récupération musculaire ou de peptides d\'hormone de croissance, Peptide Shop est votre fournisseur européen de confiance avec expédition discrète et à température contrôlée.',
+        weightLoss: 'Peptides pour la Recherche sur la Perte de Poids',
+        weightLossDesc: 'Nos peptides pour la perte de poids à vendre comprennent les derniers agonistes des récepteurs GLP-1 : Semaglutide, Tirzepatide, Retatrutide et Cagrilintide. Ces peptides de recherche sont vérifiés par HPLC et livrés avec une documentation complète pour les applications de recherche métabolique. Achetez des peptides pour les études de perte de poids en toute confiance auprès d\'un fournisseur européen de confiance.',
+        muscleGrowth: 'Peptides pour la Recherche sur la Croissance Musculaire',
+        muscleGrowthDesc: 'Achetez des peptides pour la recherche sur la croissance musculaire et la récupération, y compris BPC-157, TB-500 et les variantes IGF-1. Nos peptides de musculation sont de qualité recherche avec une pureté de 99%, idéaux pour les études de réparation tissulaire et de régénération. Livraison rapide et prix compétitifs font de nous le choix préféré des chercheurs étudiant les voies anaboliques.',
+        browseAll: 'Parcourir Tous les Peptides à Vendre',
       },
       cta: {
         title: '10% de réduction sur votre première commande',
@@ -3914,6 +4054,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'FAQ',
         subtitle: 'Preguntas frecuentes',
+        q1: '¿Qué diferencia a sus péptidos de la competencia?',
+        a1: 'Nuestros péptidos pasan por un riguroso análisis HPLC y de espectrometría de masas con verificación de terceros. Cada lote viene con un Certificado de Análisis (COA) que confirma una pureza del 99,9%+.',
+        q2: '¿Cuánto tiempo tardaré en recibir mi pedido?',
+        a2: 'Todos los pedidos se envían en 24 horas. Ofrecemos entrega estándar (3-5 días hábiles) y envío express (1-2 días hábiles).',
+        q3: '¿Proporcionan Certificados de Análisis (COA)?',
+        a3: 'Sí, cada producto incluye un COA específico del lote con cromatograma HPLC, datos de espectrometría de masas, porcentaje de pureza y recomendaciones de almacenamiento.',
+        q4: '¿Dónde puedo comprar péptidos en Europa?',
+        a4: 'Puede comprar péptidos online en Peptide Shop con entrega rápida en toda Europa. Los tiempos de entrega varían según el destino y el nivel de servicio, y ofrecemos opciones estándar y express.',
+        q5: '¿Qué métodos de pago aceptan?',
+        a5: 'Aceptamos todas las principales tarjetas de crédito (Visa, MasterCard, American Express), PayPal y transferencias bancarias para pedidos institucionales. Todas las transacciones se procesan de forma segura.',
+        q6: '¿Cómo debo almacenar mis péptidos?',
+        a6: 'Los péptidos liofilizados deben almacenarse a -20°C para almacenamiento a largo plazo. Después de la reconstitución, almacenar a 2-8°C y usar dentro del período especificado en la documentación del producto. Siempre proteger de la luz y de ciclos repetidos de congelación-descongelación.',
+        q7: '¿Sus péptidos están destinados al consumo humano?',
+        a7: 'No. Todos nuestros péptidos se venden exclusivamente para fines de investigación y laboratorio. No están destinados para uso humano o veterinario, como aditivos alimentarios, medicamentos o aplicaciones cosméticas.',
+        q8: '¿Puedo obtener un reembolso o reemplazo si hay problemas?',
+        a8: 'Absolutamente. Si recibe un producto que no cumple con nuestras especificaciones de pureza anunciadas, le ofrecemos un reembolso completo o reemplazo. Por favor contacte a nuestro equipo de soporte con su COA y cualquier documentación de respaldo dentro de los 30 días de recepción.',
+      },
+      seo: {
+        title: 'Comprar Péptidos Online {market} & Europa - Tu Guía Completa',
+        buyLocal: 'Comprar Péptidos {market}',
+        buyLocalDesc: '¿Buscas comprar péptidos en {location}? Peptide Shop ofrece péptidos de investigación premium con 99% de pureza, verificados por análisis HPLC. Nuestros péptidos más vendidos son Semaglutide, Tirzepatide, BPC-157, TB-500 y Melanotan 2. Todos los pedidos incluyen un Certificado de Análisis (COA) y se envían en 24 horas.',
+        buyEurope: 'Comprar Péptidos en Europa',
+        buyEuropeDesc: 'Compra péptidos online con entrega rápida en toda Europa. Enviamos a Alemania, Países Bajos, Francia, España, Italia, Bélgica, Austria, Irlanda y Portugal. Ya sea que necesites péptidos GLP-1 para investigación de pérdida de peso, BPC-157 para estudios de recuperación muscular o péptidos de hormona de crecimiento, Peptide Shop es tu proveedor europeo de confianza con envío discreto y con temperatura controlada.',
+        weightLoss: 'Péptidos para Investigación de Pérdida de Peso',
+        weightLossDesc: 'Nuestros péptidos para pérdida de peso incluyen los últimos agonistas del receptor GLP-1: Semaglutide, Tirzepatide, Retatrutide y Cagrilintide. Estos péptidos de investigación están verificados por HPLC y vienen con documentación completa para aplicaciones de investigación metabólica. Compra péptidos para estudios de pérdida de peso con confianza de un proveedor europeo de confianza.',
+        muscleGrowth: 'Péptidos para Investigación de Crecimiento Muscular',
+        muscleGrowthDesc: 'Compra péptidos para investigación de crecimiento y recuperación muscular incluyendo BPC-157, TB-500 y variantes de IGF-1. Nuestros péptidos de culturismo son de grado de investigación con 99% de pureza, ideales para estudios de reparación y regeneración de tejidos. Envío rápido y precios competitivos nos hacen la opción preferida para investigadores que estudian vías anabólicas.',
+        browseAll: 'Ver Todos los Péptidos en Venta',
       },
       cta: {
         title: '10% de descuento en tu primer pedido',
@@ -4559,6 +4727,34 @@ export const translations: Record<SupportedLanguage, Translations> = {
       faq: {
         title: 'FAQ',
         subtitle: 'Domande frequenti',
+        q1: 'Cosa distingue i vostri peptidi dalla concorrenza?',
+        a1: 'I nostri peptidi sono sottoposti a rigorose analisi HPLC e spettrometria di massa con verifica di terze parti. Ogni lotto viene fornito con un Certificato di Analisi (COA) che conferma una purezza del 99,9%+.',
+        q2: 'Quanto tempo ci vuole per ricevere il mio ordine?',
+        a2: 'Tutti gli ordini vengono spediti entro 24 ore. Offriamo consegna standard (3-5 giorni lavorativi) e spedizione express (1-2 giorni lavorativi).',
+        q3: 'Fornite Certificati di Analisi (COA)?',
+        a3: 'Sì, ogni prodotto include un COA specifico del lotto con cromatogramma HPLC, dati di spettrometria di massa, percentuale di purezza e raccomandazioni di conservazione.',
+        q4: 'Dove posso acquistare peptidi in Europa?',
+        a4: 'Puoi acquistare peptidi online su Peptide Shop con consegna rapida in tutta Europa. I tempi di consegna variano in base alla destinazione e al livello di servizio, e offriamo opzioni standard ed express.',
+        q5: 'Quali metodi di pagamento accettate?',
+        a5: 'Accettiamo tutte le principali carte di credito (Visa, MasterCard, American Express), PayPal e bonifici bancari per ordini istituzionali. Tutte le transazioni sono elaborate in modo sicuro.',
+        q6: 'Come devo conservare i miei peptidi?',
+        a6: 'I peptidi liofilizzati devono essere conservati a -20°C per la conservazione a lungo termine. Dopo la ricostituzione, conservare a 2-8°C e utilizzare entro il periodo specificato nella documentazione del prodotto. Proteggere sempre dalla luce e dai cicli ripetuti di congelamento-scongelamento.',
+        q7: 'I vostri peptidi sono destinati al consumo umano?',
+        a7: 'No. Tutti i nostri peptidi sono venduti esclusivamente per scopi di ricerca e laboratorio. Non sono destinati all\'uso umano o veterinario, come additivi alimentari, farmaci o applicazioni cosmetiche.',
+        q8: 'Posso ottenere un rimborso o una sostituzione in caso di problemi?',
+        a8: 'Assolutamente. Se ricevi un prodotto che non soddisfa le nostre specifiche di purezza pubblicizzate, offriamo un rimborso completo o una sostituzione. Contatta il nostro team di supporto con il tuo COA e qualsiasi documentazione di supporto entro 30 giorni dalla ricezione.',
+      },
+      seo: {
+        title: 'Comprare Peptidi Online {market} & Europa - La Tua Guida Completa',
+        buyLocal: 'Comprare Peptidi {market}',
+        buyLocalDesc: 'Vuoi acquistare peptidi in {location}? Peptide Shop offre peptidi di ricerca premium con purezza del 99%, verificati da analisi HPLC. I nostri peptidi più venduti sono Semaglutide, Tirzepatide, BPC-157, TB-500 e Melanotan 2. Tutti gli ordini includono un Certificato di Analisi (COA) e vengono spediti entro 24 ore.',
+        buyEurope: 'Comprare Peptidi in Europa',
+        buyEuropeDesc: 'Acquista peptidi online con consegna rapida in Europa. Spediamo in Germania, Paesi Bassi, Francia, Spagna, Italia, Belgio, Austria, Irlanda e Portogallo. Che tu abbia bisogno di peptidi GLP-1 per la ricerca sulla perdita di peso, BPC-157 per studi sul recupero muscolare o peptidi dell\'ormone della crescita, Peptide Shop è il tuo fornitore europeo di fiducia con spedizione discreta e a temperatura controllata.',
+        weightLoss: 'Peptidi per la Ricerca sulla Perdita di Peso',
+        weightLossDesc: 'I nostri peptidi per la perdita di peso in vendita includono gli ultimi agonisti del recettore GLP-1: Semaglutide, Tirzepatide, Retatrutide e Cagrilintide. Questi peptidi di ricerca sono verificati da HPLC e vengono forniti con documentazione completa per applicazioni di ricerca metabolica. Acquista peptidi per studi sulla perdita di peso con fiducia da un fornitore europeo affidabile.',
+        muscleGrowth: 'Peptidi per la Ricerca sulla Crescita Muscolare',
+        muscleGrowthDesc: 'Acquista peptidi per la ricerca sulla crescita muscolare e il recupero, inclusi BPC-157, TB-500 e varianti IGF-1. I nostri peptidi per bodybuilding sono di grado ricerca con purezza del 99%, ideali per studi sulla riparazione e rigenerazione dei tessuti. Spedizione veloce e prezzi competitivi ci rendono la scelta preferita per i ricercatori che studiano le vie anaboliche.',
+        browseAll: 'Sfoglia Tutti i Peptidi in Vendita',
       },
       cta: {
         title: '10% di sconto sul primo ordine',

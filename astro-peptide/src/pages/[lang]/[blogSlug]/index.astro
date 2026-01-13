@@ -1,0 +1,29 @@
+---
+/**
+ * Localized blog index page.
+ * Routes: /nl/blog/, /de/blog/, /fr/blog/, /es/blog/, /it/blog/
+ */
+import BlogPage from '../../../components/pages/BlogPage.astro';
+import { supportedLanguages, pageSlugTranslations } from '../../../i18n/translations';
+import type { SupportedLanguage } from '../../../i18n/translations';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const paths: { params: { lang: string; blogSlug: string } }[] = [];
+  
+  for (const lang of supportedLanguages.filter(l => l !== 'en') as SupportedLanguage[]) {
+    // Get localized 'blog' slug (in case it's translated)
+    const blogSlug = pageSlugTranslations[lang]?.['blog'] || 'blog';
+    paths.push({
+      params: { lang, blogSlug }
+    });
+  }
+  
+  return paths;
+}
+
+const { lang } = Astro.params;
+---
+
+<BlogPage lang={lang as SupportedLanguage} />
