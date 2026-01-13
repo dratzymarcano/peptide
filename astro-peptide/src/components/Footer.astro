@@ -85,7 +85,7 @@ const currentLang = getLangFromUrl(Astro.url);
 					<li><a href={getLocalizedPath('/privacy/', currentLang)}>{t(currentLang, 'footer.privacyPolicy')}</a></li>
 					<li><a href={getLocalizedPath('/disclaimer/', currentLang)}>{t(currentLang, 'footer.disclaimer')}</a></li>
 					<li><a href={getLocalizedPath('/coa-policy/', currentLang)}>{t(currentLang, 'footer.coaPolicy')}</a></li>
-					<li><a href="/sitemap_index.xml">{t(currentLang, 'footer.sitemap')}</a></li>
+					<li><a href={getLocalizedPath('/sitemap/', currentLang)}>{t(currentLang, 'footer.sitemap')}</a></li>
 				</ul>
 			</div>
 
