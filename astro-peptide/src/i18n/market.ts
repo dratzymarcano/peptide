@@ -35,9 +35,9 @@ export const marketByLang: Record<SupportedLanguage, MarketConfig> = {
   de: {
     hreflang: 'de-DE',
     geoRegion: 'DE',
-    geoPlacename: 'Germany',
+    geoPlacename: 'Deutschland',
     icbm: '52.5200, 13.4050',
-    marketName: 'Germany',
+    marketName: 'Deutschland',
     keywordHint: 'peptide kaufen deutschland',
     keywords: [
       'peptide kaufen deutschland',
@@ -75,9 +75,9 @@ export const marketByLang: Record<SupportedLanguage, MarketConfig> = {
   es: {
     hreflang: 'es-ES',
     geoRegion: 'ES',
-    geoPlacename: 'Spain',
+    geoPlacename: 'España',
     icbm: '40.4168, -3.7038',
-    marketName: 'Spain',
+    marketName: 'España',
     keywordHint: 'comprar peptidos españa',
     keywords: [
       'comprar peptidos',
@@ -95,9 +95,9 @@ export const marketByLang: Record<SupportedLanguage, MarketConfig> = {
   it: {
     hreflang: 'it-IT',
     geoRegion: 'IT',
-    geoPlacename: 'Italy',
+    geoPlacename: 'Italia',
     icbm: '41.9028, 12.4964',
-    marketName: 'Italy',
+    marketName: 'Italia',
     keywordHint: 'acquistare peptidi italia',
     keywords: [
       'acquistare peptidi',
@@ -115,9 +115,9 @@ export const marketByLang: Record<SupportedLanguage, MarketConfig> = {
   nl: {
     hreflang: 'nl-NL',
     geoRegion: 'NL',
-    geoPlacename: 'Netherlands',
+    geoPlacename: 'Nederland',
     icbm: '52.3676, 4.9041',
-    marketName: 'Netherlands',
+    marketName: 'Nederland',
     keywordHint: 'peptiden kopen nederland',
     keywords: [
       'peptiden kopen',

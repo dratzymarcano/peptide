@@ -1,61 +1,65 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { supportedLanguages, productSlugTranslations, getLocalizedProductSlug } from '../i18n/translations';
-
-const site = 'https://peptide-shop.net';
+import { supportedLanguages, getLocalizedProductSlug } from '../i18n/translations';
+import { 
+  SITE_URL, 
+  generateSitemapXml, 
+  generateUrlEntry, 
+  type SitemapURL 
+} from '../utils/sitemap';
 
 export const GET: APIRoute = async () => {
   const today = new Date().toISOString().split('T')[0];
+  const sitemapUrls: SitemapURL[] = [];
   
   // Get all English products (base products)
   const allProducts = await getCollection('products');
   const englishProducts = allProducts.filter(p => p.slug.startsWith('en/'));
   
-  let urls = '';
-  
   for (const product of englishProducts) {
-    const productSlug = product.slug.replace('en/', '');
-    const buySlug = `buy-${productSlug}`;
+    const baseSlug = product.slug.replace('en/', '');
+    const buySlug = `buy-${baseSlug}`;
     
-    // Generate hreflang alternates for this product
+    // Generate alternates
     const alternates = supportedLanguages.map(lang => {
+      let href = '';
       if (lang === 'en') {
-        return `      <xhtml:link rel="alternate" hreflang="en" href="${site}/peptides/${buySlug}/" />`;
+        href = `${SITE_URL}/peptides/${buySlug}/`;
+      } else {
+        const localizedSlug = getLocalizedProductSlug(buySlug, lang);
+        href = `${SITE_URL}/${lang}/peptides/${localizedSlug}/`;
       }
-      const localizedSlug = getLocalizedProductSlug(buySlug, lang);
-      return `      <xhtml:link rel="alternate" hreflang="${lang}" href="${site}/${lang}/peptides/${localizedSlug}/" />`;
-    }).join('\n');
+      return { lang, href };
+    });
     
     // English URL
-    urls += `  <url>
-    <loc>${site}/peptides/${buySlug}/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-${alternates}
-  </url>\n`;
+    const enUrl = `${SITE_URL}/peptides/${buySlug}/`;
+    sitemapUrls.push({
+      loc: enUrl,
+      lastmod: today,
+      changefreq: 'weekly',
+      priority: '0.9',
+      alternates
+    });
     
     // Other language URLs
     for (const lang of supportedLanguages) {
       if (lang === 'en') continue;
       
       const localizedSlug = getLocalizedProductSlug(buySlug, lang);
-      urls += `  <url>
-    <loc>${site}/${lang}/peptides/${localizedSlug}/</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-${alternates}
-  </url>\n`;
+      const localUrl = `${SITE_URL}/${lang}/peptides/${localizedSlug}/`;
+      
+      sitemapUrls.push({
+        loc: localUrl,
+        lastmod: today,
+        changefreq: 'weekly',
+        priority: '0.9',
+        alternates
+      });
     }
   }
 
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls}</urlset>`;
-
-  return new Response(sitemap, {
+  return new Response(generateSitemapXml(sitemapUrls), {
     headers: {
       'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600',

@@ -91,8 +91,17 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
     }
   };
 
+  const localeMap: Record<SupportedLanguage, string> = {
+    en: 'en-GB',
+    nl: 'nl-NL',
+    de: 'de-DE',
+    fr: 'fr-FR',
+    es: 'es-ES',
+    it: 'it-IT',
+  };
+
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-GB', {
+    return new Date(dateString).toLocaleDateString(localeMap[lang] || 'en-GB', {
       day: 'numeric',
       month: 'short',
       year: 'numeric'

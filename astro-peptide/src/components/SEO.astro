@@ -5,9 +5,10 @@ interface Props {
 	image?: string;
 	article?: boolean;
 	lang?: string;
+	schema?: object;
 }
 
-const { title, description, image, article } = Astro.props;
+const { title, description, image, article, schema } = Astro.props;
 import { getLangFromUrl, supportedLanguages, type SupportedLanguage } from '../i18n/translations';
 import { getMarket } from '../i18n/market';
 
@@ -87,3 +88,5 @@ const keywords = marketForMeta.keywords ? marketForMeta.keywords.join(', ') : ''
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <meta name="googlebot" content="index, follow" />
 <meta name="bingbot" content="index, follow" />
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

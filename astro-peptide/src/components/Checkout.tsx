@@ -218,11 +218,11 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
     
     if (checkoutMode === 'register') {
       if (authPassword !== authConfirmPassword) {
-        setLocalAuthError('Passwords do not match');
+        setLocalAuthError(t(lang, 'checkout.errors.passwordsDoNotMatch'));
         return;
       }
       if (authPassword.length < 8) {
-        setLocalAuthError('Password must be at least 8 characters');
+        setLocalAuthError(t(lang, 'checkout.errors.passwordTooShort'));
         return;
       }
       try {
@@ -269,10 +269,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
       ? ['account', 'shipping', 'payment', 'review']
       : ['shipping', 'payment', 'review'];
     const stepLabelsMap: Record<string, string> = {
-      account: 'Account',
-      shipping: 'Shipping',
-      payment: 'Payment',
-      review: 'Review'
+      account: t(lang, 'checkout.steps.account'),
+      shipping: t(lang, 'checkout.steps.shipping'),
+      payment: t(lang, 'checkout.steps.payment'),
+      review: t(lang, 'checkout.steps.review')
     };
     
     const isStepCompleted = (step: string) => {
@@ -369,11 +369,11 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 </svg>
               </div>
               <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '16px', fontSize: '1.75rem' }}>
-                Minimum Order Required
+                {t(lang, 'checkout.minOrder.title')}
               </h3>
               <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '1.1rem', maxWidth: '450px', margin: '0 auto 24px' }}>
                 Our minimum order value is <strong style={{ color: '#1e293b' }}>{formatPrice(MIN_ORDER_AMOUNT, currency)}</strong>.<br />
-                Your current cart total is <strong style={{ color: '#0077b6' }}>{formatPrice(subtotal, currency)}</strong>.
+                {t(lang, 'checkout.minOrder.currentTotal')} <strong style={{ color: '#0077b6' }}>{formatPrice(subtotal, currency)}</strong>.
               </p>
               <div style={{ 
                 background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1))',
@@ -403,7 +403,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
                 }}
               >
-                Continue Shopping
+                {t(lang, 'checkout.actions.continueShopping')}
               </a>
             </div>
           </div>
@@ -435,10 +435,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 </svg>
               </div>
               <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '12px', fontSize: '1.75rem' }}>
-                Your cart is empty
+                {t(lang, 'checkout.empty.title')}
               </h3>
               <p style={{ color: '#64748b', marginBottom: '32px', fontSize: '1.1rem' }}>
-                Add some products before checkout.
+                {t(lang, 'checkout.empty.description')}
               </p>
               <a 
                 href="/shop/" 
@@ -456,7 +456,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
                 }}
               >
-                Browse Peptides
+                {t(lang, 'checkout.actions.browsePeptides')}
               </a>
             </div>
           </div>
@@ -489,9 +489,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </svg>
                   </div>
                   <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                    Complete Your Bitcoin Payment
+                    {t(lang, 'checkout.bitcoin.completePayment')}
                   </h3>
-                  <p style={{ color: '#64748b' }}>Order ID: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
+                  <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
                 </div>
                 
                 <div style={{ 
@@ -501,9 +501,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   marginBottom: '24px',
                   textAlign: 'center'
                 }}>
-                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '8px' }}>Send exactly:</p>
+                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '8px' }}>{t(lang, 'checkout.bitcoin.sendExactly')}</p>
                   <h2 style={{ color: '#78350f', fontWeight: '800', marginBottom: '24px', fontSize: '2rem' }}>{bitcoinInvoice.amount} BTC</h2>
-                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>To this address:</p>
+                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>{t(lang, 'checkout.bitcoin.toAddress')}</p>
                   <div style={{ 
                     background: 'white', 
                     padding: '16px', 
@@ -536,7 +536,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
                       <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
                     </svg>
-                    Copy Address
+                    {t(lang, 'checkout.actions.copyAddress')}
                   </button>
                 </div>
                 
@@ -555,17 +555,17 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
                   <div>
-                    <strong style={{ color: '#92400e' }}>Payment expires in 15 minutes.</strong>
-                    <span style={{ color: '#a16207' }}> Please complete the payment before the timer expires.</span>
+                    <strong style={{ color: '#92400e' }}>{t(lang, 'checkout.bitcoin.paymentExpires')}</strong>
+                    <span style={{ color: '#a16207' }}> {t(lang, 'checkout.bitcoin.completeBeforeExpires')}</span>
                   </div>
                 </div>
                 
                 <p style={{ color: '#64748b', textAlign: 'center', fontSize: '14px', marginBottom: '24px' }}>
-                  Once payment is confirmed on the blockchain, you will receive a confirmation email at <strong>{shippingInfo.email}</strong>
+                  {t(lang, 'checkout.bitcoin.paymentConfirmation')} <strong>{shippingInfo.email}</strong>
                 </p>
                 
                 <div style={{ borderTop: '2px solid #f1f5f9', paddingTop: '24px', textAlign: 'center' }}>
-                  <p style={{ color: '#64748b', marginBottom: '8px' }}>Order Summary</p>
+                  <p style={{ color: '#64748b', marginBottom: '8px' }}>{t(lang, 'checkout.titles.orderSummary')}</p>
                   <p style={{ color: '#0077b6', fontWeight: '800', fontSize: '1.5rem', margin: 0 }}>
                     {formatPrice(finalOrderTotal, currency)} <span style={{ color: '#64748b', fontWeight: '500', fontSize: '14px' }}>(≈ {bitcoinInvoice.amount} BTC)</span>
                   </p>
@@ -600,10 +600,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   </svg>
                 </div>
                 <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                  Order Confirmed!
+                  {t(lang, 'checkout.confirmation.orderConfirmed')}
                 </h3>
-                <p style={{ color: '#64748b', marginBottom: '4px' }}>Order ID: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
-                <p style={{ color: '#64748b' }}>A confirmation email has been sent to <strong>{shippingInfo.email}</strong></p>
+                <p style={{ color: '#64748b', marginBottom: '4px' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
+                <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.confirmationSent')} <strong>{shippingInfo.email}</strong></p>
               </div>
               
               <div style={{ 
@@ -624,10 +624,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                   </svg>
-                  Payment Instructions Coming Soon
+                  {t(lang, 'checkout.confirmation.paymentInstructions')}
                 </h5>
                 <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.7' }}>
-                  Our bank transfer details and payment instructions will be sent to <strong style={{ color: '#0077b6' }}>{shippingInfo.email}</strong> shortly.
+                  {t(lang, 'checkout.confirmation.paymentInstructionsDesc').replace('{email}', shippingInfo.email)}
                 </p>
                 <div style={{ 
                   background: 'white',
@@ -652,10 +652,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       </svg>
                     </div>
                     <div>
-                      <p style={{ color: '#1e293b', fontWeight: '600', marginBottom: '4px' }}>What happens next?</p>
+                      <p style={{ color: '#1e293b', fontWeight: '600', marginBottom: '4px' }}>{t(lang, 'checkout.confirmation.whatHappensNext')}</p>
                       <p style={{ color: '#64748b', margin: 0, fontSize: '14px', lineHeight: '1.6' }}>
-                        Check your inbox for an email with our bank details and the amount to transfer: <strong style={{ color: '#0077b6' }}>{formatPrice(finalOrderTotal, currency)}</strong>. 
-                        Once we receive your payment, we'll send you a confirmation and dispatch your order.
+                        {t(lang, 'checkout.confirmation.whatHappensNextDesc').replace('{amount}', formatPrice(finalOrderTotal, currency))}
                       </p>
                     </div>
                   </div>
@@ -677,7 +676,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
                 <span style={{ color: '#059669' }}>
-                  Don't see the email? Check your spam folder or contact us at <strong>support@ukpeptides.co.uk</strong>
+                  {t(lang, 'checkout.confirmation.checkSpam')} <strong>support@ukpeptides.co.uk</strong>
                 </span>
               </div>
               
@@ -703,7 +702,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                    View My Orders
+                    {t(lang, 'checkout.actions.viewMyOrders')}
                   </a>
                 ) : (
                   <a 
@@ -722,7 +721,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
                     }}
                   >
-                    Continue Shopping
+                    {t(lang, 'checkout.actions.continueShopping')}
                   </a>
                 )}
               </div>
@@ -761,10 +760,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   </svg>
                 </div>
                 <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '10px', fontSize: '1.5rem' }}>
-                  How would you like to checkout?
+                  {t(lang, 'checkout.account.title')}
                 </h3>
                 <p style={{ color: '#64748b', marginBottom: '0' }}>
-                  Create an account to track orders, or continue as guest
+                  {t(lang, 'checkout.account.subtitle')}
                 </p>
               </div>
 
@@ -804,8 +803,8 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </svg>
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>Continue as Guest</div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>Quick checkout without creating an account</div>
+                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.account.guestCheckout')}</div>
+                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.guestDesc')}</div>
                   </div>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
                     <path d="m9 18 6-6-6-6"></path>
@@ -846,8 +845,8 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </svg>
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>Sign In</div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>Already have an account? Sign in to continue</div>
+                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.account.signInOption')}</div>
+                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.signInDesc')}</div>
                   </div>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
                     <path d="m9 18 6-6-6-6"></path>
@@ -890,7 +889,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                      <span style={{ fontWeight: '700', color: '#1e293b' }}>Create Account</span>
+                      <span style={{ fontWeight: '700', color: '#1e293b' }}>{t(lang, 'checkout.account.createAccountOption')}</span>
                       <span style={{
                         background: 'linear-gradient(135deg, #10b981, #059669)',
                         color: 'white',
@@ -898,9 +897,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                         borderRadius: '10px',
                         fontSize: '11px',
                         fontWeight: '700'
-                      }}>RECOMMENDED</span>
+                      }}>{t(lang, 'checkout.account.recommended')}</span>
                     </div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>Track orders, save addresses & faster checkout</div>
+                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.createAccountDesc')}</div>
                   </div>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
                     <path d="m9 18 6-6-6-6"></path>
@@ -980,7 +979,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     marginBottom: '24px' 
                   }}>
                     <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
-                    <span style={{ color: '#94a3b8', fontSize: '13px', fontWeight: '500' }}>or with email</span>
+                    <span style={{ color: '#94a3b8', fontSize: '13px', fontWeight: '500' }}>{t(lang, 'checkout.account.orWithEmail')}</span>
                     <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
                   </div>
 
@@ -1010,7 +1009,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     {checkoutMode === 'register' && (
                       <div className="row">
                         <div className="col-md-6 mb-3">
-                          <label style={labelStyle}>First Name</label>
+                          <label style={labelStyle}>{t(lang, 'checkout.fields.firstName')}</label>
                           <input 
                             type="text" 
                             style={{ ...inputStyle, background: 'white' }}
@@ -1021,7 +1020,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           />
                         </div>
                         <div className="col-md-6 mb-3">
-                          <label style={labelStyle}>Last Name</label>
+                          <label style={labelStyle}>{t(lang, 'checkout.fields.lastName')}</label>
                           <input 
                             type="text" 
                             style={{ ...inputStyle, background: 'white' }}
@@ -1035,7 +1034,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     )}
 
                     <div style={{ marginBottom: '16px' }}>
-                      <label style={labelStyle}>Email Address</label>
+                      <label style={labelStyle}>{t(lang, 'checkout.fields.email')}</label>
                       <input 
                         type="email" 
                         style={{ ...inputStyle, background: 'white' }}
@@ -1047,7 +1046,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </div>
 
                     <div style={{ marginBottom: checkoutMode === 'register' ? '16px' : '24px' }}>
-                      <label style={labelStyle}>Password</label>
+                      <label style={labelStyle}>{t(lang, 'checkout.fields.password')}</label>
                       <input 
                         type="password" 
                         style={{ ...inputStyle, background: 'white' }}
@@ -1060,7 +1059,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
 
                     {checkoutMode === 'register' && (
                       <div style={{ marginBottom: '24px' }}>
-                        <label style={labelStyle}>Confirm Password</label>
+                        <label style={labelStyle}>{t(lang, 'checkout.fields.confirmPassword')}</label>
                         <input 
                           type="password" 
                           style={{ ...inputStyle, background: 'white' }}
@@ -1102,11 +1101,11 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                             borderRadius: '50%',
                             animation: 'spin 1s linear infinite'
                           }}></div>
-                          {checkoutMode === 'login' ? 'Signing In...' : 'Creating Account...'}
+                          {checkoutMode === 'login' ? t(lang, 'checkout.actions.signingIn') : t(lang, 'checkout.actions.creatingAccount')}
                         </>
                       ) : (
                         <>
-                          {checkoutMode === 'login' ? 'Sign In & Continue' : 'Create Account & Continue'}
+                          {checkoutMode === 'login' ? t(lang, 'checkout.actions.signInContinue') : t(lang, 'checkout.actions.createAccountContinue')}
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M5 12h14"></path>
                             <path d="m12 5 7 7-7 7"></path>
@@ -1119,7 +1118,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   {/* Toggle Mode */}
                   <div style={{ textAlign: 'center', marginTop: '20px' }}>
                     <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
-                      {checkoutMode === 'login' ? "Don't have an account?" : 'Already have an account?'}
+                      {checkoutMode === 'login' ? t(lang, 'checkout.account.dontHaveAccount') : t(lang, 'checkout.account.alreadyHaveAccount')}
                       <button
                         type="button"
                         onClick={() => {
@@ -1135,7 +1134,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           marginLeft: '6px'
                         }}
                       >
-                        {checkoutMode === 'login' ? 'Create one' : 'Sign in'}
+                        {checkoutMode === 'login' ? t(lang, 'checkout.account.createOne') : t(lang, 'checkout.actions.signIn')}
                       </button>
                     </p>
                   </div>
@@ -1159,44 +1158,44 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                Shipping Information
+                {t(lang, 'checkout.titles.shippingInformation')}
               </h4>
               <form onSubmit={handleShippingSubmit}>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>First Name *</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.firstName')} *</label>
                     <input type="text" style={inputStyle} required value={shippingInfo.firstName} onChange={e => setShippingInfo({...shippingInfo, firstName: e.target.value})} placeholder="John" />
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>Last Name *</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.lastName')} *</label>
                     <input type="text" style={inputStyle} required value={shippingInfo.lastName} onChange={e => setShippingInfo({...shippingInfo, lastName: e.target.value})} placeholder="Doe" />
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>Email *</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.email')} *</label>
                     <input type="email" style={inputStyle} required value={shippingInfo.email} onChange={e => setShippingInfo({...shippingInfo, email: e.target.value})} placeholder="john@example.com" />
                   </div>
                   <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>Phone (Optional)</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.phoneOptional')}</label>
                     <input type="tel" style={inputStyle} value={shippingInfo.phone} onChange={e => setShippingInfo({...shippingInfo, phone: e.target.value})} placeholder="+44 7123 456789" />
                   </div>
                 </div>
                 <div className="mb-3">
-                  <label style={labelStyle}>Address *</label>
+                  <label style={labelStyle}>{t(lang, 'checkout.fields.address')} *</label>
                   <input type="text" style={inputStyle} required value={shippingInfo.address} onChange={e => setShippingInfo({...shippingInfo, address: e.target.value})} placeholder="123 Research Lane" />
                 </div>
                 <div className="row">
                   <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>City *</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.city')} *</label>
                     <input type="text" style={inputStyle} required value={shippingInfo.city} onChange={e => setShippingInfo({...shippingInfo, city: e.target.value})} placeholder="London" />
                   </div>
                   <div className="col-md-3 mb-3">
-                    <label style={labelStyle}>County</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.county')}</label>
                     <input type="text" style={inputStyle} value={shippingInfo.county} onChange={e => setShippingInfo({...shippingInfo, county: e.target.value})} placeholder="Greater London" />
                   </div>
                   <div className="col-md-3 mb-3">
-                    <label style={labelStyle}>Postcode *</label>
+                    <label style={labelStyle}>{t(lang, 'checkout.fields.postcode')} *</label>
                     <input type="text" style={inputStyle} required placeholder="SW1A 1AA" value={shippingInfo.postcode} onChange={e => setShippingInfo({...shippingInfo, postcode: e.target.value})} />
                   </div>
                 </div>
@@ -1218,7 +1217,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <circle cx="17" cy="18" r="2"></circle>
                     <circle cx="7" cy="18" r="2"></circle>
                   </svg>
-                  Delivery Method
+                  {t(lang, 'checkout.titles.deliveryMethod')}
                 </h5>
                 <div 
                   onClick={() => setShippingMethod('standard')}
@@ -1257,7 +1256,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.shipping.standard')}</div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>3-5 business days</div>
+                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.shipping.standardTime')}</div>
                     </div>
                     <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
                       {qualifiesForFreeDelivery ? (
@@ -1319,7 +1318,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           fontWeight: '700'
                         }}>FAST</span>
                       </div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>1-2 business days</div>
+                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.shipping.expressTime')}</div>
                     </div>
                     <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
                       {qualifiesForFreeDelivery ? (
@@ -1378,7 +1377,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <rect width="20" height="14" x="2" y="5" rx="2"></rect>
                   <line x1="2" x2="22" y1="10" y2="10"></line>
                 </svg>
-                Select Payment Method
+                {t(lang, 'checkout.titles.paymentMethod')}
               </h4>
               <form onSubmit={handlePaymentSubmit}>
                 
@@ -1419,8 +1418,8 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       </svg>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px', fontSize: '1.1rem' }}>Bank Transfer</div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>Pay directly to our UK bank account</div>
+                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px', fontSize: '1.1rem' }}>{t(lang, 'checkout.payment.bankTransfer')}</div>
+                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.payment.bankTransferDesc')}</div>
                     </div>
                   </div>
                   {paymentMethod === 'bank-transfer' && (
@@ -1487,7 +1486,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-                        <span style={{ fontWeight: '700', color: '#1e293b', fontSize: '1.1rem' }}>Bitcoin (BTC)</span>
+                        <span style={{ fontWeight: '700', color: '#1e293b', fontSize: '1.1rem' }}>{t(lang, 'checkout.payment.bitcoin')}</span>
                         <span style={{ 
                           background: 'linear-gradient(135deg, #10b981, #059669)',
                           color: 'white',
@@ -1495,9 +1494,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           borderRadius: '10px',
                           fontSize: '11px',
                           fontWeight: '700'
-                        }}>10% OFF</span>
+                        }}>{t(lang, 'checkout.payment.bitcoinDiscount')}</span>
                       </div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>Fast, secure & private payment</div>
+                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.payment.bitcoinDesc')}</div>
                     </div>
                   </div>
                   {paymentMethod === 'bitcoin' && (
@@ -1516,7 +1515,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                         <line x1="12" x2="12" y1="16" y2="12"></line>
                         <line x1="12" x2="12.01" y1="8" y2="8"></line>
                       </svg>
-                      You'll receive a unique Bitcoin address. Payment expires in 15 minutes.
+                      {t(lang, 'checkout.bitcoin.paymentInfo')}
                     </div>
                   )}
                 </div>
@@ -1561,7 +1560,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
                     }}
                   >
-                    Review Order
+                    {t(lang, 'checkout.actions.reviewOrder')}
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M5 12h14"></path>
                       <path d="m12 5 7 7-7 7"></path>
@@ -1587,7 +1586,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <path d="M9 11l3 3L22 4"></path>
                   <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                 </svg>
-                Review Your Order
+                {t(lang, 'checkout.titles.reviewOrder')}
               </h4>
               
               {/* Shipping Address */}
@@ -1609,7 +1608,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
-                  Shipping Address
+                  {t(lang, 'checkout.review.shippingAddress')}
                 </div>
                 <p style={{ color: '#1e293b', margin: 0, lineHeight: '1.6' }}>
                   <strong>{shippingInfo.firstName} {shippingInfo.lastName}</strong><br />
@@ -1638,12 +1637,12 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <rect width="20" height="14" x="2" y="5" rx="2"></rect>
                     <line x1="2" x2="22" y1="10" y2="10"></line>
                   </svg>
-                  Payment Method
+                  {t(lang, 'checkout.review.paymentMethod')}
                 </div>
                 <p style={{ color: '#1e293b', margin: 0 }}>
-                  {paymentMethod === 'bank-transfer' ? 'Bank Transfer' : 'Bitcoin (BTC)'}
+                  {paymentMethod === 'bank-transfer' ? t(lang, 'checkout.payment.bankTransfer') : t(lang, 'checkout.payment.bitcoin')}
                   {paymentMethod === 'bitcoin' && (
-                    <span style={{ color: '#10b981', fontWeight: '600', marginLeft: '8px' }}>• 10% discount applied</span>
+                    <span style={{ color: '#10b981', fontWeight: '600', marginLeft: '8px' }}>• {t(lang, 'checkout.review.discountApplied')}</span>
                   )}
                 </p>
               </div>
@@ -1668,7 +1667,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <path d="M3 6h18"></path>
                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                   </svg>
-                  Items ({products.length})
+                  {t(lang, 'checkout.review.items')} ({products.length})
                 </div>
                 {products.map(product => (
                   <div key={product.id} style={{ 
@@ -1705,12 +1704,12 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <circle cx="17" cy="18" r="2"></circle>
                     <circle cx="7" cy="18" r="2"></circle>
                   </svg>
-                  Delivery
+                  {t(lang, 'checkout.review.delivery')}
                 </div>
                 <p style={{ color: '#1e293b', margin: 0 }}>
-                  {shippingMethod === 'express' ? 'Express Delivery (1-2 business days)' : 'Standard Delivery (3-5 business days)'} — 
+                  {shippingMethod === 'express' ? t(lang, 'checkout.shipping.expressDelivery') : t(lang, 'checkout.shipping.standardDelivery')} — 
                   {qualifiesForFreeDelivery ? (
-                    <strong style={{ marginLeft: '4px', color: '#10b981' }}>FREE</strong>
+                    <strong style={{ marginLeft: '4px', color: '#10b981' }}>{t(lang, 'checkout.review.free')}</strong>
                   ) : (
                     <strong style={{ marginLeft: '4px' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</strong>
                   )}
@@ -1768,7 +1767,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                         borderRadius: '50%',
                         animation: 'spin 1s linear infinite'
                       }}></div>
-                      Processing...
+                      {t(lang, 'checkout.actions.processing')}
                     </>
                   ) : (
                     <>
@@ -1801,7 +1800,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <path d="M3 6h18"></path>
                   <path d="M16 10a4 4 0 0 1-8 0"></path>
                 </svg>
-                Order Summary
+                {t(lang, 'checkout.titles.orderSummary')}
               </h5>
               
               {/* Items */}
@@ -1815,7 +1814,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   }}>
                     <div>
                       <div style={{ color: '#1e293b', fontWeight: '500' }}>{product.title}</div>
-                      <div style={{ color: '#94a3b8', fontSize: '13px' }}>Qty: {product.quantity}</div>
+                      <div style={{ color: '#94a3b8', fontSize: '13px' }}>{t(lang, 'checkout.review.qty')}: {product.quantity}</div>
                     </div>
                     <span style={{ fontWeight: '600', color: '#0077b6' }}>{formatPrice(product.price * product.quantity, currency)}</span>
                   </div>
@@ -1830,16 +1829,16 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 marginBottom: '20px'
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                  <span style={{ color: '#64748b' }}>Subtotal</span>
+                  <span style={{ color: '#64748b' }}>{t(lang, 'checkout.summary.subtotal')}</span>
                   <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice($cartTotal, currency)}</span>
                 </div>
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
                   <span style={{ color: '#64748b' }}>
-                    {shippingMethod === 'express' ? 'Express' : 'Standard'} Shipping
+                    {shippingMethod === 'express' ? t(lang, 'checkout.shipping.express') : t(lang, 'checkout.shipping.standard')} {t(lang, 'checkout.summary.shipping')}
                   </span>
                   {qualifiesForFreeDelivery ? (
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>FREE</span>
+                    <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'checkout.review.free')}</span>
                   ) : (
                     <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</span>
                   )}
@@ -1856,7 +1855,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span style={{ color: '#10b981', fontSize: '13px', fontWeight: '500' }}>Free delivery on orders over {formatPrice(FREE_DELIVERY_THRESHOLD, currency)}</span>
+                    <span style={{ color: '#10b981', fontSize: '13px', fontWeight: '500' }}>{t(lang, 'checkout.shipping.freeDeliveryMessage').replace('{amount}', formatPrice(FREE_DELIVERY_THRESHOLD, currency))}</span>
                   </div>
                 )}
 
@@ -1868,7 +1867,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     marginTop: '10px',
                     borderTop: '1px dashed #cbd5e1'
                   }}>
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>Bitcoin Discount (10%)</span>
+                    <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'checkout.payment.bitcoinDiscountLabel')}</span>
                     <span style={{ color: '#10b981', fontWeight: '600' }}>-{formatPrice(total * 0.1, currency)}</span>
                   </div>
                 )}
@@ -1882,7 +1881,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 padding: '16px 0',
                 borderTop: '2px solid #e2e8f0'
               }}>
-                <span style={{ color: '#1e293b', fontSize: '1.1rem', fontWeight: '700' }}>Total</span>
+                <span style={{ color: '#1e293b', fontSize: '1.1rem', fontWeight: '700' }}>{t(lang, 'checkout.summary.total')}</span>
                 <span style={{ 
                   fontSize: '1.5rem', 
                   fontWeight: '800',
@@ -1922,8 +1921,8 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   </svg>
                 </div>
                 <div>
-                  <div style={{ color: '#059669', fontWeight: '600', fontSize: '14px' }}>SSL Secure Checkout</div>
-                  <div style={{ color: '#64748b', fontSize: '12px' }}>256-bit encryption</div>
+                  <div style={{ color: '#059669', fontWeight: '600', fontSize: '14px' }}>{t(lang, 'checkout.security.sslSecure')}</div>
+                  <div style={{ color: '#64748b', fontSize: '12px' }}>{t(lang, 'checkout.security.encryption')}</div>
                 </div>
               </div>
             </div>
@@ -1935,7 +1934,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 fontWeight: '600', 
                 marginBottom: '16px',
                 fontSize: '14px'
-              }}>We Accept</h6>
+              }}>{t(lang, 'checkout.security.weAccept')}</h6>
               <div style={{ display: 'flex', gap: '12px' }}>
                 <div style={{ 
                   width: '64px', 
@@ -1967,7 +1966,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 </div>
               </div>
               <p style={{ color: '#64748b', fontSize: '13px', marginTop: '12px', marginBottom: 0, lineHeight: '1.5' }}>
-                Bank Transfer & Bitcoin accepted. Order tracking included.
+                {t(lang, 'checkout.security.paymentMethodsDesc')}
               </p>
             </div>
 
@@ -1986,7 +1985,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
                   <path d="m9 12 2 2 4-4"></path>
                 </svg>
-                Why Order With Confidence
+                {t(lang, 'checkout.trust.title')}
               </h6>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
@@ -1994,7 +1993,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>99%+ Purity Guaranteed</strong> — All products verified via HPLC testing
+                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.purityTitle')}</strong> — {t(lang, 'checkout.trust.purityDesc')}
                   </span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
@@ -2002,7 +2001,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>Discreet Packaging</strong> — Plain packaging with no product labels
+                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.discreetTitle')}</strong> — {t(lang, 'checkout.trust.discreetDesc')}
                   </span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
@@ -2010,7 +2009,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>Same-Day Dispatch</strong> — Orders before 2pm shipped same day
+                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.dispatchTitle')}</strong> — {t(lang, 'checkout.trust.dispatchDesc')}
                   </span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
@@ -2018,7 +2017,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>UK-Based Support</strong> — Real customer service, not bots
+                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.supportTitle')}</strong> — {t(lang, 'checkout.trust.supportDesc')}
                   </span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
@@ -2026,7 +2025,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>5000+ Orders Delivered</strong> — Trusted by UK researchers
+                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.ordersTitle')}</strong> — {t(lang, 'checkout.trust.ordersDesc')}
                   </span>
                 </div>
               </div>
@@ -2053,7 +2052,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <circle cx="17" cy="18" r="2"></circle>
                   <circle cx="7" cy="18" r="2"></circle>
                 </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>UK Shipping</div>
+                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.ukShipping')}</div>
               </div>
               <div style={{ 
                 background: 'white',
@@ -2065,7 +2064,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
                   <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
                 </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>Lab Tested</div>
+                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.labTested')}</div>
               </div>
               <div style={{ 
                 background: 'white',
@@ -2079,7 +2078,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <polyline points="17,8 12,3 7,8"></polyline>
                   <line x1="12" x2="12" y1="3" y2="15"></line>
                 </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>Fast Dispatch</div>
+                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.fastDispatch')}</div>
               </div>
             </div>
           </div>

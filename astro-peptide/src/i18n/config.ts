@@ -9,11 +9,11 @@ export const defaultLang: SupportedLanguage = 'en';
 
 export const languages: Record<SupportedLanguage, { name: string; flag: string; locale: string; region: string; hreflang: string }> = {
   en: { name: 'English', flag: '🇬🇧', locale: 'en-GB', region: 'United Kingdom', hreflang: 'en' },
-  nl: { name: 'Nederlands', flag: '🇳🇱', locale: 'nl-NL', region: 'Netherlands', hreflang: 'nl' },
-  de: { name: 'Deutsch', flag: '🇩🇪', locale: 'de-DE', region: 'Germany', hreflang: 'de' },
+  nl: { name: 'Nederlands', flag: '🇳🇱', locale: 'nl-NL', region: 'Nederland', hreflang: 'nl' },
+  de: { name: 'Deutsch', flag: '🇩🇪', locale: 'de-DE', region: 'Deutschland', hreflang: 'de' },
   fr: { name: 'Français', flag: '🇫🇷', locale: 'fr-FR', region: 'France', hreflang: 'fr' },
-  es: { name: 'Español', flag: '🇪🇸', locale: 'es-ES', region: 'Spain', hreflang: 'es' },
-  it: { name: 'Italiano', flag: '🇮🇹', locale: 'it-IT', region: 'Italy', hreflang: 'it' },
+  es: { name: 'Español', flag: '🇪🇸', locale: 'es-ES', region: 'España', hreflang: 'es' },
+  it: { name: 'Italiano', flag: '🇮🇹', locale: 'it-IT', region: 'Italia', hreflang: 'it' },
 };
 
 export const supportedLanguages = Object.keys(languages) as SupportedLanguage[];

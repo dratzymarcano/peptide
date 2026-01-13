@@ -18,9 +18,10 @@ interface Props {
 	image?: string;
 	article?: boolean;
 	breadcrumbs?: BreadcrumbItem[];
+	schema?: object;
 }
 
-const { title, description, image, article, breadcrumbs } = Astro.props;
+const { title, description, image, article, breadcrumbs, schema } = Astro.props;
 const siteUrl = 'https://peptide-shop.net';
 
 const currentLang = getLangFromUrl(Astro.url);
@@ -42,7 +43,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 <!doctype html>
 <html lang={market.hreflang}>
 	<head>
-		<SEO title={title} description={description} image={image} article={article} lang={currentLang} />
+		<SEO title={title} description={description} image={image} article={article} lang={currentLang} schema={schema} />
 		
 		{breadcrumbSchema && (
 			<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

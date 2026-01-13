@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-
-const site = 'https://peptide-shop.net';
+import { SITE_URL } from '../utils/sitemap';
 
 export const GET: APIRoute = async () => {
   const today = new Date().toISOString().split('T')[0];
@@ -9,15 +8,15 @@ export const GET: APIRoute = async () => {
 <?xml-stylesheet type="text/xsl" href="/sitemap-style.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>${site}/page-sitemap.xml</loc>
+    <loc>${SITE_URL}/page-sitemap.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
   <sitemap>
-    <loc>${site}/product-sitemap.xml</loc>
+    <loc>${SITE_URL}/product-sitemap.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
   <sitemap>
-    <loc>${site}/post-sitemap.xml</loc>
+    <loc>${SITE_URL}/post-sitemap.xml</loc>
     <lastmod>${today}</lastmod>
   </sitemap>
 </sitemapindex>`;

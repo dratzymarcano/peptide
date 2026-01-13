@@ -14,12 +14,27 @@ const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
   { name: t(lang, 'nav.about'), url: lang === 'en' ? '/about' : `/${lang}/about` }
 ];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": t(lang, 'aboutPage.title'),
+  "description": t(lang, 'aboutPage.subtitle'),
+  "url": Astro.url.toString(),
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Peptide Shop",
+    "description": "Leading supplier of research peptides.",
+    "url": "https://peptide-shop.net"
+  }
+};
 ---
 
 <Layout 
   title={`${t(lang, 'aboutPage.title')} | Peptide Shop`}
   description={t(lang, 'aboutPage.subtitle')}
   breadcrumbs={breadcrumbs}
+  schema={aboutSchema}
 >
   
   <style>

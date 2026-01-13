@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 const bundles = [
   {
     id: "recovery-stack",
-    name: "Recovery Research Stack",
+    name: t(lang, 'bundlesPage.bundleNames.recovery'),
     tagline: t(lang, 'bundlesPage.recoveryTagline'),
     description: t(lang, 'bundlesPage.recoveryDescription'),
     products: [
@@ -34,7 +34,7 @@ const bundles = [
   },
   {
     id: "weight-research-stack",
-    name: "Metabolic Research Stack",
+    name: t(lang, 'bundlesPage.bundleNames.metabolic'),
     tagline: t(lang, 'bundlesPage.metabolicTagline'),
     description: t(lang, 'bundlesPage.metabolicDescription'),
     products: [
@@ -57,7 +57,7 @@ const bundles = [
   },
   {
     id: "gh-stack",
-    name: "Growth Hormone Stack",
+    name: t(lang, 'bundlesPage.bundleNames.growthHormone'),
     tagline: t(lang, 'bundlesPage.ghTagline'),
     description: t(lang, 'bundlesPage.ghDescription'),
     products: [
@@ -80,7 +80,7 @@ const bundles = [
   },
   {
     id: "cognitive-stack",
-    name: "Cognitive Research Stack",
+    name: t(lang, 'bundlesPage.bundleNames.cognitive'),
     tagline: t(lang, 'bundlesPage.cognitiveTagline'),
     description: t(lang, 'bundlesPage.cognitiveDescription'),
     products: [
@@ -102,7 +102,7 @@ const bundles = [
   },
   {
     id: "starter-kit",
-    name: "Peptide Starter Kit",
+    name: t(lang, 'bundlesPage.bundleNames.starter'),
     tagline: t(lang, 'bundlesPage.starterTagline'),
     description: t(lang, 'bundlesPage.starterDescription'),
     products: [
@@ -468,7 +468,7 @@ const bundles = [
     </div>
   </section>
 
-  <script is:inline>
+  <script define:vars={{ addedToCartText: t(lang, 'bundlesPage.addedToCart') }}>
     window.addBundleToCart = function addBundleToCart(bundleId, bundleName, bundlePrice) {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       const existingIndex = cart.findIndex(item => item.id === bundleId);
@@ -493,7 +493,7 @@ const bundles = [
         cartCount.textContent = totalItems;
       }
       
-      alert(`${bundleName} added to cart!`);
+      alert(`${bundleName} ${addedToCartText}`);
     }
   </script>
 </Layout>

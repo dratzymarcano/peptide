@@ -265,16 +265,30 @@ const faqCategories = faqCategoriesRaw.map(cat => {
 // Flatten all FAQs for schema
 const allFaqs = faqCategories.flatMap(cat => cat.faqs);
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allFaqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
 const title = t(lang, 'faqPage.title');
 const contactPath = getLocalizedPath('/contact/', lang);
 ---
 
 <Layout 
   title={`${title} | Peptide Shop`}
-  description="Find answers about research peptides, ordering, shipping, and quality testing. Common questions about Peptide Shop products and services."
+  description={t(lang, 'faqPage.description')}
+  schema={faqSchema}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-    { name: "FAQ", url: getLocalizedPath('/faq', lang) }
+    { name: t(lang, 'faqPage.title'), url: getLocalizedPath('/faq', lang) }
   ]}
 >
   
@@ -499,7 +513,7 @@ const contactPath = getLocalizedPath('/contact/', lang);
           <!-- Sidebar Navigation -->
           <div class="col-lg-3">
             <div class="faq-nav">
-              <div class="faq-nav-title">Categories</div>
+              <div class="faq-nav-title">{t(lang, 'faqPage.categoriesTitle')}</div>
               {faqCategories.map((category, idx) => (
                 <a href={`#category-${idx}`} class="faq-nav-link">
                   {category.name} ({category.faqs.length})
@@ -547,9 +561,9 @@ const contactPath = getLocalizedPath('/contact/', lang);
             
             <!-- CTA Section -->
             <div class="faq-cta">
-              <h3>Still Have Questions?</h3>
-              <p>Can't find what you're looking for? Our support team is here to help.</p>
-              <a href={contactPath} class="faq-cta-btn">Contact Us</a>
+              <h3>{t(lang, 'faqPage.cta.title')}</h3>
+              <p>{t(lang, 'faqPage.cta.description')}</p>
+              <a href={contactPath} class="faq-cta-btn">{t(lang, 'faqPage.cta.button')}</a>
             </div>
           </div>
         </div>

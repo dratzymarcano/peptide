@@ -91,14 +91,21 @@ const organizationSchema = {
     "https://t.me/peptideshop"
   ]
 };
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    websiteSchema,
+    organizationSchema
+  ]
+};
 ---
 
 <Layout 
   title={t('home.heroTitle') + ' | ' + t('home.heroTitleHighlight') + ' | Peptide Shop'}
   description={t('home.heroSubtitle')}
+  schema={homeSchema}
 >
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
   <!-- SHOPCART-INSPIRED E-COMMERCE STYLES -->
   <style is:global>

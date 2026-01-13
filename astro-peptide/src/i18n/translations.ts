@@ -311,11 +311,24 @@ interface Translations {
     };
     form: {
       name: string;
+      namePlaceholder: string;
       email: string;
+      emailPlaceholder: string;
       subject: string;
+      subjectPlaceholder: string;
       message: string;
+      messagePlaceholder: string;
       submit: string;
     };
+    info: {
+      emailTitle: string;
+      emailSubtitle: string;
+      callTitle: string;
+      callSubtitle: string;
+      locationTitle: string;
+      locationValue: string;
+    };
+    successMessage: string;
   };
   shopPage: {
     title: string;
@@ -330,10 +343,21 @@ interface Translations {
   };
   faqPage: {
     title: string;
+    description: string;
+    categoriesTitle: string;
     categories: {
       general: string;
       quality: string;
       payment: string;
+      shipping: string;
+      international: string;
+      storage: string;
+      returns: string;
+    };
+    cta: {
+      title: string;
+      description: string;
+      button: string;
     };
   };
   qualityPage: {
@@ -432,6 +456,14 @@ interface Translations {
     save: string;
     saveBadge: string;
     addToCart: string;
+    addedToCart: string;
+    bundleNames: {
+      recovery: string;
+      metabolic: string;
+      growthHormone: string;
+      cognitive: string;
+      starter: string;
+    };
     recoveryTagline: string;
     recoveryDescription: string;
     metabolicTagline: string;
@@ -588,32 +620,150 @@ interface Translations {
       shippingAddress: string;
       paymentMethod: string;
       billingAddress: string;
+      deliveryMethod: string;
+      orderSummary: string;
+      shippingInformation: string;
+      reviewOrder: string;
     };
     fields: {
       email: string;
       password: string;
+      confirmPassword: string;
       firstName: string;
       lastName: string;
       street: string;
+      address: string;
       city: string;
+      county: string;
       postcode: string;
       country: string;
       phone: string;
+      phoneOptional: string;
     };
     shipping: {
       standard: string;
       express: string;
+      standardTime: string;
+      expressTime: string;
+      standardDelivery: string;
+      expressDelivery: string;
+      freeDeliveryMessage: string;
     };
     payment: {
       bankTransfer: string;
       bitcoin: string;
+      bankTransferDesc: string;
+      bitcoinDesc: string;
+      bitcoinDiscount: string;
+      bitcoinDiscountLabel: string;
     };
     actions: {
       continue: string;
+      continueToPayment: string;
+      continueToReview: string;
       placeOrder: string;
       back: string;
       login: string;
       guest: string;
+      signIn: string;
+      signInContinue: string;
+      signingIn: string;
+      createAccount: string;
+      createAccountContinue: string;
+      creatingAccount: string;
+      continueAsGuest: string;
+      continueShopping: string;
+      browsePeptides: string;
+      viewMyOrders: string;
+      copyAddress: string;
+      reviewOrder: string;
+      processing: string;
+    };
+    account: {
+      title: string;
+      subtitle: string;
+      guestCheckout: string;
+      guestDesc: string;
+      signInOption: string;
+      signInDesc: string;
+      createAccountOption: string;
+      createAccountDesc: string;
+      recommended: string;
+      orWithEmail: string;
+      dontHaveAccount: string;
+      alreadyHaveAccount: string;
+      createOne: string;
+    };
+    errors: {
+      passwordsDoNotMatch: string;
+      passwordTooShort: string;
+    };
+    empty: {
+      title: string;
+      description: string;
+    };
+    minOrder: {
+      title: string;
+      currentTotal: string;
+      addMore: string;
+    };
+    confirmation: {
+      orderConfirmed: string;
+      orderId: string;
+      confirmationSent: string;
+      paymentInstructions: string;
+      paymentInstructionsDesc: string;
+      whatHappensNext: string;
+      whatHappensNextDesc: string;
+      checkSpam: string;
+    };
+    bitcoin: {
+      completePayment: string;
+      sendExactly: string;
+      toAddress: string;
+      paymentExpires: string;
+      completeBeforeExpires: string;
+      paymentConfirmation: string;
+      paymentInfo: string;
+    };
+    summary: {
+      subtotal: string;
+      shipping: string;
+      discount: string;
+      total: string;
+    };
+    review: {
+      shippingAddress: string;
+      paymentMethod: string;
+      items: string;
+      delivery: string;
+      discountApplied: string;
+      free: string;
+      qty: string;
+    };
+    security: {
+      sslSecure: string;
+      encryption: string;
+      paymentMethodsDesc: string;
+      weAccept: string;
+    };
+    trust: {
+      title: string;
+      purityTitle: string;
+      purityDesc: string;
+      discreetTitle: string;
+      discreetDesc: string;
+      dispatchTitle: string;
+      dispatchDesc: string;
+      supportTitle: string;
+      supportDesc: string;
+      ordersTitle: string;
+      ordersDesc: string;
+    };
+    badges: {
+      ukShipping: string;
+      labTested: string;
+      fastDispatch: string;
     };
   };
   reviews: {
@@ -968,11 +1118,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Your Name',
+        namePlaceholder: 'John Doe',
         email: 'Email Address',
+        emailPlaceholder: 'john@example.com',
         subject: 'Subject',
+        subjectPlaceholder: 'Product inquiry',
         message: 'Message',
+        messagePlaceholder: 'Tell us about your research needs...',
         submit: 'Send Message',
       },
+      info: {
+        emailTitle: 'Email Us',
+        emailSubtitle: 'Get a response within 24 hours',
+        callTitle: 'Call Us',
+        callSubtitle: 'Mon - Fri: 9:00 AM - 5:00 PM GMT',
+        locationTitle: 'Location',
+        locationValue: 'Peptide Shop<br>Europe',
+      },
+      successMessage: 'Thank you for your message! We will get back to you within 24 hours.',
     },
     shopPage: {
       title: 'Shop Research Peptides',
@@ -987,10 +1150,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Frequently Asked Questions',
+      description: 'Find answers about research peptides, ordering, shipping, and quality testing. Get the information you need.',
+      categoriesTitle: 'Categories',
       categories: {
         general: 'General Information',
         quality: 'Quality & Testing',
         payment: 'Ordering & Payment',
+        shipping: 'Shipping & Delivery',
+        international: 'International Orders',
+        storage: 'Storage & Handling',
+        returns: 'Returns & Refunds',
+      },
+      cta: {
+        title: 'Still Have Questions?',
+        description: "Can't find what you're looking for? Our support team is here to help.",
+        button: 'Contact Us',
       },
     },
     qualityPage: {
@@ -1089,6 +1263,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Save',
       saveBadge: 'Bundle Savings',
       addToCart: 'Add Bundle to Cart',
+      addedToCart: 'added to cart!',
+      bundleNames: {
+        recovery: 'Recovery Research Stack',
+        metabolic: 'Metabolic Research Stack',
+        growthHormone: 'Growth Hormone Stack',
+        cognitive: 'Cognitive Research Stack',
+        starter: 'Peptide Starter Kit',
+      },
       recoveryTagline: 'Complete recovery research protocol',
       recoveryDescription: 'The most popular combination for tissue repair and recovery research. BPC-157 and TB-500 work through complementary mechanisms.',
       metabolicTagline: 'Advanced metabolic research protocol',
@@ -1263,32 +1445,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Shipping Address',
         paymentMethod: 'Payment Method',
         billingAddress: 'Billing Address',
+        deliveryMethod: 'Delivery Method',
+        orderSummary: 'Order Summary',
+        shippingInformation: 'Shipping Information',
+        reviewOrder: 'Review Your Order',
       },
       fields: {
         email: 'Email Address',
         password: 'Password',
+        confirmPassword: 'Confirm Password',
         firstName: 'First Name',
         lastName: 'Last Name',
         street: 'Street Address',
+        address: 'Address',
         city: 'City',
-        postcode: 'Postal Code',
+        county: 'County',
+        postcode: 'Postcode',
         country: 'Country',
         phone: 'Phone Number',
+        phoneOptional: 'Phone (Optional)',
       },
       shipping: {
         standard: 'Standard Delivery',
         express: 'Express Delivery',
+        standardTime: '3-5 business days',
+        expressTime: '1-2 business days',
+        standardDelivery: 'Standard Delivery (3-5 business days)',
+        expressDelivery: 'Express Delivery (1-2 business days)',
+        freeDeliveryMessage: 'Free delivery on orders over {amount}',
       },
       payment: {
         bankTransfer: 'Bank Transfer',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Pay via direct bank transfer',
+        bitcoinDesc: 'Fast, secure & private payment',
+        bitcoinDiscount: '10% OFF',
+        bitcoinDiscountLabel: 'Bitcoin Discount (10%)',
       },
       actions: {
         continue: 'Continue',
+        continueToPayment: 'Continue to Payment',
+        continueToReview: 'Continue to Review',
         placeOrder: 'Place Order',
         back: 'Back',
         login: 'Log In',
         guest: 'Guest Checkout',
+        signIn: 'Sign In',
+        signInContinue: 'Sign In & Continue',
+        signingIn: 'Signing In...',
+        createAccount: 'Create Account',
+        createAccountContinue: 'Create Account & Continue',
+        creatingAccount: 'Creating Account...',
+        continueAsGuest: 'Continue as Guest',
+        continueShopping: 'Continue Shopping',
+        browsePeptides: 'Browse Peptides',
+        viewMyOrders: 'View My Orders',
+        copyAddress: 'Copy Address',
+        reviewOrder: 'Review Order',
+        processing: 'Processing...',
+      },
+      account: {
+        title: 'How would you like to checkout?',
+        subtitle: 'Create an account to track orders, or continue as guest',
+        guestCheckout: 'Continue as Guest',
+        guestDesc: 'Quick checkout without creating an account',
+        signInOption: 'Sign In',
+        signInDesc: 'Already have an account? Sign in to continue',
+        createAccountOption: 'Create Account',
+        createAccountDesc: 'Track orders, save addresses & faster checkout',
+        recommended: 'RECOMMENDED',
+        orWithEmail: 'or with email',
+        dontHaveAccount: "Don't have an account?",
+        alreadyHaveAccount: 'Already have an account?',
+        createOne: 'Create one',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Passwords do not match',
+        passwordTooShort: 'Password must be at least 8 characters',
+      },
+      empty: {
+        title: 'Your cart is empty',
+        description: 'Add some products before checkout.',
+      },
+      minOrder: {
+        title: 'Minimum Order Required',
+        currentTotal: 'Your current cart total is',
+        addMore: 'Add {amount} more to proceed',
+      },
+      confirmation: {
+        orderConfirmed: 'Order Confirmed!',
+        orderId: 'Order ID',
+        confirmationSent: 'A confirmation email has been sent to',
+        paymentInstructions: 'Payment Instructions Coming Soon',
+        paymentInstructionsDesc: 'Our bank transfer details and payment instructions will be sent to {email} shortly.',
+        whatHappensNext: 'What happens next?',
+        whatHappensNextDesc: 'Check your inbox for an email with our bank details and the amount to transfer: {amount}. Once we receive your payment, we\'ll send you a confirmation and dispatch your order.',
+        checkSpam: "Don't see the email? Check your spam folder or contact us at",
+      },
+      bitcoin: {
+        completePayment: 'Complete Your Bitcoin Payment',
+        sendExactly: 'Send exactly:',
+        toAddress: 'To this address:',
+        paymentExpires: 'Payment expires in 15 minutes.',
+        completeBeforeExpires: 'Please complete the payment before the timer expires.',
+        paymentConfirmation: 'Once payment is confirmed on the blockchain, you will receive a confirmation email at',
+        paymentInfo: "You'll receive a unique Bitcoin address. Payment expires in 15 minutes.",
+      },
+      summary: {
+        subtotal: 'Subtotal',
+        shipping: 'Shipping',
+        discount: 'Discount',
+        total: 'Total',
+      },
+      review: {
+        shippingAddress: 'Shipping Address',
+        paymentMethod: 'Payment Method',
+        items: 'Items',
+        delivery: 'Delivery',
+        discountApplied: '10% discount applied',
+        free: 'FREE',
+        qty: 'Qty',
+      },
+      security: {
+        sslSecure: 'SSL Secure Checkout',
+        encryption: '256-bit encryption',
+        paymentMethodsDesc: 'Bank Transfer & Bitcoin accepted. Order tracking included.',
+        weAccept: 'We Accept',
+      },
+      trust: {
+        title: 'Why Order With Confidence',
+        purityTitle: '99%+ Purity Guaranteed',
+        purityDesc: 'All products verified via HPLC testing',
+        discreetTitle: 'Discreet Packaging',
+        discreetDesc: 'Plain packaging with no product labels',
+        dispatchTitle: 'Same-Day Dispatch',
+        dispatchDesc: 'Orders before 2pm shipped same day',
+        supportTitle: 'UK-Based Support',
+        supportDesc: 'Real customer service, not bots',
+        ordersTitle: '5000+ Orders Delivered',
+        ordersDesc: 'Trusted by UK researchers',
+      },
+      badges: {
+        ukShipping: 'UK Shipping',
+        labTested: 'Lab Tested',
+        fastDispatch: 'Fast Dispatch',
       },
     },
     reviews: {
@@ -1641,11 +1941,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Naam',
+        namePlaceholder: 'Jan Jansen',
         email: 'E-mailadres',
+        emailPlaceholder: 'jan@voorbeeld.nl',
         subject: 'Onderwerp',
+        subjectPlaceholder: 'Productvraag',
         message: 'Bericht',
+        messagePlaceholder: 'Vertel ons over uw onderzoeksbehoeften...',
         submit: 'Bericht versturen',
       },
+      info: {
+        emailTitle: 'E-mail ons',
+        emailSubtitle: 'Krijg antwoord binnen 24 uur',
+        callTitle: 'Bel ons',
+        callSubtitle: 'Ma - Vr: 9:00 - 17:00 CET',
+        locationTitle: 'Locatie',
+        locationValue: 'Peptide Shop<br>Europa',
+      },
+      successMessage: 'Bedankt voor uw bericht! We nemen binnen 24 uur contact met u op.',
     },
     shopPage: {
       title: 'Onderzoekspeptiden kopen',
@@ -1660,10 +1973,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Veelgestelde vragen',
+      description: 'Vind antwoorden over onderzoekspeptiden, bestellen, verzending en kwaliteitstesten. Krijg de informatie die u nodig heeft.',
+      categoriesTitle: 'Categorieën',
       categories: {
         general: 'Algemene informatie',
         quality: 'Kwaliteit & testen',
         payment: 'Bestellen & betalen',
+        shipping: 'Verzending & levering',
+        international: 'Internationale bestellingen',
+        storage: 'Opslag & behandeling',
+        returns: 'Retourneren & terugbetaling',
+      },
+      cta: {
+        title: 'Heeft u nog vragen?',
+        description: 'Kunt u niet vinden wat u zoekt? Ons supportteam staat klaar om u te helpen.',
+        button: 'Neem contact op',
       },
     },
     qualityPage: {
@@ -1762,6 +2086,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Bespaar',
       saveBadge: 'Bundelbesparing',
       addToCart: 'Bundel toevoegen aan winkelwagen',
+      addedToCart: 'toegevoegd aan winkelwagen!',
+      bundleNames: {
+        recovery: 'Herstelonderzoek Stack',
+        metabolic: 'Metabool Onderzoek Stack',
+        growthHormone: 'Groeihormoon Stack',
+        cognitive: 'Cognitief Onderzoek Stack',
+        starter: 'Peptide Starter Kit',
+      },
       recoveryTagline: 'Compleet herstelonderzoeksprotocol',
       recoveryDescription: 'De meest populaire combinatie voor weefselreparatie en herstelonderzoek. BPC-157 en TB-500 werken via complementaire mechanismen.',
       metabolicTagline: 'Geavanceerd metabool onderzoeksprotocol',
@@ -1936,32 +2268,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Verzendadres',
         paymentMethod: 'Betaalmethode',
         billingAddress: 'Factuuradres',
+        deliveryMethod: 'Bezorgmethode',
+        orderSummary: 'Besteloverzicht',
+        shippingInformation: 'Verzendgegevens',
+        reviewOrder: 'Controleer uw bestelling',
       },
       fields: {
         email: 'E-mailadres',
         password: 'Wachtwoord',
+        confirmPassword: 'Bevestig wachtwoord',
         firstName: 'Voornaam',
         lastName: 'Achternaam',
         street: 'Straat en huisnummer',
+        address: 'Adres',
         city: 'Stad',
+        county: 'Provincie',
         postcode: 'Postcode',
         country: 'Land',
         phone: 'Telefoonnummer',
+        phoneOptional: 'Telefoon (Optioneel)',
       },
       shipping: {
         standard: 'Standaard verzending',
         express: 'Express verzending',
+        standardTime: '3-5 werkdagen',
+        expressTime: '1-2 werkdagen',
+        standardDelivery: 'Standaard Bezorging (3-5 werkdagen)',
+        expressDelivery: 'Express Bezorging (1-2 werkdagen)',
+        freeDeliveryMessage: 'Gratis bezorging bij bestellingen boven {amount}',
       },
       payment: {
         bankTransfer: 'Bankoverschrijving',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Betaal via directe bankoverschrijving',
+        bitcoinDesc: 'Snel, veilig & privé betalen',
+        bitcoinDiscount: '10% KORTING',
+        bitcoinDiscountLabel: 'Bitcoin Korting (10%)',
       },
       actions: {
         continue: 'Doorgaan',
+        continueToPayment: 'Doorgaan naar betaling',
+        continueToReview: 'Doorgaan naar overzicht',
         placeOrder: 'Bestelling plaatsen',
         back: 'Terug',
         login: 'Inloggen',
         guest: 'Als gast afrekenen',
+        signIn: 'Inloggen',
+        signInContinue: 'Inloggen & doorgaan',
+        signingIn: 'Bezig met inloggen...',
+        createAccount: 'Account aanmaken',
+        createAccountContinue: 'Account aanmaken & doorgaan',
+        creatingAccount: 'Account aanmaken...',
+        continueAsGuest: 'Doorgaan als gast',
+        continueShopping: 'Verder winkelen',
+        browsePeptides: 'Bekijk peptiden',
+        viewMyOrders: 'Mijn bestellingen bekijken',
+        copyAddress: 'Adres kopiëren',
+        reviewOrder: 'Bestelling controleren',
+        processing: 'Verwerken...',
+      },
+      account: {
+        title: 'Hoe wilt u afrekenen?',
+        subtitle: 'Maak een account aan om bestellingen te volgen, of ga door als gast',
+        guestCheckout: 'Doorgaan als gast',
+        guestDesc: 'Snel afrekenen zonder account aan te maken',
+        signInOption: 'Inloggen',
+        signInDesc: 'Heeft u al een account? Log in om door te gaan',
+        createAccountOption: 'Account aanmaken',
+        createAccountDesc: 'Bestellingen volgen, adressen opslaan & sneller afrekenen',
+        recommended: 'AANBEVOLEN',
+        orWithEmail: 'of met e-mail',
+        dontHaveAccount: 'Geen account?',
+        alreadyHaveAccount: 'Heeft u al een account?',
+        createOne: 'Maak er een aan',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Wachtwoorden komen niet overeen',
+        passwordTooShort: 'Wachtwoord moet minimaal 8 tekens bevatten',
+      },
+      empty: {
+        title: 'Uw winkelwagen is leeg',
+        description: 'Voeg eerst producten toe voor het afrekenen.',
+      },
+      minOrder: {
+        title: 'Minimale bestelling vereist',
+        currentTotal: 'Uw huidige winkelwagentotaal is',
+        addMore: 'Voeg nog {amount} toe om door te gaan',
+      },
+      confirmation: {
+        orderConfirmed: 'Bestelling bevestigd!',
+        orderId: 'Bestelnummer',
+        confirmationSent: 'Een bevestigingsmail is verzonden naar',
+        paymentInstructions: 'Betaalinstructies volgen spoedig',
+        paymentInstructionsDesc: 'Onze bankgegevens en betaalinstructies worden binnenkort naar {email} verzonden.',
+        whatHappensNext: 'Wat gebeurt er nu?',
+        whatHappensNextDesc: 'Controleer uw inbox voor een e-mail met onze bankgegevens en het over te maken bedrag: {amount}. Zodra wij uw betaling hebben ontvangen, sturen wij u een bevestiging en verzenden wij uw bestelling.',
+        checkSpam: 'Geen e-mail ontvangen? Controleer uw spam-map of neem contact met ons op via',
+      },
+      bitcoin: {
+        completePayment: 'Voltooi uw Bitcoin-betaling',
+        sendExactly: 'Stuur precies:',
+        toAddress: 'Naar dit adres:',
+        paymentExpires: 'Betaling verloopt over 15 minuten.',
+        completeBeforeExpires: 'Voltooi de betaling voordat de timer afloopt.',
+        paymentConfirmation: 'Zodra de betaling is bevestigd op de blockchain, ontvangt u een bevestigingsmail op',
+        paymentInfo: 'U ontvangt een uniek Bitcoin-adres. Betaling verloopt over 15 minuten.',
+      },
+      summary: {
+        subtotal: 'Subtotaal',
+        shipping: 'Verzending',
+        discount: 'Korting',
+        total: 'Totaal',
+      },
+      review: {
+        shippingAddress: 'Verzendadres',
+        paymentMethod: 'Betaalmethode',
+        items: 'Artikelen',
+        delivery: 'Bezorging',
+        discountApplied: '10% korting toegepast',
+        free: 'GRATIS',
+        qty: 'Aantal',
+      },
+      security: {
+        sslSecure: 'SSL Veilige Checkout',
+        encryption: '256-bit encryptie',
+        paymentMethodsDesc: 'Bankoverschrijving & Bitcoin geaccepteerd. Ordertracering inbegrepen.',
+        weAccept: 'Wij Accepteren',
+      },
+      trust: {
+        title: 'Waarom Met Vertrouwen Bestellen',
+        purityTitle: '99%+ Zuiverheid Gegarandeerd',
+        purityDesc: 'Alle producten geverifieerd via HPLC-testen',
+        discreetTitle: 'Discrete Verpakking',
+        discreetDesc: 'Neutrale verpakking zonder productlabels',
+        dispatchTitle: 'Verzending Dezelfde Dag',
+        dispatchDesc: 'Bestellingen vóór 14:00 uur verzonden dezelfde dag',
+        supportTitle: 'EU-gebaseerde Ondersteuning',
+        supportDesc: 'Echte klantenservice, geen bots',
+        ordersTitle: '5000+ Bestellingen Geleverd',
+        ordersDesc: 'Vertrouwd door EU onderzoekers',
+      },
+      badges: {
+        ukShipping: 'EU Verzending',
+        labTested: 'Lab Getest',
+        fastDispatch: 'Snelle Verzending',
       },
     },
     reviews: {
@@ -2314,11 +2764,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Name',
+        namePlaceholder: 'Max Mustermann',
         email: 'E-Mail-Adresse',
+        emailPlaceholder: 'max@beispiel.de',
         subject: 'Betreff',
+        subjectPlaceholder: 'Produktanfrage',
         message: 'Nachricht',
+        messagePlaceholder: 'Erzählen Sie uns von Ihren Forschungsbedürfnissen...',
         submit: 'Nachricht senden',
       },
+      info: {
+        emailTitle: 'E-Mail',
+        emailSubtitle: 'Antwort innerhalb von 24 Stunden',
+        callTitle: 'Anrufen',
+        callSubtitle: 'Mo - Fr: 9:00 - 17:00 MEZ',
+        locationTitle: 'Standort',
+        locationValue: 'Peptide Shop<br>Europa',
+      },
+      successMessage: 'Vielen Dank für Ihre Nachricht! Wir melden uns innerhalb von 24 Stunden.',
     },
     shopPage: {
       title: 'Peptide online kaufen – Deutschland',
@@ -2333,10 +2796,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Häufige Fragen – Peptide kaufen',
+      description: 'Antworten zu Forschungspeptiden, Bestellung, Versand und Qualitätsprüfung. Alle wichtigen Informationen finden Sie hier.',
+      categoriesTitle: 'Kategorien',
       categories: {
         general: 'Was sind Peptide?',
         quality: 'Peptide Reinheit & Analyse',
         payment: 'Bestellung & Zahlung',
+        shipping: 'Versand & Lieferung',
+        international: 'Internationale Bestellungen',
+        storage: 'Lagerung & Handhabung',
+        returns: 'Rückgabe & Erstattung',
+      },
+      cta: {
+        title: 'Noch Fragen?',
+        description: 'Nicht gefunden, was Sie suchen? Unser Support-Team hilft Ihnen gerne weiter.',
+        button: 'Kontakt',
       },
     },
     qualityPage: {
@@ -2435,6 +2909,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Sparen',
       saveBadge: 'Bundle-Ersparnis',
       addToCart: 'Bundle in den Warenkorb',
+      addedToCart: 'zum Warenkorb hinzugefügt!',
+      bundleNames: {
+        recovery: 'Erholungsforschung Stack',
+        metabolic: 'Metabolische Forschung Stack',
+        growthHormone: 'Wachstumshormon Stack',
+        cognitive: 'Kognitive Forschung Stack',
+        starter: 'Peptid Starter Kit',
+      },
       recoveryTagline: 'Komplettes Erholungsforschungsprotokoll',
       recoveryDescription: 'Die beliebteste Kombination für Gewebereparatur- und Erholungsforschung. BPC-157 und TB-500 wirken über komplementäre Mechanismen.',
       metabolicTagline: 'Fortgeschrittenes metabolisches Forschungsprotokoll',
@@ -2609,32 +3091,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Lieferadresse',
         paymentMethod: 'Zahlungsmethode',
         billingAddress: 'Rechnungsadresse',
+        deliveryMethod: 'Versandart',
+        orderSummary: 'Bestellübersicht',
+        shippingInformation: 'Versandinformationen',
+        reviewOrder: 'Bestellung überprüfen',
       },
       fields: {
         email: 'E-Mail-Adresse',
         password: 'Passwort',
+        confirmPassword: 'Passwort bestätigen',
         firstName: 'Vorname',
         lastName: 'Nachname',
         street: 'Straße und Hausnummer',
+        address: 'Adresse',
         city: 'Stadt',
+        county: 'Bundesland',
         postcode: 'Postleitzahl',
         country: 'Land',
         phone: 'Telefonnummer',
+        phoneOptional: 'Telefon (Optional)',
       },
       shipping: {
         standard: 'Standardversand',
         express: 'Expressversand',
+        standardTime: '3-5 Werktage',
+        expressTime: '1-2 Werktage',
+        standardDelivery: 'Standardlieferung (3-5 Werktage)',
+        expressDelivery: 'Expresslieferung (1-2 Werktage)',
+        freeDeliveryMessage: 'Kostenloser Versand bei Bestellungen über {amount}',
       },
       payment: {
         bankTransfer: 'Banküberweisung',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Zahlung per Banküberweisung',
+        bitcoinDesc: 'Schnell, sicher & privat bezahlen',
+        bitcoinDiscount: '10% RABATT',
+        bitcoinDiscountLabel: 'Bitcoin Rabatt (10%)',
       },
       actions: {
         continue: 'Weiter',
+        continueToPayment: 'Weiter zur Zahlung',
+        continueToReview: 'Weiter zur Prüfung',
         placeOrder: 'Bestellung aufgeben',
         back: 'Zurück',
         login: 'Anmelden',
         guest: 'Als Gast',
+        signIn: 'Anmelden',
+        signInContinue: 'Anmelden & fortfahren',
+        signingIn: 'Anmeldung läuft...',
+        createAccount: 'Konto erstellen',
+        createAccountContinue: 'Konto erstellen & fortfahren',
+        creatingAccount: 'Konto wird erstellt...',
+        continueAsGuest: 'Als Gast fortfahren',
+        continueShopping: 'Weiter einkaufen',
+        browsePeptides: 'Peptide durchsuchen',
+        viewMyOrders: 'Meine Bestellungen anzeigen',
+        copyAddress: 'Adresse kopieren',
+        reviewOrder: 'Bestellung prüfen',
+        processing: 'Verarbeitung...',
+      },
+      account: {
+        title: 'Wie möchten Sie bestellen?',
+        subtitle: 'Erstellen Sie ein Konto, um Bestellungen zu verfolgen, oder fahren Sie als Gast fort',
+        guestCheckout: 'Als Gast fortfahren',
+        guestDesc: 'Schneller Checkout ohne Kontoerstellung',
+        signInOption: 'Anmelden',
+        signInDesc: 'Bereits ein Konto? Melden Sie sich an, um fortzufahren',
+        createAccountOption: 'Konto erstellen',
+        createAccountDesc: 'Bestellungen verfolgen, Adressen speichern & schneller bestellen',
+        recommended: 'EMPFOHLEN',
+        orWithEmail: 'oder mit E-Mail',
+        dontHaveAccount: 'Noch kein Konto?',
+        alreadyHaveAccount: 'Bereits ein Konto?',
+        createOne: 'Jetzt erstellen',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Passwörter stimmen nicht überein',
+        passwordTooShort: 'Passwort muss mindestens 8 Zeichen haben',
+      },
+      empty: {
+        title: 'Ihr Warenkorb ist leer',
+        description: 'Fügen Sie Produkte hinzu, bevor Sie zur Kasse gehen.',
+      },
+      minOrder: {
+        title: 'Mindestbestellwert erforderlich',
+        currentTotal: 'Ihr aktueller Warenkorbwert beträgt',
+        addMore: 'Fügen Sie noch {amount} hinzu, um fortzufahren',
+      },
+      confirmation: {
+        orderConfirmed: 'Bestellung bestätigt!',
+        orderId: 'Bestellnummer',
+        confirmationSent: 'Eine Bestätigungsmail wurde gesendet an',
+        paymentInstructions: 'Zahlungsanweisungen folgen in Kürze',
+        paymentInstructionsDesc: 'Unsere Bankdaten und Zahlungsanweisungen werden in Kürze an {email} gesendet.',
+        whatHappensNext: 'Was passiert als Nächstes?',
+        whatHappensNextDesc: 'Prüfen Sie Ihren Posteingang für eine E-Mail mit unseren Bankdaten und dem zu überweisenden Betrag: {amount}. Sobald wir Ihre Zahlung erhalten haben, senden wir Ihnen eine Bestätigung und versenden Ihre Bestellung.',
+        checkSpam: 'Keine E-Mail erhalten? Prüfen Sie Ihren Spam-Ordner oder kontaktieren Sie uns unter',
+      },
+      bitcoin: {
+        completePayment: 'Ihre Bitcoin-Zahlung abschließen',
+        sendExactly: 'Senden Sie genau:',
+        toAddress: 'An diese Adresse:',
+        paymentExpires: 'Zahlung läuft in 15 Minuten ab.',
+        completeBeforeExpires: 'Bitte schließen Sie die Zahlung vor Ablauf des Timers ab.',
+        paymentConfirmation: 'Sobald die Zahlung auf der Blockchain bestätigt ist, erhalten Sie eine Bestätigungsmail an',
+        paymentInfo: 'Sie erhalten eine eindeutige Bitcoin-Adresse. Zahlung läuft in 15 Minuten ab.',
+      },
+      summary: {
+        subtotal: 'Zwischensumme',
+        shipping: 'Versand',
+        discount: 'Rabatt',
+        total: 'Gesamt',
+      },
+      review: {
+        shippingAddress: 'Lieferadresse',
+        paymentMethod: 'Zahlungsmethode',
+        items: 'Artikel',
+        delivery: 'Lieferung',
+        discountApplied: '10% Rabatt angewendet',
+        free: 'GRATIS',
+        qty: 'Anzahl',
+      },
+      security: {
+        sslSecure: 'SSL Sichere Zahlung',
+        encryption: '256-Bit-Verschlüsselung',
+        paymentMethodsDesc: 'Banküberweisung & Bitcoin akzeptiert. Sendungsverfolgung inklusive.',
+        weAccept: 'Wir Akzeptieren',
+      },
+      trust: {
+        title: 'Warum Mit Vertrauen Bestellen',
+        purityTitle: '99%+ Reinheit Garantiert',
+        purityDesc: 'Alle Produkte via HPLC-Tests verifiziert',
+        discreetTitle: 'Diskrete Verpackung',
+        discreetDesc: 'Neutrale Verpackung ohne Produktkennzeichnung',
+        dispatchTitle: 'Versand Am Selben Tag',
+        dispatchDesc: 'Bestellungen vor 14 Uhr werden am selben Tag versendet',
+        supportTitle: 'EU-basierter Support',
+        supportDesc: 'Echter Kundenservice, keine Bots',
+        ordersTitle: '5000+ Bestellungen Geliefert',
+        ordersDesc: 'Von EU-Forschern vertraut',
+      },
+      badges: {
+        ukShipping: 'EU Versand',
+        labTested: 'Laborgetestet',
+        fastDispatch: 'Schneller Versand',
       },
     },
     reviews: {
@@ -2987,11 +3587,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Nom',
+        namePlaceholder: 'Jean Dupont',
         email: 'Adresse e-mail',
+        emailPlaceholder: 'jean@exemple.fr',
         subject: 'Objet',
+        subjectPlaceholder: 'Demande de produit',
         message: 'Message',
+        messagePlaceholder: 'Parlez-nous de vos besoins de recherche...',
         submit: 'Envoyer',
       },
+      info: {
+        emailTitle: 'Email',
+        emailSubtitle: 'Réponse sous 24 heures',
+        callTitle: 'Téléphone',
+        callSubtitle: 'Lun - Ven: 9h00 - 17h00 CET',
+        locationTitle: 'Adresse',
+        locationValue: 'Peptide Shop<br>Europe',
+      },
+      successMessage: 'Merci pour votre message ! Nous vous répondrons sous 24 heures.',
     },
     shopPage: {
       title: 'Acheter des peptides de recherche',
@@ -3006,10 +3619,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Questions fréquentes',
+      description: 'Trouvez des réponses sur les peptides de recherche, les commandes, la livraison et les tests de qualité.',
+      categoriesTitle: 'Catégories',
       categories: {
         general: 'Informations générales',
         quality: 'Qualité & tests',
         payment: 'Commande & paiement',
+        shipping: 'Expédition & livraison',
+        international: 'Commandes internationales',
+        storage: 'Stockage & manipulation',
+        returns: 'Retours & remboursements',
+      },
+      cta: {
+        title: 'Encore des questions ?',
+        description: 'Vous ne trouvez pas ce que vous cherchez ? Notre équipe support est là pour vous aider.',
+        button: 'Nous contacter',
       },
     },
     qualityPage: {
@@ -3108,6 +3732,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Économiser',
       saveBadge: 'Économies de lot',
       addToCart: 'Ajouter le lot au panier',
+      addedToCart: 'ajouté au panier !',
+      bundleNames: {
+        recovery: 'Stack Recherche Récupération',
+        metabolic: 'Stack Recherche Métabolique',
+        growthHormone: 'Stack Hormone de Croissance',
+        cognitive: 'Stack Recherche Cognitive',
+        starter: 'Kit Débutant Peptides',
+      },
       recoveryTagline: 'Protocole complet de recherche sur la récupération',
       recoveryDescription: 'La combinaison la plus populaire pour la recherche sur la réparation tissulaire et la récupération. BPC-157 et TB-500 fonctionnent via des mécanismes complémentaires.',
       metabolicTagline: 'Protocole de recherche métabolique avancé',
@@ -3282,32 +3914,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Adresse de livraison',
         paymentMethod: 'Mode de paiement',
         billingAddress: 'Adresse de facturation',
+        deliveryMethod: 'Mode de livraison',
+        orderSummary: 'Récapitulatif de commande',
+        shippingInformation: 'Informations de livraison',
+        reviewOrder: 'Vérifier votre commande',
       },
       fields: {
         email: 'Adresse e-mail',
         password: 'Mot de passe',
+        confirmPassword: 'Confirmer le mot de passe',
         firstName: 'Prénom',
         lastName: 'Nom',
         street: 'Adresse',
+        address: 'Adresse',
         city: 'Ville',
+        county: 'Région',
         postcode: 'Code postal',
         country: 'Pays',
         phone: 'Téléphone',
+        phoneOptional: 'Téléphone (Optionnel)',
       },
       shipping: {
         standard: 'Livraison standard',
         express: 'Livraison express',
+        standardTime: '3-5 jours ouvrables',
+        expressTime: '1-2 jours ouvrables',
+        standardDelivery: 'Livraison standard (3-5 jours ouvrables)',
+        expressDelivery: 'Livraison express (1-2 jours ouvrables)',
+        freeDeliveryMessage: 'Livraison gratuite pour les commandes de plus de {amount}',
       },
       payment: {
         bankTransfer: 'Virement bancaire',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Paiement par virement bancaire direct',
+        bitcoinDesc: 'Paiement rapide, sécurisé et privé',
+        bitcoinDiscount: '10% DE RÉDUCTION',
+        bitcoinDiscountLabel: 'Réduction Bitcoin (10%)',
       },
       actions: {
         continue: 'Continuer',
+        continueToPayment: 'Continuer vers le paiement',
+        continueToReview: 'Continuer vers la vérification',
         placeOrder: 'Passer la commande',
         back: 'Retour',
         login: 'Connexion',
         guest: 'Commander en tant qu\'invité',
+        signIn: 'Se connecter',
+        signInContinue: 'Se connecter et continuer',
+        signingIn: 'Connexion en cours...',
+        createAccount: 'Créer un compte',
+        createAccountContinue: 'Créer un compte et continuer',
+        creatingAccount: 'Création du compte...',
+        continueAsGuest: 'Continuer en tant qu\'invité',
+        continueShopping: 'Continuer vos achats',
+        browsePeptides: 'Parcourir les peptides',
+        viewMyOrders: 'Voir mes commandes',
+        copyAddress: 'Copier l\'adresse',
+        reviewOrder: 'Vérifier la commande',
+        processing: 'Traitement...',
+      },
+      account: {
+        title: 'Comment souhaitez-vous commander ?',
+        subtitle: 'Créez un compte pour suivre vos commandes, ou continuez en tant qu\'invité',
+        guestCheckout: 'Continuer en tant qu\'invité',
+        guestDesc: 'Commande rapide sans créer de compte',
+        signInOption: 'Se connecter',
+        signInDesc: 'Vous avez déjà un compte ? Connectez-vous pour continuer',
+        createAccountOption: 'Créer un compte',
+        createAccountDesc: 'Suivre les commandes, sauvegarder les adresses & commander plus vite',
+        recommended: 'RECOMMANDÉ',
+        orWithEmail: 'ou avec e-mail',
+        dontHaveAccount: 'Pas de compte ?',
+        alreadyHaveAccount: 'Vous avez déjà un compte ?',
+        createOne: 'Créer un',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Les mots de passe ne correspondent pas',
+        passwordTooShort: 'Le mot de passe doit contenir au moins 8 caractères',
+      },
+      empty: {
+        title: 'Votre panier est vide',
+        description: 'Ajoutez des produits avant de passer à la caisse.',
+      },
+      minOrder: {
+        title: 'Commande minimum requise',
+        currentTotal: 'Le total actuel de votre panier est',
+        addMore: 'Ajoutez {amount} de plus pour continuer',
+      },
+      confirmation: {
+        orderConfirmed: 'Commande confirmée !',
+        orderId: 'Numéro de commande',
+        confirmationSent: 'Un e-mail de confirmation a été envoyé à',
+        paymentInstructions: 'Instructions de paiement à venir',
+        paymentInstructionsDesc: 'Nos coordonnées bancaires et instructions de paiement seront envoyées à {email} sous peu.',
+        whatHappensNext: 'Que se passe-t-il ensuite ?',
+        whatHappensNextDesc: 'Vérifiez votre boîte de réception pour un e-mail avec nos coordonnées bancaires et le montant à transférer : {amount}. Dès réception de votre paiement, nous vous enverrons une confirmation et expédierons votre commande.',
+        checkSpam: 'Vous ne voyez pas l\'e-mail ? Vérifiez votre dossier spam ou contactez-nous à',
+      },
+      bitcoin: {
+        completePayment: 'Finalisez votre paiement Bitcoin',
+        sendExactly: 'Envoyez exactement :',
+        toAddress: 'À cette adresse :',
+        paymentExpires: 'Le paiement expire dans 15 minutes.',
+        completeBeforeExpires: 'Veuillez effectuer le paiement avant expiration du délai.',
+        paymentConfirmation: 'Une fois le paiement confirmé sur la blockchain, vous recevrez un e-mail de confirmation à',
+        paymentInfo: 'Vous recevrez une adresse Bitcoin unique. Le paiement expire dans 15 minutes.',
+      },
+      summary: {
+        subtotal: 'Sous-total',
+        shipping: 'Livraison',
+        discount: 'Réduction',
+        total: 'Total',
+      },
+      review: {
+        shippingAddress: 'Adresse de livraison',
+        paymentMethod: 'Mode de paiement',
+        items: 'Articles',
+        delivery: 'Livraison',
+        discountApplied: '10% de réduction appliquée',
+        free: 'GRATUIT',
+        qty: 'Qté',
+      },
+      security: {
+        sslSecure: 'Paiement sécurisé SSL',
+        encryption: 'Cryptage 256 bits',
+        paymentMethodsDesc: 'Virement bancaire et Bitcoin acceptés. Suivi de commande inclus.',
+        weAccept: 'Nous Acceptons',
+      },
+      trust: {
+        title: 'Pourquoi Commander En Confiance',
+        purityTitle: 'Pureté 99%+ Garantie',
+        purityDesc: 'Tous les produits vérifiés par tests HPLC',
+        discreetTitle: 'Emballage Discret',
+        discreetDesc: 'Emballage neutre sans étiquettes produit',
+        dispatchTitle: 'Expédition Le Jour Même',
+        dispatchDesc: 'Commandes avant 14h expédiées le jour même',
+        supportTitle: 'Support Basé En UE',
+        supportDesc: 'Un vrai service client, pas des robots',
+        ordersTitle: '5000+ Commandes Livrées',
+        ordersDesc: 'Confiance des chercheurs européens',
+      },
+      badges: {
+        ukShipping: 'Livraison UE',
+        labTested: 'Testé en Laboratoire',
+        fastDispatch: 'Expédition Rapide',
       },
     },
     reviews: {
@@ -3660,11 +4410,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Nombre',
+        namePlaceholder: 'Juan García',
         email: 'Correo electrónico',
+        emailPlaceholder: 'juan@ejemplo.es',
         subject: 'Asunto',
+        subjectPlaceholder: 'Consulta de producto',
         message: 'Mensaje',
+        messagePlaceholder: 'Cuéntanos sobre tus necesidades de investigación...',
         submit: 'Enviar',
       },
+      info: {
+        emailTitle: 'Email',
+        emailSubtitle: 'Respuesta en 24 horas',
+        callTitle: 'Teléfono',
+        callSubtitle: 'Lun - Vie: 9:00 - 17:00 CET',
+        locationTitle: 'Ubicación',
+        locationValue: 'Peptide Shop<br>Europa',
+      },
+      successMessage: '¡Gracias por tu mensaje! Te responderemos en 24 horas.',
     },
     shopPage: {
       title: 'Comprar péptidos de investigación',
@@ -3679,10 +4442,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Preguntas frecuentes',
+      description: 'Encuentra respuestas sobre péptidos de investigación, pedidos, envío y pruebas de calidad.',
+      categoriesTitle: 'Categorías',
       categories: {
         general: 'Información general',
         quality: 'Calidad y pruebas',
         payment: 'Pedido y pago',
+        shipping: 'Envío y entrega',
+        international: 'Pedidos internacionales',
+        storage: 'Almacenamiento y manejo',
+        returns: 'Devoluciones y reembolsos',
+      },
+      cta: {
+        title: '¿Aún tienes preguntas?',
+        description: '¿No encuentras lo que buscas? Nuestro equipo de soporte está aquí para ayudarte.',
+        button: 'Contáctanos',
       },
     },
     qualityPage: {
@@ -3781,6 +4555,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Ahorra',
       saveBadge: 'Ahorro de paquete',
       addToCart: 'Añadir paquete al carrito',
+      addedToCart: '¡añadido al carrito!',
+      bundleNames: {
+        recovery: 'Stack Investigación Recuperación',
+        metabolic: 'Stack Investigación Metabólica',
+        growthHormone: 'Stack Hormona de Crecimiento',
+        cognitive: 'Stack Investigación Cognitiva',
+        starter: 'Kit de Inicio Péptidos',
+      },
       recoveryTagline: 'Protocolo completo de investigación de recuperación',
       recoveryDescription: 'La combinación más popular para investigación de reparación de tejidos y recuperación. BPC-157 y TB-500 funcionan a través de mecanismos complementarios.',
       metabolicTagline: 'Protocolo avanzado de investigación metabólica',
@@ -3955,32 +4737,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Dirección de envío',
         paymentMethod: 'Método de pago',
         billingAddress: 'Dirección de facturación',
+        deliveryMethod: 'Método de entrega',
+        orderSummary: 'Resumen del pedido',
+        shippingInformation: 'Información de envío',
+        reviewOrder: 'Revisar su pedido',
       },
       fields: {
         email: 'Correo electrónico',
         password: 'Contraseña',
+        confirmPassword: 'Confirmar contraseña',
         firstName: 'Nombre',
         lastName: 'Apellido',
         street: 'Dirección',
+        address: 'Dirección',
         city: 'Ciudad',
+        county: 'Provincia',
         postcode: 'Código postal',
         country: 'País',
         phone: 'Teléfono',
+        phoneOptional: 'Teléfono (Opcional)',
       },
       shipping: {
         standard: 'Envío estándar',
         express: 'Envío exprés',
+        standardTime: '3-5 días laborables',
+        expressTime: '1-2 días laborables',
+        standardDelivery: 'Entrega estándar (3-5 días laborables)',
+        expressDelivery: 'Entrega exprés (1-2 días laborables)',
+        freeDeliveryMessage: 'Envío gratis en pedidos superiores a {amount}',
       },
       payment: {
         bankTransfer: 'Transferencia bancaria',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Pago por transferencia bancaria directa',
+        bitcoinDesc: 'Pago rápido, seguro y privado',
+        bitcoinDiscount: '10% DESCUENTO',
+        bitcoinDiscountLabel: 'Descuento Bitcoin (10%)',
       },
       actions: {
         continue: 'Continuar',
+        continueToPayment: 'Continuar al pago',
+        continueToReview: 'Continuar a revisión',
         placeOrder: 'Realizar pedido',
         back: 'Volver',
         login: 'Iniciar sesión',
         guest: 'Comprar como invitado',
+        signIn: 'Iniciar sesión',
+        signInContinue: 'Iniciar sesión y continuar',
+        signingIn: 'Iniciando sesión...',
+        createAccount: 'Crear cuenta',
+        createAccountContinue: 'Crear cuenta y continuar',
+        creatingAccount: 'Creando cuenta...',
+        continueAsGuest: 'Continuar como invitado',
+        continueShopping: 'Seguir comprando',
+        browsePeptides: 'Ver péptidos',
+        viewMyOrders: 'Ver mis pedidos',
+        copyAddress: 'Copiar dirección',
+        reviewOrder: 'Revisar pedido',
+        processing: 'Procesando...',
+      },
+      account: {
+        title: '¿Cómo desea realizar el pedido?',
+        subtitle: 'Cree una cuenta para seguir sus pedidos, o continúe como invitado',
+        guestCheckout: 'Continuar como invitado',
+        guestDesc: 'Compra rápida sin crear una cuenta',
+        signInOption: 'Iniciar sesión',
+        signInDesc: '¿Ya tiene una cuenta? Inicie sesión para continuar',
+        createAccountOption: 'Crear cuenta',
+        createAccountDesc: 'Seguir pedidos, guardar direcciones y comprar más rápido',
+        recommended: 'RECOMENDADO',
+        orWithEmail: 'o con correo electrónico',
+        dontHaveAccount: '¿No tiene cuenta?',
+        alreadyHaveAccount: '¿Ya tiene una cuenta?',
+        createOne: 'Crear una',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Las contraseñas no coinciden',
+        passwordTooShort: 'La contraseña debe tener al menos 8 caracteres',
+      },
+      empty: {
+        title: 'Su carrito está vacío',
+        description: 'Agregue productos antes de pagar.',
+      },
+      minOrder: {
+        title: 'Pedido mínimo requerido',
+        currentTotal: 'El total actual de su carrito es',
+        addMore: 'Agregue {amount} más para continuar',
+      },
+      confirmation: {
+        orderConfirmed: '¡Pedido confirmado!',
+        orderId: 'ID del pedido',
+        confirmationSent: 'Se ha enviado un correo de confirmación a',
+        paymentInstructions: 'Instrucciones de pago próximamente',
+        paymentInstructionsDesc: 'Nuestros datos bancarios e instrucciones de pago se enviarán a {email} en breve.',
+        whatHappensNext: '¿Qué sucede ahora?',
+        whatHappensNextDesc: 'Revise su bandeja de entrada para un correo con nuestros datos bancarios y el monto a transferir: {amount}. Una vez que recibamos su pago, le enviaremos una confirmación y enviaremos su pedido.',
+        checkSpam: '¿No ve el correo? Revise su carpeta de spam o contáctenos en',
+      },
+      bitcoin: {
+        completePayment: 'Complete su pago con Bitcoin',
+        sendExactly: 'Envíe exactamente:',
+        toAddress: 'A esta dirección:',
+        paymentExpires: 'El pago expira en 15 minutos.',
+        completeBeforeExpires: 'Por favor, complete el pago antes de que expire el temporizador.',
+        paymentConfirmation: 'Una vez que el pago se confirme en la blockchain, recibirá un correo de confirmación en',
+        paymentInfo: 'Recibirá una dirección Bitcoin única. El pago expira en 15 minutos.',
+      },
+      summary: {
+        subtotal: 'Subtotal',
+        shipping: 'Envío',
+        discount: 'Descuento',
+        total: 'Total',
+      },
+      review: {
+        shippingAddress: 'Dirección de envío',
+        paymentMethod: 'Método de pago',
+        items: 'Artículos',
+        delivery: 'Entrega',
+        discountApplied: '10% de descuento aplicado',
+        free: 'GRATIS',
+        qty: 'Cant',
+      },
+      security: {
+        sslSecure: 'Pago Seguro SSL',
+        encryption: 'Cifrado de 256 bits',
+        paymentMethodsDesc: 'Transferencia bancaria y Bitcoin aceptados. Seguimiento de pedido incluido.',
+        weAccept: 'Aceptamos',
+      },
+      trust: {
+        title: 'Por Qué Comprar Con Confianza',
+        purityTitle: 'Pureza 99%+ Garantizada',
+        purityDesc: 'Todos los productos verificados mediante pruebas HPLC',
+        discreetTitle: 'Embalaje Discreto',
+        discreetDesc: 'Embalaje neutro sin etiquetas de producto',
+        dispatchTitle: 'Envío El Mismo Día',
+        dispatchDesc: 'Pedidos antes de las 14h enviados el mismo día',
+        supportTitle: 'Soporte En La UE',
+        supportDesc: 'Servicio al cliente real, no bots',
+        ordersTitle: '5000+ Pedidos Entregados',
+        ordersDesc: 'Confianza de investigadores europeos',
+      },
+      badges: {
+        ukShipping: 'Envío UE',
+        labTested: 'Probado en Laboratorio',
+        fastDispatch: 'Envío Rápido',
       },
     },
     reviews: {
@@ -4333,11 +5233,24 @@ export const translations: Record<SupportedLanguage, Translations> = {
       },
       form: {
         name: 'Nome',
+        namePlaceholder: 'Mario Rossi',
         email: 'Email',
+        emailPlaceholder: 'mario@esempio.it',
         subject: 'Oggetto',
+        subjectPlaceholder: 'Richiesta prodotto',
         message: 'Messaggio',
+        messagePlaceholder: 'Raccontaci le tue esigenze di ricerca...',
         submit: 'Invia',
       },
+      info: {
+        emailTitle: 'Email',
+        emailSubtitle: 'Risposta entro 24 ore',
+        callTitle: 'Telefono',
+        callSubtitle: 'Lun - Ven: 9:00 - 17:00 CET',
+        locationTitle: 'Sede',
+        locationValue: 'Peptide Shop<br>Europa',
+      },
+      successMessage: 'Grazie per il tuo messaggio! Ti risponderemo entro 24 ore.',
     },
     shopPage: {
       title: 'Acquista peptidi da ricerca',
@@ -4352,10 +5265,21 @@ export const translations: Record<SupportedLanguage, Translations> = {
     },
     faqPage: {
       title: 'Domande frequenti',
+      description: 'Trova risposte su peptidi di ricerca, ordini, spedizione e test di qualità.',
+      categoriesTitle: 'Categorie',
       categories: {
         general: 'Informazioni generali',
         quality: 'Qualità e test',
         payment: 'Ordine e pagamento',
+        shipping: 'Spedizione e consegna',
+        international: 'Ordini internazionali',
+        storage: 'Conservazione e manipolazione',
+        returns: 'Resi e rimborsi',
+      },
+      cta: {
+        title: 'Hai ancora domande?',
+        description: 'Non trovi quello che cerchi? Il nostro team di supporto è qui per aiutarti.',
+        button: 'Contattaci',
       },
     },
     qualityPage: {
@@ -4454,6 +5378,14 @@ export const translations: Record<SupportedLanguage, Translations> = {
       save: 'Risparmia',
       saveBadge: 'Risparmio pacchetto',
       addToCart: 'Aggiungi pacchetto al carrello',
+      addedToCart: 'aggiunto al carrello!',
+      bundleNames: {
+        recovery: 'Stack Ricerca Recupero',
+        metabolic: 'Stack Ricerca Metabolica',
+        growthHormone: 'Stack Ormone della Crescita',
+        cognitive: 'Stack Ricerca Cognitiva',
+        starter: 'Kit Iniziale Peptidi',
+      },
       recoveryTagline: 'Protocollo completo di ricerca sul recupero',
       recoveryDescription: 'La combinazione più popolare per la ricerca sulla riparazione dei tessuti e il recupero. BPC-157 e TB-500 funzionano attraverso meccanismi complementari.',
       metabolicTagline: 'Protocollo avanzato di ricerca metabolica',
@@ -4628,32 +5560,150 @@ export const translations: Record<SupportedLanguage, Translations> = {
         shippingAddress: 'Indirizzo di spedizione',
         paymentMethod: 'Metodo di pagamento',
         billingAddress: 'Indirizzo di fatturazione',
+        deliveryMethod: 'Metodo di consegna',
+        orderSummary: 'Riepilogo ordine',
+        shippingInformation: 'Informazioni di spedizione',
+        reviewOrder: 'Controlla il tuo ordine',
       },
       fields: {
         email: 'Indirizzo email',
         password: 'Password',
+        confirmPassword: 'Conferma password',
         firstName: 'Nome',
         lastName: 'Cognome',
         street: 'Indirizzo',
+        address: 'Indirizzo',
         city: 'Città',
+        county: 'Provincia',
         postcode: 'CAP',
         country: 'Paese',
         phone: 'Telefono',
+        phoneOptional: 'Telefono (Opzionale)',
       },
       shipping: {
         standard: 'Spedizione standard',
         express: 'Spedizione express',
+        standardTime: '3-5 giorni lavorativi',
+        expressTime: '1-2 giorni lavorativi',
+        standardDelivery: 'Consegna standard (3-5 giorni lavorativi)',
+        expressDelivery: 'Consegna express (1-2 giorni lavorativi)',
+        freeDeliveryMessage: 'Spedizione gratuita per ordini superiori a {amount}',
       },
       payment: {
         bankTransfer: 'Bonifico bancario',
         bitcoin: 'Bitcoin (BTC)',
+        bankTransferDesc: 'Pagamento tramite bonifico bancario diretto',
+        bitcoinDesc: 'Pagamento veloce, sicuro e privato',
+        bitcoinDiscount: '10% DI SCONTO',
+        bitcoinDiscountLabel: 'Sconto Bitcoin (10%)',
       },
       actions: {
         continue: 'Continua',
+        continueToPayment: 'Continua al pagamento',
+        continueToReview: 'Continua al riepilogo',
         placeOrder: 'Effettua ordine',
         back: 'Indietro',
         login: 'Accedi',
         guest: 'Acquista come ospite',
+        signIn: 'Accedi',
+        signInContinue: 'Accedi e continua',
+        signingIn: 'Accesso in corso...',
+        createAccount: 'Crea account',
+        createAccountContinue: 'Crea account e continua',
+        creatingAccount: 'Creazione account...',
+        continueAsGuest: 'Continua come ospite',
+        continueShopping: 'Continua lo shopping',
+        browsePeptides: 'Sfoglia peptidi',
+        viewMyOrders: 'Vedi i miei ordini',
+        copyAddress: 'Copia indirizzo',
+        reviewOrder: 'Controlla ordine',
+        processing: 'Elaborazione...',
+      },
+      account: {
+        title: 'Come desideri effettuare l\'ordine?',
+        subtitle: 'Crea un account per tracciare gli ordini, oppure continua come ospite',
+        guestCheckout: 'Continua come ospite',
+        guestDesc: 'Checkout rapido senza creare un account',
+        signInOption: 'Accedi',
+        signInDesc: 'Hai già un account? Accedi per continuare',
+        createAccountOption: 'Crea account',
+        createAccountDesc: 'Traccia ordini, salva indirizzi e checkout più veloce',
+        recommended: 'CONSIGLIATO',
+        orWithEmail: 'o con email',
+        dontHaveAccount: 'Non hai un account?',
+        alreadyHaveAccount: 'Hai già un account?',
+        createOne: 'Creane uno',
+      },
+      errors: {
+        passwordsDoNotMatch: 'Le password non corrispondono',
+        passwordTooShort: 'La password deve contenere almeno 8 caratteri',
+      },
+      empty: {
+        title: 'Il tuo carrello è vuoto',
+        description: 'Aggiungi prodotti prima del checkout.',
+      },
+      minOrder: {
+        title: 'Ordine minimo richiesto',
+        currentTotal: 'Il totale attuale del carrello è',
+        addMore: 'Aggiungi altri {amount} per procedere',
+      },
+      confirmation: {
+        orderConfirmed: 'Ordine confermato!',
+        orderId: 'ID ordine',
+        confirmationSent: 'È stata inviata un\'email di conferma a',
+        paymentInstructions: 'Istruzioni di pagamento in arrivo',
+        paymentInstructionsDesc: 'I nostri dati bancari e le istruzioni di pagamento verranno inviati a {email} a breve.',
+        whatHappensNext: 'Cosa succede dopo?',
+        whatHappensNextDesc: 'Controlla la tua casella di posta per un\'email con i nostri dati bancari e l\'importo da trasferire: {amount}. Una volta ricevuto il pagamento, ti invieremo una conferma e spediremo il tuo ordine.',
+        checkSpam: 'Non vedi l\'email? Controlla la cartella spam o contattaci a',
+      },
+      bitcoin: {
+        completePayment: 'Completa il tuo pagamento Bitcoin',
+        sendExactly: 'Invia esattamente:',
+        toAddress: 'A questo indirizzo:',
+        paymentExpires: 'Il pagamento scade tra 15 minuti.',
+        completeBeforeExpires: 'Per favore, completa il pagamento prima della scadenza.',
+        paymentConfirmation: 'Una volta confermato il pagamento sulla blockchain, riceverai un\'email di conferma a',
+        paymentInfo: 'Riceverai un indirizzo Bitcoin unico. Il pagamento scade tra 15 minuti.',
+      },
+      summary: {
+        subtotal: 'Subtotale',
+        shipping: 'Spedizione',
+        discount: 'Sconto',
+        total: 'Totale',
+      },
+      review: {
+        shippingAddress: 'Indirizzo di spedizione',
+        paymentMethod: 'Metodo di pagamento',
+        items: 'Articoli',
+        delivery: 'Consegna',
+        discountApplied: '10% di sconto applicato',
+        free: 'GRATIS',
+        qty: 'Qtà',
+      },
+      security: {
+        sslSecure: 'Checkout Sicuro SSL',
+        encryption: 'Crittografia a 256 bit',
+        paymentMethodsDesc: 'Bonifico bancario e Bitcoin accettati. Tracciamento ordine incluso.',
+        weAccept: 'Accettiamo',
+      },
+      trust: {
+        title: 'Perché Ordinare Con Fiducia',
+        purityTitle: 'Purezza 99%+ Garantita',
+        purityDesc: 'Tutti i prodotti verificati tramite test HPLC',
+        discreetTitle: 'Imballaggio Discreto',
+        discreetDesc: 'Imballaggio neutro senza etichette prodotto',
+        dispatchTitle: 'Spedizione Lo Stesso Giorno',
+        dispatchDesc: 'Ordini prima delle 14 spediti lo stesso giorno',
+        supportTitle: 'Supporto In UE',
+        supportDesc: 'Vero servizio clienti, non bot',
+        ordersTitle: '5000+ Ordini Consegnati',
+        ordersDesc: 'Fiducia dei ricercatori europei',
+      },
+      badges: {
+        ukShipping: 'Spedizione UE',
+        labTested: 'Testato in Laboratorio',
+        fastDispatch: 'Spedizione Veloce',
       },
     },
     reviews: {

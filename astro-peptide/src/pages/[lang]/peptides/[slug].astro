@@ -104,8 +104,9 @@ const avgRating = reviews.length > 0
 // Site URL for structured data
 const siteUrl = Astro.site ? Astro.site.toString() : 'https://peptide-shop.net';
 
-const schema = {
-  "@context": "https://schema.org/",
+const currency = lang === 'en' ? 'GBP' : 'EUR';
+
+const productSchema = {
   "@type": "Product",
   "name": productTitle,
   "image": new URL(productImage, siteUrl).toString(),
@@ -115,19 +116,66 @@ const schema = {
     "name": "Peptide Shop"
   },
   "sku": productId,
+  "mpn": productId,
   "offers": {
     "@type": "Offer",
     "url": new URL(Astro.url.pathname, siteUrl).toString(),
-    "priceCurrency": "GBP",
+    "priceCurrency": currency,
     "price": productPrice,
     "availability": "https://schema.org/InStock",
-    "itemCondition": "https://schema.org/NewCondition"
+    "itemCondition": "https://schema.org/NewCondition",
+    "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": currency === 'GBP' ? 'GB' : ['NL', 'DE', 'FR', 'ES', 'IT'],
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/ReturnShippingFees"
+    }
   },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": avgRating,
     "reviewCount": reviews.length > 0 ? reviews.length : 1
   }
+};
+
+if (reviews.length > 0) {
+  (productSchema as any).review = reviews.map((r: any) => ({
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": r.rating,
+      "bestRating": "5"
+    },
+    "author": {
+      "@type": "Person",
+      "name": r.author
+    },
+    "datePublished": r.date,
+    "reviewBody": r.content
+  }));
+}
+
+const faqSchema = faqs.length > 0 ? {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f: any) => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.answer
+    }
+  }))
+} : null;
+
+const fullSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    productSchema,
+    ...(faqSchema ? [faqSchema] : [])
+  ]
 };
 ---
 
@@ -140,8 +188,8 @@ const schema = {
     { name: categoryTitle, url: getLocalizedPath(`/peptides/${product.data.category}`, lang) },
     { name: productTitle, url: Astro.url.pathname }
   ]}
+  schema={fullSchema}
 >
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 
   <PageTitle 
     title={productTitle}
