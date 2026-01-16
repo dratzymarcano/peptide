@@ -1,13 +1,11 @@
 import type { APIRoute } from 'astro';
-import { supportedLanguages } from '../i18n/translations';
+import { supportedLanguages, getLocalizedPath } from '../i18n/translations';
 import { 
   SITE_URL, 
   generateSitemapXml, 
-  generateUrlEntry, 
   STATIC_PAGES_CONFIG, 
   CATEGORIES, 
-  getLocalizedPath, 
-  getLocalizedCategoryPath,
+  buildAlternates,
   type SitemapURL 
 } from '../utils/sitemap';
 
@@ -21,10 +19,11 @@ export const GET: APIRoute = async () => {
     const enUrl = `${SITE_URL}${pageConfig.path}`;
     
     // Generate alternates
-    const alternates = supportedLanguages.map(lang => {
-      const href = `${SITE_URL}${getLocalizedPath(pageConfig.key, lang)}`;
-      return { lang, href };
-    });
+    const alternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(pageConfig.path, lang)}`,
+      enUrl
+    );
 
     // Add English entry with alternates
     sitemapUrls.push({
@@ -39,7 +38,7 @@ export const GET: APIRoute = async () => {
     for (const lang of supportedLanguages) {
       if (lang === 'en') continue;
       
-      const localUrl = `${SITE_URL}${getLocalizedPath(pageConfig.key, lang)}`;
+      const localUrl = `${SITE_URL}${getLocalizedPath(pageConfig.path, lang)}`;
       
       sitemapUrls.push({
         loc: localUrl,
@@ -54,12 +53,14 @@ export const GET: APIRoute = async () => {
   // 2. Category Pages
   for (const category of CATEGORIES) {
     // English Category URL
-    const enCatUrl = `${SITE_URL}/peptides/${category}/`;
+    const categoryPath = `/peptides/${category}/`;
+    const enCatUrl = `${SITE_URL}${categoryPath}`;
     
-    const catAlternates = supportedLanguages.map(lang => {
-       const href = `${SITE_URL}${getLocalizedCategoryPath(category, lang)}`;
-       return { lang, href };
-    });
+    const catAlternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(categoryPath, lang)}`,
+      enCatUrl
+    );
 
     sitemapUrls.push({
       loc: enCatUrl,
@@ -72,7 +73,7 @@ export const GET: APIRoute = async () => {
     for (const lang of supportedLanguages) {
       if (lang === 'en') continue;
       
-      const localCatUrl = `${SITE_URL}${getLocalizedCategoryPath(category, lang)}`;
+      const localCatUrl = `${SITE_URL}${getLocalizedPath(categoryPath, lang)}`;
       
       sitemapUrls.push({
         loc: localCatUrl,

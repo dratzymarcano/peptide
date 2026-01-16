@@ -193,6 +193,30 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
     if ($isAuthenticated) {
       addOrder(orderData);
     }
+
+    // Send order notification emails
+    try {
+      await fetch('/api/order-notification', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId: newOrderId,
+          customerEmail: shippingInfo.email || $currentUser?.email,
+          customerName: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+          items: orderData.items,
+          subtotal: orderData.subtotal,
+          shipping: orderData.shipping,
+          discount: orderData.discount,
+          total: orderData.total,
+          paymentMethod,
+          shippingAddress: orderData.shippingAddress,
+          currency: currency,
+          lang
+        })
+      });
+    } catch (emailErr) {
+      console.warn('Failed to send order notification:', emailErr);
+    }
     
     if (paymentMethod === 'bitcoin') {
       const invoice = await createBitcoinInvoice();
@@ -243,11 +267,9 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      await loginWithGoogle();
-      setCurrentStep('shipping');
-    } catch (err) {}
+  const handleGoogleLogin = () => {
+    // OAuth flow will redirect back to checkout after login
+    loginWithGoogle('/checkout/');
   };
 
   const handleFacebookLogin = async () => {
@@ -1426,19 +1448,37 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     <div style={{ 
                       marginTop: '16px', 
                       paddingTop: '16px', 
-                      borderTop: '1px solid #e2e8f0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#64748b',
-                      fontSize: '13px'
+                      borderTop: '1px solid #e2e8f0'
                     }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" x2="12" y1="16" y2="12"></line>
-                        <line x1="12" x2="12.01" y1="8" y2="8"></line>
-                      </svg>
-                      Orders processed within 24 hours of payment confirmation
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        color: '#64748b',
+                        fontSize: '13px',
+                        marginBottom: '12px'
+                      }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="12" x2="12" y1="16" y2="12"></line>
+                          <line x1="12" x2="12.01" y1="8" y2="8"></line>
+                        </svg>
+                        Orders processed within 24 hours of payment confirmation
+                      </div>
+                      <div style={{
+                        background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+                        border: '1px solid #f59e0b',
+                        borderRadius: '8px',
+                        padding: '12px 16px',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '10px'
+                      }}>
+                        <span style={{ fontSize: '18px' }}>📸</span>
+                        <div style={{ fontSize: '13px', color: '#92400e', fontWeight: '500' }}>
+                          <strong>Important:</strong> Please send a screenshot of your payment confirmation to <strong>peptideshop@zohomail.com</strong> to speed up order processing.
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>

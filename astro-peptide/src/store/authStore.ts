@@ -53,6 +53,21 @@ export const authError = atom<string | null>(null);
 // Browser check
 const isBrowser = typeof window !== 'undefined';
 
+// Cookie helper
+function getCookie(name: string): string | null {
+  if (!isBrowser) return null;
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
+  return null;
+}
+
+function deleteCookie(name: string) {
+  if (isBrowser) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  }
+}
+
 // Save to localStorage
 function saveAuthToStorage() {
   if (isBrowser) {
@@ -69,33 +84,58 @@ function saveAuthToStorage() {
   }
 }
 
+// Check for Google auth callback cookie
+function checkGoogleAuthCookie() {
+  if (!isBrowser) return;
+  
+  const authCookie = getCookie('peptide-google-auth');
+  if (authCookie) {
+    try {
+      const user = JSON.parse(decodeURIComponent(authCookie));
+      currentUser.set(user);
+      saveAuthToStorage();
+      // Clear the auth cookie after processing
+      deleteCookie('peptide-google-auth');
+    } catch (e) {
+      console.error('Failed to parse Google auth cookie:', e);
+      deleteCookie('peptide-google-auth');
+    }
+  }
+}
+
 // Initialize from localStorage
 if (isBrowser) {
-  const savedUser = localStorage.getItem('peptide-user');
-  const savedOrders = localStorage.getItem('peptide-orders');
-  const savedAddresses = localStorage.getItem('peptide-addresses');
+  // First check for Google auth callback
+  checkGoogleAuthCookie();
   
-  if (savedUser) {
-    try {
-      currentUser.set(JSON.parse(savedUser));
-    } catch (e) {
-      currentUser.set(null);
+  // Then load from localStorage if no user set
+  if (!currentUser.get()) {
+    const savedUser = localStorage.getItem('peptide-user');
+    const savedOrders = localStorage.getItem('peptide-orders');
+    const savedAddresses = localStorage.getItem('peptide-addresses');
+    
+    if (savedUser) {
+      try {
+        currentUser.set(JSON.parse(savedUser));
+      } catch (e) {
+        currentUser.set(null);
+      }
     }
-  }
-  
-  if (savedOrders) {
-    try {
-      userOrders.set(JSON.parse(savedOrders));
-    } catch (e) {
-      userOrders.set([]);
+    
+    if (savedOrders) {
+      try {
+        userOrders.set(JSON.parse(savedOrders));
+      } catch (e) {
+        userOrders.set([]);
+      }
     }
-  }
-  
-  if (savedAddresses) {
-    try {
-      userAddresses.set(JSON.parse(savedAddresses));
-    } catch (e) {
-      userAddresses.set([]);
+    
+    if (savedAddresses) {
+      try {
+        userAddresses.set(JSON.parse(savedAddresses));
+      } catch (e) {
+        userAddresses.set([]);
+      }
     }
   }
 }
@@ -177,31 +217,31 @@ export async function loginWithEmail(email: string, password: string): Promise<U
   return userData;
 }
 
-// Social login (simulated)
-export async function loginWithGoogle(): Promise<User> {
+// Social login - redirects to Google OAuth
+export async function loginWithGoogle(returnUrl?: string): Promise<void> {
   isAuthLoading.set(true);
   authError.set(null);
   
-  // Simulate OAuth flow
-  await new Promise(resolve => setTimeout(resolve, 1200));
+  // Get current language from URL path
+  let lang = 'en';
+  if (isBrowser) {
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const supportedLangs = ['nl', 'de', 'fr', 'es', 'it'];
+    if (pathParts[0] && supportedLangs.includes(pathParts[0])) {
+      lang = pathParts[0];
+    }
+  }
   
-  // In production, this would use actual Google OAuth
-  // For demo, we create/login a mock Google user
-  const mockGoogleUser: User = {
-    id: generateId(),
-    email: 'demo.user@gmail.com',
-    firstName: 'Demo',
-    lastName: 'User',
-    createdAt: new Date().toISOString(),
-    provider: 'google',
-    avatar: 'https://ui-avatars.com/api/?name=Demo+User&background=0077b6&color=fff'
-  };
+  // Build the OAuth URL with return path and language
+  const params = new URLSearchParams({
+    returnUrl: returnUrl || '/account/dashboard/',
+    lang
+  });
   
-  currentUser.set(mockGoogleUser);
-  saveAuthToStorage();
-  isAuthLoading.set(false);
-  
-  return mockGoogleUser;
+  // Redirect to our OAuth initiation endpoint
+  if (isBrowser) {
+    window.location.href = `/api/auth/google?${params.toString()}`;
+  }
 }
 
 export async function loginWithFacebook(): Promise<User> {

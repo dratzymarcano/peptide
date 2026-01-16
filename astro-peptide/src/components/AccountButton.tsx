@@ -287,9 +287,8 @@ export default function AccountButton({ lang = 'en' }: AccountButtonProps) {
 
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
-            onClick={async () => {
-              await loginWithGoogle();
-              window.location.href = '/account/dashboard/';
+            onClick={() => {
+              loginWithGoogle('/account/dashboard/');
             }}
             style={{
               flex: 1,

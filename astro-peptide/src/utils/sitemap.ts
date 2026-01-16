@@ -1,13 +1,20 @@
-import { supportedLanguages, type SupportedLanguage, pageSlugTranslations, getLocalizedProductSlug } from '../i18n/translations';
+import type { SupportedLanguage } from '../i18n/translations';
+import { getMarket } from '../i18n/market';
 
 export const SITE_URL = 'https://peptide-shop.net';
+
+export interface SitemapAlternate {
+  lang: SupportedLanguage | 'x-default' | string;
+  href: string;
+  hreflang?: string;
+}
 
 export interface SitemapURL {
   loc: string;
   lastmod?: string;
   changefreq?: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
   priority?: number | string;
-  alternates?: { lang: string; href: string }[];
+  alternates?: SitemapAlternate[];
 }
 
 /**
@@ -16,7 +23,10 @@ export interface SitemapURL {
 export function generateUrlEntry(url: SitemapURL): string {
   const alternates = url.alternates
     ? url.alternates
-        .map(alt => `    <xhtml:link rel="alternate" hreflang="${alt.lang}" href="${alt.href}" />`)
+        .map(alt => {
+          const hreflang = alt.hreflang ?? (alt.lang === 'x-default' ? 'x-default' : alt.lang);
+          return `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${alt.href}" />`;
+        })
         .join('\n')
     : '';
 
@@ -34,10 +44,30 @@ ${alternates}
  */
 export function generateSitemapXml(urls: SitemapURL[]): string {
   return `<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/sitemap-style.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.map(generateUrlEntry).join('\n')}
 </urlset>`.trim();
+}
+
+export function buildAlternates(
+  languages: SupportedLanguage[],
+  hrefForLang: (lang: SupportedLanguage) => string,
+  xDefaultHref?: string
+): SitemapAlternate[] {
+  const alternates: SitemapAlternate[] = languages.map(lang => ({
+    lang,
+    hreflang: getMarket(lang).hreflang,
+    href: hrefForLang(lang)
+  }));
+
+  const defaultHref = xDefaultHref ?? hrefForLang('en');
+  if (defaultHref) {
+    alternates.unshift({ lang: 'x-default', hreflang: 'x-default', href: defaultHref });
+  }
+
+  return alternates;
 }
 
 /**
@@ -46,6 +76,8 @@ ${urls.map(generateUrlEntry).join('\n')}
 export const STATIC_PAGES_CONFIG = [
   { key: 'home', path: '/', priority: '1.0', changefreq: 'daily' },
   { key: 'shop', path: '/shop/', priority: '0.9', changefreq: 'daily' },
+  { key: 'peptides', path: '/peptides/', priority: '0.9', changefreq: 'daily' },
+  { key: 'learn', path: '/learn/', priority: '0.6', changefreq: 'monthly' },
   { key: 'about', path: '/about/', priority: '0.8', changefreq: 'monthly' },
   { key: 'quality', path: '/quality/', priority: '0.8', changefreq: 'monthly' },
   { key: 'contact', path: '/contact/', priority: '0.7', changefreq: 'monthly' },
@@ -58,12 +90,6 @@ export const STATIC_PAGES_CONFIG = [
   { key: 'disclaimer', path: '/disclaimer/', priority: '0.5', changefreq: 'yearly' },
   { key: 'coa-policy', path: '/coa-policy/', priority: '0.5', changefreq: 'yearly' },
   { key: 'sitemap', path: '/sitemap/', priority: '0.4', changefreq: 'monthly' },
-  // Cart and checkout are technically pages but often excluded from search results or set to noindex. 
-  // However if the user had them in the sitemap before, we can keep them but maybe with lower priority.
-  // Generally checkout/cart should be noindex. Leaving them out might be safer for SEO unless requested otherwise.
-  // The previous file included them:
-  { key: 'cart', path: '/cart/', priority: '0.3', changefreq: 'monthly' },
-  { key: 'checkout', path: '/checkout/', priority: '0.3', changefreq: 'monthly' },
 ] as const;
 
 export const CATEGORIES = [
@@ -78,33 +104,4 @@ export const CATEGORIES = [
 /**
  * Helpers for localized paths
  */
-export function getLocalizedPath(key: string, lang: SupportedLanguage): string {
-    if (lang === 'en') {
-        // Special mapping for keys to English paths if they differ from pure key
-        // But for most, it's just the key.
-        // The config above uses slashes, e.g. /about/.
-        // If key is 'about', English is /about/.
-        // If key is 'home', English is /.
-        if (key === 'home') return '/';
-        
-        // Check if manual mapping needed, otherwise default to /key/
-        const match = STATIC_PAGES_CONFIG.find(p => p.key === key);
-        if (match) return match.path;
-        
-        return `/${key}/`;
-    }
-
-    const translatedSlug = pageSlugTranslations[lang]?.[key] || key;
-    if (key === 'home') return `/${lang}/`;
-    return `/${lang}/${translatedSlug}/`;
-}
-
-export function getLocalizedCategoryPath(category: string, lang: SupportedLanguage): string {
-    if (lang === 'en') return `/peptides/${category}/`;
-    // Categories don't seem to be translated in the same map?
-    // Looking at navigation translations: 'weightLoss', 'muscleRecovery' etc are translated in 'nav'.
-    // But `src/pages/[lang]/peptides/[category].astro` might use English slugs or translated ones?
     // I need to check how categories are handled in routing.
-    // For now assuming: /lang/peptides/category-slug/
-    return `/${lang}/peptides/${category}/`;
-}

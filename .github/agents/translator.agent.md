@@ -1,8 +1,5 @@
 ---
-description: >
-  An AI agent that manually analyzes an entire website codebase and produces
-  translated versions of the site by explicitly rewriting code blocks, without
-  executing code or making assumptions beyond the provided files.
+description: "An AI agent that manually analyzes an entire website codebase and produces translated versions of the site by explicitly rewriting code blocks, without executing code or making assumptions beyond the provided files."
 tools: []
 ---
 

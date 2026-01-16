@@ -10,17 +10,21 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Get all products for this language
+// Get all products (use English as base, fall back to localized content if available)
 const allProducts = await getCollection('products');
-const products = allProducts
-  .filter(p => p.slug.startsWith(`${lang}/`))
+const englishProducts = allProducts.filter(p => p.slug.startsWith('en/'));
+const products = englishProducts
+  .map((product) => {
+    const baseSlug = product.slug.replace('en/', '');
+    const localized = allProducts.find(p => p.slug === `${lang}/${baseSlug}`);
+    return localized || product;
+  })
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
 
 // Get all blog posts
 const allBlogPosts = await getCollection('blog');
 const blogPosts = allBlogPosts
-  .filter(p => p.slug.startsWith(`${lang}/`))
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
   .slice(0, 10); // Limit to 10 most recent
 
 // Section titles per language
@@ -164,7 +168,7 @@ const pageDescription = lang === 'en' ? 'Complete site map of Peptide Shop. Navi
             </h2>
             <div class="row">
               {products.map(product => {
-                const productSlug = product.slug.replace(`${lang}/`, '');
+                const productSlug = product.slug.replace(/^(en|nl|de|fr|es|it)\//, '');
                 const urlPath = product.data.urlPath || `/peptides/${getLocalizedProductSlug(productSlug, lang)}/`;
                 const localizedUrl = lang === 'en' ? urlPath : `/${lang}${urlPath.startsWith('/') ? '' : '/'}${urlPath}`;
                 return (
@@ -192,7 +196,7 @@ const pageDescription = lang === 'en' ? 'Complete site map of Peptide Shop. Navi
               <ul class="sitemap-list sitemap-list--blog">
                 {blogPosts.map(post => (
                   <li>
-                    <a href={getLocalizedPath(`/blog/${post.slug.replace(`${lang}/`, '')}/`, lang)}>
+                    <a href={getLocalizedPath(`/blog/${post.slug.replace(/^(en|nl|de|fr|es|it)\//, '')}/`, lang)}>
                       {post.data.title}
                     </a>
                   </li>

@@ -1,28 +1,28 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { supportedLanguages, pageSlugTranslations } from '../i18n/translations';
+import { supportedLanguages, getLocalizedPath } from '../i18n/translations';
 import { 
   SITE_URL, 
   generateSitemapXml, 
-  generateUrlEntry, 
+  buildAlternates,
   type SitemapURL 
 } from '../utils/sitemap';
 
 export const GET: APIRoute = async () => {
   const today = new Date().toISOString().split('T')[0];
   const sitemapUrls: SitemapURL[] = [];
+
+  const slugify = (s: string) => s.toLowerCase().trim().replace(/\s+/g, '-');
   
   // Get all blog posts
   const blogPosts = await getCollection('blog');
   
   // 1. Blog Index Page
-  const blogAlternates = supportedLanguages.map(lang => {
-    if (lang === 'en') {
-      return { lang, href: `${SITE_URL}/blog/` };
-    }
-    const blogSlug = pageSlugTranslations[lang]?.['blog'] || 'blog';
-    return { lang, href: `${SITE_URL}/${lang}/${blogSlug}/` };
-  });
+  const blogAlternates = buildAlternates(
+    supportedLanguages,
+    (lang) => `${SITE_URL}${getLocalizedPath('/blog/', lang)}`,
+    `${SITE_URL}/blog/`
+  );
 
   // English Blog Index
   sitemapUrls.push({
@@ -36,9 +36,8 @@ export const GET: APIRoute = async () => {
   // Localized Blog Indices
   for (const lang of supportedLanguages) {
     if (lang === 'en') continue;
-    const blogSlug = pageSlugTranslations[lang]?.['blog'] || 'blog';
     sitemapUrls.push({
-      loc: `${SITE_URL}/${lang}/${blogSlug}/`,
+      loc: `${SITE_URL}${getLocalizedPath('/blog/', lang)}`,
       lastmod: today,
       changefreq: 'daily',
       priority: '0.8',
@@ -53,13 +52,12 @@ export const GET: APIRoute = async () => {
       : today;
     
     // Generate alternates for this post
-    const postAlternates = supportedLanguages.map(lang => {
-      if (lang === 'en') {
-        return { lang, href: `${SITE_URL}/blog/${post.slug}/` };
-      }
-      const blogSlug = pageSlugTranslations[lang]?.['blog'] || 'blog';
-      return { lang, href: `${SITE_URL}/${lang}/${blogSlug}/${post.slug}/` };
-    });
+    const postPath = `/blog/${post.slug}/`;
+    const postAlternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(postPath, lang)}`,
+      `${SITE_URL}${postPath}`
+    );
 
     // English Post
     sitemapUrls.push({
@@ -73,9 +71,8 @@ export const GET: APIRoute = async () => {
     // Localized Posts
     for (const lang of supportedLanguages) {
       if (lang === 'en') continue;
-      const blogSlug = pageSlugTranslations[lang]?.['blog'] || 'blog';
       sitemapUrls.push({
-        loc: `${SITE_URL}/${lang}/${blogSlug}/${post.slug}/`,
+        loc: `${SITE_URL}${getLocalizedPath(postPath, lang)}`,
         lastmod: postDate,
         changefreq: 'monthly',
         priority: '0.7',
@@ -85,26 +82,21 @@ export const GET: APIRoute = async () => {
   }
   
   // 3. Blog Categories
-  const categories = ['research-insights', 'lab-techniques', 'quality-control'];
+  const categories = Array.from(
+    new Set(blogPosts.map((post) => post.data.category).filter(Boolean) as string[])
+  );
   for (const category of categories) {
-    // Note: Assuming blog categories are handled similarly to blog posts or static pages.
-    // However, I don't see dynamic route for blog categories in [lang] folder in the file list I gathered earlier.
-    // I only saw `src/pages/blog/category/` for English.
-    // Let's assume there are NO localized blog categories unless proven otherwise.
-    // If I add them without routes existing, they are broken links.
-    // I see `src/pages/blog/category/` but no `src/pages/[lang]/blog/category/` or similar.
-    // The previous sitemap had them hardcoded for English.
-    // I will include English ones only for now, or check if they route via [blogSlug]?
-    // `pageSlugTranslations` has 'blog' but not 'category'.
-    // `src/pages/[lang]/[blogSlug]/[postSlug].astro` matches 2 params.
-    // `src/pages/[lang]/[blogSlug]/index.astro` matches 1 param.
-    // Maybe categories are query params or not localized?
-    // I'll stick to English categories to be safe, or include simple pattern if I'm sure.
-    // Actually, safest is to leave English categories in.
-    
-     sitemapUrls.push({
-      loc: `${SITE_URL}/blog/category/${category}/`,
-      lastmod: today,
+    const categorySlug = slugify(category);
+    const latestInCategory = blogPosts
+      .filter((post) => slugify(post.data.category || '') === categorySlug)
+      .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())[0];
+    const categoryLastmod = latestInCategory?.data.publishDate
+      ? new Date(latestInCategory.data.publishDate).toISOString().split('T')[0]
+      : today;
+
+    sitemapUrls.push({
+      loc: `${SITE_URL}/blog/category/${categorySlug}/`,
+      lastmod: categoryLastmod,
       changefreq: 'weekly',
       priority: '0.6'
       // No alternates if no localized pages exist

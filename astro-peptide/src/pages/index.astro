@@ -1,5 +1,18 @@
 ---
 import HomePage from '../components/pages/HomePage.astro';
+import { supportedLanguages } from '../i18n/translations';
+
+// Browser language detection - redirect non-English users to their locale
+const acceptLanguage = Astro.request.headers.get('accept-language') || '';
+const browserLangs = acceptLanguage.split(',').map(l => l.split(';')[0].trim().substring(0, 2).toLowerCase());
+const preferredLang = browserLangs.find(lang => supportedLanguages.includes(lang as any) && lang !== 'en');
+
+// Only redirect if user hasn't explicitly visited root (check for cookie or referrer)
+const hasVisitedBefore = Astro.cookies.get('lang_preference')?.value;
+if (preferredLang && !hasVisitedBefore) {
+  Astro.cookies.set('lang_preference', preferredLang, { path: '/', maxAge: 60 * 60 * 24 * 365 });
+  return Astro.redirect(`/${preferredLang}/`);
+}
 ---
 
 <HomePage lang="en" />

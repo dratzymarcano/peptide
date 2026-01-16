@@ -1,16 +1,21 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { supportedLanguages, getLocalizedProductSlug } from '../i18n/translations';
+import { supportedLanguages, getLocalizedPath } from '../i18n/translations';
 import { 
   SITE_URL, 
   generateSitemapXml, 
-  generateUrlEntry, 
+  buildAlternates,
   type SitemapURL 
 } from '../utils/sitemap';
 
 export const GET: APIRoute = async () => {
   const today = new Date().toISOString().split('T')[0];
   const sitemapUrls: SitemapURL[] = [];
+
+  const normalizePath = (path: string) => {
+    const withSlash = path.startsWith('/') ? path : `/${path}`;
+    return withSlash.endsWith('/') ? withSlash : `${withSlash}/`;
+  };
   
   // Get all English products (base products)
   const allProducts = await getCollection('products');
@@ -19,21 +24,17 @@ export const GET: APIRoute = async () => {
   for (const product of englishProducts) {
     const baseSlug = product.slug.replace('en/', '');
     const buySlug = `buy-${baseSlug}`;
+    const englishPath = normalizePath(product.data.urlPath ?? `/peptides/${buySlug}/`);
     
     // Generate alternates
-    const alternates = supportedLanguages.map(lang => {
-      let href = '';
-      if (lang === 'en') {
-        href = `${SITE_URL}/peptides/${buySlug}/`;
-      } else {
-        const localizedSlug = getLocalizedProductSlug(buySlug, lang);
-        href = `${SITE_URL}/${lang}/peptides/${localizedSlug}/`;
-      }
-      return { lang, href };
-    });
+    const alternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(englishPath, lang)}`,
+      `${SITE_URL}${englishPath}`
+    );
     
     // English URL
-    const enUrl = `${SITE_URL}/peptides/${buySlug}/`;
+    const enUrl = `${SITE_URL}${englishPath}`;
     sitemapUrls.push({
       loc: enUrl,
       lastmod: today,
@@ -46,8 +47,7 @@ export const GET: APIRoute = async () => {
     for (const lang of supportedLanguages) {
       if (lang === 'en') continue;
       
-      const localizedSlug = getLocalizedProductSlug(buySlug, lang);
-      const localUrl = `${SITE_URL}/${lang}/peptides/${localizedSlug}/`;
+      const localUrl = `${SITE_URL}${getLocalizedPath(englishPath, lang)}`;
       
       sitemapUrls.push({
         loc: localUrl,
