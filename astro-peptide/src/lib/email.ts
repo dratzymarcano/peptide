@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+// Email service using Resend API (works with Cloudflare Workers)
 
 interface OrderItem {
   id: string;
@@ -34,26 +34,43 @@ interface OrderEmailData {
 
 const SITE_EMAIL = 'peptideshop@zohomail.com';
 const OWNER_EMAIL = import.meta.env.OWNER_EMAIL || process.env.OWNER_EMAIL || SITE_EMAIL;
-const FROM_EMAIL = SITE_EMAIL;
 const SITE_NAME = 'Peptide Shop';
 
-// Create transporter using Zoho SMTP
-function createTransporter() {
-  const user = import.meta.env.ZOHO_EMAIL || process.env.ZOHO_EMAIL || SITE_EMAIL;
-  const pass = import.meta.env.ZOHO_PASSWORD || process.env.ZOHO_PASSWORD;
-
-  if (!pass) {
-    console.warn('Zoho email password not configured, emails will not be sent');
-    return null;
+// Send email using Resend API
+async function sendEmail(to: string, subject: string, html: string, from?: string): Promise<boolean> {
+  const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+  
+  if (!apiKey) {
+    console.warn('RESEND_API_KEY not configured, emails will not be sent');
+    return false;
   }
 
-  // Zoho SMTP settings
-  return nodemailer.createTransport({
-    host: 'smtp.zoho.com',
-    port: 465,
-    secure: true, // SSL
-    auth: { user, pass }
-  });
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: from || `${SITE_NAME} <onboarding@resend.dev>`,
+        to: [to],
+        subject,
+        html
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Failed to send email:', error);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Email error:', error);
+    return false;
+  }
 }
 
 function formatCurrency(amount: number, currency: string): string {
@@ -226,29 +243,24 @@ function generateOwnerEmailHtml(data: OrderEmailData): string {
 }
 
 export async function sendOrderEmails(data: OrderEmailData): Promise<{ success: boolean; error?: string }> {
-  const transporter = createTransporter();
-  
-  if (!transporter) {
-    console.log('Email not configured, skipping email send');
-    return { success: false, error: 'SMTP not configured' };
-  }
-
   try {
     // Send to customer
-    await transporter.sendMail({
-      from: `"${SITE_NAME}" <${FROM_EMAIL}>`,
-      to: data.customerEmail,
-      subject: `Order Confirmed - ${data.orderId} | ${SITE_NAME}`,
-      html: generateCustomerEmailHtml(data)
-    });
+    const customerSent = await sendEmail(
+      data.customerEmail,
+      `Order Confirmed - ${data.orderId} | ${SITE_NAME}`,
+      generateCustomerEmailHtml(data)
+    );
 
     // Send to owner
-    await transporter.sendMail({
-      from: `"${SITE_NAME} Orders" <${FROM_EMAIL}>`,
-      to: OWNER_EMAIL,
-      subject: `🛒 New Order: ${data.orderId} - ${formatCurrency(data.total, data.currency)}`,
-      html: generateOwnerEmailHtml(data)
-    });
+    const ownerSent = await sendEmail(
+      OWNER_EMAIL,
+      `🛒 New Order: ${data.orderId} - ${formatCurrency(data.total, data.currency)}`,
+      generateOwnerEmailHtml(data)
+    );
+
+    if (!customerSent && !ownerSent) {
+      return { success: false, error: 'Email service not configured' };
+    }
 
     console.log(`Order emails sent for ${data.orderId}`);
     return { success: true };
