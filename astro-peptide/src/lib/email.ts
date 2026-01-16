@@ -39,12 +39,10 @@ const SITE_NAME = 'Peptide Shop';
 // Send email using Resend API
 async function sendEmail(to: string, subject: string, html: string, from?: string): Promise<boolean> {
   const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
-  
   if (!apiKey) {
     console.warn('RESEND_API_KEY not configured, emails will not be sent');
     return false;
   }
-
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -53,19 +51,17 @@ async function sendEmail(to: string, subject: string, html: string, from?: strin
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: from || `${SITE_NAME} <onboarding@resend.dev>`,
+        from: from || `Peptide Shop <peptideshop@zohomail.com>`,
         to: [to],
         subject,
         html
       })
     });
-
     if (!response.ok) {
       const error = await response.text();
       console.error('Failed to send email:', error);
       return false;
     }
-
     return true;
   } catch (error) {
     console.error('Email error:', error);
@@ -168,7 +164,7 @@ function generateCustomerEmailHtml(data: OrderEmailData): string {
     </p>
     
     <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0; text-align: center; color: #64748b; font-size: 14px;">
-      <p>Questions? Reply to this email or contact us at support@peptide-shop.net</p>
+      <p>Questions? Reply to this email or contact us at peptideshop@zohomail.com</p>
       <p style="margin-top: 16px;">© ${new Date().getFullYear()} ${SITE_NAME}. All rights reserved.</p>
     </div>
   </div>
