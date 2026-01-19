@@ -67,7 +67,8 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
   let resolvedPathname = pathname;
   if (pathname.startsWith('/peptides/')) {
     const rawSlug = pathname.replace('/peptides/', '').replace(/\/$/, '');
-    const canonicalSlug = getCanonicalProductSlug(rawSlug);
+    const normalizedSlug = rawSlug.replace(/^(en|nl|de|fr|es|it)\//, '');
+    const canonicalSlug = getCanonicalProductSlug(normalizedSlug);
     const table = (productSlugTranslations as Record<string, Record<string, string>>)[lang];
     if (lang !== defaultLang && table && table[canonicalSlug]) {
       resolvedPathname = `/peptides/${table[canonicalSlug]}`;

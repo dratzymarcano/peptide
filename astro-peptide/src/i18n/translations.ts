@@ -6120,7 +6120,8 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
   // Check if this is a product URL and needs slug localization
   if (pathname.startsWith('/peptides/')) {
     const rawSlug = pathname.replace('/peptides/', '').replace(/\/$/, '');
-    const canonicalSlug = getCanonicalProductSlug(rawSlug);
+    const normalizedSlug = rawSlug.replace(/^(en|nl|de|fr|es|it)\//, '');
+    const canonicalSlug = getCanonicalProductSlug(normalizedSlug);
 
     // If we have a translation for this canonical slug in the target language, use it.
     if (lang !== 'en' && productSlugTranslations[lang] && productSlugTranslations[lang][canonicalSlug]) {
