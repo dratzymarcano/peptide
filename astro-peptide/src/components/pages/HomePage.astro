@@ -26,12 +26,19 @@ function t(key: string): string {
   return typeof value === 'string' ? value : key;
 }
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes language prefix and /peptides/ prefix
+const cleanSlug = (slug: string) => {
+  // Remove language prefix (e.g., 'en/', 'de/', 'nl/', etc.)
+  const withoutLang = slug.replace(/^(en|de|nl|fr|es|it)\//, '');
+  // Remove /peptides/ prefix and leading slashes
+  return withoutLang.replace(/^\/peptides\//, '').replace(/^\//, '');
+};
 
-// Fetch products for "Best Sellers" (simulated by taking first 8)
+// Fetch products for "Best Sellers" - filter by current language
 const allProducts = await getCollection('products');
-const featuredProducts = allProducts.slice(0, 8);
+const featuredProducts = allProducts
+  .filter(p => p.slug.startsWith(`${lang}/`))
+  .slice(0, 8);
 
 const categories = [
   { name: t('nav.weightLoss'), slug: 'weight-loss', icon: 'scale', desc: t('home.categories.desc.weightLoss'), gradient: 'from-purple-500 to-pink-500' },
