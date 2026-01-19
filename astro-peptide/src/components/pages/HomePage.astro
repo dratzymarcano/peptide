@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import ProductCard from '../ProductCard';
 import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize } from '../../i18n/translations';
 import { getLocalizedPath } from '../../i18n/config';
@@ -12,6 +12,11 @@ interface Props {
 
 const { lang } = Astro.props;
 const market = getMarket(lang);
+const siteCopy = await getEntry('site', 'en');
+const siteData = siteCopy?.data;
+const seoName = siteData?.seo?.homeName ?? `Peptide Shop - Buy Peptides ${market.marketName} & Europe`;
+const seoDescription = siteData?.seo?.homeDescription ?? `Buy peptides ${market.marketName} & Europe. Premium research peptides for sale with 99% purity. Fast delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`;
+const organizationDescription = siteData?.seo?.organizationDescription ?? `Buy peptides ${market.marketName} & Europe. Leading supplier of research peptides with 99% purity. Fast delivery across ${market.geoPlacename} and Europe.`;
 
 function t(key: string): string {
   const keys = key.split('.');
@@ -56,7 +61,8 @@ const testimonials = [
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": `Peptide Shop - Buy Peptides ${market.marketName} & Europe`,
+  "name": seoName,
+  "description": seoDescription,
   "url": "https://peptide-shop.net",
   "description": `Buy peptides ${market.marketName} & Europe. Premium research peptides for sale with 99% purity. Fast delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`,
   "inLanguage": ["en-GB", "nl-NL", "de-DE", "fr-FR", "es-ES", "it-IT"],
@@ -74,7 +80,7 @@ const organizationSchema = {
   "alternateName": `PeptideShop ${market.marketName}`,
   "url": "https://peptide-shop.net",
   "logo": "https://peptide-shop.net/favicon.png",
-  "description": `Buy peptides ${market.marketName} & Europe. Leading supplier of research peptides with 99% purity. Fast delivery across ${market.geoPlacename} and Europe.`,
+  "description": organizationDescription,
   "areaServed": [
     {"@type": "Country", "name": "United Kingdom"},
     {"@type": "Country", "name": "Netherlands"},

@@ -1,8 +1,12 @@
 ---
+import { getEntry } from 'astro:content';
 import { getLangFromUrl, t, getLocalizedPath } from '../i18n/translations';
 
 const currentYear = new Date().getFullYear();
 const currentLang = getLangFromUrl(Astro.url);
+const siteCopy = await getEntry('site', 'en');
+const siteData = siteCopy?.data;
+const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 ---
 
 <footer class="site-footer">
@@ -17,7 +21,7 @@ const currentLang = getLangFromUrl(Astro.url);
 				{t(currentLang, 'home.heroSubtitle')}
 			</p>
 			<div class="footer-socials">
-				   <a href="mailto:peptideshop@zohomail.com" class="social-link" aria-label="Email">
+				<a href={`mailto:${contactEmail}`} class="social-link" aria-label="Email">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 						<rect width="20" height="16" x="2" y="4" rx="2"></rect>
 						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
@@ -103,7 +107,7 @@ const currentLang = getLangFromUrl(Astro.url);
 							<rect width="20" height="16" x="2" y="4" rx="2"></rect>
 							<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 						</svg>
-						   <a href="mailto:peptideshop@zohomail.com">peptideshop@zohomail.com</a>
+						<a href={`mailto:${contactEmail}`}>{contactEmail}</a>
 					</div>
 					<div class="contact-item">
 						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

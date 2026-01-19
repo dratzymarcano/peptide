@@ -66,7 +66,23 @@ const blogCollection = defineCollection({
   }),
 });
 
+const siteCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']),
+    phone: z.string(),
+    email: z.string(),
+    telegram: z.string(),
+    seo: z.object({
+      homeName: z.string(),
+      homeDescription: z.string(),
+      organizationDescription: z.string(),
+    }),
+  }),
+});
+
 export const collections = {
   'products': productsCollection,
   'blog': blogCollection,
+  'site': siteCollection,
 };
