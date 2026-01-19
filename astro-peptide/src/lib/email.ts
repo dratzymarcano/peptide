@@ -33,12 +33,19 @@ interface OrderEmailData {
 }
 
 const SITE_EMAIL = 'peptideshop@zohomail.com';
-const OWNER_EMAIL = import.meta.env.OWNER_EMAIL || process.env.OWNER_EMAIL || SITE_EMAIL;
+const OWNER_EMAIL = import.meta.env.OWNER_EMAIL || SITE_EMAIL;
 const SITE_NAME = 'Peptide Shop';
+const SENDER_EMAIL = import.meta.env.SENDER_EMAIL || `Peptide Shop <onboarding@resend.dev>`;
 
 // Send email using Resend API
-async function sendEmail(to: string, subject: string, html: string, from?: string): Promise<boolean> {
-  const apiKey = import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY;
+async function sendEmail(
+  to: string, 
+  subject: string, 
+  html: string, 
+  apiKey: string,
+  from?: string,
+  replyTo?: string
+): Promise<boolean> {
   if (!apiKey) {
     console.warn('RESEND_API_KEY not configured, emails will not be sent');
     return false;
@@ -51,10 +58,11 @@ async function sendEmail(to: string, subject: string, html: string, from?: strin
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: from || `Peptide Shop <peptideshop@zohomail.com>`,
+        from: from || SENDER_EMAIL,
         to: [to],
         subject,
-        html
+        html,
+        reply_to: replyTo
       })
     });
     if (!response.ok) {
@@ -238,27 +246,40 @@ function generateOwnerEmailHtml(data: OrderEmailData): string {
   `;
 }
 
-export async function sendOrderEmails(data: OrderEmailData): Promise<{ success: boolean; error?: string }> {
+export async function sendOrderEmails(data: OrderEmailData, apiKey?: string): Promise<{ success: boolean; error?: string }> {
+  const finalApiKey = apiKey || import.meta.env.RESEND_API_KEY;
+  
+  if (!finalApiKey) {
+    console.warn('No RESEND_API_KEY found');
+    return { success: false, error: 'Configuration error: No API Key' };
+  }
+
   try {
     // Send to customer
     const customerSent = await sendEmail(
       data.customerEmail,
       `Order Confirmed - ${data.orderId} | ${SITE_NAME}`,
-      generateCustomerEmailHtml(data)
+      generateCustomerEmailHtml(data),
+      finalApiKey,
+      undefined,
+      SITE_EMAIL // Reply-To: Shop email
     );
 
     // Send to owner
     const ownerSent = await sendEmail(
       OWNER_EMAIL,
       `🛒 New Order: ${data.orderId} - ${formatCurrency(data.total, data.currency)}`,
-      generateOwnerEmailHtml(data)
+      generateOwnerEmailHtml(data),
+      finalApiKey,
+      undefined,
+      data.customerEmail // Reply-To: Customer email
     );
 
     if (!customerSent && !ownerSent) {
-      return { success: false, error: 'Email service not configured' };
+      return { success: false, error: 'Email service failed to send both emails' };
     }
 
-    console.log(`Order emails sent for ${data.orderId}`);
+    console.log(`Order emails sent for ${data.orderId} (Customer: ${customerSent}, Owner: ${ownerSent})`);
     return { success: true };
   } catch (error) {
     console.error('Failed to send order emails:', error);

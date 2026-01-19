@@ -1,10 +1,18 @@
 import type { APIRoute } from 'astro';
 import { sendOrderEmails } from '../../lib/email';
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const body = await request.json();
     
+    // Get API key from environment (support Cloudflare & Node)
+    const runtimeEnv = locals?.runtime?.env;
+    const apiKey = import.meta.env.RESEND_API_KEY || runtimeEnv?.RESEND_API_KEY;
+
+    if (!apiKey) {
+      console.error('CRITICAL: RESEND_API_KEY is missing');
+    }
+
     const {
       orderId,
       customerEmail,
@@ -45,11 +53,11 @@ export const POST: APIRoute = async ({ request }) => {
       shippingAddress,
       currency: currency || 'GBP',
       lang: lang || 'en'
-    });
+    }, apiKey);
 
     if (!result.success) {
       // Log error but don't fail the request - order is still valid
-      console.warn('Email sending failed:', result.error);
+      console.error('Email sending failed:', result.error);
     }
 
     return new Response(JSON.stringify({
