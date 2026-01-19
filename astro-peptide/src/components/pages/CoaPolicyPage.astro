@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
@@ -9,21 +10,23 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-coa-policy');
+const copy = pageCopy?.data.copy ?? {};
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-  { name: t(lang, 'legalPages.coaPolicy.title'), url: getLocalizedPath('/coa-policy', lang) }
+  { name: copy.title ?? t(lang, 'legalPages.coaPolicy.title'), url: getLocalizedPath('/coa-policy', lang) }
 ];
 ---
 
 <Layout 
-  title={`${t(lang, 'legalPages.coaPolicy.title')} | Peptide Shop`}
-  description={t(lang, 'legalPages.coaPolicy.subtitle')}
+  title={`${copy.title ?? t(lang, 'legalPages.coaPolicy.title')} | Peptide Shop`}
+  description={copy.subtitle ?? t(lang, 'legalPages.coaPolicy.subtitle')}
   breadcrumbs={breadcrumbs}
 >
   <PageTitle 
-    title={t(lang, 'legalPages.coaPolicy.title')}
-    subtitle={t(lang, 'legalPages.coaPolicy.subtitle')}
+    title={copy.title ?? t(lang, 'legalPages.coaPolicy.title')}
+    subtitle={copy.subtitle ?? t(lang, 'legalPages.coaPolicy.subtitle')}
     breadcrumbs={breadcrumbs}
   />
 
@@ -33,12 +36,12 @@ const breadcrumbs = [
         <div class="col-lg-10">
           <div style="background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
             
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.coaPolicy.batchTitle')}</h2>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.batchTitle ?? t(lang, 'legalPages.coaPolicy.batchTitle')}</h2>
             <p class="mb-5" style="color: #64748b; line-height: 1.8;">
-              {t(lang, 'legalPages.coaPolicy.batchContent')}
+              {copy.batchContent ?? t(lang, 'legalPages.coaPolicy.batchContent')}
             </p>
 
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.coaPolicy.methodsTitle')}</h2>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.methodsTitle ?? t(lang, 'legalPages.coaPolicy.methodsTitle')}</h2>
             <ul class="list-unstyled mb-5">
               <li class="mb-3 d-flex align-items-start">
                 <div style="width: 36px; height: 36px; background: rgba(0, 119, 182, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
@@ -46,7 +49,7 @@ const breadcrumbs = [
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <span style="color: #64748b; line-height: 1.6;">{t(lang, 'legalPages.coaPolicy.hplc')}</span>
+                <span style="color: #64748b; line-height: 1.6;">{copy.hplc ?? t(lang, 'legalPages.coaPolicy.hplc')}</span>
               </li>
               <li class="mb-3 d-flex align-items-start">
                 <div style="width: 36px; height: 36px; background: rgba(0, 119, 182, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0;">
@@ -54,13 +57,13 @@ const breadcrumbs = [
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </div>
-                <span style="color: #64748b; line-height: 1.6;">{t(lang, 'legalPages.coaPolicy.ms')}</span>
+                <span style="color: #64748b; line-height: 1.6;">{copy.ms ?? t(lang, 'legalPages.coaPolicy.ms')}</span>
               </li>
             </ul>
 
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.coaPolicy.availTitle')}</h2>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.availTitle ?? t(lang, 'legalPages.coaPolicy.availTitle')}</h2>
             <p style="color: #64748b; line-height: 1.8;">
-              {t(lang, 'legalPages.coaPolicy.availContent')}
+              {copy.availContent ?? t(lang, 'legalPages.coaPolicy.availContent')}
             </p>
 
           </div>

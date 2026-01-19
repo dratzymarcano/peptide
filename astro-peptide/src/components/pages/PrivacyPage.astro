@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath } from '../../i18n/translations';
 import { languages as languageMeta } from '../../i18n/config';
 import type { SupportedLanguage } from '../../i18n/translations';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-privacy');
+const copy = pageCopy?.data.copy ?? {};
 
 const lastUpdatedDate = new Date(Date.UTC(2025, 11, 31));
 const formattedLastUpdated = new Intl.DateTimeFormat(languageMeta[lang].locale, {
@@ -20,18 +23,18 @@ const formattedLastUpdated = new Intl.DateTimeFormat(languageMeta[lang].locale, 
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-  { name: t(lang, 'footer.privacyPolicy'), url: getLocalizedPath('/privacy', lang) }
+  { name: copy.title ?? t(lang, 'footer.privacyPolicy'), url: getLocalizedPath('/privacy', lang) }
 ];
 ---
 
 <Layout 
-  title={`${t(lang, 'legalPages.privacy.title')} | Peptide Shop`}
-  description={t(lang, 'legalPages.privacy.subtitle')}
+  title={`${copy.title ?? t(lang, 'legalPages.privacy.title')} | Peptide Shop`}
+  description={copy.subtitle ?? t(lang, 'legalPages.privacy.subtitle')}
   breadcrumbs={breadcrumbs}
 >
   <PageTitle 
-    title={t(lang, 'legalPages.privacy.title')}
-    subtitle={t(lang, 'legalPages.privacy.subtitle')}
+    title={copy.title ?? t(lang, 'legalPages.privacy.title')}
+    subtitle={copy.subtitle ?? t(lang, 'legalPages.privacy.subtitle')}
     breadcrumbs={breadcrumbs}
   />
 
@@ -41,35 +44,35 @@ const breadcrumbs = [
         <div class="col-lg-10">
           <p class="text-muted mb-5">{t(lang, 'legalPages.lastUpdated')}: {formattedLastUpdated}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.privacy.infoCollect.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.privacy.infoCollect.content')}</p>
+          <h2 class="mb-3">{copy.infoCollect?.title ?? t(lang, 'legalPages.privacy.infoCollect.title')}</h2>
+          <p class="mb-4">{copy.infoCollect?.content ?? t(lang, 'legalPages.privacy.infoCollect.content')}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.privacy.howUse.title')}</h2>
-          <p>{t(lang, 'legalPages.privacy.howUse.intro')}</p>
+          <h2 class="mb-3">{copy.howUse?.title ?? t(lang, 'legalPages.privacy.howUse.title')}</h2>
+          <p>{copy.howUse?.intro ?? t(lang, 'legalPages.privacy.howUse.intro')}</p>
           <ul class="list-unstyled mb-4">
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-              {t(lang, 'legalPages.privacy.howUse.orders')}
+              {copy.howUse?.orders ?? t(lang, 'legalPages.privacy.howUse.orders')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-              {t(lang, 'legalPages.privacy.howUse.coa')}
+              {copy.howUse?.coa ?? t(lang, 'legalPages.privacy.howUse.coa')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-              {t(lang, 'legalPages.privacy.howUse.questions')}
+              {copy.howUse?.questions ?? t(lang, 'legalPages.privacy.howUse.questions')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><path d="m9 18 6-6-6-6"/></svg>
-              {t(lang, 'legalPages.privacy.howUse.legal')}
+              {copy.howUse?.legal ?? t(lang, 'legalPages.privacy.howUse.legal')}
             </li>
           </ul>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.privacy.security.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.privacy.security.content')}</p>
+          <h2 class="mb-3">{copy.security?.title ?? t(lang, 'legalPages.privacy.security.title')}</h2>
+          <p class="mb-4">{copy.security?.content ?? t(lang, 'legalPages.privacy.security.content')}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.privacy.cookies.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.privacy.cookies.content')}</p>
+          <h2 class="mb-3">{copy.cookies?.title ?? t(lang, 'legalPages.privacy.cookies.title')}</h2>
+          <p class="mb-4">{copy.cookies?.content ?? t(lang, 'legalPages.privacy.cookies.content')}</p>
         </div>
       </div>
     </div>

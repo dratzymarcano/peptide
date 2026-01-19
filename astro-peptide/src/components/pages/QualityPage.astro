@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -8,11 +9,13 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-quality');
+const copy = pageCopy?.data.copy ?? {};
 ---
 
 <Layout 
-  title={`${t(lang, 'qualityPage.title')} | Peptide Shop`}
-  description={t(lang, 'qualityPage.description')}
+  title={`${copy.title ?? t(lang, 'qualityPage.title')} | Peptide Shop`}
+  description={copy.description ?? t(lang, 'qualityPage.description')}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
     { name: t(lang, 'qualityPage.title'), url: getLocalizedPath('/quality', lang) }
@@ -20,8 +23,8 @@ const { lang } = Astro.props;
 >
   
   <PageTitle 
-    title={t(lang, 'qualityPage.title')}
-    subtitle={t(lang, 'qualityPage.subtitle')}
+    title={copy.title ?? t(lang, 'qualityPage.title')}
+    subtitle={copy.subtitle ?? t(lang, 'qualityPage.subtitle')}
     breadcrumbs={[
       { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
       { name: t(lang, 'nav.quality') }
@@ -45,13 +48,13 @@ const { lang } = Astro.props;
                 <line x1="12" x2="12" y1="22.08" y2="12"></line>
               </svg>
             </div>
-            <h3 style="color: #1e293b; font-weight: 700; margin-bottom: 16px; font-size: 1.5rem;">{t(lang, 'qualityPage.hplcTitle')}</h3>
+            <h3 style="color: #1e293b; font-weight: 700; margin-bottom: 16px; font-size: 1.5rem;">{copy.hplcTitle ?? t(lang, 'qualityPage.hplcTitle')}</h3>
             <p style="color: #64748b; line-height: 1.8; margin-bottom: 20px;">
-              {t(lang, 'qualityPage.hplcDescription')}
+              {copy.hplcDescription ?? t(lang, 'qualityPage.hplcDescription')}
             </p>
             <div style="background: white; border-radius: 10px; padding: 16px;">
               <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 8px;">
-                <span style="color: #64748b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.purityStandard')}</span>
+                <span style="color: #64748b; font-size: 14px; font-weight: 600;">{copy.purityStandard ?? t(lang, 'qualityPage.purityStandard')}</span>
                 <span style="color: #0077b6; font-weight: 700; font-size: 18px;">≥99%</span>
               </div>
               <div style="background: rgba(0, 119, 182, 0.1); height: 8px; border-radius: 10px; overflow: hidden;">
@@ -68,9 +71,9 @@ const { lang } = Astro.props;
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
             </div>
-            <h3 style="color: #1e293b; font-weight: 700; margin-bottom: 16px; font-size: 1.5rem;">{t(lang, 'qualityPage.msTitle')}</h3>
+            <h3 style="color: #1e293b; font-weight: 700; margin-bottom: 16px; font-size: 1.5rem;">{copy.msTitle ?? t(lang, 'qualityPage.msTitle')}</h3>
             <p style="color: #64748b; line-height: 1.8; margin-bottom: 20px;">
-              {t(lang, 'qualityPage.msDescription')}
+              {copy.msDescription ?? t(lang, 'qualityPage.msDescription')}
             </p>
             <div style="background: white; border-radius: 10px; padding: 16px;">
               <div style="display: flex; align-items: center; gap: 12px;">
@@ -78,8 +81,8 @@ const { lang } = Astro.props;
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
                 <div>
-                  <div style="color: #64748b; font-size: 13px; margin-bottom: 2px;">{t(lang, 'qualityPage.molecularConfirmation')}</div>
-                  <div style="color: #10b981; font-weight: 700;">{t(lang, 'qualityPage.verified')}</div>
+                  <div style="color: #64748b; font-size: 13px; margin-bottom: 2px;">{copy.molecularConfirmation ?? t(lang, 'qualityPage.molecularConfirmation')}</div>
+                  <div style="color: #10b981; font-weight: 700;">{copy.verified ?? t(lang, 'qualityPage.verified')}</div>
                 </div>
               </div>
             </div>
@@ -92,10 +95,10 @@ const { lang } = Astro.props;
         <div class="col-12">
           <div style="background: white; border-radius: 10px; padding: 50px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
             <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 24px; font-size: 2rem;">
-              {t(lang, 'qualityPage.coaTitle')}
+              {copy.coaTitle ?? t(lang, 'qualityPage.coaTitle')}
             </h2>
             <p style="color: #64748b; font-size: 1.125rem; line-height: 1.8; margin-bottom: 32px;">
-              {t(lang, 'qualityPage.coaDescription')}
+              {copy.coaDescription ?? t(lang, 'qualityPage.coaDescription')}
             </p>
 
             <div class="row g-3">
@@ -104,7 +107,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.batchNumber')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.batchNumber ?? t(lang, 'qualityPage.coaItems.batchNumber')}</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -112,7 +115,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.dateOfAnalysis')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.dateOfAnalysis ?? t(lang, 'qualityPage.coaItems.dateOfAnalysis')}</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -120,7 +123,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.molecularWeight')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.molecularWeight ?? t(lang, 'qualityPage.coaItems.molecularWeight')}</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -128,7 +131,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.hplcChromatogram')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.hplcChromatogram ?? t(lang, 'qualityPage.coaItems.hplcChromatogram')}</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -136,7 +139,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.physicalAppearance')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.physicalAppearance ?? t(lang, 'qualityPage.coaItems.physicalAppearance')}</span>
                 </div>
               </div>
               <div class="col-md-4">
@@ -144,7 +147,7 @@ const { lang } = Astro.props;
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{t(lang, 'qualityPage.coaItems.solubilityProfile')}</span>
+                  <span style="color: #1e293b; font-size: 14px; font-weight: 600;">{copy.coaItems?.solubilityProfile ?? t(lang, 'qualityPage.coaItems.solubilityProfile')}</span>
                 </div>
               </div>
             </div>
@@ -157,10 +160,10 @@ const { lang } = Astro.props;
         <div class="col-12">
           <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1)); border-radius: 10px; padding: 40px; border: 2px solid rgba(245, 158, 11, 0.2);">
             <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 24px; font-size: 1.75rem;">
-              {t(lang, 'qualityPage.storageTitle')}
+              {copy.storageTitle ?? t(lang, 'qualityPage.storageTitle')}
             </h2>
             <p style="color: #64748b; font-size: 1.125rem; margin-bottom: 32px;">
-              {t(lang, 'qualityPage.storageDescription')}
+              {copy.storageDescription ?? t(lang, 'qualityPage.storageDescription')}
             </p>
             <div class="row g-4">
               <div class="col-md-4">
@@ -170,8 +173,8 @@ const { lang } = Astro.props;
                     <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path>
                     <path d="M12 3v6"></path>
                   </svg>
-                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{t(lang, 'qualityPage.storageItems.lyophilizedTitle')}</h4>
-                  <p style="color: #64748b; margin: 0; font-size: 14px;">{t(lang, 'qualityPage.storageItems.lyophilizedDescription')}</p>
+                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{copy.storageItems?.lyophilizedTitle ?? t(lang, 'qualityPage.storageItems.lyophilizedTitle')}</h4>
+                  <p style="color: #64748b; margin: 0; font-size: 14px;">{copy.storageItems?.lyophilizedDescription ?? t(lang, 'qualityPage.storageItems.lyophilizedDescription')}</p>
                 </div>
               </div>
               <div class="col-md-4">
@@ -180,8 +183,8 @@ const { lang } = Astro.props;
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 6v6l4 2"></path>
                   </svg>
-                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{t(lang, 'qualityPage.storageItems.lightProtectionTitle')}</h4>
-                  <p style="color: #64748b; margin: 0; font-size: 14px;">{t(lang, 'qualityPage.storageItems.lightProtectionDescription')}</p>
+                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{copy.storageItems?.lightProtectionTitle ?? t(lang, 'qualityPage.storageItems.lightProtectionTitle')}</h4>
+                  <p style="color: #64748b; margin: 0; font-size: 14px;">{copy.storageItems?.lightProtectionDescription ?? t(lang, 'qualityPage.storageItems.lightProtectionDescription')}</p>
                 </div>
               </div>
               <div class="col-md-4">
@@ -192,8 +195,8 @@ const { lang } = Astro.props;
                     <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                     <path d="M3 10h18"></path>
                   </svg>
-                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{t(lang, 'qualityPage.storageItems.freezeThawTitle')}</h4>
-                  <p style="color: #64748b; margin: 0; font-size: 14px;">{t(lang, 'qualityPage.storageItems.freezeThawDescription')}</p>
+                  <h4 style="color: #1e293b; font-weight: 700; margin-bottom: 8px; font-size: 1.125rem;">{copy.storageItems?.freezeThawTitle ?? t(lang, 'qualityPage.storageItems.freezeThawTitle')}</h4>
+                  <p style="color: #64748b; margin: 0; font-size: 14px;">{copy.storageItems?.freezeThawDescription ?? t(lang, 'qualityPage.storageItems.freezeThawDescription')}</p>
                 </div>
               </div>
             </div>

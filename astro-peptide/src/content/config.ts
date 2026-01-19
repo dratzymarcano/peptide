@@ -81,8 +81,18 @@ const siteCollection = defineCollection({
   }),
 });
 
+const pageCopyCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']),
+    page: z.string(),
+    copy: z.record(z.any()),
+  }),
+});
+
 export const collections = {
   'products': productsCollection,
   'blog': blogCollection,
   'site': siteCollection,
+  'pageCopy': pageCopyCollection,
 };

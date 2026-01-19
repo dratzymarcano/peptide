@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-about');
+const copy = pageCopy?.data.copy ?? {};
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
@@ -102,8 +105,8 @@ const aboutSchema = {
   </style>
 
   <PageTitle 
-    title={t(lang, 'aboutPage.title')}
-    subtitle={t(lang, 'aboutPage.subtitle')}
+    title={copy.title ?? t(lang, 'aboutPage.title')}
+    subtitle={copy.subtitle ?? t(lang, 'aboutPage.subtitle')}
     breadcrumbs={breadcrumbs}
   />
 
@@ -114,24 +117,24 @@ const aboutSchema = {
         <div class="col-lg-8">
           <div style="background: white; border-radius: 10px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 40px;">
             <h2 style="color: #1e293b; font-weight: 700; margin-bottom: 24px; font-size: 2rem;">
-              {t(lang, 'aboutPage.sections.excellence')}
+              {copy.sections?.excellence ?? t(lang, 'aboutPage.sections.excellence')}
             </h2>
             <p style="color: #64748b; font-size: 1.125rem; line-height: 1.8; margin-bottom: 32px;">
-              {t(lang, 'aboutPage.content.excellence')}
+              {copy.content?.excellence ?? t(lang, 'aboutPage.content.excellence')}
             </p>
             
             <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
-              {t(lang, 'aboutPage.sections.mission')}
+              {copy.sections?.mission ?? t(lang, 'aboutPage.sections.mission')}
             </h3>
             <p style="color: #64748b; line-height: 1.8;">
-              {t(lang, 'aboutPage.content.mission')}
+              {copy.content?.mission ?? t(lang, 'aboutPage.content.mission')}
             </p>
             
             <h3 style="color: #1e293b; font-weight: 700; margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem;">
-              {t(lang, 'aboutPage.sections.quality')}
+              {copy.sections?.quality ?? t(lang, 'aboutPage.sections.quality')}
             </h3>
             <p style="color: #64748b; line-height: 1.8; margin-bottom: 24px;">
-              {t(lang, 'aboutPage.content.quality')}
+              {copy.content?.quality ?? t(lang, 'aboutPage.content.quality')}
             </p>
             
             <div class="row g-3 mt-4">
@@ -142,8 +145,8 @@ const aboutSchema = {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     <div>
-                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.hplc')}</strong>
-                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.hplcSubtitle')}</span>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{copy.features?.hplc ?? t(lang, 'aboutPage.features.hplc')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{copy.features?.hplcSubtitle ?? t(lang, 'aboutPage.features.hplcSubtitle')}</span>
                     </div>
                   </div>
                 </div>
@@ -155,8 +158,8 @@ const aboutSchema = {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     <div>
-                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.massSpec')}</strong>
-                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.massSpecSubtitle')}</span>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{copy.features?.massSpec ?? t(lang, 'aboutPage.features.massSpec')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{copy.features?.massSpecSubtitle ?? t(lang, 'aboutPage.features.massSpecSubtitle')}</span>
                     </div>
                   </div>
                 </div>
@@ -168,8 +171,8 @@ const aboutSchema = {
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
                     <div>
-                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{t(lang, 'aboutPage.features.storage')}</strong>
-                      <span style="color: #64748b; font-size: 14px;">{t(lang, 'aboutPage.features.storageSubtitle')}</span>
+                      <strong style="color: #1e293b; display: block; margin-bottom: 4px;">{copy.features?.storage ?? t(lang, 'aboutPage.features.storage')}</strong>
+                      <span style="color: #64748b; font-size: 14px;">{copy.features?.storageSubtitle ?? t(lang, 'aboutPage.features.storageSubtitle')}</span>
                     </div>
                   </div>
                 </div>

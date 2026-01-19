@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
@@ -9,21 +10,23 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-shipping');
+const copy = pageCopy?.data.copy ?? {};
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-  { name: t(lang, 'legalPages.shipping.title'), url: getLocalizedPath('/shipping', lang) }
+  { name: copy.title ?? t(lang, 'legalPages.shipping.title'), url: getLocalizedPath('/shipping', lang) }
 ];
 ---
 
 <Layout 
-  title={`${t(lang, 'legalPages.shipping.title')} | Peptide Shop`}
-  description={t(lang, 'legalPages.shipping.subtitle')}
+  title={`${copy.title ?? t(lang, 'legalPages.shipping.title')} | Peptide Shop`}
+  description={copy.subtitle ?? t(lang, 'legalPages.shipping.subtitle')}
   breadcrumbs={breadcrumbs}
 >
   <PageTitle 
-    title={t(lang, 'legalPages.shipping.title')}
-    subtitle={t(lang, 'legalPages.shipping.subtitle')}
+    title={copy.title ?? t(lang, 'legalPages.shipping.title')}
+    subtitle={copy.subtitle ?? t(lang, 'legalPages.shipping.subtitle')}
     breadcrumbs={breadcrumbs}
   />
 
@@ -32,31 +35,31 @@ const breadcrumbs = [
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div style="background: white; border-radius: 12px; padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.shipping.policyTitle')}</h2>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.policyTitle ?? t(lang, 'legalPages.shipping.policyTitle')}</h2>
             <ul class="list-unstyled mb-5">
               <li class="mb-2 d-flex align-items-start">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" class="mr-2 mt-1 flex-shrink-0">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span>{t(lang, 'legalPages.shipping.processing')}</span>
+                <span>{copy.processing ?? t(lang, 'legalPages.shipping.processing')}</span>
               </li>
               <li class="mb-2 d-flex align-items-start">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" class="mr-2 mt-1 flex-shrink-0">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span>{t(lang, 'legalPages.shipping.method')}</span>
+                <span>{copy.method ?? t(lang, 'legalPages.shipping.method')}</span>
               </li>
               <li class="mb-2 d-flex align-items-start">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2" class="mr-2 mt-1 flex-shrink-0">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span>{t(lang, 'legalPages.shipping.temperature')}</span>
+                <span>{copy.temperature ?? t(lang, 'legalPages.shipping.temperature')}</span>
               </li>
             </ul>
 
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.shipping.returnsTitle')}</h2>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.returnsTitle ?? t(lang, 'legalPages.shipping.returnsTitle')}</h2>
             <p class="mb-4" style="color: #64748b; line-height: 1.8;">
-              {lang === 'en' ? 'Due to the nature of research chemicals, we cannot accept returns once products have left our facility. This policy ensures the integrity of our supply chain and protects the safety of all researchers.' :
+              {lang === 'en' ? (copy.returnsText ?? 'Due to the nature of research chemicals, we cannot accept returns once products have left our facility. This policy ensures the integrity of our supply chain and protects the safety of all researchers.') :
                lang === 'nl' ? 'Vanwege de aard van onderzoekschemicaliën kunnen wij geen retourzendingen accepteren zodra producten onze faciliteit hebben verlaten. Dit beleid waarborgt de integriteit van onze toeleveringsketen.' :
                lang === 'de' ? 'Aufgrund der Natur von Forschungschemikalien können wir keine Rücksendungen akzeptieren, sobald Produkte unsere Einrichtung verlassen haben. Diese Richtlinie gewährleistet die Integrität unserer Lieferkette.' :
                lang === 'fr' ? 'En raison de la nature des produits chimiques de recherche, nous ne pouvons pas accepter les retours une fois que les produits ont quitté notre établissement. Cette politique garantit l\'intégrité de notre chaîne d\'approvisionnement.' :
@@ -71,7 +74,7 @@ const breadcrumbs = [
                 <line x1="12" x2="12.01" y1="8" y2="8"></line>
               </svg>
               <span style="color: #1e293b;">
-                {lang === 'en' ? 'If you receive a damaged item or an incorrect product, please contact us within 48 hours of receipt, and we will arrange for a replacement.' :
+                {lang === 'en' ? (copy.damagedText ?? 'If you receive a damaged item or an incorrect product, please contact us within 48 hours of receipt, and we will arrange for a replacement.') :
                  lang === 'nl' ? 'Als u een beschadigd of verkeerd product ontvangt, neem dan binnen 48 uur na ontvangst contact met ons op voor een vervanging.' :
                  lang === 'de' ? 'Wenn Sie einen beschädigten Artikel oder ein falsches Produkt erhalten, kontaktieren Sie uns bitte innerhalb von 48 Stunden nach Erhalt für einen Ersatz.' :
                  lang === 'fr' ? 'Si vous recevez un article endommagé ou un produit incorrect, veuillez nous contacter dans les 48 heures suivant la réception pour un remplacement.' :
@@ -80,8 +83,8 @@ const breadcrumbs = [
               </span>
             </div>
 
-            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{t(lang, 'legalPages.shipping.customsTitle')}</h2>
-            <p style="color: #64748b; line-height: 1.8;">{t(lang, 'legalPages.shipping.customsContent')}</p>
+            <h2 class="mb-3" style="color: #1e293b; font-weight: 700;">{copy.customsTitle ?? t(lang, 'legalPages.shipping.customsTitle')}</h2>
+            <p style="color: #64748b; line-height: 1.8;">{copy.customsContent ?? t(lang, 'legalPages.shipping.customsContent')}</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -8,24 +9,26 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-learn');
+const copy = pageCopy?.data.copy ?? {};
 
 const guides = [
   {
     icon: "book-open",
-    title: t(lang, 'learnPage.whatArePeptides'),
-    description: t(lang, 'learnPage.whatArePeptidesDescription'),
+    title: copy.whatArePeptides ?? t(lang, 'learnPage.whatArePeptides'),
+    description: copy.whatArePeptidesDescription ?? t(lang, 'learnPage.whatArePeptidesDescription'),
     href: getLocalizedPath('/learn/what-are-peptides', lang),
-    readTime: t(lang, 'learnPage.readTime').replace('{minutes}', '10')
+    readTime: (copy.readTime ?? t(lang, 'learnPage.readTime')).replace('{minutes}', '10')
   }
 ];
 ---
 
 <Layout 
-  title={`${t(lang, 'learnPage.title')} | Peptide Shop`}
-  description={t(lang, 'learnPage.description')}
+  title={`${copy.title ?? t(lang, 'learnPage.title')} | Peptide Shop`}
+  description={copy.description ?? t(lang, 'learnPage.description')}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-    { name: t(lang, 'learnPage.title'), url: getLocalizedPath('/learn', lang) }
+    { name: copy.title ?? t(lang, 'learnPage.title'), url: getLocalizedPath('/learn', lang) }
   ]}
 >
   <style>
@@ -134,9 +137,9 @@ const guides = [
   <section class="learn-hero">
     <div class="container">
       <div class="hero-content">
-        <span class="hero-badge">{t(lang, 'learnPage.badge')}</span>
-        <h1 class="hero-title">{t(lang, 'learnPage.title')}</h1>
-        <p class="hero-description">{t(lang, 'learnPage.description')}</p>
+        <span class="hero-badge">{copy.badge ?? t(lang, 'learnPage.badge')}</span>
+        <h1 class="hero-title">{copy.title ?? t(lang, 'learnPage.title')}</h1>
+        <p class="hero-description">{copy.description ?? t(lang, 'learnPage.description')}</p>
       </div>
     </div>
   </section>

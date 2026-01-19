@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath } from '../../i18n/translations';
 import { languages as languageMeta } from '../../i18n/config';
 import type { SupportedLanguage } from '../../i18n/translations';
@@ -10,6 +11,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-terms');
+const copy = pageCopy?.data.copy ?? {};
 
 const lastUpdatedDate = new Date(Date.UTC(2025, 11, 31));
 const formattedLastUpdated = new Intl.DateTimeFormat(languageMeta[lang].locale, {
@@ -20,18 +23,18 @@ const formattedLastUpdated = new Intl.DateTimeFormat(languageMeta[lang].locale, 
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-  { name: t(lang, 'footer.termsAndConditions'), url: getLocalizedPath('/terms', lang) }
+  { name: copy.title ?? t(lang, 'footer.termsAndConditions'), url: getLocalizedPath('/terms', lang) }
 ];
 ---
 
 <Layout 
-  title={`${t(lang, 'legalPages.terms.title')} | Peptide Shop`}
-  description={t(lang, 'legalPages.terms.subtitle')}
+  title={`${copy.title ?? t(lang, 'legalPages.terms.title')} | Peptide Shop`}
+  description={copy.subtitle ?? t(lang, 'legalPages.terms.subtitle')}
   breadcrumbs={breadcrumbs}
 >
   <PageTitle 
-    title={t(lang, 'legalPages.terms.title')}
-    subtitle={t(lang, 'legalPages.terms.subtitle')}
+    title={copy.title ?? t(lang, 'legalPages.terms.title')}
+    subtitle={copy.subtitle ?? t(lang, 'legalPages.terms.subtitle')}
     breadcrumbs={breadcrumbs}
   />
 
@@ -41,57 +44,57 @@ const breadcrumbs = [
         <div class="col-lg-10">
           <p class="text-muted mb-5">{t(lang, 'legalPages.lastUpdated')}: {formattedLastUpdated}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.terms.acceptance.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.terms.acceptance.content')}</p>
+          <h2 class="mb-3">{copy.acceptance?.title ?? t(lang, 'legalPages.terms.acceptance.title')}</h2>
+          <p class="mb-4">{copy.acceptance?.content ?? t(lang, 'legalPages.terms.acceptance.content')}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.terms.researchUse.title')}</h2>
+          <h2 class="mb-3">{copy.researchUse?.title ?? t(lang, 'legalPages.terms.researchUse.title')}</h2>
           <div class="alert alert-warning border-0 shadow-sm mb-4" role="alert">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" x2="12" y1="9" y2="13"></line><line x1="12" x2="12.01" y1="17" y2="17"></line></svg>
-            <strong>{t(lang, 'legalPages.terms.researchUse.warning')}</strong>
+            <strong>{copy.researchUse?.warning ?? t(lang, 'legalPages.terms.researchUse.warning')}</strong>
           </div>
-          <p>{lang === 'en' ? 'They are NOT for use in:' : lang === 'nl' ? 'NIET voor gebruik bij:' : lang === 'de' ? 'NICHT zur Verwendung bei:' : lang === 'fr' ? 'NON destinés à:' : lang === 'es' ? 'NO para uso en:' : 'NON per uso in:'}</p>
+          <p>{lang === 'en' ? (copy.researchUse?.notForUseLabel ?? 'They are NOT for use in:') : lang === 'nl' ? 'NIET voor gebruik bij:' : lang === 'de' ? 'NICHT zur Verwendung bei:' : lang === 'fr' ? 'NON destinés à:' : lang === 'es' ? 'NO para uso en:' : 'NON per uso in:'}</p>
           <ul class="list-unstyled mb-4">
             <li class="mb-2 d-flex align-items-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-danger"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-              {t(lang, 'legalPages.terms.researchUse.notHumans')}
+              {copy.researchUse?.notHumans ?? t(lang, 'legalPages.terms.researchUse.notHumans')}
             </li>
             <li class="mb-2 d-flex align-items-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-danger"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-              {t(lang, 'legalPages.terms.researchUse.notFood')}
+              {copy.researchUse?.notFood ?? t(lang, 'legalPages.terms.researchUse.notFood')}
             </li>
             <li class="mb-2 d-flex align-items-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-danger"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-              {t(lang, 'legalPages.terms.researchUse.notHousehold')}
+              {copy.researchUse?.notHousehold ?? t(lang, 'legalPages.terms.researchUse.notHousehold')}
             </li>
           </ul>
-          <p class="mb-4">{t(lang, 'legalPages.terms.researchUse.acknowledgment')}</p>
+          <p class="mb-4">{copy.researchUse?.acknowledgment ?? t(lang, 'legalPages.terms.researchUse.acknowledgment')}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.terms.purchaser.title')}</h2>
-          <p>{t(lang, 'legalPages.terms.purchaser.intro')}</p>
+          <h2 class="mb-3">{copy.purchaser?.title ?? t(lang, 'legalPages.terms.purchaser.title')}</h2>
+          <p>{copy.purchaser?.intro ?? t(lang, 'legalPages.terms.purchaser.intro')}</p>
           <ul class="list-unstyled mb-4">
             <li class="mb-2 d-flex align-items-center">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 text-color"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              {t(lang, 'legalPages.terms.purchaser.age')}
+              {copy.purchaser?.age ?? t(lang, 'legalPages.terms.purchaser.age')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              {t(lang, 'legalPages.terms.purchaser.institution')}
+              {copy.purchaser?.institution ?? t(lang, 'legalPages.terms.purchaser.institution')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              {t(lang, 'legalPages.terms.purchaser.hazards')}
+              {copy.purchaser?.hazards ?? t(lang, 'legalPages.terms.purchaser.hazards')}
             </li>
             <li class="mb-2 d-flex align-items-start">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 mt-1 text-color flex-shrink-0"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              {t(lang, 'legalPages.terms.purchaser.handling')}
+              {copy.purchaser?.handling ?? t(lang, 'legalPages.terms.purchaser.handling')}
             </li>
           </ul>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.terms.liability.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.terms.liability.content')}</p>
+          <h2 class="mb-3">{copy.liability?.title ?? t(lang, 'legalPages.terms.liability.title')}</h2>
+          <p class="mb-4">{copy.liability?.content ?? t(lang, 'legalPages.terms.liability.content')}</p>
 
-          <h2 class="mb-3">{t(lang, 'legalPages.terms.governing.title')}</h2>
-          <p class="mb-4">{t(lang, 'legalPages.terms.governing.content')}</p>
+          <h2 class="mb-3">{copy.governing?.title ?? t(lang, 'legalPages.terms.governing.title')}</h2>
+          <p class="mb-4">{copy.governing?.content ?? t(lang, 'legalPages.terms.governing.content')}</p>
         </div>
       </div>
     </div>

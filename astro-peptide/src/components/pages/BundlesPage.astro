@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-bundles');
+const copy = pageCopy?.data.copy ?? {};
 
 const bundles = [
   {
@@ -125,11 +128,11 @@ const bundles = [
 ---
 
 <Layout 
-  title={`${t(lang, 'bundlesPage.title')} | Peptide Shop`}
-  description={t(lang, 'bundlesPage.description')}
+  title={`${copy.title ?? t(lang, 'bundlesPage.title')} | Peptide Shop`}
+  description={copy.description ?? t(lang, 'bundlesPage.description')}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-    { name: t(lang, 'bundlesPage.title'), url: getLocalizedPath('/bundles', lang) }
+    { name: copy.title ?? t(lang, 'bundlesPage.title'), url: getLocalizedPath('/bundles', lang) }
   ]}
 >
   <style>

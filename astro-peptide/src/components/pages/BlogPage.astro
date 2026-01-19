@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import { t, getLocalizedPath } from '../../i18n/translations';
@@ -11,6 +11,8 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 const currentLang = lang;
+const pageCopy = await getEntry('pageCopy', 'en-blog');
+const copy = pageCopy?.data.copy ?? {};
 
 const posts = await getCollection('blog');
 const sortedPosts = posts.sort((a, b) => 
@@ -29,8 +31,8 @@ const categories = [...new Set(
 ---
 
 <Layout 
-  title={`${t(currentLang, 'blogPage.title')} | Peptide Shop`}
-  description={t(currentLang, 'blogPage.description')}
+  title={`${copy.title ?? t(currentLang, 'blogPage.title')} | Peptide Shop`}
+  description={copy.description ?? t(currentLang, 'blogPage.description')}
   lang={currentLang}
   breadcrumbs={[
     { name: t(currentLang, 'common.home'), url: getLocalizedPath('/', currentLang) },
@@ -38,8 +40,8 @@ const categories = [...new Set(
   ]}
 >
   <PageTitle 
-    title={t(currentLang, 'blogPage.title')}
-    subtitle={t(currentLang, 'blogPage.description')}
+    title={copy.title ?? t(currentLang, 'blogPage.title')}
+    subtitle={copy.description ?? t(currentLang, 'blogPage.description')}
     breadcrumbs={[
       { name: t(currentLang, 'common.home'), url: getLocalizedPath('/', currentLang) },
       { name: t(currentLang, 'nav.blog') }
@@ -53,7 +55,7 @@ const categories = [...new Set(
         <div class="col-lg-8">
           {featuredPosts.length > 0 && (
             <div class="featured-posts mb-5">
-              <h2 class="section-title mb-4">{t(currentLang, 'blogPage.featuredArticles')}</h2>
+              <h2 class="section-title mb-4">{copy.featuredArticles ?? t(currentLang, 'blogPage.featuredArticles')}</h2>
               {featuredPosts.map(post => (
                 <article class="featured-post-card">
                   <div class="row align-items-center">
@@ -83,7 +85,7 @@ const categories = [...new Set(
             </div>
           )}
 
-          <h2 class="section-title mb-4">{t(currentLang, 'blogPage.latestArticles')}</h2>
+          <h2 class="section-title mb-4">{copy.latestArticles ?? t(currentLang, 'blogPage.latestArticles')}</h2>
           
           {regularPosts.length > 0 ? (
             <div class="posts-grid">
@@ -117,8 +119,8 @@ const categories = [...new Set(
                   <line x1="16" x2="8" y1="17" y2="17"></line>
                   <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
-                <h3>{t(currentLang, 'blogPage.comingSoon')}</h3>
-                <p class="text-muted">{t(currentLang, 'blogPage.comingSoonDesc')}</p>
+                <h3>{copy.comingSoon ?? t(currentLang, 'blogPage.comingSoon')}</h3>
+                <p class="text-muted">{copy.comingSoonDesc ?? t(currentLang, 'blogPage.comingSoonDesc')}</p>
               </div>
             </div>
           )}
@@ -129,7 +131,7 @@ const categories = [...new Set(
           <div class="sidebar">
             <!-- Categories -->
             <div class="sidebar-widget">
-              <h4>{t(currentLang, 'blogPage.categories')}</h4>
+              <h4>{copy.categories ?? t(currentLang, 'blogPage.categories')}</h4>
               <ul class="category-list">
                 {categories.map(category => (
                   <li>
@@ -144,19 +146,19 @@ const categories = [...new Set(
 
             <!-- About the Blog -->
             <div class="sidebar-widget">
-              <h4>{t(currentLang, 'blogPage.aboutBlog')}</h4>
+              <h4>{copy.aboutBlog ?? t(currentLang, 'blogPage.aboutBlog')}</h4>
               <p class="small text-muted">
-                {t(currentLang, 'blogPage.aboutBlogDesc')}
+                {copy.aboutBlogDesc ?? t(currentLang, 'blogPage.aboutBlogDesc')}
               </p>
             </div>
 
             <!-- Newsletter Signup -->
             <div class="sidebar-widget newsletter-widget">
-              <h4>{t(currentLang, 'blogPage.stayUpdated')}</h4>
-              <p class="small">{t(currentLang, 'blogPage.stayUpdatedDesc')}</p>
+              <h4>{copy.stayUpdated ?? t(currentLang, 'blogPage.stayUpdated')}</h4>
+              <p class="small">{copy.stayUpdatedDesc ?? t(currentLang, 'blogPage.stayUpdatedDesc')}</p>
               <form class="newsletter-form">
-                <input type="email" placeholder={t(currentLang, 'blogPage.emailPlaceholder')} class="form-control mb-2" />
-                <button type="submit" class="btn btn-primary btn-block w-100">{t(currentLang, 'blogPage.subscribe')}</button>
+                <input type="email" placeholder={copy.emailPlaceholder ?? t(currentLang, 'blogPage.emailPlaceholder')} class="form-control mb-2" />
+                <button type="submit" class="btn btn-primary btn-block w-100">{copy.subscribe ?? t(currentLang, 'blogPage.subscribe')}</button>
               </form>
             </div>
           </div>

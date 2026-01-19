@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-faq');
+const copy = pageCopy?.data.copy ?? {};
 
 // FAQ Categories with questions
 // Note: In a full implementation, these Q&A would also be in translations.ts or content collections
@@ -249,7 +252,8 @@ const faqCategoriesRaw = [
 ];
 
 // Map categories to translations where possible
-const faqCategories = faqCategoriesRaw.map(cat => {
+const faqCategoriesSource = (lang === 'en' && Array.isArray(copy.faqCategories)) ? copy.faqCategories : faqCategoriesRaw;
+const faqCategories = faqCategoriesSource.map(cat => {
   let translatedName = cat.name;
   
   if (cat.name === "General Information") translatedName = t(lang, 'faqPage.categories.general');
@@ -278,17 +282,17 @@ const faqSchema = {
   }))
 };
 
-const title = t(lang, 'faqPage.title');
+const title = copy.title ?? t(lang, 'faqPage.title');
 const contactPath = getLocalizedPath('/contact/', lang);
 ---
 
 <Layout 
   title={`${title} | Peptide Shop`}
-  description={t(lang, 'faqPage.description')}
+  description={copy.description ?? t(lang, 'faqPage.description')}
   schema={faqSchema}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-    { name: t(lang, 'faqPage.title'), url: getLocalizedPath('/faq', lang) }
+    { name: title, url: getLocalizedPath('/faq', lang) }
   ]}
 >
   
@@ -499,10 +503,10 @@ const contactPath = getLocalizedPath('/contact/', lang);
   <div class="faq-page">
     <PageTitle 
       title={title}
-      subtitle="Find answers to common questions about our research peptides, ordering process, shipping, and quality assurance."
+      subtitle={copy.subtitle ?? "Find answers to common questions about our research peptides, ordering process, shipping, and quality assurance."}
       breadcrumbs={[
         { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-        { name: "FAQ" }
+        { name: title }
       ]}
     />
 
@@ -513,7 +517,7 @@ const contactPath = getLocalizedPath('/contact/', lang);
           <!-- Sidebar Navigation -->
           <div class="col-lg-3">
             <div class="faq-nav">
-              <div class="faq-nav-title">{t(lang, 'faqPage.categoriesTitle')}</div>
+              <div class="faq-nav-title">{copy.categoriesTitle ?? t(lang, 'faqPage.categoriesTitle')}</div>
               {faqCategories.map((category, idx) => (
                 <a href={`#category-${idx}`} class="faq-nav-link">
                   {category.name} ({category.faqs.length})
@@ -561,9 +565,9 @@ const contactPath = getLocalizedPath('/contact/', lang);
             
             <!-- CTA Section -->
             <div class="faq-cta">
-              <h3>{t(lang, 'faqPage.cta.title')}</h3>
-              <p>{t(lang, 'faqPage.cta.description')}</p>
-              <a href={contactPath} class="faq-cta-btn">{t(lang, 'faqPage.cta.button')}</a>
+              <h3>{copy.cta?.title ?? t(lang, 'faqPage.cta.title')}</h3>
+              <p>{copy.cta?.description ?? t(lang, 'faqPage.cta.description')}</p>
+              <a href={contactPath} class="faq-cta-btn">{copy.cta?.button ?? t(lang, 'faqPage.cta.button')}</a>
             </div>
           </div>
         </div>

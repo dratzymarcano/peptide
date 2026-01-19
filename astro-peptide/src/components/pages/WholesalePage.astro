@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-wholesale');
+const copy = pageCopy?.data.copy ?? {};
 
 const tiers = [
   {
@@ -86,11 +89,11 @@ const benefits = [
 ---
 
 <Layout 
-  title={`${t(lang, 'wholesalePage.title')} | Peptide Shop`}
-  description={t(lang, 'wholesalePage.description')}
+  title={`${copy.title ?? t(lang, 'wholesalePage.title')} | Peptide Shop`}
+  description={copy.description ?? t(lang, 'wholesalePage.description')}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
-    { name: t(lang, 'wholesalePage.title'), url: getLocalizedPath('/wholesale', lang) }
+    { name: copy.title ?? t(lang, 'wholesalePage.title'), url: getLocalizedPath('/wholesale', lang) }
   ]}
 >
   <style>
@@ -482,7 +485,7 @@ const benefits = [
           <span class="hero-badge">{t(lang, 'wholesalePage.heroBadge')}</span>
           <h1 class="hero-title">{t(lang, 'wholesalePage.heroTitle')}</h1>
           <p class="hero-description">{t(lang, 'wholesalePage.heroDescription')}</p>
-          <a href="#apply" class="hero-cta">{t(lang, 'wholesalePage.applyNow')}</a>
+          <a href="#apply" class="hero-cta">{copy.applyNow ?? t(lang, 'wholesalePage.applyNow')}</a>
         </div>
       </div>
     </div>
@@ -517,7 +520,7 @@ const benefits = [
               ))}
             </ul>
             <a href="#apply" class={tier.popular ? 'tier-btn tier-btn-primary' : 'tier-btn tier-btn-outline'}>
-              {t(lang, 'wholesalePage.getStarted')}
+              {copy.getStarted ?? t(lang, 'wholesalePage.getStarted')}
             </a>
           </div>
         ))}

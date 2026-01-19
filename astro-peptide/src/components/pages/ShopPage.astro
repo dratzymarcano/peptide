@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import ProductCard from '../../components/ProductCard';
@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const pageCopy = await getEntry('pageCopy', 'en-shop');
+const copy = pageCopy?.data.copy ?? {};
 
 // Helper to clean slug - removes en/ lang prefix for display
 const cleanSlug = (slug: string) => slug.replace(/^en\//, '');
@@ -19,14 +21,14 @@ const allProducts = await getCollection('products');
 // English products are in the en/ folder
 const products = allProducts.filter(p => p.slug.startsWith('en/'));
 
-const title = t(lang, 'shopPage.title');
-const subtitle = t(lang, 'shopPage.subtitle');
+const title = copy.title ?? t(lang, 'shopPage.title');
+const subtitle = copy.subtitle ?? t(lang, 'shopPage.subtitle');
 const showingText = t(lang, 'shopPage.showing').replace('{count}', products.length.toString());
 const sortOptions = [
-  t(lang, 'shopPage.sort.featured'),
-  t(lang, 'shopPage.sort.priceLowHigh'),
-  t(lang, 'shopPage.sort.priceHighLow'),
-  t(lang, 'shopPage.sort.nameAZ'),
+  copy.sort?.featured ?? t(lang, 'shopPage.sort.featured'),
+  copy.sort?.priceLowHigh ?? t(lang, 'shopPage.sort.priceLowHigh'),
+  copy.sort?.priceHighLow ?? t(lang, 'shopPage.sort.priceHighLow'),
+  copy.sort?.nameAZ ?? t(lang, 'shopPage.sort.nameAZ'),
 ];
 ---
 
