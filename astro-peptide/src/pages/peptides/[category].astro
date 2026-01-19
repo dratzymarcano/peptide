@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import ProductCard from '../../components/ProductCard';
 import Sidebar from '../../components/Sidebar.astro';
 
@@ -109,6 +109,12 @@ export async function getStaticPaths() {
 }
 
 const { category } = Astro.props;
+const categoryCopyEntry = await getEntry('pageCopy', `en-category-${category}`);
+const categoryCopy = categoryCopyEntry?.data.copy ?? {};
+const productUi = await getEntry('pageCopy', 'en-product-ui');
+const productCopy = productUi?.data.copy ?? {};
+const indexCopyEntry = await getEntry('pageCopy', 'en-peptides-index');
+const indexCopy = indexCopyEntry?.data.copy ?? {};
 const allProducts = await getCollection('products');
 // Filter to English products only (stored in en/ folder)
 const products = allProducts.filter(p => p.slug.startsWith('en/'));
@@ -127,16 +133,21 @@ const seo = categorySEO[category] || {
   benefits: ['≥99% Purity', 'COA Included', 'Fast UK Delivery', 'Lab Verified']
 };
 
+const seoCopy = {
+  ...seo,
+  ...categoryCopy,
+};
+
 const productCount = filteredProducts.length;
 ---
 
 <Layout 
-  title={seo.metaTitle} 
-  description={seo.metaDescription}
+  title={seoCopy.metaTitle} 
+  description={seoCopy.metaDescription}
   breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Peptides", url: "/peptides" },
-    { name: seo.title, url: `/peptides/${category}` }
+    { name: indexCopy.breadcrumbHome ?? "Home", url: "/" },
+    { name: indexCopy.breadcrumbPeptides ?? "Peptides", url: "/peptides" },
+    { name: seoCopy.title, url: `/peptides/${category}` }
   ]}
 >
   <!-- Category Hero Header -->
@@ -145,20 +156,20 @@ const productCount = filteredProducts.length;
       <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
-          <li><a href="/">Home</a></li>
-          <li><a href="/peptides/">Peptides</a></li>
-          <li><span class="current">{seo.title}</span></li>
+          <li><a href="/">{indexCopy.breadcrumbHome ?? "Home"}</a></li>
+          <li><a href="/peptides/">{indexCopy.breadcrumbPeptides ?? "Peptides"}</a></li>
+          <li><span class="current">{seoCopy.title}</span></li>
         </ol>
       </nav>
 
       <div class="hero-content">
         <div class="hero-text">
-          <h1 class="hero-title">{seo.h1}</h1>
-          <p class="hero-description">{seo.longDescription}</p>
+          <h1 class="hero-title">{seoCopy.h1}</h1>
+          <p class="hero-description">{seoCopy.longDescription}</p>
           
           <!-- Trust Badges -->
           <div class="trust-badges">
-            {seo.benefits.map(benefit => (
+            {(seoCopy.benefits || []).map((benefit) => (
               <span class="trust-badge">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="20 6 9 17 4 12"></polyline>
@@ -172,15 +183,15 @@ const productCount = filteredProducts.length;
         <div class="hero-stats">
           <div class="stat-card">
             <span class="stat-number">{productCount}</span>
-            <span class="stat-label">Products</span>
+            <span class="stat-label">{productCopy.list?.productsLabel ?? "Products"}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">≥99%</span>
-            <span class="stat-label">Purity</span>
+            <span class="stat-label">{productCopy.list?.purityLabel ?? "Purity"}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">24h</span>
-            <span class="stat-label">UK Dispatch</span>
+            <span class="stat-label">{productCopy.list?.dispatchLabel ?? "UK Dispatch"}</span>
           </div>
         </div>
       </div>
@@ -197,7 +208,7 @@ const productCount = filteredProducts.length;
         <!-- Product Grid -->
         <div class="flex-1">
           <div class="flex justify-between items-center mb-6">
-            <p class="text-slate-600">Showing <strong>{productCount}</strong> {seo.title.toLowerCase()}</p>
+            <p class="text-slate-600">{(productCopy.list?.showingText ?? "Showing {count} research peptides").replace('{count}', String(productCount))} {seoCopy.title.toLowerCase()}</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -217,6 +228,7 @@ const productCount = filteredProducts.length;
                   purity={product.data.purity}
                   reviewCount={product.data.reviews?.length || 0}
                   packageSize={product.data.package_sizes?.[0]}
+                  labels={productCopy.productCard}
                 />
               );
             })}
@@ -224,13 +236,13 @@ const productCount = filteredProducts.length;
 
           <!-- SEO Content Section -->
           <div class="seo-content mt-12 bg-white rounded-lg p-8 border border-slate-200">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4">{seo.title} for Research</h2>
-            <p class="text-slate-600 mb-4">{seo.longDescription}</p>
+            <h2 class="text-2xl font-bold text-slate-900 mb-4">{seoCopy.seoSectionTitle ?? `${seoCopy.title} for Research`}</h2>
+            <p class="text-slate-600 mb-4">{seoCopy.longDescription}</p>
             <p class="text-slate-600 mb-4">
-              At Peptide Shop, we supply premium {seo.title.toLowerCase()} to researchers, laboratories, and academic institutions across the United Kingdom. Every product undergoes rigorous HPLC testing to ensure ≥99% purity, with comprehensive Certificates of Analysis included with each order.
+              {seoCopy.seoBody1 ?? `At Peptide Shop, we supply premium ${seoCopy.title.toLowerCase()} to researchers, laboratories, and academic institutions across the United Kingdom. Every product undergoes rigorous HPLC testing to ensure ≥99% purity, with comprehensive Certificates of Analysis included with each order.`}
             </p>
             <p class="text-slate-600">
-              Our {seo.title.toLowerCase()} are stored in optimal conditions and shipped in temperature-controlled packaging to maintain integrity. Whether you're conducting metabolic studies, cellular research, or molecular investigations, our research-grade compounds meet the highest standards for scientific applications.
+              {seoCopy.seoBody2 ?? `Our ${seoCopy.title.toLowerCase()} are stored in optimal conditions and shipped in temperature-controlled packaging to maintain integrity. Whether you're conducting metabolic studies, cellular research, or molecular investigations, our research-grade compounds meet the highest standards for scientific applications.`}
             </p>
           </div>
         </div>

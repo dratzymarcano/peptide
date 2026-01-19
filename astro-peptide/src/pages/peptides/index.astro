@@ -1,17 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import ProductCard from '../../components/ProductCard';
 import Sidebar from '../../components/Sidebar.astro';
 
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
+const pageCopy = await getEntry('pageCopy', 'en-peptides-index');
+const copy = pageCopy?.data.copy ?? {};
+const productUi = await getEntry('pageCopy', 'en-product-ui');
+const productCopy = productUi?.data.copy ?? {};
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+// Helper to clean slug - removes en/ prefix, /peptides/ prefix and leading slashes
+const cleanSlug = (slug: string) => slug.replace(/^en\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 // Page SEO
-const metaTitle = "Buy Peptides UK | Research Peptides for Sale | Peptide Shop";
-const metaDescription = "Buy peptides UK. Premium Semaglutide, Tirzepatide, BPC-157, Melanotan 2 & more. ≥99% purity, COA included. Fast UK delivery. Trusted by researchers.";
+const metaTitle = copy.metaTitle ?? "Buy Peptides UK | Research Peptides for Sale | Peptide Shop";
+const metaDescription = copy.metaDescription ?? "Buy peptides UK. Premium Semaglutide, Tirzepatide, BPC-157, Melanotan 2 & more. ≥99% purity, COA included. Fast UK delivery. Trusted by researchers.";
 const productCount = products.length;
 ---
 
@@ -19,8 +24,8 @@ const productCount = products.length;
   title={metaTitle} 
   description={metaDescription}
   breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Peptides", url: "/peptides" }
+    { name: copy.breadcrumbHome ?? "Home", url: "/" },
+    { name: copy.breadcrumbPeptides ?? "Peptides", url: "/peptides" }
   ]}
 >
   <!-- Hero Header -->
@@ -29,51 +34,41 @@ const productCount = products.length;
       <!-- Breadcrumb -->
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
-          <li><a href="/">Home</a></li>
-          <li><span class="current">All Peptides</span></li>
+          <li><a href="/">{copy.breadcrumbHome ?? "Home"}</a></li>
+          <li><span class="current">{copy.breadcrumbPeptides ?? "Peptides"}</span></li>
         </ol>
       </nav>
 
       <div class="hero-content">
         <div class="hero-text">
-          <h1 class="hero-title">Buy Research Peptides UK</h1>
+          <h1 class="hero-title">{copy.heroTitle ?? "Buy Research Peptides UK"}</h1>
           <p class="hero-description">
-            Explore our complete collection of premium research peptides. From GLP-1 agonists like Semaglutide and Tirzepatide to recovery peptides like BPC-157, all compounds are HPLC-verified with ≥99% purity and include Certificates of Analysis.
+            {copy.heroDescription ?? "Explore our complete collection of premium research peptides. From GLP-1 agonists like Semaglutide and Tirzepatide to recovery peptides like BPC-157, all compounds are HPLC-verified with ≥99% purity and include Certificates of Analysis."}
           </p>
           
           <!-- Trust Badges -->
           <div class="trust-badges">
-            <span class="trust-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              ≥99% HPLC Purity
-            </span>
-            <span class="trust-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              COA Included
-            </span>
-            <span class="trust-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Fast UK Delivery
-            </span>
-            <span class="trust-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Secure Checkout
-            </span>
+            {(copy.trustBadges ?? ["≥99% HPLC Purity", "COA Included", "Fast UK Delivery", "Secure Checkout"]).map((badge) => (
+              <span class="trust-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {badge}
+              </span>
+            ))}
           </div>
         </div>
 
         <div class="hero-stats">
           <div class="stat-card">
             <span class="stat-number">{productCount}</span>
-            <span class="stat-label">Products</span>
+            <span class="stat-label">{copy.stats?.productsLabel ?? productCopy.list?.productsLabel ?? "Products"}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">≥99%</span>
-            <span class="stat-label">Purity</span>
+            <span class="stat-label">{copy.stats?.purityLabel ?? productCopy.list?.purityLabel ?? "Purity"}</span>
           </div>
           <div class="stat-card">
             <span class="stat-number">24h</span>
-            <span class="stat-label">UK Dispatch</span>
+            <span class="stat-label">{copy.stats?.dispatchLabel ?? productCopy.list?.dispatchLabel ?? "UK Dispatch"}</span>
           </div>
         </div>
       </div>
@@ -90,7 +85,7 @@ const productCount = products.length;
         <!-- Product Grid -->
         <div class="products-main">
           <div class="products-header">
-            <p class="showing-text">Showing <strong>{productCount}</strong> research peptides</p>
+            <p class="showing-text">{(productCopy.list?.showingText ?? "Showing {count} research peptides").replace('{count}', String(productCount))}</p>
           </div>
 
           <div class="products-grid">
@@ -111,6 +106,7 @@ const productCount = products.length;
                   purity={product.data.purity}
                   reviewCount={product.data.reviews?.length || 0}
                   packageSize={product.data.package_sizes?.[0]}
+                  labels={productCopy.productCard}
                 />
               );
             })}
@@ -118,16 +114,10 @@ const productCount = products.length;
 
           <!-- SEO Content -->
           <div class="seo-content">
-            <h2>Buy Research Peptides UK - Premium Quality Guaranteed</h2>
-            <p>
-              Peptide Shop is your trusted source for premium research-grade peptides in the United Kingdom. Our extensive catalogue includes popular compounds such as Semaglutide, Tirzepatide, BPC-157, TB-500, Melanotan 2, and many more specialised peptides for scientific research.
-            </p>
-            <p>
-              Every peptide we supply undergoes rigorous HPLC testing to verify ≥99% purity. Each order includes a comprehensive Certificate of Analysis (COA) documenting batch purity, identity verification, and quality metrics. Our peptides are stored in optimal conditions and shipped in temperature-controlled packaging to maintain integrity.
-            </p>
-            <p>
-              Whether you're conducting metabolic research, tissue repair studies, or molecular investigations, our research-grade compounds meet the highest standards for scientific applications. With fast UK delivery and expert customer support, Peptide Shop is the preferred choice for researchers across the United Kingdom and Europe.
-            </p>
+            <h2>{copy.seoContentTitle ?? "Buy Research Peptides UK - Premium Quality Guaranteed"}</h2>
+            <p>{copy.seoContentLead ?? "Peptide Shop is your trusted source for premium research-grade peptides in the United Kingdom. Our extensive catalogue includes popular compounds such as Semaglutide, Tirzepatide, BPC-157, TB-500, Melanotan 2, and many more specialised peptides for scientific research."}</p>
+            <p>{copy.seoContentBody1 ?? "Every peptide we supply undergoes rigorous HPLC testing to verify ≥99% purity. Each order includes a comprehensive Certificate of Analysis (COA) documenting batch purity, identity verification, and quality metrics. Our peptides are stored in optimal conditions and shipped in temperature-controlled packaging to maintain integrity."}</p>
+            <p>{copy.seoContentBody2 ?? "Whether you're conducting metabolic research, tissue repair studies, or molecular investigations, our research-grade compounds meet the highest standards for scientific applications. With fast UK delivery and expert customer support, Peptide Shop is the preferred choice for researchers across the United Kingdom and Europe."}</p>
           </div>
         </div>
       </div>

@@ -15,6 +15,11 @@ interface ProductCardProps {
   reviewCount?: number;
   packageSize?: string;
   lang?: SupportedLanguage;
+  labels?: {
+    viewOptions?: string;
+    off?: string;
+    minQuantity?: string;
+  };
 }
 
 // Global minimum order threshold - must match ProductOptions
@@ -29,7 +34,7 @@ const getDiscountPercent = (unitPrice: number): number => {
   return 5; // Products below threshold: 5% off when bulk ordering
 };
 
-export default function ProductCard({ id, title, price, image, slug, category, rating = 4.5, reviewCount = 121, packageSize, lang = 'en' }: ProductCardProps) {
+export default function ProductCard({ id, title, price, image, slug, category, rating = 4.5, reviewCount = 121, packageSize, lang = 'en', labels }: ProductCardProps) {
   const [wishlisted, setWishlisted] = useState(false);
   const currency = useStore(currentCurrency);
   useStore(exchangeRate);
@@ -100,6 +105,10 @@ export default function ProductCard({ id, title, price, image, slug, category, r
     return stars;
   };
 
+  const viewOptionsLabel = labels?.viewOptions ?? t(lang, 'product.viewOptions');
+  const offLabel = labels?.off ?? t(lang, 'product.off');
+  const minQuantityTemplate = labels?.minQuantity ?? t(lang, 'product.minQuantity');
+
   return (
     <div className="shopcart-product-card">
       {/* Wishlist Button */}
@@ -143,16 +152,16 @@ export default function ProductCard({ id, title, price, image, slug, category, r
         <div className="product-price-row">
           <span className="product-price">{formatPrice(price, currency)}</span>
           {isAboveThreshold ? (
-            <span className="discount-badge">{discountPercent}% {t(lang, 'product.off')}</span>
+            <span className="discount-badge">{discountPercent}% {offLabel}</span>
           ) : (
-            <span className="discount-badge">{discountPercent}% {t(lang, 'product.off')}</span>
+            <span className="discount-badge">{discountPercent}% {offLabel}</span>
           )}
         </div>
         
         {/* Min Order Info - Only show for products under £200 */}
         {!isAboveThreshold && (
           <div className="min-order-info">
-            <span className="min-qty">{t(lang, 'product.minQuantity').replace('{qty}', String(minQuantity))} {getUnitLabel(minQuantity > 1)}</span>
+            <span className="min-qty">{minQuantityTemplate.replace('{qty}', String(minQuantity))} {getUnitLabel(minQuantity > 1)}</span>
             <span className="min-total">= {formatPrice(minOrderTotal, currency)}+</span>
           </div>
         )}
@@ -177,7 +186,7 @@ export default function ProductCard({ id, title, price, image, slug, category, r
           href={productUrl}
           className="view-options-btn"
         >
-          {t(lang, 'product.viewOptions')}
+          {viewOptionsLabel}
         </a>
       </div>
 
