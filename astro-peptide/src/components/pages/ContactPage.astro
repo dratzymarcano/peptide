@@ -241,7 +241,7 @@ const contactSchema = {
   </section>
 </Layout>
 
-<script define:vars={{ successMessage: t(lang, 'contactPage.successMessage') }}>
+<script is:inline define:vars={{ successMessage: t(lang, 'contactPage.successMessage') }}>
   const contactForm = document.getElementById('contact-form');
   contactForm?.addEventListener('submit', function(e) {
     e.preventDefault();

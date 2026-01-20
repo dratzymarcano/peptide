@@ -58,10 +58,6 @@ export function getStaticPaths() {
   return paths;
 }
 
-interface Props {
-  pageKey: string;
-}
-
 const { lang } = Astro.params;
 const { pageKey } = Astro.props;
 const typedLang = lang as SupportedLanguage;

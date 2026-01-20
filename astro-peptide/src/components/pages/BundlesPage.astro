@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import PageTitle from '../../components/PageTitle.astro';
 import { getEntry } from 'astro:content';
 import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
 
@@ -471,7 +470,7 @@ const bundles = [
     </div>
   </section>
 
-  <script define:vars={{ addedToCartText: t(lang, 'bundlesPage.addedToCart') }}>
+  <script is:inline define:vars={{ addedToCartText: t(lang, 'bundlesPage.addedToCart') }}>
     window.addBundleToCart = function addBundleToCart(bundleId, bundleName, bundlePrice) {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
       const existingIndex = cart.findIndex(item => item.id === bundleId);

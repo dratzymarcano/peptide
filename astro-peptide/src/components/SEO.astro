@@ -89,4 +89,4 @@ const keywords = marketForMeta.keywords ? marketForMeta.keywords.join(', ') : ''
 <meta name="googlebot" content="index, follow" />
 <meta name="bingbot" content="index, follow" />
 
-{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+{schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
