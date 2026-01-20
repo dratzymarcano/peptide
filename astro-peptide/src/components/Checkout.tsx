@@ -698,7 +698,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
                 <span style={{ color: '#059669' }}>
-                  {t(lang, 'checkout.confirmation.checkSpam')} <strong>support@ukpeptides.co.uk</strong>
+                  {t(lang, 'checkout.confirmation.checkSpam')} <strong>peptideshop@zohomail.com</strong>
                 </span>
               </div>
               
