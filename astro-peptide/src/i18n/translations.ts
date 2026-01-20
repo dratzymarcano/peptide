@@ -6691,6 +6691,17 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
       }
     }
 
+    // Check if adding 'buy-' prefix makes it a valid key (handles cases where cleanSlug stripped it)
+    if (!clean.startsWith('buy-')) {
+      const buyKey = `buy-${clean}`;
+      for (const l of supportedLanguages) {
+        const table = productSlugTranslations[l];
+        if (table && Object.prototype.hasOwnProperty.call(table, buyKey)) {
+          return buyKey;
+        }
+      }
+    }
+
     // Otherwise, try reverse lookup from any localized slug value.
     for (const l of supportedLanguages) {
       const table = productSlugTranslations[l];
