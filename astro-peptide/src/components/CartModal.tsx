@@ -40,19 +40,7 @@ export default function CartModal({ lang = 'en' }: CartModalProps) {
       />
       
       {/* Modal - Mobile Bottom Sheet / Desktop Side Drawer */}
-      <div
-        className="fixed z-[10011] bg-white flex flex-col shadow-2xl transition-transform duration-300 md:h-screen md:w-full md:max-w-[420px]"
-        style={{
-             /* Inline fallback if Tailwind fails */
-             position: 'fixed',
-             zIndex: 10011,
-             backgroundColor: 'white',
-             display: 'flex',
-             flexDirection: 'column',
-             boxShadow: '-10px 0 40px rgba(0,0,0,0.15)',
-        }}
-      >
-        <style>{`
+      <style>{`
           /* Mobile First - Bottom Sheet on mobile, Side Drawer on desktop */
           .cart-modal-container {
             position: fixed;
@@ -305,7 +293,6 @@ export default function CartModal({ lang = 'en' }: CartModalProps) {
           </div>
         )}
         </div>
-      </div>
     </>
   );
 }
