@@ -50,7 +50,7 @@ const currentLang = getLangFromUrl(Astro.url);
   if (container) {
     const lang = container.dataset.lang || 'en';
     const root = createRoot(container);
-    root.render(createElement(Dashboard, { lang }));
+    root.render(createElement(Dashboard, { lang: lang as any }));
   }
 </script>
 

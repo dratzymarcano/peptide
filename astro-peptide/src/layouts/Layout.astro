@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
-import { getLangFromUrl, t } from '../i18n/translations';
+import { getLangFromUrl, t, type SupportedLanguage } from '../i18n/translations';
 import { getMarket } from '../i18n/market';
 import '../styles/tokens.css';
 import '../styles/mobile-fixes.css';
@@ -19,12 +19,14 @@ interface Props {
 	article?: boolean;
 	breadcrumbs?: BreadcrumbItem[];
 	schema?: object;
+	lang?: SupportedLanguage;
 }
 
-const { title, description, image, article, breadcrumbs, schema } = Astro.props;
+const { title, description, image, article, breadcrumbs, schema, lang } = Astro.props;
 const siteUrl = 'https://peptide-shop.net';
 
-const currentLang = getLangFromUrl(Astro.url);
+const urlLang = getLangFromUrl(Astro.url);
+const currentLang = lang || urlLang;
 const market = getMarket(currentLang);
 
 // Generate breadcrumb schema if breadcrumbs are provided

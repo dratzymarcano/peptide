@@ -48,7 +48,7 @@ const productCount = products.length;
           
           <!-- Trust Badges -->
           <div class="trust-badges">
-            {(copy.trustBadges ?? ["≥99% HPLC Purity", "COA Included", "Fast UK Delivery", "Secure Checkout"]).map((badge) => (
+            {(copy.trustBadges ?? ["≥99% HPLC Purity", "COA Included", "Fast UK Delivery", "Secure Checkout"]).map((badge: string) => (
               <span class="trust-badge">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 {badge}

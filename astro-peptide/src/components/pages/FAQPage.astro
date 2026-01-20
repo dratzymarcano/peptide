@@ -545,7 +545,7 @@ const contactPath = getLocalizedPath('/contact/', lang);
                   <h2 class="faq-category-title">{category.name}</h2>
                 </div>
                 
-                {category.faqs.map((faq) => (
+                {category.faqs.map((faq: any) => (
                   <div class="faq-item" data-faq>
                     <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
                       <h3>{faq.question}</h3>
