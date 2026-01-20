@@ -388,7 +388,7 @@ export default function ShoppingCart({ lang = 'en' }: ShoppingCartProps) {
                   <div className="d-flex justify-content-between" style={{ marginBottom: '12px' }}>
                     <span style={{ color: '#64748b' }}>{t(lang, 'cart.shipping')}</span>
                     {qualifiesForFreeDelivery ? (
-                      <span style={{ color: '#10b981', fontWeight: '600' }}>FREE</span>
+                      <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'common.free').toUpperCase()}</span>
                     ) : (
                       <span style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'cart.calculatedAtCheckout')}</span>
                     )}
@@ -535,7 +535,7 @@ export default function ShoppingCart({ lang = 'en' }: ShoppingCartProps) {
                         borderRadius: '10px',
                         fontSize: '10px',
                         fontWeight: '700'
-                      }}>FAST</span>
+                      }}>{t(lang, 'checkout.payment.fastBadge')}</span>
                     </div>
                     <div style={{ color: '#64748b', fontSize: '13px' }}>{t(lang, 'cart.expressDeliveryTime')}</div>
                   </div>
@@ -558,7 +558,7 @@ export default function ShoppingCart({ lang = 'en' }: ShoppingCartProps) {
                       {t(lang, 'cart.ordersOverThreshold').replace('{amount}', String(FREE_DELIVERY_THRESHOLD))}
                     </div>
                   </div>
-                  <div style={{ fontWeight: '700', color: '#10b981' }}>FREE</div>
+                  <div style={{ fontWeight: '700', color: '#10b981' }}>{t(lang, 'common.free').toUpperCase()}</div>
                 </div>
               </div>
 

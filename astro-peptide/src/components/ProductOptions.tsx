@@ -434,7 +434,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
       >
         <div className="d-flex align-items-center justify-content-between">
           <div className="d-flex flex-column">
-            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Total</span>
+            <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{t(lang, 'cart.total')}</span>
             <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0077b6', lineHeight: 1 }}>
               {formatPrice(totalPrice, currency)}
             </span>
@@ -471,9 +471,9 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-2">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  Added
+                  {t(lang, 'product.addedToCart')}
                 </>
-              ) : 'Add to Cart'}
+              ) : t(lang, 'product.addToCart')}
             </button>
           </div>
         </div>

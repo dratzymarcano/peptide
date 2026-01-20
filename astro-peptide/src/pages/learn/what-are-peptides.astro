@@ -1,71 +1,40 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
+import { t, getLocalizedPath, type SupportedLanguage, translations } from '../../i18n/translations';
 
-const peptideCategories = [
-  {
-    name: "GLP-1 Agonists",
-    description: "Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects",
-    examples: ["Semaglutide", "Tirzepatide", "Retatrutide", "Cagrilintide"],
-    icon: "scale"
-  },
-  {
-    name: "Growth Hormone Secretagogues",
-    description: "Peptides that stimulate the release of growth hormone from the pituitary gland",
-    examples: ["Ipamorelin", "GHRP-2", "GHRP-6", "CJC-1295"],
-    icon: "trending-up"
-  },
-  {
-    name: "Recovery Peptides",
-    description: "Peptides researched for tissue repair, healing, and recovery applications",
-    examples: ["BPC-157", "TB-500", "GHK-Cu"],
-    icon: "heart"
-  },
-  {
-    name: "Nootropic Peptides",
-    description: "Peptides studied for cognitive enhancement and neuroprotection",
-    examples: ["Semax", "Selank", "DSIP", "Epitalon"],
-    icon: "brain"
-  },
-  {
-    name: "Melanocortin Peptides",
-    description: "Peptides that interact with melanocortin receptors, researched for pigmentation",
-    examples: ["Melanotan 2", "PT-141"],
-    icon: "sun"
-  }
-];
+const { lang = 'en' } = Astro.props as { lang?: SupportedLanguage };
+const pageTitle = t(lang, 'learnPage.whatArePeptides');
+const pageDescription = t(lang, 'learnPage.whatArePeptidesDescription');
+const article = translations[lang]?.learnPage?.article ?? translations.en.learnPage.article;
 
-const faqs = [
-  {
-    question: "What is the difference between peptides and proteins?",
-    answer: "The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions."
-  },
-  {
-    question: "How are synthetic peptides made?",
-    answer: "Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence."
-  },
-  {
-    question: "What does HPLC purity mean?",
-    answer: "HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results."
-  },
-  {
-    question: "Are research peptides the same as pharmaceutical peptides?",
-    answer: "Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications."
-  },
-  {
-    question: "How should peptides be stored?",
-    answer: "Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis."
-  }
+const categoryIcons = ['scale', 'trending-up', 'heart', 'brain', 'sun'] as const;
+const peptideCategories = article.categories.map((category, index) => ({
+  ...category,
+  icon: categoryIcons[index] ?? 'scale'
+}));
+
+const faqs = article.faqs;
+
+const aminoColors = [
+  '#0077b6',
+  '#0891b2',
+  '#0d9488',
+  '#059669',
+  '#16a34a',
+  '#65a30d',
+  '#ca8a04',
+  '#ea580c'
 ];
 ---
 
 <Layout 
-  title="What Are Peptides? Complete Guide to Research Peptides | Peptide Shop" 
-  description="Learn about peptides, amino acid chains, and peptide research. Guide to peptide types, synthesis, applications, and storage."
+  title={`${pageTitle} | Peptide Shop`}
+  description={pageDescription}
   breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Learn", url: "/learn" },
-    { name: "What Are Peptides", url: "/learn/what-are-peptides" }
+    { name: t(lang, 'common.home'), url: getLocalizedPath('/', lang) },
+    { name: t(lang, 'learnPage.title'), url: getLocalizedPath('/learn/', lang) },
+    { name: pageTitle, url: getLocalizedPath('/learn/what-are-peptides/', lang) }
   ]}
 >
   <style>
@@ -353,8 +322,7 @@ const faqs = [
       gap: 16px;
     }
     
-    .faq-question::before {
-      content: 'Q';
+    .faq-label {
       width: 28px;
       height: 28px;
       background: #0077b6;
@@ -366,6 +334,10 @@ const faqs = [
       font-size: 14px;
       font-weight: 700;
       flex-shrink: 0;
+    }
+
+    .amino-chain-item {
+      display: contents;
     }
     
     .faq-answer {
@@ -428,12 +400,12 @@ const faqs = [
   </style>
 
   <PageTitle 
-    title="What Are Peptides?"
-    subtitle="A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research. Learn about peptide synthesis, categories, and applications in modern research."
+    title={pageTitle}
+    subtitle={pageDescription}
     breadcrumbs={[
-      { name: "Home", url: "/" },
-      { name: "Learn", url: "/learn" },
-      { name: "What Are Peptides" }
+      { name: t(lang, 'common.home'), url: getLocalizedPath('/', lang) },
+      { name: t(lang, 'learnPage.title'), url: getLocalizedPath('/learn/', lang) },
+      { name: pageTitle }
     ]}
   />
 
@@ -441,24 +413,17 @@ const faqs = [
   <section class="content-section">
     <div class="container">
       <div class="content-container">
-        <h2 class="section-title">Understanding Peptides</h2>
+        <h2 class="section-title">{article.introTitle}</h2>
         <p class="section-text">
-          Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins 
-          and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino 
-          acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their 
-          biological activities.
+          {article.introParagraph1}
         </p>
         <p class="section-text">
-          The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin 
-          (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, 
-          cell signaling, and tissue repair.
+          {article.introParagraph2}
         </p>
         
         <div class="highlight-box">
           <p>
-            <strong>Key Point:</strong> Research peptides are synthetic versions of natural or novel peptide sequences, 
-            manufactured to precise specifications for laboratory research. They allow scientists to study biological 
-            mechanisms that would otherwise be difficult to investigate.
+            <strong>{article.keyPointLabel}:</strong> {article.keyPointText}
           </p>
         </div>
       </div>
@@ -470,29 +435,20 @@ const faqs = [
     <div class="container">
       <div class="content-container">
         <div class="amino-diagram">
-          <h3 class="section-title" style="margin-bottom: 16px;">The Peptide Structure</h3>
-          <p style="color: #64748b; margin-bottom: 24px;">Amino acids connected by peptide bonds form a peptide chain</p>
+          <h3 class="section-title" style="margin-bottom: 16px;">{article.structureTitle}</h3>
+          <p style="color: #64748b; margin-bottom: 24px;">{article.structureSubtitle}</p>
           
           <div class="amino-chain">
-            <div class="amino-acid" style="background: #0077b6;">Gly</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #0891b2;">Ala</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #0d9488;">Leu</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #059669;">Val</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #16a34a;">Ile</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #65a30d;">Pro</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #ca8a04;">Ser</div>
-            <div class="peptide-bond"></div>
-            <div class="amino-acid" style="background: #ea580c;">Thr</div>
+            {article.aminoAcids.map((label, index) => (
+              <span class="amino-chain-item">
+                <div class="amino-acid" style={`background: ${aminoColors[index % aminoColors.length]};`}>{label}</div>
+                {index < article.aminoAcids.length - 1 && <div class="peptide-bond"></div>}
+              </span>
+            ))}
           </div>
           
           <p class="diagram-caption">
-            Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine
+            {article.diagramCaption}
           </p>
         </div>
       </div>
@@ -503,10 +459,9 @@ const faqs = [
   <section class="categories-section">
     <div class="container">
       <div class="content-container">
-        <h2 class="section-title">Categories of Research Peptides</h2>
+        <h2 class="section-title">{article.categoriesTitle}</h2>
         <p class="section-text">
-          Research peptides are typically classified by their primary area of study or mechanism of action. 
-          Here are the main categories available for scientific research:
+          {article.categoriesIntro}
         </p>
         
         <div class="categories-grid">
@@ -541,40 +496,24 @@ const faqs = [
   <section class="synthesis-section">
     <div class="container">
       <div class="content-container">
-        <h2 class="section-title">How Are Peptides Synthesized?</h2>
+        <h2 class="section-title">{article.synthesisTitle}</h2>
         <p class="section-text">
-          Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique 
-          developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.
+          {article.synthesisIntro}
         </p>
         
         <div class="process-steps">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h4 class="step-title">Attach to Resin</h4>
-            <p class="step-description">The first amino acid is attached to an insoluble polymer resin</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h4 class="step-title">Deprotection</h4>
-            <p class="step-description">Protective groups are removed from the amino acid</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h4 class="step-title">Coupling</h4>
-            <p class="step-description">Next amino acid is coupled to the growing chain</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">4</div>
-            <h4 class="step-title">Cleavage</h4>
-            <p class="step-description">Completed peptide is cleaved from the resin and purified</p>
-          </div>
+          {article.steps.map((step, index) => (
+            <div class="step-card">
+              <div class="step-number">{index + 1}</div>
+              <h4 class="step-title">{step.title}</h4>
+              <p class="step-description">{step.description}</p>
+            </div>
+          ))}
         </div>
         
         <div class="highlight-box" style="margin-top: 40px;">
           <p>
-            <strong>Quality Control:</strong> After synthesis, peptides undergo rigorous testing including HPLC analysis 
-            for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict 
-            purity standards (typically ≥98%) are released for research use.
+            <strong>{article.qualityControlLabel}:</strong> {article.qualityControlText}
           </p>
         </div>
       </div>
@@ -585,12 +524,15 @@ const faqs = [
   <section class="faq-section">
     <div class="container">
       <div class="content-container">
-        <h2 class="section-title">Frequently Asked Questions</h2>
+        <h2 class="section-title">{article.faqTitle}</h2>
         
         <div class="faq-list">
           {faqs.map((faq) => (
             <div class="faq-item">
-              <h3 class="faq-question">{faq.question}</h3>
+              <h3 class="faq-question">
+                <span class="faq-label">{article.faqLabel}</span>
+                {faq.question}
+              </h3>
               <p class="faq-answer">{faq.answer}</p>
             </div>
           ))}
@@ -602,40 +544,40 @@ const faqs = [
   <!-- CTA Section -->
   <section class="cta-section">
     <div class="container">
-      <h2 class="cta-title">Ready to Start Your Research?</h2>
+      <h2 class="cta-title">{article.ctaTitle}</h2>
       <p class="cta-subtitle">
-        Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.
+        {article.ctaSubtitle}
       </p>
-      <a href="/peptides/" class="cta-btn">Browse Peptides</a>
+      <a href={getLocalizedPath('/peptides/', lang)} class="cta-btn">{article.ctaButton}</a>
     </div>
   </section>
   
   <!-- Article Schema -->
   <script type="application/ld+json" is:inline>
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "What Are Peptides? Complete Guide to Research Peptides",
-    "description": "A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research. Learn about peptide synthesis, categories, and applications.",
-    "image": "https://peptide-shop.net/images/what-are-peptides.jpg",
-    "author": {
-      "@type": "Organization",
-      "name": "Peptide Shop"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Peptide Shop",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://peptide-shop.net/images/logo.png"
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: pageTitle,
+      description: pageDescription,
+      image: 'https://peptide-shop.net/images/what-are-peptides.jpg',
+      author: {
+        '@type': 'Organization',
+        name: 'Peptide Shop'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Peptide Shop',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://peptide-shop.net/images/logo.png'
+        }
+      },
+      datePublished: '2024-01-15',
+      dateModified: '2024-01-15',
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `https://peptide-shop.net${getLocalizedPath('/learn/what-are-peptides/', lang)}`
       }
-    },
-    "datePublished": "2024-01-15",
-    "dateModified": "2024-01-15",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://peptide-shop.net/learn/what-are-peptides"
-    }
-  }
+    })}
   </script>
 </Layout>

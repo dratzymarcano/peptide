@@ -2,8 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, getEntry } from 'astro:content';
 import ProductCard from '../ProductCard';
-import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize } from '../../i18n/translations';
-import { getLocalizedPath } from '../../i18n/config';
+import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize, getLocalizedPath } from '../../i18n/translations';
 import { getMarket } from '../../i18n/market';
 
 interface Props {

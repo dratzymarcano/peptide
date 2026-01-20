@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import { getEntry } from 'astro:content';
-import { t } from '../../i18n/translations';
+import { t, getLocalizedPath } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -15,7 +15,7 @@ const copy = pageCopy?.data.copy ?? {};
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
-  { name: t(lang, 'nav.about'), url: lang === 'en' ? '/about' : `/${lang}/about` }
+  { name: t(lang, 'nav.about'), url: getLocalizedPath('/about/', lang) }
 ];
 
 const aboutSchema = {

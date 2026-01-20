@@ -431,7 +431,7 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                   </svg>
                   <h5 style={{ color: '#1e293b', marginBottom: '8px' }}>{t(lang, 'accountPage.noOrders')}</h5>
-                  <p style={{ color: '#64748b', marginBottom: '24px' }}>Your order history will appear here after your first purchase.</p>
+                  <p style={{ color: '#64748b', marginBottom: '24px' }}>{t(lang, 'accountPage.noOrdersDesc')}</p>
                   <a
                     href="/shop/"
                     style={{
@@ -446,7 +446,7 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
                       textDecoration: 'none'
                     }}
                   >
-                    Browse Products
+                    {t(lang, 'cart.browseProducts')}
                   </a>
                 </div>
               ) : (
@@ -470,7 +470,7 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
                         }}>
                           <div>
                             <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px', fontSize: '1.1rem' }}>{order.id}</div>
-                            <div style={{ color: '#64748b', fontSize: '14px' }}>Placed on {formatDate(order.date)}</div>
+                            <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'accountPage.placedOn')} {formatDate(order.date)}</div>
                           </div>
                           <div style={{ display: 'flex', gap: '8px' }}>
                             <span style={{
@@ -557,7 +557,7 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
                             fontSize: '11px',
                             fontWeight: '600',
                             marginBottom: '12px'
-                          }}>DEFAULT</span>
+                          }}>{t(lang, 'accountPage.defaultBadge')}</span>
                         )}
                         <p style={{ color: '#1e293b', margin: 0, lineHeight: '1.6' }}>
                           <strong>{address.firstName} {address.lastName}</strong><br />

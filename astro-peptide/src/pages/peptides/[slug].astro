@@ -3,6 +3,9 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import ProductOptions from '../../components/ProductOptions';
+import { t } from '../../i18n/translations';
+
+const lang = 'en';
 import ProductFAQs from '../../components/ProductFAQs.astro';
 import ProductReviews from '../../components/ProductReviews.astro';
 import RelatedProducts from '../../components/RelatedProducts.astro';
@@ -197,23 +200,23 @@ const faqSchema = faqs.length > 0 ? {
               <ul class="nav nav-tabs nav-justified" id="productTabs" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">
-                    Description
+                    {t(lang, 'product.description')}
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
-                    Specs
+                    {t(lang, 'product.specifications')}
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs" type="button" role="tab" aria-controls="faqs" aria-selected="false">
-                    FAQs
+                    {t(lang, 'product.faq')}
                     {faqs.length > 0 && <span class="tab-badge">{faqs.length}</span>}
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">
-                    Reviews
+                    {t(lang, 'product.reviews')}
                     {reviews.length > 0 && <span class="tab-badge tab-badge-reviews">{reviews.length}</span>}
                   </button>
                 </li>
@@ -230,31 +233,31 @@ const faqSchema = faqs.length > 0 ? {
 
                 <!-- Specifications Tab -->
                 <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
-                  <h4 class="mb-4" style="color: #023e8a;">Product Specifications</h4>
+                  <h4 class="mb-4" style="color: #023e8a;">{t(lang, 'product.specifications')}</h4>
                   <table class="table table-striped">
                     <tbody>
                       <tr>
-                        <th scope="row" style="width: 40%;">CAS Number</th>
+                        <th scope="row" style="width: 40%;">{t(lang, 'product.casNo')}</th>
                         <td>{product.data.cas}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Molecular Weight</th>
+                        <th scope="row">{t(lang, 'product.molecularWeight')}</th>
                         <td>{product.data.molecular_weight}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Purity</th>
+                        <th scope="row">{t(lang, 'product.purity')}</th>
                         <td class="text-success font-weight-bold">{product.data.purity}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Storage</th>
+                        <th scope="row">{t(lang, 'product.storage')}</th>
                         <td>{product.data.storage}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Available Sizes</th>
-                        <td>{product.data.package_sizes?.join(', ') || 'Various sizes available'}</td>
+                        <th scope="row">{t(lang, 'product.availableSizes')}</th>
+                        <td>{product.data.package_sizes?.join(', ') || '—'}</td>
                       </tr>
                       <tr>
-                        <th scope="row">Price Range</th>
+                        <th scope="row">{t(lang, 'product.priceRangeLabel')}</th>
                         <td class="font-weight-bold" style="color: #0077b6;">{priceRange}</td>
                       </tr>
                     </tbody>
@@ -278,7 +281,7 @@ const faqSchema = faqs.length > 0 ? {
         <!-- Right Sidebar - Product Options -->
         <div class="col-lg-4">
           <div class="course-widget border py-4 px-3 mt-5 mt-lg-0 sticky-top bg-white rounded shadow-sm" style="top: 100px;">
-            <h3 class="text-center mb-4" style="color: #023e8a;">Select Options</h3>
+            <h3 class="text-center mb-4" style="color: #023e8a;">{t(lang, 'product.selectQuantity')}</h3>
             
             <!-- Product Options Component -->
             <ProductOptions 
@@ -297,13 +300,13 @@ const faqSchema = faqs.length > 0 ? {
             <div class="mt-4 pt-3 border-top">
               <ul class="list-unstyled mb-0">
                 <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                  <span class="text-muted">Category</span>
+                  <span class="text-muted">{t(lang, 'nav.categories')}</span>
                   <a href={`/peptides/${product.data.category}/`} class="text-capitalize" style="color: #0077b6;">
                     {product.data.category.replace(/-/g, ' ')}
                   </a>
                 </li>
                 <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                  <span class="text-muted">Purity</span>
+                  <span class="text-muted">{t(lang, 'product.purity')}</span>
                   <span class="text-success font-weight-bold">{product.data.purity}</span>
                 </li>
                 <li class="d-flex justify-content-between align-items-center py-2">
@@ -311,9 +314,9 @@ const faqSchema = faqs.length > 0 ? {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1 text-success">
                       <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    Availability
+                    {t(lang, 'product.inStock')}
                   </span>
-                  <span class="text-success font-weight-bold">In Stock</span>
+                  <span class="text-success font-weight-bold">{t(lang, 'product.inStock')}</span>
                 </li>
               </ul>
             </div>
@@ -326,7 +329,7 @@ const faqSchema = faqs.length > 0 ? {
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" x2="12" y1="15" y2="3"></line>
                   </svg>
-                  Download COA
+                  {t(lang, 'product.downloadCoa')}
                 </a>
               </div>
             )}
@@ -341,19 +344,19 @@ const faqSchema = faqs.length > 0 ? {
                 <circle cx="17" cy="18" r="2"></circle>
                 <circle cx="7" cy="18" r="2"></circle>
               </svg>
-              UK Delivery
+              {t(lang, 'cart.deliveryOptions')}
             </h5>
             <div class="d-flex justify-content-between mb-2 small">
-              <span>Standard (3-5 days)</span>
+              <span>{t(lang, 'cart.standardDelivery')} ({t(lang, 'cart.standardDeliveryTime')})</span>
               <strong>£5.99</strong>
             </div>
             <div class="d-flex justify-content-between mb-2 small">
-              <span>Express (1-2 days)</span>
+              <span>{t(lang, 'cart.expressDelivery')} ({t(lang, 'cart.expressDeliveryTime')})</span>
               <strong>£12.99</strong>
             </div>
             <div class="d-flex justify-content-between small text-success">
-              <span>Orders over £500</span>
-              <strong>FREE</strong>
+              <span>{t(lang, 'cart.ordersOverThreshold').replace('{amount}', '500')}</span>
+              <strong>{t(lang, 'common.free').toUpperCase()}</strong>
             </div>
           </div>
 
@@ -365,7 +368,7 @@ const faqSchema = faqs.length > 0 ? {
                 <line x1="12" x2="12.01" y1="17" y2="17"></line>
               </svg>
               <div>
-                <strong>Research Use Only:</strong> This product is intended for laboratory research use only. Not for human consumption.
+                <strong>{t(lang, 'product.researchOnlyTitle')}:</strong> {t(lang, 'product.researchOnlyText')}
               </div>
             </div>
           </div>

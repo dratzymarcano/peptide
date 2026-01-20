@@ -1,0 +1,22 @@
+---
+import WhatArePeptidesPage from '../../learn/what-are-peptides.astro';
+import { pageSlugTranslations, type SupportedLanguage } from '../../../i18n/translations';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+
+  return languages.map((lang) => {
+    const slug = pageSlugTranslations[lang]?.['what-are-peptides'] ?? 'what-are-peptides';
+    return {
+      params: { lang, slug },
+      props: { lang },
+    };
+  });
+}
+
+const { lang } = Astro.props as { lang: SupportedLanguage };
+---
+
+<WhatArePeptidesPage lang={lang} />

@@ -1338,7 +1338,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           borderRadius: '10px',
                           fontSize: '10px',
                           fontWeight: '700'
-                        }}>FAST</span>
+                        }}>{t(lang, 'checkout.payment.fastBadge')}</span>
                       </div>
                       <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.shipping.expressTime')}</div>
                     </div>
@@ -1463,7 +1463,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                           <line x1="12" x2="12" y1="16" y2="12"></line>
                           <line x1="12" x2="12.01" y1="8" y2="8"></line>
                         </svg>
-                        Orders processed within 24 hours of payment confirmation
+                        {t(lang, 'checkout.payment.ordersProcessedInfo')}
                       </div>
                       <div style={{
                         background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
@@ -1476,7 +1476,7 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                       }}>
                         <span style={{ fontSize: '18px' }}>📸</span>
                         <div style={{ fontSize: '13px', color: '#92400e', fontWeight: '500' }}>
-                          <strong>Important:</strong> Please send a screenshot of your payment confirmation to <strong>peptideshop@zohomail.com</strong> to speed up order processing.
+                          <strong>{t(lang, 'common.important')}:</strong> {t(lang, 'checkout.payment.screenshotInfo').replace('{email}', 'peptideshop@zohomail.com')}
                         </div>
                       </div>
                     </div>

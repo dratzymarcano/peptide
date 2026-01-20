@@ -436,6 +436,8 @@ interface Translations {
     relatedArticles: string;
     shopPeptides: string;
     shopPeptidesDesc: string;
+    backToBlog: string;
+    articleCount: string;
   };
   learnPage: {
     title: string;
@@ -446,6 +448,41 @@ interface Translations {
     understandingPeptides: string;
     badge: string;
     readTime: string;
+    article: {
+      introTitle: string;
+      introParagraph1: string;
+      introParagraph2: string;
+      keyPointLabel: string;
+      keyPointText: string;
+      structureTitle: string;
+      structureSubtitle: string;
+      aminoAcids: string[];
+      diagramCaption: string;
+      categoriesTitle: string;
+      categoriesIntro: string;
+      categories: Array<{
+        name: string;
+        description: string;
+        examples: string[];
+      }>;
+      synthesisTitle: string;
+      synthesisIntro: string;
+      steps: Array<{
+        title: string;
+        description: string;
+      }>;
+      qualityControlLabel: string;
+      qualityControlText: string;
+      faqTitle: string;
+      faqLabel: string;
+      faqs: Array<{
+        question: string;
+        answer: string;
+      }>;
+      ctaTitle: string;
+      ctaSubtitle: string;
+      ctaButton: string;
+    };
   };
   bundlesPage: {
     title: string;
@@ -607,6 +644,8 @@ interface Translations {
     welcomeBack: string;
     dashboardDesc: string;
     phoneOptional: string;
+    placedOn: string;
+    defaultBadge: string;
   };
   checkout: {
     steps: {
@@ -656,6 +695,9 @@ interface Translations {
       bitcoinDesc: string;
       bitcoinDiscount: string;
       bitcoinDiscountLabel: string;
+      fastBadge: string;
+      ordersProcessedInfo: string;
+      screenshotInfo: string;
     };
     actions: {
       continue: string;
@@ -1011,6 +1053,7 @@ interface Translations {
     email: string;
     phone: string;
     notSet: string;
+    important: string;
   };
   legalPages: {
     lastUpdated: string;
@@ -1113,94 +1156,94 @@ export const translations: Record<SupportedLanguage, Translations> = {
     contactPage: {
       title: 'Get In Touch',
       subtitle: 'Have questions about our products or need a custom quote? Our expert team is here to help.',
-      section: {
-        sendMessage: 'Send us a Message',
-      },
-      form: {
-        name: 'Your Name',
-        namePlaceholder: 'John Doe',
-        email: 'Email Address',
-        emailPlaceholder: 'john@example.com',
-        subject: 'Subject',
-        subjectPlaceholder: 'Product inquiry',
-        message: 'Message',
-        messagePlaceholder: 'Tell us about your research needs...',
-        submit: 'Send Message',
-      },
-      info: {
-        emailTitle: 'Email Us',
-        emailSubtitle: 'Get a response within 24 hours',
-        callTitle: 'Call Us',
-        callSubtitle: 'Mon - Fri: 9:00 AM - 5:00 PM GMT',
-        locationTitle: 'Location',
-        locationValue: 'Peptide Shop<br>Europe',
-      },
-      successMessage: 'Thank you for your message! We will get back to you within 24 hours.',
-    },
-    shopPage: {
-      title: 'Shop Research Peptides',
-      subtitle: 'Browse our complete catalog of research-grade peptides with 98%+ purity guaranteed.',
-      showing: 'Showing {count} products',
-      sort: {
-        featured: 'Featured',
-        priceLowHigh: 'Price: Low to High',
-        priceHighLow: 'Price: High to Low',
-        nameAZ: 'Name: A to Z',
-      },
-    },
-    faqPage: {
-      title: 'Frequently Asked Questions',
-      description: 'Find answers about research peptides, ordering, shipping, and quality testing. Get the information you need.',
-      categoriesTitle: 'Categories',
-      categories: {
-        general: 'General Information',
-        quality: 'Quality & Testing',
-        payment: 'Ordering & Payment',
-        shipping: 'Shipping & Delivery',
-        international: 'International Orders',
-        storage: 'Storage & Handling',
-        returns: 'Returns & Refunds',
-      },
-      cta: {
-        title: 'Still Have Questions?',
-        description: "Can't find what you're looking for? Our support team is here to help.",
-        button: 'Contact Us',
-      },
-    },
-    qualityPage: {
-      title: 'Quality Assurance',
-      subtitle: 'In scientific research, data integrity depends on reagent integrity. We implement rigorous quality control to ensure every vial meets the highest standards.',
-      description: 'Our commitment to purity. Learn about our HPLC and Mass Spectrometry testing protocols for research peptides.',
-      hplcTitle: 'HPLC Analysis',
-      hplcDescription: 'High-Performance Liquid Chromatography (HPLC) determines peptide purity. We guarantee minimum 99% purity for all catalog items, ensuring impurities like deletion sequences or incomplete synthesis byproducts are minimized.',
-      purityStandard: 'Purity Standard',
-      msTitle: 'Mass Spectrometry',
-      msDescription: 'Mass Spectrometry (MS) verifies molecular weight and peptide identity. This confirms the amino acid sequence is correct and matches the theoretical mass.',
-      molecularConfirmation: 'Molecular Confirmation',
-      verified: '100% Verified',
-      coaTitle: 'Certificate of Analysis (COA)',
-      coaDescription: 'Transparency is key. A Certificate of Analysis is available for every batch we produce. Download the COA directly from the product page before purchase.',
-      coaItems: {
-        batchNumber: 'Batch Number',
-        dateOfAnalysis: 'Date of Analysis',
-        molecularWeight: 'Molecular Weight',
-        hplcChromatogram: 'HPLC Chromatogram',
-        physicalAppearance: 'Physical Appearance',
-        solubilityProfile: 'Solubility Profile',
-      },
-      storageTitle: 'Storage & Handling',
-      storageDescription: 'To maintain peptide quality after delivery, we recommend the following:',
-      storageItems: {
-        lyophilizedTitle: 'Lyophilized Storage',
-        lyophilizedDescription: 'Store at -20°C immediately upon receipt',
-        lightProtectionTitle: 'Light Protection',
-        lightProtectionDescription: 'Keep away from direct sunlight at all times',
-        freezeThawTitle: 'Freeze-Thaw Cycles',
-        freezeThawDescription: 'Minimize cycles to preserve peptide integrity',
-      },
-    },
-    shippingPage: {
-      title: 'Shipping Information',
+        article: {
+          introTitle: 'Understanding Peptides',
+          introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+          introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+          keyPointLabel: 'Key Point',
+          keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+          structureTitle: 'The Peptide Structure',
+          structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+          aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+          diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+          categoriesTitle: 'Categories of Research Peptides',
+          categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+          categories: [
+            {
+              name: 'GLP-1 Agonists',
+              description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+              examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+            },
+            {
+              name: 'Growth Hormone Secretagogues',
+              description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+              examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+            },
+            {
+              name: 'Recovery Peptides',
+              description: 'Peptides researched for tissue repair, healing, and recovery applications',
+              examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+            },
+            {
+              name: 'Nootropic Peptides',
+              description: 'Peptides studied for cognitive enhancement and neuroprotection',
+              examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+            },
+            {
+              name: 'Melanocortin Peptides',
+              description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+              examples: ['Melanotan 2', 'PT-141'],
+            },
+          ],
+          synthesisTitle: 'How Are Peptides Synthesized?',
+          synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+          steps: [
+            {
+              title: 'Attach to Resin',
+              description: 'The first amino acid is attached to an insoluble polymer resin',
+            },
+            {
+              title: 'Deprotection',
+              description: 'Protective groups are removed from the amino acid',
+            },
+            {
+              title: 'Coupling',
+              description: 'Next amino acid is coupled to the growing chain',
+            },
+            {
+              title: 'Cleavage',
+              description: 'Completed peptide is cleaved from the resin and purified',
+            },
+          ],
+          qualityControlLabel: 'Quality Control',
+          qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+          faqTitle: 'Frequently Asked Questions',
+          faqLabel: 'Q',
+          faqs: [
+            {
+              question: 'What is the difference between peptides and proteins?',
+              answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+            },
+            {
+              question: 'How are synthetic peptides made?',
+              answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+            },
+            {
+              question: 'What does HPLC purity mean?',
+              answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+            },
+            {
+              question: 'Are research peptides the same as pharmaceutical peptides?',
+              answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+            },
+            {
+              question: 'How should peptides be stored?',
+              answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+            },
+          ],
+          ctaTitle: 'Ready to Start Your Research?',
+          ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+          ctaButton: 'Browse Peptides',
       subtitle: 'Fast, secure delivery to your location',
       description: 'Learn about our shipping methods, delivery times, and packaging standards.',
     },
@@ -1243,6 +1286,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Related Articles',
       shopPeptides: 'Shop Peptides',
       shopPeptidesDesc: 'Browse our selection of high-purity research peptides with guaranteed ≥99% purity.',
+      backToBlog: '← Back to Blog',
+      articleCount: '{count} article(s)',
     },
     learnPage: {
       title: 'Learn About Peptides',
@@ -1253,6 +1298,95 @@ export const translations: Record<SupportedLanguage, Translations> = {
       understandingPeptides: 'Understanding Peptides',
       badge: 'Research Education',
       readTime: 'min read',
+      article: {
+        introTitle: 'Understanding Peptides',
+        introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+        introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+        keyPointLabel: 'Key Point',
+        keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+        structureTitle: 'The Peptide Structure',
+        structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+        aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+        diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+        categoriesTitle: 'Categories of Research Peptides',
+        categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+        categories: [
+          {
+            name: 'GLP-1 Agonists',
+            description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+            examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+          },
+          {
+            name: 'Growth Hormone Secretagogues',
+            description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+            examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+          },
+          {
+            name: 'Recovery Peptides',
+            description: 'Peptides researched for tissue repair, healing, and recovery applications',
+            examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+          },
+          {
+            name: 'Nootropic Peptides',
+            description: 'Peptides studied for cognitive enhancement and neuroprotection',
+            examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+          },
+          {
+            name: 'Melanocortin Peptides',
+            description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+            examples: ['Melanotan 2', 'PT-141'],
+          },
+        ],
+        synthesisTitle: 'How Are Peptides Synthesized?',
+        synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+        steps: [
+          {
+            title: 'Attach to Resin',
+            description: 'The first amino acid is attached to an insoluble polymer resin',
+          },
+          {
+            title: 'Deprotection',
+            description: 'Protective groups are removed from the amino acid',
+          },
+          {
+            title: 'Coupling',
+            description: 'Next amino acid is coupled to the growing chain',
+          },
+          {
+            title: 'Cleavage',
+            description: 'Completed peptide is cleaved from the resin and purified',
+          },
+        ],
+        qualityControlLabel: 'Quality Control',
+        qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+        faqTitle: 'Frequently Asked Questions',
+        faqLabel: 'Q',
+        faqs: [
+          {
+            question: 'What is the difference between peptides and proteins?',
+            answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+          },
+          {
+            question: 'How are synthetic peptides made?',
+            answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+          },
+          {
+            question: 'What does HPLC purity mean?',
+            answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+          },
+          {
+            question: 'Are research peptides the same as pharmaceutical peptides?',
+            answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+          },
+          {
+            question: 'How should peptides be stored?',
+            answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+          },
+        ],
+        ctaTitle: 'Ready to Start Your Research?',
+        ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+        ctaButton: 'Browse Peptides',
+      },
     },
     bundlesPage: {
       title: 'Peptide Bundles',
@@ -1432,6 +1566,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Welcome back',
       dashboardDesc: 'Manage your orders, addresses, and account settings from your dashboard.',
       phoneOptional: 'Phone (Optional)',
+      placedOn: 'Placed on',
+      defaultBadge: 'DEFAULT',
     },
     checkout: {
       steps: {
@@ -1481,6 +1617,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Fast, secure & private payment',
         bitcoinDiscount: '10% OFF',
         bitcoinDiscountLabel: 'Bitcoin Discount (10%)',
+        fastBadge: 'FAST',
+        ordersProcessedInfo: 'Orders processed within 24 hours of payment confirmation',
+        screenshotInfo: 'Please send a screenshot of your payment confirmation to {email} to speed up order processing.',
       },
       actions: {
         continue: 'Continue',
@@ -1836,6 +1975,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'Email',
       phone: 'Phone',
       notSet: 'Not set',
+      important: 'Important',
     },
     legalPages: {
       lastUpdated: 'Last updated',
@@ -2066,6 +2206,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Gerelateerde artikelen',
       shopPeptides: 'Shop Peptiden',
       shopPeptidesDesc: 'Bekijk onze selectie van hoogzuivere onderzoekspeptiden met gegarandeerd ≥99% zuiverheid.',
+      backToBlog: '← Terug naar blog',
+      articleCount: '{count} artikel(en)',
     },
     learnPage: {
       title: 'Leer over peptiden',
@@ -2076,6 +2218,95 @@ export const translations: Record<SupportedLanguage, Translations> = {
       understandingPeptides: 'Peptiden begrijpen',
       badge: 'Onderzoeksonderwijs',
       readTime: 'min leestijd',
+      article: {
+        introTitle: 'Understanding Peptides',
+        introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+        introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+        keyPointLabel: 'Key Point',
+        keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+        structureTitle: 'The Peptide Structure',
+        structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+        aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+        diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+        categoriesTitle: 'Categories of Research Peptides',
+        categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+        categories: [
+          {
+            name: 'GLP-1 Agonists',
+            description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+            examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+          },
+          {
+            name: 'Growth Hormone Secretagogues',
+            description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+            examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+          },
+          {
+            name: 'Recovery Peptides',
+            description: 'Peptides researched for tissue repair, healing, and recovery applications',
+            examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+          },
+          {
+            name: 'Nootropic Peptides',
+            description: 'Peptides studied for cognitive enhancement and neuroprotection',
+            examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+          },
+          {
+            name: 'Melanocortin Peptides',
+            description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+            examples: ['Melanotan 2', 'PT-141'],
+          },
+        ],
+        synthesisTitle: 'How Are Peptides Synthesized?',
+        synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+        steps: [
+          {
+            title: 'Attach to Resin',
+            description: 'The first amino acid is attached to an insoluble polymer resin',
+          },
+          {
+            title: 'Deprotection',
+            description: 'Protective groups are removed from the amino acid',
+          },
+          {
+            title: 'Coupling',
+            description: 'Next amino acid is coupled to the growing chain',
+          },
+          {
+            title: 'Cleavage',
+            description: 'Completed peptide is cleaved from the resin and purified',
+          },
+        ],
+        qualityControlLabel: 'Quality Control',
+        qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+        faqTitle: 'Frequently Asked Questions',
+        faqLabel: 'Q',
+        faqs: [
+          {
+            question: 'What is the difference between peptides and proteins?',
+            answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+          },
+          {
+            question: 'How are synthetic peptides made?',
+            answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+          },
+          {
+            question: 'What does HPLC purity mean?',
+            answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+          },
+          {
+            question: 'Are research peptides the same as pharmaceutical peptides?',
+            answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+          },
+          {
+            question: 'How should peptides be stored?',
+            answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+          },
+        ],
+        ctaTitle: 'Ready to Start Your Research?',
+        ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+        ctaButton: 'Browse Peptides',
+      },
     },
     bundlesPage: {
       title: 'Peptidebundels',
@@ -2255,6 +2486,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Welkom terug',
       dashboardDesc: 'Beheer uw bestellingen, adressen en accountinstellingen vanuit uw dashboard.',
       phoneOptional: 'Telefoon (Optioneel)',
+      placedOn: 'Geplaatst op',
+      defaultBadge: 'STANDAARD',
     },
     checkout: {
       steps: {
@@ -2304,6 +2537,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Snel, veilig & privé betalen',
         bitcoinDiscount: '10% KORTING',
         bitcoinDiscountLabel: 'Bitcoin Korting (10%)',
+        fastBadge: 'SNEL',
+        ordersProcessedInfo: 'Bestellingen worden binnen 24 uur na bevestiging van betaling verwerkt',
+        screenshotInfo: 'Stuur een screenshot van uw betalingsbevestiging naar {email} om de orderverwerking te versnellen.',
       },
       actions: {
         continue: 'Doorgaan',
@@ -2659,6 +2895,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'E-mail',
       phone: 'Telefoon',
       notSet: 'Niet ingesteld',
+      important: 'Belangrijk',
     },
     legalPages: {
       lastUpdated: 'Laatst bijgewerkt',
@@ -2889,6 +3126,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Verwandte Artikel',
       shopPeptides: 'Peptide kaufen',
       shopPeptidesDesc: 'Stöbern Sie in unserer Auswahl an hochreinen Forschungspeptiden mit garantiert ≥99% Reinheit.',
+      backToBlog: '← Zurück zum Blog',
+      articleCount: '{count} Artikel',
     },
     learnPage: {
       title: 'Über Peptide lernen',
@@ -2899,6 +3138,95 @@ export const translations: Record<SupportedLanguage, Translations> = {
       understandingPeptides: 'Peptide verstehen',
       badge: 'Forschungsbildung',
       readTime: 'Min. Lesezeit',
+      article: {
+        introTitle: 'Understanding Peptides',
+        introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+        introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+        keyPointLabel: 'Key Point',
+        keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+        structureTitle: 'The Peptide Structure',
+        structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+        aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+        diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+        categoriesTitle: 'Categories of Research Peptides',
+        categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+        categories: [
+          {
+            name: 'GLP-1 Agonists',
+            description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+            examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+          },
+          {
+            name: 'Growth Hormone Secretagogues',
+            description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+            examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+          },
+          {
+            name: 'Recovery Peptides',
+            description: 'Peptides researched for tissue repair, healing, and recovery applications',
+            examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+          },
+          {
+            name: 'Nootropic Peptides',
+            description: 'Peptides studied for cognitive enhancement and neuroprotection',
+            examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+          },
+          {
+            name: 'Melanocortin Peptides',
+            description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+            examples: ['Melanotan 2', 'PT-141'],
+          },
+        ],
+        synthesisTitle: 'How Are Peptides Synthesized?',
+        synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+        steps: [
+          {
+            title: 'Attach to Resin',
+            description: 'The first amino acid is attached to an insoluble polymer resin',
+          },
+          {
+            title: 'Deprotection',
+            description: 'Protective groups are removed from the amino acid',
+          },
+          {
+            title: 'Coupling',
+            description: 'Next amino acid is coupled to the growing chain',
+          },
+          {
+            title: 'Cleavage',
+            description: 'Completed peptide is cleaved from the resin and purified',
+          },
+        ],
+        qualityControlLabel: 'Quality Control',
+        qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+        faqTitle: 'Frequently Asked Questions',
+        faqLabel: 'Q',
+        faqs: [
+          {
+            question: 'What is the difference between peptides and proteins?',
+            answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+          },
+          {
+            question: 'How are synthetic peptides made?',
+            answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+          },
+          {
+            question: 'What does HPLC purity mean?',
+            answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+          },
+          {
+            question: 'Are research peptides the same as pharmaceutical peptides?',
+            answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+          },
+          {
+            question: 'How should peptides be stored?',
+            answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+          },
+        ],
+        ctaTitle: 'Ready to Start Your Research?',
+        ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+        ctaButton: 'Browse Peptides',
+      },
     },
     bundlesPage: {
       title: 'Peptid-Bundles',
@@ -3078,6 +3406,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Willkommen zurück',
       dashboardDesc: 'Verwalten Sie Ihre Bestellungen, Adressen und Kontoeinstellungen über Ihr Dashboard.',
       phoneOptional: 'Telefon (Optional)',
+      placedOn: 'Bestellt am',
+      defaultBadge: 'STANDARD',
     },
     checkout: {
       steps: {
@@ -3127,6 +3457,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Schnell, sicher & privat bezahlen',
         bitcoinDiscount: '10% RABATT',
         bitcoinDiscountLabel: 'Bitcoin Rabatt (10%)',
+        fastBadge: 'SCHNELL',
+        ordersProcessedInfo: 'Bestellungen werden innerhalb von 24 Stunden nach Zahlungsbestätigung bearbeitet',
+        screenshotInfo: 'Bitte senden Sie einen Screenshot Ihrer Zahlungsbestätigung an {email}, um die Bestellbearbeitung zu beschleunigen.',
       },
       actions: {
         continue: 'Weiter',
@@ -3482,6 +3815,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'E-Mail',
       phone: 'Telefon',
       notSet: 'Nicht festgelegt',
+      important: 'Wichtig',
     },
     legalPages: {
       lastUpdated: 'Zuletzt aktualisiert',
@@ -3712,6 +4046,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Articles connexes',
       shopPeptides: 'Acheter des peptides',
       shopPeptidesDesc: 'Parcourez notre sélection de peptides de recherche de haute pureté avec une pureté garantie ≥99%.',
+      backToBlog: '← Retour au blog',
+      articleCount: '{count} article(s)',
     },
     learnPage: {
       title: 'Apprendre sur les peptides',
@@ -3722,6 +4058,95 @@ export const translations: Record<SupportedLanguage, Translations> = {
       understandingPeptides: 'Comprendre les peptides',
       badge: 'Éducation à la recherche',
       readTime: 'min de lecture',
+      article: {
+        introTitle: 'Understanding Peptides',
+        introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+        introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+        keyPointLabel: 'Key Point',
+        keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+        structureTitle: 'The Peptide Structure',
+        structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+        aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+        diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+        categoriesTitle: 'Categories of Research Peptides',
+        categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+        categories: [
+          {
+            name: 'GLP-1 Agonists',
+            description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+            examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+          },
+          {
+            name: 'Growth Hormone Secretagogues',
+            description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+            examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+          },
+          {
+            name: 'Recovery Peptides',
+            description: 'Peptides researched for tissue repair, healing, and recovery applications',
+            examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+          },
+          {
+            name: 'Nootropic Peptides',
+            description: 'Peptides studied for cognitive enhancement and neuroprotection',
+            examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+          },
+          {
+            name: 'Melanocortin Peptides',
+            description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+            examples: ['Melanotan 2', 'PT-141'],
+          },
+        ],
+        synthesisTitle: 'How Are Peptides Synthesized?',
+        synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+        steps: [
+          {
+            title: 'Attach to Resin',
+            description: 'The first amino acid is attached to an insoluble polymer resin',
+          },
+          {
+            title: 'Deprotection',
+            description: 'Protective groups are removed from the amino acid',
+          },
+          {
+            title: 'Coupling',
+            description: 'Next amino acid is coupled to the growing chain',
+          },
+          {
+            title: 'Cleavage',
+            description: 'Completed peptide is cleaved from the resin and purified',
+          },
+        ],
+        qualityControlLabel: 'Quality Control',
+        qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+        faqTitle: 'Frequently Asked Questions',
+        faqLabel: 'Q',
+        faqs: [
+          {
+            question: 'What is the difference between peptides and proteins?',
+            answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+          },
+          {
+            question: 'How are synthetic peptides made?',
+            answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+          },
+          {
+            question: 'What does HPLC purity mean?',
+            answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+          },
+          {
+            question: 'Are research peptides the same as pharmaceutical peptides?',
+            answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+          },
+          {
+            question: 'How should peptides be stored?',
+            answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+          },
+        ],
+        ctaTitle: 'Ready to Start Your Research?',
+        ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+        ctaButton: 'Browse Peptides',
+      },
     },
     bundlesPage: {
       title: 'Lots de peptides',
@@ -3901,6 +4326,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Bienvenue',
       dashboardDesc: 'Gérez vos commandes, adresses et paramètres de compte depuis votre tableau de bord.',
       phoneOptional: 'Téléphone (Optionnel)',
+      placedOn: 'Commandé le',
+      defaultBadge: 'PAR DÉFAUT',
     },
     checkout: {
       steps: {
@@ -3950,6 +4377,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Paiement rapide, sécurisé et privé',
         bitcoinDiscount: '10% DE RÉDUCTION',
         bitcoinDiscountLabel: 'Réduction Bitcoin (10%)',
+        fastBadge: 'RAPIDE',
+        ordersProcessedInfo: 'Les commandes sont traitées dans les 24 heures suivant la confirmation du paiement',
+        screenshotInfo: 'Veuillez envoyer une capture d\'écran de votre confirmation de paiement à {email} pour accélérer le traitement de la commande.',
       },
       actions: {
         continue: 'Continuer',
@@ -4305,6 +4735,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'E-mail',
       phone: 'Téléphone',
       notSet: 'Non défini',
+      important: 'Important',
     },
     legalPages: {
       lastUpdated: 'Dernière mise à jour',
@@ -4535,6 +4966,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Artículos relacionados',
       shopPeptides: 'Comprar péptidos',
       shopPeptidesDesc: 'Explora nuestra selección de péptidos de investigación de alta pureza con pureza garantizada ≥99%.',
+      backToBlog: '← Volver al blog',
+      articleCount: '{count} artículo(s)',
     },
     learnPage: {
       title: 'Aprende sobre péptidos',
@@ -4545,6 +4978,95 @@ export const translations: Record<SupportedLanguage, Translations> = {
       understandingPeptides: 'Entendiendo los péptidos',
       badge: 'Educación en investigación',
       readTime: 'min de lectura',
+      article: {
+        introTitle: 'Understanding Peptides',
+        introParagraph1: 'Peptides are short chains of amino acids linked together by peptide bonds. They are the building blocks of proteins and play essential roles in virtually every biological process in the body. While proteins contain more than 50 amino acids, peptides typically contain between 2 and 50 amino acids, making them smaller and often more targeted in their biological activities.',
+        introParagraph2: 'The human body naturally produces many peptides, including hormones like insulin (51 amino acids) and oxytocin (9 amino acids). These endogenous peptides regulate crucial functions including metabolism, immune response, cell signaling, and tissue repair.',
+        keyPointLabel: 'Key Point',
+        keyPointText: 'Research peptides are synthetic versions of natural or novel peptide sequences, manufactured to precise specifications for laboratory research. They allow scientists to study biological mechanisms that would otherwise be difficult to investigate.',
+        structureTitle: 'The Peptide Structure',
+        structureSubtitle: 'Amino acids connected by peptide bonds form a peptide chain',
+        aminoAcids: ['Gly', 'Ala', 'Leu', 'Val', 'Ile', 'Pro', 'Ser', 'Thr'],
+        diagramCaption: 'Example: An octapeptide (8 amino acids) showing glycine, alanine, leucine, valine, isoleucine, proline, serine, and threonine',
+        categoriesTitle: 'Categories of Research Peptides',
+        categoriesIntro: 'Research peptides are typically classified by their primary area of study or mechanism of action. Here are the main categories available for scientific research:',
+        categories: [
+          {
+            name: 'GLP-1 Agonists',
+            description: 'Peptides that mimic glucagon-like peptide-1, primarily researched for metabolic effects',
+            examples: ['Semaglutide', 'Tirzepatide', 'Retatrutide', 'Cagrilintide'],
+          },
+          {
+            name: 'Growth Hormone Secretagogues',
+            description: 'Peptides that stimulate the release of growth hormone from the pituitary gland',
+            examples: ['Ipamorelin', 'GHRP-2', 'GHRP-6', 'CJC-1295'],
+          },
+          {
+            name: 'Recovery Peptides',
+            description: 'Peptides researched for tissue repair, healing, and recovery applications',
+            examples: ['BPC-157', 'TB-500', 'GHK-Cu'],
+          },
+          {
+            name: 'Nootropic Peptides',
+            description: 'Peptides studied for cognitive enhancement and neuroprotection',
+            examples: ['Semax', 'Selank', 'DSIP', 'Epitalon'],
+          },
+          {
+            name: 'Melanocortin Peptides',
+            description: 'Peptides that interact with melanocortin receptors, researched for pigmentation',
+            examples: ['Melanotan 2', 'PT-141'],
+          },
+        ],
+        synthesisTitle: 'How Are Peptides Synthesized?',
+        synthesisIntro: 'Modern peptide synthesis primarily uses Solid-Phase Peptide Synthesis (SPPS), a revolutionary technique developed by Bruce Merrifield in 1963, for which he received the Nobel Prize in Chemistry in 1984.',
+        steps: [
+          {
+            title: 'Attach to Resin',
+            description: 'The first amino acid is attached to an insoluble polymer resin',
+          },
+          {
+            title: 'Deprotection',
+            description: 'Protective groups are removed from the amino acid',
+          },
+          {
+            title: 'Coupling',
+            description: 'Next amino acid is coupled to the growing chain',
+          },
+          {
+            title: 'Cleavage',
+            description: 'Completed peptide is cleaved from the resin and purified',
+          },
+        ],
+        qualityControlLabel: 'Quality Control',
+        qualityControlText: 'After synthesis, peptides undergo rigorous testing including HPLC analysis for purity verification and Mass Spectrometry for molecular weight confirmation. Only peptides meeting strict purity standards (typically ≥98%) are released for research use.',
+        faqTitle: 'Frequently Asked Questions',
+        faqLabel: 'Q',
+        faqs: [
+          {
+            question: 'What is the difference between peptides and proteins?',
+            answer: 'The main difference is size. Peptides typically contain 2-50 amino acids, while proteins contain more than 50 amino acids. Proteins have more complex three-dimensional structures and generally perform more diverse biological functions.',
+          },
+          {
+            question: 'How are synthetic peptides made?',
+            answer: 'Synthetic peptides are manufactured using solid-phase peptide synthesis (SPPS), developed by Bruce Merrifield in 1963. This process involves sequentially adding amino acids to a growing chain attached to a solid resin, allowing for precise control over the peptide sequence.',
+          },
+          {
+            question: 'What does HPLC purity mean?',
+            answer: 'HPLC (High-Performance Liquid Chromatography) purity indicates the percentage of the target peptide in a sample. For example, 98% HPLC purity means 98% of the sample is the intended peptide. Higher purity is essential for reliable research results.',
+          },
+          {
+            question: 'Are research peptides the same as pharmaceutical peptides?',
+            answer: 'Research peptides are synthesized using similar methods but are intended solely for laboratory research, not human use. Pharmaceutical peptides undergo additional manufacturing standards, clinical trials, and regulatory approval for therapeutic applications.',
+          },
+          {
+            question: 'How should peptides be stored?',
+            answer: 'Lyophilized (freeze-dried) peptides should be stored at -20°C for long-term storage. Short-term storage at 4°C is acceptable. Reconstituted peptides should be kept at 4°C and used within the timeframe specified on the Certificate of Analysis.',
+          },
+        ],
+        ctaTitle: 'Ready to Start Your Research?',
+        ctaSubtitle: 'Explore our complete catalog of high-purity research peptides. Every product includes a Certificate of Analysis.',
+        ctaButton: 'Browse Peptides',
+      },
     },
     bundlesPage: {
       title: 'Paquetes de péptidos',
@@ -4724,6 +5246,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Bienvenido de nuevo',
       dashboardDesc: 'Administra tus pedidos, direcciones y configuración de cuenta desde tu panel.',
       phoneOptional: 'Teléfono (Opcional)',
+      placedOn: 'Realizado el',
+      defaultBadge: 'PREDETERMINADO',
     },
     checkout: {
       steps: {
@@ -4773,6 +5297,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Pago rápido, seguro y privado',
         bitcoinDiscount: '10% DESCUENTO',
         bitcoinDiscountLabel: 'Descuento Bitcoin (10%)',
+        fastBadge: 'RÁPIDO',
+        ordersProcessedInfo: 'Los pedidos se procesan en un plazo de 24 horas tras la confirmación del pago',
+        screenshotInfo: 'Por favor, envíe una captura de pantalla de su confirmación de pago a {email} para acelerar el procesamiento del pedido.',
       },
       actions: {
         continue: 'Continuar',
@@ -5128,6 +5655,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'Correo electrónico',
       phone: 'Teléfono',
       notSet: 'No establecido',
+      important: 'Importante',
     },
     legalPages: {
       lastUpdated: 'Última actualización',
@@ -5358,6 +5886,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       relatedArticles: 'Articoli correlati',
       shopPeptides: 'Acquista peptidi',
       shopPeptidesDesc: 'Sfoglia la nostra selezione di peptidi da ricerca ad alta purezza con purezza garantita ≥99%.',
+      backToBlog: '← Torna al blog',
+      articleCount: '{count} articolo/i',
     },
     learnPage: {
       title: 'Impara sui peptidi',
@@ -5547,6 +6077,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
       welcomeBack: 'Bentornato',
       dashboardDesc: 'Gestisci i tuoi ordini, indirizzi e impostazioni account dalla tua dashboard.',
       phoneOptional: 'Telefono (Opzionale)',
+      placedOn: 'Effettuato il',
+      defaultBadge: 'PREDEFINITO',
     },
     checkout: {
       steps: {
@@ -5596,6 +6128,9 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDesc: 'Pagamento veloce, sicuro e privato',
         bitcoinDiscount: '10% DI SCONTO',
         bitcoinDiscountLabel: 'Sconto Bitcoin (10%)',
+        fastBadge: 'VELOCE',
+        ordersProcessedInfo: 'Gli ordini vengono elaborati entro 24 ore dalla conferma del pagamento',
+        screenshotInfo: 'Si prega di inviare uno screenshot della conferma di pagamento a {email} per accelerare l\'elaborazione dell\'ordine.',
       },
       actions: {
         continue: 'Continua',
@@ -5951,6 +6486,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
       email: 'E-mail',
       phone: 'Telefono',
       notSet: 'Non impostato',
+      important: 'Importante',
     },
     legalPages: {
       lastUpdated: 'Ultimo aggiornamento',
@@ -6123,12 +6659,24 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
     const normalizedSlug = rawSlug.replace(/^(en|nl|de|fr|es|it)\//, '');
     const canonicalSlug = getCanonicalProductSlug(normalizedSlug);
 
+    const baseSlug = canonicalSlug.startsWith('buy-')
+      ? canonicalSlug.replace(/^buy-/, '')
+      : canonicalSlug;
+
     // If we have a translation for this canonical slug in the target language, use it.
-    if (lang !== 'en' && productSlugTranslations[lang] && productSlugTranslations[lang][canonicalSlug]) {
-      resolvedPathname = `/peptides/${productSlugTranslations[lang][canonicalSlug]}`;
+    if (lang !== 'en' && productSlugTranslations[lang]) {
+      const directMatch = productSlugTranslations[lang][canonicalSlug];
+      const buyMatch = productSlugTranslations[lang][`buy-${baseSlug}`];
+      const localizedSlug = directMatch || buyMatch;
+
+      if (localizedSlug) {
+        resolvedPathname = `/peptides/${localizedSlug}`;
+      } else {
+        resolvedPathname = `/peptides/${baseSlug}`;
+      }
     } else {
       // English (or no translation found): keep canonical slug.
-      resolvedPathname = `/peptides/${canonicalSlug}`;
+      resolvedPathname = `/peptides/${baseSlug}`;
     }
   }
   // Check for page slug translations (quality, shipping, terms, etc.)
@@ -6142,12 +6690,14 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
       if (pageSlugTranslations.nl && pageSlugTranslations.nl[canonicalFirstPart]) {
         const localizedFirstPart = getLocalizedPageSlug(canonicalFirstPart, lang);
         
-        // Handle nested paths like /learn/what-are-peptides
+        // Handle nested paths like /learn/what-are-peptides or /blog/category/research-insights
         if (pathParts.length > 1) {
           const secondPart = pathParts[1];
           const canonicalSecondPart = getCanonicalPageSlug(secondPart);
           const localizedSecondPart = getLocalizedPageSlug(canonicalSecondPart, lang);
-          resolvedPathname = `/${localizedFirstPart}/${localizedSecondPart}`;
+          const remainingParts = pathParts.slice(2);
+          const remainder = remainingParts.length ? `/${remainingParts.join('/')}` : '';
+          resolvedPathname = `/${localizedFirstPart}/${localizedSecondPart}${remainder}`;
         } else {
           resolvedPathname = `/${localizedFirstPart}`;
         }
@@ -6155,8 +6705,16 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
     }
   }
 
+  const ensureTrailingSlash = (value: string): string => {
+    if (!value || value === '/') return '/';
+    if (/\.[a-z0-9]{1,8}$/i.test(value)) return value;
+    return value.endsWith('/') ? value : `${value}/`;
+  };
+
+  const normalizedResolved = ensureTrailingSlash(resolvedPathname || '/');
+
   if (lang === defaultLang) {
-    return `${resolvedPathname || '/'}${suffix}`;
+    return `${normalizedResolved}${suffix}`;
   }
 
   // Only prefix locale for routes that actually exist under `src/pages/[lang]/...`.
@@ -6189,10 +6747,10 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
         : resolvedPathname === root || resolvedPathname.startsWith(`${root}/`)
     );
   if (!isLocalizedRoute) {
-    return `${resolvedPathname || '/'}${suffix}`;
+    return `${normalizedResolved}${suffix}`;
   }
 
-  const normalizedPath = resolvedPathname.startsWith('/') ? resolvedPathname : `/${resolvedPathname}`;
+  const normalizedPath = normalizedResolved.startsWith('/') ? normalizedResolved : `/${normalizedResolved}`;
   return `/${lang}${normalizedPath === '/' ? '' : normalizedPath}${suffix}`;
 }
 

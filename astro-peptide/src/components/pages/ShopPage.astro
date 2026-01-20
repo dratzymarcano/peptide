@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import ProductCard from '../../components/ProductCard';
 import Sidebar from '../../components/Sidebar.astro';
-import { t, type SupportedLanguage, cleanProductTitle, translatePackageSize } from '../../i18n/translations';
+import { t, type SupportedLanguage, cleanProductTitle, translatePackageSize, getLocalizedPath } from '../../i18n/translations';
 
 interface Props {
   lang: SupportedLanguage;
@@ -36,15 +36,15 @@ const sortOptions = [
   title={title} 
   description={subtitle}
   breadcrumbs={[
-    { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
-    { name: "Shop", url: lang === 'en' ? '/shop' : `/${lang}/shop` }
+    { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
+    { name: t(lang, 'nav.shop'), url: getLocalizedPath('/shop/', lang) }
   ]}
 >
   <PageTitle 
     title={title}
     breadcrumbs={[
-      { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
-      { name: "Shop" }
+      { name: t(lang, 'nav.home'), url: getLocalizedPath('/', lang) },
+      { name: t(lang, 'nav.shop') }
     ]}
   />
 

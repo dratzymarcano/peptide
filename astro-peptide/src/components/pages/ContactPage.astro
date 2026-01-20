@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import { getEntry } from 'astro:content';
-import { t } from '../../i18n/translations';
+import { t, getLocalizedPath } from '../../i18n/translations';
 import type { SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
@@ -16,7 +16,7 @@ const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
-  { name: t(lang, 'nav.contact'), url: lang === 'en' ? '/contact' : `/${lang}/contact` }
+  { name: t(lang, 'nav.contact'), url: getLocalizedPath('/contact/', lang) }
 ];
 
 const contactSchema = {
