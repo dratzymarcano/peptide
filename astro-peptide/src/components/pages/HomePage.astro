@@ -11,7 +11,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const market = getMarket(lang);
-const siteCopy = await getEntry('site', 'en');
+const siteCopy = await getEntry('site', lang === 'en' ? 'en' : lang);
 const siteData = siteCopy?.data;
 const seoName = siteData?.seo?.homeName ?? `Peptide Shop - Buy Peptides ${market.marketName} & Europe`;
 const seoDescription = siteData?.seo?.homeDescription ?? `Buy peptides ${market.marketName} & Europe. Premium research peptides for sale with 99% purity. Fast delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`;
