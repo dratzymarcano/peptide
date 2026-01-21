@@ -1,66 +1,66 @@
 ---
-title: "Понимание Peptide Чистота: How to Read HPLC Reports"
+title: "Понимание чистоты пептидов: Как читать отчёты ВЭЖХ"
 lang: "ru"
-description: "Learn how to interpret HPLC chromatograms and understand what purity percentages really mean for your research peptides."
+description: "Узнайте, как интерпретировать хроматограммы ВЭЖХ и понять, что на самом деле означают проценты чистоты для ваших исследовательских пептидов."
 publishDate: "2025-12-15"
-author: "Dr. Sarah Mitchell"
-category: "Quality Control"
-tags: ["HPLC", "purity", "quality", "laboratory", "analysis"]
+author: "Д-р Сара Митчелл"
+category: "исследования-insights"
+tags: ["ВЭЖХ", "чистота", "качество", "лаборатория", "анализ"]
 image: "/images/blog/post3.jpg"
 featured: true
 meta:
-  title: "How to Read HPLC Чистота Reports | Peptide Quality Guide"
-  description: "A comprehensive guide to understanding HPLC chromatograms and peptide purity analysis. Learn what to look for in your Certificate of Анализ."
+  title: "Как читать отчёты ВЭЖХ о чистоте | Руководство по качеству пептидов"
+  description: "Полное руководство по пониманию хроматограмм ВЭЖХ и анализу чистоты пептидов. Узнайте, на что обращать внимание в Сертификате Анализа."
 ---
 
-## What is HPLC and Why Does It Matter?
+## Что такое ВЭЖХ и почему это важно?
 
-High-Performance Liquid Chromatography (HPLC) is the gold standard for determining peptide purity. When you purchase research peptides, the Certificate of Анализ (COA) typically includes an HPLC chromatogram that tells you exactly how pure your sample is.
+Высокоэффективная жидкостная хроматография (ВЭЖХ) — это золотой стандарт определения чистоты пептидов. При покупке исследовательских пептидов Сертификат Анализа (COA) обычно включает хроматограмму ВЭЖХ, которая точно показывает, насколько чист ваш образец.
 
-Понимание how to read these reports is essential for any researcher working with peptides.
+Понимание того, как читать эти отчёты, необходимо любому исследователю, работающему с пептидами.
 
-## Reading a Chromatogram
+## Чтение хроматограммы
 
-An HPLC chromatogram displays peaks that represent different compounds in your sample. Here's what to look for:
+Хроматограмма ВЭЖХ отображает пики, представляющие различные соединения в вашем образце. Вот на что следует обратить внимание:
 
-### The Main Peak
+### Основной пик
 
-The largest peak represents your target peptide. The area under this peak, expressed as a percentage of the total area of all peaks, gives you the purity value. At Peptide Shop, we guarantee ≥99% purity, meaning the main peak accounts for at least 99% of the total peak area.
+Самый большой пик представляет ваш целевой пептид. Площадь под этим пиком, выраженная в процентах от общей площади всех пиков, даёт вам значение чистоты. В Peptide Shop мы гарантируем чистоту ≥99%, что означает, что основной пик составляет не менее 99% от общей площади пиков.
 
-### Retention Time
+### Время удержания
 
-Each compound has a characteristic retention time—how long it takes to pass through the HPLC column. This helps identify the peptide and confirms you have the correct compound.
+Каждое соединение имеет характерное время удержания — сколько времени требуется для прохождения через колонку ВЭЖХ. Это помогает идентифицировать пептид и подтверждает, что у вас правильное соединение.
 
-### Impurity Peaks
+### Пики примесей
 
-Smaller peaks represent impurities, which may include:
+Меньшие пики представляют примеси, которые могут включать:
 
-- **Deletion sequences** - Peptides missing one or more amino acids
-- **Truncated sequences** - Shortened versions of the target peptide
-- **Oxidation products** - Oxidised forms of certain amino acids
-- **TFA or acetate salts** - Counter-ions from the synthesis process
+- **Делеционные последовательности** — пептиды, в которых отсутствует одна или несколько аминокислот
+- **Укороченные последовательности** — сокращённые версии целевого пептида
+- **Продукты окисления** — окисленные формы определённых аминокислот
+- **Соли ТФА или ацетата** — противоионы из процесса синтеза
 
-## What Чистота Level Do You Need?
+## Какой уровень чистоты вам нужен?
 
-Different research applications require different purity levels:
+Различные исследовательские приложения требуют разных уровней чистоты:
 
-- **≥95% purity** - Suitable for initial screening and some in vitro work
-- **≥98% purity** - Recommended for most research applications
-- **≥99% purity** - Required for quantitative studies and publication-quality research
+- **≥95% чистоты** — подходит для первоначального скрининга и некоторых работ in vitro
+- **≥98% чистоты** — рекомендуется для большинства исследовательских применений
+- **≥99% чистоты** — требуется для количественных исследований и исследований публикационного качества
 
-At Peptide Shop, all our products meet the ≥99% purity standard to support rigorous research requirements.
+В Peptide Shop все наши продукты соответствуют стандарту чистоты ≥99% для поддержки строгих исследовательских требований.
 
-## Verifying Your COA
+## Проверка вашего COA
 
-When you receive your peptides, check the COA for:
+Когда вы получите свои пептиды, проверьте COA на наличие:
 
-1. **Чистота percentage** - Should match or exceed the stated purity
-2. **Retention time** - Should be consistent with the known value for that peptide
-3. **Clean baseline** - Minimal noise indicates quality analysis
-4. **Single main peak** - The target peptide should dominate the chromatogram
+1. **Процент чистоты** — должен соответствовать или превышать заявленную чистоту
+2. **Время удержания** — должно соответствовать известному значению для этого пептида
+3. **Чистая базовая линия** — минимальный шум указывает на качественный анализ
+4. **Один основной пик** — целевой пептид должен доминировать на хроматограмме
 
 ## Заключение
 
-Понимание HPLC reports empowers you to make informed decisions about your research materials. Always request and review the COA for any peptides you purchase, and don't hesitate to ask your supplier questions about their analytical methods.
+Понимание отчётов ВЭЖХ позволяет вам принимать обоснованные решения о ваших исследовательских материалах. Всегда запрашивайте и просматривайте COA для любых приобретаемых пептидов и не стесняйтесь задавать вопросы поставщику об их аналитических методах.
 
-For more information about our quality standards, visit our [Quality Assurance page](/quality/).
+Для получения дополнительной информации о наших стандартах качества посетите нашу [страницу Гарантии качества](/ru/kachestvo/).

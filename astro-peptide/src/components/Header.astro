@@ -9,7 +9,7 @@ import { getEntry } from 'astro:content';
 import { getLangFromUrl, t, getLocalizedPath } from '../i18n/translations';
 
 const currentLang = getLangFromUrl(Astro.url);
-const siteCopy = await getEntry('site', 'en');
+const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
 const siteData = siteCopy?.data;
 const contactPhone = siteData?.phone ?? '+44 123 456 7890';
 const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';

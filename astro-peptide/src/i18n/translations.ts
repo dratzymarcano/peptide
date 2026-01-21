@@ -7638,7 +7638,7 @@ export function getLangFromUrl(url: URL): SupportedLanguage {
 export function getLocalizedPath(path: string, lang: SupportedLanguage): string {
   // Strip any existing locale prefix.
   // Keep query/hash intact for client-side switching.
-  const withoutLocale = path.replace(/^\/(en|nl|de|fr|es|it)(\/|$)/, '/');
+  const withoutLocale = path.replace(/^\/(en|nl|de|fr|es|it|ru)(\/|$)/, '/');
 
   // Separate pathname from query/hash so slug/category logic never sees "?" or "#".
   const match = withoutLocale.match(/^([^?#]*)(.*)$/);
@@ -7789,23 +7789,24 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
   const localizedRoots: Array<string> = [
     '/',
     // Pages with translated slugs - English and all translations
-    '/about', '/over-ons', '/ueber-uns', '/a-propos', '/sobre-nosotros', '/chi-siamo',
-    '/contact', '/kontakt', '/contatti', '/contacto',
+    '/about', '/over-ons', '/ueber-uns', '/a-propos', '/sobre-nosotros', '/chi-siamo', '/o-nas',
+    '/contact', '/kontakt', '/contatti', '/contacto', '/kontakty',
     '/faq', '/veelgestelde-vragen', '/haeufige-fragen', '/preguntas-frecuentes', '/domande-frequenti',
-    '/shop', '/winkel', '/boutique', '/tienda', '/negozio',
-    '/cart', '/winkelwagen', '/warenkorb', '/panier', '/carrito', '/carrello',
-    '/checkout', '/afrekenen', '/kasse', '/paiement', '/pago', '/cassa',
+    '/shop', '/winkel', '/boutique', '/tienda', '/negozio', '/magazin',
+    '/cart', '/winkelwagen', '/warenkorb', '/panier', '/carrito', '/carrello', '/korzina',
+    '/checkout', '/afrekenen', '/kasse', '/paiement', '/pago', '/cassa', '/ozformlenie',
     '/peptides',
-    '/quality', '/kwaliteit', '/qualitaet', '/qualite', '/calidad', '/qualita',
-    '/shipping', '/verzending', '/versand', '/livraison', '/envio', '/spedizione',
-    '/terms', '/voorwaarden', '/agb', '/conditions', '/terminos', '/termini',
-    '/privacy', '/datenschutz', '/confidentialite', '/privacidad',
-    '/disclaimer', '/haftungsausschluss', '/avertissement', '/descargo',
+    '/quality', '/kwaliteit', '/qualitaet', '/qualite', '/calidad', '/qualita', '/kachestvo',
+    '/shipping', '/verzending', '/versand', '/livraison', '/envio', '/spedizione', '/dostavka',
+    '/terms', '/voorwaarden', '/agb', '/conditions', '/terminos', '/termini', '/usloviya',
+    '/privacy', '/datenschutz', '/confidentialite', '/privacidad', '/konfidentsialnost',
+    '/disclaimer', '/haftungsausschluss', '/avertissement', '/descargo', '/otkaz-ot-otvetstvennosti',
     '/coa-policy', '/coa-beleid', '/coa-richtlinie', '/politique-coa', '/politica-coa',
     '/blog',
-    '/learn', '/leren', '/lernen', '/apprendre', '/aprender', '/imparare',
-    '/bundles', '/bundels', '/lots', '/paquetes', '/pacchetti',
-    '/wholesale', '/groothandel', '/grosshandel', '/grossiste', '/mayorista', '/ingrosso',
+    '/learn', '/leren', '/lernen', '/apprendre', '/aprender', '/imparare', '/obuchenie',
+    '/bundles', '/bundels', '/lots', '/paquetes', '/pacchetti', '/nabory',
+    '/wholesale', '/groothandel', '/grosshandel', '/grossiste', '/mayorista', '/ingrosso', '/optom',
+    '/sitemap', '/plan-du-site', '/mapa-del-sitio', '/mappa-del-sito', '/karta-sayta', 
   ];
   const isLocalizedRoute =
     resolvedPathname === '/' ||

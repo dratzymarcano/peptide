@@ -44,6 +44,18 @@ const featuredProducts = allProducts
   .filter(p => p.slug.startsWith(`${lang}/`))
   .slice(0, 8);
 
+// Fetch recent blog posts
+const allBlogPosts = await getCollection('blog');
+const recentPosts = allBlogPosts
+  .filter(p => p.data.lang === lang)
+  .sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf())
+  .slice(0, 3);
+
+// Fallback if no localized posts found for this language
+const displayPosts = recentPosts.length > 0 
+  ? recentPosts 
+  : allBlogPosts.filter(p => p.data.lang === 'en').slice(0, 3);
+
 const categories = [
   { name: t('nav.weightLoss'), slug: 'weight-loss', icon: 'scale', desc: t('home.categories.desc.weightLoss'), gradient: 'from-purple-500 to-pink-500' },
   { name: t('nav.muscleRecovery'), slug: 'muscle-recovery', icon: 'activity', desc: t('home.categories.desc.muscleRecovery'), gradient: 'from-blue-500 to-cyan-500' },
@@ -1648,48 +1660,26 @@ const homeSchema = {
       </div>
 
       <div class="row g-4">
-        <div class="col-lg-4">
-          <div class="blog-card">
-            <img src="/images/blog/post1.jpg" alt="Blog Post" class="blog-image">
-            <div class="p-4">
-              <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">RESEARCH</span>
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
-                Understanding Peptide Purity
-              </h3>
-              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
-                Discover how peptide purity directly impacts research outcomes.
-              </p>
+        {displayPosts.map(post => (
+          <div class="col-lg-4">
+            <div class="blog-card">
+              <a href={getLocalizedPath(`/blog/${post.slug}`, lang)} style="text-decoration: none; color: inherit; display: block;">
+                <img src={post.data.image} alt={post.data.title} class="blog-image" style="width: 100%; height: 240px; object-fit: cover;">
+                <div class="p-4">
+                  <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">
+                    {post.data.category?.toUpperCase() || 'RESEARCH'}
+                  </span>
+                  <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
+                    {post.data.title}
+                  </h3>
+                  <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+                    {post.data.description}
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="blog-card">
-            <img src="/images/blog/post2.jpg" alt="Blog Post" class="blog-image">
-            <div class="p-4">
-              <span class="badge mb-3" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">GUIDE</span>
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
-                Storage Best Practices
-              </h3>
-              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
-                Learn the optimal storage conditions for peptide integrity.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="blog-card">
-            <img src="/images/blog/post3.jpg" alt="Blog Post" class="blog-image">
-            <div class="p-4">
-              <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">INDUSTRY</span>
-              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
-                Future of Therapeutics
-              </h3>
-              <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
-                Explore emerging trends in peptide-based treatments.
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div class="text-center mt-5">

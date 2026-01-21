@@ -1,119 +1,102 @@
 ---
-title: "Лучшие практики for Peptide Хранение and Обращение"
+title: "Лучшие практики хранения и обращения с пептидами"
 lang: "ru"
-description: "Essential guidelines for storing lyophilised and reconstituted peptides to maintain stability and maximise shelf life."
+description: "Основные рекомендации по хранению лиофилизированных и восстановленных пептидов для поддержания стабильности и максимального срока годности."
 publishDate: "2025-12-01"
-author: "Peptide Shop Team"
-category: "Lab Techniques"
-tags: ["storage", "handling", "stability", "protocols", "laboratory"]
+author: "Команда Peptide Shop"
+category: "исследования-insights"
+tags: ["хранение", "обращение", "стабильность", "протоколы", "лаборатория"]
 image: "/images/blog/post2.jpg"
 featured: false
 meta:
-  title: "Peptide Хранение Guide | Лучшие практики for Исследованияers"
-  description: "Learn the essential guidelines for storing and handling research peptides. Proper storage techniques to maintain purity and extend shelf life."
+  title: "Руководство по хранению пептидов | Лучшие практики для исследователей"
+  description: "Узнайте основные рекомендации по хранению и обращению с исследовательскими пептидами. Правильные методы хранения для поддержания чистоты и продления срока годности."
 ---
 
-## Why Proper Хранение Matters
+## Почему правильное хранение важно
 
-Peptides are sensitive molecules that can degrade when exposed to heat, moisture, light, or oxygen. Proper storage is essential to maintain the purity and activity of your research compounds.
+Пептиды — это чувствительные молекулы, которые могут разрушаться под воздействием тепла, влаги, света или кислорода. Правильное хранение необходимо для поддержания чистоты и активности ваших исследовательских соединений.
 
-Following these guidelines will help ensure your peptides remain stable throughout your research project.
+Следование этим рекомендациям поможет обеспечить стабильность ваших пептидов на протяжении всего исследовательского проекта.
 
-## Storing Lyophilised (Freeze-Dried) Peptides
+## Хранение лиофилизированных (сублимированных) пептидов
 
-Lyophilised peptides are the most stable form for storage. Here's how to keep them in optimal condition:
+Лиофилизированные пептиды являются наиболее стабильной формой для хранения. Вот как сохранить их в оптимальном состоянии:
 
-### Temperature
+### Температура
 
-- **Short-term (weeks)**: Store at -20°C
-- **Long-term (months to years)**: Store at -80°C for maximum stability
-- **Avoid**: Repeated freeze-thaw cycles
+- **Краткосрочное хранение (недели)**: Хранить при -20°C
+- **Долгосрочное хранение (месяцы-годы)**: Хранить при -80°C для максимальной стабильности
+- **Избегайте**: Повторных циклов замораживания-оттаивания
 
-### Protection from Moisture
+### Защита от влаги
 
-Lyophilised peptides are hygroscopic—they readily absorb moisture from the air. To prevent this:
+Лиофилизированные пептиды гигроскопичны — они легко поглощают влагу из воздуха. Чтобы предотвратить это:
 
-- Keep vials sealed until ready for use
-- Allow vials to reach room temperature before opening (prevents condensation)
-- Use desiccants in storage containers
-- Work quickly when the vial is open
+- Держите флаконы закрытыми до момента использования
+- Дайте флаконам достичь комнатной температуры перед открытием (предотвращает конденсацию)
+- Используйте осушители в контейнерах для хранения
+- Работайте быстро, когда флакон открыт
 
-### Light Protection
+### Защита от света
 
-Many peptides are photosensitive. Store in:
+Многие пептиды светочувствительны. Храните в:
 
-- Original amber vials (if provided)
-- Dark storage boxes or wrapped in foil
-- Refrigerators/freezers away from fluorescent lighting
+- Оригинальных янтарных флаконах (если предоставлены)
+- Тёмных контейнерах или обёрнутыми в фольгу
+- Холодильниках/морозильниках вдали от флуоресцентного освещения
 
-## Reconstituting Peptides
+## Восстановление пептидов
 
-When you're ready to use your peptides, follow these reconstitution guidelines:
+Когда вы готовы использовать свои пептиды, следуйте этим рекомендациям по восстановлению:
 
-### Choosing a Solvent
+### Выбор растворителя
 
-- **Bacteriostatic water** - Most common, suitable for most peptides
-- **Sterile water** - For single-use applications
-- **Acetic acid (0.1%)** - For basic peptides that are difficult to dissolve
-- **DMSO** - For hydrophobic peptides (use minimal volume)
+- **Бактериостатическая вода** — наиболее распространённый вариант, подходит для большинства пептидов
+- **Стерильная вода** — для одноразового применения
+- **Уксусная кислота (0,1%)** — для основных пептидов, которые трудно растворить
+- **ДМСО** — для гидрофобных пептидов (используйте минимальный объём)
 
-### Reconstitution Process
+### Процесс восстановления
 
-1. Calculate the volume needed for your desired concentration
-2. Add solvent slowly down the side of the vial
-3. Gently swirl—never vortex or shake vigorously
-4. Allow to dissolve completely (may take several minutes)
-5. If cloudiness persists, a small amount of acetic acid may help
+1. Рассчитайте объём, необходимый для желаемой концентрации
+2. Медленно добавляйте растворитель по стенке флакона
+3. Осторожно вращайте — никогда не встряхивайте и не используйте вортекс
+4. Дайте полностью раствориться (может занять несколько минут)
+5. Если помутнение сохраняется, может помочь небольшое количество уксусной кислоты
 
-## Storing Reconstituted Peptides
+## Хранение восстановленных пептидов
 
-Once in solution, peptides are less stable than their lyophilised form:
+В растворе пептиды менее стабильны, чем в лиофилизированной форме:
 
-### Short-term Хранение (Days to Weeks)
+### Краткосрочное хранение (дни-недели)
 
-- Store at 2-8°C (refrigerator)
-- Use within 2-4 weeks for most peptides
-- Check for precipitation or cloudiness before each use
+- Хранить при 2-8°C (холодильник)
+- Использовать в течение 2-4 недель для большинства пептидов
+- Проверяйте на осадок или помутнение перед каждым использованием
 
-### Long-term Хранение (Weeks to Months)
+### Долгосрочное хранение (недели-месяцы)
 
-- Aliquot into single-use portions to avoid freeze-thaw cycles
-- Store aliquots at -20°C or -80°C
-- Label clearly with date, concentration, and contents
+- Разделите на одноразовые аликвоты, чтобы избежать циклов замораживания-оттаивания
+- Храните при -20°C или ниже
+- Используйте в течение 2-3 месяцев
 
-## Peptide-Specific Considerations
+## Общие ошибки, которых следует избегать
 
-Some peptides require special handling:
+### Многократное размораживание
 
-### GHK-Cu (Copper Peptide)
+Каждый цикл замораживания-оттаивания может разрушить пептиды. Аликвотируйте запас, чтобы минимизировать эту проблему.
 
-- Highly hygroscopic—extra care with moisture
-- Solutions are typically blue due to copper content
-- Stable in solution at 4°C for extended periods
+### Воздействие тепла
 
-### Cysteine-Containing Peptides
+Никогда не оставляйте пептиды при комнатной температуре дольше, чем необходимо. Даже краткое воздействие может вызвать разложение.
 
-- Prone to oxidation—minimise air exposure
-- Consider adding reducing agents to solutions
-- Use argon or nitrogen to displace air in vials
+### Загрязнение
 
-### Large Peptides (>30 amino acids)
-
-- More sensitive to aggregation
-- May require specific buffer conditions
-- Consider sterile filtration after reconstitution
-
-## Summary Table
-
-| Хранение Condition | Lyophilised | Reconstituted |
-|-------------------|-------------|---------------|
-| Room temperature | Days (sealed) | Hours |
-| Refrigerator (4°C) | Weeks | 2-4 weeks |
-| Freezer (-20°C) | Months | 1-2 months |
-| Deep freezer (-80°C) | Years | 3-6 months |
+Используйте стерильную технику при работе с растворами пептидов. Бактериальный рост может быстро разрушить ваши образцы.
 
 ## Заключение
 
-Proper storage and handling of peptides is fundamental to successful research. By following these guidelines, you can ensure your peptides maintain their purity and activity throughout your experiments.
+Правильное хранение и обращение необходимы для поддержания целостности ваших исследовательских пептидов. Следуя этим рекомендациям, вы можете обеспечить надёжные, воспроизводимые результаты в своих экспериментах.
 
-If you have questions about specific peptide storage requirements, our technical team is always available to help.
+Для получения дополнительной информации о качестве пептидов посетите нашу [страницу Гарантии качества](/ru/kachestvo/).
