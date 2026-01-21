@@ -132,6 +132,26 @@ export const marketByLang: Record<SupportedLanguage, MarketConfig> = {
       'peptides nederland'
     ]
   },
+  ru: {
+    hreflang: 'ru-RU',
+    geoRegion: 'RU',
+    geoPlacename: 'Russia',
+    icbm: '55.7558, 37.6173',
+    marketName: 'Russia',
+    keywordHint: 'купить пептиды',
+    keywords: [
+      'купить пептиды',
+      'пептиды купить',
+      'пептиды москва',
+      'пептиды спб',
+      'пептиды для похудения',
+      'bpc 157 купить',
+      'семаглутид купить',
+      'тирзепатид купить',
+      'пептиды инструкция',
+      'интернет магазин пептидов'
+    ]
+  },
 };
 
 export function getMarket(lang: SupportedLanguage): MarketConfig {

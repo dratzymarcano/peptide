@@ -10,7 +10,6 @@ image: "/images/blog/post2.jpg"
 featured: false
 meta:
   title: "Peptide Storage Guide | Best Practices for Researchers"
-lang: "en"
   description: "Learn the essential guidelines for storing and handling research peptides. Proper storage techniques to maintain purity and extend shelf life."
 ---
 

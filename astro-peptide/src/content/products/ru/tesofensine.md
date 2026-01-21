@@ -19,99 +19,104 @@ short_description: "Купить Tesofensine UK. Triple reuptake inhibitor for w
 category: "weight-loss"
 tags:  ["research-compound", "tesofensine-uk", "weight-loss", "buy-research-uk", "triple-reuptake"]
 images: ["/images/products/tesofensine.png"]
-meta: 
-title: "Купить Tesofensine UK | Triple Reuptake Inhibitor | Fast Delivery"
-description: "Buy Tesofensine UK. Premium triple reuptake inhibitor for weight research. ≥99% purity, COA included. Fast UK delivery."
-faqs: 
+meta:
+  title: "Купить Tesofensine UK | Triple Reuptake Inhibitor | Fast Delivery"
+  description: "Buy Tesofensine UK. Premium triple reuptake inhibitor for weight research. ≥99% purity, COA included. Fast UK delivery."
+faqs:
 - question: "What is Tesofensine used for in research?"
-answer: "Tesofensine is used in neuroscience and obesity research to study triple monoamine reuptake inhibition. It blocks reuptake of norepinephrine, dopamine, and serotonin, enabling research into appetite regulation and energy expenditure mechanisms."
+  answer: "Tesofensine is used in neuroscience and obesity research to study triple monoamine reuptake inhibition. It blocks reuptake of norepinephrine, dopamine, and serotonin, enabling research into appetite regulation and energy expenditure mechanisms."
 - question: "How does Tesofensine differ from traditional appetite suppressants?"
-answer: "Tesofensine inhibits reuptake of three neurotransmitters (NE, DA, 5-HT) rather than primarily affecting one system. This triple mechanism enables research into complex monoaminergic appetite regulation."
+  answer: "Tesofensine inhibits reuptake of three neurotransmitters (NE, DA, 5-HT) rather than primarily affecting one system. This triple mechanism enables research into complex monoaminergic appetite regulation."
 - question: "What was Tesofensine originally developed for?"
-answer: "Tesofensine was initially developed as a potential Parkinson's and Alzheimer's disease treatment. Weight loss observed in trials led to obesity research applications."
+  answer: "Tesofensine was initially developed as a potential Parkinson's and Alzheimer's disease treatment. Weight loss observed in trials led to obesity research applications."
 - question: "How should Tesofensine be stored?"
-answer: "Store Tesofensine at room temperature, protected from light and moisture. Unlike peptides, it doesn't require cold storage. Keep in a cool, dry place."
+  answer: "Store Tesofensine at room temperature, protected from light and moisture. Unlike peptides, it doesn't require cold storage. Keep in a cool, dry place."
 - question: "What purity is your Tesofensine?"
-answer: "Our Tesofensine is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis with purity and identity confirmation."
+  answer: "Our Tesofensine is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis with purity and identity confirmation."
 - question: "What is the mechanism of action?"
-answer: "Tesofensine inhibits presynaptic reuptake of norepinephrine, dopamine, and serotonin, increasing synaptic concentrations of these neurotransmitters to affect appetite, satiety, and energy expenditure."
+  answer: "Tesofensine inhibits presynaptic reuptake of norepinephrine, dopamine, and serotonin, increasing synaptic concentrations of these neurotransmitters to affect appetite, satiety, and energy expenditure."
 - question: "How do I prepare Tesofensine for research?"
-answer: "Tesofensine can be dissolved in DMSO or appropriate organic solvents for in vitro research. Consult literature for specific research application protocols."
+  answer: "Tesofensine can be dissolved in DMSO or appropriate organic solvents for in vitro research. Consult literature for specific research application protocols."
 - question: "What sizes are available?"
-answer: "Tesofensine is available in 10mg and 25mg sizes for various research scales."
-reviews: 
+  answer: "Tesofensine is available in 10mg and 25mg sizes for various research scales."
+reviews:
 - author: "Dr. Michael Roberts"
-rating: 5
-date: "2024-12-12"
-title: "Excellent for neuroscience research"
-content: "Our monoamine reuptake studies require high-purity compounds. Peptide Shop delivers excellent quality with proper documentation."
-verified: true
+  rating: 5
+  date: "2024-12-12"
+  title: "Excellent for neuroscience research"
+  content: "Our monoamine reuptake studies require high-purity compounds. Peptide Shop delivers excellent quality with proper documentation."
+  verified: true
 - author: "Cambridge Neuropharmacology"
-rating: 5
-date: "2024-12-05"
-title: "Premium quality"
-content: "Tesofensine purity is exceptional. Results in our receptor binding assays are highly reproducible."
-verified: true
+  rating: 5
+  date: "2024-12-05"
+  title: "Premium quality"
+  content: "Tesofensine purity is exceptional. Results in our receptor binding assays are highly reproducible."
+  verified: true
 - author: "James Foster"
-rating: 5
-date: "2024-11-28"
-title: "Great product"
-content: "Fast delivery, excellent quality. Perfect for our appetite regulation research."
-verified: true
+  rating: 5
+  date: "2024-11-28"
+  title: "Great product"
+  content: "Fast delivery, excellent quality. Perfect for our appetite regulation research."
+  verified: true
 - author: "Edinburgh Neuroscience Lab"
-rating: 5
-date: "2024-11-21"
-title: "Reliable supplier"
-content: "Consistent quality for our monoamine studies. Peptide Shop is our preferred supplier."
-verified: true
+  rating: 5
+  date: "2024-11-21"
+  title: "Reliable supplier"
+  content: "Consistent quality for our monoamine studies. Peptide Shop is our preferred supplier."
+  verified: true
 - author: "Dr. Sarah Mitchell"
-rating: 5
-date: "2024-11-14"
-title: "Outstanding purity"
-content: "Verified purity exceeds claims. Essential for serious neuropharmacology research."
-verified: true
+  rating: 5
+  date: "2024-11-14"
+  title: "Outstanding purity"
+  content: "Verified purity exceeds claims. Essential for serious neuropharmacology research."
+  verified: true
 - author: "Manchester Obesity Research"
-rating: 5
-date: "2024-11-07"
-title: "Excellent service"
-content: "Fast delivery, great quality. The 25mg size lasts well for our studies."
-verified: true
+  rating: 5
+  date: "2024-11-07"
+  title: "Excellent service"
+  content: "Fast delivery, great quality. The 25mg size lasts well for our studies."
+  verified: true
 - author: "Sophie Williams"
-rating: 5
-date: "2024-10-31"
-title: "Fast delivery"
-content: "Express delivery was prompt. Product quality excellent for our research."
-verified: true
+  rating: 5
+  date: "2024-10-31"
+  title: "Fast delivery"
+  content: "Express delivery was prompt. Product quality excellent for our research."
+  verified: true
 - author: "Oxford Weight Research"
-rating: 4
-date: "2024-10-24"
-title: "Very good"
-content: "Quality is excellent. Would give 5 stars with larger size options."
-verified: true
+  rating: 4
+  date: "2024-10-24"
+  title: "Very good"
+  content: "Quality is excellent. Would give 5 stars with larger size options."
+  verified: true
 - author: "Dr. Robert Hayes"
-rating: 5
-date: "2024-10-17"
-title: "Premium research compound"
-content: "Excellent for studying triple reuptake effects. Quality and documentation meet our requirements."
-verified: true
+  rating: 5
+  date: "2024-10-17"
+  title: "Premium research compound"
+  content: "Excellent for studying triple reuptake effects. Quality and documentation meet our requirements."
+  verified: true
 - author: "Newcastle Appetite Lab"
-rating: 5
-date: "2024-10-10"
-title: "Reliable quality"
-content: "Multiple orders, consistently excellent. Essential for our neurotransmitter research."
-verified: true
+  rating: 5
+  date: "2024-10-10"
+  title: "Reliable quality"
+  content: "Multiple orders, consistently excellent. Essential for our neurotransmitter research."
+  verified: true
 - author: "Michael Thompson"
-rating: 5
-date: "2024-10-03"
-title: "Great experience"
-content: "Easy ordering, quick delivery. Tesofensine quality is exactly as described."
-verified: true
+  rating: 5
+  date: "2024-10-03"
+  title: "Great experience"
+  content: "Easy ordering, quick delivery. Tesofensine quality is exactly as described."
+  verified: true
 - author: "Glasgow Neuropharm Lab"
-rating: 5
-date: "2024-09-26"
-title: "Excellent supplier"
-content: "High-quality compound with proper documentation. Highly recommended."
-verified: true
+  rating: 5
+  date: "2024-09-26"
+  title: "Excellent supplier"
+  content: "High-quality compound with proper documentation. Highly recommended."
+  verified: true
+
+
+
+
+
 ---
 
 

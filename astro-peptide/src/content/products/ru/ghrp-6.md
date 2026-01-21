@@ -19,99 +19,104 @@ short_description: "Купить GHRP-6. Growth hormone releasing Пептид f
 category: "growth-hormone"
 tags:  ["research-Пептид", "ghrp-6-uk", "ghrp", "buy-Пептидs-uk", "growth-hormone"]
 images: ["/images/products/ghrp-6.png"]
-meta: 
-title: "Купить GHRP-6 | GH Пептид | Fast Delivery"
-description: "Buy GHRP-6. Premium growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."
-faqs: 
+meta:
+  title: "Купить GHRP-6 | GH Пептид | Fast Delivery"
+  description: "Buy GHRP-6. Premium growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."
+faqs:
 - question: "What is GHRP-6 used for in research?"
-answer: "GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology."
+  answer: "GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology."
 - question: "How is GHRP-6 different from GHRP-2?"
-answer: "GHRP-6 has stronger appetite-stimulating effects and may cause more cortisol/prolactin release than GHRP-2. GHRP-2 is considered more selective. Both are valuable for different research questions."
+  answer: "GHRP-6 has stronger appetite-stimulating effects and may cause more cortisol/prolactin release than GHRP-2. GHRP-2 is considered more selective. Both are valuable for different research questions."
 - question: "Does GHRP-6 affect appetite in research models?"
-answer: "Yes, GHRP-6 is known to stimulate appetite in research models through ghrelin receptor activation. This property is useful for studying ghrelin's orexigenic effects."
+  answer: "Yes, GHRP-6 is known to stimulate appetite in research models through ghrelin receptor activation. This property is useful for studying ghrelin's orexigenic effects."
 - question: "How should GHRP-6 be stored?"
-answer: "Store lyophilised GHRP-6 at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
+  answer: "Store lyophilised GHRP-6 at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
 - question: "What purity is your GHRP-6?"
-answer: "Our GHRP-6 is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
+  answer: "Our GHRP-6 is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
 - question: "What is the mechanism of action?"
-answer: "GHRP-6 binds to GHS-R (ghrelin receptors) on pituitary somatotropes, stimulating GH release. It also suppresses somatostatin tone."
+  answer: "GHRP-6 binds to GHS-R (ghrelin receptors) on pituitary somatotropes, stimulating GH release. It also suppresses somatostatin tone."
 - question: "Can it be combined with GHRH analogs?"
-answer: "Yes, GHRP-6 with GHRH analogs like CJC-1295 is a common research combination to study synergistic GH release."
+  answer: "Yes, GHRP-6 with GHRH analogs like CJC-1295 is a common research combination to study synergistic GH release."
 - question: "What sizes are available?"
-answer: "GHRP-6 is available in 5mg and 10mg vials."
-reviews: 
+  answer: "GHRP-6 is available in 5mg and 10mg vials."
+reviews:
 - author: "Dr. Michael Roberts"
-rating: 5
-date: "2024-12-10"
-title: "Excellent for GH research"
-content: "Our appetite-GH axis studies require GHRP-6. Peptide Shop provides excellent quality."
-verified: true
+  rating: 5
+  date: "2024-12-10"
+  title: "Excellent for GH research"
+  content: "Our appetite-GH axis studies require GHRP-6. Peptide Shop provides excellent quality."
+  verified: true
 - author: "Cambridge GH Lab"
-rating: 5
-date: "2024-12-03"
-title: "Premium quality"
-content: "GHRP-6 quality is exceptional. Great for ghrelin receptor research."
-verified: true
+  rating: 5
+  date: "2024-12-03"
+  title: "Premium quality"
+  content: "GHRP-6 quality is exceptional. Great for ghrelin receptor research."
+  verified: true
 - author: "James Foster"
-rating: 5
-date: "2024-11-26"
-title: "Great product"
-content: "Fast delivery, excellent quality. GH release assays working well."
-verified: true
+  rating: 5
+  date: "2024-11-26"
+  title: "Great product"
+  content: "Fast delivery, excellent quality. GH release assays working well."
+  verified: true
 - author: "Edinburgh Endocrine Lab"
-rating: 5
-date: "2024-11-19"
-title: "Reliable supplier"
-content: "Consistent quality for our secretagogue studies."
-verified: true
+  rating: 5
+  date: "2024-11-19"
+  title: "Reliable supplier"
+  content: "Consistent quality for our secretagogue studies."
+  verified: true
 - author: "Dr. Sarah Mitchell"
-rating: 5
-date: "2024-11-12"
-title: "Outstanding purity"
-content: "Verified purity meets claims. Essential for our research."
-verified: true
+  rating: 5
+  date: "2024-11-12"
+  title: "Outstanding purity"
+  content: "Verified purity meets claims. Essential for our research."
+  verified: true
 - author: "Manchester Hormone Lab"
-rating: 5
-date: "2024-11-05"
-title: "Excellent service"
-content: "Fast delivery, great quality, fair price."
-verified: true
+  rating: 5
+  date: "2024-11-05"
+  title: "Excellent service"
+  content: "Fast delivery, great quality, fair price."
+  verified: true
 - author: "Sophie Williams"
-rating: 5
-date: "2024-10-29"
-title: "Fast delivery"
-content: "Express delivery was prompt. Quality excellent."
-verified: true
+  rating: 5
+  date: "2024-10-29"
+  title: "Fast delivery"
+  content: "Express delivery was prompt. Quality excellent."
+  verified: true
 - author: "Oxford Pituitary Research"
-rating: 4
-date: "2024-10-22"
-title: "Very good"
-content: "Quality is excellent. Well-characterised effects in our assays."
-verified: true
+  rating: 4
+  date: "2024-10-22"
+  title: "Very good"
+  content: "Quality is excellent. Well-characterised effects in our assays."
+  verified: true
 - author: "Dr. Robert Hayes"
-rating: 5
-date: "2024-10-15"
-title: "Premium Исследовательский пептид"
-content: "Excellent for appetite-GH research."
-verified: true
+  rating: 5
+  date: "2024-10-15"
+  title: "Premium Исследовательский пептид"
+  content: "Excellent for appetite-GH research."
+  verified: true
 - author: "Newcastle Secretagogue Lab"
-rating: 5
-date: "2024-10-08"
-title: "Reliable quality"
-content: "Multiple orders, consistently excellent."
-verified: true
+  rating: 5
+  date: "2024-10-08"
+  title: "Reliable quality"
+  content: "Multiple orders, consistently excellent."
+  verified: true
 - author: "Michael Thompson"
-rating: 5
-date: "2024-10-01"
-title: "Great experience"
-content: "Easy ordering, quick delivery."
-verified: true
+  rating: 5
+  date: "2024-10-01"
+  title: "Great experience"
+  content: "Easy ordering, quick delivery."
+  verified: true
 - author: "Glasgow GH Research"
-rating: 5
-date: "2024-09-24"
-title: "Excellent supplier"
-content: "High-quality GHRP-6 with proper documentation."
-verified: true
+  rating: 5
+  date: "2024-09-24"
+  title: "Excellent supplier"
+  content: "High-quality GHRP-6 with proper documentation."
+  verified: true
+
+
+
+
+
 ---
 
 

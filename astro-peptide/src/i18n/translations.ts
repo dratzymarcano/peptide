@@ -7597,7 +7597,6 @@ nav: {
         availContent: 'COAs are available for download on each product page and are included with every order.',
       },
     },
-  }
   },
 };
 
@@ -13425,6 +13424,26 @@ export function translatePackageSize(packageSize: string, lang: SupportedLanguag
       'month': 'mese',
       'months': 'mesi',
       'supply': 'fornitura'
+    },
+    ru: {
+      'vial': 'флакон',
+      'vials': 'флаконы',
+      'bottle': 'бутылка',
+      'bottles': 'бутылки',
+      'capsule': 'капсула',
+      'capsules': 'капсулы',
+      'pack': 'упаковка',
+      'packs': 'упаковки',
+      'unit': 'единица',
+      'units': 'единицы',
+      'powder': 'порошок',
+      'tablet': 'таблетка',
+      'tablets': 'таблетки',
+      'syringe': 'шприц',
+      'syringes': 'шприцы',
+      'month': 'месяц',
+      'months': 'месяцы',
+      'supply': 'запас'
     }
   };
   

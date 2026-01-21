@@ -19,57 +19,62 @@ short_description: "Купить bacteriostatic Вода UK. USP grade, 0.9% ben
 category: "supplies"
 tags:  ["supplies", "bac-Вода", "reconstitution", "bacteriostatic-Вода-uk", "Пептид-supplies"]
 images: ["/images/products/bacteriostatic-water.png"]
-meta: 
-title: "Купить Bacteriostatic Вода UK | 10ml | Пептид Reconstitution"
-description: "Buy bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."
-faqs: 
+meta:
+  title: "Купить Bacteriostatic Вода UK | 10ml | Пептид Reconstitution"
+  description: "Buy bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."
+faqs:
 - question: "What is bacteriostatic water?"
-answer: "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications."
+  answer: "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications."
 - question: "Why use bacteriostatic water instead of sterile water?"
-answer: "Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water."
+  answer: "Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water."
 - question: "How long can reconstituted peptides be stored?"
-answer: "Peptides reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide."
+  answer: "Peptides reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide."
 - question: "Is your bacteriostatic water pharmaceutical grade?"
-answer: "Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, purity, and benzyl alcohol concentration."
+  answer: "Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, purity, and benzyl alcohol concentration."
 - question: "How much bacteriostatic water do I need per peptide vial?"
-answer: "Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials."
+  answer: "Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials."
 - question: "Can bacteriostatic water be frozen?"
-answer: "Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light."
+  answer: "Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light."
 - question: "How long does bacteriostatic water last unopened?"
-answer: "Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days."
+  answer: "Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days."
 - question: "What size syringe should I use?"
-answer: "We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal."
-reviews: 
+  answer: "We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal."
+reviews:
 - author: "Dr. James Wilson"
-rating: 5
-date: "2024-12-10"
-title: "Essential lab supply"
-content: "High-quality bacteriostatic water. Essential for our peptide research. USP grade quality is evident."
-verified: true
+  rating: 5
+  date: "2024-12-10"
+  title: "Essential lab supply"
+  content: "High-quality bacteriostatic water. Essential for our peptide research. USP grade quality is evident."
+  verified: true
 - author: "Cambridge Research Lab"
-rating: 5
-date: "2024-12-03"
-title: "Consistent quality"
-content: "We order these regularly alongside our peptides. Quality is always consistent and reliable."
-verified: true
+  rating: 5
+  date: "2024-12-03"
+  title: "Consistent quality"
+  content: "We order these regularly alongside our peptides. Quality is always consistent and reliable."
+  verified: true
 - author: "Sarah Mitchell"
-rating: 5
-date: "2024-11-26"
-title: "Perfect for Пептид prep"
-content: "Great value for USP grade bac water. Convenient 10ml size is perfect for multiple peptides."
-verified: true
+  rating: 5
+  date: "2024-11-26"
+  title: "Perfect for Пептид prep"
+  content: "Great value for USP grade bac water. Convenient 10ml size is perfect for multiple peptides."
+  verified: true
 - author: "Oxford Peptide Lab"
-rating: 5
-date: "2024-11-19"
-title: "Excellent quality"
-content: "Proper pharmaceutical grade. No contamination issues in over a year of use."
-verified: true
+  rating: 5
+  date: "2024-11-19"
+  title: "Excellent quality"
+  content: "Proper pharmaceutical grade. No contamination issues in over a year of use."
+  verified: true
 - author: "Dr. Richard Chen"
-rating: 5
-date: "2024-11-12"
-title: "Reliable supply"
-content: "Fast delivery, good price, consistent quality. Essential for any peptide research lab."
-verified: true
+  rating: 5
+  date: "2024-11-12"
+  title: "Reliable supply"
+  content: "Fast delivery, good price, consistent quality. Essential for any peptide research lab."
+  verified: true
+
+
+
+
+
 ---
 
 

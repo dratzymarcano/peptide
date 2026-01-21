@@ -10,7 +10,6 @@ image: "/images/blog/post3.jpg"
 featured: true
 meta:
   title: "How to Read HPLC Чистота Reports | Peptide Quality Guide"
-lang: "ru"
   description: "A comprehensive guide to understanding HPLC chromatograms and peptide purity analysis. Learn what to look for in your Certificate of Анализ."
 ---
 

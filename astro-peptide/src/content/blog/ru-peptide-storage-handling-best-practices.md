@@ -10,7 +10,6 @@ image: "/images/blog/post2.jpg"
 featured: false
 meta:
   title: "Peptide Хранение Guide | Лучшие практики for Исследованияers"
-lang: "ru"
   description: "Learn the essential guidelines for storing and handling research peptides. Proper storage techniques to maintain purity and extend shelf life."
 ---
 

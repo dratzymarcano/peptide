@@ -19,177 +19,182 @@ short_description: "Premium Semaglutide UK. Long-acting GLP-1 receptor agonist f
 category: "weight-loss"
 tags:  ["research-Пептид", "glp-1", "weight-loss", "semaglutide-uk", "buy-Пептидs-uk"]
 images: ["/images/products/semaglutide.png"]
-meta: 
-title: "Купить Semaglutide UK | Research Grade Пептид | Быстрая доставка"
-description: "Buy Semaglutide UK. Premium research grade GLP-1 peptide for weight loss studies. ≥99% purity, COA included. Next day UK delivery available."
-faqs: 
+meta:
+  title: "Купить Semaglutide UK | Research Grade Пептид | Быстрая доставка"
+  description: "Buy Semaglutide UK. Premium research grade GLP-1 peptide for weight loss studies. ≥99% purity, COA included. Next day UK delivery available."
+faqs:
 - question: "What is Semaglutide used for in research?"
-answer: "Semaglutide is primarily used in metabolic research to study GLP-1 receptor activation, glucose-dependent insulin secretion, appetite regulation, and weight management mechanisms. Research applications include investigating beta-cell function, gastric emptying rates, and potential neuroprotective properties in disease models."
+  answer: "Semaglutide is primarily used in metabolic research to study GLP-1 receptor activation, glucose-dependent insulin secretion, appetite regulation, and weight management mechanisms. Research applications include investigating beta-cell function, gastric emptying rates, and potential neuroprotective properties in disease models."
 - question: "How should I store Semaglutide peptide?"
-answer: "Lyophilised Semaglutide should be stored at -20°C for long-term stability. Once reconstituted, store at 2-8°C (refrigerator) and use within 4 weeks. Avoid repeated freeze-thaw cycles and protect from light. Always store in airtight containers to prevent moisture absorption."
+  answer: "Lyophilised Semaglutide should be stored at -20°C for long-term stability. Once reconstituted, store at 2-8°C (refrigerator) and use within 4 weeks. Avoid repeated freeze-thaw cycles and protect from light. Always store in airtight containers to prevent moisture absorption."
 - question: "What purity is your Semaglutide?"
-answer: "Our Semaglutide is ≥99% pure as verified by HPLC analysis. Each batch comes with a Certificate of Analysis (COA) confirming purity, identity via mass spectrometry, and peptide content. We maintain strict quality control throughout manufacturing and shipping."
+  answer: "Our Semaglutide is ≥99% pure as verified by HPLC analysis. Each batch comes with a Certificate of Analysis (COA) confirming purity, identity via mass spectrometry, and peptide content. We maintain strict quality control throughout manufacturing and shipping."
 - question: "How do I reconstitute Semaglutide for research?"
-answer: "Reconstitute Semaglutide in sterile bacteriostatic water or a slightly alkaline buffer (pH 7.4-8.0). Semaglutide can be difficult to dissolve in pure water near its isoelectric point. Gently swirl the vial rather than shaking vigorously to prevent peptide degradation."
+  answer: "Reconstitute Semaglutide in sterile bacteriostatic water or a slightly alkaline buffer (pH 7.4-8.0). Semaglutide can be difficult to dissolve in pure water near its isoelectric point. Gently swirl the vial rather than shaking vigorously to prevent peptide degradation."
 - question: "Is this the same as Ozempic or Wegovy?"
-answer: "No. Ozempic and Wegovy are brand-name prescription medications containing semaglutide as the active pharmaceutical ingredient. Our product is the raw research-grade peptide sold exclusively for laboratory research purposes, not for human consumption or medical treatment."
+  answer: "No. Ozempic and Wegovy are brand-name prescription medications containing semaglutide as the active pharmaceutical ingredient. Our product is the raw research-grade peptide sold exclusively for laboratory research purposes, not for human consumption or medical treatment."
 - question: "What is the half-life of Semaglutide?"
-answer: "Semaglutide has an extended half-life of approximately 7 days due to its C-18 fatty diacid modification that promotes albumin binding. This prolonged half-life makes it particularly valuable for studying sustained GLP-1 receptor activation in research models."
+  answer: "Semaglutide has an extended half-life of approximately 7 days due to its C-18 fatty diacid modification that promotes albumin binding. This prolonged half-life makes it particularly valuable for studying sustained GLP-1 receptor activation in research models."
 - question: "Do you ship Semaglutide internationally?"
-answer: "We primarily offer fast UK delivery with next-day and standard shipping options. For international shipping enquiries, please contact our customer service team to discuss options and regulations for your specific country."
+  answer: "We primarily offer fast UK delivery with next-day and standard shipping options. For international shipping enquiries, please contact our customer service team to discuss options and regulations for your specific country."
 - question: "What package sizes are available?"
-answer: "Semaglutide is available in 2mg, 5mg, and 10mg vials to suit various research needs and budgets. Larger quantities are available for institutional research projects - contact us for bulk pricing and custom orders."
-reviews: 
+  answer: "Semaglutide is available in 2mg, 5mg, and 10mg vials to suit various research needs and budgets. Larger quantities are available for institutional research projects - contact us for bulk pricing and custom orders."
+reviews:
 - author: "Dr. James Mitchell"
-rating: 5
-date: "2024-12-15"
-title: "Exceptional purity for our metabolic research"
-content: "We've been using Peptide Shop' Semaglutide for our diabetes research programme for six months now. The consistency between batches is remarkable, and the COA documentation makes our compliance reporting straightforward. Highly recommended for serious research."
-verified: true
+  rating: 5
+  date: "2024-12-15"
+  title: "Exceptional purity for our metabolic research"
+  content: "We've been using Peptide Shop' Semaglutide for our diabetes research programme for six months now. The consistency between batches is remarkable, and the COA documentation makes our compliance reporting straightforward. Highly recommended for serious research."
+  verified: true
 - author: "Sarah Thompson"
-rating: 5
-date: "2024-12-10"
-title: "Fast delivery and excellent quality"
-content: "Ordered on Monday, received on Wednesday. The packaging was discrete and professional. The peptide dissolved easily and showed expected activity in our assays. Will definitely order again."
-verified: true
+  rating: 5
+  date: "2024-12-10"
+  title: "Fast delivery and excellent quality"
+  content: "Ordered on Monday, received on Wednesday. The packaging was discrete and professional. The peptide dissolved easily and showed expected activity in our assays. Will definitely order again."
+  verified: true
 - author: "Research Lab Manchester"
-rating: 5
-date: "2024-12-05"
-title: "Best supplier we've found in the UK"
-content: "After trying several suppliers, Peptide Shop offers the best combination of purity, price, and service. The £200 minimum is reasonable for research quantities, and the 10% discount helps our budget."
-verified: true
+  rating: 5
+  date: "2024-12-05"
+  title: "Best supplier we've found in the UK"
+  content: "After trying several suppliers, Peptide Shop offers the best combination of purity, price, and service. The £200 minimum is reasonable for research quantities, and the 10% discount helps our budget."
+  verified: true
 - author: "Dr. Emily Watson"
-rating: 4
-date: "2024-11-28"
-title: "Good product, minor packaging concern"
-content: "The Semaglutide quality is excellent - matches our reference standards perfectly. One vial had a slightly loose cap, but the product was unaffected. Customer service was helpful when I mentioned it."
-verified: true
+  rating: 4
+  date: "2024-11-28"
+  title: "Good product, minor packaging concern"
+  content: "The Semaglutide quality is excellent - matches our reference standards perfectly. One vial had a slightly loose cap, but the product was unaffected. Customer service was helpful when I mentioned it."
+  verified: true
 - author: "Cambridge BioSciences"
-rating: 5
-date: "2024-11-20"
-title: "Reliable and consistent"
-content: "We've placed multiple orders over the past year and the quality has been consistently high. The COA is always included and accurate. Our GLP-1 receptor binding assays show reproducible results."
-verified: true
+  rating: 5
+  date: "2024-11-20"
+  title: "Reliable and consistent"
+  content: "We've placed multiple orders over the past year and the quality has been consistently high. The COA is always included and accurate. Our GLP-1 receptor binding assays show reproducible results."
+  verified: true
 - author: "Michael Chen"
-rating: 5
-date: "2024-11-15"
-title: "Impressive purity levels"
-content: "Ran our own HPLC analysis and confirmed >99% purity as stated. Few suppliers match this level of transparency. Excellent for our appetite regulation studies."
-verified: true
+  rating: 5
+  date: "2024-11-15"
+  title: "Impressive purity levels"
+  content: "Ran our own HPLC analysis and confirmed >99% purity as stated. Few suppliers match this level of transparency. Excellent for our appetite regulation studies."
+  verified: true
 - author: "Southampton Research Group"
-rating: 5
-date: "2024-11-10"
-title: "Quick turnaround on large orders"
-content: "Needed 50mg for a major study - they accommodated our bulk order with a reasonable lead time. Communication was excellent throughout."
-verified: true
+  rating: 5
+  date: "2024-11-10"
+  title: "Quick turnaround on large orders"
+  content: "Needed 50mg for a major study - they accommodated our bulk order with a reasonable lead time. Communication was excellent throughout."
+  verified: true
 - author: "Dr. Robert Hayes"
-rating: 4
-date: "2024-11-05"
-title: "Very good, not quite perfect"
-content: "Quality is definitely there - our results are consistent with published literature. Would love to see even smaller package sizes for initial pilot studies."
-verified: true
+  rating: 4
+  date: "2024-11-05"
+  title: "Very good, not quite perfect"
+  content: "Quality is definitely there - our results are consistent with published literature. Would love to see even smaller package sizes for initial pilot studies."
+  verified: true
 - author: "Leeds University Lab"
-rating: 5
-date: "2024-10-30"
-title: "Professional service from order to delivery"
-content: "The whole process was smooth. Website is easy to use, payment was secure, and delivery was tracked. Product arrived in perfect condition with dry ice."
-verified: true
+  rating: 5
+  date: "2024-10-30"
+  title: "Professional service from order to delivery"
+  content: "The whole process was smooth. Website is easy to use, payment was secure, and delivery was tracked. Product arrived in perfect condition with dry ice."
+  verified: true
 - author: "Hannah Morris"
-rating: 5
-date: "2024-10-25"
-title: "Outstanding customer support"
-content: "Had questions about reconstitution protocols and their team provided detailed guidance. The peptide performed exactly as expected in our glucose tolerance studies."
-verified: true
+  rating: 5
+  date: "2024-10-25"
+  title: "Outstanding customer support"
+  content: "Had questions about reconstitution protocols and their team provided detailed guidance. The peptide performed exactly as expected in our glucose tolerance studies."
+  verified: true
 - author: "Bristol Metabolic Research"
-rating: 5
-date: "2024-10-20"
-title: "Top-tier Исследовательский пептид supplier"
-content: "We've compared Peptide Shop against three other UK suppliers. They win on purity, documentation, and delivery speed. Slightly higher price but worth it for the quality assurance."
-verified: true
+  rating: 5
+  date: "2024-10-20"
+  title: "Top-tier Исследовательский пептид supplier"
+  content: "We've compared Peptide Shop against three other UK suppliers. They win on purity, documentation, and delivery speed. Slightly higher price but worth it for the quality assurance."
+  verified: true
 - author: "Dr. Andrew Collins"
-rating: 5
-date: "2024-10-15"
-title: "Consistent batch-to-batch quality"
-content: "Running long-term studies requires consistent peptide quality. Peptide Shop has delivered this for our 12-month research programme without any issues."
-verified: true
+  rating: 5
+  date: "2024-10-15"
+  title: "Consistent batch-to-batch quality"
+  content: "Running long-term studies requires consistent peptide quality. Peptide Shop has delivered this for our 12-month research programme without any issues."
+  verified: true
 - author: "Newcastle Biotech"
-rating: 4
-date: "2024-10-10"
-title: "Good product, reasonable prices"
-content: "Competitive pricing for UK-based research peptides. The 10mg size is ideal for our throughput. Would recommend to colleagues."
-verified: true
+  rating: 4
+  date: "2024-10-10"
+  title: "Good product, reasonable prices"
+  content: "Competitive pricing for UK-based research peptides. The 10mg size is ideal for our throughput. Would recommend to colleagues."
+  verified: true
 - author: "Laura Bennett"
-rating: 5
-date: "2024-10-05"
-title: "Exactly what we needed"
-content: "High-quality Semaglutide at a fair price. The express delivery option was perfect when we needed to meet our project deadline."
-verified: true
+  rating: 5
+  date: "2024-10-05"
+  title: "Exactly what we needed"
+  content: "High-quality Semaglutide at a fair price. The express delivery option was perfect when we needed to meet our project deadline."
+  verified: true
 - author: "Edinburgh Cell Biology"
-rating: 5
-date: "2024-09-30"
-title: "Reliable UK supplier"
-content: "Glad to have found a quality UK supplier for research peptides. Avoids the customs delays we experienced with overseas orders. Product quality is excellent."
-verified: true
+  rating: 5
+  date: "2024-09-30"
+  title: "Reliable UK supplier"
+  content: "Glad to have found a quality UK supplier for research peptides. Avoids the customs delays we experienced with overseas orders. Product quality is excellent."
+  verified: true
 - author: "Dr. Victoria Adams"
-rating: 5
-date: "2024-09-25"
-title: "Excellent for obesity research models"
-content: "Using this Semaglutide in our diet-induced obesity studies. Results align perfectly with published data using pharmaceutical-grade material."
-verified: true
+  rating: 5
+  date: "2024-09-25"
+  title: "Excellent for obesity research models"
+  content: "Using this Semaglutide in our diet-induced obesity studies. Results align perfectly with published data using pharmaceutical-grade material."
+  verified: true
 - author: "Oxford Molecular Lab"
-rating: 5
-date: "2024-09-20"
-title: "Premium quality Пептид"
-content: "The quality justifies the investment. Our mass spec analysis confirmed identity and purity. Excellent for rigorous research applications."
-verified: true
+  rating: 5
+  date: "2024-09-20"
+  title: "Premium quality Пептид"
+  content: "The quality justifies the investment. Our mass spec analysis confirmed identity and purity. Excellent for rigorous research applications."
+  verified: true
 - author: "Thomas Wright"
-rating: 4
-date: "2024-09-15"
-title: "Very good overall experience"
-content: "Ordered the 5mg size first to test quality. Impressed enough to place a larger follow-up order. Delivery was prompt and product was as described."
-verified: true
+  rating: 4
+  date: "2024-09-15"
+  title: "Very good overall experience"
+  content: "Ordered the 5mg size first to test quality. Impressed enough to place a larger follow-up order. Delivery was prompt and product was as described."
+  verified: true
 - author: "Glasgow Medical Research"
-rating: 5
-date: "2024-09-10"
-title: "Five stars for quality and service"
-content: "Outstanding product for our insulin secretion studies. The technical team was helpful with protocol questions. Highly recommend Peptide Shop."
-verified: true
+  rating: 5
+  date: "2024-09-10"
+  title: "Five stars for quality and service"
+  content: "Outstanding product for our insulin secretion studies. The technical team was helpful with protocol questions. Highly recommend Peptide Shop."
+  verified: true
 - author: "Jennifer Clark"
-rating: 5
-date: "2024-09-05"
-title: "Fast delivery, excellent quality"
-content: "Next-day delivery arrived before noon. Peptide was properly packaged with cold packs. Performed flawlessly in our receptor binding assays."
-verified: true
+  rating: 5
+  date: "2024-09-05"
+  title: "Fast delivery, excellent quality"
+  content: "Next-day delivery arrived before noon. Peptide was properly packaged with cold packs. Performed flawlessly in our receptor binding assays."
+  verified: true
 - author: "Birmingham Research Centre"
-rating: 5
-date: "2024-09-01"
-title: "Our go-to supplier for GLP-1 Пептидs"
-content: "We've standardised on Peptide Shop for all our GLP-1 research needs. Consistent quality, reliable supply, and excellent documentation for our quality systems."
-verified: true
+  rating: 5
+  date: "2024-09-01"
+  title: "Our go-to supplier for GLP-1 Пептидs"
+  content: "We've standardised on Peptide Shop for all our GLP-1 research needs. Consistent quality, reliable supply, and excellent documentation for our quality systems."
+  verified: true
 - author: "Dr. Peter Morgan"
-rating: 5
-date: "2024-08-28"
-title: "Highly pure Semaglutide"
-content: "Independent analysis confirmed the stated purity. Very few suppliers provide this level of quality for research-grade peptides in the UK market."
-verified: true
+  rating: 5
+  date: "2024-08-28"
+  title: "Highly pure Semaglutide"
+  content: "Independent analysis confirmed the stated purity. Very few suppliers provide this level of quality for research-grade peptides in the UK market."
+  verified: true
 - author: "Cardiff University Lab"
-rating: 5
-date: "2024-08-22"
-title: "Excellent batch documentation"
-content: "The COA is comprehensive - HPLC, MS data, amino acid analysis. Exactly what we need for our research protocols. Product quality matches the documentation."
-verified: true
+  rating: 5
+  date: "2024-08-22"
+  title: "Excellent batch documentation"
+  content: "The COA is comprehensive - HPLC, MS data, amino acid analysis. Exactly what we need for our research protocols. Product quality matches the documentation."
+  verified: true
 - author: "Alice Henderson"
-rating: 4
-date: "2024-08-15"
-title: "Good product and fair pricing"
-content: "Quality is excellent for the price point. The minimum order requirement is reasonable for lab-scale research. Would recommend trying the 2mg size first."
-verified: true
+  rating: 4
+  date: "2024-08-15"
+  title: "Good product and fair pricing"
+  content: "Quality is excellent for the price point. The minimum order requirement is reasonable for lab-scale research. Would recommend trying the 2mg size first."
+  verified: true
 - author: "Liverpool Metabolic Studies"
-rating: 5
-date: "2024-08-10"
-title: "Superb quality Semaglutide"
-content: "Been searching for a reliable UK source for GLP-1 peptides. Peptide Shop delivers on quality, documentation, and customer service. Our new preferred supplier."
-verified: true
+  rating: 5
+  date: "2024-08-10"
+  title: "Superb quality Semaglutide"
+  content: "Been searching for a reliable UK source for GLP-1 peptides. Peptide Shop delivers on quality, documentation, and customer service. Our new preferred supplier."
+  verified: true
+
+
+
+
+
 ---
 
 

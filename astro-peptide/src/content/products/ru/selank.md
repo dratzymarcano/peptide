@@ -19,99 +19,104 @@ short_description: "Купить Selank UK. Anxiolytic nootropic Пептид fo
 category: "cognitive"
 tags:  ["research-Пептид", "selank-uk", "nootropic", "buy-Пептидs-uk", "cognitive", "anxiolytic"]
 images: ["/images/products/selank.png"]
-meta: 
-title: "Купить Selank UK | Nootropic Пептид | Fast Delivery"
-description: "Buy Selank UK. Premium anxiolytic peptide for research. ≥99% purity, COA included. Fast UK delivery."
-faqs: 
+meta:
+  title: "Купить Selank UK | Nootropic Пептид | Fast Delivery"
+  description: "Buy Selank UK. Premium anxiolytic peptide for research. ≥99% purity, COA included. Fast UK delivery."
+faqs:
 - question: "What is Selank used for in research?"
-answer: "Selank is studied for anxiolytic effects, cognitive enhancement, immune modulation, and neurotransmitter regulation. It's based on the natural peptide tuftsin."
+  answer: "Selank is studied for anxiolytic effects, cognitive enhancement, immune modulation, and neurotransmitter regulation. It's based on the natural peptide tuftsin."
 - question: "How does Selank work?"
-answer: "Selank modulates GABA, serotonin, dopamine, and norepinephrine systems. It also influences BDNF and enkephalin expression."
+  answer: "Selank modulates GABA, serotonin, dopamine, and norepinephrine systems. It also influences BDNF and enkephalin expression."
 - question: "How is Selank different from Semax?"
-answer: "Selank is primarily anxiolytic with cognitive benefits, while Semax is more focused on cognitive enhancement. Selank is based on tuftsin; Semax on ACTH."
+  answer: "Selank is primarily anxiolytic with cognitive benefits, while Semax is more focused on cognitive enhancement. Selank is based on tuftsin; Semax on ACTH."
 - question: "How should Selank be stored?"
-answer: "Store lyophilised Selank at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks."
+  answer: "Store lyophilised Selank at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks."
 - question: "What purity is your Selank?"
-answer: "Our Selank is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
+  answer: "Our Selank is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
 - question: "What is tuftsin?"
-answer: "Tuftsin is a naturally occurring immunomodulatory tetrapeptide. Selank extends tuftsin with additional amino acids for enhanced stability and activity."
+  answer: "Tuftsin is a naturally occurring immunomodulatory tetrapeptide. Selank extends tuftsin with additional amino acids for enhanced stability and activity."
 - question: "How do I reconstitute Selank?"
-answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
+  answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
 - question: "What sizes are available?"
-answer: "Selank is available in 5mg and 10mg vials."
-reviews: 
+  answer: "Selank is available in 5mg and 10mg vials."
+reviews:
 - author: "Dr. Elizabeth Morgan"
-rating: 5
-date: "2024-12-09"
-title: "Excellent for cognitive research"
-content: "Our anxiety and cognition studies depend on quality Selank. Peptide Shop delivers consistently."
-verified: true
+  rating: 5
+  date: "2024-12-09"
+  title: "Excellent for cognitive research"
+  content: "Our anxiety and cognition studies depend on quality Selank. Peptide Shop delivers consistently."
+  verified: true
 - author: "Cambridge Neuroscience Lab"
-rating: 5
-date: "2024-12-02"
-title: "Premium quality"
-content: "Selank quality is exceptional. GABA modulation effects clearly observable."
-verified: true
+  rating: 5
+  date: "2024-12-02"
+  title: "Premium quality"
+  content: "Selank quality is exceptional. GABA modulation effects clearly observable."
+  verified: true
 - author: "James Morrison"
-rating: 5
-date: "2024-11-25"
-title: "Excellent product"
-content: "Fast delivery, excellent quality. Anxiolytic research progressing well."
-verified: true
+  rating: 5
+  date: "2024-11-25"
+  title: "Excellent product"
+  content: "Fast delivery, excellent quality. Anxiolytic research progressing well."
+  verified: true
 - author: "Edinburgh Neuropharmacology Lab"
-rating: 5
-date: "2024-11-18"
-title: "Reliable supplier"
-content: "Consistent quality for our peptide neuroscience research."
-verified: true
+  rating: 5
+  date: "2024-11-18"
+  title: "Reliable supplier"
+  content: "Consistent quality for our peptide neuroscience research."
+  verified: true
 - author: "Dr. Michael Roberts"
-rating: 5
-date: "2024-11-11"
-title: "Outstanding purity"
-content: "Purity verification confirms excellent quality."
-verified: true
+  rating: 5
+  date: "2024-11-11"
+  title: "Outstanding purity"
+  content: "Purity verification confirms excellent quality."
+  verified: true
 - author: "Manchester Cognition Lab"
-rating: 5
-date: "2024-11-04"
-title: "Excellent service"
-content: "Fast delivery, great quality for nootropic studies."
-verified: true
+  rating: 5
+  date: "2024-11-04"
+  title: "Excellent service"
+  content: "Fast delivery, great quality for nootropic studies."
+  verified: true
 - author: "Sophie Williams"
-rating: 5
-date: "2024-10-28"
-title: "Fast delivery"
-content: "Express delivery was prompt. Quality excellent."
-verified: true
+  rating: 5
+  date: "2024-10-28"
+  title: "Fast delivery"
+  content: "Express delivery was prompt. Quality excellent."
+  verified: true
 - author: "Oxford Anxiety Research"
-rating: 5
-date: "2024-10-21"
-title: "Very good"
-content: "Quality is excellent for GABA receptor research."
-verified: true
+  rating: 5
+  date: "2024-10-21"
+  title: "Very good"
+  content: "Quality is excellent for GABA receptor research."
+  verified: true
 - author: "Dr. Helen Foster"
-rating: 5
-date: "2024-10-14"
-title: "Premium Исследовательский пептид"
-content: "Excellent for anxiolytic mechanism studies."
-verified: true
+  rating: 5
+  date: "2024-10-14"
+  title: "Premium Исследовательский пептид"
+  content: "Excellent for anxiolytic mechanism studies."
+  verified: true
 - author: "Newcastle Neuroscience Lab"
-rating: 5
-date: "2024-10-07"
-title: "Reliable quality"
-content: "Multiple orders, consistently excellent."
-verified: true
+  rating: 5
+  date: "2024-10-07"
+  title: "Reliable quality"
+  content: "Multiple orders, consistently excellent."
+  verified: true
 - author: "Michael Thompson"
-rating: 5
-date: "2024-09-30"
-title: "Great experience"
-content: "Easy ordering, quick delivery."
-verified: true
+  rating: 5
+  date: "2024-09-30"
+  title: "Great experience"
+  content: "Easy ordering, quick delivery."
+  verified: true
 - author: "Glasgow Cognition Lab"
-rating: 5
-date: "2024-09-23"
-title: "Excellent supplier"
-content: "High-quality Selank with proper documentation."
-verified: true
+  rating: 5
+  date: "2024-09-23"
+  title: "Excellent supplier"
+  content: "High-quality Selank with proper documentation."
+  verified: true
+
+
+
+
+
 ---
 
 

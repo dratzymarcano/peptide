@@ -19,105 +19,110 @@ short_description: "Купить Epitalon. Telomerase-activating Пептид fo
 category: "cognitive"
 tags:  ["research-Пептид", "epitalon-uk", "longevity", "buy-Пептидs-uk", "cognitive", "telomerase"]
 images: ["/images/products/epitalon.png"]
-meta: 
-title: "Купить Epitalon | Longevity Пептид | Fast Delivery"
-description: "Buy Epitalon. Premium telomerase peptide for research. ≥99% purity, COA included. Fast UK & EU delivery."
-faqs: 
+meta:
+  title: "Купить Epitalon | Longevity Пептид | Fast Delivery"
+  description: "Buy Epitalon. Premium telomerase peptide for research. ≥99% purity, COA included. Fast UK & EU delivery."
+faqs:
 - question: "What is Epitalon used for in research?"
-answer: "Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research."
+  answer: "Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research."
 - question: "How does Epitalon work?"
-answer: "Epitalon is reported to activate telomerase, the enzyme that maintains telomere length. It may also influence melatonin synthesis and circadian rhythms."
+  answer: "Epitalon is reported to activate telomerase, the enzyme that maintains telomere length. It may also influence melatonin synthesis and circadian rhythms."
 - question: "What is the origin of Epitalon?"
-answer: "Epitalon is a synthetic tetrapeptide based on epithalamin, a pineal gland extract studied by Russian researchers for its anti-ageing properties."
+  answer: "Epitalon is a synthetic tetrapeptide based on epithalamin, a pineal gland extract studied by Russian researchers for its anti-ageing properties."
 - question: "How should Epitalon be stored?"
-answer: "Store lyophilised Epitalon at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
+  answer: "Store lyophilised Epitalon at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
 - question: "What purity is your Epitalon?"
-answer: "Our Epitalon is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
+  answer: "Our Epitalon is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
 - question: "What are telomeres?"
-answer: "Telomeres are protective DNA caps at chromosome ends that shorten with each cell division. Telomerase can extend them."
+  answer: "Telomeres are protective DNA caps at chromosome ends that shorten with each cell division. Telomerase can extend them."
 - question: "How do I reconstitute Epitalon?"
-answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
+  answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
 - question: "What sizes are available?"
-answer: "Epitalon is available in 10mg, 20mg, and 50mg vials."
-reviews: 
+  answer: "Epitalon is available in 10mg, 20mg, and 50mg vials."
+reviews:
 - author: "Dr. William Chen"
-rating: 5
-date: "2024-12-10"
-title: "Essential for longevity research"
-content: "Our telomere studies depend on quality Epitalon. Peptide Shop delivers exceptional purity."
-verified: true
+  rating: 5
+  date: "2024-12-10"
+  title: "Essential for longevity research"
+  content: "Our telomere studies depend on quality Epitalon. Peptide Shop delivers exceptional purity."
+  verified: true
 - author: "Cambridge Ageing Lab"
-rating: 5
-date: "2024-12-03"
-title: "Premium quality"
-content: "Telomerase activation effects clearly observable in our assays."
-verified: true
+  rating: 5
+  date: "2024-12-03"
+  title: "Premium quality"
+  content: "Telomerase activation effects clearly observable in our assays."
+  verified: true
 - author: "James Morrison"
-rating: 5
-date: "2024-11-26"
-title: "Excellent product"
-content: "Fast delivery, excellent quality. Cellular ageing research progressing well."
-verified: true
+  rating: 5
+  date: "2024-11-26"
+  title: "Excellent product"
+  content: "Fast delivery, excellent quality. Cellular ageing research progressing well."
+  verified: true
 - author: "Edinburgh Longevity Lab"
-rating: 5
-date: "2024-11-19"
-title: "Reliable supplier"
-content: "Consistent quality for our pineal gland research."
-verified: true
+  rating: 5
+  date: "2024-11-19"
+  title: "Reliable supplier"
+  content: "Consistent quality for our pineal gland research."
+  verified: true
 - author: "Dr. Helen Foster"
-rating: 5
-date: "2024-11-12"
-title: "Outstanding purity"
-content: "Purity verification confirms excellent quality. Essential for our research."
-verified: true
+  rating: 5
+  date: "2024-11-12"
+  title: "Outstanding purity"
+  content: "Purity verification confirms excellent quality. Essential for our research."
+  verified: true
 - author: "Manchester Telomere Lab"
-rating: 5
-date: "2024-11-05"
-title: "Excellent service"
-content: "Fast delivery, great quality for ageing studies."
-verified: true
+  rating: 5
+  date: "2024-11-05"
+  title: "Excellent service"
+  content: "Fast delivery, great quality for ageing studies."
+  verified: true
 - author: "Sophie Williams"
-rating: 5
-date: "2024-10-29"
-title: "Fast delivery"
-content: "Express delivery was prompt. Quality excellent."
-verified: true
+  rating: 5
+  date: "2024-10-29"
+  title: "Fast delivery"
+  content: "Express delivery was prompt. Quality excellent."
+  verified: true
 - author: "Oxford Gerontology Lab"
-rating: 5
-date: "2024-10-22"
-title: "Very good"
-content: "Quality is excellent for melatonin research."
-verified: true
+  rating: 5
+  date: "2024-10-22"
+  title: "Very good"
+  content: "Quality is excellent for melatonin research."
+  verified: true
 - author: "Dr. Robert Clarke"
-rating: 5
-date: "2024-10-15"
-title: "Premium Исследовательский пептид"
-content: "Excellent for telomerase activation studies."
-verified: true
+  rating: 5
+  date: "2024-10-15"
+  title: "Premium Исследовательский пептид"
+  content: "Excellent for telomerase activation studies."
+  verified: true
 - author: "Newcastle Ageing Lab"
-rating: 5
-date: "2024-10-08"
-title: "Reliable quality"
-content: "Multiple orders, consistently excellent."
-verified: true
+  rating: 5
+  date: "2024-10-08"
+  title: "Reliable quality"
+  content: "Multiple orders, consistently excellent."
+  verified: true
 - author: "Michael Thompson"
-rating: 5
-date: "2024-10-01"
-title: "Great experience"
-content: "Easy ordering, quick delivery."
-verified: true
+  rating: 5
+  date: "2024-10-01"
+  title: "Great experience"
+  content: "Easy ordering, quick delivery."
+  verified: true
 - author: "Glasgow Longevity Lab"
-rating: 4
-date: "2024-09-24"
-title: "Good product"
-content: "Quality is excellent for our cellular research."
-verified: true
+  rating: 4
+  date: "2024-09-24"
+  title: "Good product"
+  content: "Quality is excellent for our cellular research."
+  verified: true
 - author: "Dr. Catherine Moore"
-rating: 5
-date: "2024-09-17"
-title: "Excellent"
-content: "Pineal gland research benefits greatly from this quality."
-verified: true
+  rating: 5
+  date: "2024-09-17"
+  title: "Excellent"
+  content: "Pineal gland research benefits greatly from this quality."
+  verified: true
+
+
+
+
+
 ---
 
 

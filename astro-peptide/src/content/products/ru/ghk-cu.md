@@ -19,99 +19,104 @@ short_description: "Купить GHK-Cu UK. Copper Пептид for skin and tis
 category: "muscle-recovery"
 tags:  ["research-Пептид", "ghk-cu-uk", "copper-Пептид", "buy-Пептидs-uk", "skin", "collagen"]
 images: ["/images/products/ghk-cu.png"]
-meta: 
-title: "Купить GHK-Cu UK | Copper Пептид | Fast Delivery"
-description: "Buy GHK-Cu UK. Premium copper peptide for research. ≥99% purity, COA included. Fast UK delivery."
-faqs: 
+meta:
+  title: "Купить GHK-Cu UK | Copper Пептид | Fast Delivery"
+  description: "Buy GHK-Cu UK. Premium copper peptide for research. ≥99% purity, COA included. Fast UK delivery."
+faqs:
 - question: "What is GHK-Cu used for in research?"
-answer: "GHK-Cu is studied for wound healing, skin regeneration, collagen synthesis, and anti-inflammatory effects. It's a naturally occurring tripeptide with copper binding."
+  answer: "GHK-Cu is studied for wound healing, skin regeneration, collagen synthesis, and anti-inflammatory effects. It's a naturally occurring tripeptide with copper binding."
 - question: "How does GHK-Cu work?"
-answer: "GHK-Cu chelates copper ions and delivers them to tissues, stimulating collagen synthesis, glycosaminoglycan production, and supporting wound healing processes."
+  answer: "GHK-Cu chelates copper ions and delivers them to tissues, stimulating collagen synthesis, glycosaminoglycan production, and supporting wound healing processes."
 - question: "What is the origin of GHK-Cu?"
-answer: "GHK is a naturally occurring tripeptide found in human plasma, saliva, and urine. Levels decline with age, which has generated interest in its regenerative properties."
+  answer: "GHK is a naturally occurring tripeptide found in human plasma, saliva, and urine. Levels decline with age, which has generated interest in its regenerative properties."
 - question: "How should GHK-Cu be stored?"
-answer: "Store lyophilised GHK-Cu at -20°C. Reconstituted solutions should be kept at 2-8°C and used within 4 weeks."
+  answer: "Store lyophilised GHK-Cu at -20°C. Reconstituted solutions should be kept at 2-8°C and used within 4 weeks."
 - question: "What purity is your GHK-Cu?"
-answer: "Our GHK-Cu is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
+  answer: "Our GHK-Cu is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
 - question: "Can GHK-Cu affect gene expression?"
-answer: "Research suggests GHK-Cu influences expression of numerous genes related to tissue repair, antioxidant activity, and collagen production."
+  answer: "Research suggests GHK-Cu influences expression of numerous genes related to tissue repair, antioxidant activity, and collagen production."
 - question: "How do I reconstitute GHK-Cu?"
-answer: "Reconstitute in sterile water. GHK-Cu is highly soluble and dissolves readily."
+  answer: "Reconstitute in sterile water. GHK-Cu is highly soluble and dissolves readily."
 - question: "What sizes are available?"
-answer: "GHK-Cu is available in 50mg, 100mg, and 500mg quantities."
-reviews: 
+  answer: "GHK-Cu is available in 50mg, 100mg, and 500mg quantities."
+reviews:
 - author: "Dr. Jennifer Walsh"
-rating: 5
-date: "2024-12-09"
-title: "Excellent copper Пептид"
-content: "GHK-Cu quality is exceptional for our skin research. Collagen synthesis effects clearly observable."
-verified: true
+  rating: 5
+  date: "2024-12-09"
+  title: "Excellent copper Пептид"
+  content: "GHK-Cu quality is exceptional for our skin research. Collagen synthesis effects clearly observable."
+  verified: true
 - author: "Cambridge Dermatology Lab"
-rating: 5
-date: "2024-12-02"
-title: "Premium quality"
-content: "Wound healing assays show excellent activity. Quality is research-grade."
-verified: true
+  rating: 5
+  date: "2024-12-02"
+  title: "Premium quality"
+  content: "Wound healing assays show excellent activity. Quality is research-grade."
+  verified: true
 - author: "James Foster"
-rating: 5
-date: "2024-11-25"
-title: "Excellent product"
-content: "Fast delivery, excellent quality. Fibroblast studies progressing well."
-verified: true
+  rating: 5
+  date: "2024-11-25"
+  title: "Excellent product"
+  content: "Fast delivery, excellent quality. Fibroblast studies progressing well."
+  verified: true
 - author: "Edinburgh Skin Lab"
-rating: 5
-date: "2024-11-18"
-title: "Reliable supplier"
-content: "Consistent quality for our collagen research."
-verified: true
+  rating: 5
+  date: "2024-11-18"
+  title: "Reliable supplier"
+  content: "Consistent quality for our collagen research."
+  verified: true
 - author: "Dr. Michael Roberts"
-rating: 5
-date: "2024-11-11"
-title: "Outstanding purity"
-content: "Copper content and peptide purity both verified. Excellent product."
-verified: true
+  rating: 5
+  date: "2024-11-11"
+  title: "Outstanding purity"
+  content: "Copper content and peptide purity both verified. Excellent product."
+  verified: true
 - author: "Manchester Tissue Lab"
-rating: 5
-date: "2024-11-04"
-title: "Excellent service"
-content: "Fast delivery, great quality. Gene expression studies going well."
-verified: true
+  rating: 5
+  date: "2024-11-04"
+  title: "Excellent service"
+  content: "Fast delivery, great quality. Gene expression studies going well."
+  verified: true
 - author: "Sophie Williams"
-rating: 5
-date: "2024-10-28"
-title: "Fast delivery"
-content: "Express delivery was prompt. Quality excellent."
-verified: true
+  rating: 5
+  date: "2024-10-28"
+  title: "Fast delivery"
+  content: "Express delivery was prompt. Quality excellent."
+  verified: true
 - author: "Oxford Wound Research"
-rating: 5
-date: "2024-10-21"
-title: "Very good"
-content: "Quality is excellent for wound healing research."
-verified: true
+  rating: 5
+  date: "2024-10-21"
+  title: "Very good"
+  content: "Quality is excellent for wound healing research."
+  verified: true
 - author: "Dr. Catherine Moore"
-rating: 5
-date: "2024-10-14"
-title: "Premium Исследовательский пептид"
-content: "Excellent for fibroblast and collagen studies."
-verified: true
+  rating: 5
+  date: "2024-10-14"
+  title: "Premium Исследовательский пептид"
+  content: "Excellent for fibroblast and collagen studies."
+  verified: true
 - author: "Newcastle Skin Lab"
-rating: 5
-date: "2024-10-07"
-title: "Reliable quality"
-content: "Multiple orders, consistently excellent."
-verified: true
+  rating: 5
+  date: "2024-10-07"
+  title: "Reliable quality"
+  content: "Multiple orders, consistently excellent."
+  verified: true
 - author: "Michael Thompson"
-rating: 5
-date: "2024-09-30"
-title: "Great experience"
-content: "Easy ordering, quick delivery."
-verified: true
+  rating: 5
+  date: "2024-09-30"
+  title: "Great experience"
+  content: "Easy ordering, quick delivery."
+  verified: true
 - author: "Glasgow Regenerative Lab"
-rating: 5
-date: "2024-09-23"
-title: "Excellent supplier"
-content: "High-quality GHK-Cu with proper documentation."
-verified: true
+  rating: 5
+  date: "2024-09-23"
+  title: "Excellent supplier"
+  content: "High-quality GHK-Cu with proper documentation."
+  verified: true
+
+
+
+
+
 ---
 
 
