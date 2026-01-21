@@ -55,8 +55,14 @@ const FlagIcon = ({ lang }: { lang: string }) => {
           <path fill="#FFF" d="M0 0h427v480H0z"/>
           <path fill="#009246" d="M0 0h213v480H0z"/>
         </svg>
-      );
-    default:
+      );    case 'ru':
+      return (
+        <svg viewBox="0 0 640 480" className="w-full h-full object-cover">
+          <path fill="#FFF" d="M0 0h640v480H0z"/>
+          <path fill="#0039A6" d="M0 160h640v160H0z"/>
+          <path fill="#D52B1E" d="M0 320h640v160H0z"/>
+        </svg>
+      );    default:
       return null;
   }
 };

@@ -1,6 +1,6 @@
 ---
-title: "Best Practices for Peptide Storage and Handling"
-lang: "en"
+title: "Лучшие практики for Peptide Хранение and Обращение"
+lang: "ru"
 description: "Essential guidelines for storing lyophilised and reconstituted peptides to maintain stability and maximise shelf life."
 publishDate: "2025-12-01"
 author: "Peptide Shop Team"
@@ -9,12 +9,12 @@ tags: ["storage", "handling", "stability", "protocols", "laboratory"]
 image: "/images/blog/post2.jpg"
 featured: false
 meta:
-  title: "Peptide Storage Guide | Best Practices for Researchers"
-lang: "en"
+  title: "Peptide Хранение Guide | Лучшие практики for Исследованияers"
+lang: "ru"
   description: "Learn the essential guidelines for storing and handling research peptides. Proper storage techniques to maintain purity and extend shelf life."
 ---
 
-## Why Proper Storage Matters
+## Why Proper Хранение Matters
 
 Peptides are sensitive molecules that can degrade when exposed to heat, moisture, light, or oxygen. Proper storage is essential to maintain the purity and activity of your research compounds.
 
@@ -70,13 +70,13 @@ When you're ready to use your peptides, follow these reconstitution guidelines:
 
 Once in solution, peptides are less stable than their lyophilised form:
 
-### Short-term Storage (Days to Weeks)
+### Short-term Хранение (Days to Weeks)
 
 - Store at 2-8°C (refrigerator)
 - Use within 2-4 weeks for most peptides
 - Check for precipitation or cloudiness before each use
 
-### Long-term Storage (Weeks to Months)
+### Long-term Хранение (Weeks to Months)
 
 - Aliquot into single-use portions to avoid freeze-thaw cycles
 - Store aliquots at -20°C or -80°C
@@ -106,14 +106,14 @@ Some peptides require special handling:
 
 ## Summary Table
 
-| Storage Condition | Lyophilised | Reconstituted |
+| Хранение Condition | Lyophilised | Reconstituted |
 |-------------------|-------------|---------------|
 | Room temperature | Days (sealed) | Hours |
 | Refrigerator (4°C) | Weeks | 2-4 weeks |
 | Freezer (-20°C) | Months | 1-2 months |
 | Deep freezer (-80°C) | Years | 3-6 months |
 
-## Conclusion
+## Заключение
 
 Proper storage and handling of peptides is fundamental to successful research. By following these guidelines, you can ensure your peptides maintain their purity and activity throughout your experiments.
 

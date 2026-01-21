@@ -24,7 +24,7 @@ const productsCollection = defineCollection({
     primary_keyword: z.string(),
     search_volume: z.union([z.number(), z.string()]),
     urlPath: z.string().optional(), // URL path for the product page (renamed from 'slug' to avoid Astro collision)
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']).optional(), // Language identifier
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']).optional(), // Language identifier
     aliases: z.array(z.string()).optional(),
     cas: z.string().nullable(),
     molecular_weight: z.string().nullable(),
@@ -51,6 +51,7 @@ const productsCollection = defineCollection({
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']).default('en'),
     title: z.string(),
     description: z.string(),
     publishDate: z.string(),
@@ -69,7 +70,7 @@ const blogCollection = defineCollection({
 const siteCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']),
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']),
     phone: z.string(),
     email: z.string(),
     telegram: z.string(),
@@ -84,7 +85,7 @@ const siteCollection = defineCollection({
 const pageCopyCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it']),
+    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']),
     page: z.string(),
     copy: z.record(z.any()),
   }),

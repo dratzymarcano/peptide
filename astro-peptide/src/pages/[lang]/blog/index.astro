@@ -1,0 +1,19 @@
+---
+import BlogPage from '../../../../components/pages/BlogPage.astro';
+import type { SupportedLanguage } from '../../../../i18n/translations';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'nl' } },
+    { params: { lang: 'de' } },
+    { params: { lang: 'fr' } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'it' } },
+    { params: { lang: 'ru' } },
+  ];
+}
+
+const { lang } = Astro.params;
+---
+
+<BlogPage lang={lang as SupportedLanguage} />

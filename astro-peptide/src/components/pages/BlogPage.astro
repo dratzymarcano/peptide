@@ -11,13 +11,24 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 const currentLang = lang;
-const pageCopy = await getEntry('pageCopy', 'en-blog');
+// Use localized page copy if available, fallback to English for content structure
+// Note: We're loading 'en-blog' here as a base/fallback. 
+// Ideally we should load `${currentLang}-blog` if consistent.
+// But based on user request to ensure translations, let's try to load dynamic copy.
+const copySlug = (currentLang === 'ru') ? 'ru-blog' : 'en-blog';
+const pageCopy = await getEntry('pageCopy', copySlug) || await getEntry('pageCopy', 'en-blog');
 const copy = pageCopy?.data.copy ?? {};
 
-const posts = await getCollection('blog');
-const sortedPosts = posts.sort((a, b) => 
+const allPosts = await getCollection('blog');
+const posts = allPosts.filter(post => {
+   // Legacy posts might not have lang, default to en
+   const postLang = post.data.lang || 'en';
+   return postLang === currentLang;
+}).sort((a, b) => 
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );
+
+const sortedPosts = posts;
 
 const featuredPosts = sortedPosts.filter(post => post.data.featured);
 const regularPosts = sortedPosts.filter(post => !post.data.featured);
