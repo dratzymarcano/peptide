@@ -13,7 +13,7 @@ export default defineConfig({
   }),
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'nl', 'de', 'fr', 'es', 'it'],
+    locales: ['en', 'nl', 'de', 'fr', 'es', 'it', 'ru'],
     routing: {
       prefixDefaultLocale: false, // English at root: /peptides, others at /de/peptides, etc.
     },

@@ -3,7 +3,7 @@
 
 import { productSlugTranslations } from './translations';
 
-export type SupportedLanguage = 'en' | 'nl' | 'de' | 'fr' | 'es' | 'it';
+export type SupportedLanguage = 'en' | 'nl' | 'de' | 'fr' | 'es' | 'it' | 'ru';
 
 export const defaultLang: SupportedLanguage = 'en';
 
@@ -14,6 +14,7 @@ export const languages: Record<SupportedLanguage, { name: string; flag: string; 
   fr: { name: 'Français', flag: '🇫🇷', locale: 'fr-FR', region: 'France', hreflang: 'fr' },
   es: { name: 'Español', flag: '🇪🇸', locale: 'es-ES', region: 'España', hreflang: 'es' },
   it: { name: 'Italiano', flag: '🇮🇹', locale: 'it-IT', region: 'Italia', hreflang: 'it' },
+  ru: { name: 'Русский', flag: '🇷🇺', locale: 'ru-RU', region: 'Russia', hreflang: 'ru' },
 };
 
 export const supportedLanguages = Object.keys(languages) as SupportedLanguage[];
@@ -31,7 +32,7 @@ export function getLangFromUrl(url: URL): SupportedLanguage {
 export function getLocalizedPath(path: string, lang: SupportedLanguage): string {
   // Strip any existing language prefix.
   // Keep query/hash intact for client-side switching.
-  const withoutLocale = path.replace(/^\/(en|nl|de|fr|es|it)(\/|$)/, '/');
+  const withoutLocale = path.replace(/^\/(en|nl|de|fr|es|it|ru)(\/|$)/, '/');
 
   // Separate pathname from query/hash so slug/category logic never sees "?" or "#".
   const match = withoutLocale.match(/^([^?#]*)(.*)$/);
