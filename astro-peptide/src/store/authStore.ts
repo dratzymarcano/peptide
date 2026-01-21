@@ -181,6 +181,18 @@ export async function registerWithEmail(
   
   currentUser.set(newUser);
   saveAuthToStorage();
+
+  // Send welcome email
+  try {
+    fetch('/api/welcome-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name: `${firstName} ${lastName}` })
+    });
+  } catch (err) {
+      console.error('Welcome email failed', err);
+  }
+
   isAuthLoading.set(false);
   
   return newUser;

@@ -43,6 +43,7 @@ async function sendEmail(
   to: string, 
   subject: string, 
   html: string, 
+  text: string, // Plain text version for better deliverability
   apiKey: string,
   from?: string,
   replyTo?: string
@@ -63,6 +64,7 @@ async function sendEmail(
         to: [to],
         subject,
         html,
+        text, // Include text version
         reply_to: replyTo
       })
     });
@@ -247,6 +249,78 @@ function generateOwnerEmailHtml(data: OrderEmailData): string {
   `;
 }
 
+function generateOrderText(data: OrderEmailData): string {
+  const itemsList = data.items.map(item => 
+    `- ${item.title} x ${item.quantity} (${formatCurrency(item.price * item.quantity, data.currency)})`
+  ).join('\n');
+
+  const shippingAddr = `${data.shippingAddress.firstName} ${data.shippingAddress.lastName}
+${data.shippingAddress.address}
+${data.shippingAddress.city}, ${data.shippingAddress.county || ''} ${data.shippingAddress.postcode}`;
+
+  return `ORDER CONFIRMED - ${data.orderId}
+
+Thank you for your order, ${data.customerName}!
+
+ORDER SUMMARY
+=============
+${itemsList}
+
+Subtotal: ${formatCurrency(data.subtotal, data.currency)}
+Shipping: ${data.shipping === 0 ? 'FREE' : formatCurrency(data.shipping, data.currency)}
+${data.discount > 0 ? `Discount: -${formatCurrency(data.discount, data.currency)}\n` : ''}Total: ${formatCurrency(data.total, data.currency)}
+
+SHIPPING DETAILS
+================
+${shippingAddr}
+
+PAYMENT METHOD
+==============
+${data.paymentMethod === 'bank-transfer' ? 'Bank Transfer (Instructions in HTML email)' : 'Bitcoin'}
+
+If you have any questions, please reply to this email.
+
+${SITE_NAME}`;
+}
+
+// Generate simple Owner text
+function generateOwnerText(data: OrderEmailData): string {
+   return `NEW ORDER: ${data.orderId}
+   
+Customer: ${data.customerName} (${data.customerEmail})
+Total: ${formatCurrency(data.total, data.currency)}
+Payment: ${data.paymentMethod}
+
+ITEMS
+-----
+${data.items.map(i => `${i.title} x ${i.quantity}`).join('\n')}
+
+SHIP TO
+-------
+${data.shippingAddress.firstName} ${data.shippingAddress.lastName}
+${data.shippingAddress.address}
+${data.shippingAddress.city} ${data.shippingAddress.postcode}
+`;
+}
+
+export async function sendWelcomeEmail(email: string, name: string, apiKey?: string): Promise<boolean> {
+  const finalApiKey = apiKey || import.meta.env.RESEND_API_KEY;
+  if (!finalApiKey) return false;
+
+  const subject = `Welcome to ${SITE_NAME}`;
+  const html = `
+    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+      <h1>Welcome, ${name}!</h1>
+      <p>Thank you for creating an account with ${SITE_NAME}.</p>
+      <p>You can now log in to track your orders and checkout faster.</p>
+      <p><a href="${import.meta.env.SITE_URL || 'https://peptide-shop.net'}/account/login">Login to your account</a></p>
+    </div>
+  `;
+  const text = `Welcome, ${name}!\n\nThank you for creating an account with ${SITE_NAME}.\nYou can now log in to track your orders and checkout faster at https://peptide-shop.net`;
+
+  return sendEmail(email, subject, html, text, finalApiKey);
+}
+
 export async function sendOrderEmails(data: OrderEmailData, apiKey?: string): Promise<{ success: boolean; error?: string }> {
   const finalApiKey = apiKey || import.meta.env.RESEND_API_KEY;
   
@@ -261,6 +335,7 @@ export async function sendOrderEmails(data: OrderEmailData, apiKey?: string): Pr
       data.customerEmail,
       `Order Confirmed - ${data.orderId} | ${SITE_NAME}`,
       generateCustomerEmailHtml(data),
+      generateOrderText(data),
       finalApiKey,
       undefined,
       SITE_EMAIL // Reply-To: Shop email
@@ -271,6 +346,7 @@ export async function sendOrderEmails(data: OrderEmailData, apiKey?: string): Pr
       OWNER_EMAIL,
       `🛒 New Order: ${data.orderId} - ${formatCurrency(data.total, data.currency)}`,
       generateOwnerEmailHtml(data),
+      generateOwnerText(data),
       finalApiKey,
       undefined,
       data.customerEmail // Reply-To: Customer email
