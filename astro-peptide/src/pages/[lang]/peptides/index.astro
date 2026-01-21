@@ -8,7 +8,7 @@ import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, transla
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
   return languages.map(lang => ({
     params: { lang },
     props: { lang }

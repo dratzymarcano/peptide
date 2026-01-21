@@ -1,118 +1,119 @@
 ---
-lang: "en"
+lang: "ru"
 id: "supply-bac-water-10ml"
-title: "Купить Bacteriostatic Water UK | 10ml Vial | Peptide Reconstitution"
-primary_keyword: "Купить bacteriostatic water uk"
+title: "Купить Bacteriostatic Вода UK | 10ml Vial | Пептид Reconstitution"
+primary_keyword: "Купить bacteriostatic Вода uk"
 search_volume: "5400"
-urlPath: "/Пептиды/buy-bacteriostatic-water"
-aliases: ["BAC Water", "Sterile Water", "Peptide Mixing Water"]
+urlPath: "/peptides/buy-bacteriostatic-water"
+aliases:  ["BAC Вода", "Стерильный Вода", "Пептид Mixing Вода"]
 cas: "7732-18-5"
 molecular_weight: "18.02 g/mol"
-Чистота: "USP Grade"
-Хранение: "Room temperature (15-25°C)"
-package_sizes: ["10 × 10 mL vials"]
+purity: "USP Grade"
+storage: "Room temperature (15-25°C)"
+package_sizes:  ["10 × 10 mL vials"]
 moq: 200
 price: 70
 price_range: "£70 per pack"
-Сертификат анализа_url: "/Сертификат анализа/bacteriostatic-water.pdf"
-short_Описание: "Купить bacteriostatic water UK. USP grade, 0.9% benzyl alcohol for peptide reconstitution. Sterile 10ml vials. Fast UK delivery."
+coa_url: "/coa/bacteriostatic-water.pdf"
+short_description: "Купить bacteriostatic Вода UK. USP grade, 0.9% benzyl alcohol for Пептид reconstitution. Стерильный 10ml vials. Быстрая доставка."
 category: "supplies"
-tags: ["supplies", "bac-water", "reconstitution", "bacteriostatic-water-uk", "peptide-supplies"]
+tags:  ["supplies", "bac-Вода", "reconstitution", "bacteriostatic-Вода-uk", "Пептид-supplies"]
 images: ["/images/products/bacteriostatic-water.png"]
-meta:
-  title: "Купить Bacteriostatic Water UK | 10ml | Peptide Reconstitution"
-  Описание: "Купить bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."
-FAQs:
-  - question: "What is bacteriostatic water?"
-    answer: "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized Пептиды for multi-use applications."
-  - question: "Why use bacteriostatic water instead of sterile water?"
-    answer: "Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water."
-  - question: "How long can reconstituted Пептиды be stored?"
-    answer: "Пептиды reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide."
-  - question: "Is your bacteriostatic water pharmaceutical grade?"
-    answer: "Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, Чистота, and benzyl alcohol concentration."
-  - question: "How much bacteriostatic water do I need per peptide vial?"
-    answer: "Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials."
-  - question: "Can bacteriostatic water be frozen?"
-    answer: "Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light."
-  - question: "How long does bacteriostatic water last unopened?"
-    answer: "Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days."
-  - question: "What size syringe should I use?"
-    answer: "We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal."
-Отзывы:
-  - author: "Dr. James Wilson"
-    rating: 5
-    date: "2024-12-10"
-    title: "Essential lab supply"
-    content: "High-quality bacteriostatic water. Essential for our peptide research. USP grade quality is evident."
-    verified: true
-  - author: "Cambridge Research Lab"
-    rating: 5
-    date: "2024-12-03"
-    title: "Consistent quality"
-    content: "We order these regularly alongside our Пептиды. Quality is always consistent and reliable."
-    verified: true
-  - author: "Sarah Mitchell"
-    rating: 5
-    date: "2024-11-26"
-    title: "Perfect for peptide prep"
-    content: "Great value for USP grade bac water. Convenient 10ml size is perfect for multiple Пептиды."
-    verified: true
-  - author: "Oxford Peptide Lab"
-    rating: 5
-    date: "2024-11-19"
-    title: "Excellent quality"
-    content: "Proper pharmaceutical grade. No contamination issues in over a year of use."
-    verified: true
-  - author: "Dr. Richard Chen"
-    rating: 5
-    date: "2024-11-12"
-    title: "Reliable supply"
-    content: "Fast delivery, good price, consistent quality. Essential for any peptide research lab."
-    verified: true
+meta: 
+title: "Купить Bacteriostatic Вода UK | 10ml | Пептид Reconstitution"
+description: "Buy bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."
+faqs: 
+- question: "What is bacteriostatic water?"
+answer: "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications."
+- question: "Why use bacteriostatic water instead of sterile water?"
+answer: "Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water."
+- question: "How long can reconstituted peptides be stored?"
+answer: "Peptides reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide."
+- question: "Is your bacteriostatic water pharmaceutical grade?"
+answer: "Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, purity, and benzyl alcohol concentration."
+- question: "How much bacteriostatic water do I need per peptide vial?"
+answer: "Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials."
+- question: "Can bacteriostatic water be frozen?"
+answer: "Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light."
+- question: "How long does bacteriostatic water last unopened?"
+answer: "Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days."
+- question: "What size syringe should I use?"
+answer: "We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal."
+reviews: 
+- author: "Dr. James Wilson"
+rating: 5
+date: "2024-12-10"
+title: "Essential lab supply"
+content: "High-quality bacteriostatic water. Essential for our peptide research. USP grade quality is evident."
+verified: true
+- author: "Cambridge Research Lab"
+rating: 5
+date: "2024-12-03"
+title: "Consistent quality"
+content: "We order these regularly alongside our peptides. Quality is always consistent and reliable."
+verified: true
+- author: "Sarah Mitchell"
+rating: 5
+date: "2024-11-26"
+title: "Perfect for Пептид prep"
+content: "Great value for USP grade bac water. Convenient 10ml size is perfect for multiple peptides."
+verified: true
+- author: "Oxford Peptide Lab"
+rating: 5
+date: "2024-11-19"
+title: "Excellent quality"
+content: "Proper pharmaceutical grade. No contamination issues in over a year of use."
+verified: true
+- author: "Dr. Richard Chen"
+rating: 5
+date: "2024-11-12"
+title: "Reliable supply"
+content: "Fast delivery, good price, consistent quality. Essential for any peptide research lab."
+verified: true
 ---
 
-# Bacteriostatic Water for Peptide Research
 
-## What is Bacteriostatic Water?
+# Bacteriostatic Вода for Пептид Research
 
-Bacteriostatic water (BAC water) is sterile water containing 0.9% benzyl alcohol, a bacteriostatic preservative that inhibits the growth of bacteria. This makes it ideal for reconstituting lyophilized (freeze-dried) Пептиды for research applications where multiple withdrawals from the same vial are needed.
+## What is Bacteriostatic Вода?
+
+Bacteriostatic Вода (BAC Вода) is Стерильный Вода containing 0.9% benzyl alcohol, a bacteriostatic preservative that inhibits the growth of bacteria. This makes it ideal for reconstituting лиофилизированный (freeze-dried) Пептидs for research applications where multiple withdrawals from the same vial are needed.
 
 ## Key Features
 
 ### USP Grade Quality
-Our bacteriostatic water meets United States Pharmacopeia (USP) standards for:
+Our bacteriostatic Вода meets United States Pharmacopeia (USP) standards for:
 - Sterility
-- Чистота  
+- Purity  
 - Benzyl alcohol concentration (0.9%)
 - Endotoxin levels
 
 ### Multi-Use Design
-Unlike single-use sterile water, bacteriostatic water allows multiple withdrawals over several weeks without contamination risk, making it cost-effective for research laboratories.
+Unlike single-use Стерильный Вода, bacteriostatic Вода allows multiple withdrawals over several weeks without contamination risk, making it cost-effective for research laboratories.
 
 ### Convenient 10ml Size
-Each 10ml vial can reconstitute 5-10 peptide vials depending on concentration requirements.
+Each 10ml vial can reconstitute 5-10 Пептид vials depending on concentration requirements.
 
-## How to Use Bacteriostatic Water
+## How to Use Bacteriostatic Вода
 
 ### Reconstitution Steps
-1. Allow the peptide vial to reach room temperature
+1. Allow the Пептид vial to reach room temperature
 2. Clean both vial tops with an alcohol swab
-3. Using a sterile syringe, withdraw the desired amount of bacteriostatic water
-4. Insert the needle into the peptide vial, aiming at the glass wall
-5. Slowly inject the water, allowing it to run down the vial wall
+3. Using a Стерильный syringe, withdraw the desired amount of bacteriostatic Вода
+4. Insert the needle into the Пептид vial, aiming at the glass wall
+5. Slowly inject the Вода, allowing it to run down the vial wall
 6. Gently swirl (do not shake) until fully dissolved
-7. Store reconstituted peptide at 2-8°C
+7. Store восстановленный Пептид at 2-8°C
 
 ### Recommended Volumes
-| Peptide Amount | Suggested BAC Water | Concentration |
+| Пептид Amount | Suggested BAC Вода | Concentration |
 |---------------|---------------------|---------------|
 | 5mg | 1.0ml | 5mg/ml |
 | 5mg | 2.0ml | 2.5mg/ml |
 | 10mg | 2.0ml | 5mg/ml |
 | 10mg | 4.0ml | 2.5mg/ml |
 
-## Хранение Instructions
+## Storage Instructions
 
 - **Unopened**: Store at room temperature (15-25°C), away from direct light
 - **Opened**: Use within 28 days
@@ -121,24 +122,24 @@ Each 10ml vial can reconstitute 5-10 peptide vials depending on concentration re
 
 ## Applications in Research
 
-Bacteriostatic water is essential for:
-- Peptide reconstitution for in vitro studies
-- Preparation of stock solutions
-- Multi-day research protocols requiring repeat sampling
+Bacteriostatic Вода is essential for:
+- Пептид reconstitution for in vitro studies
+- Preparation of stock Растворs
+- Multi-day research Протоколs requiring repeat sampling
 - Any application where sterility must be maintained over time
 
-## Comparison: Bacteriostatic vs Sterile Water
+## Comparison: Bacteriostatic vs Стерильный Вода
 
-| Feature | Bacteriostatic Water | Sterile Water |
+| Feature | Bacteriostatic Вода | Стерильный Вода |
 |---------|---------------------|---------------|
 | Preservative | 0.9% Benzyl Alcohol | None |
 | Multiple Uses | Yes (up to 28 days) | Single use only |
 | Bacterial Growth | Inhibited | Possible after opening |
-| Best For | Multi-dose Пептиды | Single-dose applications |
+| Best For | Multi-dose Пептидs | Single-dose applications |
 
 ## Quality Assurance
 
-Every batch of our bacteriostatic water undergoes testing for:
+Every batch of our bacteriostatic Вода undergoes testing for:
 - **Sterility**: Tested per USP <71>
 - **Endotoxins**: Tested per USP <85>
 - **Particulate Matter**: Tested per USP <788>
@@ -146,10 +147,10 @@ Every batch of our bacteriostatic water undergoes testing for:
 
 ## Related Products
 
-- [BPC-157](/Пептиды/buy-bpc-157) - Popular healing peptide
-- [TB-500](/Пептиды/buy-tb-500) - Recovery peptide
-- [Semaglutide](/Пептиды/buy-semaglutide) - GLP-1 agonist
+- [BPC-157](/Пептидs/buy-bpc-157) - Popular healing Пептид
+- [TB-500](/Пептидs/buy-tb-500) - Recovery Пептид
+- [Semaglutide](/Пептидs/buy-semaglutide) - GLP-1 agonist
 
 ---
 
-*Bacteriostatic water is intended for research use only. Not for human or veterinary use.*
+*Bacteriostatic Вода is intended for research use only. Not for human or veterinary use.*

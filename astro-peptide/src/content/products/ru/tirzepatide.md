@@ -1,192 +1,193 @@
 ---
-lang: "en"
+lang: "ru"
 id: "peptide-tirzepatide"
 title: "Купить Tirzepatide UK | Research Grade Dual GIP/GLP-1 Agonist"
 primary_keyword: "Купить tirzepatide uk"
 search_volume: "6600"
-urlPath: "/Пептиды/buy-tirzepatide"
-aliases: ["Mounjaro peptide", "Dual GIP/GLP-1", "LY3298176"]
+urlPath: "/peptides/buy-tirzepatide"
+aliases:  ["Mounjaro Пептид", "Dual GIP/GLP-1", "LY3298176"]
 cas: "2023788-19-2"
 molecular_weight: "4813.45 g/mol"
-Чистота: "≥ 99%"
-Хранение: "-20°C recommended (research-only)"
-package_sizes: ["1 month pens"]
+purity: "≥ 99%"
+storage: "-20°C рекомендуется (только для исследований)"
+package_sizes:  ["1 month pens"]
 moq: 200
 price: 250
-price_range: "£250 per month"
-Сертификат анализа_url: "/Сертификат анализа/tirzepatide.pdf"
-short_Описание: "Купить Tirzepatide UK. Dual GIP/GLP-1 receptor agonist for Похудение research. ≥99% Чистота verified. Fast UK delivery."
+price_range: "£250 в месяц"
+coa_url: "/coa/tirzepatide.pdf"
+short_description: "Купить Tirzepatide UK. Dual GIP/GLP-1 receptor agonist for Похудение research. ≥99% purity verified. Быстрая доставка."
 category: "weight-loss"
-tags: ["research-peptide", "weight-loss", "tirzepatide-uk", "buy-Пептиды-uk", "dual-agonist"]
+tags:  ["research-Пептид", "weight-loss", "tirzepatide-uk", "buy-Пептидs-uk", "dual-agonist"]
 images: ["/images/products/tirzepatide.png"]
-meta:
-  title: "Купить Tirzepatide UK | Research Peptide | Fast Delivery"
-  Описание: "Купить Tirzepatide UK. Premium dual GIP/GLP-1 agonist for Похудение research. ≥99% Чистота, Сертификат анализа included. Next day UK delivery."
-FAQs:
-  - question: "What makes Tirzepatide different from Semaglutide?"
-    answer: "Tirzepatide is a dual agonist that activates both GIP and GLP-1 receptors, while Semaglutide only targets the GLP-1 receptor. This dual mechanism of action provides researchers with a unique tool for studying the synergistic effects of incretin hormone signalling in metabolic research."
-  - question: "What is Tirzepatide used for in research?"
-    answer: "Tirzepatide is primarily used in metabolic research to study dual incretin receptor activation, glucose Главнаяostasis, insulin secretion, and weight management mechanisms. Researchers investigate how the combined GIP/GLP-1 activity influences appetite, energy expenditure, and beta-cell function."
-  - question: "How should Tirzepatide be stored?"
-    answer: "Lyophilised Tirzepatide should be stored at -20°C for optimal long-term stability. Once reconstituted with sterile water or appropriate buffer, store at 2-8°C and use within 4 weeks. Avoid repeated freeze-thaw cycles and protect from light exposure."
-  - question: "What Чистота is your Tirzepatide?"
-    answer: "Our Tirzepatide is ≥99% pure as verified by ВЭЖХ analysis. Each batch includes a Certificate of Analysis (Сертификат анализа) with Чистота data, Масс-спектрометрия identity confirmation, and peptide content analysis."
-  - question: "How do I reconstitute Tirzepatide?"
-    answer: "Reconstitute Tirzepatide in sterile bacteriostatic water or a suitable buffer at your desired concentration. Add solvent slowly along the vial wall and gently swirl to dissolve. Avoid vigorous shaking which can denature the peptide."
-  - question: "Is this the same as Mounjaro?"
-    answer: "No. Mounjaro is the brand name for a prescription medication containing tirzepatide. Our product is the raw research-grade peptide sold exclusively for laboratory research purposes, not for human consumption or medical treatment."
-  - question: "What is the half-life of Tirzepatide?"
-    answer: "Tirzepatide has an extended half-life of approximately 5 days due to its C20 fatty diacid modification that enables albumin binding. This prolonged duration of action is valuable for studying sustained dual receptor activation in research models."
-  - question: "What package sizes are available?"
-    answer: "Tirzepatide is available in 5mg, 10mg, and 15mg vials. Larger quantities are available for institutional research projects - Контакты us for bulk pricing on custom orders."
-Отзывы:
-  - author: "Dr. Catherine Reynolds"
-    rating: 5
-    date: "2024-12-18"
-    title: "Excellent for dual agonist research"
-    content: "We're investigating GIP/GLP-1 synergy in our lab and this Tirzepatide has been perfect. Чистота matches our reference standards and the results are highly reproducible. Fast UK delivery was a bonus."
-    verified: true
-  - author: "Newcastle Metabolic Unit"
-    rating: 5
-    date: "2024-12-12"
-    title: "Superior quality research peptide"
-    content: "Switched from an overseas supplier to Peptide Магазин and the quality difference is noticeable. Better solubility, consistent results, and no more customs delays. Highly recommend."
-    verified: true
-  - author: "Mark Henderson"
-    rating: 5
-    date: "2024-12-05"
-    title: "Premium product, fair pricing"
-    content: "The 10mg vials are perfect for our medium-scale studies. Quality is exceptional and the Сертификат анализа documentation is comprehensive. Will continue ordering from Peptide Магазин."
-    verified: true
-  - author: "Glasgow Diabetes Research"
-    rating: 5
-    date: "2024-11-28"
-    title: "Consistent batch-to-batch quality"
-    content: "Running a long-term study requiring consistent peptide quality. Peptide Магазин has delivered every time. Their Tirzepatide performs identically across batches in our glucose tolerance studies."
-    verified: true
-  - author: "Dr. Sarah Mitchell"
-    rating: 4
-    date: "2024-11-22"
-    title: "Very good product overall"
-    content: "Excellent Чистота and activity. The only reason for 4 stars is I'd love to see a 2.5mg option for initial pilot studies. Product quality itself is top-notch."
-    verified: true
-  - author: "Cambridge Incretin Lab"
-    rating: 5
-    date: "2024-11-15"
-    title: "Best UK source for Tirzepatide"
-    content: "After testing several suppliers, Peptide Магазин offers the best combination of Чистота, price, and service for Tirzepatide research. Essential for our incretin mechanism studies."
-    verified: true
-  - author: "James Phillips"
-    rating: 5
-    date: "2024-11-08"
-    title: "Fast delivery, excellent quality"
-    content: "Ordered Friday afternoon, arrived Monday morning. Properly packaged with cold packs. Peptide dissolved easily and showed expected dual receptor activity. Perfect."
-    verified: true
-  - author: "Liverpool University Lab"
-    rating: 5
-    date: "2024-11-01"
-    title: "Outstanding for metabolic research"
-    content: "Our beta-cell function studies require high-quality Пептиды and Peptide Магазин delivers. The Tirzepatide shows expected effects in our islet preparations consistently."
-    verified: true
-  - author: "Dr. William Turner"
-    rating: 5
-    date: "2024-10-25"
-    title: "Reliable research supplier"
-    content: "Have placed multiple orders over six months. Always prompt delivery, always excellent quality. The 10% discount on larger orders helps our research budget."
-    verified: true
-  - author: "Southampton Obesity Studies"
-    rating: 5
-    date: "2024-10-18"
-    title: "Perfect for weight research"
-    content: "Using Tirzepatide in our diet-induced obesity models. Results are consistent with published literature using pharmaceutical-grade material. Excellent value."
-    verified: true
-  - author: "Emma Richardson"
-    rating: 4
-    date: "2024-10-12"
-    title: "Good product and service"
-    content: "Quality is excellent for the price. Quick delivery to our lab. Would recommend to colleagues working in metabolic research."
-    verified: true
-  - author: "Oxford Metabolic Group"
-    rating: 5
-    date: "2024-10-05"
-    title: "Exceptional documentation"
-    content: "The Сертификат анализа includes everything we need for our quality records - ВЭЖХ, MS data, peptide content. Product quality matches the documentation perfectly."
-    verified: true
-  - author: "Dr. Robert Clarke"
-    rating: 5
-    date: "2024-09-28"
-    title: "Premium research peptide"
-    content: "We verify all Пептиды in-house before use. Peptide Магазин' Tirzepatide consistently exceeds Чистота claims. Worth the investment for serious research."
-    verified: true
-  - author: "Edinburgh Biotech Lab"
-    rating: 5
-    date: "2024-09-22"
-    title: "Excellent UK supplier"
-    content: "Finally found a reliable UK source for Исследовательские пептиды. No import hassles, fast delivery, excellent quality. Our new preferred supplier for incretins."
-    verified: true
-  - author: "Hannah Cooper"
-    rating: 5
-    date: "2024-09-15"
-    title: "Great experience"
-    content: "Easy ordering process, prompt delivery, quality product. Customer service was helpful when I had Вопросы about reconstitution. Will order again."
-    verified: true
-  - author: "Manchester Incretin Research"
-    rating: 5
-    date: "2024-09-08"
-    title: "Top quality Tirzepatide"
-    content: "Using this for comparative studies with GLP-1 mono-agonists. The quality allows us to draw meaningful conclusions about dual receptor mechanisms."
-    verified: true
-  - author: "Dr. Michael Barnes"
-    rating: 5
-    date: "2024-09-01"
-    title: "Highly recommended"
-    content: "Excellent product for investigating the unique pharmacology of dual incretin agonism. Чистота is exceptional and results are reproducible."
-    verified: true
-  - author: "Bristol Research Centre"
-    rating: 5
-    date: "2024-08-25"
-    title: "Outstanding service and quality"
-    content: "From order to delivery, everything was professional. The Tirzepatide quality is excellent for our receptor binding assays. Five stars deserved."
-    verified: true
-  - author: "Laura Martin"
-    rating: 5
-    date: "2024-08-18"
-    title: "Reliable and consistent"
-    content: "Multiple orders over the past year and quality has been uniformly excellent. Essential for our ongoing research programme."
-    verified: true
-  - author: "Cardiff Metabolic Studies"
-    rating: 5
-    date: "2024-08-12"
-    title: "Premium quality guaranteed"
-    content: "Ran independent ВЭЖХ analysis - Чистота exceeded 99% as claimed. Few suppliers offer this level of quality with proper documentation."
-    verified: true
-  - author: "Dr. Jennifer Adams"
-    rating: 4
-    date: "2024-08-05"
-    title: "Very good overall"
-    content: "Quality is excellent, delivery prompt. Minor suggestion: would appreciate even smaller trial sizes for initial experiments."
-    verified: true
-  - author: "Leeds Hormone Lab"
-    rating: 5
-    date: "2024-07-30"
-    title: "Excellent research peptide"
-    content: "Our incretin signalling studies require high-Чистота Пептиды. Peptide Магазин consistently delivers. Tirzepatide performs perfectly in our assays."
-    verified: true
-  - author: "Thomas Walker"
-    rating: 5
-    date: "2024-07-25"
-    title: "Fast and reliable"
-    content: "Express delivery lived up to its promise - ordered Tuesday, arrived Wednesday. Product quality was exactly as described."
-    verified: true
+meta: 
+title: "Купить Tirzepatide UK | Исследовательский пептид | Fast Delivery"
+description: "Buy Tirzepatide UK. Premium dual GIP/GLP-1 agonist for weight loss research. ≥99% purity, COA included. Next day UK delivery."
+faqs: 
+- question: "What makes Tirzepatide different from Semaglutide?"
+answer: "Tirzepatide is a dual agonist that activates both GIP and GLP-1 receptors, while Semaglutide only targets the GLP-1 receptor. This dual mechanism of action provides researchers with a unique tool for studying the synergistic effects of incretin hormone signalling in metabolic research."
+- question: "What is Tirzepatide used for in research?"
+answer: "Tirzepatide is primarily used in metabolic research to study dual incretin receptor activation, glucose homeostasis, insulin secretion, and weight management mechanisms. Researchers investigate how the combined GIP/GLP-1 activity influences appetite, energy expenditure, and beta-cell function."
+- question: "How should Tirzepatide be stored?"
+answer: "Lyophilised Tirzepatide should be stored at -20°C for optimal long-term stability. Once reconstituted with sterile water or appropriate buffer, store at 2-8°C and use within 4 weeks. Avoid repeated freeze-thaw cycles and protect from light exposure."
+- question: "What purity is your Tirzepatide?"
+answer: "Our Tirzepatide is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis (COA) with purity data, mass spectrometry identity confirmation, and peptide content analysis."
+- question: "How do I reconstitute Tirzepatide?"
+answer: "Reconstitute Tirzepatide in sterile bacteriostatic water or a suitable buffer at your desired concentration. Add solvent slowly along the vial wall and gently swirl to dissolve. Avoid vigorous shaking which can denature the peptide."
+- question: "Is this the same as Mounjaro?"
+answer: "No. Mounjaro is the brand name for a prescription medication containing tirzepatide. Our product is the raw research-grade peptide sold exclusively for laboratory research purposes, not for human consumption or medical treatment."
+- question: "What is the half-life of Tirzepatide?"
+answer: "Tirzepatide has an extended half-life of approximately 5 days due to its C20 fatty diacid modification that enables albumin binding. This prolonged duration of action is valuable for studying sustained dual receptor activation in research models."
+- question: "What package sizes are available?"
+answer: "Tirzepatide is available in 5mg, 10mg, and 15mg vials. Larger quantities are available for institutional research projects - contact us for bulk pricing on custom orders."
+reviews: 
+- author: "Dr. Catherine Reynolds"
+rating: 5
+date: "2024-12-18"
+title: "Excellent for dual agonist research"
+content: "We're investigating GIP/GLP-1 synergy in our lab and this Tirzepatide has been perfect. Purity matches our reference standards and the results are highly reproducible. Fast UK delivery was a bonus."
+verified: true
+- author: "Newcastle Metabolic Unit"
+rating: 5
+date: "2024-12-12"
+title: "Superior quality Исследовательский пептид"
+content: "Switched from an overseas supplier to Peptide Shop and the quality difference is noticeable. Better solubility, consistent results, and no more customs delays. Highly recommend."
+verified: true
+- author: "Mark Henderson"
+rating: 5
+date: "2024-12-05"
+title: "Premium product, fair pricing"
+content: "The 10mg vials are perfect for our medium-scale studies. Quality is exceptional and the COA documentation is comprehensive. Will continue ordering from Peptide Shop."
+verified: true
+- author: "Glasgow Diabetes Research"
+rating: 5
+date: "2024-11-28"
+title: "Consistent batch-to-batch quality"
+content: "Running a long-term study requiring consistent peptide quality. Peptide Shop has delivered every time. Their Tirzepatide performs identically across batches in our glucose tolerance studies."
+verified: true
+- author: "Dr. Sarah Mitchell"
+rating: 4
+date: "2024-11-22"
+title: "Very good product overall"
+content: "Excellent purity and activity. The only reason for 4 stars is I'd love to see a 2.5mg option for initial pilot studies. Product quality itself is top-notch."
+verified: true
+- author: "Cambridge Incretin Lab"
+rating: 5
+date: "2024-11-15"
+title: "Best UK Источник for Tirzepatide"
+content: "After testing several suppliers, Peptide Shop offers the best combination of purity, price, and service for Tirzepatide research. Essential for our incretin mechanism studies."
+verified: true
+- author: "James Phillips"
+rating: 5
+date: "2024-11-08"
+title: "Fast delivery, excellent quality"
+content: "Ordered Friday afternoon, arrived Monday morning. Properly packaged with cold packs. Peptide dissolved easily and showed expected dual receptor activity. Perfect."
+verified: true
+- author: "Liverpool University Lab"
+rating: 5
+date: "2024-11-01"
+title: "Outstanding for metabolic research"
+content: "Our beta-cell function studies require high-quality peptides and Peptide Shop delivers. The Tirzepatide shows expected effects in our islet preparations consistently."
+verified: true
+- author: "Dr. William Turner"
+rating: 5
+date: "2024-10-25"
+title: "Reliable research supplier"
+content: "Have placed multiple orders over six months. Always prompt delivery, always excellent quality. The 10% discount on larger orders helps our research budget."
+verified: true
+- author: "Southampton Obesity Studies"
+rating: 5
+date: "2024-10-18"
+title: "Perfect for weight research"
+content: "Using Tirzepatide in our diet-induced obesity models. Results are consistent with published literature using pharmaceutical-grade material. Excellent value."
+verified: true
+- author: "Emma Richardson"
+rating: 4
+date: "2024-10-12"
+title: "Good product and service"
+content: "Quality is excellent for the price. Quick delivery to our lab. Would recommend to colleagues working in metabolic research."
+verified: true
+- author: "Oxford Metabolic Group"
+rating: 5
+date: "2024-10-05"
+title: "Exceptional documentation"
+content: "The COA includes everything we need for our quality records - HPLC, MS data, peptide content. Product quality matches the documentation perfectly."
+verified: true
+- author: "Dr. Robert Clarke"
+rating: 5
+date: "2024-09-28"
+title: "Premium Исследовательский пептид"
+content: "We verify all peptides in-house before use. Peptide Shop' Tirzepatide consistently exceeds purity claims. Worth the investment for serious research."
+verified: true
+- author: "Edinburgh Biotech Lab"
+rating: 5
+date: "2024-09-22"
+title: "Excellent UK supplier"
+content: "Finally found a reliable UK source for research peptides. No import hassles, fast delivery, excellent quality. Our new preferred supplier for incretins."
+verified: true
+- author: "Hannah Cooper"
+rating: 5
+date: "2024-09-15"
+title: "Great experience"
+content: "Easy ordering process, prompt delivery, quality product. Customer service was helpful when I had questions about reconstitution. Will order again."
+verified: true
+- author: "Manchester Incretin Research"
+rating: 5
+date: "2024-09-08"
+title: "Top quality Tirzepatide"
+content: "Using this for comparative studies with GLP-1 mono-agonists. The quality allows us to draw meaningful conclusions about dual receptor mechanisms."
+verified: true
+- author: "Dr. Michael Barnes"
+rating: 5
+date: "2024-09-01"
+title: "Highly recommended"
+content: "Excellent product for investigating the unique pharmacology of dual incretin agonism. Purity is exceptional and results are reproducible."
+verified: true
+- author: "Bristol Research Centre"
+rating: 5
+date: "2024-08-25"
+title: "Outstanding service and quality"
+content: "From order to delivery, everything was professional. The Tirzepatide quality is excellent for our receptor binding assays. Five stars deserved."
+verified: true
+- author: "Laura Martin"
+rating: 5
+date: "2024-08-18"
+title: "Reliable and consistent"
+content: "Multiple orders over the past year and quality has been uniformly excellent. Essential for our ongoing research programme."
+verified: true
+- author: "Cardiff Metabolic Studies"
+rating: 5
+date: "2024-08-12"
+title: "Premium quality guaranteed"
+content: "Ran independent HPLC analysis - purity exceeded 99% as claimed. Few suppliers offer this level of quality with proper documentation."
+verified: true
+- author: "Dr. Jennifer Adams"
+rating: 4
+date: "2024-08-05"
+title: "Very good overall"
+content: "Quality is excellent, delivery prompt. Minor suggestion: would appreciate even smaller trial sizes for initial experiments."
+verified: true
+- author: "Leeds Hormone Lab"
+rating: 5
+date: "2024-07-30"
+title: "Excellent Исследовательский пептид"
+content: "Our incretin signalling studies require high-purity peptides. Peptide Shop consistently delivers. Tirzepatide performs perfectly in our assays."
+verified: true
+- author: "Thomas Walker"
+rating: 5
+date: "2024-07-25"
+title: "Fast and reliable"
+content: "Express delivery lived up to its promise - ordered Tuesday, arrived Wednesday. Product quality was exactly as described."
+verified: true
 ---
+
 
 ## What is Tirzepatide?
 
-**Tirzepatide** is a novel synthetic peptide that functions as a dual agonist of two key incretin hormone receptors: glucose-dependent insulinotropic polypeptide (GIP) and Глюкагоноподобный пептид-1 (GLP-1). This unique dual mechanism of action distinguishes Tirzepatide from single-target GLP-1 receptor agonists like semaglutide, making it an invaluable tool for metabolic research.
+**Tirzepatide** is a novel synthetic Пептид that functions as a dual agonist of two key incretin hormone receptors: glucose-dependent insulinotropic polyПептид (GIP) and glucagon-like Пептид-1 (GLP-1). This unique dual Механизм действия distinguishes Tirzepatide from single-target GLP-1 receptor agonists like semaglutide, making it an invaluable tool for metabolic research.
 
-The peptide's structure incorporates a modified GIP Последовательность with carefully engineered amino acid substitutions and a C20 fatty diacid side chain attached to lysine. This modification enables binding to serum albumin, extending the biological half-life to approximately five days and allowing researchers to study sustained dual receptor activation.
+The Пептид's Структура incorporates a modified GIP Последовательность with carefully engineered amino acid substitutions and a C20 fatty diacid side chain attached to lysine. This modification enables binding to serum albumin, extending the biological Период полураспада to approximately five days and allowing researchers to Исследование sustained dual receptor activation.
 
-Peptide Магазин supplies **research-grade Tirzepatide** with guaranteed ≥99% Чистота, verified through comprehensive ВЭЖХ and Масс-спектрометрия analysis. Each order includes a detailed Certificate of Analysis to ensure researchers receive properly characterised material for their studies.
+Пептид Shop supplies **research-grade Tirzepatide** with guaranteed ≥99% purity, verified through comprehensive HPLC and mass spectrometry analysis. Each order includes a detailed Certificate of Analysis to ensure researchers receive properly characterised material for their studies.
 
 ## How Does Tirzepatide Work?
 
@@ -194,10 +195,10 @@ Tirzepatide exerts its biological effects through simultaneous activation of GIP
 
 ### Dual Incretin Receptor Activation
 
-The GIP receptor is predominantly expressed in pancreatic beta cells and adipose tissue, while GLP-1 receptors are found in pancreatic islets, brain, heart, and gastrointestinal tract. By activating both receptor systems simultaneously, Tirzepatide provides researchers with a unique tool for studying:
+The GIP receptor is predominantly expressed in pancreatic beta cells and adipose tissue, while GLP-1 receptors are found in pancreatic islets, brain, heart, and gastrointestinal tract. By activating both receptor systems simultaneously, Tirzepatide provides researchers with a unique tool for Исследованиеing:
 
 - **Synergistic insulin secretion** - Combined GIP and GLP-1 signalling enhances glucose-dependent insulin release beyond what either hormone achieves alone
-- **Enhanced metabolic effects** - Dual activation may improve insulin sensitivity through mechanisms distinct from single-agonist Пептиды
+- **Enhanced metabolic effects** - Dual activation may improve insulin sensitivity through mechanisms distinct from single-agonist Пептидs
 - **Improved weight outcomes** - Research suggests the dual mechanism may provide superior Похудение effects compared to GLP-1 mono-agonists
 
 ### Pancreatic Beta-Cell Effects
@@ -240,12 +241,12 @@ Tirzepatide enables crucial comparative studies between:
 The dual agonist is valuable for investigating:
 
 - **Multi-organ metabolic coordination** - Understanding how dual incretin signalling affects whole-body metabolism
-- **Insulin resistance mechanisms** - Studying potential improvements in peripheral insulin sensitivity
+- **Insulin resistance mechanisms** - Исследованиеing potential improvements in peripheral insulin sensitivity
 - **Hepatic glucose production** - Investigating effects on liver metabolism
 
 ### Weight Management Research
 
-Tirzepatide's superior weight outcomes in preclinical models make it essential for:
+Tirzepatide's superior weight outcomes in preКлинический models make it essential for:
 
 - **Appetite regulation studies** - Comparing dual vs single agonist effects on food intake
 - **Energy expenditure research** - Investigating metabolic rate changes
@@ -264,7 +265,7 @@ Emerging areas of investigation include:
 Core applications in diabetes studies include:
 
 - **Beta-cell preservation** - Investigating protective effects on insulin-producing cells
-- **Glucose Главнаяostasis** - Studying blood glucose regulation mechanisms
+- **Glucose homeostasis** - Исследованиеing blood glucose regulation mechanisms
 - **Incretin physiology** - Understanding the incretin effect in normal and diabetic states
 
 ## Tirzepatide vs Semaglutide: Key Research Differences
@@ -272,55 +273,55 @@ Core applications in diabetes studies include:
 | Feature | Tirzepatide | Semaglutide |
 |---------|-------------|-------------|
 | **Receptor Targets** | GIP + GLP-1 (dual) | GLP-1 only |
-| **Half-life** | ~5 days | ~7 days |
+| **Период полураспада** | ~5 days | ~7 days |
 | **Молекулярная масса** | 4813.45 g/mol | 4113.58 g/mol |
 | **Fatty Acid Modification** | C20 diacid | C18 diacid |
 | **Research Focus** | Dual incretin synergy | GLP-1 specific mechanisms |
 
-Both Пептиды are available from Peptide Магазин in research-grade Чистота, allowing direct comparison studies.
+Both Пептидs are available from Пептид Shop in research-grade purity, allowing direct comparison studies.
 
-## Tirzepatide Peptide Спецификацияs
+## Tirzepatide Пептид Specifications
 
-| Спецификация | Detail |
+| Specification | Detail |
 |--------------|--------|
 | **CAS Number** | 2023788-19-2 |
-| **Molecular Formula** | C₂₂₅H₃₄₈N₄₈O₆₈ |
+| **Molecular Формула** | C₂₂₅H₃₄₈N₄₈O₆₈ |
 | **Молекулярная масса** | 4813.45 g/mol |
-| **Чистота** | ≥99% (ВЭЖХ) |
-| **Appearance** | White to off-white lyophilised powder |
-| **Solubility** | Soluble in water; may require gentle warming |
-| **Identity** | Confirmed by Масс-спектрометрия |
+| **Purity** | ≥99% (HPLC) |
+| **Внешний вид** | White to off-white lyophilised powder |
+| **Solubility** | Soluble in Вода; may require gentle warming |
+| **Identity** | Confirmed by mass spectrometry |
 
 ## Reconstitution and Handling Guidelines
 
-### Reconstitution Protocol
+### Reconstitution Протокол
 
 1. **Equilibrate to room temperature** before opening the vial
 2. **Calculate required concentration** based on your experimental design
-3. **Add sterile bacteriostatic water** slowly along the vial wall
+3. **Add Стерильный bacteriostatic Вода** slowly along the vial wall
 4. **Gently swirl** to dissolve - avoid shaking
-5. **Allow complete dissolution** before use
+5. **Allow complete disРаствор** before use
 6. **Aliquot immediately** to avoid repeated freeze-thaw cycles
 
-### Хранение Recommendations
+### Storage Recommendations
 
 | Condition | Temperature | Duration |
 |-----------|-------------|----------|
 | **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 4 weeks |
+| **восстановленный** | 2-8°C | Up to 4 weeks |
 | **Working aliquots** | -20°C | Up to 3 months |
 
-## Why Choose Peptide Магазин for Tirzepatide?
+## Why Choose Пептид Shop for Tirzepatide?
 
-### Verified Чистота
+### Verified Purity
 
-Our Tirzepatide undergoes rigorous quality testing with ≥99% Чистота verified by ВЭЖХ. Масс-спектрометрия confirms identity, and comprehensive Сертификат анализаs accompany every order.
+Our Tirzepatide undergoes rigorous quality testing with ≥99% purity verified by HPLC. Mass spectrometry confirms identity, and comprehensive COAs accompany every order.
 
 ### UK-Based Supply
 
-- **Fast UK delivery** - No customs delays or import complications
+- **Быстрая доставка** - No customs delays or import complications
 - **Next-day option available** - For urgent research needs
-- **Temperature-controlled Доставка** - Maintains peptide integrity
+- **Temperature-controlled shipping** - Maintains Пептид integrity
 - **Discreet, professional packaging** - All orders shipped securely
 
 ### Research Support
@@ -328,11 +329,11 @@ Our Tirzepatide undergoes rigorous quality testing with ≥99% Чистота ve
 Our technical team provides:
 
 - Reconstitution guidance
-- Хранение recommendations
+- Storage recommendations
 - Application advice
 - Custom order assistance
 
-## Ordering Tirzepatide from Peptide Магазин
+## Ordering Tirzepatide from Пептид Shop
 
 ### Available Package Sizes
 
@@ -351,12 +352,12 @@ Bulk quantities available for institutional projects.
 
 ## Research Use Statement
 
-**This product is sold exclusively for laboratory research purposes.** Tirzepatide from Peptide Магазин is not intended for human or veterinary use. This is not "Mounjaro" or any branded pharmaceutical - it is research-grade tirzepatide for in vitro and animal research conducted by qualified professionals.
+**This product is sold exclusively for laboratory research purposes.** Tirzepatide from Пептид Shop is not intended for human or veterinary use. This is not "Mounjaro" or any branded pharmaceutical - it is research-grade tirzepatide for in vitro and animal research conducted by qualified professionals.
 
 ## Order Tirzepatide Today
 
-Advance your dual incretin research with premium-quality Tirzepatide from Peptide Магазин. Our commitment to Чистота, documentation, and service supports your most demanding research applications.
+Advance your dual incretin research with premium-quality Tirzepatide from Пептид Shop. Our commitment to purity, documentation, and service supports your most demanding research applications.
 
 **Minimum order: £200** | **10% discount on orders over £200**
 
-Select your package size above to add to Корзина. Контакты our team for bulk pricing or custom requirements.
+Select your package size above to add to cart. Contact our team for bulk pricing or custom requirements.

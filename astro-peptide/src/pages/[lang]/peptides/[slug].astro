@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   const allProducts = await getCollection('products');
   // Get English products as the base (for generating routes)
   const englishProducts = allProducts.filter(p => p.slug.startsWith('en/'));
-  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
   
   return languages.flatMap(lang => 
     englishProducts.map(enProduct => {
