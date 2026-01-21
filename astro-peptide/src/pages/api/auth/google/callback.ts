@@ -31,6 +31,9 @@ export const GET: APIRoute = async ({ url, redirect, cookies }) => {
 
   try {
     // Exchange code for tokens
+    // Must match the redirect_uri used in the initial request
+    const redirectUri = `${url.origin}/api/auth/google/callback`;
+    
     const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -38,7 +41,7 @@ export const GET: APIRoute = async ({ url, redirect, cookies }) => {
         code,
         client_id: GOOGLE_CLIENT_ID,
         client_secret: GOOGLE_CLIENT_SECRET,
-        redirect_uri: `${SITE_URL}/api/auth/google/callback`,
+        redirect_uri: redirectUri,
         grant_type: 'authorization_code'
       })
     });
@@ -77,7 +80,7 @@ export const GET: APIRoute = async ({ url, redirect, cookies }) => {
       path: '/',
       maxAge: 60 * 60 * 24 * 30, // 30 days
       httpOnly: false, // Needs to be accessible by client JS
-      secure: SITE_URL.startsWith('https'),
+      secure: url.protocol === 'https:',
       sameSite: 'lax'
     });
 

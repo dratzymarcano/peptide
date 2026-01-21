@@ -16,7 +16,9 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.props;
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+// Filter to English products only to prevent duplicates (localized versions are handled by translations)
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
 
 // Helper to clean slug - removes /peptides/ prefix and leading slashes
 const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');

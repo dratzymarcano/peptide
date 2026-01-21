@@ -16,7 +16,12 @@ export const GET: APIRoute = async ({ redirect, url }) => {
   // Build Google OAuth URL
   const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
   authUrl.searchParams.set('client_id', GOOGLE_CLIENT_ID);
-  authUrl.searchParams.set('redirect_uri', `${SITE_URL}/api/auth/google/callback`);
+  
+  // Use request origin for redirect_uri to support both localhost and production
+  // as long as they are whitelisted in Google Console
+  const redirectUri = `${url.origin}/api/auth/google/callback`;
+  
+  authUrl.searchParams.set('redirect_uri', redirectUri);
   authUrl.searchParams.set('response_type', 'code');
   authUrl.searchParams.set('scope', 'openid email profile');
   authUrl.searchParams.set('state', JSON.stringify({ returnUrl, lang }));

@@ -78,6 +78,28 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
   const $isAuthLoading = useStore(isAuthLoading);
   const $authError = useStore(authError);
   
+  useEffect(() => {
+    // Check for auth errors in URL
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+      
+      if (error) {
+         let errorMessage = 'Authentication failed';
+         if (error === 'auth_failed') errorMessage = 'Authentication was cancelled or failed';
+         if (error === 'token_failed') errorMessage = 'Failed to connect to Google';
+         if (error === 'userinfo_failed') errorMessage = 'Failed to get user info from Google';
+         if (error === 'oauth_error') errorMessage = 'Detailed Google OAuth Error';
+         
+         authError.set(errorMessage);
+         
+         // Clean URL
+         const url = new URL(window.location.href);
+         url.searchParams.delete('error');
+         window.history.replaceState({}, '', url);
+      }
+    }
+  }, []);
   const products = Object.values($cartItems);
   const [currentStep, setCurrentStep] = useState<Step>('account');
   const [checkoutMode, setCheckoutMode] = useState<CheckoutMode>('guest');

@@ -32,7 +32,10 @@ export const GET: APIRoute = async ({ url }) => {
 
   try {
     // Search products
-    const products = await getCollection('products');
+    const allProducts = await getCollection('products');
+    // Filter to English products only to prevent duplicates
+    const products = allProducts.filter(p => p.slug.startsWith('en/'));
+
     const productResults = products
       .filter(product => {
         const title = product.data.title?.toLowerCase() || '';

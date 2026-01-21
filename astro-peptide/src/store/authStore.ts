@@ -89,9 +89,21 @@ function checkGoogleAuthCookie() {
   if (!isBrowser) return;
   
   const authCookie = getCookie('peptide-google-auth');
+  
   if (authCookie) {
+    console.log('Found Google auth cookie, attempting to login...');
     try {
-      const user = JSON.parse(decodeURIComponent(authCookie));
+      let user;
+      try {
+        // Try decoding first (standard)
+        user = JSON.parse(decodeURIComponent(authCookie));
+      } catch (e) {
+        // Fallback to raw parsing
+        console.warn('Failed to decode cookie, trying raw parse...');
+        user = JSON.parse(authCookie);
+      }
+
+      console.log('Google login successful for:', user.email);
       currentUser.set(user);
       saveAuthToStorage();
       // Clear the auth cookie after processing

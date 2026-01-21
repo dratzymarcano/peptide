@@ -17,7 +17,9 @@ interface Props {
 const { activeCategory, showProductInfo = false, productInfo, lang = 'en' } = Astro.props;
 
 // Get all products and calculate category counts
-const products = await getCollection('products');
+const allProducts = await getCollection('products');
+// Filter to English products only for counts/listings to avoid duplicates
+const products = allProducts.filter(p => p.slug.startsWith('en/'));
 const categories = [...new Set(products.map((product) => product.data.category))];
 
 // Map category to translation key

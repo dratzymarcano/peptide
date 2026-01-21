@@ -42,10 +42,19 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
   }, [$currentUser]);
 
   // Redirect if not authenticated
-  if (!$isAuthenticated) {
-    if (typeof window !== 'undefined') {
-      window.location.href = '/checkout/';
+  useEffect(() => {
+    if (!$isAuthenticated && typeof window !== 'undefined') {
+      const timer = setTimeout(() => {
+         // Double check before redirecting
+         if (!isAuthenticated.get()) {
+            window.location.href = '/checkout/';
+         }
+      }, 300);
+      return () => clearTimeout(timer);
     }
+  }, [$isAuthenticated]);
+
+  if (!$isAuthenticated) {
     return (
       <div style={{ textAlign: 'center', padding: '60px 20px' }}>
         <p>{t(lang, 'accountPage.redirecting')}</p>

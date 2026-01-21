@@ -16,7 +16,9 @@ const { currentSlug, category, limit = 4, lang } = Astro.props;
 const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
 
 // Get all products
-const allProducts = await getCollection('products');
+const collection = await getCollection('products');
+// Filter to English products to ensure unique recommendations
+const allProducts = collection.filter(p => p.slug.startsWith('en/'));
 
 // Filter related products (same category, exclude current)
 const relatedProducts = allProducts
