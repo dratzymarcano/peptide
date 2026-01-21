@@ -35,7 +35,8 @@ interface OrderEmailData {
 const SITE_EMAIL = 'peptideshop@zohomail.com';
 const OWNER_EMAIL = import.meta.env.OWNER_EMAIL || SITE_EMAIL;
 const SITE_NAME = 'Peptide Shop';
-const SENDER_EMAIL = import.meta.env.SENDER_EMAIL || `Peptide Shop <onboarding@resend.dev>`;
+// Default to the domain email since it is verified. Fallback to env var if set.
+const SENDER_EMAIL = import.meta.env.SENDER_EMAIL || `Peptide Shop <noreply@peptide-shop.net>`;
 
 // Send email using Resend API
 async function sendEmail(
