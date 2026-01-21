@@ -10,7 +10,6 @@ image: "/images/blog/post1.jpg"
 featured: true
 meta:
   title: "GLP-1 Agonists in Metabolic Исследования | Peptide Shop"
-lang: "ru"
   description: "Explore the mechanisms and research applications of GLP-1 receptor agonists including Semaglutide and Tirzepatide."
 ---
 

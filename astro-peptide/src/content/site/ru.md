@@ -1,10 +1,10 @@
 ---
 lang: ru
 phone: "+44 123 456 7890"
-email: "Пептидыhop@zohomail.com"
-telegram: "@Пептидыhop"
+email: "peptideshop@zohomail.com"
+telegram: "@peptideshop"
 seo:
-  ГлавнаяName: "Peptide Магазин - Купить Пептиды United Kingdom & Europe"
-  ГлавнаяОписание: "Купить Пептиды United Kingdom & Europe. Premium Исследовательские пептиды for sale with 99% Чистота. Fast delivery, Сертификат анализа included. Semaglutide, BPC-157, Tirzepatide & more."
-  organizationОписание: "Купить Пептиды United Kingdom & Europe. Leading supplier of Исследовательские пептиды with 99% Чистота. Fast delivery across the United Kingdom and Europe."
+  homeName: "Магазин Peptides - Купить пептиды в Европе"
+  homeDescription: "Купить исследовательские пептиды в Европе. Премиальные пептиды для исследований, чистота 99%. Быстрая доставка, сертификат анализа включен. Семаглутид, BPC-157, Тирзепатид и другие."
+  organizationDescription: "Купить исследовательские пептиды в Европе. Ведущий поставщик пептидов с чистотой 99%. Быстрая доставка по всей Европе."
 ---
