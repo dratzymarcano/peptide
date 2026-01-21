@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /account/
 
-Sitemap: https://peptide-shop.net/sitemap_index.xml
+Sitemap: https://peptide-shop.net/sitemap.xml
