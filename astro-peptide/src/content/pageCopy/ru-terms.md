@@ -1,31 +1,31 @@
 ---
 lang: ru
-page: Условия
+page: terms
 copy:
-  title: "Условия and Conditions"
-  subtitle: "Please read these Условия carefully before using our website and services."
+  title: "Условия и положения"
+  subtitle: "Пожалуйста, внимательно прочитайте эти условия перед использованием нашего сайта и услуг."
   acceptance:
-    title: "1. Acceptance of Условия"
-    content: "By accessing and using this website, you agree to be bound by these Условия and Conditions. If you do not agree, please do not use our site."
+    title: "1. Принятие условий"
+    content: "Получая доступ и используя этот сайт, вы соглашаетесь соблюдать эти Условия и положения. Если вы не согласны, пожалуйста, не используйте наш сайт."
   researchUse:
-    title: "2. Research Use Only"
-    warning: "ALL PRODUCTS SOLD ON THIS SITE ARE FOR LABORATORY RESEARCH PURPOSES ONLY."
-    notForUseLabel: "They are NOT for use in:"
-    notHumans: "Humans or animals"
-    notFood: "Foods, drugs, or cosmetics"
-    notHousehold: "Household chemicals"
-    acknowledgment: "You acknowledge that the products have not been tested for safety or efficacy in food, drug, medical device, cosmetic, commercial or any other use."
+    title: "2. Только для исследовательского использования"
+    warning: "ВСЕ ПРОДУКТЫ, ПРОДАВАЕМЫЕ НА ЭТОМ САЙТЕ, ПРЕДНАЗНАЧЕНЫ ИСКЛЮЧИТЕЛЬНО ДЛЯ ЛАБОРАТОРНЫХ ИССЛЕДОВАНИЙ."
+    notForUseLabel: "Они НЕ предназначены для использования в:"
+    notHumans: "Людях или животных"
+    notFood: "Продуктах питания, лекарствах или косметике"
+    notHousehold: "Бытовой химии"
+    acknowledgment: "Вы признаёте, что продукты не прошли испытания на безопасность или эффективность для использования в пищевых продуктах, лекарствах, медицинских изделиях, косметике, коммерческих или иных целях."
   purchaser:
-    title: "3. Purchaser Representations"
-    intro: "By purchasing from Peptide Магазин, you represent and warrant that:"
-    age: "You are at least 18 years of age."
-    institution: "You are affiliated with a research institution, laboratory, or are a qualified researcher."
-    hazards: "You are aware of the health and safety hazards associated with handling research chemicals."
-    handling: "You will handle, store, and dispose of these products in accordance with all applicable laws and regulations."
+    title: "3. Гарантии покупателя"
+    intro: "Совершая покупку в Peptide Shop, вы заявляете и гарантируете, что:"
+    age: "Вам исполнилось 18 лет."
+    institution: "Вы связаны с исследовательским учреждением, лабораторией или являетесь квалифицированным исследователем."
+    hazards: "Вы осведомлены о рисках для здоровья и безопасности, связанных с обращением с исследовательскими химикатами."
+    handling: "Вы будете обращаться с этими продуктами, хранить и утилизировать их в соответствии со всеми применимыми законами и правилами."
   liability:
-    title: "4. Limitation of Liability"
-    content: "Peptide Магазин shall not be liable for any special, incidental, or consequential damages that result from the use of, or the inability to use, the materials on this site or the performance of the products."
+    title: "4. Ограничение ответственности"
+    content: "Peptide Shop не несёт ответственности за какие-либо особые, случайные или косвенные убытки, возникшие в результате использования или невозможности использования материалов на этом сайте или характеристик продуктов."
   governing:
-    title: "5. Governing Law"
-    content: "These Условия shall be governed by and construed in accordance with the laws of the European Union."
+    title: "5. Применимое право"
+    content: "Настоящие Условия регулируются и толкуются в соответствии с законодательством Европейского Союза."
 ---

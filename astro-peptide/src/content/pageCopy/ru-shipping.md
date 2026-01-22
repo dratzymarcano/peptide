@@ -1,16 +1,16 @@
 ---
 lang: ru
-page: Доставка
+page: shipping
 copy:
-  title: "Доставка Information"
-  subtitle: "Information about our Доставка policies and procedures."
-  policyTitle: "Доставка Policy"
-  processing: "Processing Time: Orders are processed within 1-2 business days."
-  method: "Доставка Method: We use tracked courier services for all orders."
-  temperature: "Temperature Control: Temperature-sensitive items are shipped with appropriate packaging."
-  ВозвратTitle: "Возврат Policy"
-  ВозвратText: "Due to the nature of research chemicals, we cannot accept Возврат once products have left our facility. This policy ensures the integrity of our supply chain and protects the safety of all researchers."
-  damagedText: "If you receive a damaged item or an incorrect product, please Контакты us within 48 hours of receipt, and we will arrange for a replacement."
-  customsTitle: "Customs & Import Duties"
-  customsContent: "International customers are responsible for any customs duties or import taxes."
+  title: "Информация о доставке"
+  subtitle: "Информация о нашей политике и процедурах доставки."
+  policyTitle: "Политика доставки"
+  processing: "Время обработки: Заказы обрабатываются в течение 1-2 рабочих дней."
+  method: "Способ доставки: Мы используем курьерские службы с отслеживанием для всех заказов."
+  temperature: "Температурный контроль: Термочувствительные товары отправляются в соответствующей упаковке."
+  returnTitle: "Политика возврата"
+  returnText: "В связи с особенностями исследовательских химикатов мы не принимаем возврат товаров после того, как они покинули наш склад. Эта политика обеспечивает целостность нашей цепочки поставок и защищает безопасность всех исследователей."
+  damagedText: "Если вы получили повреждённый товар или неправильный продукт, пожалуйста, свяжитесь с нами в течение 48 часов после получения, и мы организуем замену."
+  customsTitle: "Таможня и импортные пошлины"
+  customsContent: "Международные клиенты несут ответственность за любые таможенные пошлины или импортные налоги."
 ---

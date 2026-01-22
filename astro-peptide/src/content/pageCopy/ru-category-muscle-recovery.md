@@ -2,19 +2,19 @@
 lang: ru
 page: category-muscle-recovery
 copy:
-  title: "Muscle & Recovery Пептиды"
-  h1: "Купить Восстановление мышц Пептиды UK & Europe"
-  metaTitle: "Купить Восстановление мышц Пептиды UK | BPC-157, TB-500 for Sale | Peptide Магазин"
-  metaОписание: "Купить Восстановление мышц Пептиды UK & Europe. BPC-157, TB-500 for sale with 99% Чистота. Perfect for bodybuilding research. Fast UK & EU delivery."
-  primaryKeyword: "Купить Восстановление мышц Пептиды uk"
+  title: "Пептиды для мышц и восстановления"
+  h1: "Купить пептиды для восстановления мышц Великобритания и Европа"
+  metaTitle: "Купить пептиды для восстановления мышц Великобритания | BPC-157, TB-500 в продаже | Peptide Shop"
+  metaDescription: "Купить пептиды для восстановления мышц Великобритания и Европа. BPC-157, TB-500 в продаже с чистотой 99%. Идеально для бодибилдинг-исследований. Быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить пептиды для восстановления мышц Великобритания"
   searchVolume: "1800"
-  shortОписание: "BPC-157, TB-500, and growth factors for tissue repair and muscle growth research."
-  longОписание: "Купить Пептиды for muscle growth and recovery research. Our range includes BPC-157, TB-500, and IGF-1 variants. Ideal for bodybuilding research, tissue repair studies, and regeneration applications. All products are 99% pure with ВЭЖХ verification."
-  Преимущества:
-    - "BPC-157 & TB-500"
-    - "Bodybuilding Research"
-    - "99% Чистота"
-    - "Fast Delivery"
+  shortDescription: "BPC-157, TB-500 и факторы роста для восстановления тканей и исследований роста мышц."
+  longDescription: "Купить пептиды для исследований роста мышц и восстановления. Наш ассортимент включает BPC-157, TB-500 и варианты IGF-1. Идеально для бодибилдинг-исследований, изучения восстановления тканей и применений в регенерации. Все продукты имеют чистоту 99% с верификацией ВЭЖХ."
+  benefits:
+    - "BPC-157 и TB-500"
+    - "Бодибилдинг-исследования"
+    - "Чистота 99%"
+    - "Быстрая доставка"
   geoTargets:
     - "UK"
     - "Netherlands"

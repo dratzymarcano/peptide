@@ -2,19 +2,19 @@
 lang: ru
 page: category-supplies
 copy:
-  title: "Research Supplies"
-  h1: "Купить Peptide Research Supplies UK & Europe"
-  metaTitle: "Купить Bacteriostatic Water UK | Peptide Supplies | Peptide Магазин"
-  metaОписание: "Купить bacteriostatic water UK & Europe. USP grade peptide reconstitution supplies. Sterile vials, fast UK & EU delivery."
-  primaryKeyword: "Купить bacteriostatic water uk"
+  title: "Исследовательские материалы"
+  h1: "Купить материалы для исследования пептидов Великобритания и Европа"
+  metaTitle: "Купить бактериостатическую воду Великобритания | Материалы для пептидов | Peptide Shop"
+  metaDescription: "Купить бактериостатическую воду Великобритания и Европа. Материалы для восстановления пептидов класса USP. Стерильные флаконы, быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить бактериостатическую воду Великобритания"
   searchVolume: "5400"
-  shortОписание: "Bacteriostatic water and peptide reconstitution supplies. USP grade quality."
-  longОписание: "Купить bacteriostatic water and peptide supplies online. Our USP-grade sterile water and reconstitution accessories are perfect for preparing Исследовательские пептиды. Fast delivery across UK and Europe."
-  Преимущества:
-    - "USP Grade"
-    - "Sterile Supplies"
-    - "Peptide Reconstitution"
-    - "Fast Delivery"
+  shortDescription: "Бактериостатическая вода и материалы для восстановления пептидов. Качество класса USP."
+  longDescription: "Купить бактериостатическую воду и материалы для пептидов онлайн. Наша стерильная вода класса USP и аксессуары для восстановления идеально подходят для приготовления исследовательских пептидов. Быстрая доставка по Великобритании и Европе."
+  benefits:
+    - "Класс USP"
+    - "Стерильные материалы"
+    - "Восстановление пептидов"
+    - "Быстрая доставка"
   geoTargets:
     - "UK"
     - "Netherlands"

@@ -2,12 +2,12 @@
 lang: ru
 page: disclaimer
 copy:
-  title: "Research Use Only Disclaimer"
-  subtitle: "Important information about the intended use of our products."
-  warning: "WARNING: NOT FOR HUMAN CONSUMPTION"
-  warningText: "The products offered by Peptide Магазин are intended exclusively for laboratory research and development purposes."
-  lead: "These products are not intended for use as food additives, drugs, cosmetics, household chemicals, or other inappropriate applications."
-  patent: "The listing of a material on this site does not constitute a license to its use in infringement of any patent."
-  qualified: "All products must be handled only by qualified and trained individuals. The customer acknowledges that there are hazards associated with the use of these products."
-  rights: "Peptide Магазин reserves the right to limit sales of products or not to sell products to unqualified customers."
+  title: "Отказ от ответственности: только для исследований"
+  subtitle: "Важная информация о предназначении наших продуктов."
+  warning: "ПРЕДУПРЕЖДЕНИЕ: НЕ ДЛЯ УПОТРЕБЛЕНИЯ ЧЕЛОВЕКОМ"
+  warningText: "Продукты, предлагаемые Peptide Shop, предназначены исключительно для лабораторных исследований и разработок."
+  lead: "Эти продукты не предназначены для использования в качестве пищевых добавок, лекарств, косметики, бытовой химии или других неподходящих применений."
+  patent: "Размещение материала на этом сайте не является лицензией на его использование в нарушение каких-либо патентов."
+  qualified: "Все продукты должны обрабатываться только квалифицированным и обученным персоналом. Клиент признаёт, что существуют риски, связанные с использованием этих продуктов."
+  rights: "Peptide Shop оставляет за собой право ограничивать продажу продуктов или не продавать продукты неквалифицированным клиентам."
 ---

@@ -2,19 +2,19 @@
 lang: ru
 page: category-tanning
 copy:
-  title: "Tanning Пептиды"
-  h1: "Купить Tanning Пептиды UK & Europe"
-  metaTitle: "Купить Melanotan 2 UK | Tanning Пептиды for Sale | Peptide Магазин"
-  metaОписание: "Купить Melanotan 2 UK & Europe. Tanning Пептиды for melanocortin research. 99% Чистота, Сертификат анализа provided. Fast UK & EU delivery."
-  primaryKeyword: "Купить melanotan 2 uk"
+  title: "Пептиды для загара"
+  h1: "Купить пептиды для загара Великобритания и Европа"
+  metaTitle: "Купить Меланотан 2 Великобритания | Пептиды для загара в продаже | Peptide Shop"
+  metaDescription: "Купить Меланотан 2 Великобритания и Европа. Пептиды для загара для исследований меланокортина. Чистота 99%, COA предоставляется. Быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить Меланотан 2 Великобритания"
   searchVolume: "3200"
-  shortОписание: "Melanotan 2 and melanocortin Пептиды for pigmentation research."
-  longОписание: "Купить Melanotan 2 online with fast UK and European delivery. Our tanning Пептиды are ideal for melanocortin receptor research and pigmentation pathway studies. All products are 99% pure with full documentation."
-  Преимущества:
-    - "Melanotan 2"
-    - "MC Receptor Research"
-    - "99% Чистота"
-    - "Express Доставка"
+  shortDescription: "Меланотан 2 и меланокортиновые пептиды для исследований пигментации."
+  longDescription: "Купить Меланотан 2 онлайн с быстрой доставкой по Великобритании и Европе. Наши пептиды для загара идеальны для исследований меланокортиновых рецепторов и изучения путей пигментации. Все продукты имеют чистоту 99% с полной документацией."
+  benefits:
+    - "Меланотан 2"
+    - "Исследования МК-рецепторов"
+    - "Чистота 99%"
+    - "Экспресс-доставка"
   geoTargets:
     - "UK"
     - "Netherlands"

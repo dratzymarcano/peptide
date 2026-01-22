@@ -1,12 +1,12 @@
 ---
 lang: ru
-page: Магазин
+page: shop
 copy:
-  title: "Магазин Исследовательские пептиды"
-  subtitle: "Browse our complete catalog of research-grade Пептиды with 98%+ Чистота guaranteed."
+  title: "Магазин исследовательских пептидов"
+  subtitle: "Просмотрите наш полный каталог исследовательских пептидов с гарантированной чистотой 98%+."
   sort:
-    featured: "Featured"
-    priceLowHigh: "Price: Low to High"
-    priceHighLow: "Price: High to Low"
-    nameAZ: "Name: A to Z"
+    featured: "Рекомендуемые"
+    priceLowHigh: "Цена: по возрастанию"
+    priceHighLow: "Цена: по убыванию"
+    nameAZ: "Название: А-Я"
 ---

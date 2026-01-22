@@ -2,19 +2,19 @@
 lang: ru
 page: category-growth-hormone
 copy:
-  title: "Гормон роста Пептиды"
-  h1: "Купить Гормон роста Пептиды UK & Europe"
-  metaTitle: "Купить Гормон роста Пептиды UK | CJC-1295, Ipamorelin, GHRP | Peptide Магазин"
-  metaОписание: "Купить Гормон роста Пептиды UK & Europe. CJC-1295, Ipamorelin, GHRP-2, GHRP-6 for sale. 99% Чистота, Сертификат анализа included. Fast UK & EU Доставка."
-  primaryKeyword: "Купить Гормон роста Пептиды uk"
+  title: "Пептиды гормона роста"
+  h1: "Купить пептиды гормона роста Великобритания и Европа"
+  metaTitle: "Купить пептиды гормона роста Великобритания | CJC-1295, Ипаморелин, GHRP | Peptide Shop"
+  metaDescription: "Купить пептиды гормона роста Великобритания и Европа. CJC-1295, Ипаморелин, GHRP-2, GHRP-6 в продаже. Чистота 99%, COA включён. Быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить пептиды гормона роста Великобритания"
   searchVolume: "2400"
-  shortОписание: "GHRH analogues and secretagogues including CJC-1295, Ipamorelin, and GHRP Пептиды."
-  longОписание: "Купить Гормон роста releasing Пептиды online. Our collection includes CJC-1295 (with and without DAC), Ipamorelin, GHRP-2, GHRP-6, and other secretagogues for endocrine research and longevity studies."
-  Преимущества:
-    - "CJC-1295 & Ipamorelin"
-    - "GHRP Пептиды"
-    - "Longevity Research"
-    - "Сертификат анализа Included"
+  shortDescription: "Аналоги GHRH и секретагоги, включая CJC-1295, Ипаморелин и пептиды GHRP."
+  longDescription: "Купить пептиды, высвобождающие гормон роста, онлайн. Наша коллекция включает CJC-1295 (с DAC и без DAC), Ипаморелин, GHRP-2, GHRP-6 и другие секретагоги для эндокринных исследований и изучения долголетия."
+  benefits:
+    - "CJC-1295 и Ипаморелин"
+    - "Пептиды GHRP"
+    - "Исследования долголетия"
+    - "COA включён"
   geoTargets:
     - "UK"
     - "Netherlands"

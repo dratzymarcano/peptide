@@ -2,6 +2,6 @@
 lang: ru
 page: bundles
 copy:
-  title: "Peptide Bundles"
-  Описание: "Save with our curated research peptide bundles."
+  title: "Наборы пептидов"
+  description: "Экономьте с нашими подобранными наборами исследовательских пептидов."
 ---

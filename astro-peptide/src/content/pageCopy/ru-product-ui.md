@@ -3,12 +3,12 @@ lang: ru
 page: product-ui
 copy:
   productCard:
-    viewOptions: "View Options"
-    off: "off"
-    minQuantity: "Min qty: {qty}"
+    viewOptions: "Посмотреть варианты"
+    off: "скидка"
+    minQuantity: "Мин. кол-во: {qty}"
   list:
-    showingText: "Showing {count} Исследовательские пептиды"
-    productsLabel: "Products"
-    ЧистотаLabel: "Чистота"
-    dispatchLabel: "UK Dispatch"
+    showingText: "Показано {count} исследовательских пептидов"
+    productsLabel: "Товары"
+    purityLabel: "Чистота"
+    dispatchLabel: "Отправка из Великобритании"
 ---

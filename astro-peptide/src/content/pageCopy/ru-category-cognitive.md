@@ -2,19 +2,19 @@
 lang: ru
 page: category-cognitive
 copy:
-  title: "Cognitive & Nootropic Пептиды"
-  h1: "Купить Cognitive Пептиды UK & Europe"
-  metaTitle: "Купить Cognitive Пептиды UK | Nootropic Пептиды for Sale | Peptide Магазин"
-  metaОписание: "Купить cognitive Пептиды UK & Europe. Selank, Semax, and nootropic Пептиды for neuroscience research. 99% Чистота, fast UK & EU delivery."
-  primaryKeyword: "Купить cognitive Пептиды uk"
+  title: "Когнитивные и ноотропные пептиды"
+  h1: "Купить когнитивные пептиды Великобритания и Европа"
+  metaTitle: "Купить когнитивные пептиды Великобритания | Ноотропные пептиды в продаже | Peptide Shop"
+  metaDescription: "Купить когнитивные пептиды Великобритания и Европа. Селанк, Семакс и ноотропные пептиды для нейробиологических исследований. Чистота 99%, быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить когнитивные пептиды Великобритания"
   searchVolume: "1200"
-  shortОписание: "Selank, Semax, and nootropic Пептиды for cognitive and neuroscience research."
-  longОписание: "Купить nootropic Пептиды online for cognitive enhancement research. Our range includes Selank, Semax, and other neuroПептиды for studying memory, focus, and neural pathway modulation."
-  Преимущества:
-    - "Selank & Semax"
-    - "Nootropic Research"
-    - "Neuroprotection"
-    - "ВЭЖХ Verified"
+  shortDescription: "Селанк, Семакс и ноотропные пептиды для когнитивных и нейробиологических исследований."
+  longDescription: "Купить ноотропные пептиды онлайн для исследований когнитивного улучшения. Наш ассортимент включает Селанк, Семакс и другие нейропептиды для изучения памяти, концентрации и модуляции нейронных путей."
+  benefits:
+    - "Селанк и Семакс"
+    - "Ноотропные исследования"
+    - "Нейропротекция"
+    - "Проверено ВЭЖХ"
   geoTargets:
     - "UK"
     - "Netherlands"

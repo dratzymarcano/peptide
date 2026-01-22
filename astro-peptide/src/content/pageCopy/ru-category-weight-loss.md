@@ -2,19 +2,19 @@
 lang: ru
 page: category-weight-loss
 copy:
-  title: "Похудение Пептиды"
-  h1: "Купить Похудение Пептиды UK & Europe"
-  metaTitle: "Купить Похудение Пептиды UK & Europe | Semaglutide, Tirzepatide | Peptide Магазин"
-  metaОписание: "Купить Похудение Пептиды UK & Europe. Research-grade Semaglutide, Tirzepatide, Retatrutide, AOD-9604. 99% Чистота, Сертификат анализа included. Fast UK & EU delivery."
-  primaryKeyword: "Купить Похудение Пептиды uk"
+  title: "Пептиды для похудения"
+  h1: "Купить пептиды для похудения Великобритания и Европа"
+  metaTitle: "Купить пептиды для похудения Великобритания и Европа | Семаглутид, Тирзепатид | Peptide Shop"
+  metaDescription: "Купить пептиды для похудения Великобритания и Европа. Исследовательские Семаглутид, Тирзепатид, Ретатрутид, AOD-9604. Чистота 99%, COA включён. Быстрая доставка по Великобритании и ЕС."
+  primaryKeyword: "Купить пептиды для похудения Великобритания"
   searchVolume: "2900"
-  shortОписание: "Premium GLP-1 Пептиды for metabolic and obesity research. Купить Semaglutide, Tirzepatide, Retatrutide online."
-  longОписание: "Купить Похудение Пептиды online with fast UK & European delivery. Our collection includes GLP-1 receptor agonists like Semaglutide, Tirzepatide, and Retatrutide, plus AOD-9604 and 5-Amino-1MQ. All Пептиды are ВЭЖХ-verified with 99% Чистота and include Certificate of Analysis."
-  Преимущества:
-    - "GLP-1 Пептиды"
-    - "Semaglutide & Tirzepatide"
-    - "99% Чистота"
-    - "Fast UK & EU Delivery"
+  shortDescription: "Премиальные пептиды GLP-1 для метаболических исследований и исследований ожирения. Купить Семаглутид, Тирзепатид, Ретатрутид онлайн."
+  longDescription: "Купить пептиды для похудения онлайн с быстрой доставкой по Великобритании и Европе. Наша коллекция включает агонисты рецепторов GLP-1, такие как Семаглутид, Тирзепатид и Ретатрутид, а также AOD-9604 и 5-Amino-1MQ. Все пептиды проверены ВЭЖХ с чистотой 99% и включают сертификат анализа."
+  benefits:
+    - "Пептиды GLP-1"
+    - "Семаглутид и Тирзепатид"
+    - "Чистота 99%"
+    - "Быстрая доставка по Великобритании и ЕС"
   geoTargets:
     - "UK"
     - "Netherlands"
