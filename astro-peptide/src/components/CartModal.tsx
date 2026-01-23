@@ -48,12 +48,13 @@ export default function CartModal({ lang = 'en' }: CartModalProps) {
             left: 0;
             right: 0;
             width: 100%;
-            height: 90vh;
-            max-height: 90vh;
-            border-radius: 20px 20px 0 0;
+            height: 85vh;
+            max-height: 85vh;
+            border-radius: 24px 24px 0 0;
             transform: translateY(0);
             animation: slideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 -10px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 -10px 50px rgba(0,0,0,0.25);
+            overscroll-behavior: contain;
           }
           
           /* Drag handle for mobile bottom sheet */
@@ -63,23 +64,48 @@ export default function CartModal({ lang = 'en' }: CartModalProps) {
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 4px;
+            width: 48px;
+            height: 5px;
             background: #cbd5e1;
-            border-radius: 2px;
+            border-radius: 3px;
+            z-index: 10;
           }
           
           .cart-header {
-            padding: 24px 20px 16px;
+            padding: 28px 20px 16px;
           }
           
           .cart-items {
             padding: 12px 20px;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
           }
           
           .cart-footer {
             padding: 20px;
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            padding-bottom: max(24px, env(safe-area-inset-bottom));
+          }
+          
+          /* Small phones */
+          @media (max-width: 360px) {
+            .cart-modal-container {
+              height: 90vh;
+              max-height: 90vh;
+              border-radius: 20px 20px 0 0;
+            }
+            
+            .cart-header {
+              padding: 24px 16px 12px;
+            }
+            
+            .cart-items {
+              padding: 12px 16px;
+            }
+            
+            .cart-footer {
+              padding: 16px;
+              padding-bottom: max(20px, env(safe-area-inset-bottom));
+            }
           }
           
           @media (min-width: 768px) {
@@ -126,26 +152,30 @@ export default function CartModal({ lang = 'en' }: CartModalProps) {
           
           /* Touch-friendly quantity controls */
           .qty-btn {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 500;
             -webkit-tap-highlight-color: transparent;
+            border-radius: 8px;
+            transition: background 0.15s ease;
           }
           
           .qty-btn:active {
             background: #f1f5f9;
+            transform: scale(0.95);
           }
           
           @media (min-width: 768px) {
             .qty-btn {
-              width: 32px;
-              height: 32px;
-              min-width: 32px;
+              width: 36px;
+              height: 36px;
+              min-width: 36px;
+              font-size: 18px;
             }
           }
         `}</style>

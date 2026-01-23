@@ -2178,32 +2178,70 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
           .checkout-container input,
           .checkout-container select {
             min-height: 48px;
+            font-size: 16px !important; /* Prevent iOS zoom */
           }
           
           /* Cart item in sidebar */
           .checkout-container .d-flex.align-items-center {
             flex-wrap: wrap;
           }
+          
+          /* Form inputs */
+          .checkout-container input,
+          .checkout-container select,
+          .checkout-container textarea {
+            padding: 14px 16px !important;
+            border-radius: 12px !important;
+          }
         }
         
         @media (max-width: 575px) {
           /* Form padding adjustments */
           .checkout-container [style*="padding: 32px"] {
-            padding: 20px !important;
+            padding: 16px !important;
           }
           
           .checkout-container [style*="padding: 28px"] {
-            padding: 16px !important;
+            padding: 14px !important;
           }
           
           /* Trust badges - 2 column on small screens */
           .checkout-container [style*="gridTemplateColumns: repeat(3, 1fr)"] {
             grid-template-columns: repeat(2, 1fr) !important;
+            gap: 8px !important;
           }
           
           /* Hide third badge on very small screens */
           .checkout-container [style*="gridTemplateColumns: repeat(3, 1fr)"] > div:nth-child(3) {
             display: none;
+          }
+          
+          /* Step indicators */
+          .checkout-container [style*="width: 36px"][style*="height: 36px"] {
+            width: 32px !important;
+            height: 32px !important;
+          }
+          
+          /* Better spacing for form fields */
+          .checkout-container .row {
+            --bs-gutter-x: 0.75rem;
+          }
+          
+          /* Shipping method cards */
+          .checkout-container [style*="border: 2px solid"] {
+            padding: 14px !important;
+          }
+        }
+        
+        @media (max-width: 360px) {
+          /* Extra small phone adjustments */
+          .checkout-container [style*="padding: 32px"],
+          .checkout-container [style*="padding: 28px"] {
+            padding: 12px !important;
+          }
+          
+          .checkout-container button {
+            padding: 12px 16px !important;
           }
         }
       `}</style>

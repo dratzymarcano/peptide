@@ -781,11 +781,13 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 8px;
+            scroll-snap-type: x mandatory;
           }
           
           .dashboard-container .col-lg-3 nav button {
             flex: 0 0 auto;
             min-width: 120px;
+            scroll-snap-align: start;
           }
           
           /* Order items mobile layout */
@@ -794,19 +796,50 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
             align-items: flex-start !important;
             gap: 8px;
           }
+          
+          /* Form inputs */
+          .dashboard-container input,
+          .dashboard-container select,
+          .dashboard-container textarea {
+            font-size: 16px !important; /* Prevent iOS zoom */
+            min-height: 48px;
+          }
         }
         
         @media (max-width: 575px) {
           /* User avatar smaller */
           .dashboard-container [style*="width: 80px"][style*="height: 80px"] {
-            width: 60px !important;
-            height: 60px !important;
-            font-size: 24px !important;
+            width: 56px !important;
+            height: 56px !important;
+            font-size: 22px !important;
           }
           
           /* Touch-friendly buttons */
           .dashboard-container button {
-            min-height: 44px;
+            min-height: 48px;
+            padding: 12px 16px !important;
+          }
+          
+          /* Better card spacing */
+          .dashboard-container [style*="borderRadius: 16px"] {
+            border-radius: 12px !important;
+          }
+          
+          /* Logout button */
+          .dashboard-container [style*="color: #ef4444"] {
+            width: 100%;
+            text-align: center;
+          }
+        }
+        
+        @media (max-width: 360px) {
+          .dashboard-container [style*="padding: 16px"] {
+            padding: 12px !important;
+          }
+          
+          .dashboard-container .col-lg-3 nav button {
+            min-width: 100px;
+            font-size: 13px !important;
           }
         }
       `}</style>

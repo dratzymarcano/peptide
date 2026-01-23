@@ -106,6 +106,7 @@ export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitche
             ? 'bg-white border-blue-200 shadow-md ring-2 ring-blue-100/50' 
             : 'bg-white/80 border-slate-200 hover:border-blue-200 hover:bg-white hover:shadow-sm'
           }`}
+        style={{ minHeight: '48px', minWidth: '48px' }}
       >
         {/* Current Flag Container */}
         <div className="relative w-6 h-6 rounded-full overflow-hidden shadow-sm shrink-0 ring-1 ring-slate-100 group-hover:ring-slate-200 transition-shadow">

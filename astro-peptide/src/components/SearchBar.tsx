@@ -79,7 +79,14 @@ export default function SearchBar({ lang = 'en' }: SearchBarProps) {
         <button
           onClick={() => setIsOpen(true)}
           className="btn btn-link text-dark p-0"
-          style={{ textDecoration: 'none' }}
+          style={{ 
+            textDecoration: 'none',
+            minWidth: '48px',
+            minHeight: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
           aria-label={t(lang, 'common.searchLabel')}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

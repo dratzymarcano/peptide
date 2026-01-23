@@ -418,6 +418,13 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
           .pack-btn {
             flex: 1 1 calc(50% - 8px) !important;
             min-width: 80px !important;
+            min-height: 48px !important;
+          }
+        }
+        
+        @media (max-width: 360px) {
+          .pack-btn {
+            flex: 1 1 100% !important;
           }
         }
       `}</style>
@@ -427,12 +434,12 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
         className="fixed-bottom d-md-none bg-white border-top shadow-lg"
         style={{ 
           zIndex: 9999, 
-          padding: '12px 16px',
-          paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
-          boxShadow: '0 -4px 6px -1px rgba(0, 0, 0, 0.1)'
+          padding: '16px 20px',
+          paddingBottom: 'max(16px, env(safe-area-inset-bottom))',
+          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.12)'
         }}
       >
-        <div className="d-flex align-items-center justify-content-between">
+        <div className="d-flex align-items-center justify-content-between gap-3">
           <div className="d-flex flex-column">
             <span style={{ fontSize: '0.75rem', color: '#64748b' }}>{t(lang, 'cart.total')}</span>
             <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#0077b6', lineHeight: 1 }}>
@@ -441,16 +448,16 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
           </div>
           
           <div className="d-flex align-items-center gap-2">
-            <div className="d-flex align-items-center border rounded" style={{ height: '40px' }}>
+            <div className="d-flex align-items-center border rounded-3" style={{ height: '48px', border: '2px solid #e2e8f0' }}>
                <button 
                 className="btn btn-link text-dark p-0" 
-                style={{ width: '32px', textDecoration: 'none' }}
+                style={{ width: '44px', height: '44px', textDecoration: 'none', fontSize: '20px' }}
                 onClick={() => setPackQuantity(Math.max(1, packQuantity - 1))}
               >−</button>
-              <span className="font-weight-bold px-1">{packQuantity}</span>
+              <span className="font-weight-bold px-2" style={{ minWidth: '32px', textAlign: 'center' }}>{packQuantity}</span>
               <button 
                 className="btn btn-link text-dark p-0"
-                style={{ width: '32px', textDecoration: 'none' }}
+                style={{ width: '44px', height: '44px', textDecoration: 'none', fontSize: '20px' }}
                 onClick={() => setPackQuantity(Math.min(5, packQuantity + 1))}
               >+</button>
             </div>
@@ -459,10 +466,12 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
               onClick={handleAddToCart}
               className={`btn ${added ? 'btn-success' : 'btn-primary'} d-flex align-items-center justify-content-center`}
               style={{ 
-                height: '40px', 
-                minWidth: '130px',
+                height: '48px', 
+                minWidth: '140px',
                 backgroundColor: added ? '#22c55e' : '#0077b6', 
-                borderColor: added ? '#22c55e' : '#0077b6'
+                borderColor: added ? '#22c55e' : '#0077b6',
+                borderRadius: '12px',
+                fontWeight: 600
               }}
               disabled={added}
             >
