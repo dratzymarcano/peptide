@@ -4,7 +4,7 @@ lang: "ru"
 description: "Узнайте, как интерпретировать хроматограммы ВЭЖХ и понять, что на самом деле означают проценты чистоты для ваших исследовательских пептидов."
 publishDate: "2025-12-15"
 author: "Д-р Сара Митчелл"
-category: "исследования-insights"
+category: "research-insights"
 tags: ["ВЭЖХ", "чистота", "качество", "лаборатория", "анализ"]
 image: "/images/blog/post3.jpg"
 featured: true

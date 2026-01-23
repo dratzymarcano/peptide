@@ -4,7 +4,7 @@ lang: "ru"
 description: "Обзор агонистов рецепторов GLP-1, включая Семаглутид и Тирзепатид, и их применение в метаболических исследованиях."
 publishDate: "2025-11-15"
 author: "Д-р Джеймс Райт"
-category: "исследования-insights"
+category: "research-insights"
 tags: ["GLP-1", "семаглутид", "тирзепатид", "метаболизм", "исследования"]
 image: "/images/blog/post1.jpg"
 featured: true

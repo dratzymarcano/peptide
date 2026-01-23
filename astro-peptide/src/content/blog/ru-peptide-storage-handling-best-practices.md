@@ -4,7 +4,7 @@ lang: "ru"
 description: "Основные рекомендации по хранению лиофилизированных и восстановленных пептидов для поддержания стабильности и максимального срока годности."
 publishDate: "2025-12-01"
 author: "Команда Peptide Shop"
-category: "исследования-insights"
+category: "research-insights"
 tags: ["хранение", "обращение", "стабильность", "протоколы", "лаборатория"]
 image: "/images/blog/post2.jpg"
 featured: false
