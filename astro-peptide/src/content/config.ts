@@ -64,6 +64,14 @@ const blogCollection = defineCollection({
       title: z.string(),
       description: z.string(),
     }),
+    seo: z.object({
+      primaryKeyword: z.string(),
+      searchVolume: z.number(),
+      secondaryKeywords: z.array(z.object({
+        keyword: z.string(),
+        volume: z.number(),
+      })).optional(),
+    }).optional(),
   }),
 });
 
@@ -71,13 +79,18 @@ const siteCollection = defineCollection({
   type: 'content',
   schema: z.object({
     lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']),
-    phone: z.string(),
     email: z.string(),
     telegram: z.string(),
     seo: z.object({
       homeName: z.string(),
       homeDescription: z.string(),
       organizationDescription: z.string(),
+      primaryKeyword: z.string().optional(),
+      searchVolume: z.number().optional(),
+      secondaryKeywords: z.array(z.object({
+        keyword: z.string(),
+        volume: z.number(),
+      })).optional(),
     }),
   }),
 });
