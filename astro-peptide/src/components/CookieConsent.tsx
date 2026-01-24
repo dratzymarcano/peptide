@@ -102,6 +102,7 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
         backdropFilter: 'blur(10px)',
         color: '#fff',
         padding: '20px 24px',
+        paddingBottom: 'max(20px, env(safe-area-inset-bottom))',
         boxShadow: '0 -4px 20px rgba(0,0,0,0.3)',
         borderTop: '1px solid rgba(255,255,255,0.1)',
       }}
@@ -161,16 +162,17 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
           <button
             onClick={handleDecline}
             style={{
-              padding: '12px 24px',
+              padding: '14px 24px',
               fontSize: '0.95rem',
               fontWeight: 600,
-              borderRadius: '8px',
+              borderRadius: '10px',
               border: '2px solid rgba(255,255,255,0.3)',
               background: 'transparent',
               color: '#fff',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
               minWidth: '120px',
+              minHeight: '48px',
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.background = 'rgba(255,255,255,0.1)';
@@ -186,16 +188,17 @@ export default function CookieConsent({ lang }: CookieConsentProps) {
           <button
             onClick={handleAccept}
             style={{
-              padding: '12px 24px',
+              padding: '14px 24px',
               fontSize: '0.95rem',
               fontWeight: 600,
-              borderRadius: '8px',
+              borderRadius: '10px',
               border: 'none',
               background: 'linear-gradient(135deg, #0077b6, #00a8cc)',
               color: '#fff',
               cursor: 'pointer',
               transition: 'all 0.2s ease',
               minWidth: '120px',
+              minHeight: '48px',
               boxShadow: '0 4px 12px rgba(0,119,182,0.4)',
             }}
             onMouseOver={(e) => {

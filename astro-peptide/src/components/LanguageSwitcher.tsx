@@ -141,6 +141,7 @@ export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitche
           bg-white/95 backdrop-blur-xl border border-white/20
           rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] 
           origin-top-right transition-all duration-200 ease-out z-50
+          max-w-[calc(100vw-32px)]
           ${isOpen 
             ? 'opacity-100 scale-100 translate-y-0 visible' 
             : 'opacity-0 scale-95 -translate-y-2 invisible pointer-events-none'
@@ -155,7 +156,7 @@ export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitche
             <button
               key={lang}
               onClick={() => handleLanguageChange(lang)}
-              className={`flex items-center gap-3 w-full p-2.5 rounded-xl text-left transition-all duration-200 group relative overflow-hidden
+              className={`flex items-center gap-3 w-full p-3 rounded-xl text-left transition-all duration-200 group relative overflow-hidden min-h-[48px]
                 ${lang === currentLang 
                   ? 'bg-blue-50 text-blue-700 font-medium ring-1 ring-blue-100' 
                   : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
