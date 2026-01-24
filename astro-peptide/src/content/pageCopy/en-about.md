@@ -1,6 +1,10 @@
 ---
 lang: en
 page: about
+seo:
+  title: "About Peptide Shop UK | Trusted Research Peptide Supplier"
+  description: "Learn about Peptide Shop UK - the best place to buy research peptides. 99% HPLC purity, comprehensive COA, same-day dispatch. Trusted by 5000+ researchers across UK & Europe."
+  primaryKeyword: "buy peptides uk"
 copy:
   title: "About Peptide Shop"
   subtitle: "Leading European supplier of premium research peptides with verified purity and complete transparency."

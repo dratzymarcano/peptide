@@ -8,9 +8,18 @@ import ProductReviews from '../../../components/ProductReviews.astro';
 import RelatedProducts from '../../../components/RelatedProducts.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import TranslatedContent from '../../../components/TranslatedContent.astro';
-import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize, translateProductContent, getLocalizedMetaDescription, getLocalizedPageTitle, translateCategory, translateFAQs, translateReviews, getLocalizedProductSlug } from '../../../i18n/translations';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize, translateProductContent, getLocalizedMetaDescription, getLocalizedPageTitle, translateCategory, translateFAQs, translateReviews, getLocalizedProductSlug, translateCategorySlug } from '../../../i18n/translations';
 
 export const prerender = true;
+
+// Helper for category URLs with proper translation
+const getCategoryUrl = (category: string, lang: SupportedLanguage) => {
+	if (lang === 'en') {
+		return `/peptides/${category}/`;
+	}
+	const translatedSlug = translateCategorySlug(category, lang);
+	return `/${lang}/peptides/${translatedSlug}/`;
+};
 
 export async function getStaticPaths() {
   const allProducts = await getCollection('products');
@@ -41,7 +50,7 @@ export async function getStaticPaths() {
 }
 
 // Helper to clean slug - removes lang/ prefix, /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^(en|nl|de|fr|es|it)\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
+const cleanSlug = (slug: string) => slug.replace(/^(en|nl|de|fr|es|it|ru)\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 const { product, lang, hasLocalizedContent } = Astro.props;
 const { Content } = await product.render();
@@ -185,7 +194,7 @@ const fullSchema = {
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
     { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
-    { name: categoryTitle, url: getLocalizedPath(`/peptides/${product.data.category}`, lang) },
+    { name: categoryTitle, url: getCategoryUrl(product.data.category, lang) },
     { name: productTitle, url: Astro.url.pathname }
   ]}
   schema={fullSchema}
@@ -197,7 +206,7 @@ const fullSchema = {
     breadcrumbs={[
       { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
       { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
-      { name: categoryTitle, url: getLocalizedPath(`/peptides/${product.data.category}`, lang) },
+      { name: categoryTitle, url: getCategoryUrl(product.data.category, lang) },
       { name: productTitle }
     ]}
   />
@@ -329,7 +338,7 @@ const fullSchema = {
               <ul class="list-unstyled mb-0">
                 <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
                   <span class="text-muted">{t(lang, 'nav.categories')}</span>
-                  <a href={getLocalizedPath(`/peptides/${product.data.category}/`, lang)} class="text-capitalize" style="color: #0077b6;">
+                  <a href={getCategoryUrl(product.data.category, lang)} class="text-capitalize" style="color: #0077b6;">
                     {categoryTitle}
                   </a>
                 </li>

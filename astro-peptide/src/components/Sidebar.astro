@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { t, type SupportedLanguage, getLocalizedPath } from '../i18n/translations';
+import { t, type SupportedLanguage, getLocalizedPath, translateCategorySlug } from '../i18n/translations';
 
 interface Props {
   activeCategory?: string;
@@ -35,6 +35,15 @@ const getCategoryKey = (cat: string) => {
   return map[cat] || cat;
 };
 
+// Helper to get category URL with translated slug
+const getCategoryUrl = (category: string) => {
+  if (lang === 'en') {
+    return `/peptides/${category}/`;
+  }
+  const translatedSlug = translateCategorySlug(category, lang);
+  return `/${lang}/peptides/${translatedSlug}/`;
+};
+
 const productCount = products.length;
 ---
 
@@ -53,7 +62,7 @@ const productCount = products.length;
         const title = t(lang, `nav.${getCategoryKey(cat)}` as any) || cat.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         return (
           <li>
-            <a href={getLocalizedPath(`/peptides/${cat}`, lang)} class:list={[["category-link", { active: isActive }]]}>
+            <a href={getCategoryUrl(cat)} class:list={[["category-link", { active: isActive }]]}>
               {title}
               <span class="count">({catProducts.length})</span>
             </a>

@@ -41,6 +41,7 @@ const DEFAULT_COUNTRY_BY_LANG: Record<SupportedLanguage, string> = {
   fr: 'FR',
   es: 'ES',
   it: 'IT',
+  ru: 'RU',
 };
 
 const cardStyle: React.CSSProperties = {

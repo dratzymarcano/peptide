@@ -19,6 +19,14 @@ const copySlug = (currentLang === 'ru') ? 'ru-blog' : 'en-blog';
 const pageCopy = await getEntry('pageCopy', copySlug) || await getEntry('pageCopy', 'en-blog');
 const copy = pageCopy?.data.copy ?? {};
 
+// Helper function to strip language prefix from blog slugs
+// Handles both folder prefixes (en/, ru/) and file prefixes (ru-)
+function stripLangPrefix(slug: string): string {
+  return slug
+    .replace(/^(en|nl|de|fr|es|it|ru)\//, '') // Strip folder prefix like "en/"
+    .replace(/^(ru)-/, ''); // Strip Russian file prefix "ru-"
+}
+
 const allPosts = await getCollection('blog');
 const posts = allPosts.filter(post => {
    // Legacy posts might not have lang, default to en
@@ -67,32 +75,38 @@ const categories = [...new Set(
           {featuredPosts.length > 0 && (
             <div class="featured-posts mb-5">
               <h2 class="section-title mb-4">{copy.featuredArticles ?? t(currentLang, 'blogPage.featuredArticles')}</h2>
-              {featuredPosts.map(post => (
-                <article class="featured-post-card">
-                  <div class="row align-items-center">
-                    {post.data.image && (
-                      <div class="col-md-5">
-                        <a href={getLocalizedPath(`/blog/${post.slug}/`, currentLang)}>
-                          <img src={post.data.image} alt={post.data.title} class="featured-image" />
-                        </a>
-                      </div>
-                    )}
-                    <div class={post.data.image ? 'col-md-7' : 'col-12'}>
-                      <div class="featured-content">
-                        <span class="post-category">{post.data.category}</span>
-                        <h3 class="post-title">
-                          <a href={getLocalizedPath(`/blog/${post.slug}/`, currentLang)}>{post.data.title}</a>
-                        </h3>
-                        <p class="post-excerpt">{post.data.description}</p>
-                        <div class="post-meta">
-                          <span class="post-author">{post.data.author}</span>
-                          <span class="post-date">{new Date(post.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              {featuredPosts.map(post => {
+                const postSlug = stripLangPrefix(post.slug);
+                const postUrl = currentLang === 'en' 
+                  ? `/blog/${postSlug}/` 
+                  : getLocalizedPath(`/blog/${postSlug}/`, currentLang);
+                return (
+                  <article class="featured-post-card">
+                    <div class="row align-items-center">
+                      {post.data.image && (
+                        <div class="col-md-5">
+                          <a href={postUrl}>
+                            <img src={post.data.image} alt={post.data.title} class="featured-image" />
+                          </a>
+                        </div>
+                      )}
+                      <div class={post.data.image ? 'col-md-7' : 'col-12'}>
+                        <div class="featured-content">
+                          <span class="post-category">{post.data.category}</span>
+                          <h3 class="post-title">
+                            <a href={postUrl}>{post.data.title}</a>
+                          </h3>
+                          <p class="post-excerpt">{post.data.description}</p>
+                          <div class="post-meta">
+                            <span class="post-author">{post.data.author}</span>
+                            <span class="post-date">{new Date(post.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           )}
 
@@ -100,25 +114,31 @@ const categories = [...new Set(
           
           {regularPosts.length > 0 ? (
             <div class="posts-grid">
-              {regularPosts.map(post => (
-                <article class="post-card">
-                  {post.data.image && (
-                    <a href={getLocalizedPath(`/blog/${post.slug}/`, currentLang)} class="post-image-link">
-                      <img src={post.data.image} alt={post.data.title} class="post-image" />
-                    </a>
-                  )}
-                  <div class="post-content">
-                    <span class="post-category">{post.data.category}</span>
-                    <h3 class="post-title">
-                      <a href={getLocalizedPath(`/blog/${post.slug}/`, currentLang)}>{post.data.title}</a>
-                    </h3>
-                    <p class="post-excerpt">{post.data.description}</p>
-                    <div class="post-meta">
-                      <span class="post-date">{new Date(post.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+              {regularPosts.map(post => {
+                const postSlug = stripLangPrefix(post.slug);
+                const postUrl = currentLang === 'en' 
+                  ? `/blog/${postSlug}/` 
+                  : getLocalizedPath(`/blog/${postSlug}/`, currentLang);
+                return (
+                  <article class="post-card">
+                    {post.data.image && (
+                      <a href={postUrl} class="post-image-link">
+                        <img src={post.data.image} alt={post.data.title} class="post-image" />
+                      </a>
+                    )}
+                    <div class="post-content">
+                      <span class="post-category">{post.data.category}</span>
+                      <h3 class="post-title">
+                        <a href={postUrl}>{post.data.title}</a>
+                      </h3>
+                      <p class="post-excerpt">{post.data.description}</p>
+                      <div class="post-meta">
+                        <span class="post-date">{new Date(post.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
           ) : (
             <div class="no-posts">

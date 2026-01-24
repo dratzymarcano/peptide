@@ -1,9 +1,18 @@
 ---
 import { getEntry } from 'astro:content';
-import { getLangFromUrl, t, getLocalizedPath } from '../i18n/translations';
+import { getLangFromUrl, t, getLocalizedPath, translateCategorySlug } from '../i18n/translations';
 
 const currentYear = new Date().getFullYear();
 const currentLang = getLangFromUrl(Astro.url);
+
+// Helper for category URLs with proper translation
+const getCategoryUrl = (category: string) => {
+	if (currentLang === 'en') {
+		return `/peptides/${category}/`;
+	}
+	const translatedSlug = translateCategorySlug(category, currentLang);
+	return `/${currentLang}/peptides/${translatedSlug}/`;
+};
 const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
 const siteData = siteCopy?.data;
 const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
@@ -47,10 +56,10 @@ const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 				</button>
 				<ul class="footer-links">
 					<li><a href={getLocalizedPath('/peptides/', currentLang)}>{t(currentLang, 'nav.allPeptides')}</a></li>
-					<li><a href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
-					<li><a href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-					<li><a href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
-					<li><a href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
+					<li><a href={getCategoryUrl('weight-loss')}>{t(currentLang, 'nav.weightLoss')}</a></li>
+					<li><a href={getCategoryUrl('muscle-recovery')}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
+					<li><a href={getCategoryUrl('growth-hormone')}>{t(currentLang, 'nav.growthHormone')}</a></li>
+					<li><a href={getCategoryUrl('tanning')}>{t(currentLang, 'nav.tanning')}</a></li>
 				</ul>
 			</div>
 

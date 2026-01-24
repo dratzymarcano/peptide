@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
-import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
+import { t, getLocalizedPath, type SupportedLanguage, translateCategorySlug } from '../../i18n/translations';
 import { getCollection } from 'astro:content';
 
 interface Props {
@@ -9,6 +9,22 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+// Helper function to strip language prefix from blog slugs
+function stripLangPrefix(slug: string): string {
+  return slug
+    .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
+    .replace(/^(ru)-/, '');
+}
+
+// Helper to get category URL with translated slug
+const getCategoryUrl = (category: string) => {
+  if (lang === 'en') {
+    return `/peptides/${category}/`;
+  }
+  const translatedSlug = translateCategorySlug(category, lang);
+  return `/${lang}/peptides/${translatedSlug}/`;
+};
 
 // Get all products (use English as base, fall back to localized content if available)
 const allProducts = await getCollection('products');
@@ -21,11 +37,19 @@ const products = englishProducts
   })
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
 
-// Get all blog posts
+// Get all blog posts - filter by current language first, fallback to English
 const allBlogPosts = await getCollection('blog');
-const blogPosts = allBlogPosts
-  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
-  .slice(0, 10); // Limit to 10 most recent
+const localizedPosts = allBlogPosts.filter(p => p.data.lang === lang);
+const blogPosts = localizedPosts.length > 0 
+  ? localizedPosts
+      .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+      .slice(0, 10)
+      .map(p => ({ ...p, postLang: lang }))
+  : allBlogPosts
+      .filter(p => p.data.lang === 'en')
+      .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+      .slice(0, 10)
+      .map(p => ({ ...p, postLang: 'en' as const }));
 
 // Section titles per language
 const sectionTitles = {
@@ -55,12 +79,12 @@ const mainPages = [
 // Product categories
 const categories = [
   { name: t(lang, 'nav.allPeptides'), url: getLocalizedPath('/peptides/', lang) },
-  { name: t(lang, 'nav.weightLoss'), url: getLocalizedPath('/peptides/weight-loss/', lang) },
-  { name: t(lang, 'nav.muscleRecovery'), url: getLocalizedPath('/peptides/muscle-recovery/', lang) },
-  { name: t(lang, 'nav.growthHormone'), url: getLocalizedPath('/peptides/growth-hormone/', lang) },
-  { name: t(lang, 'nav.tanning'), url: getLocalizedPath('/peptides/tanning/', lang) },
-  { name: t(lang, 'nav.cognitive'), url: getLocalizedPath('/peptides/cognitive/', lang) },
-  { name: t(lang, 'nav.supplies'), url: getLocalizedPath('/peptides/supplies/', lang) },
+  { name: t(lang, 'nav.weightLoss'), url: getCategoryUrl('weight-loss') },
+  { name: t(lang, 'nav.muscleRecovery'), url: getCategoryUrl('muscle-recovery') },
+  { name: t(lang, 'nav.growthHormone'), url: getCategoryUrl('growth-hormone') },
+  { name: t(lang, 'nav.tanning'), url: getCategoryUrl('tanning') },
+  { name: t(lang, 'nav.cognitive'), url: getCategoryUrl('cognitive') },
+  { name: t(lang, 'nav.supplies'), url: getCategoryUrl('supplies') },
 ];
 
 // Legal pages
@@ -195,13 +219,20 @@ const pageDescription = lang === 'en' ? 'Complete site map of Peptide Shop. Navi
                 {titles.blog}
               </h2>
               <ul class="sitemap-list sitemap-list--blog">
-                {blogPosts.map(post => (
-                  <li>
-                    <a href={getLocalizedPath(`/blog/${post.slug.replace(/^(en|nl|de|fr|es|it)\//, '')}/`, lang)}>
-                      {post.data.title}
-                    </a>
-                  </li>
-                ))}
+                {blogPosts.map(post => {
+                  // Use the post's actual language for the URL
+                  const postSlug = stripLangPrefix(post.slug);
+                  const blogUrl = post.postLang === 'en' 
+                    ? `/blog/${postSlug}/`
+                    : getLocalizedPath(`/blog/${postSlug}/`, post.postLang);
+                  return (
+                    <li>
+                      <a href={blogUrl}>
+                        {post.data.title}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

@@ -107,6 +107,7 @@ export default function Dashboard({ lang = 'en' }: DashboardProps) {
     fr: 'fr-FR',
     es: 'es-ES',
     it: 'it-IT',
+    ru: 'ru-RU',
   };
 
   const formatDate = (dateString: string) => {

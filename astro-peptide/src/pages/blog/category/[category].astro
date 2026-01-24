@@ -11,6 +11,13 @@ function slugify(s: string) {
   return s.toLowerCase().trim().replace(/\s+/g, '-');
 }
 
+// Helper function to strip language prefix from blog slugs
+function stripLangPrefix(slug: string): string {
+  return slug
+    .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
+    .replace(/^(ru)-/, '');
+}
+
 export async function getStaticPaths() {
   const slugifyLocal = (s: string) => s.toLowerCase().trim().replace(/\s+/g, '-');
   const posts = await getCollection('blog');
@@ -26,8 +33,9 @@ export async function getStaticPaths() {
 
 const { category, posts } = Astro.props;
 const categorySlug = slugify(category);
+// Filter posts by category AND English language
 const filtered = posts
-  .filter((p) => slugify(p.data.category || '') === categorySlug)
+  .filter((p) => slugify(p.data.category || '') === categorySlug && (p.data.lang === 'en' || !p.data.lang))
   .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
 
@@ -46,22 +54,25 @@ const filtered = posts
       <p style="color: #64748b; margin-bottom: 28px;">{t(lang, 'blogPage.articleCount').replace('{count}', filtered.length.toString())}</p>
 
       <div class="row g-4">
-        {filtered.map((post) => (
-          <div class="col-md-6 col-lg-4">
-            <a href={`/blog/${post.slug}/`} style="display:block; text-decoration:none;">
-              <div style="border: 1px solid rgba(148,163,184,0.25); border-radius: 14px; overflow: hidden; background: white; height: 100%;">
-                {post.data.image && (
-                  <img src={post.data.image} alt={post.data.title} style="width: 100%; height: 180px; object-fit: cover;" />
-                )}
-                <div style="padding: 18px;">
-                  <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">{post.data.publishDate}</div>
-                  <div style="font-weight: 800; color: #0f172a; line-height: 1.25;">{post.data.title}</div>
-                  <div style="margin-top: 10px; color: #64748b; line-height: 1.6;">{post.data.description}</div>
+        {filtered.map((post) => {
+          const postSlug = stripLangPrefix(post.slug);
+          return (
+            <div class="col-md-6 col-lg-4">
+              <a href={`/blog/${postSlug}/`} style="display:block; text-decoration:none;">
+                <div style="border: 1px solid rgba(148,163,184,0.25); border-radius: 14px; overflow: hidden; background: white; height: 100%;">
+                  {post.data.image && (
+                    <img src={post.data.image} alt={post.data.title} style="width: 100%; height: 180px; object-fit: cover;" />
+                  )}
+                  <div style="padding: 18px;">
+                    <div style="font-size: 12px; color: #64748b; margin-bottom: 8px;">{post.data.publishDate}</div>
+                    <div style="font-weight: 800; color: #0f172a; line-height: 1.25;">{post.data.title}</div>
+                    <div style="margin-top: 10px; color: #64748b; line-height: 1.6;">{post.data.description}</div>
+                  </div>
                 </div>
-              </div>
-            </a>
-          </div>
-        ))}
+              </a>
+            </div>
+          );
+        })}
       </div>
 
       <div style="margin-top: 28px;">

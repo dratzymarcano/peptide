@@ -250,7 +250,7 @@ export async function loginWithGoogle(returnUrl?: string): Promise<void> {
   let lang = 'en';
   if (isBrowser) {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
-    const supportedLangs = ['nl', 'de', 'fr', 'es', 'it'];
+    const supportedLangs = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
     if (pathParts[0] && supportedLangs.includes(pathParts[0])) {
       lang = pathParts[0];
     }

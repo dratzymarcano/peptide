@@ -88,7 +88,7 @@ export async function getProductLanguages(
   baseSlug: string
 ): Promise<SupportedLanguage[]> {
   const products = await getCollection('products');
-  const languages: SupportedLanguage[] = ['en', 'nl', 'de', 'fr', 'es', 'it'];
+  const languages: SupportedLanguage[] = ['en', 'nl', 'de', 'fr', 'es', 'it', 'ru'];
   
   return languages.filter(lang => {
     const slug = `${lang}/${baseSlug}`;

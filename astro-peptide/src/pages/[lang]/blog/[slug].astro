@@ -1,0 +1,41 @@
+---
+/**
+ * Localized blog post page.
+ * Route: /[lang]/blog/[slug]/
+ */
+import { getCollection } from 'astro:content';
+import BlogPostPage from '../../../components/pages/BlogPostPage.astro';
+import type { SupportedLanguage } from '../../../i18n/translations';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
+  
+  // Generate paths for each language and its posts
+  const paths = [];
+  
+  for (const lang of languages) {
+    // Get posts for this language
+    const langPosts = posts.filter(post => post.data.lang === lang);
+    
+    for (const post of langPosts) {
+      // Strip any language prefix from the slug (e.g., "ru-post-name" -> "post-name")
+      // For files named like ru-post-name.md, the slug is the filename without extension
+      const baseSlug = post.slug.replace(/^(nl|de|fr|es|it|ru)-/, '');
+      
+      paths.push({
+        params: { lang, slug: baseSlug },
+        props: { post, lang },
+      });
+    }
+  }
+  
+  return paths;
+}
+
+const { post, lang } = Astro.props;
+---
+
+<BlogPostPage post={post} lang={lang} />

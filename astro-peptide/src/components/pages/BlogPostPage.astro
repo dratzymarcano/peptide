@@ -14,10 +14,17 @@ const { post, lang = 'en' } = Astro.props;
 const currentLang = lang;
 const { Content } = await post.render();
 
-// Get related posts (same category, excluding current)
+// Helper function to strip language prefix from blog slugs
+function stripLangPrefix(slug: string): string {
+  return slug
+    .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
+    .replace(/^(ru)-/, '');
+}
+
+// Get related posts (same category AND same language, excluding current)
 const allPosts = await getCollection('blog');
 const relatedPosts = allPosts
-  .filter(p => p.data.category === post.data.category && p.slug !== post.slug)
+  .filter(p => p.data.category === post.data.category && p.slug !== post.slug && p.data.lang === currentLang)
   .slice(0, 3);
 
 const articleSchema = {
@@ -136,14 +143,20 @@ const articleSchema = {
               <div class="sidebar-widget">
                 <h4>{t(currentLang, 'blogPage.relatedArticles')}</h4>
                 <ul class="related-posts">
-                  {relatedPosts.map(related => (
-                    <li>
-                      <a href={getLocalizedPath(`/blog/${related.slug}/`, currentLang)}>
-                        <span class="related-title">{related.data.title}</span>
-                        <span class="related-date">{new Date(related.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'short' })}</span>
-                      </a>
-                    </li>
-                  ))}
+                  {relatedPosts.map(related => {
+                    const relatedSlug = stripLangPrefix(related.slug);
+                    const relatedUrl = currentLang === 'en' 
+                      ? `/blog/${relatedSlug}/` 
+                      : getLocalizedPath(`/blog/${relatedSlug}/`, currentLang);
+                    return (
+                      <li>
+                        <a href={relatedUrl}>
+                          <span class="related-title">{related.data.title}</span>
+                          <span class="related-date">{new Date(related.data.publishDate).toLocaleDateString(currentLang === 'en' ? 'en-GB' : currentLang, { day: 'numeric', month: 'short' })}</span>
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}

@@ -307,6 +307,91 @@ export const pageSlugTranslations: Record<SupportedLanguage, Record<string, stri
   },
 };
 
+// Maps English category slugs to localized category slugs
+export const categorySlugTranslations: Record<SupportedLanguage, Record<string, string>> = {
+  en: {
+    'weight-loss': 'weight-loss',
+    'muscle-recovery': 'muscle-recovery',
+    'growth-hormone': 'growth-hormone',
+    'tanning': 'tanning',
+    'cognitive': 'cognitive',
+    'supplies': 'supplies',
+  },
+  nl: {
+    'weight-loss': 'afvallen',
+    'muscle-recovery': 'spierherstel',
+    'growth-hormone': 'groeihormoon',
+    'tanning': 'bruinen',
+    'cognitive': 'cognitief',
+    'supplies': 'benodigdheden',
+  },
+  de: {
+    'weight-loss': 'gewichtsverlust',
+    'muscle-recovery': 'muskelregeneration',
+    'growth-hormone': 'wachstumshormon',
+    'tanning': 'braeunungs',
+    'cognitive': 'kognitiv',
+    'supplies': 'zubehoer',
+  },
+  fr: {
+    'weight-loss': 'perte-de-poids',
+    'muscle-recovery': 'recuperation-musculaire',
+    'growth-hormone': 'hormone-de-croissance',
+    'tanning': 'bronzage',
+    'cognitive': 'cognitif',
+    'supplies': 'fournitures',
+  },
+  es: {
+    'weight-loss': 'perdida-de-peso',
+    'muscle-recovery': 'recuperacion-muscular',
+    'growth-hormone': 'hormona-del-crecimiento',
+    'tanning': 'bronceado',
+    'cognitive': 'cognitivo',
+    'supplies': 'suministros',
+  },
+  it: {
+    'weight-loss': 'perdita-di-peso',
+    'muscle-recovery': 'recupero-muscolare',
+    'growth-hormone': 'ormone-della-crescita',
+    'tanning': 'abbronzatura',
+    'cognitive': 'cognitivo',
+    'supplies': 'forniture',
+  },
+  ru: {
+    'weight-loss': 'pohudeniye',
+    'muscle-recovery': 'vosstanovleniye-myshts',
+    'growth-hormone': 'gormon-rosta',
+    'tanning': 'zagar',
+    'cognitive': 'kognitivnyy',
+    'supplies': 'materialy',
+  },
+};
+
+// Helper function to translate category slug
+export function translateCategorySlug(slug: string, lang: SupportedLanguage): string {
+  return categorySlugTranslations[lang]?.[slug] || slug;
+}
+
+// Helper function to get canonical (English) category slug from any localized slug
+export function getCanonicalCategorySlug(slug: string): string {
+  // First check if it's already an English slug
+  if (categorySlugTranslations.en[slug]) {
+    return slug;
+  }
+  
+  // Reverse lookup from any language
+  for (const lang of Object.keys(categorySlugTranslations) as SupportedLanguage[]) {
+    const table = categorySlugTranslations[lang];
+    for (const [englishSlug, localizedSlug] of Object.entries(table)) {
+      if (localizedSlug === slug) {
+        return englishSlug;
+      }
+    }
+  }
+  
+  return slug;
+}
+
 interface Translations {
   nav: {
     home: string;
@@ -8329,7 +8414,8 @@ export function cleanProductTitle(title: string, lang: SupportedLanguage): strin
     de: 'Kaufen',
     fr: 'Acheter',
     es: 'Comprar',
-    it: 'Acquista'
+    it: 'Acquista',
+    ru: 'Купить'
   };
   
   // Replace "Buy " at the start with the localized version
@@ -8502,6 +8588,36 @@ export function cleanProductTitle(title: string, lang: SupportedLanguage): strin
       'Releasing Peptide': 'Peptide di Rilascio',
       'Cell Regeneration': 'Rigenerazione Cellulare',
       'Longevity': 'Longevità'
+    },
+    ru: {
+      'Bacteriostatic Water': 'Бактериостатическая вода',
+      'Vial': 'Флакон',
+      'Peptide Reconstitution': 'Восстановление пептидов',
+      'Research Grade': 'Исследовательское качество',
+      'Fat Loss Peptide': 'Пептид для сжигания жира',
+      'Body Protection Compound': 'Соединение для защиты тела',
+      'for Research': 'для исследований',
+      'Weight Loss': 'Снижение веса',
+      'Muscle Recovery': 'Восстановление мышц',
+      'Growth Hormone': 'Гормон роста',
+      'Sleep Peptide': 'Пептид сна',
+      'Anti-Aging': 'Антивозрастной',
+      'Copper Peptide': 'Медный пептид',
+      'NNMT Inhibitor': 'Ингибитор NNMT',
+      'Nootropic': 'Ноотроп',
+      'Cognitive': 'Когнитивный',
+      'Tanning': 'Загар',
+      'Premium': 'Премиум',
+      'High Purity': 'Высокая чистота',
+      'GLP-1 Agonist': 'Агонист GLP-1',
+      'Dual Agonist': 'Двойной агонист',
+      'Triple Agonist': 'Тройной агонист',
+      'Metabolic': 'Метаболический',
+      'Fragment': 'Фрагмент',
+      'Secretagogue': 'Секретагог',
+      'Releasing Peptide': 'Высвобождающий пептид',
+      'Cell Regeneration': 'Регенерация клеток',
+      'Longevity': 'Долголетие'
     }
   };
   
@@ -8534,7 +8650,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
     de: 'Deutschland',
     fr: 'France',
     es: 'España',
-    it: 'Italia'
+    it: 'Italia',
+    ru: 'Россия'
   };
 
   // Protect URLs so we don't translate link targets (which would break internal links).
@@ -8566,7 +8683,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: 'AOD-9604 kaufen Deutschland',
       fr: 'Acheter AOD-9604 France',
       es: 'aod 9604 comprar España',
-      it: 'Acquista AOD-9604 Italia'
+      it: 'Acquista AOD-9604 Italia',
+      ru: 'Купить AOD-9604 Россия'
     };
 
     working = working.replace(/\bBuy\s+AOD[-\s]?9604\s+(?:U\.K\.?|UK)\b/gi, aodIntroByLang[lang]);
@@ -8579,7 +8697,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: 'BPC-157 Kaufen Deutschland',
       fr: 'Acheter BPC-157 France',
       es: 'BPC 157 Comprar España',
-      it: 'Acquista BPC-157 Italia'
+      it: 'Acquista BPC-157 Italia',
+      ru: 'Купить BPC-157 Россия'
     };
 
     working = working.replace(/\bBuy\s+BPC[-\s]?157\s+(?:U\.K\.?|UK)\b/gi, bpcIntroByLang[lang]);
@@ -8592,7 +8711,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: '5-Amino-1MQ kaufen Deutschland',
       fr: 'Acheter 5-Amino-1MQ France',
       es: '5-Amino-1MQ Comprar España',
-      it: 'Acquista 5-Amino-1MQ Italia'
+      it: 'Acquista 5-Amino-1MQ Italia',
+      ru: 'Купить 5-Amino-1MQ Россия'
     };
 
     working = working.replace(
@@ -8615,7 +8735,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHK-Cu kaufen Deutschland',
         fr: 'Acheter GHK-Cu France',
         es: 'GHK-Cu Comprar España',
-        it: 'Acquista GHK-Cu Italia'
+        it: 'Acquista GHK-Cu Italia',
+        ru: 'Купить GHK-Cu Россия'
       }
     },
     {
@@ -8625,7 +8746,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHRP-2 Kaufen Deutschland',
         fr: 'Acheter GHRP-2 France',
         es: 'GHRP-2 Comprar España',
-        it: 'Acquista GHRP-2 Italia'
+        it: 'Acquista GHRP-2 Italia',
+        ru: 'Купить GHRP-2 Россия'
       }
     },
     {
@@ -8635,7 +8757,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHRP-6 Kaufen Deutschland',
         fr: 'Acheter GHRP-6 France',
         es: 'GHRP-6 Comprar España',
-        it: 'Acquista GHRP-6 Italia'
+        it: 'Acquista GHRP-6 Italia',
+        ru: 'Купить GHRP-6 Россия'
       }
     },
     {
@@ -8645,7 +8768,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Melanotan 2 kaufen Deutschland',
         fr: 'Acheter Melanotan 2 France',
         es: 'Melanotan 2 comprar España',
-        it: 'Acquista Melanotan 2 Italia'
+        it: 'Acquista Melanotan 2 Italia',
+        ru: 'Купить Меланотан 2 Россия'
       }
     },
     {
@@ -8655,7 +8779,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Ipamorelin kaufen Deutschland',
         fr: 'Acheter Ipamorelin France',
         es: 'Ipamorelin comprar España',
-        it: 'Acquista Ipamorelin Italia'
+        it: 'Acquista Ipamorelin Italia',
+        ru: 'Купить Ипаморелин Россия'
       }
     },
     {
@@ -8665,7 +8790,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'NAD+ kaufen Deutschland',
         fr: 'Acheter NAD+ France',
         es: 'NAD+ comprar España',
-        it: 'Acquista NAD+ Italia'
+        it: 'Acquista NAD+ Italia',
+        ru: 'Купить NAD+ Россия'
       }
     },
     {
@@ -8675,7 +8801,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'O-304 kaufen Deutschland',
         fr: 'Acheter O-304 France',
         es: 'O-304 comprar España',
-        it: 'Acquista O-304 Italia'
+        it: 'Acquista O-304 Italia',
+        ru: 'Купить O-304 Россия'
       }
     },
     {
@@ -8685,7 +8812,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Retatrutide kaufen Deutschland',
         fr: 'Acheter Retatrutide France',
         es: 'Retatrutide comprar España',
-        it: 'Acquista Retatrutide Italia'
+        it: 'Acquista Retatrutide Italia',
+        ru: 'Купить Ретатрутид Россия'
       }
     },
     {
@@ -8695,7 +8823,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Selank kaufen Deutschland',
         fr: 'Acheter Selank France',
         es: 'Selank comprar España',
-        it: 'Acquista Selank Italia'
+        it: 'Acquista Selank Italia',
+        ru: 'Купить Селанк Россия'
       }
     },
     {
@@ -8705,7 +8834,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Semaglutide kaufen Deutschland',
         fr: 'Acheter Semaglutide France',
         es: 'Semaglutide comprar España',
-        it: 'Acquista Semaglutide Italia'
+        it: 'Acquista Semaglutide Italia',
+        ru: 'Купить Семаглутид Россия'
       }
     },
     {
@@ -8715,7 +8845,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Semax kaufen',
         fr: 'Acheter Semax',
         es: 'Semax Comprar',
-        it: 'Acquista Semax'
+        it: 'Acquista Semax',
+        ru: 'Купить Семакс'
       }
     },
     {
@@ -8725,7 +8856,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'TB-500 kaufen',
         fr: 'Acheter TB-500',
         es: 'TB-500 Comprar',
-        it: 'Acquista TB-500'
+        it: 'Acquista TB-500',
+        ru: 'Купить TB-500'
       }
     },
     {
@@ -8735,7 +8867,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Tesofensine kaufen',
         fr: 'Acheter Tesofensine',
         es: 'Tesofensine Comprar',
-        it: 'Acquista Tesofensine'
+        it: 'Acquista Tesofensine',
+        ru: 'Купить Тесофензин'
       }
     },
     {
@@ -8745,7 +8878,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Tirzepatide kaufen',
         fr: 'Acheter Tirzepatide',
         es: 'Tirzepatide Comprar',
-        it: 'Acquista Tirzepatide'
+        it: 'Acquista Tirzepatide',
+        ru: 'Купить Тирзепатид'
       }
     }
   ];
@@ -8768,7 +8902,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: 'AOD-9604 kaufen Deutschland. Premium GH-Fragment-Peptid für die Forschung zum Fettstoffwechsel. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland.',
       fr: 'Acheter AOD-9604 France. Peptide fragment GH premium pour la recherche sur le métabolisme des graisses. Pureté ≥99%, COA inclus. Livraison rapide en France.',
       es: 'aod 9604 comprar España. Péptido fragmento de GH premium para investigación del metabolismo de las grasas. Pureza ≥99%, COA incluido. Envío rápido a España.',
-      it: 'Acquista AOD-9604 Italia. Peptide frammento GH premium per la ricerca sul metabolismo dei grassi. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.'
+      it: 'Acquista AOD-9604 Italia. Peptide frammento GH premium per la ricerca sul metabolismo dei grassi. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.',
+      ru: 'Купить AOD-9604 Россия. Премиум пептид-фрагмент ГР для исследований жирового метаболизма. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
     };
 
     working = aodShortByLang[lang];
@@ -8788,7 +8923,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: 'BPC-157 Kaufen. Premium Forschungspeptid für Studien zu Gewebereparatur und Darmbarriere. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland.',
       fr: 'Acheter BPC-157. Peptide de recherche premium pour des études sur la réparation tissulaire et la barrière intestinale. Pureté ≥99%, COA inclus. Livraison rapide en France.',
       es: 'BPC 157 Comprar España. Péptido de investigación premium para estudios sobre reparación tisular y barrera intestinal. Pureza ≥99%, COA incluido. Envío rápido a España.',
-      it: 'Acquista BPC-157. Peptide di ricerca premium per studi su riparazione tissutale e barriera intestinale. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.'
+      it: 'Acquista BPC-157. Peptide di ricerca premium per studi su riparazione tissutale e barriera intestinale. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.',
+      ru: 'Купить BPC-157 Россия. Премиум исследовательский пептид для изучения восстановления тканей и кишечного барьера. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
     };
 
     working = bpcShortByLang[lang];
@@ -8808,7 +8944,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       de: '5-Amino-1MQ kaufen. Premium Forschungscompound (NNMT-Inhibitor) für Stoffwechsel- und Energiehaushalt-Studien. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland.',
       fr: 'Acheter 5-Amino-1MQ. Composé de recherche premium (inhibiteur NNMT) pour les études du métabolisme et de l\'équilibre énergétique. Pureté ≥99%, COA inclus. Livraison rapide en France.',
       es: '5-Amino-1MQ Comprar. Compuesto de investigación premium (inhibidor de NNMT) para estudios de metabolismo y balance energético. Pureza ≥99%, COA incluido. Envío rápido a España.',
-      it: 'Acquista 5-Amino-1MQ. Composto di ricerca premium (inibitore NNMT) per studi su metabolismo ed equilibrio energetico. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.'
+      it: 'Acquista 5-Amino-1MQ. Composto di ricerca premium (inibitore NNMT) per studi su metabolismo ed equilibrio energetico. Purezza ≥99%, COA incluso. Spedizione veloce in Italia.',
+      ru: 'Купить 5-Amino-1MQ Россия. Премиум исследовательское соединение (ингибитор NNMT) для изучения метаболизма и энергетического баланса. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
     };
 
     working = oneMqShortByLang[lang];
@@ -8828,7 +8965,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'CJC-1295 No DAC kaufen. Forschungsqualität GHRH-Analog (Mod GRF 1-29) für Studien zur pulsierenden GH-Freisetzung. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland & EU.',
         fr: 'Acheter CJC-1295 No DAC. Analogue GHRH (Mod GRF 1-29) de qualité recherche pour l\'étude de la libération pulsatile de GH. Pureté ≥99%, COA inclus. Livraison rapide en France & UE.',
         es: 'CJC-1295 No DAC Comprar. Análogo de GHRH (Mod GRF 1-29) de calidad investigación para estudios de liberación pulsátil de GH. Pureza ≥99%, COA incluido. Envío rápido a España & UE.',
-        it: 'Acquista CJC-1295 No DAC. Analogo GHRH (Mod GRF 1-29) di qualità ricerca per studi sul rilascio pulsatile di GH. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.'
+        it: 'Acquista CJC-1295 No DAC. Analogo GHRH (Mod GRF 1-29) di qualità ricerca per studi sul rilascio pulsatile di GH. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8840,7 +8978,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Epitalon kaufen. Forschungspeptid für Studien zu Telomerase, zellulärer Alterung und zirkadianer Regulation. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland & EU.',
         fr: 'Acheter Epitalon. Peptide de recherche pour l\'étude de la télomérase, du vieillissement cellulaire et des rythmes circadiens. Pureté ≥99%, COA inclus. Livraison rapide en France & UE.',
         es: 'Epitalon Comprar. Péptido de investigación para estudios de telomerasa, envejecimiento celular y regulación circadiana. Pureza ≥99%, COA incluido. Envío rápido a España & UE.',
-        it: 'Acquista Epitalon. Peptide di ricerca per studi su telomerasi, invecchiamento cellulare e regolazione circadiana. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.'
+        it: 'Acquista Epitalon. Peptide di ricerca per studi su telomerasi, invecchiamento cellulare e regolazione circadiana. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8852,7 +8991,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Cagrilintide kaufen. Langwirksames Amylin-Analog für Studien zu Sättigung, Magenentleerung und metabolischer Regulation. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland & EU.',
         fr: 'Acheter Cagrilintide. Analogue de l\'amyline à action prolongée pour l\'étude de la satiété, de la vidange gastrique et de la régulation métabolique. Pureté ≥99%, COA inclus. Livraison rapide en France & UE.',
         es: 'Cagrilintide Comprar. Análogo de amilina de acción prolongada para estudios de saciedad, vaciado gástrico y regulación metabólica. Pureza ≥99%, COA incluido. Envío rápido a España & UE.',
-        it: 'Acquista Cagrilintide. Analogo dell\'amilina a lunga durata per studi su sazietà, svuotamento gastrico e regolazione metabolica. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.'
+        it: 'Acquista Cagrilintide. Analogo dell\'amilina a lunga durata per studi su sazietà, svuotamento gastrico e regolazione metabolica. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.',
+        ru: 'Купить Кагрилинтид Россия. Премиум аналог амилина длительного действия. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8864,7 +9004,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'DSIP kaufen. Forschungspeptid (Delta Sleep-Inducing Peptide) für Studien zu Schlaf, Stress und neuroendokriner Funktion. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland & EU.',
         fr: 'Acheter DSIP. Peptide de recherche (Delta Sleep-Inducing Peptide) pour l\'étude du sommeil, du stress et des fonctions neuroendocrines. Pureté ≥99%, COA inclus. Livraison rapide en France & UE.',
         es: 'DSIP Comprar. Péptido de investigación (Delta Sleep-Inducing Peptide) para estudios de sueño, estrés y función neuroendocrina. Pureza ≥99%, COA incluido. Envío rápido a España & UE.',
-        it: 'Acquista DSIP. Peptide di ricerca (Delta Sleep-Inducing Peptide) per studi su sonno, stress e funzione neuroendocrina. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.'
+        it: 'Acquista DSIP. Peptide di ricerca (Delta Sleep-Inducing Peptide) per studi su sonno, stress e funzione neuroendocrina. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8879,7 +9020,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'HGH Fragment 176-191 kaufen. GH-Fragment-Peptid für Studien zu Fettstoffwechsel und Adipozytenfunktion. ≥99% Reinheit, COA inklusive. Schnelle Lieferung nach Deutschland & EU.',
         fr: 'Acheter HGH Fragment 176-191. Peptide fragment GH pour l\'étude du métabolisme des graisses et de la fonction adipocytaire. Pureté ≥99%, COA inclus. Livraison rapide en France & UE.',
         es: 'HGH Fragment 176-191 Comprar. Péptido fragmento de GH para estudios de metabolismo de grasas y función adipocitaria. Pureza ≥99%, COA incluido. Envío rápido a España & UE.',
-        it: 'Acquista HGH Fragment 176-191. Peptide frammento GH per studi su metabolismo dei grassi e funzione adipocitaria. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.'
+        it: 'Acquista HGH Fragment 176-191. Peptide frammento GH per studi su metabolismo dei grassi e funzione adipocitaria. Purezza ≥99%, COA incluso. Spedizione veloce in Italia & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8891,7 +9033,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHK-Cu kaufen. Premium Kupferpeptid (Copper Tripeptide-1) für Forschung zu Gewebereparatur und Regeneration. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter GHK-Cu. Peptide de cuivre premium (Copper Tripeptide-1) pour la recherche sur la réparation et la régénération tissulaires. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'GHK-Cu Comprar. Péptido de cobre premium (Copper Tripeptide-1) para investigación de reparación y regeneración tisular. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista GHK-Cu. Peptide di rame premium (Copper Tripeptide-1) per ricerca su riparazione e rigenerazione tissutale. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista GHK-Cu. Peptide di rame premium (Copper Tripeptide-1) per ricerca su riparazione e rigenerazione tissutale. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8903,7 +9046,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHRP-2 Kaufen. Premium Forschungspeptid (GH-Sekretagog) für Studien zur GH-Freisetzung und Ghrelin-Rezeptor-Aktivierung. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter GHRP-2. Peptide de recherche premium (sécrétagogue GH) pour l\'étude de la libération de GH et de l\'activation du récepteur de la ghréline. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'GHRP-2 Comprar. Péptido de investigación premium (secretagogo de GH) para estudios de liberación de GH y activación del receptor de grelina. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista GHRP-2. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH e attivazione del recettore della grelina. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista GHRP-2. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH e attivazione del recettore della grelina. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8915,7 +9059,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'GHRP-6 Kaufen. Premium Forschungspeptid (GH-Sekretagog) für Studien zu GH-Freisetzung, Ghrelin-Rezeptor-Aktivierung und Appetitmechanismen. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter GHRP-6. Peptide de recherche premium (sécrétagogue GH) pour l\'étude de la libération de GH, de l\'activation du récepteur de la ghréline et des mécanismes de l\'appétit. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'GHRP-6 Comprar. Péptido de investigación premium (secretagogo de GH) para estudios de liberación de GH, activación del receptor de grelina y mecanismos del apetito. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista GHRP-6. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH, attivazione del recettore della grelina e meccanismi dell\'appetito. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista GHRP-6. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH, attivazione del recettore della grelina e meccanismi dell\'appetito. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить GHRP-6 Россия. Премиум исследовательский пептид (секретагог ГР). Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8927,7 +9072,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Melanotan 2 kaufen. Premium Forschungspeptid (MT-2) für Studien zur Melanocortin-Rezeptor-Signalgebung und Pigmentierung. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Melanotan 2. Peptide de recherche premium (MT-2) pour l\'étude de la signalisation des récepteurs mélanocortines et de la pigmentation. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Melanotan 2 comprar. Péptido de investigación premium (MT-2) para estudios de señalización del receptor de melanocortina y pigmentación. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Melanotan 2. Peptide di ricerca premium (MT-2) per studi su segnalazione dei recettori melanocortinici e pigmentazione. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Melanotan 2. Peptide di ricerca premium (MT-2) per studi su segnalazione dei recettori melanocortinici e pigmentazione. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8939,7 +9085,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Ipamorelin kaufen. Selektives GH-Sekretagog für Forschung zur GH-Achsenphysiologie mit minimalen Effekten auf Cortisol und Prolaktin. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Ipamorelin. Sécrétagogue GH sélectif pour la recherche sur l\'axe GH avec des effets minimes sur le cortisol et la prolactine. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Ipamorelin comprar. Secretagogo de GH selectivo para investigación del eje de GH con efectos mínimos sobre cortisol y prolactina. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Ipamorelin. Secretagogo GH selettivo per ricerca sull\'asse GH con effetti minimi su cortisolo e prolattina. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Ipamorelin. Secretagogo GH selettivo per ricerca sull\'asse GH con effetti minimi su cortisolo e prolattina. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить Ипаморелин Россия. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8951,7 +9098,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'NAD+ kaufen. Premium Coenzym für Forschung zu Energiestoffwechsel, DNA-Reparatur und zellulärer Signalgebung. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter NAD+. Coenzyme premium pour la recherche sur le métabolisme énergétique, la réparation de l\'ADN et la signalisation cellulaire. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'NAD+ comprar. Coenzima premium para investigación de metabolismo energético, reparación del ADN y señalización celular. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista NAD+. Coenzima premium per ricerca su metabolismo energetico, riparazione del DNA e segnalazione cellulare. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista NAD+. Coenzima premium per ricerca su metabolismo energetico, riparazione del DNA e segnalazione cellulare. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8963,7 +9111,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'O-304 kaufen. Direkter AMPK-Aktivator für Forschung zu Energiehomöostase und metabolischer Regulation. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter O-304. Activateur direct de l\'AMPK pour la recherche sur l\'homéostasie énergétique et la régulation métabolique. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'O-304 comprar. Activador directo de AMPK para investigación de homeostasis energética y regulación metabólica. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista O-304. Attivatore diretto di AMPK per ricerca su omeostasi energetica e regolazione metabolica. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista O-304. Attivatore diretto di AMPK per ricerca su omeostasi energetica e regolazione metabolica. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8975,7 +9124,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Retatrutide kaufen. Premium Forschungspeptid (Triple-Agonist: GLP-1/GIP/Glukagon) für metabolische Forschung. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Retatrutide. Peptide de recherche premium (triple agoniste : GLP-1/GIP/glucagon) pour la recherche métabolique. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Retatrutide comprar. Péptido de investigación premium (triple agonista: GLP-1/GIP/glucagón) para investigación metabólica. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Retatrutide. Peptide di ricerca premium (triplo agonista: GLP-1/GIP/glucagone) per ricerca metabolica. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Retatrutide. Peptide di ricerca premium (triplo agonista: GLP-1/GIP/glucagone) per ricerca metabolica. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8987,7 +9137,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Selank kaufen. Premium Forschungspeptid (TP-7) für Studien zu nootropischen, anxiolytischen und immunmodulatorischen Mechanismen. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Selank. Peptide de recherche premium (TP-7) pour l\'étude des mécanismes nootropiques, anxiolytiques et immunomodulateurs. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Selank comprar. Péptido de investigación premium (TP-7) para estudios de mecanismos nootrópicos, ansiolíticos e inmunomoduladores. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Selank. Peptide di ricerca premium (TP-7) per studi su meccanismi nootropici, ansiolitici e immunomodulatori. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Selank. Peptide di ricerca premium (TP-7) per studi su meccanismi nootropici, ansiolitici e immunomodulatori. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -8999,7 +9150,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Semaglutide kaufen. Premium Forschungspeptid (GLP-1-Analog) für Studien zu Glukosestoffwechsel und Darm-Hirn-Achse. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Semaglutide. Peptide de recherche premium (analogue GLP-1) pour l\'étude du métabolisme du glucose et de l\'axe intestin-cerveau. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Semaglutide comprar. Péptido de investigación premium (análogo de GLP-1) para estudios de metabolismo de glucosa y eje intestino-cerebro. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Semaglutide. Peptide di ricerca premium (analogo GLP-1) per studi su metabolismo del glucosio e asse intestino-cervello. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Semaglutide. Peptide di ricerca premium (analogo GLP-1) per studi su metabolismo del glucosio e asse intestino-cervello. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -9011,7 +9163,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Semax kaufen. Nootropisches Peptid für Forschung zu kognitiver Funktion, BDNF und neuroprotektiven Mechanismen. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Semax. Peptide nootropique pour la recherche sur la cognition, le BDNF et les mécanismes neuroprotecteurs. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Semax Comprar. Péptido nootrópico para investigación de función cognitiva, BDNF y mecanismos neuroprotectores. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Semax. Peptide nootropo per ricerca su funzione cognitiva, BDNF e meccanismi neuroprotettivi. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Semax. Peptide nootropo per ricerca su funzione cognitiva, BDNF e meccanismi neuroprotettivi. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -9023,7 +9176,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'TB-500 kaufen. Thymosin Beta-4 (Tβ4)-Fragment für Forschung zu Zellmigration, Angiogenese und Gewebereparatur. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter TB-500. Fragment de Thymosin Beta-4 (Tβ4) pour la recherche sur la migration cellulaire, l\'angiogenèse et la réparation tissulaire. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'TB-500 Comprar. Fragmento de Thymosin Beta-4 (Tβ4) para investigación de migración celular, angiogénesis y reparación tisular. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista TB-500. Frammento di Thymosin Beta-4 (Tβ4) per ricerca su migrazione cellulare, angiogenesi e riparazione tissutale. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista TB-500. Frammento di Thymosin Beta-4 (Tβ4) per ricerca su migrazione cellulare, angiogenesi e riparazione tissutale. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -9035,7 +9189,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Tesofensine kaufen. Forschungscompound (NS2330) für Studien zur Monoamin-Wiederaufnahme (Dopamin, Serotonin, Noradrenalin) und Appetitregulation. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Tesofensine. Composé de recherche (NS2330) pour l\'étude de la recapture des monoamines (dopamine, sérotonine, noradrénaline) et de la régulation de l\'appétit. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Tesofensine Comprar. Compuesto de investigación (NS2330) para estudios de recaptación de monoaminas (dopamina, serotonina, noradrenalina) y regulación del apetito. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Tesofensine. Composto di ricerca (NS2330) per studi su ricaptazione delle monoamine (dopamina, serotonina, noradrenalina) e regolazione dell\'appetito. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Tesofensine. Composto di ricerca (NS2330) per studi su ricaptazione delle monoamine (dopamina, serotonina, noradrenalina) e regolazione dell\'appetito. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить Тесофензин Россия. Исследовательское соединение (NS2330). Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -9047,7 +9202,8 @@ export function translateProductContent(content: string, lang: SupportedLanguage
         de: 'Tirzepatide kaufen. Dualer GIP/GLP-1-Agonist für Forschung zu Incretin-Signalwegen, Glukosehomöostase und Energiehaushalt. ≥99% Reinheit, COA inklusive. Schnelle Lieferung in DE & EU.',
         fr: 'Acheter Tirzepatide. Double agoniste GIP/GLP-1 pour la recherche sur la signalisation des incrétines, l\'homéostasie du glucose et le métabolisme énergétique. Pureté ≥99%, COA inclus. Livraison rapide FR & UE.',
         es: 'Tirzepatide Comprar. Agonista dual GIP/GLP-1 para investigación de señalización de incretinas, homeostasis de glucosa y metabolismo energético. Pureza ≥99%, COA incluido. Envío rápido ES & UE.',
-        it: 'Acquista Tirzepatide. Doppio agonista GIP/GLP-1 per ricerca su segnalazione delle incretine, omeostasi del glucosio e metabolismo energetico. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.'
+        it: 'Acquista Tirzepatide. Doppio agonista GIP/GLP-1 per ricerca su segnalazione delle incretine, omeostasi del glucosio e metabolismo energetico. Purezza ≥99%, COA incluso. Spedizione veloce IT & UE.',
+        ru: 'Купить в России. Премиум исследовательский пептид. Чистота ≥99%, COA включён. Быстрая доставка в Россию.'
       };
       working = shortByLang[lang];
     }
@@ -12648,7 +12804,25 @@ export function translateProductContent(content: string, lang: SupportedLanguage
       'Unlike more selective peptides such as ipamorelin, GHRP-6 also stimulates appetite and affects cortisol and prolactin levels, making it useful for studying the full spectrum of ghrelin receptor effects.': 'A differenza dei peptidi più selettivi come ipamorelin, GHRP-6 stimola anche l\'appetito e influenza i livelli di cortisolo e prolattina, rendendolo utile per studiare l\'intero spettro degli effetti del recettore della grelina.',
       'Unlike single-target compounds, tesofensine\'s triple mechanism enables researchers to investigate the complex interplay between monoaminergic systems in controlling food intake and metabolic rate. This makes it valuable for understanding the neuropharmacology of obesity and appetite disorders.': 'A differenza dei composti a bersaglio singolo, il triplo meccanismo della tesofensina consente ai ricercatori di indagare la complessa interazione tra i sistemi monoaminergici nel controllo dell\'assunzione di cibo e del tasso metabolico. Ciò lo rende prezioso per comprendere la neurofarmacologia dell\'obesità e dei disturbi dell\'appetito.',
       'Unlike single-use sterile water, bacteriostatic water allows multiple withdrawals over several weeks without contamination risk, making it cost-effective for research laboratories.': 'A differenza dell\'acqua sterile monouso, l\'acqua batteriostatica consente prelievi multipli per diverse settimane senza rischio di contaminazione, rendendola economica per i laboratori di ricerca.',
-      'Without DAC, the peptide produces:': 'Senza DAC, il peptide produce:',}
+      'Without DAC, the peptide produces:': 'Senza DAC, il peptide produce:',},
+    ru: {
+      // Common phrases
+      'What is': 'Что такое',
+      'How does': 'Как работает',
+      'Benefits of': 'Преимущества',
+      'Research Applications': 'Применение в исследованиях',
+      'Storage Instructions': 'Инструкции по хранению',
+      'Reconstitution Guide': 'Руководство по разведению',
+      'Dosage Information': 'Информация о дозировке',
+      'Key Benefits': 'Ключевые преимущества',
+      'Why Choose': 'Почему выбрать',
+      'Product Overview': 'Обзор продукта',
+      'Scientific Background': 'Научная основа',
+      'Quality Assurance': 'Гарантия качества',
+      'Shipping Information': 'Информация о доставке',
+      'Related Products': 'Похожие продукты',
+      'Without DAC, the peptide produces:': 'Без DAC пептид производит:',
+    }
   };
   
   let translated = working;
@@ -12699,7 +12873,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Bacteriostatic water Kaufen Deutschland. Steriles Wasser für Injektionszwecke mit Benzylalkohol. Höchste Reinheit & USP-Standard. Schneller Versand in DE.`,
       fr: `Acheter de l'eau bactériostatique en France. Eau stérile de qualité supérieure pour injection avec alcool benzylique. Haute pureté. Livraison rapide FR.`,
       es: `Agua bacteriostatica comprar en España. Agua estéril premium para inyección con alcohol bencílico. Alta pureza y grado USP. Envío rápido en ES.`,
-      it: `Acquisto acqua batteriostatica Italia. Acqua sterile premium per iniezione con alcool benzilico. Alta purezza e grado USP. Spedizione veloce in IT.`
+      it: `Acquisto acqua batteriostatica Italia. Acqua sterile premium per iniezione con alcool benzilico. Alta purezza e grado USP. Spedizione veloce in IT.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12712,7 +12887,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `AOD-9604 kaufen Deutschland. Premium Forschungspeptid mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter AOD-9604 France. Peptide de recherche premium avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `aod 9604 comprar España. Péptido de investigación premium con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista AOD-9604 Italia. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista AOD-9604 Italia. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12725,7 +12901,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `BPC-157 Kaufen Deutschland. Premium Forschungspeptid mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter BPC-157 France. Peptide de recherche premium avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `BPC 157 Comprar España. Péptido de investigación premium con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista BPC-157 Italia. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista BPC-157 Italia. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12738,7 +12915,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `5-Amino-1MQ kaufen Deutschland. Premium Forschungscompound mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter 5-Amino-1MQ France. Composé de recherche premium avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `5-Amino-1MQ Comprar España. Compuesto de investigación premium con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista 5-Amino-1MQ Italia. Composto di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista 5-Amino-1MQ Italia. Composto di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12751,7 +12929,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `CJC-1295 No DAC kaufen. Premium Forschungspeptid (Mod GRF 1-29) mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter CJC-1295 No DAC. Peptide de recherche premium (Mod GRF 1-29) avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `CJC-1295 No DAC Comprar. Péptido de investigación premium (Mod GRF 1-29) con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista CJC-1295 No DAC. Peptide di ricerca premium (Mod GRF 1-29) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista CJC-1295 No DAC. Peptide di ricerca premium (Mod GRF 1-29) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12764,7 +12943,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Epitalon kaufen. Premium Forschungspeptid mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Epitalon. Peptide de recherche premium avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `Epitalon Comprar. Péptido de investigación premium con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Epitalon. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Epitalon. Peptide di ricerca premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12777,7 +12957,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Cagrilintide kaufen. Premium Forschungspeptid (Amylin-Analog) mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Cagrilintide. Peptide de recherche premium (analogue de l’amyline) avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `Cagrilintide Comprar. Péptido de investigación premium (análogo de amilina) con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Cagrilintide. Peptide di ricerca premium (analogo dell’amilina) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Cagrilintide. Peptide di ricerca premium (analogo dell’amilina) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12790,7 +12971,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `DSIP kaufen. Premium Forschungspeptid (Delta Sleep-Inducing Peptide) mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter DSIP. Peptide de recherche premium (Delta Sleep-Inducing Peptide) avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `DSIP Comprar. Péptido de investigación premium (Delta Sleep-Inducing Peptide) con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista DSIP. Peptide di ricerca premium (Delta Sleep-Inducing Peptide) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista DSIP. Peptide di ricerca premium (Delta Sleep-Inducing Peptide) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12803,7 +12985,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `HGH Fragment 176-191 kaufen. Premium GH-Fragment-Peptid mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter HGH Fragment 176-191. Peptide fragment GH premium avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `HGH Fragment 176-191 Comprar. Péptido fragmento de GH premium con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista HGH Fragment 176-191. Peptide frammento GH premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista HGH Fragment 176-191. Peptide frammento GH premium con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12816,7 +12999,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `GHK-Cu kaufen. Premium Kupferpeptid (Copper Tripeptide-1) für Forschung zu Gewebereparatur und Genexpression. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter GHK-Cu. Peptide de cuivre (Copper Tripeptide-1) premium pour la recherche sur la réparation tissulaire et l'expression génique. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `GHK-Cu Comprar. Péptido de cobre (Copper Tripeptide-1) premium para investigación de reparación tisular y expresión génica. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista GHK-Cu. Peptide di rame (Copper Tripeptide-1) premium per ricerca su riparazione tissutale ed espressione genica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista GHK-Cu. Peptide di rame (Copper Tripeptide-1) premium per ricerca su riparazione tissutale ed espressione genica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12829,7 +13013,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `GHRP-2 Kaufen. Premium Forschungspeptid (GH-Sekretagog) für Studien zur GH-Freisetzung und Ghrelin-Rezeptor-Aktivierung. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter GHRP-2. Peptide de recherche premium (sécrétagogue GH) pour l'étude de la libération de GH et de l'activation du récepteur de la ghréline. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `GHRP-2 Comprar. Péptido de investigación premium (secretagogo de GH) para estudios de liberación de GH y activación del receptor de grelina. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista GHRP-2. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH e attivazione del recettore della grelina. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista GHRP-2. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH e attivazione del recettore della grelina. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12842,7 +13027,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `GHRP-6 Kaufen. Premium Forschungspeptid (GH-Sekretagog) für Studien zu GH-Freisetzung, Ghrelin-Rezeptor-Aktivierung und Appetitmechanismen. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter GHRP-6. Peptide de recherche premium (sécrétagogue GH) pour l'étude de la libération de GH, de l'activation du récepteur de la ghréline et des mécanismes de l'appétit. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `GHRP-6 Comprar. Péptido de investigación premium (secretagogo de GH) para estudios de liberación de GH, activación del receptor de grelina y mecanismos del apetito. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista GHRP-6. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH, attivazione del recettore della grelina e meccanismi dell'appetito. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista GHRP-6. Peptide di ricerca premium (secretagogo GH) per studi su rilascio di GH, attivazione del recettore della grelina e meccanismi dell'appetito. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12855,7 +13041,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Melanotan 2 kaufen. Premium Forschungspeptid (MT-2) für Studien zur Melanocortin-Rezeptor-Signalgebung und Pigmentierung. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Melanotan 2. Peptide de recherche premium (MT-2) pour l'étude de la signalisation des récepteurs mélanocortines et de la pigmentation. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `Melanotan 2 comprar. Péptido de investigación premium (MT-2) para estudios de señalización del receptor de melanocortina y pigmentación. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Melanotan 2. Peptide di ricerca premium (MT-2) per studi su segnalazione dei recettori melanocortinici e pigmentazione. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Melanotan 2. Peptide di ricerca premium (MT-2) per studi su segnalazione dei recettori melanocortinici e pigmentazione. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12868,7 +13055,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Ipamorelin kaufen. Selektives GH-Sekretagog für Forschung zur GH-Achsenphysiologie mit minimalen Effekten auf Cortisol und Prolaktin. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Ipamorelin. Sécrétagogue GH sélectif pour la recherche sur l'axe GH avec des effets minimes sur le cortisol et la prolactine. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `Ipamorelin comprar. Secretagogo de GH selectivo para investigación del eje de GH con efectos mínimos sobre cortisol y prolactina. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Ipamorelin. Secretagogo GH selettivo per ricerca sull'asse GH con effetti minimi su cortisolo e prolattina. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Ipamorelin. Secretagogo GH selettivo per ricerca sull'asse GH con effetti minimi su cortisolo e prolattina. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12881,7 +13069,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `NAD+ kaufen. Premium Coenzym für Forschung zu Energiestoffwechsel, DNA-Reparatur und zellulärer Signalgebung. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter NAD+. Coenzyme premium pour la recherche sur le métabolisme énergétique, la réparation de l'ADN et la signalisation cellulaire. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `NAD+ comprar. Coenzima premium para investigación de metabolismo energético, reparación del ADN y señalización celular. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista NAD+. Coenzima premium per ricerca su metabolismo energetico, riparazione del DNA e segnalazione cellulare. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista NAD+. Coenzima premium per ricerca su metabolismo energetico, riparazione del DNA e segnalazione cellulare. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12894,7 +13083,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `O-304 kaufen. Direkter AMPK-Aktivator für Forschung zu Energiehomöostase, Glukosestoffwechsel und Lipidoxidation. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter O-304. Activateur direct de l'AMPK pour la recherche sur l'homéostasie énergétique, le métabolisme du glucose et l'oxydation lipidique. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `O-304 comprar. Activador directo de AMPK para investigación de homeostasis energética, metabolismo de glucosa y oxidación de lípidos. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista O-304. Attivatore diretto di AMPK per ricerca su omeostasi energetica, metabolismo del glucosio e ossidazione lipidica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista O-304. Attivatore diretto di AMPK per ricerca su omeostasi energetica, metabolismo del glucosio e ossidazione lipidica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12907,7 +13097,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Retatrutide kaufen. Premium Forschungspeptid (Triple-Agonist: GLP-1/GIP/Glukagon) für metabolische Forschung. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Retatrutide. Peptide de recherche premium (triple agoniste : GLP-1/GIP/glucagon) pour la recherche métabolique. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `Retatrutide comprar. Péptido de investigación premium (triple agonista: GLP-1/GIP/glucagón) para investigación metabólica. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Retatrutide. Peptide di ricerca premium (triplo agonista: GLP-1/GIP/glucagone) per ricerca metabolica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Retatrutide. Peptide di ricerca premium (triplo agonista: GLP-1/GIP/glucagone) per ricerca metabolica. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12920,7 +13111,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Selank kaufen. Premium Forschungspeptid (TP-7) für Studien zu anxiolytischen, nootropischen und immunmodulatorischen Mechanismen. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Selank. Peptide de recherche premium (TP-7) pour l'étude des mécanismes anxiolytiques, nootropiques et immunomodulateurs. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `Selank comprar. Péptido de investigación premium (TP-7) para estudios de mecanismos ansiolíticos, nootrópicos e inmunomoduladores. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Selank. Peptide di ricerca premium (TP-7) per studi su meccanismi ansiolitici, nootropici e immunomodulatori. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Selank. Peptide di ricerca premium (TP-7) per studi su meccanismi ansiolitici, nootropici e immunomodulatori. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12933,7 +13125,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Semaglutide kaufen. Premium Forschungspeptid (GLP-1-Analog) für Forschung zu Glukosestoffwechsel, Appetitregulation und Darm-Hirn-Achse. ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Semaglutide. Peptide de recherche premium (analogue GLP-1) pour la recherche sur le métabolisme du glucose, la régulation de l'appétit et l'axe intestin-cerveau. Pureté ≥99%. COA inclus. Livraison rapide FR & UE.`,
       es: `Semaglutide comprar. Péptido de investigación premium (análogo de GLP-1) para investigación de metabolismo de glucosa, regulación del apetito y eje intestino-cerebro. Pureza ≥99%. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Semaglutide. Peptide di ricerca premium (analogo GLP-1) per ricerca su metabolismo del glucosio, regolazione dell'appetito e asse intestino-cervello. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Semaglutide. Peptide di ricerca premium (analogo GLP-1) per ricerca su metabolismo del glucosio, regolazione dell'appetito e asse intestino-cervello. Purezza ≥99%. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12946,7 +13139,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Semax kaufen. Premium nootropisches Peptid für Forschung mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Semax. Peptide nootropique premium pour la recherche avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `Semax Comprar. Péptido nootrópico premium para investigación con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Semax. Peptide nootropo premium per la ricerca con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Semax. Peptide nootropo premium per la ricerca con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12959,7 +13153,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `TB-500 kaufen. Premium Thymosin Beta-4 (Tβ4)-Fragment für Forschung mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter TB-500. Fragment de Thymosin Beta-4 (Tβ4) premium pour la recherche avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `TB-500 Comprar. Fragmento de Thymosin Beta-4 (Tβ4) premium para investigación con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista TB-500. Frammento di Thymosin Beta-4 (Tβ4) premium per la ricerca con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista TB-500. Frammento di Thymosin Beta-4 (Tβ4) premium per la ricerca con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12972,7 +13167,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Tesofensine kaufen. Premium Forschungscompound (NS2330) mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Tesofensine. Composé de recherche premium (NS2330) avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `Tesofensine Comprar. Compuesto de investigación premium (NS2330) con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Tesofensine. Composto di ricerca premium (NS2330) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Tesofensine. Composto di ricerca premium (NS2330) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12985,7 +13181,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
       de: `Tirzepatide kaufen. Premium Forschungspeptid (dualer GIP/GLP-1-Agonist) mit ≥99% Reinheit. COA inklusive. Schnelle Lieferung in DE & EU.`,
       fr: `Acheter Tirzepatide. Peptide de recherche premium (double agoniste GIP/GLP-1) avec ≥99% pureté. COA inclus. Livraison rapide FR & UE.`,
       es: `Tirzepatide Comprar. Péptido de investigación premium (agonista dual GIP/GLP-1) con ≥99% pureza. COA incluido. Envío rápido ES & UE.`,
-      it: `Acquista Tirzepatide. Peptide di ricerca premium (doppio agonista GIP/GLP-1) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`
+      it: `Acquista Tirzepatide. Peptide di ricerca premium (doppio agonista GIP/GLP-1) con ≥99% purezza. COA incluso. Spedizione veloce IT & UE.`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return metas[lang];
   }
@@ -12996,7 +13193,8 @@ export function getLocalizedMetaDescription(productName: string, category: strin
     de: `${productName} kaufen Deutschland. Premium Forschungspeptid mit ≥99% Reinheit. Schnelle DE & EU Lieferung. COA inklusive.`,
     fr: `Acheter ${productName} France. Peptide de recherche premium avec ≥99% pureté. Livraison rapide FR & UE. COA inclus.`,
     es: `Comprar ${productName} España. Péptido de investigación premium con ≥99% pureza. Envío rápido ES & UE. COA incluido.`,
-    it: `Acquista ${productName} Italia. Peptide di ricerca premium con ≥99% purezza. Spedizione veloce IT & UE. COA incluso.`
+    it: `Acquista ${productName} Italia. Peptide di ricerca premium con ≥99% purezza. Spedizione veloce IT & UE. COA incluso.`,
+      ru: `Купить Россия | Пептидшоп`
   };
   
   return templates[lang];
@@ -13014,7 +13212,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Bacteriostatic water Kaufen Deutschland | Steriles Wasser | Peptide Shop DE`,
       fr: `Acheter de l'eau bactériostatique France | Eau Stérile | Peptide Shop FR`,
       es: `Agua bacteriostatica comprar España | Calidad USP | Peptide Shop ES`,
-      it: `Acquisto acqua batteriostatica Italia | Acqua Sterile | Peptide Shop IT`
+      it: `Acquisto acqua batteriostatica Italia | Acqua Sterile | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13027,7 +13226,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `AOD-9604 kaufen Deutschland | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter AOD-9604 France | ≥99% Pureté | Peptide Shop FR`,
       es: `aod 9604 comprar España | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista AOD-9604 Italia | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista AOD-9604 Italia | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13040,7 +13240,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `BPC-157 Kaufen Deutschland | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter BPC-157 France | ≥99% Pureté | Peptide Shop FR`,
       es: `BPC 157 Comprar España | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista BPC-157 Italia | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista BPC-157 Italia | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13053,7 +13254,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `5-Amino-1MQ kaufen Deutschland | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter 5-Amino-1MQ France | ≥99% Pureté | Peptide Shop FR`,
       es: `5-Amino-1MQ Comprar España | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista 5-Amino-1MQ Italia | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista 5-Amino-1MQ Italia | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13066,7 +13268,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `CJC-1295 No DAC kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter CJC-1295 No DAC | ≥99% Pureté | Peptide Shop FR`,
       es: `CJC-1295 No DAC Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista CJC-1295 No DAC | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista CJC-1295 No DAC | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13079,7 +13282,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Epitalon kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Epitalon | ≥99% Pureté | Peptide Shop FR`,
       es: `Epitalon Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Epitalon | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Epitalon | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13092,7 +13296,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Cagrilintide kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Cagrilintide | ≥99% Pureté | Peptide Shop FR`,
       es: `Cagrilintide Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Cagrilintide | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Cagrilintide | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13105,7 +13310,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `DSIP kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter DSIP | ≥99% Pureté | Peptide Shop FR`,
       es: `DSIP Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista DSIP | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista DSIP | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13118,7 +13324,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `HGH Fragment 176-191 kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter HGH Fragment 176-191 | ≥99% Pureté | Peptide Shop FR`,
       es: `HGH Fragment 176-191 Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista HGH Fragment 176-191 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista HGH Fragment 176-191 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13131,7 +13338,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `GHK-Cu kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter GHK-Cu | ≥99% Pureté | Peptide Shop FR`,
       es: `GHK-Cu Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista GHK-Cu | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista GHK-Cu | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13144,7 +13352,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `GHRP-2 Kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter GHRP-2 | ≥99% Pureté | Peptide Shop FR`,
       es: `GHRP-2 Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista GHRP-2 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista GHRP-2 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13157,7 +13366,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `GHRP-6 Kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter GHRP-6 | ≥99% Pureté | Peptide Shop FR`,
       es: `GHRP-6 Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista GHRP-6 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista GHRP-6 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13170,7 +13380,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Melanotan 2 kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Melanotan 2 | ≥99% Pureté | Peptide Shop FR`,
       es: `Melanotan 2 comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Melanotan 2 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Melanotan 2 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13183,7 +13394,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Ipamorelin kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Ipamorelin | ≥99% Pureté | Peptide Shop FR`,
       es: `Ipamorelin comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Ipamorelin | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Ipamorelin | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13196,7 +13408,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `NAD+ kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter NAD+ | ≥99% Pureté | Peptide Shop FR`,
       es: `NAD+ comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista NAD+ | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista NAD+ | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13209,7 +13422,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `O-304 kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter O-304 | ≥99% Pureté | Peptide Shop FR`,
       es: `O-304 comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista O-304 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista O-304 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13222,7 +13436,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Retatrutide kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Retatrutide | ≥99% Pureté | Peptide Shop FR`,
       es: `Retatrutide comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Retatrutide | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Retatrutide | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13235,7 +13450,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Selank kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Selank | ≥99% Pureté | Peptide Shop FR`,
       es: `Selank comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Selank | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Selank | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13248,7 +13464,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Semaglutide kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Semaglutide | ≥99% Pureté | Peptide Shop FR`,
       es: `Semaglutide comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Semaglutide | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Semaglutide | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13261,7 +13478,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Semax kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Semax | ≥99% Pureté | Peptide Shop FR`,
       es: `Semax Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Semax | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Semax | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13274,7 +13492,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `TB-500 kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter TB-500 | ≥99% Pureté | Peptide Shop FR`,
       es: `TB-500 Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista TB-500 | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista TB-500 | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13287,7 +13506,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Tesofensine kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Tesofensine | ≥99% Pureté | Peptide Shop FR`,
       es: `Tesofensine Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Tesofensine | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Tesofensine | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13300,7 +13520,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
       de: `Tirzepatide kaufen | ≥99% Reinheit | Peptide Shop DE`,
       fr: `Acheter Tirzepatide | ≥99% Pureté | Peptide Shop FR`,
       es: `Tirzepatide Comprar | ≥99% Pureza | Peptide Shop ES`,
-      it: `Acquista Tirzepatide | ≥99% Purezza | Peptide Shop IT`
+      it: `Acquista Tirzepatide | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
     };
     return titles[lang];
   }
@@ -13311,7 +13532,8 @@ export function getLocalizedPageTitle(productName: string, lang: SupportedLangua
     de: `${productName} Kaufen Deutschland | ≥99% Reinheit | Peptide Shop DE`,
     fr: `Acheter ${productName} France | ≥99% Pureté | Peptide Shop FR`,
     es: `Comprar ${productName} España | ≥99% Pureza | Peptide Shop ES`,
-    it: `Acquista ${productName} Italia | ≥99% Purezza | Peptide Shop IT`
+    it: `Acquista ${productName} Italia | ≥99% Purezza | Peptide Shop IT`,
+      ru: `Купить Россия | Пептидшоп`
   };
   
   return templates[lang];
@@ -13835,6 +14057,30 @@ export function translateFAQs(faqs: FAQ[], lang: SupportedLanguage): FAQ[] {
       'high-quality': 'alta qualità',
       'premium': 'premium',
       'fast delivery': 'consegna veloce'
+    },
+    ru: {
+      'What is': 'Что такое',
+      'What are': 'Что такое',
+      'How does': 'Как работает',
+      'How do I': 'Как мне',
+      'How should': 'Как следует',
+      'Benefits of': 'Преимущества',
+      'Storage Instructions': 'Инструкции по хранению',
+      'Reconstitution Guide': 'Руководство по разведению',
+      'Yes': 'Да',
+      'No': 'Нет',
+      'research': 'исследование',
+      'weight loss': 'снижение веса',
+      'growth hormone': 'гормон роста',
+      'muscle recovery': 'восстановление мышц',
+      'peptide': 'пептид',
+      'peptides': 'пептиды',
+      'weeks': 'недели',
+      'months': 'месяцы',
+      'purity': 'чистота',
+      'high-quality': 'высокое качество',
+      'premium': 'премиум',
+      'fast delivery': 'быстрая доставка'
     }
   };
   
@@ -14121,6 +14367,29 @@ export function translateReviews(reviews: Review[], lang: SupportedLanguage): Re
       'tissue healing': 'guarigione dei tessuti',
       'muscle recovery': 'recupero muscolare',
       'weight loss': 'perdita di peso'
+    },
+    ru: {
+      'Outstanding': 'Выдающийся',
+      'Excellent': 'Отлично',
+      'Great': 'Отлично',
+      'Good': 'Хорошо',
+      'Premium': 'Премиум',
+      'Reliable': 'Надежный',
+      'Fast': 'Быстро',
+      'Perfect': 'Идеально',
+      'quality': 'качество',
+      'product': 'продукт',
+      'service': 'сервис',
+      'delivery': 'доставка',
+      'purity': 'чистота',
+      'research': 'исследование',
+      'Fast delivery': 'Быстрая доставка',
+      'fast delivery': 'быстрая доставка',
+      'excellent quality': 'отличное качество',
+      'high-quality': 'высокое качество',
+      'tissue repair': 'восстановление тканей',
+      'muscle recovery': 'восстановление мышц',
+      'weight loss': 'снижение веса'
     }
   };
   

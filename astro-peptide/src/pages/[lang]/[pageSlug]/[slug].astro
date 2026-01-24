@@ -5,7 +5,7 @@ import { pageSlugTranslations, type SupportedLanguage } from '../../../i18n/tran
 export const prerender = true;
 
 export function getStaticPaths() {
-  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
 
   return languages.map((lang) => {
     const pageSlug = pageSlugTranslations[lang]?.['learn'] ?? 'learn';

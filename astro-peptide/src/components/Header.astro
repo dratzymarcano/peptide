@@ -6,13 +6,22 @@ import AccountButton from './AccountButton';
 import SearchBar from './SearchBar';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getEntry } from 'astro:content';
-import { getLangFromUrl, t, getLocalizedPath } from '../i18n/translations';
+import { getLangFromUrl, t, getLocalizedPath, translateCategorySlug } from '../i18n/translations';
 
 const currentLang = getLangFromUrl(Astro.url);
 const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
 const siteData = siteCopy?.data;
 const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 const contactTelegram = siteData?.telegram ?? '@Nebelzee';
+
+// Helper to get category URL with translated slug
+const getCategoryUrl = (category: string) => {
+  if (currentLang === 'en') {
+    return `/peptides/${category}/`;
+  }
+  const translatedSlug = translateCategorySlug(category, currentLang);
+  return `/${currentLang}/peptides/${translatedSlug}/`;
+};
 ---
 
 <!-- Top Announcement Bar -->
@@ -61,11 +70,11 @@ const contactTelegram = siteData?.telegram ?? '@Nebelzee';
 						</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/', currentLang)}>{t(currentLang, 'nav.allPeptides')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/cognitive/', currentLang)}>{t(currentLang, 'nav.cognitive')}</a></li>
+							<li><a class="dropdown-item" href={getCategoryUrl('weight-loss')}>{t(currentLang, 'nav.weightLoss')}</a></li>
+							<li><a class="dropdown-item" href={getCategoryUrl('muscle-recovery')}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
+							<li><a class="dropdown-item" href={getCategoryUrl('growth-hormone')}>{t(currentLang, 'nav.growthHormone')}</a></li>
+							<li><a class="dropdown-item" href={getCategoryUrl('tanning')}>{t(currentLang, 'nav.tanning')}</a></li>
+							<li><a class="dropdown-item" href={getCategoryUrl('cognitive')}>{t(currentLang, 'nav.cognitive')}</a></li>
 						</ul>
 					</li>
 					<li class="nav-item">
@@ -151,11 +160,11 @@ const contactTelegram = siteData?.telegram ?? '@Nebelzee';
 								</svg>
 							</button>
 							<ul class="mobile-dropdown-menu">
-								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/weight-loss/', currentLang)}>{t(currentLang, 'nav.weightLoss')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/muscle-recovery/', currentLang)}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/growth-hormone/', currentLang)}>{t(currentLang, 'nav.growthHormone')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/tanning/', currentLang)}>{t(currentLang, 'nav.tanning')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getLocalizedPath('/peptides/cognitive/', currentLang)}>{t(currentLang, 'nav.cognitive')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getCategoryUrl('weight-loss')}>{t(currentLang, 'nav.weightLoss')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getCategoryUrl('muscle-recovery')}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getCategoryUrl('growth-hormone')}>{t(currentLang, 'nav.growthHormone')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getCategoryUrl('tanning')}>{t(currentLang, 'nav.tanning')}</a></li>
+								<li><a class="mobile-dropdown-item" href={getCategoryUrl('cognitive')}>{t(currentLang, 'nav.cognitive')}</a></li>
 							</ul>
 						</li>
 						<li class="mobile-nav-item">

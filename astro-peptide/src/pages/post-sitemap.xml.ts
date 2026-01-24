@@ -5,7 +5,8 @@ import {
   SITE_URL, 
   generateSitemapXml, 
   buildAlternates,
-  type SitemapURL 
+  type SitemapURL,
+  type SitemapAlternate
 } from '../utils/sitemap';
 
 export const GET: APIRoute = async () => {
@@ -46,33 +47,58 @@ export const GET: APIRoute = async () => {
   }
   
   // 2. Individual Blog Posts
+  // Helper function to strip language prefix from blog slugs
+  const stripLangPrefix = (slug: string): string => {
+    return slug
+      .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
+      .replace(/^(ru)-/, '');
+  };
+
+  // Group posts by their base slug to find translations
+  const postsByBaseSlug = new Map<string, typeof blogPosts>();
   for (const post of blogPosts) {
-    const postDate = post.data.publishDate 
-      ? new Date(post.data.publishDate).toISOString().split('T')[0]
+    const postLang = post.data.lang || 'en';
+    const baseSlug = stripLangPrefix(post.slug);
+    if (!postsByBaseSlug.has(baseSlug)) {
+      postsByBaseSlug.set(baseSlug, []);
+    }
+    postsByBaseSlug.get(baseSlug)!.push(post);
+  }
+
+  for (const [baseSlug, posts] of postsByBaseSlug) {
+    const postDate = posts[0].data.publishDate 
+      ? new Date(posts[0].data.publishDate).toISOString().split('T')[0]
       : today;
     
-    // Generate alternates for this post
-    const postPath = `/blog/${post.slug}/`;
-    const postAlternates = buildAlternates(
-      supportedLanguages,
-      (lang) => `${SITE_URL}${getLocalizedPath(postPath, lang)}`,
-      `${SITE_URL}${postPath}`
-    );
-
-    // English Post
-    sitemapUrls.push({
-      loc: `${SITE_URL}/blog/${post.slug}/`,
-      lastmod: postDate,
-      changefreq: 'monthly',
-      priority: '0.7',
-      alternates: postAlternates
+    // Build alternates only for languages where the post exists
+    const availableLangs = posts.map(p => p.data.lang || 'en');
+    const postAlternates: SitemapAlternate[] = availableLangs.map(lang => {
+      const langPath = lang === 'en' ? `/blog/${baseSlug}/` : `/${lang}/blog/${baseSlug}/`;
+      return {
+        lang: lang,
+        hreflang: lang === 'en' ? 'en-GB' : lang,
+        href: `${SITE_URL}${langPath}`
+      };
     });
 
-    // Localized Posts
-    for (const lang of supportedLanguages) {
-      if (lang === 'en') continue;
+    // Add x-default pointing to English
+    if (availableLangs.includes('en')) {
+      postAlternates.push({
+        lang: 'x-default',
+        hreflang: 'x-default',
+        href: `${SITE_URL}/blog/${baseSlug}/`
+      });
+    }
+
+    // Generate sitemap entries only for existing posts
+    for (const post of posts) {
+      const postLang = post.data.lang || 'en';
+      const url = postLang === 'en' 
+        ? `${SITE_URL}/blog/${baseSlug}/` 
+        : `${SITE_URL}/${postLang}/blog/${baseSlug}/`;
+      
       sitemapUrls.push({
-        loc: `${SITE_URL}${getLocalizedPath(postPath, lang)}`,
+        loc: url,
         lastmod: postDate,
         changefreq: 'monthly',
         priority: '0.7',

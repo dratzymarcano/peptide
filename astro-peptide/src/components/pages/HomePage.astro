@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, getEntry } from 'astro:content';
 import ProductCard from '../ProductCard';
-import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize, getLocalizedPath } from '../../i18n/translations';
+import { translations, type SupportedLanguage, cleanProductTitle, translatePackageSize, getLocalizedPath, translateCategorySlug } from '../../i18n/translations';
 import { getMarket } from '../../i18n/market';
 
 interface Props {
@@ -32,11 +32,19 @@ function t(key: string): string {
 
 // Helper to clean slug - removes language prefix and /peptides/ prefix
 const cleanSlug = (slug: string) => {
-  // Remove language prefix (e.g., 'en/', 'de/', 'nl/', etc.)
-  const withoutLang = slug.replace(/^(en|de|nl|fr|es|it)\//, '');
+  // Remove language prefix (e.g., 'en/', 'de/', 'nl/', 'ru/', etc.)
+  const withoutLang = slug.replace(/^(en|de|nl|fr|es|it|ru)\//, '');
   // Remove /peptides/ prefix and leading slashes
   return withoutLang.replace(/^\/peptides\//, '').replace(/^\//, '');
 };
+
+// Helper function to strip language prefix from blog slugs
+// Handles both folder prefixes (en/, ru/) and file prefixes (ru-)
+function stripLangPrefix(slug: string): string {
+  return slug
+    .replace(/^(en|nl|de|fr|es|it|ru)\//, '') // Strip folder prefix like "en/"
+    .replace(/^(ru)-/, ''); // Strip Russian file prefix "ru-"
+}
 
 // Fetch products for "Best Sellers" - filter by current language
 const allProducts = await getCollection('products');
@@ -51,17 +59,30 @@ const recentPosts = allBlogPosts
   .sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf())
   .slice(0, 3);
 
-// Fallback if no localized posts found for this language
+// Fallback if no localized posts found for this language - use English posts with English paths
 const displayPosts = recentPosts.length > 0 
-  ? recentPosts 
-  : allBlogPosts.filter(p => p.data.lang === 'en').slice(0, 3);
+  ? recentPosts.map(p => ({ ...p, useFallbackLang: false }))
+  : allBlogPosts
+      .filter(p => p.data.lang === 'en')
+      .sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf())
+      .slice(0, 3)
+      .map(p => ({ ...p, useFallbackLang: true }));
 
 const categories = [
-  { name: t('nav.weightLoss'), slug: 'weight-loss', icon: 'scale', desc: t('home.categories.desc.weightLoss'), gradient: 'from-purple-500 to-pink-500' },
-  { name: t('nav.muscleRecovery'), slug: 'muscle-recovery', icon: 'activity', desc: t('home.categories.desc.muscleRecovery'), gradient: 'from-blue-500 to-cyan-500' },
-  { name: t('nav.cognitive'), slug: 'cognitive', icon: 'brain', desc: t('home.categories.desc.cognitive'), gradient: 'from-green-500 to-emerald-500' },
-  { name: t('nav.growthHormone'), slug: 'growth-hormone', icon: 'clock', desc: t('home.categories.desc.antiAging'), gradient: 'from-orange-500 to-red-500' },
+  { name: t('nav.weightLoss'), slug: 'weight-loss', localizedSlug: translateCategorySlug('weight-loss', lang), icon: 'scale', desc: t('home.categories.desc.weightLoss'), gradient: 'from-purple-500 to-pink-500' },
+  { name: t('nav.muscleRecovery'), slug: 'muscle-recovery', localizedSlug: translateCategorySlug('muscle-recovery', lang), icon: 'activity', desc: t('home.categories.desc.muscleRecovery'), gradient: 'from-blue-500 to-cyan-500' },
+  { name: t('nav.cognitive'), slug: 'cognitive', localizedSlug: translateCategorySlug('cognitive', lang), icon: 'brain', desc: t('home.categories.desc.cognitive'), gradient: 'from-green-500 to-emerald-500' },
+  { name: t('nav.growthHormone'), slug: 'growth-hormone', localizedSlug: translateCategorySlug('growth-hormone', lang), icon: 'clock', desc: t('home.categories.desc.antiAging'), gradient: 'from-orange-500 to-red-500' },
 ];
+
+// Helper to get category URL with translated slug
+const getCategoryUrl = (category: string) => {
+  if (lang === 'en') {
+    return `/peptides/${category}/`;
+  }
+  const translatedSlug = translateCategorySlug(category, lang);
+  return `/${lang}/peptides/${translatedSlug}/`;
+};
 
 const testimonials = [
   { name: 'Dr. Sarah Mitchell', role: t('home.testimonials.role1'), text: t('home.testimonials.text1'), rating: 5 },
@@ -75,7 +96,7 @@ const websiteSchema = {
   "name": seoName,
   "description": seoDescription,
   "url": "https://peptide-shop.net",
-  "inLanguage": ["en-GB", "nl-NL", "de-DE", "fr-FR", "es-ES", "it-IT"],
+  "inLanguage": ["en-GB", "nl-NL", "de-DE", "fr-FR", "es-ES", "it-IT", "ru-RU"],
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://peptide-shop.net/peptides?q={search_term_string}",
@@ -101,17 +122,18 @@ const organizationSchema = {
     {"@type": "Country", "name": "Belgium"},
     {"@type": "Country", "name": "Ireland"},
     {"@type": "Country", "name": "Austria"},
-    {"@type": "Country", "name": "Portugal"}
+    {"@type": "Country", "name": "Portugal"},
+    {"@type": "Country", "name": "Russia"}
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+44-123-456-7890",
+    "email": "peptideshop@zohomail.com",
     "contactType": "customer service",
-    "areaServed": ["GB", "NL", "DE", "FR", "ES", "IT"],
-    "availableLanguage": ["English", "Dutch", "German", "French", "Spanish", "Italian"]
+    "areaServed": ["GB", "NL", "DE", "FR", "ES", "IT", "RU"],
+    "availableLanguage": ["English", "Dutch", "German", "French", "Spanish", "Italian", "Russian"]
   },
   "sameAs": [
-    "https://t.me/peptideshop"
+    "https://t.me/Nebelzee"
   ]
 };
 
@@ -1474,7 +1496,7 @@ const homeSchema = {
 
       <div class="category-grid">
         {categories.map((cat) => (
-          <a href={getLocalizedPath('/peptides/' + cat.slug, lang)} class="category-card">
+          <a href={getCategoryUrl(cat.slug)} class="category-card">
             <div class="category-icon">
               <i data-lucide={cat.icon} style="width: 28px; height: 28px; color: var(--shop-primary);"></i>
             </div>
@@ -1660,26 +1682,33 @@ const homeSchema = {
       </div>
 
       <div class="row g-4">
-        {displayPosts.map(post => (
-          <div class="col-lg-4">
-            <div class="blog-card">
-              <a href={getLocalizedPath(`/blog/${post.slug}`, lang)} style="text-decoration: none; color: inherit; display: block;">
-                <img src={post.data.image} alt={post.data.title} class="blog-image" style="width: 100%; height: 240px; object-fit: cover;">
-                <div class="p-4">
-                  <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">
-                    {post.data.category?.toUpperCase() || 'RESEARCH'}
-                  </span>
-                  <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
-                    {post.data.title}
-                  </h3>
-                  <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
-                    {post.data.description}
-                  </p>
-                </div>
-              </a>
+        {displayPosts.map(post => {
+          // Use English path for fallback posts, localized path for native language posts
+          const postSlug = stripLangPrefix(post.slug);
+          const blogPath = post.useFallbackLang 
+            ? `/blog/${postSlug}` 
+            : getLocalizedPath(`/blog/${postSlug}`, lang);
+          return (
+            <div class="col-lg-4">
+              <div class="blog-card">
+                <a href={blogPath} style="text-decoration: none; color: inherit; display: block;">
+                  <img src={post.data.image} alt={post.data.title} class="blog-image" style="width: 100%; height: 240px; object-fit: cover;">
+                  <div class="p-4">
+                    <span class="badge mb-3" style="background: rgba(0, 119, 182, 0.1); color: #0077b6; padding: 6px 14px; border-radius: 10px; font-size: 12px; font-weight: 600;">
+                      {post.data.category?.toUpperCase() || 'RESEARCH'}
+                    </span>
+                    <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; color: #1e293b; line-height: 1.4;">
+                      {post.data.title}
+                    </h3>
+                    <p style="color: #6b7280; margin-bottom: 16px; line-height: 1.6; font-size: 14px;">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div class="text-center mt-5">

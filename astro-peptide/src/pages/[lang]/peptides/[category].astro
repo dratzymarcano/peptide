@@ -3,25 +3,29 @@ import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import ProductCard from '../../../components/ProductCard';
 import Sidebar from '../../../components/Sidebar.astro';
-import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize } from '../../../i18n/translations';
+import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize, categorySlugTranslations, translateCategorySlug, getCanonicalCategorySlug } from '../../../i18n/translations';
 
 export const prerender = true;
 
 // Helper to clean slug - removes en/ lang prefix, /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^en\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
+const cleanSlug = (slug: string) => slug.replace(/^(en|ru)\//, '').replace(/^\/peptides\//, '').replace(/^\//, '');
 
 export async function getStaticPaths() {
   const allProducts = await getCollection('products');
   // Use English products as base for categories
   const products = allProducts.filter(p => p.slug.startsWith('en/'));
   const categories = [...new Set(products.map((product) => product.data.category))];
-  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it'];
+  const languages: SupportedLanguage[] = ['nl', 'de', 'fr', 'es', 'it', 'ru'];
   
   return languages.flatMap(lang => 
-    categories.map(category => ({
-      params: { lang, category },
-      props: { category, lang },
-    }))
+    categories.map(category => {
+      // Use translated category slug for the URL
+      const localizedCategorySlug = translateCategorySlug(category, lang);
+      return {
+        params: { lang, category: localizedCategorySlug },
+        props: { category, lang }, // Keep original English category for filtering
+      };
+    })
   );
 }
 
@@ -59,6 +63,9 @@ const featurePoints = [
   t(lang, 'product.trust.delivery'),
   t(lang, 'cart.secureCheckout')
 ];
+
+// Get the translated category slug for URLs
+const localizedCategorySlug = translateCategorySlug(category, lang);
 ---
 
 <Layout 
@@ -67,7 +74,7 @@ const featurePoints = [
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
     { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },
-    { name: categoryTitle, url: getLocalizedPath(`/peptides/${category}`, lang) }
+    { name: categoryTitle, url: `/${lang}/peptides/${localizedCategorySlug}` }
   ]}
 >
   <!-- Category Hero Header -->
