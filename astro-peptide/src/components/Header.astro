@@ -300,7 +300,7 @@ const getCategoryUrl = (category: string) => {
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 10001;
+		z-index: 9998;
 		letter-spacing: 0.2px;
 	}
 
@@ -338,7 +338,7 @@ const getCategoryUrl = (category: string) => {
 		top: calc(var(--topbar-height-mobile) + var(--safe-area-top));
 		left: 0;
 		right: 0;
-		z-index: 10000;
+		z-index: 9999;
 		height: var(--header-height-mobile);
 		display: flex;
 		align-items: center;
@@ -447,8 +447,14 @@ const getCategoryUrl = (category: string) => {
 		border-radius: var(--radius-md);
 		-webkit-tap-highlight-color: transparent;
 		position: relative;
-		z-index: 10003;
+		z-index: 9999;
 		margin-left: var(--spacing-sm);
+	}
+
+	/* Hide hamburger when menu is open - close button in menu header is used */
+	.mobile-toggle.active {
+		visibility: hidden;
+		pointer-events: none;
 	}
 
 	/* Defensive: ensure desktop-only actions never appear on mobile */
