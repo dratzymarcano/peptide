@@ -10,8 +10,11 @@ interface ContactFormData {
   user_message: string;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
+    // Get API key from environment (support Cloudflare & Node)
+    const runtimeEnv = (locals as any)?.runtime?.env;
+    
     const data: ContactFormData = await request.json();
     
     // Basic validation
@@ -63,8 +66,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Send email notification via Resend if API key is configured
-    const resendApiKey = import.meta.env.RESEND_API_KEY;
-    const ownerEmail = import.meta.env.OWNER_EMAIL || SITE_EMAIL;
+    const resendApiKey = import.meta.env.RESEND_API_KEY || runtimeEnv?.RESEND_API_KEY;
+    const ownerEmail = import.meta.env.OWNER_EMAIL || runtimeEnv?.OWNER_EMAIL || SITE_EMAIL;
     
     if (resendApiKey) {
       try {
