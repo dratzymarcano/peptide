@@ -93,7 +93,52 @@ export const POST: APIRoute = async ({ request }) => {
         });
 
         if (!emailResponse.ok) {
-          console.error('Failed to send email:', await emailResponse.text());
+          console.error('Failed to send email to owner:', await emailResponse.text());
+        }
+
+        // Send confirmation email to the customer
+        const confirmationResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'Peptide Shop <noreply@peptide-shop.net>',
+            to: data.user_email,
+            subject: 'Thank you for contacting Peptide Shop',
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background: linear-gradient(90deg, #0077b6, #023e8a); padding: 30px; text-align: center;">
+                  <h1 style="color: white; margin: 0; font-size: 24px;">Peptide Shop</h1>
+                </div>
+                <div style="padding: 30px; background: #f8fafc;">
+                  <h2 style="color: #1e293b; margin-top: 0;">Thank you for your message, ${data.user_name}!</h2>
+                  <p style="color: #64748b; line-height: 1.6;">We have received your inquiry and will get back to you within 24 hours.</p>
+                  
+                  <div style="background: white; border-radius: 8px; padding: 20px; margin: 20px 0; border: 1px solid #e2e8f0;">
+                    <h3 style="color: #1e293b; margin-top: 0; font-size: 16px;">Your Message:</h3>
+                    <p style="color: #64748b; margin: 0;"><strong>Subject:</strong> ${data.subject || 'General Inquiry'}</p>
+                    <p style="color: #64748b; margin: 10px 0 0 0; white-space: pre-wrap;">${data.user_message}</p>
+                  </div>
+                  
+                  <p style="color: #64748b; line-height: 1.6;">If you have any urgent questions, you can also reach us via:</p>
+                  <ul style="color: #64748b; line-height: 1.8;">
+                    <li>Email: <a href="mailto:peptideshop@zohomail.com" style="color: #0077b6;">peptideshop@zohomail.com</a></li>
+                    <li>Telegram: <a href="https://t.me/Nebelzee" style="color: #0077b6;">@Nebelzee</a></li>
+                  </ul>
+                </div>
+                <div style="background: #1e293b; padding: 20px; text-align: center;">
+                  <p style="color: #94a3b8; margin: 0; font-size: 14px;">© 2026 Peptide Shop. All rights reserved.</p>
+                </div>
+              </div>
+            `,
+            text: `Thank you for your message, ${data.user_name}!\n\nWe have received your inquiry and will get back to you within 24 hours.\n\nYour Message:\nSubject: ${data.subject || 'General Inquiry'}\n${data.user_message}\n\nIf you have any urgent questions, you can also reach us via:\n- Email: peptideshop@zohomail.com\n- Telegram: @Nebelzee\n\n© 2026 Peptide Shop. All rights reserved.`,
+          }),
+        });
+
+        if (!confirmationResponse.ok) {
+          console.error('Failed to send confirmation email:', await confirmationResponse.text());
         }
       } catch (emailError) {
         console.error('Email send error:', emailError);

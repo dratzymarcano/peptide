@@ -241,6 +241,41 @@ const contactSchema = {
   </section>
 </Layout>
 
+<!-- Notification Toast -->
+<div id="notification-toast" style="
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  padding: 16px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  z-index: 10050;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+" role="alert" aria-live="polite"></div>
+
+<style>
+  #notification-toast.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+  #notification-toast.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+  }
+  #notification-toast.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+  }
+</style>
+
 <script is:inline define:vars={{ 
   successMessage: t(lang, 'contactPage.successMessage'),
   errorMessage: t(lang, 'contactPage.form.errorMessage') || 'An error occurred. Please try again.',
@@ -249,6 +284,20 @@ const contactSchema = {
   const contactForm = document.getElementById('contact-form');
   const submitBtn = contactForm?.querySelector('button[type="submit"]');
   const originalBtnText = submitBtn?.textContent || '';
+  const notificationToast = document.getElementById('notification-toast');
+  
+  function showNotification(message, type) {
+    if (!notificationToast) return;
+    
+    notificationToast.textContent = message;
+    notificationToast.className = type;
+    notificationToast.classList.add('show');
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      notificationToast.classList.remove('show');
+    }, 5000);
+  }
   
   contactForm?.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -280,16 +329,16 @@ const contactSchema = {
       const result = await response.json();
       
       if (result.success) {
-        // Show success message
-        alert(successMessage);
+        // Show success notification
+        showNotification(successMessage, 'success');
         e.target.reset();
       } else {
-        // Show error message
-        alert(result.error || errorMessage);
+        // Show error notification
+        showNotification(result.error || errorMessage, 'error');
       }
     } catch (error) {
       console.error('Contact form error:', error);
-      alert(errorMessage);
+      showNotification(errorMessage, 'error');
     } finally {
       // Re-enable button
       if (submitBtn) {
