@@ -315,6 +315,7 @@ export const es: Translations = {
       blog: {
         title: 'Blog de investigación',
         subtitle: 'Últimas novedades',
+        description: 'Manténgase actualizado con las últimas investigaciones sobre péptidos, perspectivas de la industria y avances científicos.',
         viewAll: 'Ver todos los artículos',
       },
       testimonials: {

@@ -315,6 +315,7 @@ export const de: Translations = {
       blog: {
         title: 'Forschungsblog',
         subtitle: 'Aktuelle Erkenntnisse',
+        description: 'Bleiben Sie auf dem Laufenden mit der neuesten Peptidforschung, Brancheneinblicken und wissenschaftlichen Durchbrüchen.',
         viewAll: 'Alle Artikel ansehen',
       },
       testimonials: {

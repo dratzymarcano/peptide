@@ -315,6 +315,7 @@ export const nl: Translations = {
       blog: {
         title: 'Onderzoeksblog',
         subtitle: 'Laatste inzichten',
+        description: 'Blijf op de hoogte van het laatste peptide-onderzoek, branche-inzichten en wetenschappelijke doorbraken.',
         viewAll: 'Alle artikelen bekijken',
       },
       testimonials: {

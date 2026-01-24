@@ -339,6 +339,7 @@ export interface Translations {
     blog: {
       title: string;
       subtitle: string;
+      description: string;
       viewAll: string;
     };
     testimonials: {
