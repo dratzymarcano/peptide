@@ -11,10 +11,11 @@ interface SearchResult {
 
 interface SearchBarProps {
   lang?: SupportedLanguage;
+  alwaysExpanded?: boolean;
 }
 
-export default function SearchBar({ lang = 'en' }: SearchBarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SearchBar({ lang = 'en', alwaysExpanded = false }: SearchBarProps) {
+  const [isOpen, setIsOpen] = useState(alwaysExpanded);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ export default function SearchBar({ lang = 'en' }: SearchBarProps) {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      if (alwaysExpanded) return; // Don't collapse if always expanded
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
         setQuery('');
@@ -38,7 +40,7 @@ export default function SearchBar({ lang = 'en' }: SearchBarProps) {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [alwaysExpanded]);
 
   useEffect(() => {
     const searchProducts = async () => {
@@ -66,7 +68,7 @@ export default function SearchBar({ lang = 'en' }: SearchBarProps) {
   }, [query]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && !alwaysExpanded) {
       setIsOpen(false);
       setQuery('');
       setResults([]);

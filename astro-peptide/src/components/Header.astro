@@ -207,9 +207,9 @@ const getCategoryUrl = (category: string) => {
 
 				<!-- Footer Section - Search, Language, Account, Cart -->
 				<div class="mobile-menu-footer">
-					<!-- Search -->
+					<!-- Search - always expanded in mobile menu -->
 					<div class="mobile-footer-search">
-						<SearchBar client:load lang={currentLang} />
+						<SearchBar client:load lang={currentLang} alwaysExpanded={true} />
 					</div>
 
 					<!-- Action Grid -->
@@ -755,6 +755,23 @@ const getCategoryUrl = (category: string) => {
 	.mobile-footer-lang :global(select) {
 		min-height: 44px;
 		border-radius: 10px;
+	}
+
+	/* Fix language switcher dropdown positioning on mobile */
+	.mobile-footer-lang :global(.absolute) {
+		right: auto !important;
+		left: 50% !important;
+		transform: translateX(-50%) !important;
+		max-width: calc(100vw - 48px) !important;
+	}
+
+	/* Hide the search close button in mobile menu - use main close button instead */
+	.mobile-footer-search :global(.input-group-append) {
+		display: none;
+	}
+	
+	.mobile-footer-search :global(.form-control) {
+		border-radius: 12px !important;
 	}
 
 	/* Mobile Menu Overlay */

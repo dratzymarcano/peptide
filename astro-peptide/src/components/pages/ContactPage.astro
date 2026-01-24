@@ -241,11 +241,61 @@ const contactSchema = {
   </section>
 </Layout>
 
-<script is:inline define:vars={{ successMessage: t(lang, 'contactPage.successMessage') }}>
+<script is:inline define:vars={{ 
+  successMessage: t(lang, 'contactPage.successMessage'),
+  errorMessage: t(lang, 'contactPage.form.errorMessage') || 'An error occurred. Please try again.',
+  sendingMessage: t(lang, 'contactPage.form.sending') || 'Sending...'
+}}>
   const contactForm = document.getElementById('contact-form');
-  contactForm?.addEventListener('submit', function(e) {
+  const submitBtn = contactForm?.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn?.textContent || '';
+  
+  contactForm?.addEventListener('submit', async function(e) {
     e.preventDefault();
-    alert(successMessage);
-    e.target.reset();
+    
+    // Disable button and show loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = sendingMessage;
+    }
+    
+    // Gather form data
+    const formData = new FormData(e.target);
+    const data = {
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      subject: formData.get('subject'),
+      user_message: formData.get('user_message')
+    };
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        // Show success message
+        alert(successMessage);
+        e.target.reset();
+      } else {
+        // Show error message
+        alert(result.error || errorMessage);
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      alert(errorMessage);
+    } finally {
+      // Re-enable button
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    }
   });
 </script>

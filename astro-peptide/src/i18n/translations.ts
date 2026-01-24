@@ -451,6 +451,8 @@ interface Translations {
       message: string;
       messagePlaceholder: string;
       submit: string;
+      sending: string;
+      errorMessage: string;
     };
     info: {
       emailTitle: string;
@@ -1301,6 +1303,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Message',
         messagePlaceholder: 'Tell us about your research needs...',
         submit: 'Send Message',
+        sending: 'Sending...',
+        errorMessage: 'An error occurred. Please try again.',
       },
       info: {
         emailTitle: 'Email Us',
@@ -2221,6 +2225,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Bericht',
         messagePlaceholder: 'Vertel ons over uw onderzoeksbehoeften...',
         submit: 'Bericht versturen',
+        sending: 'Verzenden...',
+        errorMessage: 'Er is een fout opgetreden. Probeer het opnieuw.',
       },
       info: {
         emailTitle: 'E-mail ons',
@@ -3141,6 +3147,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Nachricht',
         messagePlaceholder: 'Erzählen Sie uns von Ihren Forschungsbedürfnissen...',
         submit: 'Nachricht senden',
+        sending: 'Senden...',
+        errorMessage: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
       },
       info: {
         emailTitle: 'E-Mail',
@@ -4061,6 +4069,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Message',
         messagePlaceholder: 'Parlez-nous de vos besoins de recherche...',
         submit: 'Envoyer',
+        sending: 'Envoi en cours...',
+        errorMessage: 'Une erreur s\'est produite. Veuillez réessayer.',
       },
       info: {
         emailTitle: 'Email',
@@ -4981,6 +4991,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Mensaje',
         messagePlaceholder: 'Cuéntanos sobre tus necesidades de investigación...',
         submit: 'Enviar',
+        sending: 'Enviando...',
+        errorMessage: 'Se produjo un error. Por favor, inténtelo de nuevo.',
       },
       info: {
         emailTitle: 'Email',
@@ -5901,6 +5913,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         message: 'Messaggio',
         messagePlaceholder: 'Raccontaci le tue esigenze di ricerca...',
         submit: 'Invia',
+        sending: 'Invio in corso...',
+        errorMessage: 'Si è verificato un errore. Per favore riprova.',
       },
       info: {
         emailTitle: 'Email',
@@ -6822,6 +6836,8 @@ nav: {
         message: 'Сообщение',
         messagePlaceholder: 'Расскажите нам о ваших исследовательских потребностях...',
         submit: 'Отправить сообщение',
+        sending: 'Отправка...',
+        errorMessage: 'Произошла ошибка. Пожалуйста, попробуйте снова.',
       },
       info: {
         emailTitle: 'Напишите нам',
