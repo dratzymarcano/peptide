@@ -51,7 +51,7 @@ export const GET: APIRoute = async () => {
   const stripLangPrefix = (slug: string): string => {
     return slug
       .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
-      .replace(/^(ru)-/, '');
+      .replace(/^(nl|de|fr|es|it|ru)-/, '');
   };
 
   // Group posts by their base slug to find translations

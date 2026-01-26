@@ -20,11 +20,11 @@ const pageCopy = await getEntry('pageCopy', copySlug) || await getEntry('pageCop
 const copy = pageCopy?.data.copy ?? {};
 
 // Helper function to strip language prefix from blog slugs
-// Handles both folder prefixes (en/, ru/) and file prefixes (ru-)
+// Handles both folder prefixes (en/, ru/) and file prefixes (nl-, de-, fr-, es-, it-, ru-)
 function stripLangPrefix(slug: string): string {
   return slug
     .replace(/^(en|nl|de|fr|es|it|ru)\//, '') // Strip folder prefix like "en/"
-    .replace(/^(ru)-/, ''); // Strip Russian file prefix "ru-"
+    .replace(/^(nl|de|fr|es|it|ru)-/, ''); // Strip all language file prefixes
 }
 
 const allPosts = await getCollection('blog');

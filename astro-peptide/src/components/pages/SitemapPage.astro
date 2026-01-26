@@ -14,7 +14,7 @@ const { lang } = Astro.props;
 function stripLangPrefix(slug: string): string {
   return slug
     .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
-    .replace(/^(ru)-/, '');
+    .replace(/^(nl|de|fr|es|it|ru)-/, '');
 }
 
 // Helper to get category URL with translated slug

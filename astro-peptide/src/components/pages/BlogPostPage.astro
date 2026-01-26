@@ -18,7 +18,7 @@ const { Content } = await post.render();
 function stripLangPrefix(slug: string): string {
   return slug
     .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
-    .replace(/^(ru)-/, '');
+    .replace(/^(nl|de|fr|es|it|ru)-/, '');
 }
 
 // Get related posts (same category AND same language, excluding current)

@@ -39,11 +39,11 @@ const cleanSlug = (slug: string) => {
 };
 
 // Helper function to strip language prefix from blog slugs
-// Handles both folder prefixes (en/, ru/) and file prefixes (ru-)
+// Handles both folder prefixes (en/, ru/) and file prefixes (nl-, de-, fr-, es-, it-, ru-)
 function stripLangPrefix(slug: string): string {
   return slug
     .replace(/^(en|nl|de|fr|es|it|ru)\//, '') // Strip folder prefix like "en/"
-    .replace(/^(ru)-/, ''); // Strip Russian file prefix "ru-"
+    .replace(/^(nl|de|fr|es|it|ru)-/, ''); // Strip all language file prefixes
 }
 
 // Fetch products for "Best Sellers" - filter by current language

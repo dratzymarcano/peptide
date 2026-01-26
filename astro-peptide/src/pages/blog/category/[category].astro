@@ -15,7 +15,7 @@ function slugify(s: string) {
 function stripLangPrefix(slug: string): string {
   return slug
     .replace(/^(en|nl|de|fr|es|it|ru)\//, '')
-    .replace(/^(ru)-/, '');
+    .replace(/^(nl|de|fr|es|it|ru)-/, '');
 }
 
 export async function getStaticPaths() {
