@@ -47,20 +47,6 @@ const { faqs, lang = 'en' } = Astro.props;
         </div>
       ))}
     </div>
-    
-    <!-- Schema.org FAQ markup for SEO -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    })} />
   </div>
 )}
 
