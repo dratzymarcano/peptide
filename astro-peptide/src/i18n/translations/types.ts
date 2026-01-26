@@ -164,8 +164,15 @@ export interface Translations {
     recentPosts: string;
     searchPosts: string;
     noPosts: string;
+    featured: string;
     featuredArticles: string;
     latestArticles: string;
+    moreArticles: string;
+    articles: string;
+    tableOfContents: string;
+    minRead: string;
+    writtenBy: string;
+    exploreProducts: string;
     comingSoon: string;
     comingSoonDesc: string;
     aboutBlog: string;
@@ -494,6 +501,8 @@ export interface Translations {
     email: string;
     phone: string;
     notSet: string;
+    share: string;
+    viewAll: string;
   };
   legalPages: {
     lastUpdated: string;
