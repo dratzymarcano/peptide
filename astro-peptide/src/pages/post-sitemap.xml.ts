@@ -107,10 +107,11 @@ export const GET: APIRoute = async () => {
     }
   }
   
-  // 3. Blog Categories
+  // 3. Blog Categories (with all language alternates)
   const categories = Array.from(
     new Set(blogPosts.map((post) => post.data.category).filter(Boolean) as string[])
   );
+  
   for (const category of categories) {
     const categorySlug = slugify(category);
     const latestInCategory = blogPosts
@@ -120,13 +121,33 @@ export const GET: APIRoute = async () => {
       ? new Date(latestInCategory.data.publishDate).toISOString().split('T')[0]
       : today;
 
+    // Build alternates for category pages
+    const categoryAlternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(`/blog/category/${categorySlug}/`, lang)}`,
+      `${SITE_URL}/blog/category/${categorySlug}/`
+    );
+
+    // English category page
     sitemapUrls.push({
       loc: `${SITE_URL}/blog/category/${categorySlug}/`,
       lastmod: categoryLastmod,
       changefreq: 'weekly',
-      priority: '0.6'
-      // No alternates if no localized pages exist
+      priority: '0.6',
+      alternates: categoryAlternates
     });
+
+    // Localized category pages
+    for (const lang of supportedLanguages) {
+      if (lang === 'en') continue;
+      sitemapUrls.push({
+        loc: `${SITE_URL}${getLocalizedPath(`/blog/category/${categorySlug}/`, lang)}`,
+        lastmod: categoryLastmod,
+        changefreq: 'weekly',
+        priority: '0.6',
+        alternates: categoryAlternates
+      });
+    }
   }
 
   return new Response(generateSitemapXml(sitemapUrls), {
