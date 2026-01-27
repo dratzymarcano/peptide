@@ -897,10 +897,23 @@ interface Translations {
       completePayment: string;
       sendExactly: string;
       toAddress: string;
+      scanQRCode: string;
       paymentExpires: string;
       completeBeforeExpires: string;
       paymentConfirmation: string;
       paymentInfo: string;
+      timeRemaining: string;
+      monitoringPayment: string;
+      paymentDetected: string;
+      waitingConfirmation: string;
+      processing: string;
+      confirmationNotice: string;
+      paymentConfirmed: string;
+      paymentReceived: string;
+      confirmationEmailSent: string;
+      paymentExpired: string;
+      orderCancelled: string;
+      tryAgain: string;
     };
     summary: {
       subtotal: string;
@@ -1778,6 +1791,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         copyAddress: 'Copy Address',
         reviewOrder: 'Review Order',
         processing: 'Processing...',
+        tryAgain: 'Try Again',
+        contactSupport: 'Contact Support',
       },
       account: {
         title: 'How would you like to checkout?',
@@ -1825,6 +1840,19 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completeBeforeExpires: 'Please complete the payment before the timer expires.',
         paymentConfirmation: 'Once payment is confirmed on the blockchain, you will receive a confirmation email at',
         paymentInfo: "You'll receive a unique Bitcoin address. Payment expires in 15 minutes.",
+        scanQRCode: 'Scan QR code to pay',
+        timeRemaining: 'Time Remaining',
+        monitoringPayment: 'Monitoring blockchain for your payment...',
+        paymentDetected: 'Payment Detected!',
+        waitingConfirmation: 'Waiting for blockchain confirmation...',
+        processing: 'Processing...',
+        confirmationNotice: 'You will receive an email confirmation once your payment is confirmed.',
+        paymentConfirmed: 'Payment Confirmed!',
+        paymentReceived: 'Your Bitcoin payment has been received and confirmed!',
+        confirmationEmailSent: 'A confirmation email has been sent to',
+        paymentExpired: 'Payment Time Expired',
+        orderCancelled: 'Your order has been cancelled due to payment timeout.',
+        tryAgain: 'Please try again or contact support if you need assistance.',
       },
       summary: {
         subtotal: 'Subtotal',
@@ -2700,6 +2728,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         copyAddress: 'Adres kopiëren',
         reviewOrder: 'Bestelling controleren',
         processing: 'Verwerken...',
+        tryAgain: 'Opnieuw proberen',
+        contactSupport: 'Neem contact op met ondersteuning',
       },
       account: {
         title: 'Hoe wilt u afrekenen?',
@@ -2743,10 +2773,23 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completePayment: 'Voltooi uw Bitcoin-betaling',
         sendExactly: 'Stuur precies:',
         toAddress: 'Naar dit adres:',
+        scanQRCode: 'Scan QR-code om te betalen',
         paymentExpires: 'Betaling verloopt over 15 minuten.',
         completeBeforeExpires: 'Voltooi de betaling voordat de timer afloopt.',
         paymentConfirmation: 'Zodra de betaling is bevestigd op de blockchain, ontvangt u een bevestigingsmail op',
         paymentInfo: 'U ontvangt een uniek Bitcoin-adres. Betaling verloopt over 15 minuten.',
+        timeRemaining: 'Resterende tijd',
+        monitoringPayment: 'Blockchain wordt gecontroleerd op uw betaling...',
+        paymentDetected: 'Betaling gedetecteerd!',
+        waitingConfirmation: 'Wachten op blockchain-bevestiging...',
+        processing: 'Verwerken...',
+        confirmationNotice: 'U ontvangt een e-mailbevestiging zodra uw betaling is bevestigd.',
+        paymentConfirmed: 'Betaling bevestigd!',
+        paymentReceived: 'Uw Bitcoin-betaling is ontvangen en bevestigd!',
+        confirmationEmailSent: 'Een bevestigingsmail is verzonden naar',
+        paymentExpired: 'Betalingstijd verlopen',
+        orderCancelled: 'Uw bestelling is geannuleerd vanwege time-out van de betaling.',
+        tryAgain: 'Probeer het opnieuw of neem contact op met support voor hulp.',
       },
       summary: {
         subtotal: 'Subtotaal',
@@ -3665,10 +3708,23 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completePayment: 'Ihre Bitcoin-Zahlung abschließen',
         sendExactly: 'Senden Sie genau:',
         toAddress: 'An diese Adresse:',
+        scanQRCode: 'QR-Code scannen zum Bezahlen',
         paymentExpires: 'Zahlung läuft in 15 Minuten ab.',
         completeBeforeExpires: 'Bitte schließen Sie die Zahlung vor Ablauf des Timers ab.',
         paymentConfirmation: 'Sobald die Zahlung auf der Blockchain bestätigt ist, erhalten Sie eine Bestätigungsmail an',
         paymentInfo: 'Sie erhalten eine eindeutige Bitcoin-Adresse. Zahlung läuft in 15 Minuten ab.',
+        timeRemaining: 'Verbleibende Zeit',
+        monitoringPayment: 'Blockchain wird auf Ihre Zahlung überwacht...',
+        paymentDetected: 'Zahlung erkannt!',
+        waitingConfirmation: 'Warten auf Blockchain-Bestätigung...',
+        processing: 'Verarbeitung...',
+        confirmationNotice: 'Sie erhalten eine E-Mail-Bestätigung, sobald Ihre Zahlung bestätigt ist.',
+        paymentConfirmed: 'Zahlung bestätigt!',
+        paymentReceived: 'Ihre Bitcoin-Zahlung wurde empfangen und bestätigt!',
+        confirmationEmailSent: 'Eine Bestätigungsmail wurde gesendet an',
+        paymentExpired: 'Zahlungszeit abgelaufen',
+        orderCancelled: 'Ihre Bestellung wurde aufgrund eines Zahlungs-Timeouts storniert.',
+        tryAgain: 'Bitte versuchen Sie es erneut oder kontaktieren Sie den Support.',
       },
       summary: {
         subtotal: 'Zwischensumme',
@@ -4544,6 +4600,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         copyAddress: 'Copier l\'adresse',
         reviewOrder: 'Vérifier la commande',
         processing: 'Traitement...',
+        tryAgain: 'Réessayer',
+        contactSupport: 'Contacter le support',
       },
       account: {
         title: 'Comment souhaitez-vous commander ?',
@@ -4587,10 +4645,23 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completePayment: 'Finalisez votre paiement Bitcoin',
         sendExactly: 'Envoyez exactement :',
         toAddress: 'À cette adresse :',
+        scanQRCode: 'Scannez le code QR pour payer',
         paymentExpires: 'Le paiement expire dans 15 minutes.',
         completeBeforeExpires: 'Veuillez effectuer le paiement avant expiration du délai.',
         paymentConfirmation: 'Une fois le paiement confirmé sur la blockchain, vous recevrez un e-mail de confirmation à',
         paymentInfo: 'Vous recevrez une adresse Bitcoin unique. Le paiement expire dans 15 minutes.',
+        timeRemaining: 'Temps restant',
+        monitoringPayment: 'Surveillance de la blockchain pour votre paiement...',
+        paymentDetected: 'Paiement détecté !',
+        waitingConfirmation: 'En attente de confirmation blockchain...',
+        processing: 'Traitement...',
+        confirmationNotice: 'Vous recevrez un e-mail de confirmation dès que votre paiement sera confirmé.',
+        paymentConfirmed: 'Paiement confirmé !',
+        paymentReceived: 'Votre paiement Bitcoin a été reçu et confirmé !',
+        confirmationEmailSent: 'Un e-mail de confirmation a été envoyé à',
+        paymentExpired: 'Délai de paiement expiré',
+        orderCancelled: 'Votre commande a été annulée en raison du délai de paiement dépassé.',
+        tryAgain: 'Veuillez réessayer ou contacter le support pour obtenir de l\'aide.',
       },
       summary: {
         subtotal: 'Sous-total',
@@ -5466,6 +5537,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         copyAddress: 'Copiar dirección',
         reviewOrder: 'Revisar pedido',
         processing: 'Procesando...',
+        tryAgain: 'Intentar de nuevo',
+        contactSupport: 'Contactar soporte',
       },
       account: {
         title: '¿Cómo desea realizar el pedido?',
@@ -5509,10 +5582,23 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completePayment: 'Complete su pago con Bitcoin',
         sendExactly: 'Envíe exactamente:',
         toAddress: 'A esta dirección:',
+        scanQRCode: 'Escanee el código QR para pagar',
         paymentExpires: 'El pago expira en 15 minutos.',
         completeBeforeExpires: 'Por favor, complete el pago antes de que expire el temporizador.',
         paymentConfirmation: 'Una vez que el pago se confirme en la blockchain, recibirá un correo de confirmación en',
         paymentInfo: 'Recibirá una dirección Bitcoin única. El pago expira en 15 minutos.',
+        timeRemaining: 'Tiempo restante',
+        monitoringPayment: 'Monitoreando blockchain para su pago...',
+        paymentDetected: '¡Pago detectado!',
+        waitingConfirmation: 'Esperando confirmación de blockchain...',
+        processing: 'Procesando...',
+        confirmationNotice: 'Recibirá un correo de confirmación cuando su pago sea confirmado.',
+        paymentConfirmed: '¡Pago confirmado!',
+        paymentReceived: '¡Su pago con Bitcoin ha sido recibido y confirmado!',
+        confirmationEmailSent: 'Se ha enviado un correo de confirmación a',
+        paymentExpired: 'Tiempo de pago expirado',
+        orderCancelled: 'Su pedido ha sido cancelado debido al tiempo de espera del pago.',
+        tryAgain: 'Por favor, inténtelo de nuevo o contacte con soporte para obtener ayuda.',
       },
       summary: {
         subtotal: 'Subtotal',
@@ -6388,6 +6474,8 @@ export const translations: Record<SupportedLanguage, Translations> = {
         copyAddress: 'Copia indirizzo',
         reviewOrder: 'Controlla ordine',
         processing: 'Elaborazione...',
+        tryAgain: 'Riprova',
+        contactSupport: 'Contatta il supporto',
       },
       account: {
         title: 'Come desideri effettuare l\'ordine?',
@@ -6431,10 +6519,23 @@ export const translations: Record<SupportedLanguage, Translations> = {
         completePayment: 'Completa il tuo pagamento Bitcoin',
         sendExactly: 'Invia esattamente:',
         toAddress: 'A questo indirizzo:',
+        scanQRCode: 'Scansiona il codice QR per pagare',
         paymentExpires: 'Il pagamento scade tra 15 minuti.',
         completeBeforeExpires: 'Per favore, completa il pagamento prima della scadenza.',
         paymentConfirmation: 'Una volta confermato il pagamento sulla blockchain, riceverai un\'email di conferma a',
         paymentInfo: 'Riceverai un indirizzo Bitcoin unico. Il pagamento scade tra 15 minuti.',
+        timeRemaining: 'Tempo rimanente',
+        monitoringPayment: 'Monitoraggio blockchain per il tuo pagamento...',
+        paymentDetected: 'Pagamento rilevato!',
+        waitingConfirmation: 'In attesa di conferma blockchain...',
+        processing: 'Elaborazione...',
+        confirmationNotice: 'Riceverai un\'email di conferma quando il tuo pagamento sarà confermato.',
+        paymentConfirmed: 'Pagamento confermato!',
+        paymentReceived: 'Il tuo pagamento Bitcoin è stato ricevuto e confermato!',
+        confirmationEmailSent: 'Un\'email di conferma è stata inviata a',
+        paymentExpired: 'Tempo di pagamento scaduto',
+        orderCancelled: 'Il tuo ordine è stato annullato a causa del timeout del pagamento.',
+        tryAgain: 'Per favore riprova o contatta il supporto per assistenza.',
       },
       summary: {
         subtotal: 'Subtotale',
@@ -7316,6 +7417,8 @@ nav: {
         copyAddress: 'Скопировать адрес',
         reviewOrder: 'Проверить заказ',
         processing: 'Обработка...',
+        tryAgain: 'Попробовать снова',
+        contactSupport: 'Связаться с поддержкой',
       },
       account: {
         title: 'Как вы хотите оформить заказ?',
@@ -7359,10 +7462,23 @@ nav: {
         completePayment: 'Завершите оплату Bitcoin',
         sendExactly: 'Отправьте точно:',
         toAddress: 'На этот адрес:',
+        scanQRCode: 'Сканируйте QR-код для оплаты',
         paymentExpires: 'Платеж истекает через 15 минут.',
         completeBeforeExpires: 'Пожалуйста, завершите оплату до истечения времени.',
         paymentConfirmation: 'Как только платеж подтвердится в блокчейне, вы получите email на',
         paymentInfo: 'Вы получите уникальный адрес Bitcoin. Платеж действителен 15 минут.',
+        timeRemaining: 'Оставшееся время',
+        monitoringPayment: 'Мониторинг блокчейна для вашего платежа...',
+        paymentDetected: 'Платеж обнаружен!',
+        waitingConfirmation: 'Ожидание подтверждения в блокчейне...',
+        processing: 'Обработка...',
+        confirmationNotice: 'Вы получите email-подтверждение после подтверждения платежа.',
+        paymentConfirmed: 'Платеж подтвержден!',
+        paymentReceived: 'Ваш Bitcoin-платеж получен и подтвержден!',
+        confirmationEmailSent: 'Письмо с подтверждением отправлено на',
+        paymentExpired: 'Время платежа истекло',
+        orderCancelled: 'Ваш заказ отменен из-за истечения времени ожидания платежа.',
+        tryAgain: 'Пожалуйста, попробуйте снова или обратитесь в поддержку.',
       },
       summary: {
         subtotal: 'Подытог',

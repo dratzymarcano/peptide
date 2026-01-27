@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useStore } from '@nanostores/react';
 import { cartItems, cartTotal, clearCart } from '../scripts/cartStore';
 import { type SupportedLanguage, t } from '../i18n/translations';
@@ -20,6 +20,7 @@ type Step = 'account' | 'shipping' | 'payment' | 'review';
 type PaymentMethod = 'bank-transfer' | 'bitcoin';
 type ShippingMethod = 'standard' | 'express';
 type CheckoutMode = 'guest' | 'login' | 'register';
+type BitcoinPaymentStatus = 'awaiting' | 'detected' | 'confirming' | 'confirmed' | 'expired' | 'cancelled';
 
 interface CheckoutProps {
   lang?: SupportedLanguage;
@@ -109,9 +110,17 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
   const [orderId, setOrderId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('bank-transfer');
   const [shippingMethod, setShippingMethod] = useState<ShippingMethod>('standard');
-  const [bitcoinInvoice, setBitcoinInvoice] = useState<{id: string; address: string; amount: string; expiresAt: string} | null>(null);
+  const [bitcoinInvoice, setBitcoinInvoice] = useState<{id: string; address: string; amount: string; expiresAt: string; createdAt?: string} | null>(null);
   // Store final order total before cart is cleared
   const [finalOrderTotal, setFinalOrderTotal] = useState(0);
+  
+  // Bitcoin payment monitoring state
+  const [bitcoinPaymentStatus, setBitcoinPaymentStatus] = useState<BitcoinPaymentStatus>('awaiting');
+  const [timeRemaining, setTimeRemaining] = useState<number>(0); // seconds
+  const [paymentTxHash, setPaymentTxHash] = useState<string | null>(null);
+  const [paymentConfirmations, setPaymentConfirmations] = useState<number>(0);
+  const paymentCheckIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   // Auth form state
   const [authEmail, setAuthEmail] = useState('');
@@ -174,12 +183,169 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
   };
 
   const createBitcoinInvoice = async () => {
+    // Use the actual Bitcoin address for payments
+    const BITCOIN_ADDRESS = 'bc1qev9qvwxennyypmth024jndwlqqh7ft9mzjnapr';
+    const PAYMENT_TIMEOUT_MINUTES = 15;
+    const now = new Date();
     return {
       id: 'INV-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
-      address: 'bc1q' + Math.random().toString(36).substring(2, 34),
+      address: BITCOIN_ADDRESS,
       amount: (total / 78000).toFixed(8),
-      expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString()
+      createdAt: now.toISOString(),
+      expiresAt: new Date(now.getTime() + PAYMENT_TIMEOUT_MINUTES * 60 * 1000).toISOString()
     };
+  };
+
+  // Check for Bitcoin payment
+  const checkBitcoinPayment = useCallback(async () => {
+    if (!bitcoinInvoice || !orderId) return;
+    
+    try {
+      const response = await fetch('/api/check-bitcoin-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId,
+          expectedAmount: bitcoinInvoice.amount,
+          orderCreatedAt: bitcoinInvoice.createdAt
+        })
+      });
+      
+      if (!response.ok) return;
+      
+      const data = await response.json();
+      
+      if (data.success && data.payment) {
+        const { payment } = data;
+        
+        if (payment.found) {
+          if (payment.status === 'mempool') {
+            // Payment detected but not confirmed yet
+            setBitcoinPaymentStatus('detected');
+            setPaymentTxHash(payment.txHash);
+            
+            // Update order status to processing
+            await fetch('/api/update-order-status', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId,
+                newStatus: 'processing'
+              })
+            });
+          } else if (payment.status === 'confirmed') {
+            // Payment confirmed!
+            setBitcoinPaymentStatus('confirmed');
+            setPaymentTxHash(payment.txHash);
+            setPaymentConfirmations(payment.confirmations || 1);
+            
+            // Clear the cart
+            clearCart();
+            
+            // Update order status to completed and send confirmation email
+            await fetch('/api/update-order-status', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId,
+                newStatus: 'completed',
+                paymentConfirmed: true,
+                orderData: {
+                  customerEmail: shippingInfo.email,
+                  customerName: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+                  items: products.map(p => ({
+                    id: p.id,
+                    title: p.title,
+                    quantity: p.quantity,
+                    price: p.price
+                  })),
+                  subtotal: $cartTotal,
+                  shipping: shippingCost,
+                  discount: finalOrderTotal * 0.1, // 10% Bitcoin discount
+                  total: finalOrderTotal,
+                  shippingAddress: shippingInfo,
+                  currency,
+                  lang
+                }
+              })
+            });
+            
+            // Stop polling
+            if (paymentCheckIntervalRef.current) {
+              clearInterval(paymentCheckIntervalRef.current);
+              paymentCheckIntervalRef.current = null;
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error checking Bitcoin payment:', error);
+    }
+  }, [bitcoinInvoice, orderId, shippingInfo, products, $cartTotal, shippingCost, finalOrderTotal, currency, lang]);
+
+  // Start payment monitoring when Bitcoin order is placed
+  useEffect(() => {
+    if (orderComplete && paymentMethod === 'bitcoin' && bitcoinInvoice && bitcoinPaymentStatus === 'awaiting') {
+      // Calculate initial time remaining
+      const expiryTime = new Date(bitcoinInvoice.expiresAt).getTime();
+      const now = Date.now();
+      const secondsRemaining = Math.max(0, Math.floor((expiryTime - now) / 1000));
+      setTimeRemaining(secondsRemaining);
+      
+      // Start countdown timer
+      countdownIntervalRef.current = setInterval(() => {
+        setTimeRemaining(prev => {
+          if (prev <= 1) {
+            // Time expired
+            setBitcoinPaymentStatus('expired');
+            
+            // Stop all intervals
+            if (countdownIntervalRef.current) {
+              clearInterval(countdownIntervalRef.current);
+              countdownIntervalRef.current = null;
+            }
+            if (paymentCheckIntervalRef.current) {
+              clearInterval(paymentCheckIntervalRef.current);
+              paymentCheckIntervalRef.current = null;
+            }
+            
+            // Update order status
+            fetch('/api/update-order-status', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId,
+                newStatus: 'expired'
+              })
+            });
+            
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+      
+      // Start payment checking (every 15 seconds to avoid rate limiting)
+      checkBitcoinPayment(); // Check immediately
+      paymentCheckIntervalRef.current = setInterval(checkBitcoinPayment, 15000);
+      
+      // Cleanup on unmount
+      return () => {
+        if (countdownIntervalRef.current) {
+          clearInterval(countdownIntervalRef.current);
+        }
+        if (paymentCheckIntervalRef.current) {
+          clearInterval(paymentCheckIntervalRef.current);
+        }
+      };
+    }
+  }, [orderComplete, paymentMethod, bitcoinInvoice, bitcoinPaymentStatus, checkBitcoinPayment, orderId]);
+
+  // Format time remaining as MM:SS
+  const formatTimeRemaining = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   const handlePlaceOrder = async () => {
@@ -512,6 +678,294 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
 
   if (orderComplete) {
     if (paymentMethod === 'bitcoin' && bitcoinInvoice) {
+      // Payment confirmed - show success
+      if (bitcoinPaymentStatus === 'confirmed') {
+        return (
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div style={{ ...cardStyle, padding: '48px' }}>
+                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <div style={{ 
+                      width: '80px', 
+                      height: '80px', 
+                      background: 'linear-gradient(135deg, #10b981, #059669)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 24px',
+                      boxShadow: '0 8px 24px rgba(16, 185, 129, 0.35)'
+                    }}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
+                      {t(lang, 'checkout.bitcoin.paymentConfirmed') || 'Payment Confirmed!'}
+                    </h3>
+                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
+                  </div>
+                  
+                  <div style={{ 
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
+                    borderRadius: '16px',
+                    padding: '24px',
+                    marginBottom: '24px',
+                    textAlign: 'center'
+                  }}>
+                    <p style={{ color: '#065f46', fontWeight: '600', marginBottom: '8px' }}>
+                      {t(lang, 'checkout.bitcoin.paymentReceived') || 'Your Bitcoin payment has been received and confirmed!'}
+                    </p>
+                    {paymentTxHash && (
+                      <p style={{ color: '#64748b', fontSize: '12px', marginBottom: '8px' }}>
+                        TX: <a 
+                          href={`https://mempool.space/tx/${paymentTxHash}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{ color: '#0077b6', textDecoration: 'underline' }}
+                        >
+                          {paymentTxHash.substring(0, 16)}...{paymentTxHash.substring(paymentTxHash.length - 8)}
+                        </a>
+                      </p>
+                    )}
+                    <p style={{ color: '#10b981', fontWeight: '700', fontSize: '1.25rem' }}>
+                      {bitcoinInvoice.amount} BTC ≈ {formatPrice(finalOrderTotal, currency)}
+                    </p>
+                  </div>
+                  
+                  <div style={{ 
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    border: '2px solid rgba(16, 185, 129, 0.2)',
+                    borderRadius: '12px',
+                    padding: '16px 20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    marginBottom: '24px'
+                  }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span style={{ color: '#059669' }}>
+                      {t(lang, 'checkout.bitcoin.confirmationEmailSent') || 'A confirmation email has been sent to'} <strong>{shippingInfo.email}</strong>
+                    </span>
+                  </div>
+                  
+                  <div style={{ textAlign: 'center' }}>
+                    <a 
+                      href="/shop/" 
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        background: 'linear-gradient(135deg, #0077b6, #023e8a)',
+                        color: 'white',
+                        padding: '16px 32px',
+                        borderRadius: '12px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        fontSize: '16px',
+                        boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
+                      }}
+                    >
+                      {t(lang, 'checkout.actions.continueShopping')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
+      // Payment expired - show cancellation message
+      if (bitcoinPaymentStatus === 'expired') {
+        return (
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div style={{ ...cardStyle, padding: '48px' }}>
+                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <div style={{ 
+                      width: '80px', 
+                      height: '80px', 
+                      background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 24px',
+                      boxShadow: '0 8px 24px rgba(239, 68, 68, 0.35)'
+                    }}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="15" y1="9" x2="9" y2="15"></line>
+                        <line x1="9" y1="9" x2="15" y2="15"></line>
+                      </svg>
+                    </div>
+                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
+                      {t(lang, 'checkout.bitcoin.paymentExpired') || 'Payment Time Expired'}
+                    </h3>
+                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#64748b' }}>{orderId}</strong></p>
+                  </div>
+                  
+                  <div style={{ 
+                    background: 'rgba(239, 68, 68, 0.1)',
+                    borderRadius: '16px',
+                    padding: '24px',
+                    marginBottom: '24px',
+                    textAlign: 'center'
+                  }}>
+                    <p style={{ color: '#b91c1c', fontWeight: '600', marginBottom: '12px' }}>
+                      {t(lang, 'checkout.bitcoin.orderCancelled') || 'Your order has been cancelled due to payment timeout.'}
+                    </p>
+                    <p style={{ color: '#64748b', fontSize: '14px' }}>
+                      {t(lang, 'checkout.bitcoin.tryAgain') || 'Please try again or contact support if you need assistance.'}
+                    </p>
+                  </div>
+                  
+                  <div style={{ textAlign: 'center', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    <a 
+                      href="/cart/" 
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        background: 'linear-gradient(135deg, #0077b6, #023e8a)',
+                        color: 'white',
+                        padding: '16px 32px',
+                        borderRadius: '12px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        fontSize: '16px',
+                        boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
+                      }}
+                    >
+                      {t(lang, 'checkout.actions.tryAgain') || 'Try Again'}
+                    </a>
+                    <a 
+                      href="/contact/" 
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        background: 'white',
+                        color: '#64748b',
+                        padding: '16px 32px',
+                        borderRadius: '12px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        fontSize: '16px',
+                        border: '2px solid #e2e8f0'
+                      }}
+                    >
+                      {t(lang, 'checkout.actions.contactSupport') || 'Contact Support'}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
+      // Payment detected - show processing status
+      if (bitcoinPaymentStatus === 'detected') {
+        return (
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-8">
+                <div style={{ ...cardStyle, padding: '48px' }}>
+                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <div style={{ 
+                      width: '80px', 
+                      height: '80px', 
+                      background: 'linear-gradient(135deg, #f7931a, #e8821c)',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 24px',
+                      boxShadow: '0 8px 24px rgba(247, 147, 26, 0.35)',
+                      animation: 'pulse 2s infinite'
+                    }}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                    </div>
+                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
+                      {t(lang, 'checkout.bitcoin.paymentDetected') || 'Payment Detected!'}
+                    </h3>
+                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
+                  </div>
+                  
+                  <div style={{ 
+                    background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+                    borderRadius: '16px',
+                    padding: '24px',
+                    marginBottom: '24px',
+                    textAlign: 'center'
+                  }}>
+                    <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>
+                      {t(lang, 'checkout.bitcoin.waitingConfirmation') || 'Waiting for blockchain confirmation...'}
+                    </p>
+                    <div style={{ 
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      marginBottom: '12px'
+                    }}>
+                      <div style={{
+                        width: '12px',
+                        height: '12px',
+                        background: '#f59e0b',
+                        borderRadius: '50%',
+                        animation: 'blink 1s infinite'
+                      }}></div>
+                      <span style={{ color: '#78350f', fontWeight: '600' }}>
+                        {t(lang, 'checkout.bitcoin.processing') || 'Processing...'}
+                      </span>
+                    </div>
+                    {paymentTxHash && (
+                      <p style={{ color: '#64748b', fontSize: '12px' }}>
+                        TX: <a 
+                          href={`https://mempool.space/tx/${paymentTxHash}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{ color: '#0077b6', textDecoration: 'underline' }}
+                        >
+                          {paymentTxHash.substring(0, 16)}...{paymentTxHash.substring(paymentTxHash.length - 8)}
+                        </a>
+                      </p>
+                    )}
+                  </div>
+                  
+                  <p style={{ color: '#64748b', textAlign: 'center', fontSize: '14px' }}>
+                    {t(lang, 'checkout.bitcoin.confirmationNotice') || 'You will receive an email confirmation once your payment is confirmed.'}
+                  </p>
+                  
+                  <style>{`
+                    @keyframes pulse {
+                      0%, 100% { transform: scale(1); }
+                      50% { transform: scale(1.05); }
+                    }
+                    @keyframes blink {
+                      0%, 100% { opacity: 1; }
+                      50% { opacity: 0.3; }
+                    }
+                  `}</style>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
+      // Awaiting payment - show payment details with countdown
       return (
         <div className="container">
           <div className="row justify-content-center">
@@ -539,6 +993,38 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
                 </div>
                 
+                {/* Countdown Timer */}
+                <div style={{ 
+                  background: timeRemaining < 120 ? 'linear-gradient(135deg, #fef2f2, #fee2e2)' : 'linear-gradient(135deg, #fef3c7, #fde68a)',
+                  border: timeRemaining < 120 ? '2px solid #ef4444' : '2px solid #f59e0b',
+                  borderRadius: '12px',
+                  padding: '16px 24px',
+                  marginBottom: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '12px'
+                }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={timeRemaining < 120 ? '#ef4444' : '#f59e0b'} strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <div style={{ textAlign: 'center' }}>
+                    <div style={{ 
+                      fontFamily: 'monospace', 
+                      fontSize: '2rem', 
+                      fontWeight: '800', 
+                      color: timeRemaining < 120 ? '#dc2626' : '#78350f',
+                      lineHeight: 1
+                    }}>
+                      {formatTimeRemaining(timeRemaining)}
+                    </div>
+                    <div style={{ fontSize: '12px', color: timeRemaining < 120 ? '#b91c1c' : '#92400e', fontWeight: '600' }}>
+                      {t(lang, 'checkout.bitcoin.timeRemaining') || 'Time Remaining'}
+                    </div>
+                  </div>
+                </div>
+                
                 <div style={{ 
                   background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
                   borderRadius: '16px',
@@ -548,6 +1034,33 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                 }}>
                   <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '8px' }}>{t(lang, 'checkout.bitcoin.sendExactly')}</p>
                   <h2 style={{ color: '#78350f', fontWeight: '800', marginBottom: '24px', fontSize: '2rem' }}>{bitcoinInvoice.amount} BTC</h2>
+                  
+                  {/* QR Code for Bitcoin Address */}
+                  <div style={{ 
+                    background: 'white', 
+                    padding: '20px', 
+                    borderRadius: '16px',
+                    border: '2px solid rgba(120, 53, 15, 0.2)',
+                    display: 'inline-block',
+                    marginBottom: '20px'
+                  }}>
+                    <img 
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:${bitcoinInvoice.address}?amount=${bitcoinInvoice.amount}&bgcolor=ffffff&color=000000&format=svg`}
+                      alt="Bitcoin QR Code"
+                      width="200"
+                      height="200"
+                      style={{ display: 'block' }}
+                    />
+                    <p style={{ 
+                      color: '#64748b', 
+                      fontSize: '12px', 
+                      marginTop: '12px',
+                      marginBottom: 0
+                    }}>
+                      {t(lang, 'checkout.bitcoin.scanQRCode')}
+                    </p>
+                  </div>
+                  
                   <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>{t(lang, 'checkout.bitcoin.toAddress')}</p>
                   <div style={{ 
                     background: 'white', 
@@ -562,7 +1075,16 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     {bitcoinInvoice.address}
                   </div>
                   <button 
-                    onClick={() => navigator.clipboard.writeText(bitcoinInvoice.address)}
+                    onClick={() => {
+                      navigator.clipboard.writeText(bitcoinInvoice.address);
+                      const btn = document.getElementById('copy-btc-btn');
+                      if (btn) {
+                        const originalText = btn.textContent;
+                        btn.textContent = '✓ Copied!';
+                        setTimeout(() => { btn.textContent = originalText; }, 2000);
+                      }
+                    }}
+                    id="copy-btc-btn"
                     style={{
                       marginTop: '16px',
                       background: '#78350f',
@@ -585,9 +1107,10 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   </button>
                 </div>
                 
+                {/* Payment status indicator */}
                 <div style={{ 
-                  background: 'rgba(245, 158, 11, 0.1)',
-                  border: '2px solid rgba(245, 158, 11, 0.3)',
+                  background: 'rgba(0, 119, 182, 0.05)',
+                  border: '2px solid rgba(0, 119, 182, 0.2)',
                   borderRadius: '12px',
                   padding: '16px 20px',
                   display: 'flex',
@@ -595,14 +1118,16 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                   gap: '12px',
                   marginBottom: '24px'
                 }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  <div>
-                    <strong style={{ color: '#92400e' }}>{t(lang, 'checkout.bitcoin.paymentExpires')}</strong>
-                    <span style={{ color: '#a16207' }}> {t(lang, 'checkout.bitcoin.completeBeforeExpires')}</span>
-                  </div>
+                  <div style={{
+                    width: '12px',
+                    height: '12px',
+                    background: '#0077b6',
+                    borderRadius: '50%',
+                    animation: 'blink 1.5s infinite'
+                  }}></div>
+                  <span style={{ color: '#0077b6', fontWeight: '500' }}>
+                    {t(lang, 'checkout.bitcoin.monitoringPayment') || 'Monitoring blockchain for your payment...'}
+                  </span>
                 </div>
                 
                 <p style={{ color: '#64748b', textAlign: 'center', fontSize: '14px', marginBottom: '24px' }}>
@@ -615,6 +1140,13 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
                     {formatPrice(finalOrderTotal, currency)} <span style={{ color: '#64748b', fontWeight: '500', fontSize: '14px' }}>(≈ {bitcoinInvoice.amount} BTC)</span>
                   </p>
                 </div>
+                
+                <style>{`
+                  @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.3; }
+                  }
+                `}</style>
               </div>
             </div>
           </div>

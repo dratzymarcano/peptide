@@ -106,10 +106,10 @@ function generateCustomerEmailHtml(data: OrderEmailData): string {
       <h3 style="color: #92400e; margin: 0 0 12px 0; font-size: 16px;">⚠️ Payment Required</h3>
       <p style="color: #78350f; margin: 0 0 16px 0;">Please transfer the exact amount to our bank account:</p>
       <table style="width: 100%; font-size: 14px;">
-        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Bank:</strong></td><td style="color: #78350f;">Barclays Bank UK</td></tr>
-        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Account Name:</strong></td><td style="color: #78350f;">Peptide Shop Ltd</td></tr>
-        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Sort Code:</strong></td><td style="color: #78350f;">20-00-00</td></tr>
-        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Account Number:</strong></td><td style="color: #78350f;">12345678</td></tr>
+        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Bank:</strong></td><td style="color: #78350f;">Sparkasse</td></tr>
+        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Account Holder:</strong></td><td style="color: #78350f;">Tunay Skenderov</td></tr>
+        <tr><td style="padding: 4px 0; color: #78350f;"><strong>IBAN:</strong></td><td style="color: #78350f;">DE88 3505 0000 1303 0684 39</td></tr>
+        <tr><td style="padding: 4px 0; color: #78350f;"><strong>Account Type:</strong></td><td style="color: #78350f;">S-Giro comfort</td></tr>
         <tr><td style="padding: 4px 0; color: #78350f;"><strong>Reference:</strong></td><td style="color: #78350f;"><strong>${data.orderId}</strong></td></tr>
         <tr><td style="padding: 4px 0; color: #78350f;"><strong>Amount:</strong></td><td style="color: #78350f;"><strong>${formatCurrency(data.total, data.currency)}</strong></td></tr>
       </table>
