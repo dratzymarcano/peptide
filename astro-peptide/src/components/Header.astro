@@ -12,7 +12,6 @@ const { availableLangs } = Astro.props as { availableLangs?: SupportedLanguage[]
 const currentLang = getLangFromUrl(Astro.url);
 const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
 const siteData = siteCopy?.data;
-const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 const contactTelegram = siteData?.telegram ?? '@Nebelzee';
 
 // Helper to get category URL with translated slug
@@ -41,7 +40,7 @@ const getCategoryUrl = (category: string) => {
 					<span>✓ {t(currentLang, 'home.heroBadge')} | {t(currentLang, 'home.stats.purityGuarantee')}</span>
 			</div>
 			<div class="top-bar-right">
-			   <span>✉ {contactEmail} | Telegram: {contactTelegram}</span>
+			   <span>Telegram: {contactTelegram}</span>
 			</div>
 		</div>
 	</div>

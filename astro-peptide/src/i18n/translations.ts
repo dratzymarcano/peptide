@@ -1768,7 +1768,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Bitcoin Discount (10%)',
         fastBadge: 'FAST',
         ordersProcessedInfo: 'Orders processed within 24 hours of payment confirmation',
-        screenshotInfo: 'Please send a screenshot of your payment confirmation to {email} to speed up order processing.',
+        screenshotInfo: 'Please send a screenshot of your payment confirmation via our contact form to speed up order processing.',
       },
       actions: {
         continue: 'Continue',
@@ -1830,7 +1830,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'Our bank transfer details and payment instructions will be sent to {email} shortly.',
         whatHappensNext: 'What happens next?',
         whatHappensNextDesc: 'Check your inbox for an email with our bank details and the amount to transfer: {amount}. Once we receive your payment, we\'ll send you a confirmation and dispatch your order.',
-        checkSpam: "Don't see the email? Check your spam folder or contact us at",
+        checkSpam: "Don't see the email? Check your spam folder or contact us via the contact form.",
       },
       bitcoin: {
         completePayment: 'Complete Your Bitcoin Payment',
@@ -2705,7 +2705,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Bitcoin Korting (10%)',
         fastBadge: 'SNEL',
         ordersProcessedInfo: 'Bestellingen worden binnen 24 uur na bevestiging van betaling verwerkt',
-        screenshotInfo: 'Stuur een screenshot van uw betalingsbevestiging naar {email} om de orderverwerking te versnellen.',
+        screenshotInfo: 'Stuur een screenshot van uw betalingsbevestiging via ons contactformulier om de orderverwerking te versnellen.',
       },
       actions: {
         continue: 'Doorgaan',
@@ -2767,7 +2767,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'Onze bankgegevens en betaalinstructies worden binnenkort naar {email} verzonden.',
         whatHappensNext: 'Wat gebeurt er nu?',
         whatHappensNextDesc: 'Controleer uw inbox voor een e-mail met onze bankgegevens en het over te maken bedrag: {amount}. Zodra wij uw betaling hebben ontvangen, sturen wij u een bevestiging en verzenden wij uw bestelling.',
-        checkSpam: 'Geen e-mail ontvangen? Controleer uw spam-map of neem contact met ons op via',
+        checkSpam: 'Geen e-mail ontvangen? Controleer uw spam-map of neem contact met ons op via het contactformulier.',
       },
       bitcoin: {
         completePayment: 'Voltooi uw Bitcoin-betaling',
@@ -3642,7 +3642,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Bitcoin Rabatt (10%)',
         fastBadge: 'SCHNELL',
         ordersProcessedInfo: 'Bestellungen werden innerhalb von 24 Stunden nach Zahlungsbestätigung bearbeitet',
-        screenshotInfo: 'Bitte senden Sie einen Screenshot Ihrer Zahlungsbestätigung an {email}, um die Bestellbearbeitung zu beschleunigen.',
+        screenshotInfo: 'Bitte senden Sie einen Screenshot Ihrer Zahlungsbestätigung über unser Kontaktformular, um die Bestellbearbeitung zu beschleunigen.',
       },
       actions: {
         continue: 'Weiter',
@@ -3702,7 +3702,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'Unsere Bankdaten und Zahlungsanweisungen werden in Kürze an {email} gesendet.',
         whatHappensNext: 'Was passiert als Nächstes?',
         whatHappensNextDesc: 'Prüfen Sie Ihren Posteingang für eine E-Mail mit unseren Bankdaten und dem zu überweisenden Betrag: {amount}. Sobald wir Ihre Zahlung erhalten haben, senden wir Ihnen eine Bestätigung und versenden Ihre Bestellung.',
-        checkSpam: 'Keine E-Mail erhalten? Prüfen Sie Ihren Spam-Ordner oder kontaktieren Sie uns unter',
+        checkSpam: 'Keine E-Mail erhalten? Prüfen Sie Ihren Spam-Ordner oder kontaktieren Sie uns über das Kontaktformular.',
       },
       bitcoin: {
         completePayment: 'Ihre Bitcoin-Zahlung abschließen',
@@ -4577,7 +4577,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Réduction Bitcoin (10%)',
         fastBadge: 'RAPIDE',
         ordersProcessedInfo: 'Les commandes sont traitées dans les 24 heures suivant la confirmation du paiement',
-        screenshotInfo: 'Veuillez envoyer une capture d\'écran de votre confirmation de paiement à {email} pour accélérer le traitement de la commande.',
+        screenshotInfo: 'Veuillez envoyer une capture d\'écran de votre confirmation de paiement via notre formulaire de contact pour accélérer le traitement de la commande.',
       },
       actions: {
         continue: 'Continuer',
@@ -4639,7 +4639,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'Nos coordonnées bancaires et instructions de paiement seront envoyées à {email} sous peu.',
         whatHappensNext: 'Que se passe-t-il ensuite ?',
         whatHappensNextDesc: 'Vérifiez votre boîte de réception pour un e-mail avec nos coordonnées bancaires et le montant à transférer : {amount}. Dès réception de votre paiement, nous vous enverrons une confirmation et expédierons votre commande.',
-        checkSpam: 'Vous ne voyez pas l\'e-mail ? Vérifiez votre dossier spam ou contactez-nous à',
+        checkSpam: 'Vous ne voyez pas l\'e-mail ? Vérifiez votre dossier spam ou contactez-nous via le formulaire de contact.',
       },
       bitcoin: {
         completePayment: 'Finalisez votre paiement Bitcoin',
@@ -5514,7 +5514,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Descuento Bitcoin (10%)',
         fastBadge: 'RÁPIDO',
         ordersProcessedInfo: 'Los pedidos se procesan en un plazo de 24 horas tras la confirmación del pago',
-        screenshotInfo: 'Por favor, envíe una captura de pantalla de su confirmación de pago a {email} para acelerar el procesamiento del pedido.',
+        screenshotInfo: 'Por favor, envíe una captura de pantalla de su confirmación de pago a través de nuestro formulario de contacto para acelerar el procesamiento del pedido.',
       },
       actions: {
         continue: 'Continuar',
@@ -5576,7 +5576,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'Nuestros datos bancarios e instrucciones de pago se enviarán a {email} en breve.',
         whatHappensNext: '¿Qué sucede ahora?',
         whatHappensNextDesc: 'Revise su bandeja de entrada para un correo con nuestros datos bancarios y el monto a transferir: {amount}. Una vez que recibamos su pago, le enviaremos una confirmación y enviaremos su pedido.',
-        checkSpam: '¿No ve el correo? Revise su carpeta de spam o contáctenos en',
+        checkSpam: '¿No ve el correo? Revise su carpeta de spam o contáctenos a través del formulario de contacto.',
       },
       bitcoin: {
         completePayment: 'Complete su pago con Bitcoin',
@@ -6451,7 +6451,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         bitcoinDiscountLabel: 'Sconto Bitcoin (10%)',
         fastBadge: 'VELOCE',
         ordersProcessedInfo: 'Gli ordini vengono elaborati entro 24 ore dalla conferma del pagamento',
-        screenshotInfo: 'Si prega di inviare uno screenshot della conferma di pagamento a {email} per accelerare l\'elaborazione dell\'ordine.',
+        screenshotInfo: 'Si prega di inviare uno screenshot della conferma di pagamento tramite il nostro modulo di contatto per accelerare l\'elaborazione dell\'ordine.',
       },
       actions: {
         continue: 'Continua',
@@ -6513,7 +6513,7 @@ export const translations: Record<SupportedLanguage, Translations> = {
         paymentInstructionsDesc: 'I nostri dati bancari e le istruzioni di pagamento verranno inviati a {email} a breve.',
         whatHappensNext: 'Cosa succede dopo?',
         whatHappensNextDesc: 'Controlla la tua casella di posta per un\'email con i nostri dati bancari e l\'importo da trasferire: {amount}. Una volta ricevuto il pagamento, ti invieremo una conferma e spediremo il tuo ordine.',
-        checkSpam: 'Non vedi l\'email? Controlla la cartella spam o contattaci a',
+        checkSpam: 'Non vedi l\'email? Controlla la cartella spam o contattaci tramite il modulo di contatto.',
       },
       bitcoin: {
         completePayment: 'Completa il tuo pagamento Bitcoin',
@@ -7394,7 +7394,7 @@ nav: {
         bitcoinDiscountLabel: 'Скидка при оплате Bitcoin (10%)',
         fastBadge: 'БЫСТРО',
         ordersProcessedInfo: 'Заказы обрабатываются в течение 24 часов после подтверждения оплаты',
-        screenshotInfo: 'Пожалуйста, отправьте скриншот подтверждения оплаты на {email} для ускорения обработки заказа.',
+        screenshotInfo: 'Пожалуйста, отправьте скриншот подтверждения оплаты через нашу контактную форму, чтобы ускорить обработку заказа.',
       },
       actions: {
         continue: 'Продолжить',
@@ -7456,7 +7456,7 @@ nav: {
         paymentInstructionsDesc: 'Реквизиты банка и инструкции по оплате будут отправлены на {email} в ближайшее время.',
         whatHappensNext: 'Что дальше?',
         whatHappensNextDesc: 'Проверьте почту, там будут реквизиты и сумма перевода: {amount}. Как только мы получим оплату, мы отправим подтверждение и ваш заказ.',
-        checkSpam: 'Не видите письмо? Проверьте папку Спам или напишите нам на',
+        checkSpam: 'Не видите письмо? Проверьте папку Спам или свяжитесь с нами через контактную форму.',
       },
       bitcoin: {
         completePayment: 'Завершите оплату Bitcoin',

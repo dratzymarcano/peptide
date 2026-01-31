@@ -12,7 +12,6 @@ interface Props {
 const { lang } = Astro.props;
 const siteCopy = await getEntry('site', 'en');
 const siteData = siteCopy?.data;
-const contactEmail = siteData?.email ?? 'peptideshop@zohomail.com';
 
 const breadcrumbs = [
   { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
@@ -31,8 +30,7 @@ const contactSchema = {
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+44-123-456-7890",
-      "contactType": "customer service",
-      "email": contactEmail
+      "contactType": "customer service"
     }
   }
 };
@@ -204,8 +202,8 @@ const contactSchema = {
               </div>
               <h3 style="color: #1e293b; font-weight: 700; font-size: 1.25rem; margin-bottom: 8px;">{t(lang, 'contactPage.info.emailTitle')}</h3>
               <p style="color: #64748b; margin-bottom: 12px; font-size: 14px;">{t(lang, 'contactPage.info.emailSubtitle')}</p>
-              <a href={`mailto:${contactEmail}`} style="color: #0077b6; font-weight: 600; text-decoration: none; font-size: 1.125rem;">
-                {contactEmail}
+              <a href="#contact-form" style="color: #0077b6; font-weight: 600; text-decoration: none; font-size: 1.125rem;">
+                {t(lang, 'contactPage.form.submit')}
               </a>
             </div>
 

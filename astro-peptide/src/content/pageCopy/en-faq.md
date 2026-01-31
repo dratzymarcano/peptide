@@ -30,7 +30,7 @@ copy:
         - question: "Do you have a physical location?"
           answer: "We operate primarily online to keep costs low and pass savings to our customers. Our products are stored in climate-controlled facilities and shipped directly to ensure maximum freshness and potency."
         - question: "How can I contact customer support?"
-          answer: "You can reach us via email at peptideshop@zohomail.com or through our contact form. We typically respond within 24 hours on business days. For urgent inquiries, please include 'URGENT' in your subject line."
+          answer: "You can reach us through our contact form or via Telegram (@Nebelzee). We typically respond within 24 hours on business days. For urgent inquiries, please include 'URGENT' in your subject line."
         - question: "Do you offer wholesale pricing?"
           answer: "Yes! We offer competitive bulk pricing for laboratories and research institutions. Visit our wholesale page or contact us directly for a custom quote based on your volume requirements."
     - name: "Quality & Testing"
