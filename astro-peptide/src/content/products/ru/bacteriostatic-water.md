@@ -152,9 +152,9 @@ Every batch of our bacteriostatic Вода undergoes testing for:
 
 ## Related Products
 
-- [BPC-157](/Пептидs/buy-bpc-157) - Popular healing Пептид
-- [TB-500](/Пептидs/buy-tb-500) - Recovery Пептид
-- [Semaglutide](/Пептидs/buy-semaglutide) - GLP-1 agonist
+- [BPC-157](/ru/peptides/kupit-bpc-157/) - Popular healing Пептид
+- [TB-500](/ru/peptides/kupit-tb-500/) - Recovery Пептид
+- [Semaglutide](/ru/peptides/kupit-semaglutide/) - GLP-1 agonist
 
 ---
 

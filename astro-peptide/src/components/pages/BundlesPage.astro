@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
-import { t, getLocalizedPath, type SupportedLanguage } from '../../i18n/translations';
+import { t, getLocalizedPath, getLocalizedProductSlug, type SupportedLanguage } from '../../i18n/translations';
 
 interface Props {
   lang: SupportedLanguage;
@@ -11,6 +11,14 @@ const { lang } = Astro.props;
 const pageCopy = await getEntry('pageCopy', 'en-bundles');
 const copy = pageCopy?.data.copy ?? {};
 
+const getProductUrl = (baseSlug: string) => {
+  if (lang === 'en') {
+    return `/peptides/${baseSlug}/`;
+  }
+  const localizedSlug = getLocalizedProductSlug(`buy-${baseSlug}`, lang);
+  return `/${lang}/peptides/${localizedSlug}/`;
+};
+
 const bundles = [
   {
     id: "recovery-stack",
@@ -18,9 +26,9 @@ const bundles = [
     tagline: t(lang, 'bundlesPage.recoveryTagline'),
     description: t(lang, 'bundlesPage.recoveryDescription'),
     products: [
-      { name: "BPC-157", size: "10mg", href: getLocalizedPath('/peptides/buy-bpc-157', lang), price: 65 },
-      { name: "TB-500", size: "10mg", href: getLocalizedPath('/peptides/buy-tb-500', lang), price: 55 },
-      { name: "Bacteriostatic Water", size: "10ml x2", href: getLocalizedPath('/peptides/buy-bacteriostatic-water', lang), price: 16 }
+      { name: "BPC-157", size: "10mg", href: getProductUrl('bpc-157'), price: 65 },
+      { name: "TB-500", size: "10mg", href: getProductUrl('tb-500'), price: 55 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: getProductUrl('bacteriostatic-water'), price: 16 }
     ],
     originalPrice: 136,
     bundlePrice: 115,
@@ -40,9 +48,9 @@ const bundles = [
     tagline: t(lang, 'bundlesPage.metabolicTagline'),
     description: t(lang, 'bundlesPage.metabolicDescription'),
     products: [
-      { name: "Semaglutide", size: "5mg", href: getLocalizedPath('/peptides/buy-semaglutide', lang), price: 85 },
-      { name: "Tirzepatide", size: "5mg", href: getLocalizedPath('/peptides/buy-tirzepatide', lang), price: 95 },
-      { name: "Bacteriostatic Water", size: "10ml x2", href: getLocalizedPath('/peptides/buy-bacteriostatic-water', lang), price: 16 }
+      { name: "Semaglutide", size: "5mg", href: getProductUrl('semaglutide'), price: 85 },
+      { name: "Tirzepatide", size: "5mg", href: getProductUrl('tirzepatide'), price: 95 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: getProductUrl('bacteriostatic-water'), price: 16 }
     ],
     originalPrice: 196,
     bundlePrice: 165,
@@ -63,10 +71,10 @@ const bundles = [
     tagline: t(lang, 'bundlesPage.ghTagline'),
     description: t(lang, 'bundlesPage.ghDescription'),
     products: [
-      { name: "CJC-1295 (No DAC)", size: "5mg", href: getLocalizedPath('/peptides/buy-cjc-1295-no-dac', lang), price: 45 },
-      { name: "Ipamorelin", size: "5mg", href: getLocalizedPath('/peptides/buy-ipamorelin', lang), price: 40 },
-      { name: "GHRP-6", size: "5mg", href: getLocalizedPath('/peptides/buy-ghrp-6', lang), price: 35 },
-      { name: "Bacteriostatic Water", size: "10ml x2", href: getLocalizedPath('/peptides/buy-bacteriostatic-water', lang), price: 16 }
+      { name: "CJC-1295 (No DAC)", size: "5mg", href: getProductUrl('cjc-1295-no-dac'), price: 45 },
+      { name: "Ipamorelin", size: "5mg", href: getProductUrl('ipamorelin'), price: 40 },
+      { name: "GHRP-6", size: "5mg", href: getProductUrl('ghrp-6'), price: 35 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: getProductUrl('bacteriostatic-water'), price: 16 }
     ],
     originalPrice: 136,
     bundlePrice: 115,
@@ -86,9 +94,9 @@ const bundles = [
     tagline: t(lang, 'bundlesPage.cognitiveTagline'),
     description: t(lang, 'bundlesPage.cognitiveDescription'),
     products: [
-      { name: "Semax", size: "30mg", href: getLocalizedPath('/peptides/buy-semax', lang), price: 55 },
-      { name: "Selank", size: "10mg", href: getLocalizedPath('/peptides/buy-selank', lang), price: 50 },
-      { name: "Bacteriostatic Water", size: "10ml x2", href: getLocalizedPath('/peptides/buy-bacteriostatic-water', lang), price: 16 }
+      { name: "Semax", size: "30mg", href: getProductUrl('semax'), price: 55 },
+      { name: "Selank", size: "10mg", href: getProductUrl('selank'), price: 50 },
+      { name: "Bacteriostatic Water", size: "10ml x2", href: getProductUrl('bacteriostatic-water'), price: 16 }
     ],
     originalPrice: 121,
     bundlePrice: 99,
@@ -108,8 +116,8 @@ const bundles = [
     tagline: t(lang, 'bundlesPage.starterTagline'),
     description: t(lang, 'bundlesPage.starterDescription'),
     products: [
-      { name: "BPC-157", size: "5mg", href: getLocalizedPath('/peptides/buy-bpc-157', lang), price: 35 },
-      { name: "Bacteriostatic Water", size: "10ml x3", href: getLocalizedPath('/peptides/buy-bacteriostatic-water', lang), price: 24 }
+      { name: "BPC-157", size: "5mg", href: getProductUrl('bpc-157'), price: 35 },
+      { name: "Bacteriostatic Water", size: "10ml x3", href: getProductUrl('bacteriostatic-water'), price: 24 }
     ],
     originalPrice: 59,
     bundlePrice: 49,

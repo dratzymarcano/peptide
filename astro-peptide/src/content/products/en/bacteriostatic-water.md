@@ -146,9 +146,9 @@ Every batch of our bacteriostatic water undergoes testing for:
 
 ## Related Products
 
-- [BPC-157](/peptides/buy-bpc-157) - Popular healing peptide
-- [TB-500](/peptides/buy-tb-500) - Recovery peptide
-- [Semaglutide](/peptides/buy-semaglutide) - GLP-1 agonist
+- [BPC-157](/peptides/bpc-157/) - Popular healing peptide
+- [TB-500](/peptides/tb-500/) - Recovery peptide
+- [Semaglutide](/peptides/semaglutide/) - GLP-1 agonist
 
 ---
 
