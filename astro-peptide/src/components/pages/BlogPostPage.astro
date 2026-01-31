@@ -22,6 +22,12 @@ function stripLangPrefix(slug: string): string {
 
 // Get related posts (same category AND same language, excluding current)
 const allPosts = await getCollection('blog');
+const baseSlug = stripLangPrefix(post.slug);
+const availableLangs = Array.from(new Set(
+  allPosts
+    .filter(p => stripLangPrefix(p.slug) === baseSlug)
+    .map(p => (p.data.lang || 'en') as SupportedLanguage)
+));
 const relatedPosts = allPosts
   .filter(p => p.data.category === post.data.category && p.slug !== post.slug && p.data.lang === currentLang)
   .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
@@ -46,7 +52,7 @@ const relatedProducts = products
 // Fallback to featured products if no tag match
 const sidebarProducts = relatedProducts.length > 0 
   ? relatedProducts 
-  : products.filter(p => p.data.featured).slice(0, 3);
+  : products.filter(p => Boolean((p.data as any).featured)).slice(0, 3);
 
 // Calculate reading time
 function getReadingTime(content: string): number {
@@ -151,7 +157,7 @@ const breadcrumbSchema = {
   ]
 };
 
-const postSlug = stripLangPrefix(post.slug);
+const postSlug = baseSlug;
 const canonicalUrl = currentLang === 'en' 
   ? `https://peptide-shop.net/blog/${postSlug}/`
   : `https://peptide-shop.net/${currentLang}/blog/${postSlug}/`;
@@ -163,6 +169,7 @@ const canonicalUrl = currentLang === 'en'
   image={post.data.image}
   lang={currentLang}
   article={true}
+  availableLangs={availableLangs}
   breadcrumbs={[
     { name: t(currentLang, 'common.home'), url: getLocalizedPath('/', currentLang) },
     { name: t(currentLang, 'nav.blog'), url: getLocalizedPath('/blog/', currentLang) },

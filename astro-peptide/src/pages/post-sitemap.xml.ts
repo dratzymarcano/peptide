@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { supportedLanguages, getLocalizedPath } from '../i18n/translations';
+import { getMarket } from '../i18n/market';
 import { 
   SITE_URL, 
   generateSitemapXml, 
@@ -76,7 +77,7 @@ export const GET: APIRoute = async () => {
       const langPath = lang === 'en' ? `/blog/${baseSlug}/` : `/${lang}/blog/${baseSlug}/`;
       return {
         lang: lang,
-        hreflang: lang === 'en' ? 'en-GB' : lang,
+        hreflang: getMarket(lang).hreflang,
         href: `${SITE_URL}${langPath}`
       };
     });

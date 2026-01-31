@@ -9,6 +9,8 @@ import RelatedProducts from '../../../components/RelatedProducts.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import TranslatedContent from '../../../components/TranslatedContent.astro';
 import { t, type SupportedLanguage, getLocalizedPath, cleanProductTitle, translatePackageSize, translateProductContent, getLocalizedMetaDescription, getLocalizedPageTitle, translateCategory, translateFAQs, translateReviews, getLocalizedProductSlug, translateCategorySlug } from '../../../i18n/translations';
+import { getMarket } from '../../../i18n/market';
+import { toOptimizedImage } from '../../../utils/images';
 
 export const prerender = true;
 
@@ -62,7 +64,7 @@ const productTitle = hasLocalizedContent
   ? product.data.title 
   : cleanProductTitle(product.data.title, lang);
 const currentSlug = cleanSlug(product.slug);
-const productImage = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
+const productImage = toOptimizedImage(product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg');
 
 // Get SEO-optimized meta content
 // If natively localized, use the meta fields directly
@@ -114,6 +116,7 @@ const avgRating = reviews.length > 0
 const siteUrl = Astro.site ? Astro.site.toString() : 'https://peptide-shop.net';
 
 const currency = lang === 'en' ? 'GBP' : 'EUR';
+const market = getMarket(lang);
 
 const productSchema = {
   "@type": "Product",
@@ -136,18 +139,20 @@ const productSchema = {
     "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
-      "applicableCountry": currency === 'GBP' ? 'GB' : ['NL', 'DE', 'FR', 'ES', 'IT'],
+      "applicableCountry": market.geoRegion,
       "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
       "merchantReturnDays": 14,
       "returnMethod": "https://schema.org/ReturnByMail",
       "returnFees": "https://schema.org/ReturnShippingFees"
     }
   },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": avgRating,
-    "reviewCount": reviews.length > 0 ? reviews.length : 1
-  }
+  ...(reviews.length > 0 && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": avgRating,
+      "reviewCount": reviews.length
+    }
+  })
 };
 
 if (reviews.length > 0) {
@@ -191,6 +196,7 @@ const fullSchema = {
 <Layout 
   title={localizedMetaTitle}
   description={localizedMetaDescription}
+  image={productImage}
   breadcrumbs={[
     { name: t(lang, 'nav.home'), url: lang === 'en' ? '/' : `/${lang}` },
     { name: t(lang, 'nav.peptides'), url: getLocalizedPath('/peptides', lang) },

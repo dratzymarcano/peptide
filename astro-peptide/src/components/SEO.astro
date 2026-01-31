@@ -9,10 +9,11 @@ interface Props {
 	publishedTime?: string;
 	modifiedTime?: string;
 	author?: string;
+	availableLangs?: SupportedLanguage[];
 }
 
-const { title, description, image, article, schema, publishedTime, modifiedTime, author } = Astro.props;
-import { getLangFromUrl, supportedLanguages, type SupportedLanguage } from '../i18n/translations';
+const { title, description, image, article, schema, publishedTime, modifiedTime, author, availableLangs } = Astro.props;
+import { getLangFromUrl, supportedLanguages, type SupportedLanguage, getLocalizedPath } from '../i18n/translations';
 import { getMarket } from '../i18n/market';
 
 const currentLang = getLangFromUrl(Astro.url);
@@ -25,15 +26,40 @@ const marketForMeta = getMarket(langForMeta);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site?.origin || 'https://peptide-shop.net';
 
-// Default description if none provided - optimized for local SEO
-const metaDescription = description || `${marketForMeta.primaryKeywords[0]} - Premium research peptides with 99% HPLC purity. Fast ${marketForMeta.countryName} delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`;
+const normalizeWhitespace = (value: string) => value.replace(/\s+/g, ' ').trim();
+
+const clampText = (value: string, min: number, max: number, suffix: string) => {
+	let text = normalizeWhitespace(value || '');
+	if (!text) return '';
+	if (text.length < min) {
+		const withSuffix = normalizeWhitespace(`${text} ${suffix}`);
+		text = withSuffix.length <= max ? withSuffix : withSuffix.slice(0, max - 1).trimEnd() + '…';
+	}
+	if (text.length > max) {
+		text = text.slice(0, max - 1).trimEnd() + '…';
+	}
+	return text;
+};
+
+// Default title/description if none provided - optimized for local SEO
+const fallbackTitle = `${marketForMeta.primaryKeywords[0]} | Peptide Shop`;
+const baseTitle = normalizeWhitespace(title || fallbackTitle);
+const metaTitle = clampText(baseTitle, 25, 60, 'Peptide Shop');
+
+const defaultDescription = `${marketForMeta.primaryKeywords[0]} - Premium research peptides with 99% HPLC purity. Fast ${marketForMeta.countryName} delivery, COA included. Semaglutide, BPC-157, Tirzepatide & more.`;
+const baseDescription = normalizeWhitespace(description || defaultDescription);
+const metaDescription = clampText(baseDescription, 90, 160, `Shop trusted research peptides in ${marketForMeta.countryName}.`);
 
 // Default image
 const ogImage = image || '/images/hero-image.webp';
 
 // Supported languages for hreflang
-const languages = supportedLanguages;
-const currentPath = Astro.url.pathname.replace(/^\/(en|nl|de|fr|es|it|ru)\//, '/');
+const languages = (availableLangs && availableLangs.length > 0)
+	? Array.from(new Set(availableLangs))
+	: supportedLanguages;
+const xDefaultLang = languages.includes('en') ? 'en' : (languages[0] ?? langForMeta);
+const currentPath = Astro.url.pathname;
+const xDefaultHref = `${siteUrl}${getLocalizedPath(currentPath, xDefaultLang)}`;
 
 // Build comprehensive keywords for SEO/AEO/GEO
 const allKeywords = [
@@ -60,16 +86,16 @@ const currentDate = new Date().toISOString();
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Hreflang Tags for Internationalization - Critical for GEO/Local SEO -->
-<link rel="alternate" hreflang="x-default" href={`${siteUrl}${currentPath}`} />
+<link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 {languages.map((langCode) => {
 	const hreflang = getMarket(langCode).hreflang;
-	const href = langCode === 'en' ? `${siteUrl}${currentPath}` : `${siteUrl}/${langCode}${currentPath}`;
+	const href = `${siteUrl}${getLocalizedPath(currentPath, langCode)}`;
 	return <link rel="alternate" hreflang={hreflang} href={href} />;
 })}
 
 <!-- Primary Meta Tags - AEO Optimized -->
-<title>{title}</title>
-<meta name="title" content={title} />
+<title>{metaTitle}</title>
+<meta name="title" content={metaTitle} />
 <meta name="description" content={metaDescription} />
 <meta name="author" content={author || "Peptide Shop"} />
 

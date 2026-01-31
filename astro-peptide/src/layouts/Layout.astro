@@ -21,9 +21,10 @@ interface Props {
 	breadcrumbs?: BreadcrumbItem[];
 	schema?: object;
 	lang?: SupportedLanguage;
+	availableLangs?: SupportedLanguage[];
 }
 
-const { title, description, image, article, breadcrumbs, schema, lang } = Astro.props;
+const { title, description, image, article, breadcrumbs, schema, lang, availableLangs } = Astro.props;
 const siteUrl = 'https://peptide-shop.net';
 
 const urlLang = getLangFromUrl(Astro.url);
@@ -46,7 +47,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 <!doctype html>
 <html lang={market.hreflang}>
 	<head>
-		<SEO title={title} description={description} image={image} article={article} lang={currentLang} schema={schema} />
+		<SEO title={title} description={description} image={image} article={article} lang={currentLang} schema={schema} availableLangs={availableLangs} />
 		
 		{breadcrumbSchema && (
 			<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
@@ -182,7 +183,7 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 	</head>
 	<body>
 		<a href="#main-content" class="skip-to-content">{t(currentLang, 'common.skipToMainContent')}</a>
-		<Header />
+		<Header availableLangs={availableLangs} />
 		<div class="main-wrapper" id="main-content">
 			<slot />
 			<Footer />

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { t, getLocalizedPath, type SupportedLanguage, translatePackageSize, translateCategory } from '../i18n/translations';
+import { toOptimizedImage } from '../utils/images';
 import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
 
 interface ProductCardProps {
@@ -109,6 +110,8 @@ export default function ProductCard({ id, title, price, image, slug, category, r
   const offLabel = labels?.off ?? t(lang, 'product.off');
   const minQuantityTemplate = labels?.minQuantity ?? t(lang, 'product.minQuantity');
 
+  const optimizedImage = toOptimizedImage(image);
+
   return (
     <div className="shopcart-product-card">
       {/* Wishlist Button */}
@@ -126,7 +129,7 @@ export default function ProductCard({ id, title, price, image, slug, category, r
       <a href={productUrl} className="product-image-link">
         <div className="product-image-wrapper">
           <img 
-            src={image} 
+            src={optimizedImage} 
             alt={title}
             className="product-image"
             loading="lazy"

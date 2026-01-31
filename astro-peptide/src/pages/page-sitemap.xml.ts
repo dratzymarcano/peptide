@@ -85,6 +85,40 @@ export const GET: APIRoute = async () => {
     }
   }
 
+  // 3. Learn Articles
+  const learnPages = [
+    '/learn/what-are-peptides/',
+  ];
+
+  for (const learnPath of learnPages) {
+    const enLearnUrl = `${SITE_URL}${learnPath}`;
+    const learnAlternates = buildAlternates(
+      supportedLanguages,
+      (lang) => `${SITE_URL}${getLocalizedPath(learnPath, lang)}`,
+      enLearnUrl
+    );
+
+    sitemapUrls.push({
+      loc: enLearnUrl,
+      lastmod: today,
+      changefreq: 'monthly',
+      priority: '0.5',
+      alternates: learnAlternates
+    });
+
+    for (const lang of supportedLanguages) {
+      if (lang === 'en') continue;
+      const localLearnUrl = `${SITE_URL}${getLocalizedPath(learnPath, lang)}`;
+      sitemapUrls.push({
+        loc: localLearnUrl,
+        lastmod: today,
+        changefreq: 'monthly',
+        priority: '0.5',
+        alternates: learnAlternates
+      });
+    }
+  }
+
   return new Response(generateSitemapXml(sitemapUrls), {
     headers: {
       'Content-Type': 'application/xml',

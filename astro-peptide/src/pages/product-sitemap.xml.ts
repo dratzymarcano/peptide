@@ -23,10 +23,8 @@ export const GET: APIRoute = async () => {
   
   for (const product of englishProducts) {
     const baseSlug = product.slug.replace('en/', '');
-    const buySlug = `buy-${baseSlug}`;
-    const englishPath = normalizePath(product.data.urlPath ?? `/peptides/${buySlug}/`);
+    const englishPath = normalizePath(`/peptides/${baseSlug}/`);
     
-    // Generate alternates
     const alternates = buildAlternates(
       supportedLanguages,
       (lang) => `${SITE_URL}${getLocalizedPath(englishPath, lang)}`,

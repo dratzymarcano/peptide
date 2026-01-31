@@ -3,6 +3,7 @@ import { languages, type SupportedLanguage, getLocalizedPath } from '../i18n/tra
 
 interface LanguageSwitcherProps {
   currentLang?: SupportedLanguage;
+  availableLangs?: SupportedLanguage[];
 }
 
 const FlagIcon = ({ lang }: { lang: string }) => {
@@ -67,7 +68,7 @@ const FlagIcon = ({ lang }: { lang: string }) => {
   }
 };
 
-export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitcherProps) {
+export default function LanguageSwitcher({ currentLang = 'en', availableLangs }: LanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -94,6 +95,10 @@ export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitche
   const getLanguageName = (code: string) => {
     return languages[code as SupportedLanguage] || code.toUpperCase();
   };
+
+  const languageList = (availableLangs && availableLangs.length > 0)
+    ? availableLangs
+    : (Object.keys(languages) as SupportedLanguage[]);
 
   return (
     <div className="relative font-sans text-left" ref={dropdownRef}>
@@ -152,7 +157,7 @@ export default function LanguageSwitcher({ currentLang = 'en' }: LanguageSwitche
             Select Language
           </div>
           
-          {(Object.keys(languages) as SupportedLanguage[]).map((lang) => (
+          {languageList.map((lang) => (
             <button
               key={lang}
               onClick={() => handleLanguageChange(lang)}

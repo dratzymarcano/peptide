@@ -194,8 +194,7 @@ const pageDescription = lang === 'en' ? 'Complete site map of Peptide Shop. Navi
             <div class="row">
               {products.map(product => {
                 const productSlug = product.slug.replace(/^(en|nl|de|fr|es|it)\//, '');
-                const urlPath = product.data.urlPath || `/peptides/${productSlug}/`;
-                const localizedUrl = getLocalizedPath(urlPath, lang);
+                const localizedUrl = getLocalizedPath(`/peptides/${productSlug}/`, lang);
                 return (
                   <div class="col-lg-3 col-md-4 col-6 mb-2">
                     <a href={localizedUrl} class="product-link">{product.data.title.split('|')[0].trim()}</a>

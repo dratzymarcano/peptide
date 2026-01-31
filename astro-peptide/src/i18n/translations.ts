@@ -7945,30 +7945,41 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
 
   let resolvedPathname = pathname;
 
-  // Check if this is a product URL and needs slug localization
+  // Check if this is a product/category URL and needs slug localization
   if (pathname.startsWith('/peptides/')) {
     const rawSlug = pathname.replace('/peptides/', '').replace(/\/$/, '');
-    const normalizedSlug = rawSlug.replace(/^(en|nl|de|fr|es|it)\//, '');
-    const canonicalSlug = getCanonicalProductSlug(normalizedSlug);
-
-    const baseSlug = canonicalSlug.startsWith('buy-')
-      ? canonicalSlug.replace(/^buy-/, '')
-      : canonicalSlug;
-
-    // If we have a translation for this canonical slug in the target language, use it.
-    if (lang !== 'en' && productSlugTranslations[lang]) {
-      const directMatch = productSlugTranslations[lang][canonicalSlug];
-      const buyMatch = productSlugTranslations[lang][`buy-${baseSlug}`];
-      const localizedSlug = directMatch || buyMatch;
-
-      if (localizedSlug) {
-        resolvedPathname = `/peptides/${localizedSlug}`;
-      } else {
-        resolvedPathname = `/peptides/${baseSlug}`;
-      }
+    if (!rawSlug) {
+      resolvedPathname = '/peptides';
     } else {
-      // English (or no translation found): keep canonical slug.
-      resolvedPathname = `/peptides/${baseSlug}`;
+      const normalizedSlug = rawSlug.replace(/^(en|nl|de|fr|es|it|ru)\//, '');
+      const canonicalCategory = getCanonicalCategorySlug(normalizedSlug);
+
+      if (categorySlugTranslations.en?.[canonicalCategory]) {
+        const localizedCategorySlug = translateCategorySlug(canonicalCategory, lang);
+        resolvedPathname = `/peptides/${localizedCategorySlug}`;
+      } else {
+        const canonicalSlug = getCanonicalProductSlug(normalizedSlug);
+
+        const baseSlug = canonicalSlug.startsWith('buy-')
+          ? canonicalSlug.replace(/^buy-/, '')
+          : canonicalSlug;
+
+        // If we have a translation for this canonical slug in the target language, use it.
+        if (lang !== 'en' && productSlugTranslations[lang]) {
+          const directMatch = productSlugTranslations[lang][canonicalSlug];
+          const buyMatch = productSlugTranslations[lang][`buy-${baseSlug}`];
+          const localizedSlug = directMatch || buyMatch;
+
+          if (localizedSlug) {
+            resolvedPathname = `/peptides/${localizedSlug}`;
+          } else {
+            resolvedPathname = `/peptides/${baseSlug}`;
+          }
+        } else {
+          // English (or no translation found): keep canonical slug.
+          resolvedPathname = `/peptides/${baseSlug}`;
+        }
+      }
     }
   }
   // Check for page slug translations (quality, shipping, terms, etc.)
@@ -7977,11 +7988,20 @@ export function getLocalizedPath(path: string, lang: SupportedLanguage): string 
     if (pathParts.length > 0 && pathParts[0]) {
       const firstPart = pathParts[0];
       const canonicalFirstPart = getCanonicalPageSlug(firstPart);
-      
+
+      // Special case: localized Learn articles live under /[lang]/learn/[slug]
+      if (firstPart === 'learn' && pathParts.length > 1) {
+        const secondPart = pathParts[1];
+        const canonicalSecondPart = getCanonicalPageSlug(secondPart);
+        const localizedSecondPart = getLocalizedPageSlug(canonicalSecondPart, lang);
+        const remainingParts = pathParts.slice(2);
+        const remainder = remainingParts.length ? `/${remainingParts.join('/')}` : '';
+        resolvedPathname = `/learn/${localizedSecondPart}${remainder}`;
+      }
       // Check if this is a page that has slug translations
-      if (pageSlugTranslations.nl && pageSlugTranslations.nl[canonicalFirstPart]) {
+      else if (pageSlugTranslations.nl && pageSlugTranslations.nl[canonicalFirstPart]) {
         const localizedFirstPart = getLocalizedPageSlug(canonicalFirstPart, lang);
-        
+
         // Handle nested paths like /learn/what-are-peptides or /blog/category/research-insights
         if (pathParts.length > 1) {
           const secondPart = pathParts[1];

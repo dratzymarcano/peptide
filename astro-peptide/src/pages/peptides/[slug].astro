@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import PageTitle from '../../components/PageTitle.astro';
 import ProductOptions from '../../components/ProductOptions';
 import { t } from '../../i18n/translations';
+import { toOptimizedImage } from '../../utils/images';
 
 const lang = 'en';
 import ProductFAQs from '../../components/ProductFAQs.astro';
@@ -39,7 +40,7 @@ const priceRange = product.data.price_range;
 const productId = product.data.id;
 const productTitle = product.data.title;
 const currentSlug = cleanSlug(product.slug);
-const productImage = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
+const productImage = toOptimizedImage(product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg');
 
 // Extract numeric price from price_range
 const extractPrice = (priceStr: string): number => {
@@ -139,7 +140,7 @@ const faqSchema = faqs.length > 0 ? {
 <Layout 
   title={product.data.meta.title} 
   description={product.data.meta.description}
-  image={product.data.images && product.data.images[0]}
+  image={productImage}
   article={true}
   breadcrumbs={[
     { name: "Home", url: "/" },
@@ -190,7 +191,7 @@ const faqSchema = faqs.length > 0 ? {
             <!-- Product Image -->
             {product.data.images && product.data.images[0] && (
               <div class="product-image-container mb-4 text-center bg-white p-4 rounded shadow-sm">
-                <img src={product.data.images[0]} alt={productTitle} class="img-fluid rounded" style="max-height: 350px; object-fit: contain;" />
+                <img src={productImage} alt={productTitle} class="img-fluid rounded" style="max-height: 350px; object-fit: contain;" />
               </div>
             )}
 

@@ -6,8 +6,9 @@ import AccountButton from './AccountButton';
 import SearchBar from './SearchBar';
 import LanguageSwitcher from './LanguageSwitcher';
 import { getEntry } from 'astro:content';
-import { getLangFromUrl, t, getLocalizedPath, translateCategorySlug } from '../i18n/translations';
+import { getLangFromUrl, t, getLocalizedPath, translateCategorySlug, type SupportedLanguage } from '../i18n/translations';
 
+const { availableLangs } = Astro.props as { availableLangs?: SupportedLanguage[] };
 const currentLang = getLangFromUrl(Astro.url);
 const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
 const siteData = siteCopy?.data;
@@ -106,7 +107,7 @@ const getCategoryUrl = (category: string) => {
 					<SearchBar client:load lang={currentLang} />
 				</div>
 				<div class="desktop-only-action">
-					<LanguageSwitcher client:load currentLang={currentLang} />
+					<LanguageSwitcher client:load currentLang={currentLang} availableLangs={availableLangs} />
 				</div>
 				<div class="desktop-only-action">
 					<AccountButton client:load lang={currentLang} />
@@ -229,9 +230,9 @@ const getCategoryUrl = (category: string) => {
 					</div>
 
 					<!-- Language Switcher -->
-					<div class="mobile-footer-lang">
-						<LanguageSwitcher client:load currentLang={currentLang} />
-					</div>
+						<div class="mobile-footer-lang">
+							<LanguageSwitcher client:load currentLang={currentLang} availableLangs={availableLangs} />
+						</div>
 				</div>
 			</div>
 
