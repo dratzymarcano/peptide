@@ -2,6 +2,15 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import JsonLd from '../components/JsonLd.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import AgeGate from '../components/AgeGate';
+import { getLocaleFromPathname, localeMeta } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import '@fontsource-variable/inter/index.css';
+import '@fontsource-variable/inter-tight/index.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
 
 interface BreadcrumbItem {
 	name: string;
@@ -14,10 +23,13 @@ interface Props {
 	image?: string;
 	article?: boolean;
 	breadcrumbs?: BreadcrumbItem[];
+	noindex?: boolean;
 }
 
-const { title, description, image, article, breadcrumbs } = Astro.props;
+const { title, description, image, article, breadcrumbs, noindex = false } = Astro.props;
 const siteUrl = 'https://peptide-shop.net';
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
 
 // Generate breadcrumb schema if breadcrumbs are provided
 const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
@@ -33,86 +45,52 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang={locale} dir={localeMeta[locale].dir}>
 	<head>
-		<meta name="geo.region" content="GB" />
-		<meta name="geo.placename" content="United Kingdom" />
-		<link rel="alternate" hreflang="en" href={Astro.url.href} />
-		<link rel="alternate" hreflang="x-default" href={Astro.url.href} />
-		<SEO title={title} description={description} image={image} article={article} />
+		<meta name="geo.region" content="DE" />
+		<meta name="geo.placename" content="Germany" />
+		<SEO title={title} description={description} image={image} article={article} noindex={noindex} />
 		
 		{breadcrumbSchema && (
-			<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+			<JsonLd schema={breadcrumbSchema} />
 		)}
-		
-		<!-- Google Fonts - Raleway -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-		<!-- Lucide Icons - Premium icon set (pinned version for stability) -->
-		<script is:inline src="https://unpkg.com/lucide@0.294.0/dist/umd/lucide.min.js" defer></script>
-		<script is:inline>
-			document.addEventListener('DOMContentLoaded', function() {
-				if (typeof lucide !== 'undefined') {
-					lucide.createIcons();
-				}
-			});
-		</script>
-		<!-- bootstrap.min css -->
-		<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
-		<!-- animate.css -->
-		<link rel="stylesheet" href="/plugins/animate-css/animate.css">
-		<!-- Magnify Popup -->
-		<link rel="stylesheet" href="/plugins/magnific-popup/dist/magnific-popup.css">
-		<!-- Owl Carousel CSS -->
-		<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick.css">
-		<link rel="stylesheet" href="/plugins/slick-carousel/slick/slick-theme.css">
-		<!-- Main Stylesheet -->
-		<link rel="stylesheet" href="/css/style.css">
-		<style>
-			/* Skip to content link for accessibility */
-			.skip-to-content {
-				position: absolute;
-				left: -9999px;
-				top: 0;
-				z-index: 10000;
-				padding: 12px 24px;
-				background: #0077b6;
-				color: white;
-				font-weight: 600;
-				text-decoration: none;
-				border-radius: 0 0 8px 8px;
-			}
-			.skip-to-content:focus {
-				left: 50%;
-				transform: translateX(-50%);
+
+		<!-- Inter and JetBrains Mono are self-hosted via Fontsource. -->
+		<style is:inline>
+			:root { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+			@supports (font-variation-settings: normal) {
+				:root { font-family: 'Inter Variable', 'Inter', system-ui, sans-serif; }
 			}
 		</style>
+
+		<!-- Design-system tokens (DESIGN_SPEC § 13). Loaded globally. -->
+		<link rel="stylesheet" href="/css/design-system.css" />
 	</head>
-	<body>
+	<body class="bg-white text-ink antialiased">
 		<a href="#main-content" class="skip-to-content">Skip to main content</a>
 		<Header />
-		<div class="main-wrapper" id="main-content">
+		<main id="main-content" class="main-wrapper">
 			<slot />
-			<Footer />
-		</div>
-
-		<!-- Essential Scripts -->
-		<!-- Main jQuery -->
-		<script is:inline src="/plugins/jquery/jquery.js"></script>
-		<!-- Bootstrap 4.3.1 -->
-		<script is:inline src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-		<!-- Slick Slider -->
-		<script is:inline src="/plugins/slick-carousel/slick/slick.min.js"></script>
-		<!--  Magnific Popup-->
-		<script is:inline src="/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-		<!-- Form Validator -->
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
-		<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
-		<!-- Google Map -->
-		<!-- <script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script> -->
-		<script is:inline src="/plugins/google-map/gmap.js"></script>
-
-		<script is:inline src="/js/script.js"></script>
+		</main>
+		<Footer />
+		<LanguageSwitcher />
+		<AgeGate
+			labels={{
+				title: t('ageGate.title'),
+				body: t('ageGate.body'),
+				legalNote: t('ageGate.legalNote'),
+				confirm: t('ageGate.confirm'),
+				deny: t('ageGate.deny'),
+			}}
+			client:load
+		/>
+		<style is:inline>
+			.skip-to-content {
+				position: absolute; left: -9999px; top: 0; z-index: 10000;
+				padding: 12px 24px; background: #005B8C; color: white;
+				font-weight: 600; text-decoration: none; border-radius: 0 0 8px 8px;
+			}
+			.skip-to-content:focus { left: 50%; transform: translateX(-50%); }
+		</style>
 	</body>
 </html>

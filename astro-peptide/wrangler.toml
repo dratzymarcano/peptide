@@ -1,0 +1,32 @@
+name = "peptide-shop"
+compatibility_date = "2025-09-01"
+compatibility_flags = ["nodejs_compat"]
+main = "./dist/_worker.js/index.js"
+account_id = "6ec0ea1c77a409e45f69eebaeeeb04e8"
+
+assets = { directory = "./dist", binding = "ASSETS" }
+
+# Custom domain bindings (uncomment after the worker has been deployed once
+# and you've added the route in the Cloudflare dashboard).
+# routes = [
+#   { pattern = "peptide-shop.net/*", zone_name = "peptide-shop.net" },
+#   { pattern = "www.peptide-shop.net/*", zone_name = "peptide-shop.net" }
+# ]
+
+# Application secrets (set via `npx wrangler secret put NAME`):
+#   SUPABASE_URL
+#   SUPABASE_ANON_KEY
+#   SUPABASE_SERVICE_ROLE_KEY
+#   SUPABASE_KEY
+#   RESEND_API_KEY
+#   RESEND_FROM
+#   BTCPAY_SERVER_URL
+#   BTCPAY_STORE_ID
+#   BTCPAY_API_KEY
+#   BTCPAY_WEBHOOK_SECRET
+
+[vars]
+SITE_URL = "https://peptide-shop.net"
+
+[observability]
+enabled = true
