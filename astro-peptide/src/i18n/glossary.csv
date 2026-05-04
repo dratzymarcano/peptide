@@ -1,0 +1,31 @@
+term_en,locked,de,nl,fr,it,es,notes
+Peptide Shop,true,Peptide Shop,Peptide Shop,Peptide Shop,Peptide Shop,Peptide Shop,Brand name; never translate.
+RUO,true,RUO,RUO,RUO,RUO,RUO,Regulatory marker; long-form sentence is translated separately.
+For research use only,false,Nur für Forschungszwecke,Alleen voor onderzoeksgebruik,Réservé à la recherche,Solo per uso di ricerca,Solo para uso de investigación,Long-form expansion of RUO marker.
+peptide,false,Peptid,peptide,peptide,peptide,péptido,
+vial,false,Vial,vial,flacon,vial,vial,
+bacteriostatic water,false,bakteriostatisches Wasser,bacteriostatisch water,eau bactériostatique,acqua batteriostatica,agua bacteriostática,
+HPLC,true,HPLC,HPLC,HPLC,HPLC,HPLC,Analytical method abbreviation; never translate.
+COA,true,COA,COA,COA,COA,COA,Certificate of Analysis; abbreviation kept everywhere.
+Certificate of Analysis,false,Analysezertifikat,analysecertificaat,certificat d'analyse,certificato di analisi,certificado de análisis,Long-form expansion of COA.
+lyophilized,false,lyophilisiert,gelyofiliseerd,lyophilisé,liofilizzato,liofilizado,US/UK spelling: lyophilised in en copy.
+lyophilised,false,lyophilisiert,gelyofiliseerd,lyophilisé,liofilizzato,liofilizado,UK spelling variant.
+research-grade,false,Forschungsqualität,onderzoekskwaliteit,qualité recherche,grado ricerca,grado investigación,
+batch,false,Charge,batch,lot,lotto,lote,
+purity,false,Reinheit,zuiverheid,pureté,purezza,pureza,
+sequence,false,Sequenz,sequentie,séquence,sequenza,secuencia,
+reconstitution,false,Rekonstitution,reconstitutie,reconstitution,ricostituzione,reconstitución,
+storage,false,Lagerung,opslag,conservation,conservazione,almacenamiento,
+mg,true,mg,mg,mg,mg,mg,SI unit.
+mL,true,mL,mL,mL,mL,mL,SI unit.
+IU,true,IU,IU,UI,UI,UI,International unit; FR/IT/ES use UI.
+GLP-1,true,GLP-1,GLP-1,GLP-1,GLP-1,GLP-1,
+BPC-157,true,BPC-157,BPC-157,BPC-157,BPC-157,BPC-157,Compound code.
+TB-500,true,TB-500,TB-500,TB-500,TB-500,TB-500,Compound code.
+GHK-Cu,true,GHK-Cu,GHK-Cu,GHK-Cu,GHK-Cu,GHK-Cu,Compound code.
+Add to cart,false,In den Warenkorb,Toevoegen aan winkelwagen,Ajouter au panier,Aggiungi al carrello,Añadir al carrito,Primary CTA — keep concise.
+Checkout,false,Zur Kasse,Afrekenen,Commander,Procedi al pagamento,Finalizar compra,
+Cart,false,Warenkorb,Winkelwagen,Panier,Carrello,Carrito,
+Account,false,Konto,Account,Compte,Account,Cuenta,
+Search,false,Suchen,Zoeken,Rechercher,Cerca,Buscar,
+Free EU shipping,false,Kostenloser EU-Versand,Gratis EU-verzending,Livraison UE gratuite,Spedizione UE gratuita,Envío UE gratuito,

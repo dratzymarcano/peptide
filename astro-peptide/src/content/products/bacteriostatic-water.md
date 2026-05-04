@@ -1,154 +1,100 @@
 ---
-id: "supply-bac-water-10ml"
-title: "Buy Bacteriostatic Water UK | 10ml Vial | Peptide Reconstitution"
-primary_keyword: "buy bacteriostatic water uk"
-search_volume: "5400"
-slug: "/peptides/buy-bacteriostatic-water"
-aliases: ["BAC Water", "Sterile Water", "Peptide Mixing Water"]
-cas: "7732-18-5"
-molecular_weight: "18.02 g/mol"
-purity: "USP Grade"
-storage: "Room temperature (15-25°C)"
-package_sizes: ["10 × 10 mL vials"]
-moq: 200
-price: 70
-price_range: "£70 per pack"
-coa_url: "/coa/bacteriostatic-water.pdf"
-short_description: "Buy bacteriostatic water UK. USP grade, 0.9% benzyl alcohol for peptide reconstitution. Sterile 10ml vials. Fast UK delivery."
-category: "supplies"
-tags: ["supplies", "bac-water", "reconstitution", "bacteriostatic-water-uk", "peptide-supplies"]
-images: ["/images/products/bacteriostatic-water.jpg"]
+id: supply-bac-water-10ml
+title: Bacteriostatic water 30 ml
+primary_keyword: bacteriostatic water
+search_volume: 5400
+aliases:
+  - BAC Water
+  - Sterile Water
+  - Peptide Mixing Water
+cas: 7732-18-5
+molecular_weight: 18.02 g/mol
+purity: USP Grade
+storage: Room temperature (15-25°C)
+package_sizes:
+  - 10 × 10 mL vials
+moq: 1
+price: 18
+price_range: €18 per pack
+short_description: USP-grade bacteriostatic water with 0.9% benzyl alcohol for laboratory reconstitution workflows. RUO.
+category: supplies
+tags:
+  - research-use-only
+  - coa-included
+  - supplies
+  - bac-water
+  - reconstitution
+  - peptide-supplies
+  - bacteriostatic-water
+images:
+  - /images/products/bacteriostatic-water.svg
 meta:
-  title: "Buy Bacteriostatic Water UK | 10ml | Peptide Reconstitution"
-  description: "Buy bacteriostatic water UK. USP grade sterile water with 0.9% benzyl alcohol. Perfect for peptide reconstitution. Fast UK delivery."
+  title: Bacteriostatic water 30 ml | Peptide Shop
+  description: 0.9 % benzyl-alcohol bacteriostatic water for laboratory reconstitution workflows. RUO.
 faqs:
-  - question: "What is bacteriostatic water?"
-    answer: "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications."
-  - question: "Why use bacteriostatic water instead of sterile water?"
-    answer: "Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water."
-  - question: "How long can reconstituted peptides be stored?"
-    answer: "Peptides reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide."
-  - question: "Is your bacteriostatic water pharmaceutical grade?"
-    answer: "Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, purity, and benzyl alcohol concentration."
-  - question: "How much bacteriostatic water do I need per peptide vial?"
-    answer: "Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials."
-  - question: "Can bacteriostatic water be frozen?"
-    answer: "Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light."
-  - question: "How long does bacteriostatic water last unopened?"
-    answer: "Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days."
-  - question: "What size syringe should I use?"
-    answer: "We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal."
-reviews:
-  - author: "Dr. James Wilson"
-    rating: 5
-    date: "2024-12-10"
-    title: "Essential lab supply"
-    content: "High-quality bacteriostatic water. Essential for our peptide research. USP grade quality is evident."
-    verified: true
-  - author: "Cambridge Research Lab"
-    rating: 5
-    date: "2024-12-03"
-    title: "Consistent quality"
-    content: "We order these regularly alongside our peptides. Quality is always consistent and reliable."
-    verified: true
-  - author: "Sarah Mitchell"
-    rating: 5
-    date: "2024-11-26"
-    title: "Perfect for peptide prep"
-    content: "Great value for USP grade bac water. Convenient 10ml size is perfect for multiple peptides."
-    verified: true
-  - author: "Oxford Peptide Lab"
-    rating: 5
-    date: "2024-11-19"
-    title: "Excellent quality"
-    content: "Proper pharmaceutical grade. No contamination issues in over a year of use."
-    verified: true
-  - author: "Dr. Richard Chen"
-    rating: 5
-    date: "2024-11-12"
-    title: "Reliable supply"
-    content: "Fast delivery, good price, consistent quality. Essential for any peptide research lab."
-    verified: true
+  - question: What is bacteriostatic water?
+    answer: Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications.
+  - question: Why use bacteriostatic water instead of sterile water?
+    answer: Bacteriostatic water contains benzyl alcohol which prevents bacterial contamination after opening. This allows multiple withdrawals from a vial over several weeks, unlike single-use sterile water.
+  - question: How long can reconstituted peptides be stored?
+    answer: Peptides reconstituted with bacteriostatic water can typically be stored at 2-8°C for 2-4 weeks. Always follow the specific guidance for each peptide.
+  - question: Is your bacteriostatic water pharmaceutical grade?
+    answer: Yes, our bacteriostatic water meets USP (United States Pharmacopeia) standards for sterility, purity, and benzyl alcohol concentration.
+  - question: How much bacteriostatic water do I need per peptide vial?
+    answer: Typically 1-2ml per peptide vial is recommended. The exact amount depends on your desired concentration. Each 10ml vial can reconstitute 5-10 peptide vials.
+  - question: Can bacteriostatic water be frozen?
+    answer: Freezing is not recommended as it may affect sterility and cause the vial to crack. Store at room temperature (15-25°C) away from direct light.
+  - question: How long does bacteriostatic water last unopened?
+    answer: Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days.
+  - question: What size syringe should I use?
+    answer: We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal.
 ---
 
-# Bacteriostatic Water for Peptide Research
+## Bacteriostatic water 30 ml research overview
 
-## What is Bacteriostatic Water?
+USP-grade bacteriostatic water with 0.9% benzyl alcohol for laboratory reconstitution workflows. RUO.
 
-Bacteriostatic water (BAC water) is sterile water containing 0.9% benzyl alcohol, a bacteriostatic preservative that inhibits the growth of bacteria. This makes it ideal for reconstituting lyophilized (freeze-dried) peptides for research applications where multiple withdrawals from the same vial are needed.
+Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, used in laboratory workflows where preservative-containing reconstitution solvent is required.
 
-## Key Features
+Peptide Shop supplies Bacteriostatic water 30 ml as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-### USP Grade Quality
-Our bacteriostatic water meets United States Pharmacopeia (USP) standards for:
-- Sterility
-- Purity  
-- Benzyl alcohol concentration (0.9%)
-- Endotoxin levels
+## Research use
 
-### Multi-Use Design
-Unlike single-use sterile water, bacteriostatic water allows multiple withdrawals over several weeks without contamination risk, making it cost-effective for research laboratories.
+- Reconstitution of lyophilised research materials
+- Preparation of stock solutions for lab protocols
+- Multi-withdrawal laboratory handling workflows
 
-### Convenient 10ml Size
-Each 10ml vial can reconstitute 5-10 peptide vials depending on concentration requirements.
+Use according to validated laboratory protocols and product-specific COA guidance.
 
-## How to Use Bacteriostatic Water
+## Sequence and analytical data
 
-### Reconstitution Steps
-1. Allow the peptide vial to reach room temperature
-2. Clean both vial tops with an alcohol swab
-3. Using a sterile syringe, withdraw the desired amount of bacteriostatic water
-4. Insert the needle into the peptide vial, aiming at the glass wall
-5. Slowly inject the water, allowing it to run down the vial wall
-6. Gently swirl (do not shake) until fully dissolved
-7. Store reconstituted peptide at 2-8°C
+| Field | Detail |
+|---|---|
+| Product ID | supply-bac-water-10ml |
+| Package size | 10 × 10 mL vials |
+| CAS number | 7732-18-5 |
+| Molecular weight | 18.02 g/mol |
+| Purity | USP Grade |
+| Storage | Room temperature (15-25°C) |
 
-### Recommended Volumes
-| Peptide Amount | Suggested BAC Water | Concentration |
-|---------------|---------------------|---------------|
-| 5mg | 1.0ml | 5mg/ml |
-| 5mg | 2.0ml | 2.5mg/ml |
-| 10mg | 2.0ml | 5mg/ml |
-| 10mg | 4.0ml | 2.5mg/ml |
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-## Storage Instructions
+## Reconstitution and handling
 
-- **Unopened**: Store at room temperature (15-25°C), away from direct light
-- **Opened**: Use within 28 days
-- **Do not freeze**: Freezing may compromise sterility
-- **Shelf life**: 2 years from manufacture date
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-## Applications in Research
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
-Bacteriostatic water is essential for:
-- Peptide reconstitution for in vitro studies
-- Preparation of stock solutions
-- Multi-day research protocols requiring repeat sampling
-- Any application where sterility must be maintained over time
+## Storage
 
-## Comparison: Bacteriostatic vs Sterile Water
+Store unopened material according to the stated condition: Room temperature (15-25°C). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-| Feature | Bacteriostatic Water | Sterile Water |
-|---------|---------------------|---------------|
-| Preservative | 0.9% Benzyl Alcohol | None |
-| Multiple Uses | Yes (up to 28 days) | Single use only |
-| Bacterial Growth | Inhibited | Possible after opening |
-| Best For | Multi-dose peptides | Single-dose applications |
+## Related resources
 
-## Quality Assurance
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+- [Browse the research catalogue](/catalog/)
 
-Every batch of our bacteriostatic water undergoes testing for:
-- **Sterility**: Tested per USP <71>
-- **Endotoxins**: Tested per USP <85>
-- **Particulate Matter**: Tested per USP <788>
-- **Benzyl Alcohol Content**: Verified at 0.9% ± 0.05%
+## Research-use statement
 
-## Related Products
-
-- [BPC-157](/peptides/buy-bpc-157) - Popular healing peptide
-- [TB-500](/peptides/buy-tb-500) - Recovery peptide
-- [Semaglutide](/peptides/buy-semaglutide) - GLP-1 agonist
-
----
-
-*Bacteriostatic water is intended for research use only. Not for human or veterinary use.*
+Bacteriostatic water 30 ml is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

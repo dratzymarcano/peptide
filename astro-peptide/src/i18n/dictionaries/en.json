@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. All rights reserved.",
     "terms": "Terms",
     "privacy": "Privacy",
-    "disclaimer": "Disclaimer"
+    "disclaimer": "Disclaimer",
+    "impressum": "Legal notice"
   },
   "shopSidebar": {
     "researchArea": "Research area",
@@ -404,7 +405,7 @@
     "faqHumanUseQ": "Are Peptide Shop products for human use?",
     "faqHumanUseA": "No. Products are supplied for laboratory research only and are not medicines, foods, supplements, cosmetics or diagnostics.",
     "faqResearchAreaQ": "Where should I start if I know the research area?",
-    "faqResearchAreaA": "Use the research catalogue to browse by biological area such as diabetes, neuroscience, cell signalling or tissue repair.",
+    "faqResearchAreaA": "Use the research catalogue to browse by biological area such as diabetes, neuroscience, cell signalling or cell-matrix biology.",
     "faqCoaQuality": "COAs and quality",
     "faqCoaQ": "Do products include a COA?",
     "faqCoaA": "COA availability is shown or requested by product and lot. A COA may include HPLC purity, identity confirmation and batch details.",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Scientific information",
     "disclaimerScientificBody": "Educational and product content is provided to support research procurement. It is not medical advice and should not be interpreted as dosage, treatment or safety guidance for humans or animals.",
     "disclaimerBeforeTitle": "Before ordering",
-    "disclaimerBeforeBody": "Confirm that your intended use is lawful, institutional approvals are in place and your lab has suitable storage and handling procedures."
+    "disclaimerBeforeBody": "Confirm that your intended use is lawful, institutional approvals are in place and your lab has suitable storage and handling procedures.",
+    "impressumMetaTitle": "Legal notice | Peptide Shop",
+    "impressumMetaDescription": "Legal notice for Peptide Shop including provider identification, registry data, contact details and EU online dispute resolution information.",
+    "impressumEyebrow": "Legal",
+    "impressumTitle": "Legal notice",
+    "impressumDescription": "Provider identification under § 5 TMG and EU Directive 2000/31/EC. The information below is required by German telemedia and EU consumer law.",
+    "impressumProviderTitle": "Provider",
+    "impressumProviderBody": "Provider details are rendered from the legal entity record.",
+    "impressumContactTitle": "Contact",
+    "impressumEmailLabel": "Email",
+    "impressumRegistryTitle": "Commercial register",
+    "impressumRegistryBody": "Commercial register details are rendered from the legal entity record.",
+    "impressumVatTitle": "VAT identification",
+    "impressumVatBody": "VAT details are rendered from the legal entity record.",
+    "impressumResponsibleTitle": "Responsible for content",
+    "impressumResponsibleBody": "Responsible-person details are rendered from the legal entity record.",
+    "impressumDisputeTitle": "EU online dispute resolution",
+    "impressumDisputeBody": "The European Commission provides a platform for online dispute resolution: <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. We are neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration board.",
+    "impressumLiabilityTitle": "Liability for content and links",
+    "impressumLiabilityBody": "As a service provider we are responsible for our own content on these pages in accordance with § 7 (1) TMG. Under §§ 8 to 10 TMG we are not obliged to monitor transmitted or stored third-party information. External links were checked at the time of linking; we have no permanent control over their current content."
   },
   "bundles": {
     "metaTitle": "Research Peptide Bundles | Peptide Shop",
@@ -485,8 +505,8 @@
     "logicTitle": "Recommended bundle logic",
     "metabolicTitle": "Metabolic pathway set",
     "metabolicBody": "Compare GLP-1, GIP, glucagon and amylin pathway materials for diabetes and metabolism research.",
-    "repairTitle": "Tissue repair set",
-    "repairBody": "Evaluate BPC-157, TB-500 and GHK-Cu across cell migration, ECM and repair models.",
+    "repairTitle": "Cell-matrix biology set",
+    "repairBody": "Evaluate BPC-157, TB-500 and GHK-Cu across cell migration and ECM models.",
     "cnsTitle": "CNS research set",
     "cnsBody": "Group Semax, Selank and DSIP for neuropeptide, stress-response and sleep-related workflows.",
     "handlingTitle": "Handling set",
@@ -497,7 +517,7 @@
     "popularHubs": "Popular hubs",
     "hubDiabetesTitle": "Diabetes and metabolism",
     "hubDiabetesSubtitle": "GLP-1 and incretin compounds",
-    "hubRepairTitle": "Cell and tissue repair",
+    "hubRepairTitle": "Cell and matrix biology",
     "hubRepairSubtitle": "BPC-157 and TB-500",
     "hubNeuroTitle": "Neuroscience",
     "hubNeuroSubtitle": "CNS reference peptides"
@@ -755,11 +775,11 @@
       },
       "cardiovascular": {
         "name": "Cardiovascular & Vascular",
-        "short": "Endothelial, vascular tone, repair",
-        "description": "Peptides referenced in cardiovascular, endothelial-repair and vascular-tone research models.",
+        "short": "Endothelial, vascular tone, signalling",
+        "description": "Peptides referenced in cardiovascular, endothelial and vascular-tone research models.",
         "keywords": {
           "0": "cardiovascular research peptides",
-          "1": "vascular repair peptides"
+          "1": "vascular signalling peptides"
         }
       },
       "diabetes": {
@@ -784,19 +804,19 @@
       "adhesion-ecm": {
         "name": "Adhesion & ECM",
         "short": "Cell adhesion, ECM and wound models",
-        "description": "Peptides involved in cell-adhesion, extracellular-matrix and wound-repair research.",
+        "description": "Peptides involved in cell-adhesion, extracellular-matrix and wound-closure assay research.",
         "keywords": {
           "0": "cell adhesion peptides",
           "1": "ECM research peptides",
-          "2": "wound healing peptide research"
+          "2": "wound-closure assay peptide research"
         }
       },
       "cell-tissue": {
-        "name": "Cell & Tissue Repair",
-        "short": "Regeneration, gastric, tendon repair",
-        "description": "Reference peptides used in tendon, gastric and connective-tissue repair models.",
+        "name": "Cell & Matrix Biology",
+        "short": "Cell migration, gastric, tendon models",
+        "description": "Reference peptides used in tendon, gastric and connective-tissue laboratory models.",
         "keywords": {
-          "0": "tissue repair peptides",
+          "0": "cell migration peptides",
           "1": "BPC-157 research",
           "2": "TB-500 research"
         }
@@ -936,8 +956,8 @@
         "description": "Compounds studied for growth-hormone release and endocrine signalling pathways."
       },
       "repair": {
-        "name": "Tissue repair peptides",
-        "description": "Sequences investigated in cell migration, tissue repair, and extracellular matrix models."
+        "name": "Cell migration peptides",
+        "description": "Sequences investigated in cell migration and extracellular matrix models."
       },
       "neuro": {
         "name": "Neuropeptides",

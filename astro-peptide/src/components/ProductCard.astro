@@ -1,0 +1,345 @@
+---
+/**
+ * ProductCard — the single, reusable product tile used everywhere
+ * (homepage, /shop, /catalog/*, /use-case/*, /search, related products).
+ *
+ * Usage (preferred):
+ *   import ProductCard from '../components/ProductCard.astro';
+ *   import { toCardProduct } from '../lib/product';
+ *   <ProductCard product={toCardProduct(entry)} />
+ *
+ * Dynamic data binding:
+ *   Static fields (title, image, description, category, package size,
+ *   purity, rating) are rendered server-side from the content collection.
+ *   Price + availability also render server-side, then a tiny client
+ *   island (ProductLivePrice) subscribes to `productOverrides` so any
+ *   runtime price/stock change propagates to every card on the page
+ *   instantly — no rebuild required.
+ */
+import AddToCartButton from './AddToCartButton';
+import ProductLivePrice from './ProductLivePrice';
+import type { CardProduct } from '../lib/product';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  /** Preferred: pass a normalized CardProduct from toCardProduct(entry). */
+  product?: CardProduct;
+
+  /** Legacy individual props — kept for backward compatibility. */
+  id?: string;
+  title?: string;
+  price?: number;
+  priceRange?: string;
+  image?: string;
+  slug?: string;
+  category?: string;
+  purity?: string;
+  packageSize?: string;
+  shortDescription?: string;
+
+  /** Visual variant. `compact` hides the description. */
+  variant?: 'default' | 'compact';
+}
+
+const props = Astro.props as Props;
+
+// Resolve to a CardProduct, supporting both the new and legacy prop styles.
+const p: CardProduct = props.product ?? {
+  id: props.id ?? '',
+  slug: (props.slug ?? '').replace(/^\//, ''),
+  url: `/peptides/${(props.slug ?? '').replace(/^\//, '')}/`,
+  title: props.title ?? '',
+  shortDescription: props.shortDescription,
+  image: props.image ?? '/images/peptide-default.jpg',
+  imageAlt: props.title ?? 'Product image',
+  category: props.category,
+  purity: props.purity,
+  packageSize: props.packageSize,
+  price: props.price,
+  priceRange: props.priceRange ?? '',
+  availability: 'in_stock',
+};
+
+const variant = props.variant ?? 'default';
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const productUrl = p.url.startsWith('/') ? localizePath(p.url, locale) : p.url;
+const showDescription = variant !== 'compact' && !!p.shortDescription;
+const isOutOfStock = p.availability === 'out_of_stock';
+const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
+---
+
+<article
+  class={`card card-product${isOutOfStock ? ' is-oos' : ''}`}
+  data-product-id={p.id}
+  itemscope
+  itemtype="https://schema.org/Product"
+>
+  <meta itemprop="sku" content={p.id} />
+
+  <a href={productUrl} class="img-wrap" tabindex="-1" aria-hidden="true">
+    <img
+      src={p.image}
+      alt={p.imageAlt}
+      itemprop="image"
+      loading="lazy"
+      decoding="async"
+      width="300"
+      height="300"
+    />
+    {p.purity && <span class="purity-pill" aria-hidden="true">{p.purity}</span>}
+    {p.promo && (
+      <span class="promo-ribbon" aria-label={t('productCard.promotion', { label: p.promo.label })}>
+        {p.promo.label}
+      </span>
+    )}
+  </a>
+
+  <div class="body">
+    {p.category && (
+      <span class="badge" aria-hidden="true">{p.category.replace(/-/g, ' ')}</span>
+    )}
+
+    <h3 class="title" itemprop="name">
+      <a href={productUrl}>{p.title}</a>
+    </h3>
+
+    {p.packageSize && <p class="meta">{p.packageSize}</p>}
+
+    {showDescription && (
+      <p class="meta meta-desc" itemprop="description">
+        {p.shortDescription!.length > 90
+          ? p.shortDescription!.slice(0, 87) + '…'
+          : p.shortDescription}
+      </p>
+    )}
+
+    {p.rating && (
+      <div
+        class="rating"
+        itemprop="aggregateRating"
+        itemscope
+        itemtype="https://schema.org/AggregateRating"
+        aria-label={t('productCard.ratingAria', { rating: p.rating.average.toFixed(1), count: p.rating.count })}
+      >
+        <meta itemprop="ratingValue" content={p.rating.average.toFixed(1)} />
+        <meta itemprop="reviewCount" content={String(p.rating.count)} />
+        <span class="stars" aria-hidden="true">
+          <span class="stars-fill" style={`width:${ratingPct}%`}></span>
+        </span>
+        <span class="rating-count" aria-hidden="true">({p.rating.count})</span>
+      </div>
+    )}
+
+    <div
+      class="price-block"
+      itemprop="offers"
+      itemscope
+      itemtype="https://schema.org/Offer"
+    >
+      <meta itemprop="priceCurrency" content="EUR" />
+      {p.price != null && <meta itemprop="price" content={p.price.toFixed(2)} />}
+      <meta
+        itemprop="availability"
+        content={`https://schema.org/${
+          p.availability === 'out_of_stock'
+            ? 'OutOfStock'
+            : p.availability === 'preorder'
+            ? 'PreOrder'
+            : 'InStock'
+        }`}
+      />
+      <ProductLivePrice
+        client:visible
+        id={p.id}
+        ssrPrice={p.price}
+        ssrPriceRange={p.priceRange}
+        ssrCompareAt={p.compareAtPrice}
+        ssrAvailability={p.availability}
+        labels={{
+          availabilityPrefix: t('availability.prefix'),
+          in_stock: t('availability.inStock'),
+          low_stock: t('availability.lowStock'),
+          out_of_stock: t('availability.outOfStock'),
+          preorder: t('availability.preorder'),
+        }}
+      />
+    </div>
+
+    <div class="actions">
+      <a
+        href={productUrl}
+        class="btn btn-secondary btn-sm"
+        aria-label={t('productCard.viewDetails', { product: p.title })}
+      >
+        {t('productCard.view')}
+      </a>
+      {p.price != null && !isOutOfStock && (
+        <AddToCartButton
+          client:load
+          id={p.id}
+          title={p.title}
+          price={p.price}
+          thumb_src={p.image}
+          thumb_alt={p.imageAlt}
+          labels={{
+            addToCart: t('cartActions.addToCart'),
+            addedToCart: t('cartActions.addedToCart'),
+          }}
+        />
+      )}
+      {isOutOfStock && (
+        <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          disabled
+          aria-label={t('productCard.outOfStockAria', { product: p.title })}
+        >
+          {t('productCard.outOfStock')}
+        </button>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .card-product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .card-product .img-wrap {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+  .card-product .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 200ms ease;
+  }
+  .card-product:hover .img-wrap img { transform: scale(1.03); }
+
+  .card-product .purity-pill {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: blur(6px);
+    color: var(--color-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 8px;
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+  }
+  .card-product .promo-ribbon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--color-accent, #d63b3b);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 8px;
+    border-radius: 999px;
+    box-shadow: 0 1px 4px rgb(15 23 42 / 0.18);
+  }
+
+  .card-product .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    flex: 1 1 auto;
+  }
+  .card-product .title a { color: inherit; text-decoration: none; }
+  .card-product .title a:hover,
+  .card-product .title a:focus-visible {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  .card-product .meta-desc { color: var(--color-ink-3); }
+
+  .card-product .rating { display: inline-flex; align-items: center; gap: 6px; }
+  .card-product .stars {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    color: #d8d8d8;
+    letter-spacing: 1px;
+  }
+  .card-product .stars::before { content: '\2605\2605\2605\2605\2605'; }
+  .card-product .stars-fill {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    color: #f5b301;
+    white-space: nowrap;
+  }
+  .card-product .stars-fill::before { content: '\2605\2605\2605\2605\2605'; }
+  .card-product .rating-count { font-size: 12px; color: var(--color-ink-3); }
+
+  .card-product .price-block {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .card-product .price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .card-product .price-compare {
+    color: var(--color-ink-3);
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .card-product .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--color-ink-3);
+  }
+  .card-product .availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9aa0a6;
+  }
+  .card-product .availability-in-stock .availability-dot { background: #1aa260; }
+  .card-product .availability-low-stock .availability-dot { background: #f5b301; }
+  .card-product .availability-out-of-stock .availability-dot { background: #d63b3b; }
+  .card-product .availability-preorder .availability-dot { background: #3b82f6; }
+
+  .card-product .actions {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .card-product .actions > * { flex: 1 1 auto; }
+
+  .card-product.is-oos .img-wrap img { opacity: 0.6; filter: grayscale(0.3); }
+
+  .card-product a:focus-visible,
+  .card-product button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 480px) {
+    .card-product .actions { flex-direction: column; }
+  }
+</style>

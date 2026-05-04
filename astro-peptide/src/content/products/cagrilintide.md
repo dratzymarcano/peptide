@@ -1,197 +1,104 @@
 ---
-id: "peptide-cagrilintide"
-title: "Buy Cagrilintide UK | Research Grade Amylin Analog"
-primary_keyword: "buy cagrilintide uk"
-search_volume: "2900"
-slug: "/peptides/buy-cagrilintide"
-aliases: ["AM833", "NN9838", "Amylin Analog"]
-cas: "2375614-45-8"
-molecular_weight: "3962.4 g/mol"
-purity: "≥ 99%"
+id: peptide-cagrilintide
+title: Cagrilintide 5 mg — ≥99 % HPLC
+primary_keyword: cagrilintide research
+search_volume: 2900
+aliases:
+  - AM833
+  - NN9838
+  - Amylin Analog
+cas: 2375614-45-8
+molecular_weight: 3962.4 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 5 mg vials"]
-moq: 200
-price: 1200
-price_range: "£1200 per pack"
-coa_url: "/coa/cagrilintide.pdf"
-short_description: "Buy Cagrilintide UK. Long-acting amylin analog for satiety and metabolic research. ≥99% purity. Fast UK delivery."
-category: "weight-loss"
-tags: ["research-peptide", "cagrilintide-uk", "amylin", "buy-peptides-uk", "weight-loss"]
-images: ["/images/products/cagrilintide.jpg"]
+package_sizes:
+  - 1 × 5 mg vial
+moq: 1
+price: 55
+price_range: €55 per vial
+short_description: Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO.
+category: weight-loss
+researchArea: diabetes
+useCases:
+  - weight-loss
+tags:
+  - research-use-only
+  - coa-included
+  - diabetes
+  - weight-loss
+  - research-peptide
+  - amylin
+  - cagrilintide
+images:
+  - /images/products/cagrilintide.svg
 meta:
-  title: "Buy Cagrilintide UK | Amylin Analog | Fast Delivery"
-  description: "Buy Cagrilintide UK. Premium long-acting amylin analog for weight research. ≥99% purity, COA included. Fast UK delivery."
+  title: Cagrilintide 5 mg — ≥99 % HPLC | Peptide Shop
+  description: Amylin analogue research peptide, lot COA, ≥99 % HPLC. For research use only.
 faqs:
-  - question: "What is Cagrilintide used for in research?"
-    answer: "Cagrilintide is used in metabolic research to study amylin receptor signalling, appetite regulation, gastric emptying, and glucagon suppression. It provides a long-acting tool for investigating amylin's role in energy homeostasis."
-  - question: "How is Cagrilintide different from pramlintide?"
-    answer: "Cagrilintide is a long-acting amylin analog with an acylated fatty acid side chain enabling weekly research dosing, while pramlintide requires more frequent administration. This extended duration enables different experimental paradigms."
-  - question: "What is amylin's role in metabolism?"
-    answer: "Amylin is co-secreted with insulin from pancreatic beta cells. It slows gastric emptying, suppresses glucagon secretion, and promotes satiety through central nervous system actions. Cagrilintide enables research into these pathways."
-  - question: "How should Cagrilintide be stored?"
-    answer: "Store lyophilised Cagrilintide at -20°C. Once reconstituted, keep at 2-8°C and use within 3 weeks. The fatty acid modification provides good stability but standard peptide handling applies."
-  - question: "What purity is your Cagrilintide?"
-    answer: "Our Cagrilintide is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis with purity data and mass spectrometry identity confirmation."
-  - question: "How do I reconstitute Cagrilintide?"
-    answer: "Reconstitute in sterile bacteriostatic water or appropriate buffer. Add solvent slowly and gently swirl to dissolve. Avoid shaking."
-  - question: "Can Cagrilintide be studied with GLP-1 agonists?"
-    answer: "Yes, research often investigates cagrilintide in combination with semaglutide (the 'CagriSema' approach) to study complementary satiety mechanisms. Both peptides are available from Peptide Shop."
-  - question: "What sizes are available?"
-    answer: "Cagrilintide is available in 2mg and 5mg vials suitable for various research scales."
-reviews:
-  - author: "Dr. Helen Foster"
-    rating: 5
-    date: "2024-12-14"
-    title: "Excellent for amylin research"
-    content: "Our satiety research programme requires high-quality cagrilintide. Peptide Shop delivers consistent quality with excellent documentation."
-    verified: true
-  - author: "Bristol Appetite Lab"
-    rating: 5
-    date: "2024-12-07"
-    title: "Premium quality"
-    content: "The long-acting profile is perfect for our experimental design. Quality is research-grade and service is excellent."
-    verified: true
-  - author: "James Morrison"
-    rating: 5
-    date: "2024-11-30"
-    title: "Great product"
-    content: "First order of Cagrilintide - impressed with quality and fast delivery. Will continue ordering."
-    verified: true
-  - author: "Edinburgh Metabolic Studies"
-    rating: 5
-    date: "2024-11-23"
-    title: "Reliable supplier"
-    content: "Consistent quality for our amylin receptor studies. Peptide Shop has become our preferred supplier."
-    verified: true
-  - author: "Dr. Robert Clarke"
-    rating: 5
-    date: "2024-11-16"
-    title: "Outstanding purity"
-    content: "Verified purity matches claims. Essential for our comparative satiety research with GLP-1 agonists."
-    verified: true
-  - author: "Manchester Hormone Lab"
-    rating: 5
-    date: "2024-11-09"
-    title: "Excellent service"
-    content: "Fast delivery, great quality, comprehensive COA. Highly recommend for serious research."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-11-02"
-    title: "Fast delivery"
-    content: "Express delivery arrived next day. Product quality excellent for our gastric emptying studies."
-    verified: true
-  - author: "Oxford Obesity Research"
-    rating: 4
-    date: "2024-10-26"
-    title: "Very good"
-    content: "Quality is excellent. Only minor feedback - would appreciate more detailed handling guidelines."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 5
-    date: "2024-10-19"
-    title: "Premium research peptide"
-    content: "Excellent for studying amylin-GLP-1 synergy. Quality and documentation meet our requirements."
-    verified: true
-  - author: "Newcastle Satiety Lab"
-    rating: 5
-    date: "2024-10-12"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent quality. Essential for our weight research programme."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-05"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery. Cagrilintide quality is exactly as described."
-    verified: true
-  - author: "Glasgow Endocrine Studies"
-    rating: 5
-    date: "2024-09-28"
-    title: "Excellent supplier"
-    content: "High-quality amylin analog with proper documentation. Our go-to supplier for research peptides."
-    verified: true
-  - author: "Dr. Andrew Foster"
-    rating: 5
-    date: "2024-09-21"
-    title: "Outstanding product"
-    content: "Research-grade quality for serious metabolic studies. Highly recommended."
-    verified: true
-  - author: "Southampton Appetite Research"
-    rating: 5
-    date: "2024-09-14"
-    title: "Top quality"
-    content: "Premium cagrilintide for our satiety mechanism research. Excellent service throughout."
-    verified: true
-  - author: "Emma Richardson"
-    rating: 5
-    date: "2024-09-07"
-    title: "Highly recommend"
-    content: "Quality peptide at a fair price. Fast UK delivery. Will continue ordering."
-    verified: true
+  - question: What is Cagrilintide used for in research?
+    answer: Cagrilintide is used in metabolic research to study amylin receptor signalling, appetite regulation, gastric emptying, and glucagon suppression. It provides a long-acting tool for investigating amylin's role in energy homeostasis.
+  - question: How is Cagrilintide different from pramlintide?
+    answer: Cagrilintide is a long-acting amylin analog with an acylated fatty acid side chain enabling weekly research dosing, while pramlintide requires more frequent administration. This extended duration enables different experimental paradigms.
+  - question: What is amylin's role in metabolism?
+    answer: Amylin is co-secreted with insulin from pancreatic beta cells. It slows gastric emptying, suppresses glucagon secretion, and promotes satiety through central nervous system actions. Cagrilintide enables research into these pathways.
+  - question: How should Cagrilintide be stored?
+    answer: Store lyophilised Cagrilintide at -20°C. Once reconstituted, keep at 2-8°C and use within 3 weeks. The fatty acid modification provides good stability but standard peptide handling applies.
+  - question: What purity is your Cagrilintide?
+    answer: Our Cagrilintide is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis with purity data and mass spectrometry identity confirmation.
+  - question: How do I reconstitute Cagrilintide?
+    answer: Reconstitute in sterile bacteriostatic water or appropriate buffer. Add solvent slowly and gently swirl to dissolve. Avoid shaking.
+  - question: Can Cagrilintide be studied with GLP-1 agonists?
+    answer: Yes, research often investigates cagrilintide in combination with semaglutide (the 'CagriSema' approach) to study complementary satiety mechanisms. Both peptides are available from Peptide Shop.
+  - question: What sizes are available?
+    answer: Cagrilintide is available in 2mg and 5mg vials suitable for various research scales.
 ---
 
-## What is Cagrilintide?
+## Cagrilintide 5 mg research overview
 
-**Cagrilintide** (AM833, NN9838) is a long-acting acylated analog of human amylin, a peptide hormone co-secreted with insulin from pancreatic beta cells. Through fatty acid acylation, cagrilintide achieves an extended half-life enabling once-weekly research dosing, making it an invaluable tool for studying amylin's role in satiety and metabolic regulation.
+Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO.
 
-Amylin complements insulin's glucose-lowering effects through distinct mechanisms including gastric emptying delay, glucagon suppression, and central satiety signalling. Cagrilintide provides researchers with a stable, long-acting tool to investigate these pathways in extended experimental paradigms.
+Cagrilintide is an amylin analogue studied in appetite, satiety and metabolic signalling research models.
 
-Peptide Shop supplies **research-grade Cagrilintide** with guaranteed ≥99% purity, verified through comprehensive HPLC and mass spectrometry analysis.
+Peptide Shop supplies Cagrilintide 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does Cagrilintide Work?
+## Research use
 
-Cagrilintide activates amylin receptors (AMY1, AMY2, AMY3), which are complexes of the calcitonin receptor with receptor activity-modifying proteins (RAMPs).
+- Amylin receptor pathway studies
+- Satiety and metabolic-response models
+- Combination research with GLP-1 pathway compounds
 
-### Satiety Signalling
+Best grouped with GLP-1 and incretin products in the diabetes and weight-loss hubs.
 
-Central effects include:
-- **Area postrema activation** - Key brainstem satiety centre
-- **Meal size reduction** - Promoting earlier termination of eating
-- **Palatability effects** - Modifying food preference in models
-- **Hypothalamic signalling** - Complementing leptin pathways
+## Sequence and analytical data
 
-### Gastric Effects
+| Field | Detail |
+|---|---|
+| Product ID | peptide-cagrilintide |
+| Package size | 1 × 5 mg vial |
+| CAS number | 2375614-45-8 |
+| Molecular weight | 3962.4 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-Peripheral actions include:
-- **Gastric emptying delay** - Prolonging nutrient absorption
-- **Glucagon suppression** - Reducing hepatic glucose output
-- **Postprandial glucose control** - Smoothing glycemic excursions
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Combination Research
+## Reconstitution and handling
 
-Cagrilintide is often studied with GLP-1 agonists:
-- **Complementary mechanisms** - Different satiety pathways
-- **Enhanced efficacy** - Potentially additive effects
-- **CagriSema research** - Combined with semaglutide
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-## Cagrilintide Peptide Specifications
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 2375614-45-8 |
-| **Molecular Weight** | 3962.4 g/mol |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
-| **Solubility** | Soluble in water |
-| **Identity** | Confirmed by mass spectrometry |
+## Storage
 
-## Storage and Handling
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 3 weeks |
+## Related resources
 
-## Ordering Information
+- [Browse related research materials](/catalog/diabetes/)
+- [View use-case hub](/use-case/weight-loss/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-| Size | Price |
-|------|-------|
-| **2 mg** | From £58 |
-| **5 mg** | From £140 |
+## Research-use statement
 
-**Minimum order: £200** | **10% discount on orders over £200**
-
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+Cagrilintide 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

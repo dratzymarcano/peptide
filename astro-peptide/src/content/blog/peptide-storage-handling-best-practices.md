@@ -2,10 +2,10 @@
 title: "Best Practices for Peptide Storage and Handling"
 description: "Essential guidelines for storing lyophilised and reconstituted peptides to maintain stability and maximise shelf life."
 publishDate: "2025-12-01"
-author: "Peptide Shop Team"
+author: "Peptide Shop Editorial"
 category: "Lab Techniques"
 tags: ["storage", "handling", "stability", "protocols", "laboratory"]
-image: "/images/blog/peptide-storage.jpg"
+image: "/images/lifestyle/research-lab-bench.webp"
 featured: false
 meta:
   title: "Peptide Storage Guide | Best Practices for Researchers"

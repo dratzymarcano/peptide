@@ -1,182 +1,105 @@
 ---
-id: "peptide-tesofensine"
-title: "Buy Tesofensine UK | Research Grade Triple Reuptake Inhibitor"
-primary_keyword: "buy tesofensine uk"
-search_volume: "3200"
-slug: "/peptides/buy-tesofensine"
-aliases: ["NS2330", "Triple Reuptake Inhibitor"]
-cas: "402856-42-2"
-molecular_weight: "382.5 g/mol"
-purity: "≥ 99%"
-storage: "Room temperature, protected from light"
-package_sizes: ["60 × 0.5 mg caps"]
-moq: 200
-price: 240
-price_range: "£240 per bottle"
-coa_url: "/coa/tesofensine.pdf"
-short_description: "Buy Tesofensine UK. Triple reuptake inhibitor for weight and neuroscience research. ≥99% purity. Fast UK delivery."
-category: "weight-loss"
-tags: ["research-compound", "tesofensine-uk", "weight-loss", "buy-research-uk", "triple-reuptake"]
-images: ["/images/products/tesofensine.jpg"]
+id: peptide-tesofensine
+title: Tesofensine 5 mg — research compound
+primary_keyword: tesofensine
+search_volume: 3200
+aliases:
+  - NS2330
+  - Triple Reuptake Inhibitor
+cas: 402856-42-2
+molecular_weight: 382.5 g/mol
+purity: ≥ 99%
+storage: Room temperature, protected from light
+package_sizes:
+  - 60 × 0.5 mg caps
+moq: 1
+price: 55
+price_range: €55 per pack
+short_description: Tesofensine research compound for monoamine transporter and metabolic CNS studies. COA supplied. RUO.
+category: weight-loss
+researchArea: neuroscience
+useCases:
+  - weight-loss
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - neuroscience
+  - weight-loss
+  - cognitive
+  - research-compound
+  - triple-reuptake
+  - tesofensine
+images:
+  - /images/products/tesofensine.svg
 meta:
-  title: "Buy Tesofensine UK | Triple Reuptake Inhibitor | Fast Delivery"
-  description: "Buy Tesofensine UK. Premium triple reuptake inhibitor for weight research. ≥99% purity, COA included. Fast UK delivery."
+  title: Tesofensine 5 mg — research compound | Peptide Shop
+  description: Triple monoamine reuptake inhibitor, lot COA, research-use labelling. RUO.
 faqs:
-  - question: "What is Tesofensine used for in research?"
-    answer: "Tesofensine is used in neuroscience and obesity research to study triple monoamine reuptake inhibition. It blocks reuptake of norepinephrine, dopamine, and serotonin, enabling research into appetite regulation and energy expenditure mechanisms."
-  - question: "How does Tesofensine differ from traditional appetite suppressants?"
-    answer: "Tesofensine inhibits reuptake of three neurotransmitters (NE, DA, 5-HT) rather than primarily affecting one system. This triple mechanism enables research into complex monoaminergic appetite regulation."
-  - question: "What was Tesofensine originally developed for?"
-    answer: "Tesofensine was initially developed as a potential Parkinson's and Alzheimer's disease treatment. Weight loss observed in trials led to obesity research applications."
-  - question: "How should Tesofensine be stored?"
-    answer: "Store Tesofensine at room temperature, protected from light and moisture. Unlike peptides, it doesn't require cold storage. Keep in a cool, dry place."
-  - question: "What purity is your Tesofensine?"
-    answer: "Our Tesofensine is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis with purity and identity confirmation."
-  - question: "What is the mechanism of action?"
-    answer: "Tesofensine inhibits presynaptic reuptake of norepinephrine, dopamine, and serotonin, increasing synaptic concentrations of these neurotransmitters to affect appetite, satiety, and energy expenditure."
-  - question: "How do I prepare Tesofensine for research?"
-    answer: "Tesofensine can be dissolved in DMSO or appropriate organic solvents for in vitro research. Consult literature for specific research application protocols."
-  - question: "What sizes are available?"
-    answer: "Tesofensine is available in 10mg and 25mg sizes for various research scales."
-reviews:
-  - author: "Dr. Michael Roberts"
-    rating: 5
-    date: "2024-12-12"
-    title: "Excellent for neuroscience research"
-    content: "Our monoamine reuptake studies require high-purity compounds. Peptide Shop delivers excellent quality with proper documentation."
-    verified: true
-  - author: "Cambridge Neuropharmacology"
-    rating: 5
-    date: "2024-12-05"
-    title: "Premium quality"
-    content: "Tesofensine purity is exceptional. Results in our receptor binding assays are highly reproducible."
-    verified: true
-  - author: "James Foster"
-    rating: 5
-    date: "2024-11-28"
-    title: "Great product"
-    content: "Fast delivery, excellent quality. Perfect for our appetite regulation research."
-    verified: true
-  - author: "Edinburgh Neuroscience Lab"
-    rating: 5
-    date: "2024-11-21"
-    title: "Reliable supplier"
-    content: "Consistent quality for our monoamine studies. Peptide Shop is our preferred supplier."
-    verified: true
-  - author: "Dr. Sarah Mitchell"
-    rating: 5
-    date: "2024-11-14"
-    title: "Outstanding purity"
-    content: "Verified purity exceeds claims. Essential for serious neuropharmacology research."
-    verified: true
-  - author: "Manchester Obesity Research"
-    rating: 5
-    date: "2024-11-07"
-    title: "Excellent service"
-    content: "Fast delivery, great quality. The 25mg size lasts well for our studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-31"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Product quality excellent for our research."
-    verified: true
-  - author: "Oxford Weight Research"
-    rating: 4
-    date: "2024-10-24"
-    title: "Very good"
-    content: "Quality is excellent. Would give 5 stars with larger size options."
-    verified: true
-  - author: "Dr. Robert Hayes"
-    rating: 5
-    date: "2024-10-17"
-    title: "Premium research compound"
-    content: "Excellent for studying triple reuptake effects. Quality and documentation meet our requirements."
-    verified: true
-  - author: "Newcastle Appetite Lab"
-    rating: 5
-    date: "2024-10-10"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent. Essential for our neurotransmitter research."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-03"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery. Tesofensine quality is exactly as described."
-    verified: true
-  - author: "Glasgow Neuropharm Lab"
-    rating: 5
-    date: "2024-09-26"
-    title: "Excellent supplier"
-    content: "High-quality compound with proper documentation. Highly recommended."
-    verified: true
+  - question: What is Tesofensine used for in research?
+    answer: Tesofensine is used in neuroscience and obesity research to study triple monoamine reuptake inhibition. It blocks reuptake of norepinephrine, dopamine, and serotonin, enabling research into appetite regulation and energy expenditure mechanisms.
+  - question: How does Tesofensine differ from traditional appetite suppressants?
+    answer: Tesofensine inhibits reuptake of three neurotransmitters (NE, DA, 5-HT) rather than primarily affecting one system. This triple mechanism enables research into complex monoaminergic appetite regulation.
+  - question: What was Tesofensine originally developed for?
+    answer: Tesofensine was initially investigated in Parkinson's and Alzheimer's disease research programs. Body-weight observations in trials led to further metabolic-research applications.
+  - question: How should Tesofensine be stored?
+    answer: Store Tesofensine at room temperature, protected from light and moisture. Unlike peptides, it doesn't require cold storage. Keep in a cool, dry place.
+  - question: What purity is your Tesofensine?
+    answer: Our Tesofensine is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis with purity and identity confirmation.
+  - question: What is the mechanism of action?
+    answer: Tesofensine inhibits presynaptic reuptake of norepinephrine, dopamine, and serotonin, increasing synaptic concentrations of these neurotransmitters to affect appetite, satiety, and energy expenditure.
+  - question: How do I prepare Tesofensine for research?
+    answer: Tesofensine can be dissolved in DMSO or appropriate organic solvents for in vitro research. Consult literature for specific research application protocols.
+  - question: What sizes are available?
+    answer: Tesofensine is available in 10mg and 25mg sizes for various research scales.
 ---
 
-## What is Tesofensine?
+## Tesofensine 5 mg research overview
 
-**Tesofensine** (NS2330) is a triple monoamine reuptake inhibitor that blocks the presynaptic reuptake of norepinephrine, dopamine, and serotonin. Originally developed for neurodegenerative disease research, tesofensine has become an important tool for studying the neurological basis of appetite regulation and energy homeostasis.
+Tesofensine research compound for monoamine transporter and metabolic CNS studies. COA supplied. RUO.
 
-Unlike single-target compounds, tesofensine's triple mechanism enables researchers to investigate the complex interplay between monoaminergic systems in controlling food intake and metabolic rate. This makes it valuable for understanding the neuropharmacology of obesity and appetite disorders.
+Tesofensine is a monoamine reuptake inhibitor reference compound studied in transporter, appetite and CNS-metabolic models.
 
-Peptide Shop supplies **research-grade Tesofensine** with guaranteed ≥99% purity, verified through comprehensive HPLC analysis.
+Peptide Shop supplies Tesofensine 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does Tesofensine Work?
+## Research use
 
-Tesofensine increases synaptic concentrations of three key neurotransmitters:
+- Dopamine, noradrenaline and serotonin transporter research
+- Appetite and energy-balance models
+- CNS-metabolic pathway studies
 
-### Norepinephrine Effects
-- **Sympathetic activation** - Increased metabolic rate
-- **Appetite suppression** - Reduced hunger signalling
-- **Energy expenditure** - Enhanced thermogenesis
-- **Lipolysis promotion** - Fat mobilisation effects
+Relevant to metabolic and neuroscience research navigation.
 
-### Dopamine Effects
-- **Reward pathway modulation** - Altered food reward
-- **Motivation effects** - Changes in food-seeking behaviour
-- **Satiety enhancement** - Earlier meal termination
-- **Hedonic eating** - Reduced pleasure-driven consumption
+## Sequence and analytical data
 
-### Serotonin Effects
-- **Satiety signalling** - Enhanced fullness perception
-- **Mood effects** - Emotional eating modulation
-- **Carbohydrate preference** - Altered macronutrient choices
+| Field | Detail |
+|---|---|
+| Product ID | peptide-tesofensine |
+| Package size | 60 × 0.5 mg caps |
+| CAS number | 402856-42-2 |
+| Molecular weight | 382.5 g/mol |
+| Purity | ≥ 99% |
+| Storage | Room temperature, protected from light |
 
-## Research Applications
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Obesity Research
-- **Appetite mechanisms** - Understanding hunger/satiety
-- **Energy balance** - Metabolic rate studies
-- **Feeding behaviour** - Food choice research
+## Reconstitution and handling
 
-### Neuroscience
-- **Monoamine systems** - Reuptake inhibition studies
-- **Receptor pharmacology** - Transporter research
-- **Behavioural neuroscience** - Motivation and reward
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-## Specifications
-
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 402856-42-2 |
-| **Molecular Weight** | 382.5 g/mol |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White to off-white powder |
-| **Solubility** | Soluble in DMSO, methanol |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-Store at room temperature, protected from light and moisture.
+Store unopened material according to the stated condition: Room temperature, protected from light. Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **10 mg** | From £42 |
-| **25 mg** | From £95 |
+- [Browse related research materials](/catalog/neuroscience/)
+- [View use-case hub](/use-case/weight-loss/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+Tesofensine 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

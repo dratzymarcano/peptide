@@ -1,0 +1,15 @@
+{
+  "brandName": "Peptide Shop",
+  "legalName": "TODO_IMPRESSUM_REGISTERED_COMPANY_NAME",
+  "legalForm": "TODO_IMPRESSUM_LEGAL_FORM",
+  "streetAddress": "TODO_IMPRESSUM_STREET_ADDRESS",
+  "postalCode": "TODO_IMPRESSUM_POSTAL_CODE",
+  "addressLocality": "TODO_IMPRESSUM_CITY",
+  "addressCountry": "DE",
+  "registerCourt": "TODO_IMPRESSUM_AMTSGERICHT",
+  "commercialRegisterNumber": "TODO_IMPRESSUM_HRB",
+  "vatId": "TODO_IMPRESSUM_VAT_ID",
+  "contentResponsibleName": "TODO_IMPRESSUM_RESPONSIBLE_PERSON",
+  "contentResponsibleAddress": "TODO_IMPRESSUM_RESPONSIBLE_ADDRESS",
+  "email": "info@peptide-shop.net"
+}

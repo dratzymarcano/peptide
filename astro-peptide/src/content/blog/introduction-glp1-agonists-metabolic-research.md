@@ -2,10 +2,10 @@
 title: "Introduction to GLP-1 Agonists in Metabolic Research"
 description: "An overview of GLP-1 receptor agonists including Semaglutide and Tirzepatide, and their applications in metabolic research."
 publishDate: "2025-11-15"
-author: "Dr. James Wright"
+author: "Peptide Shop Editorial"
 category: "Research Insights"
 tags: ["GLP-1", "semaglutide", "tirzepatide", "metabolic", "research"]
-image: "/images/blog/glp1-research.jpg"
+image: "/images/blog/post-1.jpg"
 featured: true
 meta:
   title: "GLP-1 Agonists in Metabolic Research | Peptide Shop"
@@ -92,4 +92,4 @@ Current research is exploring:
 
 GLP-1 agonists represent a rapidly evolving area of metabolic research. Understanding their mechanisms and applications is essential for researchers studying glucose homeostasis, appetite regulation, and related metabolic pathways.
 
-For research-grade GLP-1 agonists with guaranteed purity, explore our [Weight Loss Peptides collection](/peptides/weight-loss/).
+For research-grade GLP-1 agonists with documented analytical purity, explore our [metabolic research collection](/use-case/weight-loss/).

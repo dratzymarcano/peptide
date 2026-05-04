@@ -2,10 +2,10 @@
 title: "Understanding Peptide Purity: How to Read HPLC Reports"
 description: "Learn how to interpret HPLC chromatograms and understand what purity percentages really mean for your research peptides."
 publishDate: "2025-12-15"
-author: "Dr. Sarah Mitchell"
+author: "Peptide Shop Editorial"
 category: "Quality Control"
 tags: ["HPLC", "purity", "quality", "laboratory", "analysis"]
-image: "/images/blog/hplc-analysis.jpg"
+image: "/images/lifestyle/peptide-vial-cases-coded.webp"
 featured: true
 meta:
   title: "How to Read HPLC Purity Reports | Peptide Quality Guide"

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="TIRZEPATIDE RESEARCH 10 mg research peptide vial">
+  <rect width="800" height="800" fill="#F8FAFC"/>
+  <circle cx="400" cy="410" r="260" fill="#E6F1F8"/>
+  <ellipse cx="400" cy="650" rx="170" ry="28" fill="#CBD5E1" opacity="0.65"/>
+  <g transform="translate(275 130)">
+    <rect x="70" y="0" width="110" height="58" rx="10" fill="#0F172A"/>
+    <rect x="82" y="14" width="86" height="30" rx="6" fill="#334155"/>
+    <path d="M68 58h114l27 480c2 38-28 70-66 70H107c-38 0-68-32-66-70L68 58Z" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="8"/>
+    <path d="M67 294h116l15 244c2 31-22 58-54 58h-38c-32 0-56-27-54-58l15-244Z" fill="#D8EEF8"/>
+    <rect x="-30" y="196" width="310" height="200" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="6"/>
+    <text x="125" y="266" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#005B8C"><tspan x="125" dy="0">TIRZEPATIDE</tspan><tspan x="125" dy="36">RESEARCH</tspan></text>
+    <text x="125" y="352" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="700" fill="#334155">10 mg</text>
+    <line x1="40" y1="374" x2="210" y2="374" stroke="#CBD5E1" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

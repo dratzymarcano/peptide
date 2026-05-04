@@ -1,185 +1,104 @@
 ---
-id: "peptide-selank"
-title: "Buy Selank UK | Anxiolytic Nootropic Peptide"
-primary_keyword: "buy selank uk"
-search_volume: "2800"
-slug: "/peptides/buy-selank"
-aliases: ["Selank", "TP-7"]
-cas: "129954-34-3"
-molecular_weight: "751.9 g/mol"
-purity: "≥ 99%"
+id: peptide-selank
+title: Selank 5 mg — research grade
+primary_keyword: selank
+search_volume: 2800
+aliases:
+  - Selank
+  - TP-7
+cas: 129954-34-3
+molecular_weight: 751.9 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 5 mg vials"]
-moq: 200
-price: 250
-price_range: "£250 per pack"
-coa_url: "/coa/selank.pdf"
-short_description: "Buy Selank UK. Anxiolytic nootropic peptide for cognitive research. ≥99% purity. Fast UK delivery."
-category: "cognitive"
-tags: ["research-peptide", "selank-uk", "nootropic", "buy-peptides-uk", "cognitive", "anxiolytic"]
-images: ["/images/products/selank.jpg"]
+package_sizes:
+  - 1 × 5 mg vial
+moq: 1
+price: 18
+price_range: €18 per vial
+short_description: Selank research peptide for CNS, stress-response and neuropeptide signalling models. COA supplied. RUO.
+category: cognitive
+researchArea: neuroscience
+useCases:
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - neuroscience
+  - cognitive
+  - research-peptide
+  - nootropic
+  - anxiolytic
+  - selank
+images:
+  - /images/products/selank.svg
 meta:
-  title: "Buy Selank UK | Nootropic Peptide | Fast Delivery"
-  description: "Buy Selank UK. Premium anxiolytic peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: Selank 5 mg — research grade | Peptide Shop
+  description: Anxiolytic research peptide, lot COA, research-use labelling. RUO.
 faqs:
-  - question: "What is Selank used for in research?"
-    answer: "Selank is studied for anxiolytic effects, cognitive enhancement, immune modulation, and neurotransmitter regulation. It's based on the natural peptide tuftsin."
-  - question: "How does Selank work?"
-    answer: "Selank modulates GABA, serotonin, dopamine, and norepinephrine systems. It also influences BDNF and enkephalin expression."
-  - question: "How is Selank different from Semax?"
-    answer: "Selank is primarily anxiolytic with cognitive benefits, while Semax is more focused on cognitive enhancement. Selank is based on tuftsin; Semax on ACTH."
-  - question: "How should Selank be stored?"
-    answer: "Store lyophilised Selank at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks."
-  - question: "What purity is your Selank?"
-    answer: "Our Selank is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "What is tuftsin?"
-    answer: "Tuftsin is a naturally occurring immunomodulatory tetrapeptide. Selank extends tuftsin with additional amino acids for enhanced stability and activity."
-  - question: "How do I reconstitute Selank?"
-    answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
-  - question: "What sizes are available?"
-    answer: "Selank is available in 5mg and 10mg vials."
-reviews:
-  - author: "Dr. Elizabeth Morgan"
-    rating: 5
-    date: "2024-12-09"
-    title: "Excellent for cognitive research"
-    content: "Our anxiety and cognition studies depend on quality Selank. Peptide Shop delivers consistently."
-    verified: true
-  - author: "Cambridge Neuroscience Lab"
-    rating: 5
-    date: "2024-12-02"
-    title: "Premium quality"
-    content: "Selank quality is exceptional. GABA modulation effects clearly observable."
-    verified: true
-  - author: "James Morrison"
-    rating: 5
-    date: "2024-11-25"
-    title: "Excellent product"
-    content: "Fast delivery, excellent quality. Anxiolytic research progressing well."
-    verified: true
-  - author: "Edinburgh Neuropharmacology Lab"
-    rating: 5
-    date: "2024-11-18"
-    title: "Reliable supplier"
-    content: "Consistent quality for our peptide neuroscience research."
-    verified: true
-  - author: "Dr. Michael Roberts"
-    rating: 5
-    date: "2024-11-11"
-    title: "Outstanding purity"
-    content: "Purity verification confirms excellent quality."
-    verified: true
-  - author: "Manchester Cognition Lab"
-    rating: 5
-    date: "2024-11-04"
-    title: "Excellent service"
-    content: "Fast delivery, great quality for nootropic studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-28"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Anxiety Research"
-    rating: 5
-    date: "2024-10-21"
-    title: "Very good"
-    content: "Quality is excellent for GABA receptor research."
-    verified: true
-  - author: "Dr. Helen Foster"
-    rating: 5
-    date: "2024-10-14"
-    title: "Premium research peptide"
-    content: "Excellent for anxiolytic mechanism studies."
-    verified: true
-  - author: "Newcastle Neuroscience Lab"
-    rating: 5
-    date: "2024-10-07"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-09-30"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery."
-    verified: true
-  - author: "Glasgow Cognition Lab"
-    rating: 5
-    date: "2024-09-23"
-    title: "Excellent supplier"
-    content: "High-quality Selank with proper documentation."
-    verified: true
+  - question: What is Selank used for in research?
+    answer: Selank is studied for anxiolytic effects, cognitive enhancement, immune modulation, and neurotransmitter regulation. It's based on the natural peptide tuftsin.
+  - question: How does Selank work?
+    answer: Selank modulates GABA, serotonin, dopamine, and norepinephrine systems. It also influences BDNF and enkephalin expression.
+  - question: How is Selank different from Semax?
+    answer: Selank is primarily anxiolytic with cognitive benefits, while Semax is more focused on cognitive enhancement. Selank is based on tuftsin; Semax on ACTH.
+  - question: How should Selank be stored?
+    answer: Store lyophilised Selank at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks.
+  - question: What purity is your Selank?
+    answer: Our Selank is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: What is tuftsin?
+    answer: Tuftsin is a naturally occurring immunomodulatory tetrapeptide. Selank extends tuftsin with additional amino acids for enhanced stability and activity.
+  - question: How do I reconstitute Selank?
+    answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
+  - question: What sizes are available?
+    answer: Selank is available in 5mg and 10mg vials.
 ---
 
-## What is Selank?
+## Selank 10 mg research overview
 
-**Selank** (TP-7) is a synthetic heptapeptide developed in Russia as a modified analogue of tuftsin, a naturally occurring immunomodulatory peptide. Selank has been extensively studied for its anxiolytic, nootropic, and immunomodulatory properties.
+Selank research peptide for CNS, stress-response and neuropeptide signalling models. COA supplied. RUO.
 
-Unlike benzodiazepines, Selank does not produce sedation or dependence, making it a valuable tool for researching anxiety mechanisms and novel therapeutic approaches.
+Selank is a synthetic tuftsin analogue investigated in anxiolytic, immune and neuropeptide signalling research.
 
-Peptide Shop supplies **research-grade Selank** with guaranteed ≥99% purity.
+Peptide Shop supplies Selank 10 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does Selank Work?
+## Research use
 
-### GABA System
-- **GABAergic modulation** - Receptor effects
-- **Anxiolytic action** - Anxiety reduction
-- **Non-sedating** - Preserved alertness
+- Stress-response and CNS models
+- Neuropeptide and immune-signalling studies
+- Comparative research with Semax
 
-### Monoamine Regulation
-- **Serotonin effects** - 5-HT modulation
-- **Dopamine influence** - Reward pathways
-- **Norepinephrine** - Attention regulation
+Mapped to neuroscience and cognitive research hubs.
 
-### Neuroprotection
-- **BDNF expression** - Neuroplasticity
-- **Enkephalins** - Endogenous opioids
-- **Anti-inflammatory** - CNS protection
+## Sequence and analytical data
 
-## Research Applications
+| Field | Detail |
+|---|---|
+| Product ID | peptide-selank |
+| Package size | 1 × 5 mg vial |
+| CAS number | 129954-34-3 |
+| Molecular weight | 751.9 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Anxiety Research
-- **Anxiolytic mechanisms** - Non-benzodiazepine
-- **Stress response** - Adaptation
-- **Fear conditioning** - Learning
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Cognitive Research
-- **Memory enhancement** - Encoding/retrieval
-- **Attention** - Focus regulation
-- **Neuroprotection** - Brain health
+## Reconstitution and handling
 
-### Immunology
-- **Immune modulation** - Tuftsin-based
-- **Inflammation** - Regulation
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-## Selank Specifications
-
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 129954-34-3 |
-| **Molecular Weight** | 751.9 g/mol |
-| **Sequence** | Thr-Lys-Pro-Arg-Pro-Gly-Pro |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 3-4 weeks |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **5 mg** | From £35 |
-| **10 mg** | From £75 |
+- [Browse related research materials](/catalog/neuroscience/)
+- [View use-case hub](/use-case/cognitive/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+Selank 10 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

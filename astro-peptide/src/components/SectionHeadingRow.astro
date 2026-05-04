@@ -1,0 +1,61 @@
+---
+/**
+ * SectionHeadingRow — a section header on the left and an optional
+ * action (link/button) on the right.
+ *
+ *   <SectionHeadingRow
+ *     eyebrow="Featured products"
+ *     title="Catalogue peptides, ready to ship."
+ *     description="Compact product cards link to full specifications."
+ *     actionLabel="Open the shop →"
+ *     actionHref="/shop/"
+ *   />
+ */
+interface Props {
+  eyebrow?: string;
+  /** 'rule' = decorative line; 'plain' = no rule. */
+  eyebrowVariant?: 'rule' | 'plain';
+  title: string;
+  description?: string;
+  titleId?: string;
+  /** Heading level. */
+  as?: 'h2' | 'h3';
+  actionLabel?: string;
+  actionHref?: string;
+}
+
+const {
+  eyebrow,
+  eyebrowVariant = 'rule',
+  title,
+  description,
+  titleId,
+  as: Tag = 'h2',
+  actionLabel,
+  actionHref,
+}: Props = Astro.props;
+---
+
+<div class="section-heading-row">
+  <div>
+    {eyebrow && (
+      <span class={eyebrowVariant === 'rule' ? 'eyebrow-rule' : 'eyebrow'}>{eyebrow}</span>
+    )}
+    <Tag id={titleId} class="display">{title}</Tag>
+    {description && <p>{description}</p>}
+  </div>
+  {actionLabel && actionHref && (
+    <a href={actionHref} class="btn btn-secondary">{actionLabel}</a>
+  )}
+</div>
+
+<style>
+  .section-heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .section-heading-row > div { max-width: 720px; }
+</style>

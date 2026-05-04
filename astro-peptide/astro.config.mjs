@@ -29,6 +29,44 @@ function contentSlugs(collection) {
     .sort();
 }
 
+function availableContentLocales(collection, slug) {
+  const dir = join(rootDir, 'src', 'content', collection);
+  const available = new Set();
+
+  if (existsSync(join(dir, `${slug}.md`)) || existsSync(join(dir, defaultLocale, `${slug}.md`))) {
+    available.add(defaultLocale);
+  }
+
+  for (const locale of locales) {
+    if (locale === defaultLocale) continue;
+    if (existsSync(join(dir, locale, `${slug}.md`))) {
+      available.add(locale);
+    }
+  }
+
+  return locales.filter((locale) => available.has(locale));
+}
+
+function localesForPath(path) {
+  const blogMatch = path.match(/^\/blog\/([^/]+)\/$/);
+  if (blogMatch) return availableContentLocales('blog', blogMatch[1]);
+
+  const productMatch = path.match(/^\/peptides\/([^/]+)\/$/);
+  if (productMatch) return availableContentLocales('products', productMatch[1]);
+
+  return locales;
+}
+
+function localizedUrl(path, locale) {
+  return new URL(locale === defaultLocale ? path : `/${locale}${path}`, site).toString();
+}
+
+function basePathFromUrl(url) {
+  const pathname = new URL(url).pathname;
+  const withoutLocale = pathname.replace(/^\/(de|nl|fr|it|es)(\/|$)/, '/');
+  return withoutLocale.endsWith('/') ? withoutLocale : `${withoutLocale}/`;
+}
+
 const publicBasePaths = [
   '/',
   '/about/',
@@ -39,6 +77,7 @@ const publicBasePaths = [
   '/contact/',
   '/disclaimer/',
   '/faq/',
+  '/impressum/',
   '/learn/',
   '/learn/what-are-peptides/',
   '/privacy/',
@@ -67,7 +106,7 @@ const publicBasePaths = [
 ];
 
 const localizedSitemapPages = publicBasePaths.flatMap((path) =>
-  locales.map((locale) => new URL(locale === defaultLocale ? path : `/${locale}${path}`, site).toString())
+  localesForPath(path).map((locale) => localizedUrl(path, locale))
 );
 
 const productSlugs = [
@@ -107,10 +146,6 @@ export default defineConfig({
     react(),
     sitemap({
       customPages: localizedSitemapPages,
-      i18n: {
-        defaultLocale,
-        locales: sitemapLocaleMap,
-      },
       filter: (page) =>
         !page.includes('/cart') &&
         !page.includes('/checkout') &&
@@ -118,6 +153,16 @@ export default defineConfig({
         !page.includes('/api/'),
       changefreq: 'weekly',
       priority: 0.7,
+      serialize(item) {
+        const basePath = basePathFromUrl(item.url);
+        const availableLocales = localesForPath(basePath);
+        const links = availableLocales.map((locale) => ({
+          lang: sitemapLocaleMap[locale],
+          url: localizedUrl(basePath, locale),
+        }));
+        links.push({ lang: 'x-default', url: localizedUrl(basePath, defaultLocale) });
+        return { ...item, links };
+      },
     }),
     tailwind(),
   ],

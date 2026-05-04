@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. Todos los derechos reservados.",
     "terms": "Términos",
     "privacy": "Privacidad",
-    "disclaimer": "Aviso legal"
+    "disclaimer": "Aviso legal",
+    "impressum": "Información legal"
   },
   "shopSidebar": {
     "researchArea": "Área de investigación",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Información cientifica",
     "disclaimerScientificBody": "El contenido educativo y de producto se proporciona para respaldar adquisiciones de investigación. No es consejo médico y no debe interpretarse como orientación de dosis, tratamiento o seguridad para humanos o animales.",
     "disclaimerBeforeTitle": "Antes de pedir",
-    "disclaimerBeforeBody": "Confirma que el uso previsto sea legal, que las aprobaciones institucionales estén vigentes y que tu laboratorio tenga procedimientos adecuados de almacenamiento y manipulación."
+    "disclaimerBeforeBody": "Confirma que el uso previsto sea legal, que las aprobaciones institucionales estén vigentes y que tu laboratorio tenga procedimientos adecuados de almacenamiento y manipulación.",
+    "impressumMetaTitle": "Información legal | Peptide Shop",
+    "impressumMetaDescription": "Identificación del proveedor según el § 5 TMG con registro mercantil, contacto y resolución de litigios en línea de la UE.",
+    "impressumEyebrow": "Legal",
+    "impressumTitle": "Información legal",
+    "impressumDescription": "Identificación del proveedor según el § 5 TMG y la Directiva UE 2000/31/CE.",
+    "impressumProviderTitle": "Proveedor",
+    "impressumProviderBody": "Los datos del proveedor se muestran desde el registro de la entidad legal.",
+    "impressumContactTitle": "Contacto",
+    "impressumEmailLabel": "Correo electrónico",
+    "impressumRegistryTitle": "Registro mercantil",
+    "impressumRegistryBody": "Los datos del registro mercantil se muestran desde el registro de la entidad legal.",
+    "impressumVatTitle": "Número de identificación fiscal IVA",
+    "impressumVatBody": "Los datos de IVA se muestran desde el registro de la entidad legal.",
+    "impressumResponsibleTitle": "Responsable del contenido",
+    "impressumResponsibleBody": "Los datos de la persona responsable se muestran desde el registro de la entidad legal.",
+    "impressumDisputeTitle": "Resolución de litigios en línea UE",
+    "impressumDisputeBody": "La Comisión Europea ofrece una plataforma para la resolución de litigios en línea: <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. No estamos obligados ni dispuestos a participar en procedimientos de resolución de litigios ante un organismo arbitral de consumo.",
+    "impressumLiabilityTitle": "Responsabilidad por contenidos y enlaces",
+    "impressumLiabilityBody": "Como prestador de servicios somos responsables de nuestros propios contenidos según el § 7 (1) TMG. Conforme a los §§ 8 a 10 TMG no estamos obligados a supervisar informaciones de terceros transmitidas o almacenadas. Los enlaces externos se verificaron en el momento de su inclusión."
   },
   "bundles": {
     "metaTitle": "Bundles de péptidos de investigación | Peptide Shop",

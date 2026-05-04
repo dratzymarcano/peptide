@@ -1,0 +1,29 @@
+---
+/**
+ * ChipList — a horizontal list of small tag/keyword chips.
+ *
+ *   <ChipList items={tags} />
+ *   <ChipList items={keywords} tag="a" hrefBase="/search?q=" />
+ */
+export interface Props {
+  items: string[];
+  /** Render each chip as a link instead of a span. */
+  tag?: 'span' | 'a';
+  /** When `tag="a"`, the URL becomes `${hrefBase}${encodeURIComponent(item)}`. */
+  hrefBase?: string;
+  /** Optional aria-label for the wrapping list. */
+  label?: string;
+}
+
+const { items, tag = 'span', hrefBase = '', label } = Astro.props;
+---
+
+<div class="chip-list" {...(label ? { 'aria-label': label, role: 'list' } : {})}>
+  {items.map((item) =>
+    tag === 'a' ? (
+      <a class="chip" href={`${hrefBase}${encodeURIComponent(item)}`}>{item}</a>
+    ) : (
+      <span class="chip">{item}</span>
+    )
+  )}
+</div>

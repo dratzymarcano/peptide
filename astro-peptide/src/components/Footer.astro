@@ -1,348 +1,182 @@
 ---
-const currentYear = new Date().getFullYear();
+// Footer — DESIGN_SPEC §5.4
+// 6 columns, RUO disclaimer pinned, no Bootstrap, no jQuery.
+import { researchAreas, useCases } from '../data/taxonomy';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const featured = researchAreas.slice(0, 6);
+const year = new Date().getFullYear();
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
 ---
 
-<footer class="site-footer">
-	<div class="container">
-		<div class="row">
-			<!-- Brand Column -->
-			<div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-				<div class="footer-brand">
-					<div class="footer-logo">
-						<svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-							<circle cx="12" cy="12" r="10" fill="#0077b6"/>
-							<path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 4-4 4" stroke="#fff" stroke-width="2" fill="none"/>
-							<circle cx="12" cy="12" r="2" fill="#90e0ef"/>
-						</svg>
-						<span class="footer-logo-text">Peptide<span class="highlight">Shop</span></span>
-					</div>
-				</div>
-				<p class="footer-description">
-					The UK's trusted supplier of premium research peptides. All products undergo rigorous third-party testing with ≥99% purity guaranteed.
-				</p>
-				<div class="footer-socials">
-					<a href="#" class="social-link" aria-label="Email">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<rect width="20" height="16" x="2" y="4" rx="2"></rect>
-							<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-						</svg>
-					</a>
-					<a href="#" class="social-link" aria-label="Phone">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-						</svg>
-					</a>
-					<a href="#" class="social-link" aria-label="Twitter">
-						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-							<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-						</svg>
-					</a>
-				</div>
-			</div>
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-col--brand">
+        <a href={href('/')} class="footer-brand" aria-label={t('nav.homeLabel')}>
+          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-primary)" />
+            <path d="M10 22 V10 h5 a4 4 0 0 1 0 8 h-5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="22" cy="22" r="2" fill="#90E0EF" />
+          </svg>
+          <span><strong>Peptide</strong>Shop</span>
+        </a>
+        <p class="footer-tagline">
+          {t('footer.tagline')}
+        </p>
+        <div class="trust-band" style="justify-content: flex-start; padding: var(--space-3); margin-top: var(--space-4);">
+          <span class="item">{t('footer.trustHplc')}</span>
+          <span class="item">{t('footer.trustCoa')}</span>
+          <span class="item">{t('footer.trustDispatch')}</span>
+        </div>
+      </div>
 
-			<!-- Products Column -->
-			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
-				<h4 class="footer-heading">Products</h4>
-				<ul class="footer-links">
-					<li><a href="/peptides/">All Peptides</a></li>
-					<li><a href="/peptides/weight-loss/">Weight Loss</a></li>
-					<li><a href="/peptides/muscle-recovery/">Muscle & Recovery</a></li>
-					<li><a href="/peptides/growth-hormone/">Growth Hormone</a></li>
-					<li><a href="/peptides/tanning/">Tanning</a></li>
-				</ul>
-			</div>
+      <div class="footer-col">
+        <h4>{t('nav.catalogue')}</h4>
+        <ul>
+          <li><a href={href('/catalog/')}>{t('nav.allResearchAreas')}</a></li>
+          {featured.map((a) => (
+            <li><a href={href(`/catalog/${a.slug}/`)}>{a.name}</a></li>
+          ))}
+          <li><a href={href('/catalog/')}>{t('footer.viewAllAreas')}</a></li>
+        </ul>
+      </div>
 
-			<!-- Company Column -->
-			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
-				<h4 class="footer-heading">Company</h4>
-				<ul class="footer-links">
-					<li><a href="/about/">About Us</a></li>
-					<li><a href="/quality/">Quality Assurance</a></li>
-					<li><a href="/contact/">Contact Us</a></li>
-					<li><a href="/faq/">FAQ</a></li>
-					<li><a href="/shipping/">Shipping Info</a></li>
-				</ul>
-			</div>
+      <div class="footer-col">
+        <h4>{t('nav.useCases')}</h4>
+        <ul>
+          {useCases.map((u) => (
+            <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+          ))}
+        </ul>
+      </div>
 
-			<!-- Legal Column -->
-			<div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
-				<h4 class="footer-heading">Legal</h4>
-				<ul class="footer-links">
-					<li><a href="/terms/">Terms & Conditions</a></li>
-					<li><a href="/privacy/">Privacy Policy</a></li>
-					<li><a href="/disclaimer/">Disclaimer</a></li>
-					<li><a href="/coa-policy/">COA Policy</a></li>
-				</ul>
-			</div>
+      <div class="footer-col">
+        <h4>{t('footer.company')}</h4>
+        <ul>
+          <li><a href={href('/about/')}>{t('nav.about')}</a></li>
+          <li><a href={href('/quality/')}>{t('footer.qualityCoaPolicy')}</a></li>
+          <li><a href={href('/blog/')}>{t('nav.insights')}</a></li>
+          <li><a href={href('/contact/')}>{t('nav.contact')}</a></li>
+        </ul>
+      </div>
 
-			<!-- Contact Column -->
-			<div class="col-lg-2 col-md-6">
-				<h4 class="footer-heading">Contact</h4>
-				<div class="footer-contact">
-					<div class="contact-item">
-						<strong>Email:</strong><br>
-						<a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a>
-					</div>
-					<div class="contact-item">
-						<strong>Hours:</strong><br>
-						Mon - Fri: 9AM - 5PM GMT
-					</div>
-				</div>
-			</div>
-		</div>
+      <div class="footer-col">
+        <h4>{t('footer.orderSupport')}</h4>
+        <ul>
+          <li><a href={href('/shipping/')}>{t('footer.shippingDelivery')}</a></li>
+          <li><a href={href('/coa-policy/')}>{t('footer.coaPolicy')}</a></li>
+          <li><a href={href('/faq/')}>{t('footer.faq')}</a></li>
+          <li><a href={href('/contact/')}>{t('footer.contactSupport')}</a></li>
+        </ul>
+      </div>
 
-		<!-- Bottom Bar -->
-		<div class="footer-bottom">
-			<div class="row align-items-center">
-				<div class="col-lg-6 mb-3 mb-lg-0">
-					<p class="copyright">
-						© {currentYear} Peptide Shop. All rights reserved.
-					</p>
-				</div>
-				<div class="col-lg-6 text-lg-end">
-					<p class="disclaimer">
-						<strong>Disclaimer:</strong> Research use only. Not for human consumption.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="footer-col">
+        <h4>{t('footer.newsletter')}</h4>
+        <p class="muted" style="font-size: 13px;">
+          {t('footer.newsletterBody')}
+        </p>
+        <form class="newsletter" action={href('/api/newsletter')} method="post" novalidate>
+          <label class="sr-only" for="footer-email">{t('footer.emailAddress')}</label>
+          <input class="input" type="email" id="footer-email" name="email" required autocomplete="email" placeholder="you@laboratory.eu" />
+          <button type="submit" class="btn btn-primary">{t('footer.subscribe')}</button>
+        </form>
+        <p class="muted" style="font-size: 11px; margin-top: var(--space-2);">
+          {t('footer.privacyConsentStart')} <a href={href('/privacy/')}>{t('footer.privacyPolicy')}</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="ruo-banner" style="margin-top: var(--space-10);">
+      <strong>{t('footer.ruoHeading')}</strong>
+      <span>
+        {t('footer.ruoBody')}
+      </span>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{t('footer.copyright', { year })}</p>
+      <ul class="footer-legal">
+        <li><a href={href('/impressum/')}>{t('footer.impressum')}</a></li>
+        <li><a href={href('/terms/')}>{t('footer.terms')}</a></li>
+        <li><a href={href('/privacy/')}>{t('footer.privacy')}</a></li>
+        <li><a href={href('/disclaimer/')}>{t('footer.disclaimer')}</a></li>
+        <li><a href={href('/coa-policy/')}>{t('footer.coaPolicy')}</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
 
 <style>
-	/* ===== MOBILE FIRST FOOTER ===== */
-	.site-footer {
-		background: linear-gradient(180deg, #0077b6 0%, #023e8a 100%);
-		color: #e2e8f0;
-		padding-top: 48px;
-		margin-top: 0;
-	}
-
-	.footer-brand {
-		margin-bottom: 16px;
-	}
-
-	.footer-logo {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		justify-content: center;
-	}
-
-	.footer-logo-text {
-		font-size: 22px;
-		font-weight: 800;
-		color: white;
-	}
-
-	.footer-logo-text .highlight {
-		color: #90e0ef;
-	}
-
-	.footer-description {
-		color: rgba(255, 255, 255, 0.8);
-		line-height: 1.7;
-		margin-bottom: 20px;
-		font-size: 14px;
-		text-align: center;
-	}
-
-	.footer-socials {
-		display: flex;
-		gap: 12px;
-		justify-content: center;
-		margin-bottom: 32px;
-	}
-
-	.social-link {
-		width: 44px;
-		height: 44px;
-		border-radius: 10px;
-		background: rgba(255, 255, 255, 0.1);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: white;
-		transition: all 0.3s ease;
-	}
-
-	.social-link:hover {
-		background: #f59e0b;
-		transform: translateY(-2px);
-	}
-
-	.footer-heading {
-		color: white;
-		font-size: 14px;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		margin-bottom: 16px;
-		text-align: center;
-	}
-
-	.footer-links {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 32px 0;
-		text-align: center;
-	}
-
-	.footer-links li {
-		margin-bottom: 10px;
-	}
-
-	.footer-links a {
-		color: rgba(255, 255, 255, 0.75);
-		text-decoration: none;
-		font-size: 14px;
-		transition: all 0.2s ease;
-		display: inline-block;
-		padding: 4px 0;
-	}
-
-	.footer-links a:hover {
-		color: #f59e0b;
-	}
-
-	.footer-contact {
-		color: rgba(255, 255, 255, 0.8);
-		font-size: 14px;
-		text-align: center;
-		margin-bottom: 32px;
-	}
-
-	.contact-item {
-		margin-bottom: 14px;
-		line-height: 1.6;
-	}
-
-	.contact-item strong {
-		color: white;
-	}
-
-	.contact-item a {
-		color: rgba(255, 255, 255, 0.8);
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	.contact-item a:hover {
-		color: #f59e0b;
-	}
-
-	.footer-bottom {
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
-		margin-top: 20px;
-		padding: 24px 0;
-		text-align: center;
-	}
-
-	.copyright {
-		color: rgba(255, 255, 255, 0.6);
-		font-size: 13px;
-		margin: 0 0 12px 0;
-	}
-
-	.disclaimer {
-		color: rgba(255, 255, 255, 0.6);
-		font-size: 12px;
-		margin: 0;
-	}
-
-	.disclaimer strong {
-		color: rgba(255, 255, 255, 0.8);
-	}
-
-	/* ===== TABLET (768px+) ===== */
-	@media (min-width: 768px) {
-		.site-footer {
-			padding-top: 60px;
-		}
-
-		.footer-logo {
-			justify-content: flex-start;
-		}
-
-		.footer-description {
-			text-align: left;
-		}
-
-		.footer-socials {
-			justify-content: flex-start;
-			margin-bottom: 0;
-		}
-
-		.footer-heading {
-			text-align: left;
-		}
-
-		.footer-links {
-			text-align: left;
-			margin-bottom: 0;
-		}
-
-		.footer-contact {
-			text-align: left;
-			margin-bottom: 0;
-		}
-
-		.footer-bottom {
-			margin-top: 40px;
-		}
-
-		.copyright {
-			margin-bottom: 8px;
-		}
-	}
-
-	/* ===== DESKTOP (992px+) ===== */
-	@media (min-width: 992px) {
-		.site-footer {
-			padding-top: 80px;
-		}
-
-		.footer-logo-text {
-			font-size: 24px;
-		}
-
-		.footer-heading {
-			font-size: 15px;
-			margin-bottom: 20px;
-		}
-
-		.footer-links li {
-			margin-bottom: 12px;
-		}
-
-		.footer-bottom {
-			margin-top: 50px;
-			padding: 30px 0;
-		}
-
-		.copyright {
-			margin-bottom: 0;
-		}
-
-		.disclaimer {
-			font-size: 13px;
-		}
-	}
-</style>
-
-<script type="application/ld+json" is:inline>
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Peptide Shop",
-      "url": "https://peptide-shop.net",
-      "logo": "https://peptide-shop.net/logo.png",
-      "description": "Buy research peptides online. Premium quality Semaglutide, Tirzepatide, BPC-157, Melanotan 2 and more. Fast EU & UK delivery.",
-      "areaServed": ["GB", "DE", "FR", "NL", "ES", "IT", "PT", "PL", "CZ", "AT"],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "info@peptide-shop.net",
-        "contactType": "customer service"
-      }
+  .site-footer {
+    background: var(--color-surface-2);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-16) var(--space-8);
+    margin-top: var(--space-20);
+  }
+  .footer-grid {
+    display: grid;
+    gap: var(--space-8);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) {
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1.2fr;
     }
-</script>
+  }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-3);
+  }
+  .footer-col ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: 6px;
+  }
+  .footer-col a {
+    color: var(--color-ink-2);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .footer-col a:hover { color: var(--color-primary); text-decoration: underline; }
+
+  .footer-brand {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    text-decoration: none; color: var(--color-ink); font-size: 18px;
+  }
+  .footer-tagline {
+    margin-top: var(--space-3);
+    color: var(--color-ink-3);
+    font-size: 14px;
+    max-width: 38ch;
+  }
+
+  .newsletter {
+    display: flex; gap: var(--space-2); margin-top: var(--space-2);
+  }
+  .newsletter .input { flex: 1; }
+
+  .footer-bottom {
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    display: flex; flex-wrap: wrap; gap: var(--space-4);
+    justify-content: space-between; align-items: center;
+    font-size: 13px; color: var(--color-ink-3);
+  }
+  .footer-bottom p { margin: 0; }
+  .footer-legal { display: flex; gap: var(--space-4); list-style: none; padding: 0; margin: 0; }
+  .footer-legal a { color: var(--color-ink-3); text-decoration: none; }
+  .footer-legal a:hover { color: var(--color-primary); }
+
+  .muted { color: var(--color-ink-3); }
+</style>

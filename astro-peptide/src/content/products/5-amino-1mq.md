@@ -1,185 +1,106 @@
 ---
-id: "peptide-5-amino-1mq"
-title: "Buy 5-Amino-1MQ UK | NNMT Inhibitor for Research"
-primary_keyword: "buy 5-amino-1mq uk"
-search_volume: "2400"
-slug: "/peptides/buy-5-amino-1mq"
-aliases: ["5-Amino-1-Methylquinolinium", "NNMT Inhibitor"]
-cas: "42464-99-1"
-molecular_weight: "240.3 g/mol"
-purity: "≥ 99%"
-storage: "Room temperature, protected from light"
-package_sizes: ["30 caps"]
-moq: 200
-price: 40
-price_range: "£40 per bottle"
-coa_url: "/coa/5-amino-1mq.pdf"
-short_description: "Buy 5-Amino-1MQ UK. Available as oral capsules (50mg) or high-purity powder (99%). NNMT inhibitor for metabolism and longevity research. Fast UK delivery."
-category: "weight-loss"
-tags: ["research-compound", "5-amino-1mq-uk", "nnmt-inhibitor", "buy-research-uk", "metabolism", "oral-capsules", "powder"]
-images: ["/images/products/5-amino-1mq.jpg"]
+id: peptide-5-amino-1mq
+title: 5-Amino-1MQ 50 mg — NNMT inhibitor
+primary_keyword: 5-amino-1mq
+search_volume: 2400
+aliases:
+  - 5-Amino-1-Methylquinolinium
+  - NNMT Inhibitor
+cas: 42464-99-1
+molecular_weight: 240.3 g/mol
+purity: ≥ 99%
+storage: Room temperature, protected from light
+package_sizes:
+  - 60 × 50 mg caps
+moq: 1
+price: 65
+price_range: €65 per pack
+short_description: 5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO.
+category: weight-loss
+researchArea: diabetes
+useCases:
+  - weight-loss
+tags:
+  - research-use-only
+  - coa-included
+  - diabetes
+  - weight-loss
+  - research-compound
+  - nnmt-inhibitor
+  - metabolism
+  - oral-capsules
+  - powder
+  - 5-amino-1mq
+images:
+  - /images/products/5-amino-1mq.svg
 meta:
-  title: "Buy 5-Amino-1MQ UK | Capsules & Powder | Fast Delivery"
-  description: "Buy 5-Amino-1MQ UK. Available as oral capsules (50mg) or high-purity powder (99%). Premium NNMT inhibitor for metabolic research. Fast UK delivery."
+  title: 5-Amino-1MQ 50 mg — NNMT inhibitor | Peptide Shop
+  description: NNMT inhibitor research compound, lot COA, research-use labelling. RUO.
 faqs:
-  - question: "What forms of 5-Amino-1MQ are available?"
+  - question: What forms of 5-Amino-1MQ are available?
     answer: "We offer 5-Amino-1MQ in two convenient forms: Oral Capsules (50mg per capsule) for precise dosing convenience, and High-Purity Powder (99%) for flexible research applications. Both forms maintain the same exceptional purity standards."
-  - question: "What is 5-Amino-1MQ used for in research?"
-    answer: "5-Amino-1MQ is used to study nicotinamide N-methyltransferase (NNMT) inhibition and its effects on cellular metabolism, NAD+ levels, energy expenditure, and adipose tissue function. It's a key tool for metabolic ageing and obesity research."
-  - question: "What is NNMT and why is its inhibition researched?"
-    answer: "NNMT is an enzyme that methylates nicotinamide, consuming SAM (S-adenosylmethionine). High NNMT activity is associated with obesity and metabolic dysfunction. Inhibition may preserve NAD+ precursors and improve metabolic function."
-  - question: "How does 5-Amino-1MQ affect NAD+ metabolism?"
-    answer: "By inhibiting NNMT, 5-Amino-1MQ may preserve nicotinamide for NAD+ synthesis rather than methylation. This research application connects to NAD+ biology and cellular energy metabolism."
-  - question: "How should 5-Amino-1MQ be stored?"
-    answer: "Store at room temperature, protected from light and moisture. Both capsule and powder forms are stable at ambient conditions when kept dry. Capsules should be kept in their original container."
-  - question: "What purity is your 5-Amino-1MQ?"
-    answer: "Our 5-Amino-1MQ is ≥99% pure as verified by HPLC. Both capsule and powder forms meet this purity standard. Each batch includes a Certificate of Analysis with purity and identity data."
-  - question: "What is the difference between capsules and powder?"
-    answer: "Oral Capsules (50mg) offer precise, pre-measured doses ideal for consistent research protocols. High-Purity Powder (99%) provides flexibility for custom concentration preparation and larger-scale studies."
-  - question: "What is the minimum order requirement?"
-    answer: "A minimum purchase of £200 is required for 5-Amino-1MQ orders. This applies to any combination of capsules or powder forms."
-reviews:
-  - author: "Dr. Helen Foster"
-    rating: 5
-    date: "2024-12-10"
-    title: "Excellent for NAD+ research"
-    content: "Our NNMT inhibition studies require high-purity compounds. Peptide Shop delivers excellent quality with thorough documentation."
-    verified: true
-  - author: "Cambridge Metabolism Lab"
-    rating: 5
-    date: "2024-12-03"
-    title: "Premium quality"
-    content: "5-Amino-1MQ purity is exceptional. Essential for our adipose tissue research programme."
-    verified: true
-  - author: "James Morrison"
-    rating: 5
-    date: "2024-11-26"
-    title: "Great product"
-    content: "Fast delivery, excellent quality. Perfect for our metabolic enzyme studies."
-    verified: true
-  - author: "Edinburgh Ageing Research"
-    rating: 5
-    date: "2024-11-19"
-    title: "Reliable supplier"
-    content: "Consistent quality for our longevity studies. Peptide Shop has become our preferred supplier."
-    verified: true
-  - author: "Dr. Robert Clarke"
-    rating: 5
-    date: "2024-11-12"
-    title: "Outstanding purity"
-    content: "Verified purity matches claims. Essential for serious NNMT research."
-    verified: true
-  - author: "Manchester NAD+ Studies"
-    rating: 5
-    date: "2024-11-05"
-    title: "Excellent service"
-    content: "Fast delivery, great quality. The 250mg size is excellent value for larger studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-29"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Product quality excellent for our enzyme inhibition research."
-    verified: true
-  - author: "Oxford Adipose Research"
-    rating: 4
-    date: "2024-10-22"
-    title: "Very good"
-    content: "Quality is excellent. Minor feedback - would appreciate even larger bulk sizes."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 5
-    date: "2024-10-15"
-    title: "Premium research compound"
-    content: "Excellent for studying NNMT's metabolic role. Quality meets our requirements."
-    verified: true
-  - author: "Newcastle Metabolic Studies"
-    rating: 5
-    date: "2024-10-08"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent. Essential for our NAD+ metabolism research."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-01"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery. 5-Amino-1MQ quality is exactly as described."
-    verified: true
-  - author: "Glasgow Epigenetics Lab"
-    rating: 5
-    date: "2024-09-24"
-    title: "Excellent supplier"
-    content: "High-quality compound with proper documentation. Highly recommended for methylation research."
-    verified: true
+  - question: What is 5-Amino-1MQ used for in research?
+    answer: 5-Amino-1MQ is used to study nicotinamide N-methyltransferase (NNMT) inhibition and its effects on cellular metabolism, NAD+ levels, energy expenditure, and adipose tissue function. It's a key tool for metabolic ageing and obesity research.
+  - question: What is NNMT and why is its inhibition researched?
+    answer: NNMT is an enzyme that methylates nicotinamide, consuming SAM (S-adenosylmethionine). High NNMT activity is associated with obesity and metabolic dysfunction. Inhibition may preserve NAD+ precursors and improve metabolic function.
+  - question: How does 5-Amino-1MQ affect NAD+ metabolism?
+    answer: By inhibiting NNMT, 5-Amino-1MQ may preserve nicotinamide for NAD+ synthesis rather than methylation. This research application connects to NAD+ biology and cellular energy metabolism.
+  - question: How should 5-Amino-1MQ be stored?
+    answer: Store at room temperature, protected from light and moisture. Both capsule and powder forms are stable at ambient conditions when kept dry. Capsules should be kept in their original container.
+  - question: What purity is your 5-Amino-1MQ?
+    answer: Our 5-Amino-1MQ is ≥99% pure as verified by HPLC. Both capsule and powder forms meet this purity standard. Each batch includes a Certificate of Analysis with purity and identity data.
+  - question: What is the difference between capsules and powder?
+    answer: Oral Capsules (50mg) offer precise, pre-measured doses ideal for consistent research protocols. High-Purity Powder (99%) provides flexibility for custom concentration preparation and larger-scale studies.
+  - question: What is the minimum order requirement?
+    answer: A site-wide minimum order value of €150 applies; combine multiple items to reach the threshold. This applies to any combination of capsules or powder forms.
 ---
 
-## What is 5-Amino-1MQ?
+## 5-Amino-1MQ 50 mg research overview
 
-**5-Amino-1MQ** (5-Amino-1-Methylquinolinium) is a selective inhibitor of nicotinamide N-methyltransferase (NNMT), an enzyme increasingly recognised as a key regulator of cellular metabolism, NAD+ homeostasis, and adipose tissue function. This research compound has emerged as an important tool for studying the intersection of epigenetics, energy metabolism, and ageing.
+5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO.
 
-NNMT catalyses the N-methylation of nicotinamide (a NAD+ precursor) using SAM (S-adenosylmethionine) as a methyl donor. By inhibiting this enzyme, 5-Amino-1MQ enables researchers to investigate how NNMT modulation affects cellular metabolism, NAD+ availability, and metabolic health.
+5-Amino-1MQ is an NNMT inhibitor research compound studied in NAD metabolism, adipocyte function and cellular-energy models.
 
-Peptide Shop supplies **research-grade 5-Amino-1MQ** with guaranteed ≥99% purity, verified through comprehensive HPLC analysis.
+Peptide Shop supplies 5-Amino-1MQ 50 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does 5-Amino-1MQ Work?
+## Research use
 
-5-Amino-1MQ inhibits NNMT, affecting multiple metabolic pathways:
+- NNMT inhibition studies
+- NAD-pathway and methylation research
+- Adipocyte and metabolic-response models
 
-### NAD+ Metabolism
-- **Nicotinamide preservation** - Less substrate consumed by NNMT
-- **NAD+ precursor availability** - More nicotinamide for salvage pathway
-- **Cellular energy** - Potential effects on mitochondrial function
-- **Sirtuin activity** - NAD+-dependent deacetylase regulation
+Mapped to diabetes, metabolism and cofactor research clusters.
 
-### Methylation Balance
-- **SAM conservation** - Reduced consumption by NNMT
-- **Methylation capacity** - Effects on other methyltransferases
-- **Epigenetic regulation** - Downstream effects on gene expression
+## Sequence and analytical data
 
-### Adipose Tissue
-- **NNMT is highly expressed in fat** - Key research target
-- **Adipocyte metabolism** - Effects on lipid handling
-- **Obesity research** - Understanding NNMT's role
+| Field | Detail |
+|---|---|
+| Product ID | peptide-5-amino-1mq |
+| Package size | 60 × 50 mg caps |
+| CAS number | 42464-99-1 |
+| Molecular weight | 240.3 g/mol |
+| Purity | ≥ 99% |
+| Storage | Room temperature, protected from light |
 
-## Research Applications
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Metabolic Research
-- **NAD+ biology** - Understanding salvage pathway regulation
-- **Energy metabolism** - Mitochondrial function studies
-- **Adipose function** - Fat tissue metabolism
+## Reconstitution and handling
 
-### Longevity Research
-- **NAD+ and ageing** - Cellular senescence studies
-- **Metabolic health** - Age-related decline research
-- **Intervention targets** - Therapeutic development
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-### Obesity Studies
-- **Adipose NNMT** - Fat tissue expression studies
-- **Metabolic dysfunction** - Disease mechanism research
-
-## Specifications
-
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 42464-99-1 |
-| **Molecular Weight** | 240.3 g/mol |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White to off-white powder |
-| **Solubility** | Soluble in water, DMSO |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-Store at room temperature, protected from light and moisture.
+Store unopened material according to the stated condition: Room temperature, protected from light. Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **100 mg** | From £38 |
-| **250 mg** | From £85 |
+- [Browse related research materials](/catalog/diabetes/)
+- [View use-case hub](/use-case/weight-loss/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+5-Amino-1MQ 50 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

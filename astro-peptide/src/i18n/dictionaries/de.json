@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. Alle Rechte vorbehalten.",
     "terms": "AGB",
     "privacy": "Datenschutz",
-    "disclaimer": "Haftungsausschluss"
+    "disclaimer": "Haftungsausschluss",
+    "impressum": "Impressum"
   },
   "shopSidebar": {
     "researchArea": "Forschungsbereich",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Wissenschaftliche Informationen",
     "disclaimerScientificBody": "Bildungs- und Produktinhalte unterstützen die Forschungsbeschaffung. Sie sind kein medizinischer Rat und dürfen nicht als Dosierungs-, Behandlungs- oder Sicherheitsanleitung für Menschen oder Tiere interpretiert werden.",
     "disclaimerBeforeTitle": "Vor der Bestellung",
-    "disclaimerBeforeBody": "Bestätigen Sie, dass Ihre beabsichtigte Nutzung rechtmäßig ist, institutionelle Genehmigungen vorliegen und Ihr Labor geeignete Lager- und Handhabungsverfahren hat."
+    "disclaimerBeforeBody": "Bestätigen Sie, dass Ihre beabsichtigte Nutzung rechtmäßig ist, institutionelle Genehmigungen vorliegen und Ihr Labor geeignete Lager- und Handhabungsverfahren hat.",
+    "impressumMetaTitle": "Impressum | Peptide Shop",
+    "impressumMetaDescription": "Anbieterkennzeichnung gemäß § 5 TMG mit Handelsregister, Vertretungsberechtigten, Umsatzsteuer-ID und Hinweis zur EU-Online-Streitbeilegung.",
+    "impressumEyebrow": "Rechtliches",
+    "impressumTitle": "Impressum",
+    "impressumDescription": "Angaben gemäß § 5 TMG sowie Hinweise nach § 18 (2) MStV und EU-Verbraucherrecht.",
+    "impressumProviderTitle": "Anbieter",
+    "impressumProviderBody": "Anbieterdaten werden aus dem Rechtsträger-Datensatz gerendert.",
+    "impressumContactTitle": "Kontakt",
+    "impressumEmailLabel": "E-Mail",
+    "impressumRegistryTitle": "Handelsregister",
+    "impressumRegistryBody": "Registerdaten werden aus dem Rechtsträger-Datensatz gerendert.",
+    "impressumVatTitle": "Umsatzsteuer-Identifikationsnummer",
+    "impressumVatBody": "Umsatzsteuerdaten werden aus dem Rechtsträger-Datensatz gerendert.",
+    "impressumResponsibleTitle": "Verantwortlich für den Inhalt",
+    "impressumResponsibleBody": "Verantwortlichendaten werden aus dem Rechtsträger-Datensatz gerendert.",
+    "impressumDisputeTitle": "EU-Online-Streitbeilegung",
+    "impressumDisputeBody": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+    "impressumLiabilityTitle": "Haftung für Inhalte und Links",
+    "impressumLiabilityBody": "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte verantwortlich. Nach §§ 8 bis 10 TMG sind wir nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Externe Links wurden zum Zeitpunkt der Verknüpfung geprüft; auf deren aktuelle Gestaltung haben wir keinen Einfluss."
   },
   "bundles": {
     "metaTitle": "Forschungspeptid-Bundles | Peptide Shop",
@@ -755,11 +775,11 @@
       },
       "cardiovascular": {
         "name": "Herz-Kreislauf & Gefaesse",
-        "short": "Endothel, Gefaesstonus, Reparatur",
-        "description": "Peptide, die in kardiovaskulaeren, endothelialen Reparatur- und Gefaesstonus-Forschungsmodellen referenziert werden.",
+        "short": "Endothel, Gefaesstonus, Signalwege",
+        "description": "Peptide, die in kardiovaskulaeren, endothelialen und Gefaesstonus-Forschungsmodellen referenziert werden.",
         "keywords": {
           "0": "kardiovaskulaere Forschungspeptide",
-          "1": "Gefaessreparatur-Peptide"
+          "1": "Gefaesssignalweg-Peptide"
         }
       },
       "diabetes": {
@@ -784,19 +804,19 @@
       "adhesion-ecm": {
         "name": "Adhaesion & ECM",
         "short": "Zelladhäsion, ECM und Wundmodelle",
-        "description": "Peptide für Zelladhäsion, extrazelluläre Matrix und Wundreparaturforschung.",
+        "description": "Peptide für Zelladhäsion, extrazelluläre Matrix und Wundverschluss-Assays.",
         "keywords": {
           "0": "Zelladhaesionspeptide",
           "1": "ECM-Forschungspeptide",
-          "2": "Wundheilungs-Peptidforschung"
+          "2": "Wundverschluss-Assay-Peptidforschung"
         }
       },
       "cell-tissue": {
-        "name": "Zell- & Gewebereparatur",
-        "short": "Regeneration, Magen, Sehnenreparatur",
-        "description": "Referenzpeptide für Sehnen-, Magen- und Bindegewebsreparaturmodelle.",
+        "name": "Zell- & Matrixbiologie",
+        "short": "Zellmigration, Magen, Sehnenmodelle",
+        "description": "Referenzpeptide für Sehnen-, Magen- und Bindegewebsmodelle im Labor.",
         "keywords": {
-          "0": "Gewebereparatur-Peptide",
+          "0": "Zellmigrations-Peptide",
           "1": "BPC-157-Forschung",
           "2": "TB-500-Forschung"
         }
@@ -860,12 +880,12 @@
     },
     "useCases": {
       "weight-loss": {
-        "name": "Gewichtsverlust-Forschung",
-        "description": "GLP-1-, GIP-, Glucagon- und Amylin-Agonisten-Referenzpeptide für Gewichtsverlust- und Stoffwechselforschung."
+        "name": "Metabolische Forschung",
+        "description": "GLP-1-, GIP-, Glucagon- und Amylin-Agonisten-Referenzpeptide für Stoffwechsel- und Körpergewichtsmodelle."
       },
       "muscle-recovery": {
-        "name": "Muskel- & Geweberegeneration",
-        "description": "Referenzpeptide für Sehnen-, Band- und Muskelregenerationsmodelle."
+        "name": "Muskel- & Matrixmodelle",
+        "description": "Referenzpeptide für Sehnen-, Band- und Muskelzellmodelle."
       },
       "cognitive": {
         "name": "Kognitionsforschung",

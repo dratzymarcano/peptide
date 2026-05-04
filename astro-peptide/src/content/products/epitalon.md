@@ -1,189 +1,107 @@
 ---
-id: "peptide-epitalon"
-title: "Buy Epitalon UK | Epithalon Telomerase Peptide"
-primary_keyword: "buy epitalon uk"
-search_volume: "3600"
-slug: "/peptides/buy-epitalon"
-aliases: ["Epithalon", "Epithalone", "AEDG Peptide"]
-cas: "307297-39-8"
-molecular_weight: "390.3 g/mol"
-purity: "≥ 99%"
+id: peptide-epitalon
+title: Epitalon 10 mg — research grade
+primary_keyword: epitalon
+search_volume: 3600
+aliases:
+  - Epithalon
+  - Epithalone
+  - AEDG Peptide
+cas: 307297-39-8
+molecular_weight: 390.3 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 10 mg vials"]
-moq: 200
-price: 200
-price_range: "£200 per pack"
-coa_url: "/coa/epitalon.pdf"
-short_description: "Buy Epitalon UK. Telomerase-activating peptide for longevity research. ≥99% purity. Fast UK delivery."
-category: "cognitive"
-tags: ["research-peptide", "epitalon-uk", "longevity", "buy-peptides-uk", "cognitive", "telomerase"]
-images: ["/images/products/epitalon.jpg"]
+package_sizes:
+  - 1 × 10 mg vial
+moq: 1
+price: 15
+price_range: €15 per vial
+short_description: Epitalon tetrapeptide for telomere, circadian and longevity-pathway research. COA supplied. RUO.
+category: cognitive
+researchArea: epigenetics
+useCases:
+  - anti-aging
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - epigenetics
+  - anti-aging
+  - cognitive
+  - research-peptide
+  - longevity
+  - telomerase
+  - epitalon
+images:
+  - /images/products/epitalon.svg
 meta:
-  title: "Buy Epitalon UK | Longevity Peptide | Fast Delivery"
-  description: "Buy Epitalon UK. Premium telomerase peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: Epitalon 10 mg — research grade | Peptide Shop
+  description: Telomerase research peptide, lot COA and research-use labelling. RUO.
 faqs:
-  - question: "What is Epitalon used for in research?"
-    answer: "Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research."
-  - question: "How does Epitalon work?"
-    answer: "Epitalon is reported to activate telomerase, the enzyme that maintains telomere length. It may also influence melatonin synthesis and circadian rhythms."
-  - question: "What is the origin of Epitalon?"
-    answer: "Epitalon is a synthetic tetrapeptide based on epithalamin, a pineal gland extract studied by Russian researchers for its anti-ageing properties."
-  - question: "How should Epitalon be stored?"
-    answer: "Store lyophilised Epitalon at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
-  - question: "What purity is your Epitalon?"
-    answer: "Our Epitalon is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "What are telomeres?"
-    answer: "Telomeres are protective DNA caps at chromosome ends that shorten with each cell division. Telomerase can extend them."
-  - question: "How do I reconstitute Epitalon?"
-    answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
-  - question: "What sizes are available?"
-    answer: "Epitalon is available in 10mg, 20mg, and 50mg vials."
-reviews:
-  - author: "Dr. William Chen"
-    rating: 5
-    date: "2024-12-10"
-    title: "Essential for longevity research"
-    content: "Our telomere studies depend on quality Epitalon. Peptide Shop delivers exceptional purity."
-    verified: true
-  - author: "Cambridge Ageing Lab"
-    rating: 5
-    date: "2024-12-03"
-    title: "Premium quality"
-    content: "Telomerase activation effects clearly observable in our assays."
-    verified: true
-  - author: "James Morrison"
-    rating: 5
-    date: "2024-11-26"
-    title: "Excellent product"
-    content: "Fast delivery, excellent quality. Cellular ageing research progressing well."
-    verified: true
-  - author: "Edinburgh Longevity Lab"
-    rating: 5
-    date: "2024-11-19"
-    title: "Reliable supplier"
-    content: "Consistent quality for our pineal gland research."
-    verified: true
-  - author: "Dr. Helen Foster"
-    rating: 5
-    date: "2024-11-12"
-    title: "Outstanding purity"
-    content: "Purity verification confirms excellent quality. Essential for our research."
-    verified: true
-  - author: "Manchester Telomere Lab"
-    rating: 5
-    date: "2024-11-05"
-    title: "Excellent service"
-    content: "Fast delivery, great quality for ageing studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-29"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Gerontology Lab"
-    rating: 5
-    date: "2024-10-22"
-    title: "Very good"
-    content: "Quality is excellent for melatonin research."
-    verified: true
-  - author: "Dr. Robert Clarke"
-    rating: 5
-    date: "2024-10-15"
-    title: "Premium research peptide"
-    content: "Excellent for telomerase activation studies."
-    verified: true
-  - author: "Newcastle Ageing Lab"
-    rating: 5
-    date: "2024-10-08"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-01"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery."
-    verified: true
-  - author: "Glasgow Longevity Lab"
-    rating: 4
-    date: "2024-09-24"
-    title: "Good product"
-    content: "Quality is excellent for our cellular research."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 5
-    date: "2024-09-17"
-    title: "Excellent"
-    content: "Pineal gland research benefits greatly from this quality."
-    verified: true
+  - question: What is Epitalon used for in research?
+    answer: Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research.
+  - question: How does Epitalon work?
+    answer: Epitalon is reported to activate telomerase, the enzyme that maintains telomere length. It may also influence melatonin synthesis and circadian rhythms.
+  - question: What is the origin of Epitalon?
+    answer: Epitalon is a synthetic tetrapeptide based on epithalamin, a pineal gland extract studied by Russian researchers for its anti-ageing properties.
+  - question: How should Epitalon be stored?
+    answer: Store lyophilised Epitalon at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks.
+  - question: What purity is your Epitalon?
+    answer: Our Epitalon is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: What are telomeres?
+    answer: Telomeres are protective DNA caps at chromosome ends that shorten with each cell division. Telomerase can extend them.
+  - question: How do I reconstitute Epitalon?
+    answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
+  - question: What sizes are available?
+    answer: Epitalon is available in 10mg, 20mg, and 50mg vials.
 ---
 
-## What is Epitalon?
+## Epitalon 50 mg research overview
 
-**Epitalon** (Epithalon, AEDG peptide) is a synthetic tetrapeptide based on epithalamin, a pineal gland extract extensively studied for its effects on telomerase activation and cellular ageing. Developed from decades of Russian research, Epitalon has become a key tool in longevity and anti-ageing research.
+Epitalon tetrapeptide for telomere, circadian and longevity-pathway research. COA supplied. RUO.
 
-The peptide's primary interest lies in its reported ability to activate telomerase, potentially influencing cellular lifespan and age-related changes.
+Epitalon is a synthetic tetrapeptide studied in telomerase, circadian-rhythm and cellular-ageing research.
 
-Peptide Shop supplies **research-grade Epitalon** with guaranteed ≥99% purity.
+Peptide Shop supplies Epitalon 50 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does Epitalon Work?
+## Research use
 
-### Telomerase Activation
-- **hTERT expression** - Enzyme activation
-- **Telomere extension** - Length maintenance
-- **Cellular lifespan** - Division capacity
+- Telomerase and telomere-length models
+- Circadian and pineal peptide research
+- Cellular ageing pathway studies
 
-### Pineal Function
-- **Melatonin synthesis** - Hormone production
-- **Circadian rhythm** - Sleep-wake cycles
-- **Antioxidant effects** - Cellular protection
+Belongs in epigenetics, longevity and anti-ageing research clusters.
 
-### Gene Expression
-- **Longevity genes** - Expression modulation
-- **Repair pathways** - DNA maintenance
-- **Stress response** - Cellular adaptation
+## Sequence and analytical data
 
-## Research Applications
+| Field | Detail |
+|---|---|
+| Product ID | peptide-epitalon |
+| Package size | 1 × 10 mg vial |
+| CAS number | 307297-39-8 |
+| Molecular weight | 390.3 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Ageing Research
-- **Telomere biology** - Length dynamics
-- **Cellular senescence** - Ageing mechanisms
-- **Lifespan studies** - Longevity factors
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Circadian Research
-- **Melatonin** - Synthesis regulation
-- **Sleep patterns** - Rhythm effects
-- **Pineal function** - Gland biology
+## Reconstitution and handling
 
-## Epitalon Specifications
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 307297-39-8 |
-| **Molecular Formula** | C14H22N4O9 |
-| **Molecular Weight** | 390.3 g/mol |
-| **Sequence** | Ala-Glu-Asp-Gly |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 4 weeks |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **10 mg** | From £42 |
-| **20 mg** | From £78 |
-| **50 mg** | From £160 |
+- [Browse related research materials](/catalog/epigenetics/)
+- [View use-case hub](/use-case/anti-aging/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+Epitalon 50 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

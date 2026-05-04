@@ -1,0 +1,30 @@
+---
+/**
+ * RelatedLinkList — sidebar list of related links with title+subtitle.
+ *
+ *   <RelatedLinkList items={[
+ *     { url: '/quality/',     title: 'Quality assurance', subtitle: 'Testing overview' },
+ *     { url: '/coa-policy/',  title: 'COA policy',        subtitle: 'Documentation scope' },
+ *   ]} />
+ */
+export interface RelatedLink {
+  url: string;
+  title: string;
+  subtitle?: string;
+}
+
+interface Props {
+  items: RelatedLink[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="related-list">
+  {items.map((item) => (
+    <a href={item.url}>
+      <strong>{item.title}</strong>
+      {item.subtitle && <span>{item.subtitle}</span>}
+    </a>
+  ))}
+</div>

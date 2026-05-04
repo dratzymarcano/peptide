@@ -1,0 +1,102 @@
+name: Astro CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Check and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro-peptide
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: astro-peptide/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: i18n coverage
+        run: npm run check:i18n
+
+      - name: Astro check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: astro-dist
+          path: astro-peptide/dist
+          retention-days: 3
+
+  quality-gates:
+    name: A11y, Lighthouse, e2e
+    needs: validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: astro-peptide
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: astro-peptide/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Build
+        run: npm run build
+
+      - name: Start preview server
+        run: |
+          npx astro preview --host 127.0.0.1 --port 4321 &
+          echo $! > .preview.pid
+          npx wait-on http://127.0.0.1:4321 -t 60000
+
+      - name: Pa11y CI
+        run: npm run test:a11y
+
+      - name: Lighthouse CI
+        run: npm run test:lhci
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Playwright + axe
+        run: npm run test:e2e
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f .preview.pid ]; then kill $(cat .preview.pid) || true; fi
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: astro-peptide/playwright-report
+          retention-days: 7

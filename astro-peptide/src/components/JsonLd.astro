@@ -1,0 +1,16 @@
+---
+/**
+ * Shared JSON-LD emitter. Accepts a single schema object or an array of schemas.
+ * Replaces the `<script is:inline type="application/ld+json" set:html={JSON.stringify(...)}/>` pattern
+ * with a single component used across the site.
+ */
+export interface Props {
+  schema: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const { schema } = Astro.props;
+const blocks = Array.isArray(schema) ? schema : [schema];
+---
+{blocks.map((block) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(block)} />
+))}

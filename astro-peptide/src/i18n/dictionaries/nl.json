@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. Alle rechten voorbehouden.",
     "terms": "Voorwaarden",
     "privacy": "Privacy",
-    "disclaimer": "Disclaimer"
+    "disclaimer": "Disclaimer",
+    "impressum": "Colofon"
   },
   "shopSidebar": {
     "researchArea": "Onderzoeksgebied",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Wetenschappelijke informatie",
     "disclaimerScientificBody": "Educatieve en productinhoud wordt verstrekt ter ondersteuning van onderzoeksinkoop. Het is geen medisch advies en mag niet worden geinterpreteerd als doserings-, behandelings- of veiligheidsadvies voor mensen of dieren.",
     "disclaimerBeforeTitle": "Voor het bestellen",
-    "disclaimerBeforeBody": "Bevestig dat uw beoogde gebruik wettelijk is, institutionele goedkeuringen aanwezig zijn en uw lab geschikte opslag- en hanteringsprocedures heeft."
+    "disclaimerBeforeBody": "Bevestig dat uw beoogde gebruik wettelijk is, institutionele goedkeuringen aanwezig zijn en uw lab geschikte opslag- en hanteringsprocedures heeft.",
+    "impressumMetaTitle": "Colofon | Peptide Shop",
+    "impressumMetaDescription": "Aanbiederinformatie volgens § 5 TMG met handelsregister, contactgegevens en EU-online geschillenbeslechting.",
+    "impressumEyebrow": "Juridisch",
+    "impressumTitle": "Colofon",
+    "impressumDescription": "Aanbiederidentificatie volgens § 5 TMG en EU-richtlijn 2000/31/EG.",
+    "impressumProviderTitle": "Aanbieder",
+    "impressumProviderBody": "Aanbiedergegevens worden uit het rechtspersoonrecord weergegeven.",
+    "impressumContactTitle": "Contact",
+    "impressumEmailLabel": "E-mail",
+    "impressumRegistryTitle": "Handelsregister",
+    "impressumRegistryBody": "Handelsregistergegevens worden uit het rechtspersoonrecord weergegeven.",
+    "impressumVatTitle": "Btw-identificatienummer",
+    "impressumVatBody": "Btw-gegevens worden uit het rechtspersoonrecord weergegeven.",
+    "impressumResponsibleTitle": "Verantwoordelijk voor inhoud",
+    "impressumResponsibleBody": "Gegevens van de verantwoordelijke persoon worden uit het rechtspersoonrecord weergegeven.",
+    "impressumDisputeTitle": "EU online geschillenbeslechting",
+    "impressumDisputeBody": "De Europese Commissie biedt een platform voor online geschillenbeslechting: <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. Wij zijn niet verplicht of bereid deel te nemen aan geschillenbeslechtingsprocedures voor een consumentengeschillencommissie.",
+    "impressumLiabilityTitle": "Aansprakelijkheid voor inhoud en links",
+    "impressumLiabilityBody": "Als dienstverlener zijn wij volgens § 7 (1) TMG verantwoordelijk voor onze eigen inhoud. Volgens §§ 8 tot 10 TMG zijn wij niet verplicht doorgegeven of opgeslagen informatie van derden te monitoren. Externe links zijn op het moment van koppelen gecontroleerd."
   },
   "bundles": {
     "metaTitle": "Onderzoekspeptidebundels | Peptide Shop",
@@ -755,11 +775,11 @@
       },
       "cardiovascular": {
         "name": "Cardiovasculair & vasculair",
-        "short": "Endotheel, vaattonus, herstel",
-        "description": "Peptiden die worden gebruikt in cardiovasculaire, endotheelherstel- en vaattonusmodellen.",
+        "short": "Endotheel, vaattonus, signalering",
+        "description": "Peptiden die worden gebruikt in cardiovasculaire, endotheel- en vaattonusmodellen.",
         "keywords": {
           "0": "cardiovasculaire onderzoekspeptiden",
-          "1": "peptiden voor vaatherstel"
+          "1": "peptiden voor vaatsignalering"
         }
       },
       "diabetes": {
@@ -784,19 +804,19 @@
       "adhesion-ecm": {
         "name": "Adhesie & ECM",
         "short": "Celadhesie, ECM en wondmodellen",
-        "description": "Peptiden betrokken bij celadhesie, extracellulaire matrix en wondherstelonderzoek.",
+        "description": "Peptiden betrokken bij celadhesie, extracellulaire matrix en wondsluitingsassays.",
         "keywords": {
           "0": "celadhesiepeptiden",
           "1": "ECM-onderzoekspeptiden",
-          "2": "peptideonderzoek naar wondgenezing"
+          "2": "peptideonderzoek naar wondsluitingsassays"
         }
       },
       "cell-tissue": {
-        "name": "Cel- & weefselherstel",
-        "short": "Regeneratie, maag, peesherstel",
-        "description": "Referentiepeptiden voor modellen van pees-, maag- en bindweefselherstel.",
+        "name": "Cel- & matrixbiologie",
+        "short": "Celmigratie, maag, peesmodellen",
+        "description": "Referentiepeptiden voor pees-, maag- en bindweefselmodellen in het laboratorium.",
         "keywords": {
-          "0": "weefselherstelpeptiden",
+          "0": "celmigratiepeptiden",
           "1": "BPC-157-onderzoek",
           "2": "TB-500-onderzoek"
         }
@@ -860,12 +880,12 @@
     },
     "useCases": {
       "weight-loss": {
-        "name": "Gewichtsverliesonderzoek",
-        "description": "GLP-1-, GIP-, glucagon- en amyline-agonistische referentiepeptiden voor gewichtsverlies- en metabool onderzoek."
+        "name": "Metabool onderzoek",
+        "description": "GLP-1-, GIP-, glucagon- en amyline-agonistische referentiepeptiden voor metabole en lichaamsgewichtmodellen."
       },
       "muscle-recovery": {
-        "name": "Spier- & weefselherstelonderzoek",
-        "description": "Referentiepeptiden voor pees-, ligament- en spierherstelmodellen."
+        "name": "Spier- & matrixmodellen",
+        "description": "Referentiepeptiden voor pees-, ligament- en spiercelmodellen."
       },
       "cognitive": {
         "name": "Cognitief onderzoek",

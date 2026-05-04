@@ -4,39 +4,64 @@ interface Props {
 	description?: string;
 	image?: string;
 	article?: boolean;
+	noindex?: boolean;
+	availableLocales?: typeof locales[number][];
 }
 
-const { title, description, image, article } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+import { getLocaleFromPathname, localizePath, localeMeta, locales } from '../i18n/config';
+
+const { title, description, image, article, noindex = false, availableLocales = locales } = Astro.props;
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const canonicalURL = new URL(localizePath(Astro.url.pathname, locale), Astro.site);
+const siteName = 'Peptide Shop';
+const ogLocale = localeMeta[locale].og;
+const twitterHandle = '@peptideshop';
+const alternateUrls = locales.filter((alternateLocale) => availableLocales.includes(alternateLocale)).map((alternateLocale) => ({
+	locale: alternateLocale,
+	hreflang: localeMeta[alternateLocale].hreflang,
+	href: new URL(localizePath(Astro.url.pathname, alternateLocale), Astro.site),
+}));
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
 <meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#005B8C" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{alternateUrls.map((alternate) => (
+	<link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+))}
+<link rel="alternate" hreflang="x-default" href={new URL(localizePath(Astro.url.pathname, 'en'), Astro.site)} />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
-<meta name="description" content={description} />
+{description && <meta name="description" content={description} />}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={ogLocale} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+{description && <meta property="og:description" content={description} />}
 {image && <meta property="og:image" content={new URL(image, Astro.url)} />}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:site" content={twitterHandle} />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
+{description && <meta property="twitter:description" content={description} />}
 {image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
 
 <!-- Robots -->
-<meta name="robots" content="index, follow" />
+{noindex
+	? <meta name="robots" content="noindex, follow" />
+	: <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}

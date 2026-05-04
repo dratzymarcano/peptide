@@ -170,6 +170,49 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
     };
   }
 
+  async function createServerOrder(serverOrderId: string) {
+    const response = await fetch('/api/orders', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: serverOrderId,
+        email: shippingInfo.email || authEmail,
+        paymentMethod,
+        subtotal: Number($cartTotal.toFixed(2)),
+        shipping: Number(shippingCost.toFixed(2)),
+        discount: Number(paymentDiscount.toFixed(2)),
+        total: Number(orderTotal.toFixed(2)),
+        currency: 'EUR',
+        locale,
+        shippingAddress: {
+          firstName: shippingInfo.firstName,
+          lastName: shippingInfo.lastName,
+          phone: shippingInfo.phone,
+          address: shippingInfo.address,
+          city: shippingInfo.city,
+          county: shippingInfo.county,
+          postcode: shippingInfo.postcode,
+          country: shippingInfo.country,
+        },
+        items: products.map((product) => ({
+          id: product.id,
+          productId: product.id,
+          slug: product.id,
+          title: product.title,
+          variant: [product.size, product.color].filter(Boolean).join(' / ') || 'Standard',
+          quantity: product.quantity,
+          unitPrice: product.price,
+        })),
+      }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) {
+      throw new Error(data.code || 'order_create_failed');
+    }
+    return data.order;
+  }
+
   async function handlePlaceOrder() {
     setIsProcessing(true);
     setOrderError('');
@@ -201,17 +244,21 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
     };
 
     try {
+      let invoice: { address: string; amount: string } | null = null;
       if (paymentMethod === 'bitcoin') {
-        setBitcoinInvoice(await createBitcoinInvoice(newOrderId));
-      } else {
-        clearCart();
+        invoice = await createBitcoinInvoice(newOrderId);
       }
+
+      await createServerOrder(newOrderId);
+
+      if (paymentMethod === 'bitcoin') setBitcoinInvoice(invoice);
+      else clearCart();
 
       if ($isAuthenticated) addOrder(orderData);
       setFinalOrderTotal(orderTotal);
       setOrderComplete(true);
     } catch (error) {
-      setOrderError(copy.bitcoinInvoiceError);
+      setOrderError(paymentMethod === 'bitcoin' ? copy.bitcoinInvoiceError : 'Order could not be placed. Please try again or contact support.');
     } finally {
       setIsProcessing(false);
     }

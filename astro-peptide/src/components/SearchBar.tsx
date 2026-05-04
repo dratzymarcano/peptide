@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 
 interface SearchResult {
   id: string;
@@ -8,7 +8,33 @@ interface SearchResult {
   type: 'product' | 'blog' | 'page';
 }
 
-export default function SearchBar() {
+interface SearchBarProps {
+  labels?: {
+    openSearch?: string;
+    searchCatalogue?: string;
+    search?: string;
+    closeSearch?: string;
+    close?: string;
+    searching?: string;
+    noResults?: string;
+  };
+  localePrefix?: string;
+  searchPath?: string;
+  locale?: string;
+}
+
+const defaultLabels = {
+  openSearch: 'Open search',
+  searchCatalogue: 'Search catalogue',
+  search: 'Search',
+  closeSearch: 'Close search',
+  close: 'Close',
+  searching: 'Searching...',
+  noResults: 'No results found for "{query}".',
+};
+
+export default function SearchBar({ labels, localePrefix = '', searchPath = '/search/', locale = 'en' }: SearchBarProps) {
+  const copy = { ...defaultLabels, ...labels };
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -17,194 +43,103 @@ export default function SearchBar() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function closeOnOutsideClick(event: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-        setQuery('');
-        setResults([]);
+        closeSearch();
       }
-    };
+    }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', closeOnOutsideClick);
+    return () => document.removeEventListener('mousedown', closeOnOutsideClick);
   }, []);
 
   useEffect(() => {
-    const searchProducts = async () => {
-      if (query.length < 2) {
+    async function runSearch() {
+      if (query.trim().length < 2) {
         setResults([]);
         return;
       }
 
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}&lang=${encodeURIComponent(locale)}`);
         if (response.ok) {
           const data = await response.json();
           setResults(data.results || []);
         }
-      } catch (err) {
-        console.error('Search error:', err);
       } finally {
         setIsLoading(false);
       }
-    };
+    }
 
-    const debounce = setTimeout(searchProducts, 300);
-    return () => clearTimeout(debounce);
+    const debounce = window.setTimeout(runSearch, 300);
+    return () => window.clearTimeout(debounce);
   }, [query]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setIsOpen(false);
-      setQuery('');
-      setResults([]);
+  function closeSearch() {
+    setIsOpen(false);
+    setQuery('');
+    setResults([]);
+  }
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    if (query.trim()) {
+      window.location.href = `${searchPath}?q=${encodeURIComponent(query.trim())}`;
     }
-  };
+  }
+
+  function localizeResultPath(path: string) {
+    if (!localePrefix || !path.startsWith('/')) return path;
+    return `${localePrefix}${path}`.replace(/\/+/g, '/');
+  }
 
   return (
-    <div ref={containerRef} className="position-relative">
+    <div className="search-shell" ref={containerRef}>
       {!isOpen ? (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="btn btn-link text-dark p-0"
-          style={{ textDecoration: 'none' }}
-          aria-label="Search"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
+        <button className="header-icon-btn" type="button" onClick={() => setIsOpen(true)} aria-label={copy.openSearch}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
           </svg>
         </button>
       ) : (
-        <div className="search-container" style={{ minWidth: '280px' }}>
-          <div className="input-group">
+        <div className="search-panel">
+          <form className="search-input-row" role="search" onSubmit={handleSubmit}>
             <input
               ref={inputRef}
-              type="text"
-              className="form-control form-control-sm"
-              placeholder="Search peptides..."
+              type="search"
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-              style={{ 
-                borderRadius: '20px 0 0 20px',
-                paddingLeft: '15px'
-              }}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => event.key === 'Escape' && closeSearch()}
+              placeholder={copy.searchCatalogue}
+              aria-label={copy.searchCatalogue}
             />
-            <div className="input-group-append">
-              <button 
-                className="btn btn-sm btn-light"
-                type="button"
-                onClick={() => {
-                  setIsOpen(false);
-                  setQuery('');
-                  setResults([]);
-                }}
-                style={{ borderRadius: '0 20px 20px 0' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 6 6 18"></path>
-                  <path d="m6 6 12 12"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
+            <button type="submit" aria-label={copy.search}>{copy.search}</button>
+            <button type="button" onClick={closeSearch} aria-label={copy.closeSearch}>{copy.close}</button>
+          </form>
 
-          {(results.length > 0 || isLoading) && (
-            <div 
-              className="search-results bg-white shadow rounded mt-2"
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                right: 0,
-                zIndex: 1000,
-                maxHeight: '300px',
-                overflowY: 'auto'
-              }}
-            >
+          {(query.trim().length >= 2 || isLoading) && (
+            <div className="search-results-panel" role="status">
               {isLoading ? (
-                <div className="p-3 text-center text-muted">
-                  <small>Searching...</small>
-                </div>
-              ) : (
+                <p>{copy.searching}</p>
+              ) : results.length > 0 ? (
                 results.map((result) => (
-                  <a
-                    key={result.id}
-                    href={result.slug}
-                    className="d-flex align-items-center p-2 px-3 text-dark border-bottom search-result-item"
-                    style={{ textDecoration: 'none', gap: '10px' }}
-                    onClick={() => {
-                      setIsOpen(false);
-                      setQuery('');
-                      setResults([]);
-                    }}
-                  >
-                    <div style={{ 
-                      width: '28px', 
-                      height: '28px', 
-                      borderRadius: '6px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: result.type === 'product' ? '#0077b6' : result.type === 'blog' ? '#059669' : '#6366f1',
-                      color: 'white',
-                      flexShrink: 0
-                    }}>
-                      {result.type === 'product' && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                          <line x1="3" y1="6" x2="21" y2="6"></line>
-                          <path d="M16 10a4 4 0 0 1-8 0"></path>
-                        </svg>
-                      )}
-                      {result.type === 'blog' && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                          <polyline points="14 2 14 8 20 8"></polyline>
-                          <line x1="16" y1="13" x2="8" y2="13"></line>
-                          <line x1="16" y1="17" x2="8" y2="17"></line>
-                        </svg>
-                      )}
-                      {result.type === 'page' && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <line x1="12" y1="16" x2="12" y2="12"></line>
-                          <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                      )}
-                    </div>
-                    <div style={{ overflow: 'hidden' }}>
-                      <div style={{ fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{result.title}</div>
-                      <small className="text-muted" style={{ textTransform: 'capitalize' }}>{result.category}</small>
-                    </div>
+                  <a className="search-result-item" href={localizeResultPath(result.slug)} key={result.id} onClick={closeSearch}>
+                    <span className="search-result-icon" data-result-type={result.type} aria-hidden="true">{result.type.slice(0, 1).toUpperCase()}</span>
+                    <span>
+                      <strong>{result.title}</strong>
+                      <small>{result.category}</small>
+                    </span>
                   </a>
                 ))
+              ) : (
+                <p>{copy.noResults.replace('{query}', query)}</p>
               )}
-            </div>
-          )}
-
-          {query.length >= 2 && !isLoading && results.length === 0 && (
-            <div 
-              className="search-results bg-white shadow rounded mt-2 p-3"
-              style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                right: 0,
-                zIndex: 1000
-              }}
-            >
-              <div className="text-center text-muted">
-                <small>No results found for "{query}"</small>
-              </div>
             </div>
           )}
         </div>

@@ -1,199 +1,104 @@
 ---
-id: "peptide-semax"
-title: "Buy Semax UK | Nootropic Cognitive Peptide"
-primary_keyword: "buy semax uk"
-search_volume: "3400"
-slug: "/peptides/buy-semax"
-aliases: ["Semax", "ACTH 4-10 Analogue"]
-cas: "80714-61-0"
-molecular_weight: "813.9 g/mol"
-purity: "≥ 99%"
+id: peptide-semax
+title: Semax 5 mg — research grade
+primary_keyword: semax
+search_volume: 3400
+aliases:
+  - Semax
+  - ACTH 4-10 Analogue
+cas: 80714-61-0
+molecular_weight: 813.9 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 5 mg vials"]
-moq: 200
-price: 220
-price_range: "£220 per pack"
-coa_url: "/coa/semax.pdf"
-short_description: "Buy Semax UK. Nootropic peptide for cognitive research. ≥99% purity. Fast UK delivery."
-category: "cognitive"
-tags: ["research-peptide", "semax-uk", "nootropic", "buy-peptides-uk", "cognitive", "neuroprotection"]
-images: ["/images/products/semax.jpg"]
+package_sizes:
+  - 1 × 5 mg vial
+moq: 1
+price: 18
+price_range: €18 per vial
+short_description: Semax ACTH(4-10) analogue for CNS, cognition and neuroprotection research. COA supplied. RUO.
+category: cognitive
+researchArea: neuroscience
+useCases:
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - neuroscience
+  - cognitive
+  - research-peptide
+  - nootropic
+  - neuroprotection
+  - semax
+images:
+  - /images/products/semax.svg
 meta:
-  title: "Buy Semax UK | Cognitive Peptide | Fast Delivery"
-  description: "Buy Semax UK. Premium nootropic peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: Semax 5 mg — research grade | Peptide Shop
+  description: ACTH(4-10) heptapeptide research compound, lot COA, research-use labelling. RUO.
 faqs:
-  - question: "What is Semax used for in research?"
-    answer: "Semax is studied for cognitive enhancement, neuroprotection, BDNF modulation, and neurotransmitter regulation. It's based on ACTH(4-10)."
-  - question: "How does Semax work?"
-    answer: "Semax modulates neurotrophins (BDNF, NGF), influences dopamine and serotonin, and affects gene expression related to neuroplasticity."
-  - question: "How is Semax different from Selank?"
-    answer: "Semax focuses on cognitive enhancement and neuroprotection; Selank is more anxiolytic. Semax is based on ACTH; Selank on tuftsin."
-  - question: "How should Semax be stored?"
-    answer: "Store lyophilised Semax at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks."
-  - question: "What purity is your Semax?"
-    answer: "Our Semax is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "What is BDNF?"
-    answer: "BDNF (Brain-Derived Neurotrophic Factor) is crucial for neuroplasticity, learning, and memory. Semax is reported to enhance BDNF expression."
-  - question: "How do I reconstitute Semax?"
-    answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
-  - question: "What sizes are available?"
-    answer: "Semax is available in 5mg, 10mg, and 30mg vials."
-reviews:
-  - author: "Dr. William Chen"
-    rating: 5
-    date: "2024-12-11"
-    title: "Essential for cognitive research"
-    content: "Our BDNF studies depend on quality Semax. Peptide Shop delivers exceptional purity."
-    verified: true
-  - author: "Cambridge Cognition Lab"
-    rating: 5
-    date: "2024-12-04"
-    title: "Premium quality"
-    content: "Cognitive enhancement effects clearly observable in our models."
-    verified: true
-  - author: "James Foster"
-    rating: 5
-    date: "2024-11-27"
-    title: "Excellent product"
-    content: "Fast delivery, excellent quality. Neuroprotection research progressing well."
-    verified: true
-  - author: "Edinburgh Neuroscience Lab"
-    rating: 5
-    date: "2024-11-20"
-    title: "Reliable supplier"
-    content: "Consistent quality for our neurotrophin studies."
-    verified: true
-  - author: "Dr. Helen Foster"
-    rating: 5
-    date: "2024-11-13"
-    title: "Outstanding purity"
-    content: "Purity verification confirms excellent quality. Essential for our research."
-    verified: true
-  - author: "Manchester Neuropharmacology Lab"
-    rating: 5
-    date: "2024-11-06"
-    title: "Excellent service"
-    content: "Fast delivery, great quality for nootropic studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-30"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Memory Lab"
-    rating: 5
-    date: "2024-10-23"
-    title: "Very good"
-    content: "Quality is excellent for learning and memory research."
-    verified: true
-  - author: "Dr. Robert Clarke"
-    rating: 5
-    date: "2024-10-16"
-    title: "Premium research peptide"
-    content: "Excellent for BDNF modulation studies."
-    verified: true
-  - author: "Newcastle Cognition Lab"
-    rating: 5
-    date: "2024-10-09"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-02"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery."
-    verified: true
-  - author: "Glasgow Neuroscience Lab"
-    rating: 5
-    date: "2024-09-25"
-    title: "Excellent supplier"
-    content: "High-quality Semax with proper documentation."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 4
-    date: "2024-09-18"
-    title: "Very good product"
-    content: "Neuroplasticity research benefits greatly."
-    verified: true
-  - author: "Birmingham Brain Lab"
-    rating: 5
-    date: "2024-09-11"
-    title: "Premium quality"
-    content: "Consistently high purity."
-    verified: true
+  - question: What is Semax used for in research?
+    answer: Semax is studied for cognitive enhancement, neuroprotection, BDNF modulation, and neurotransmitter regulation. It's based on ACTH(4-10).
+  - question: How does Semax work?
+    answer: Semax modulates neurotrophins (BDNF, NGF), influences dopamine and serotonin, and affects gene expression related to neuroplasticity.
+  - question: How is Semax different from Selank?
+    answer: Semax focuses on cognitive enhancement and neuroprotection; Selank is more anxiolytic. Semax is based on ACTH; Selank on tuftsin.
+  - question: How should Semax be stored?
+    answer: Store lyophilised Semax at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks.
+  - question: What purity is your Semax?
+    answer: Our Semax is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: What is BDNF?
+    answer: BDNF (Brain-Derived Neurotrophic Factor) is crucial for neuroplasticity, learning, and memory. Semax is reported to enhance BDNF expression.
+  - question: How do I reconstitute Semax?
+    answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
+  - question: What sizes are available?
+    answer: Semax is available in 5mg, 10mg, and 30mg vials.
 ---
 
-## What is Semax?
+## Semax 30 mg research overview
 
-**Semax** is a synthetic heptapeptide developed in Russia, based on the ACTH(4-10) fragment of adrenocorticotropic hormone. Unlike full ACTH, Semax lacks hormonal activity but retains potent nootropic and neuroprotective properties.
+Semax ACTH(4-10) analogue for CNS, cognition and neuroprotection research. COA supplied. RUO.
 
-Extensive research has demonstrated Semax's effects on cognitive function, BDNF expression, and neuroprotection, making it a valuable tool for neuroscience research.
+Semax is an ACTH(4-10) analogue studied in neurotrophic, cognitive and stress-response research models.
 
-Peptide Shop supplies **research-grade Semax** with guaranteed ≥99% purity.
+Peptide Shop supplies Semax 30 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does Semax Work?
+## Research use
 
-### Neurotrophin Modulation
-- **BDNF upregulation** - Neuroplasticity
-- **NGF effects** - Nerve growth
-- **TrkB activation** - Receptor signalling
+- CNS and neuroprotection assays
+- Cognition and stress-response models
+- Neuropeptide signalling comparisons
 
-### Neurotransmitter Effects
-- **Dopamine modulation** - Motivation, reward
-- **Serotonin effects** - Mood regulation
-- **Acetylcholine** - Memory, learning
+Use with Selank and DSIP in neuroscience and cognitive research clusters.
 
-### Gene Expression
-- **Immediate early genes** - c-Fos, Arc
-- **Plasticity genes** - Synaptic changes
-- **Neuroprotective genes** - Cell survival
+## Sequence and analytical data
 
-## Research Applications
+| Field | Detail |
+|---|---|
+| Product ID | peptide-semax |
+| Package size | 1 × 5 mg vial |
+| CAS number | 80714-61-0 |
+| Molecular weight | 813.9 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Cognitive Research
-- **Learning enhancement** - Memory formation
-- **Attention** - Focus regulation
-- **Executive function** - Decision-making
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Neuroprotection
-- **Stroke models** - Ischemia research
-- **Neurodegenerative** - Disease models
-- **Oxidative stress** - Protection
+## Reconstitution and handling
 
-### Neuroplasticity
-- **BDNF signalling** - Growth factor pathways
-- **Synaptogenesis** - New connections
-- **LTP enhancement** - Memory mechanisms
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-## Semax Specifications
-
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 80714-61-0 |
-| **Molecular Weight** | 813.9 g/mol |
-| **Sequence** | Met-Glu-His-Phe-Pro-Gly-Pro |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 3-4 weeks |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **5 mg** | From £38 |
-| **10 mg** | From £68 |
-| **30 mg** | From £110 |
+- [Browse related research materials](/catalog/neuroscience/)
+- [View use-case hub](/use-case/cognitive/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+Semax 30 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

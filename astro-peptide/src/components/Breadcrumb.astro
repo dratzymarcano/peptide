@@ -1,0 +1,36 @@
+---
+/**
+ * Breadcrumb — accessible breadcrumb trail.
+ * Re-uses the same `breadcrumbs` array the Layout uses for JSON-LD,
+ * so each page declares its breadcrumb data exactly once.
+ *
+ *   <Breadcrumb items={[
+ *     { name: 'Home', url: '/' },
+ *     { name: 'Catalogue', url: '/catalog/' },
+ *     { name: meta.name }, // last item is the current page
+ *   ]} />
+ */
+export interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb">
+  <ol class="breadcrumb">
+    {items.map((item, i) => {
+      const isLast = i === items.length - 1;
+      return (
+        <li {...(isLast ? { 'aria-current': 'page' } : {})}>
+          {item.url && !isLast ? <a href={item.url}>{item.name}</a> : item.name}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

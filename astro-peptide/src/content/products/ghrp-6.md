@@ -1,177 +1,104 @@
 ---
-id: "peptide-ghrp-6"
-title: "Buy GHRP-6 UK | Growth Hormone Releasing Peptide"
-primary_keyword: "buy ghrp-6 uk"
-search_volume: "3200"
-slug: "/peptides/buy-ghrp-6"
-aliases: ["Growth Hormone Releasing Peptide 6", "GHRP6"]
-cas: "87616-84-0"
-molecular_weight: "873.0 g/mol"
-purity: "≥ 99%"
+id: peptide-ghrp-6
+title: GHRP-6 5 mg — research grade
+primary_keyword: ghrp-6
+search_volume: 3200
+aliases:
+  - Growth Hormone Releasing Peptide 6
+  - GHRP6
+cas: 87616-84-0
+molecular_weight: 873.0 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 5 mg vials"]
-moq: 200
-price: 220
-price_range: "£220 per pack"
-coa_url: "/coa/ghrp-6.pdf"
-short_description: "Buy GHRP-6 UK. Growth hormone releasing peptide for GH research. ≥99% purity. Fast UK delivery."
-category: "growth-hormone"
-tags: ["research-peptide", "ghrp-6-uk", "ghrp", "buy-peptides-uk", "growth-hormone"]
-images: ["/images/products/ghrp-6.jpg"]
+package_sizes:
+  - 1 × 5 mg vial
+moq: 1
+price: 15
+price_range: €15 per vial
+short_description: GHRP-6 research peptide for growth-hormone secretagogue and ghrelin pathway studies. COA supplied. RUO.
+category: growth-hormone
+researchArea: hormones
+useCases:
+  - muscle-recovery
+tags:
+  - research-use-only
+  - coa-included
+  - hormones
+  - muscle-recovery
+  - research-peptide
+  - ghrp
+  - growth-hormone
+  - ghrp-6
+images:
+  - /images/products/ghrp-6.svg
 meta:
-  title: "Buy GHRP-6 UK | GH Peptide | Fast Delivery"
-  description: "Buy GHRP-6 UK. Premium growth hormone releasing peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: GHRP-6 5 mg — research grade | Peptide Shop
+  description: Growth-hormone-releasing peptide-6, ≥99 % HPLC, lot COA. RUO.
 faqs:
-  - question: "What is GHRP-6 used for in research?"
-    answer: "GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology."
-  - question: "How is GHRP-6 different from GHRP-2?"
-    answer: "GHRP-6 has stronger appetite-stimulating effects and may cause more cortisol/prolactin release than GHRP-2. GHRP-2 is considered more selective. Both are valuable for different research questions."
-  - question: "Does GHRP-6 affect appetite in research models?"
-    answer: "Yes, GHRP-6 is known to stimulate appetite in research models through ghrelin receptor activation. This property is useful for studying ghrelin's orexigenic effects."
-  - question: "How should GHRP-6 be stored?"
-    answer: "Store lyophilised GHRP-6 at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks."
-  - question: "What purity is your GHRP-6?"
-    answer: "Our GHRP-6 is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "What is the mechanism of action?"
-    answer: "GHRP-6 binds to GHS-R (ghrelin receptors) on pituitary somatotropes, stimulating GH release. It also suppresses somatostatin tone."
-  - question: "Can it be combined with GHRH analogs?"
-    answer: "Yes, GHRP-6 with GHRH analogs like CJC-1295 is a common research combination to study synergistic GH release."
-  - question: "What sizes are available?"
-    answer: "GHRP-6 is available in 5mg and 10mg vials."
-reviews:
-  - author: "Dr. Michael Roberts"
-    rating: 5
-    date: "2024-12-10"
-    title: "Excellent for GH research"
-    content: "Our appetite-GH axis studies require GHRP-6. Peptide Shop provides excellent quality."
-    verified: true
-  - author: "Cambridge GH Lab"
-    rating: 5
-    date: "2024-12-03"
-    title: "Premium quality"
-    content: "GHRP-6 quality is exceptional. Great for ghrelin receptor research."
-    verified: true
-  - author: "James Foster"
-    rating: 5
-    date: "2024-11-26"
-    title: "Great product"
-    content: "Fast delivery, excellent quality. GH release assays working well."
-    verified: true
-  - author: "Edinburgh Endocrine Lab"
-    rating: 5
-    date: "2024-11-19"
-    title: "Reliable supplier"
-    content: "Consistent quality for our secretagogue studies."
-    verified: true
-  - author: "Dr. Sarah Mitchell"
-    rating: 5
-    date: "2024-11-12"
-    title: "Outstanding purity"
-    content: "Verified purity meets claims. Essential for our research."
-    verified: true
-  - author: "Manchester Hormone Lab"
-    rating: 5
-    date: "2024-11-05"
-    title: "Excellent service"
-    content: "Fast delivery, great quality, fair price."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-29"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Pituitary Research"
-    rating: 4
-    date: "2024-10-22"
-    title: "Very good"
-    content: "Quality is excellent. Well-characterised effects in our assays."
-    verified: true
-  - author: "Dr. Robert Hayes"
-    rating: 5
-    date: "2024-10-15"
-    title: "Premium research peptide"
-    content: "Excellent for appetite-GH research."
-    verified: true
-  - author: "Newcastle Secretagogue Lab"
-    rating: 5
-    date: "2024-10-08"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-10-01"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery."
-    verified: true
-  - author: "Glasgow GH Research"
-    rating: 5
-    date: "2024-09-24"
-    title: "Excellent supplier"
-    content: "High-quality GHRP-6 with proper documentation."
-    verified: true
+  - question: What is GHRP-6 used for in research?
+    answer: GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology.
+  - question: How is GHRP-6 different from GHRP-2?
+    answer: GHRP-6 has stronger appetite-stimulating effects and may cause more cortisol/prolactin release than GHRP-2. GHRP-2 is considered more selective. Both are valuable for different research questions.
+  - question: Does GHRP-6 affect appetite in research models?
+    answer: Yes, GHRP-6 is known to stimulate appetite in research models through ghrelin receptor activation. This property is useful for studying ghrelin's orexigenic effects.
+  - question: How should GHRP-6 be stored?
+    answer: Store lyophilised GHRP-6 at -20°C. Once reconstituted, keep at 2-8°C and use within 4 weeks.
+  - question: What purity is your GHRP-6?
+    answer: Our GHRP-6 is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: What is the mechanism of action?
+    answer: GHRP-6 binds to GHS-R (ghrelin receptors) on pituitary somatotropes, stimulating GH release. It also suppresses somatostatin tone.
+  - question: Can it be combined with GHRH analogs?
+    answer: Yes, GHRP-6 with GHRH analogs like CJC-1295 is a common research combination to study synergistic GH release.
+  - question: What sizes are available?
+    answer: GHRP-6 is available in 5mg and 10mg vials.
 ---
 
-## What is GHRP-6?
+## GHRP-6 5 mg research overview
 
-**GHRP-6** (Growth Hormone Releasing Peptide-6) is a synthetic hexapeptide that stimulates growth hormone release through activation of the ghrelin receptor (GHS-R1a). As one of the first synthetic GH secretagogues developed, GHRP-6 has extensive research documentation and remains a valuable tool for studying growth hormone physiology.
+GHRP-6 research peptide for growth-hormone secretagogue and ghrelin pathway studies. COA supplied. RUO.
 
-Unlike more selective peptides such as ipamorelin, GHRP-6 also stimulates appetite and affects cortisol and prolactin levels, making it useful for studying the full spectrum of ghrelin receptor effects.
+GHRP-6 is a growth-hormone-releasing peptide used to study ghrelin receptor signalling and endocrine response.
 
-Peptide Shop supplies **research-grade GHRP-6** with guaranteed ≥99% purity.
+Peptide Shop supplies GHRP-6 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does GHRP-6 Work?
+## Research use
 
-### GHS-R Activation
-- **Ghrelin receptor binding** - Primary mechanism
-- **GH release** - Pituitary somatotrope stimulation
-- **Somatostatin suppression** - Reduced inhibitory tone
-- **GHRH synergy** - Enhanced combined effects
+- GHSR and pituitary response models
+- Growth-hormone release comparisons
+- Secretagogue pathway studies
 
-### Secondary Effects
-- **Appetite stimulation** - Ghrelin-like orexigenic effects
-- **Cortisol release** - Moderate elevation
-- **Prolactin effects** - Some increase observed
+Use as a comparator with GHRP-2 and ipamorelin in hormone research.
 
-## Research Applications
+## Sequence and analytical data
 
-### GH Axis Studies
-- **GH secretion** - Release mechanisms
-- **Ghrelin pharmacology** - Receptor characterisation
-- **Pituitary function** - Somatotrope biology
+| Field | Detail |
+|---|---|
+| Product ID | peptide-ghrp-6 |
+| Package size | 1 × 5 mg vial |
+| CAS number | 87616-84-0 |
+| Molecular weight | 873.0 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Appetite Research
-- **Orexigenic effects** - Food intake studies
-- **Ghrelin mimetics** - Comparative research
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-## GHRP-6 Specifications
+## Reconstitution and handling
 
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 87616-84-0 |
-| **Molecular Formula** | C46H56N12O6 |
-| **Molecular Weight** | 873.0 g/mol |
-| **Sequence** | His-D-Trp-Ala-Trp-D-Phe-Lys-NH₂ |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 4 weeks |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **5 mg** | From £25 |
-| **10 mg** | From £55 |
+- [Browse related research materials](/catalog/hormones/)
+- [View use-case hub](/use-case/muscle-recovery/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+GHRP-6 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

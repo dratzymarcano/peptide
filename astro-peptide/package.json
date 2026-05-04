@@ -5,9 +5,18 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "npm run seo:feeds",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "seo:feeds": "node scripts/generate-merchant-feeds.mjs",
+    "seo:hreflang": "node scripts/validate-hreflang.mjs",
+    "seo:i18n": "node scripts/check-i18n-coverage.mjs",
+    "seo:check": "npm run build && npm run seo:hreflang && npm run seo:i18n",
+    "legal:check": "node scripts/check-legal-readiness.mjs",
+    "legal:claims": "node scripts/check-ymyl-claims.mjs",
+    "account:check": "node scripts/check-account-readiness.mjs",
+    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run account:check"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.13",

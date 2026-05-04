@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Certificate of Analysis — Peptide Shop</title>
+  <meta name="description" content="Certificate of Analysis template for Peptide Shop research peptides." />
+  <style>
+    /* ----------------------------------------------------------------
+       Peptide Shop — Certificate of Analysis
+       Brand tokens mirror /public/css/design-system.css
+       Print target: A4 portrait, 16 mm margins.
+       ---------------------------------------------------------------- */
+    :root {
+      --color-primary:        #005B8C;
+      --color-primary-600:    #00496F;
+      --color-primary-50:     #E6F1F8;
+      --color-accent:         #90E0EF;
+      --color-ink:            #0F172A;
+      --color-ink-2:          #334155;
+      --color-ink-3:          #64748B;
+      --color-surface:        #FFFFFF;
+      --color-surface-2:      #F8FAFC;
+      --color-border:         #E2E8F0;
+      --color-border-strong:  #CBD5E1;
+      --color-success:        #0F7B3F;
+      --color-warning:        #B45309;
+      --color-danger:         #B42318;
+
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    @page { size: A4; margin: 16mm; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      font-size: 11pt;
+      line-height: 1.45;
+      background: var(--color-surface);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .sheet {
+      max-width: 178mm;
+      margin: 0 auto;
+      padding: 8mm 0 0;
+    }
+
+    /* ---------- Top brand strip ---------- */
+    .brand-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6mm;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .brand-bar img { height: 36px; display: block; }
+    .brand-bar .ruo {
+      text-align: right;
+      font-size: 9pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-3);
+    }
+    .brand-bar .ruo strong { color: var(--color-danger); display: block; font-size: 10pt; }
+
+    /* ---------- Document title band ---------- */
+    .doc-title {
+      margin: 6mm 0 5mm;
+      background: var(--color-primary);
+      color: #fff;
+      padding: 6mm 8mm;
+      border-radius: 4px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8mm;
+    }
+    .doc-title h1 {
+      margin: 0;
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .doc-title .meta {
+      font-family: var(--font-mono);
+      font-size: 9.5pt;
+      color: var(--color-primary-50);
+      text-align: right;
+      line-height: 1.5;
+    }
+    .doc-title .meta span { display: block; }
+
+    /* ---------- Section headings ---------- */
+    section { margin-top: 6mm; }
+    h2.section {
+      margin: 0 0 3mm;
+      padding: 2mm 0 2mm;
+      color: var(--color-primary);
+      font-size: 12.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1.5px solid var(--color-primary);
+    }
+
+    /* ---------- Key/value identification block ---------- */
+    .product-name {
+      font-size: 16pt;
+      font-weight: 700;
+      color: var(--color-ink);
+      margin: 0 0 3mm;
+    }
+    dl.kv {
+      display: grid;
+      grid-template-columns: 42mm 1fr;
+      row-gap: 1.5mm;
+      column-gap: 4mm;
+      margin: 0;
+    }
+    dl.kv dt { color: var(--color-ink-2); font-weight: 500; }
+    dl.kv dd { margin: 0; color: var(--color-ink); }
+    dl.kv .mono { font-family: var(--font-mono); font-size: 10pt; }
+
+    /* ---------- Analytical data table ---------- */
+    table.results {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5pt;
+    }
+    table.results thead th {
+      background: var(--color-primary);
+      color: #fff;
+      text-align: left;
+      padding: 2.5mm 3mm;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    table.results tbody td {
+      padding: 2.5mm 3mm;
+      border-bottom: 1px solid var(--color-border);
+      vertical-align: top;
+    }
+    table.results tbody tr:nth-child(even) td { background: var(--color-surface-2); }
+    table.results .num { font-family: var(--font-mono); }
+    table.results .pass { color: var(--color-success); font-weight: 600; }
+    table.results .fail { color: var(--color-danger); font-weight: 600; }
+
+    /* ---------- Conclusion / caution ---------- */
+    .conclusion {
+      margin-top: 5mm;
+      padding: 4mm 5mm;
+      background: var(--color-primary-50);
+      border-left: 3px solid var(--color-primary);
+      border-radius: 2px;
+      color: var(--color-ink);
+    }
+    .caution {
+      margin-top: 4mm;
+      padding: 4mm 5mm;
+      background: #FEF7E6;
+      border-left: 3px solid var(--color-warning);
+      border-radius: 2px;
+      color: var(--color-ink-2);
+      font-size: 10pt;
+    }
+
+    /* ---------- Signatures ---------- */
+    .sigs {
+      margin-top: 8mm;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8mm;
+    }
+    .sig {
+      border-top: 1px solid var(--color-border-strong);
+      padding-top: 2mm;
+      font-size: 10pt;
+      color: var(--color-ink-2);
+    }
+    .sig .role { font-weight: 600; color: var(--color-ink); }
+    .sig .name { margin-top: 1mm; }
+    .sig .date { font-family: var(--font-mono); color: var(--color-ink-3); }
+
+    /* ---------- Footer ---------- */
+    footer.doc-footer {
+      margin-top: 10mm;
+      padding-top: 4mm;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      font-size: 9pt;
+      color: var(--color-ink-3);
+      line-height: 1.6;
+    }
+    footer.doc-footer a { color: var(--color-primary); text-decoration: none; }
+
+    /* ---------- Print niceties ---------- */
+    @media print {
+      .no-print { display: none !important; }
+      section, .conclusion, .caution, .sigs, footer.doc-footer { break-inside: avoid; }
+      thead { display: table-header-group; }
+    }
+
+    /* ---------- Long sequence wrapping ---------- */
+    .seq {
+      font-family: var(--font-mono);
+      font-size: 10pt;
+      word-break: break-all;
+      color: var(--color-ink);
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- ============== BRAND BAR ============== -->
+    <header class="brand-bar">
+      <img src="/brand/peptide-shop-logo.svg" alt="Peptide Shop" />
+      <div class="ruo">
+        <strong data-i18n="coa.ruo.title">Research Use Only</strong>
+        <span data-i18n="coa.ruo.subtitle">Not for human or veterinary use</span>
+      </div>
+    </header>
+
+    <!-- ============== DOCUMENT TITLE ============== -->
+    <div class="doc-title">
+      <h1 data-i18n="coa.title">Certificate of Analysis</h1>
+      <div class="meta">
+        <span><span data-i18n="coa.meta.docNo">Doc No.</span>:
+              <span data-field="docNumber">CoA-BPC-157-024</span></span>
+        <span><span data-i18n="coa.meta.revision">Rev.</span>:
+              <span data-field="revision">1.0</span></span>
+        <span><span data-i18n="coa.meta.issued">Issued</span>:
+              <span data-field="issuedDate">2026-04-28</span></span>
+      </div>
+    </div>
+
+    <!-- ============== PRODUCT IDENTIFICATION ============== -->
+    <section>
+      <h2 class="section" data-i18n="coa.sections.identification">Product Identification</h2>
+      <p class="product-name" data-field="productName">BPC-157 5 mg</p>
+
+      <dl class="kv">
+        <dt data-i18n="coa.fields.catalogNo">Catalog No.</dt>
+        <dd class="mono" data-field="catalogNo">PS-BPC157-005</dd>
+
+        <dt data-i18n="coa.fields.casNo">CAS No.</dt>
+        <dd class="mono" data-field="casNo">137525-51-0</dd>
+
+        <dt data-i18n="coa.fields.pubchemCid">PubChem CID</dt>
+        <dd class="mono" data-field="pubchemCid">9941957</dd>
+
+        <dt data-i18n="coa.fields.chemicalName">Chemical Name</dt>
+        <dd data-field="chemicalName">Body Protection Compound 157</dd>
+
+        <dt data-i18n="coa.fields.netContent">Net Content per Vial</dt>
+        <dd data-field="netContent">5 mg</dd>
+
+        <dt data-i18n="coa.fields.batchNo">Batch / Lot No.</dt>
+        <dd class="mono" data-field="batchNo">PS-2604-0117</dd>
+
+        <dt data-i18n="coa.fields.manufactureDate">Manufacture Date</dt>
+        <dd class="mono" data-field="manufactureDate">2026-03-12</dd>
+
+        <dt data-i18n="coa.fields.retestDate">Retest Date</dt>
+        <dd class="mono" data-field="retestDate">2029-03-12</dd>
+      </dl>
+    </section>
+
+    <!-- ============== PHYSICAL / CHEMICAL ============== -->
+    <section>
+      <h2 class="section" data-i18n="coa.sections.physicalChemical">Physical and Chemical Properties</h2>
+      <dl class="kv">
+        <dt data-i18n="coa.fields.molecularFormula">Molecular Formula</dt>
+        <dd class="mono" data-field="molecularFormula">C62H98N16O22</dd>
+
+        <dt data-i18n="coa.fields.molecularWeight">Molecular Weight</dt>
+        <dd class="mono" data-field="molecularWeight">1419.55 g/mol</dd>
+
+        <dt data-i18n="coa.fields.appearance">Appearance</dt>
+        <dd data-field="appearance">White to off-white lyophilized solid</dd>
+
+        <dt data-i18n="coa.fields.solubility">Solubility</dt>
+        <dd data-field="solubility">Soluble in bacteriostatic water and 0.9% sodium chloride</dd>
+
+        <dt data-i18n="coa.fields.storage">Storage Conditions</dt>
+        <dd data-field="storage">
+          <span data-i18n="coa.values.storage.lyophilized">Lyophilized: −20 °C / 36 months · 4 °C / 24 months · 15 °C / 3 months</span><br>
+          <span data-i18n="coa.values.storage.reconstituted">Reconstituted: −80 °C / 6 months · −2 °C / 1 month · 10 °C / 1 week</span>
+        </dd>
+
+        <dt data-i18n="coa.fields.sequence">Amino Acid Sequence</dt>
+        <dd class="seq" data-field="sequence">H-Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val-OH</dd>
+      </dl>
+    </section>
+
+    <!-- ============== ANALYTICAL DATA ============== -->
+    <section>
+      <h2 class="section" data-i18n="coa.sections.analyticalData">Analytical Data</h2>
+      <table class="results">
+        <thead>
+          <tr>
+            <th data-i18n="coa.table.parameter">Test Parameter</th>
+            <th data-i18n="coa.table.method">Method</th>
+            <th data-i18n="coa.table.specification">Specification</th>
+            <th data-i18n="coa.table.result">Result</th>
+            <th data-i18n="coa.table.status">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="coa.tests.appearance">Appearance</td>
+            <td data-i18n="coa.methods.visual">Visual inspection</td>
+            <td data-i18n="coa.specs.appearanceWhitePowder">White to off-white lyophilized solid</td>
+            <td data-i18n="coa.results.conforms">Conforms</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+          <tr>
+            <td data-i18n="coa.tests.purityHplc">Purity (HPLC)</td>
+            <td>RP-HPLC, UV 220 nm</td>
+            <td class="num">≥ 98.0 %</td>
+            <td class="num">99.1 %</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+          <tr>
+            <td data-i18n="coa.tests.identityMs">Identity (MS)</td>
+            <td>ESI-MS</td>
+            <td class="num">[M+H]⁺ = 1420.6</td>
+            <td class="num">1420.5</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+          <tr>
+            <td data-i18n="coa.tests.tfaContent">TFA Content</td>
+            <td>HPLC</td>
+            <td class="num">≤ 0.50 %</td>
+            <td data-i18n="coa.results.conforms">Conforms</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+          <tr>
+            <td data-i18n="coa.tests.waterContent">Water Content</td>
+            <td>Karl Fischer</td>
+            <td class="num">≤ 6.0 %</td>
+            <td class="num">3.4 %</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+          <tr>
+            <td data-i18n="coa.tests.bioburden">Bioburden</td>
+            <td>USP &lt;61&gt;</td>
+            <td class="num">&lt; 100 CFU/g</td>
+            <td class="num">&lt; 10 CFU/g</td>
+            <td class="pass" data-i18n="coa.status.pass">Pass</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============== CONCLUSION ============== -->
+    <section>
+      <h2 class="section" data-i18n="coa.sections.conclusion">Conclusion</h2>
+      <div class="conclusion" data-i18n="coa.conclusion.body">
+        The product identified above has been tested using validated analytical methods
+        and complies with all listed specifications. This batch is released for
+        research distribution.
+      </div>
+      <div class="caution" data-i18n="coa.caution.body">
+        Caution: This product is supplied for laboratory research use only. It has not
+        been evaluated by any regulatory authority for safety or efficacy in humans or
+        animals. Not for diagnostic, therapeutic, food, or cosmetic use.
+      </div>
+    </section>
+
+    <!-- ============== SIGNATURES ============== -->
+    <section class="sigs">
+      <div class="sig">
+        <div class="role" data-i18n="coa.sig.qcAnalyst">Quality Control Analyst</div>
+        <div class="name" data-field="qcName">—</div>
+        <div class="date"><span data-i18n="coa.sig.date">Date</span>:
+          <span data-field="qcDate">2026-04-28</span></div>
+      </div>
+      <div class="sig">
+        <div class="role" data-i18n="coa.sig.qaApprover">Quality Assurance Approver</div>
+        <div class="name" data-field="qaName">—</div>
+        <div class="date"><span data-i18n="coa.sig.date">Date</span>:
+          <span data-field="qaDate">2026-04-28</span></div>
+      </div>
+    </section>
+
+    <!-- ============== FOOTER ============== -->
+    <footer class="doc-footer">
+      <div><a href="https://peptide-shop.net">peptide-shop.net</a> ·
+           <span data-i18n="coa.footer.contact">Technical contact</span>:
+           <a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a></div>
+      <div data-i18n="coa.footer.docControl">
+        Controlled document — reproduction outside the original PDF invalidates this certificate.
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

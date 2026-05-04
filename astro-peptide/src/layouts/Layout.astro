@@ -5,8 +5,9 @@ import SEO from '../components/SEO.astro';
 import JsonLd from '../components/JsonLd.astro';
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import AgeGate from '../components/AgeGate';
-import { getLocaleFromPathname, localeMeta } from '../i18n/config';
+import { getLocaleFromPathname, localeMeta, locales, type Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
+import { breadcrumbSchema as buildBreadcrumbSchema } from '../lib/schema';
 import '@fontsource-variable/inter/index.css';
 import '@fontsource-variable/inter-tight/index.css';
 import '@fontsource/jetbrains-mono/400.css';
@@ -24,32 +25,32 @@ interface Props {
 	article?: boolean;
 	breadcrumbs?: BreadcrumbItem[];
 	noindex?: boolean;
+	availableLocales?: Locale[];
 }
 
-const { title, description, image, article, breadcrumbs, noindex = false } = Astro.props;
-const siteUrl = 'https://peptide-shop.net';
+const { title, description, image, article, breadcrumbs, noindex = false, availableLocales = [...locales] } = Astro.props;
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 
-// Generate breadcrumb schema if breadcrumbs are provided
-const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? {
-	"@context": "https://schema.org",
-	"@type": "BreadcrumbList",
-	"itemListElement": breadcrumbs.map((item, index) => ({
-		"@type": "ListItem",
-		"position": index + 1,
-		"name": item.name,
-		"item": item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}`
-	}))
-} : null;
+const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumbSchema(breadcrumbs, locale) : null;
 ---
 
 <!doctype html>
 <html lang={locale} dir={localeMeta[locale].dir}>
 	<head>
-		<meta name="geo.region" content="DE" />
-		<meta name="geo.placename" content="Germany" />
-		<SEO title={title} description={description} image={image} article={article} noindex={noindex} />
+		{/*
+			geo.* meta tags target a single country. They must only be emitted on the
+			German locale — emitting them on the global English / NL / FR / IT / ES
+			versions sends a conflicting geo signal that fights the per-locale
+			hreflang + GSC International Targeting strategy.
+		*/}
+		{locale === 'de' && (
+			<>
+				<meta name="geo.region" content="DE" />
+				<meta name="geo.placename" content="Germany" />
+			</>
+		)}
+		<SEO title={title} description={description} image={image} article={article} noindex={noindex} availableLocales={availableLocales} />
 		
 		{breadcrumbSchema && (
 			<JsonLd schema={breadcrumbSchema} />

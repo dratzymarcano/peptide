@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. Tutti i diritti riservati.",
     "terms": "Termini",
     "privacy": "Privacy",
-    "disclaimer": "Disclaimer"
+    "disclaimer": "Disclaimer",
+    "impressum": "Note legali"
   },
   "shopSidebar": {
     "researchArea": "Area di ricerca",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Informazioni scientifiche",
     "disclaimerScientificBody": "I contenuti educativi e prodotto supportano l’approvvigionamento per ricerca. Non sono consigli medici e non devono essere interpretati come indicazioni di dosaggio, trattamento o sicurezza per esseri umani o animali.",
     "disclaimerBeforeTitle": "Prima di ordinare",
-    "disclaimerBeforeBody": "Conferma che l’uso previsto sia legale, che le approvazioni istituzionali siano in vigore e che il laboratorio disponga di procedure adeguate di conservazione e manipolazione."
+    "disclaimerBeforeBody": "Conferma che l’uso previsto sia legale, che le approvazioni istituzionali siano in vigore e che il laboratorio disponga di procedure adeguate di conservazione e manipolazione.",
+    "impressumMetaTitle": "Note legali | Peptide Shop",
+    "impressumMetaDescription": "Identificazione del fornitore ai sensi del § 5 TMG con registro delle imprese, contatti e risoluzione delle controversie online UE.",
+    "impressumEyebrow": "Legale",
+    "impressumTitle": "Note legali",
+    "impressumDescription": "Identificazione del fornitore ai sensi del § 5 TMG e della direttiva UE 2000/31/CE.",
+    "impressumProviderTitle": "Fornitore",
+    "impressumProviderBody": "I dati del fornitore sono resi dal record dell'entità legale.",
+    "impressumContactTitle": "Contatto",
+    "impressumEmailLabel": "E-mail",
+    "impressumRegistryTitle": "Registro delle imprese",
+    "impressumRegistryBody": "I dati del registro imprese sono resi dal record dell'entità legale.",
+    "impressumVatTitle": "Numero di partita IVA",
+    "impressumVatBody": "I dati IVA sono resi dal record dell'entità legale.",
+    "impressumResponsibleTitle": "Responsabile dei contenuti",
+    "impressumResponsibleBody": "I dati del responsabile editoriale sono resi dal record dell'entità legale.",
+    "impressumDisputeTitle": "Risoluzione online delle controversie UE",
+    "impressumDisputeBody": "La Commissione europea fornisce una piattaforma di risoluzione online delle controversie: <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. Non siamo tenuti né disposti a partecipare a procedure di risoluzione delle controversie davanti a un organo arbitrale per i consumatori.",
+    "impressumLiabilityTitle": "Responsabilità per contenuti e link",
+    "impressumLiabilityBody": "In qualità di prestatore di servizi siamo responsabili dei nostri contenuti ai sensi del § 7 (1) TMG. Ai sensi dei §§ 8-10 TMG non siamo obbligati a monitorare le informazioni di terzi trasmesse o memorizzate. I link esterni sono stati verificati al momento dell'inserimento."
   },
   "bundles": {
     "metaTitle": "Bundle di peptidi per ricerca | Peptide Shop",
@@ -860,8 +880,8 @@
     },
     "useCases": {
       "weight-loss": {
-        "name": "Ricerca sulla perdita di peso",
-        "description": "Peptidi di riferimento agonisti GLP-1, GIP, glucagone e amilina usati nella ricerca su perdita di peso e malattie metaboliche."
+        "name": "Ricerca metabolica",
+        "description": "Peptidi di riferimento agonisti GLP-1, GIP, glucagone e amilina usati in modelli metabolici e di peso corporeo."
       },
       "muscle-recovery": {
         "name": "Ricerca su recupero muscolare e tissutale",

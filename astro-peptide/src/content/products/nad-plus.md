@@ -1,197 +1,107 @@
 ---
-id: "peptide-nad-plus"
-title: "Buy NAD+ UK | Nicotinamide Adenine Dinucleotide"
-primary_keyword: "buy nad+ uk"
-search_volume: "5400"
-slug: "/peptides/buy-nad-plus"
-aliases: ["NAD+", "Nicotinamide Adenine Dinucleotide", "NAD"]
-cas: "53-84-9"
-molecular_weight: "663.4 g/mol"
-purity: "≥ 99%"
+id: peptide-nad-plus
+title: NAD+ 500 mg — research grade
+primary_keyword: nad+ research
+search_volume: 5400
+aliases:
+  - NAD+
+  - Nicotinamide Adenine Dinucleotide
+  - NAD
+cas: 53-84-9
+molecular_weight: 663.4 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 500 mg vials"]
-moq: 200
-price: 2500
-price_range: "£2500 per pack"
-coa_url: "/coa/nad-plus.pdf"
-short_description: "Buy NAD+ UK. Nicotinamide adenine dinucleotide for cellular research. ≥99% purity. Fast UK delivery."
-category: "cognitive"
-tags: ["research-peptide", "nad-uk", "longevity", "buy-peptides-uk", "cognitive", "cellular-energy"]
-images: ["/images/products/nad-plus.jpg"]
+package_sizes:
+  - 1 × 500 mg vial
+moq: 1
+price: 55
+price_range: €55 per vial
+short_description: NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO.
+category: cognitive
+researchArea: cell-permeable
+useCases:
+  - anti-aging
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - cell-permeable
+  - anti-aging
+  - cognitive
+  - research-peptide
+  - longevity
+  - cellular-energy
+  - nad-plus
+images:
+  - /images/products/nad-plus.svg
 meta:
-  title: "Buy NAD+ UK | Cellular Energy Research | Fast Delivery"
-  description: "Buy NAD+ UK. Premium NAD+ for cellular and longevity research. ≥99% purity, COA included. Fast UK delivery."
+  title: NAD+ 500 mg — research grade | Peptide Shop
+  description: Research-grade NAD⁺, lot COA and research-use labelling. RUO.
 faqs:
-  - question: "What is NAD+ used for in research?"
-    answer: "NAD+ is studied for cellular energy metabolism, sirtuin activation, DNA repair, mitochondrial function, and longevity mechanisms."
-  - question: "How does NAD+ work?"
-    answer: "NAD+ is essential for redox reactions, serving as an electron carrier in metabolism. It also activates sirtuins and PARPs involved in cellular repair."
-  - question: "What are sirtuins?"
-    answer: "Sirtuins are NAD+-dependent enzymes that regulate metabolism, stress response, and ageing. Seven sirtuins (SIRT1-7) are found in mammals."
-  - question: "How should NAD+ be stored?"
-    answer: "Store lyophilised NAD+ at -20°C. Reconstituted solutions should be kept at 2-8°C and used promptly due to stability concerns."
-  - question: "What purity is your NAD+?"
-    answer: "Our NAD+ is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "Why do NAD+ levels decline with age?"
-    answer: "NAD+ declines due to reduced synthesis and increased consumption by repair enzymes. This decline is associated with age-related changes."
-  - question: "How do I reconstitute NAD+?"
-    answer: "Reconstitute in sterile water. Use freshly prepared solutions for best results."
-  - question: "What sizes are available?"
-    answer: "NAD+ is available in 100mg, 500mg, and 1g quantities."
-reviews:
-  - author: "Dr. Jennifer Walsh"
-    rating: 5
-    date: "2024-12-08"
-    title: "Essential for cellular research"
-    content: "NAD+ quality is exceptional. Our sirtuin studies depend on this purity."
-    verified: true
-  - author: "Cambridge Metabolism Lab"
-    rating: 5
-    date: "2024-12-01"
-    title: "Premium quality"
-    content: "Cellular energy assays working excellently. Quality is research-grade."
-    verified: true
-  - author: "James Foster"
-    rating: 5
-    date: "2024-11-24"
-    title: "Excellent product"
-    content: "Fast delivery, excellent quality. Mitochondrial research progressing well."
-    verified: true
-  - author: "Edinburgh Longevity Lab"
-    rating: 5
-    date: "2024-11-17"
-    title: "Reliable supplier"
-    content: "Consistent quality for our ageing research."
-    verified: true
-  - author: "Dr. Michael Roberts"
-    rating: 5
-    date: "2024-11-10"
-    title: "Outstanding purity"
-    content: "Purity verification confirms excellent quality. Essential for our work."
-    verified: true
-  - author: "Manchester Mitochondria Lab"
-    rating: 5
-    date: "2024-11-03"
-    title: "Excellent service"
-    content: "Fast delivery, great quality for cellular studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-27"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Ageing Lab"
-    rating: 5
-    date: "2024-10-20"
-    title: "Very good"
-    content: "Quality is excellent for sirtuin research."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 5
-    date: "2024-10-13"
-    title: "Premium research compound"
-    content: "Excellent for DNA repair studies."
-    verified: true
-  - author: "Newcastle Metabolism Lab"
-    rating: 5
-    date: "2024-10-06"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
-  - author: "Michael Thompson"
-    rating: 5
-    date: "2024-09-29"
-    title: "Great experience"
-    content: "Easy ordering, quick delivery."
-    verified: true
-  - author: "Glasgow Cell Biology Lab"
-    rating: 5
-    date: "2024-09-22"
-    title: "Excellent supplier"
-    content: "High-quality NAD+ with proper documentation."
-    verified: true
-  - author: "Dr. Robert Hayes"
-    rating: 5
-    date: "2024-09-15"
-    title: "Research standard"
-    content: "Excellent for cellular energy research."
-    verified: true
-  - author: "Birmingham Longevity Lab"
-    rating: 5
-    date: "2024-09-08"
-    title: "Premium quality"
-    content: "Consistently high purity."
-    verified: true
+  - question: What is NAD+ used for in research?
+    answer: NAD+ is studied in cellular energy metabolism, sirtuin activation, DNA-damage response, mitochondrial function, and ageing-biology mechanisms.
+  - question: How does NAD+ work?
+    answer: NAD+ is essential for redox reactions, serving as an electron carrier in metabolism. It also activates sirtuins and PARPs involved in DNA-damage response pathways.
+  - question: What are sirtuins?
+    answer: Sirtuins are NAD+-dependent enzymes that regulate metabolism, stress response, and ageing. Seven sirtuins (SIRT1-7) are found in mammals.
+  - question: How should NAD+ be stored?
+    answer: Store lyophilised NAD+ at -20°C. Reconstituted solutions should be kept at 2-8°C and used promptly due to stability concerns.
+  - question: What purity is your NAD+?
+    answer: Our NAD+ is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: Why do NAD+ levels decline with age?
+    answer: NAD+ levels can decline in models where synthesis changes or consumption by PARP and sirtuin pathways increases. This is studied in ageing-biology research.
+  - question: How do I reconstitute NAD+?
+    answer: Reconstitute in sterile water. Use freshly prepared solutions for best results.
+  - question: What sizes are available?
+    answer: NAD+ is available in 100mg, 500mg, and 1g quantities.
 ---
 
-## What is NAD+?
+## NAD+ 500 mg research overview
 
-**NAD+** (Nicotinamide Adenine Dinucleotide) is a coenzyme found in all living cells that plays fundamental roles in energy metabolism, DNA repair, and cellular signalling. NAD+ is essential for hundreds of enzymatic reactions and is a key regulator of cellular health.
+NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO.
 
-Interest in NAD+ has surged due to its central role in ageing research, particularly its relationship with sirtuins and cellular repair mechanisms. NAD+ levels naturally decline with age, driving research into maintaining cellular NAD+ pools.
+NAD+ is a central redox cofactor used in mitochondrial, sirtuin, PARP and cellular-energy research.
 
-Peptide Shop supplies **research-grade NAD+** with guaranteed ≥99% purity.
+Peptide Shop supplies NAD+ 500 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does NAD+ Work?
+## Research use
 
-### Energy Metabolism
-- **Electron carrier** - Redox reactions
-- **Glycolysis** - Energy production
-- **Oxidative phosphorylation** - ATP synthesis
-- **Mitochondrial function** - Cellular energy
+- Mitochondrial metabolism and redox studies
+- Sirtuin and PARP pathway models
+- Cellular cofactor and ageing research
 
-### Sirtuin Activation
-- **SIRT1-7** - Deacetylase enzymes
-- **Metabolic regulation** - Cellular adaptation
-- **Stress response** - Protection
-- **Gene expression** - Longevity pathways
+Mapped to cell-permeable cofactor and longevity research clusters.
 
-### DNA Repair
-- **PARP enzymes** - DNA damage response
-- **Genome stability** - Maintenance
-- **Cellular health** - Protection
+## Sequence and analytical data
 
-## Research Applications
+| Field | Detail |
+|---|---|
+| Product ID | peptide-nad-plus |
+| Package size | 1 × 500 mg vial |
+| CAS number | 53-84-9 |
+| Molecular weight | 663.4 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Ageing Research
-- **NAD+ decline** - Age-related changes
-- **Sirtuin biology** - Longevity mechanisms
-- **Cellular senescence** - Ageing processes
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Metabolism
-- **Energy production** - Mitochondria
-- **Metabolic disease** - Dysfunction research
-- **Exercise response** - Adaptation
+## Reconstitution and handling
 
-## NAD+ Specifications
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 53-84-9 |
-| **Molecular Formula** | C21H27N7O14P2 |
-| **Molecular Weight** | 663.4 g/mol |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White to off-white powder |
-| **Solubility** | Soluble in water |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 12 months |
-| **Reconstituted** | 2-8°C | Use promptly |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **100 mg** | From £45 |
-| **500 mg** | From £95 |
-| **1 g** | From £185 |
+- [Browse related research materials](/catalog/cell-permeable/)
+- [View use-case hub](/use-case/anti-aging/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+NAD+ 500 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

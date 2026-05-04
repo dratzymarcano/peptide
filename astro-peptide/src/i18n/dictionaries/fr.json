@@ -54,7 +54,8 @@
     "copyright": "© {year} Peptide Shop. Tous droits réservés.",
     "terms": "Conditions",
     "privacy": "Confidentialité",
-    "disclaimer": "Avertissement"
+    "disclaimer": "Avertissement",
+    "impressum": "Mentions légales"
   },
   "shopSidebar": {
     "researchArea": "Domaine de recherche",
@@ -474,7 +475,26 @@
     "disclaimerScientificTitle": "Information scientifique",
     "disclaimerScientificBody": "Le contenu éducatif et produit soutient l’achat de recherche. Ce n’est pas un avis médical et ne doit pas être interprété comme dosage, traitement ou conseil sécurité pour humains ou animaux.",
     "disclaimerBeforeTitle": "Avant de commander",
-    "disclaimerBeforeBody": "Confirmez que votre usage prévu est légal, que les approbations institutionnelles sont en place et que votre laboratoire dispose de procédures adaptées de stockage et manipulation."
+    "disclaimerBeforeBody": "Confirmez que votre usage prévu est légal, que les approbations institutionnelles sont en place et que votre laboratoire dispose de procédures adaptées de stockage et manipulation.",
+    "impressumMetaTitle": "Mentions légales | Peptide Shop",
+    "impressumMetaDescription": "Identification du fournisseur conformément au § 5 TMG, registre du commerce, contact et règlement extrajudiciaire des litiges UE.",
+    "impressumEyebrow": "Légal",
+    "impressumTitle": "Mentions légales",
+    "impressumDescription": "Identification du fournisseur selon le § 5 TMG et la directive UE 2000/31/CE.",
+    "impressumProviderTitle": "Fournisseur",
+    "impressumProviderBody": "Les informations du fournisseur sont rendues depuis la fiche de l'entité légale.",
+    "impressumContactTitle": "Contact",
+    "impressumEmailLabel": "E-mail",
+    "impressumRegistryTitle": "Registre du commerce",
+    "impressumRegistryBody": "Les informations du registre sont rendues depuis la fiche de l'entité légale.",
+    "impressumVatTitle": "Numéro de TVA intracommunautaire",
+    "impressumVatBody": "Les informations de TVA sont rendues depuis la fiche de l'entité légale.",
+    "impressumResponsibleTitle": "Responsable du contenu",
+    "impressumResponsibleBody": "Les informations du responsable éditorial sont rendues depuis la fiche de l'entité légale.",
+    "impressumDisputeTitle": "Règlement extrajudiciaire des litiges UE",
+    "impressumDisputeBody": "La Commission européenne met à disposition une plateforme de règlement en ligne des litiges : <a href=\"https://ec.europa.eu/consumers/odr\" rel=\"nofollow noopener\">https://ec.europa.eu/consumers/odr</a>. Nous ne sommes ni tenus ni disposés à participer à une procédure de règlement des litiges devant un organe d'arbitrage de consommation.",
+    "impressumLiabilityTitle": "Responsabilité du contenu et des liens",
+    "impressumLiabilityBody": "En tant que prestataire de services, nous sommes responsables de notre propre contenu conformément au § 7 (1) TMG. Selon les §§ 8 à 10 TMG, nous ne sommes pas tenus de surveiller les informations transmises ou stockées de tiers. Les liens externes ont été vérifiés lors de leur insertion."
   },
   "bundles": {
     "metaTitle": "Packs de peptides de recherche | Peptide Shop",
@@ -793,7 +813,7 @@
       },
       "cell-tissue": {
         "name": "Réparation cellulaire & tissulaire",
-        "short": "Regeneration, gastrique, réparation tendineuse",
+        "short": "Migration cellulaire, gastrique, modeles tendineux",
         "description": "Peptides de référence utilisés dans les modeles de réparation tendineuse, gastrique et du tissu conjonctif.",
         "keywords": {
           "0": "peptides de réparation tissulaire",
@@ -860,8 +880,8 @@
     },
     "useCases": {
       "weight-loss": {
-        "name": "Recherche sur la perte de poids",
-        "description": "Peptides de référence agonistes GLP-1, GIP, glucagon et amyline utilisés dans la recherche sur la perte de poids et les maladies métaboliques."
+        "name": "Recherche métabolique",
+        "description": "Peptides de référence agonistes GLP-1, GIP, glucagon et amyline utilisés dans les modeles métaboliques et de poids corporel."
       },
       "muscle-recovery": {
         "name": "Recherche sur recuperation musculaire et tissulaire",

@@ -1,1 +1,12 @@
 node_modules
+dist
+.astro
+.vite
+
+# Test artefacts
+playwright-report
+test-results
+.lighthouseci
+astro-peptide/scripts/i18n-extract-report.json
+astro-peptide/.preview.pid
+

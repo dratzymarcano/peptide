@@ -1,72 +1,72 @@
-# Peptide Research E-Commerce Project
+# Peptide Shop Astro Website
 
-This is a high-performance, SEO-optimized Astro website designed for selling research-use-only peptides. It features a static catalog, a client-side enquiry cart, and a serverless backend for handling quote requests.
+SEO-focused Astro storefront for research-use-only peptide catalogue content. The site keeps product, blog, catalogue, use-case and learn pages server-rendered or prerendered where possible, with React islands only for interactive search, cart, checkout and account UI.
 
-## Project Structure
+## Stack
 
-*   `src/pages/`: Routes for the website.
-    *   `peptides/[slug].astro`: Dynamic product pages generated from content.
-    *   `api/enquiry.ts`: Serverless function to handle form submissions.
-*   `src/content/products/`: Markdown files containing product data and long-form content.
-*   `src/components/`: Reusable UI components (Header, Footer, Cart, etc.).
-*   `src/scripts/`: Client-side logic (Cart store using Nano Stores).
+- Astro 5 with `@astrojs/node` standalone adapter
+- React islands for cart, checkout, account, search and product options
+- Astro content collections for products and blog articles
+- Nano Stores for browser cart/auth state
+- Global design system in `public/css/design-system.css`
+- Sitemap generation with `@astrojs/sitemap`
 
-## Setup & Local Development
+## Commands
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-
-2.  **Start Dev Server:**
-    ```bash
-    npm run dev
-    ```
-
-3.  **Build for Production:**
-    ```bash
-    npm run build
-    ```
-
-## Adding Products
-
-1.  Create a new `.md` file in `src/content/products/`.
-2.  Follow the frontmatter schema defined in `src/content/config.ts`.
-3.  Ensure the `slug` follows the pattern `/peptides/buy-[keyword]`.
-4.  Add at least 800 words of research-focused content in the body.
-
-## Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root for local development (and set these in Cloudflare Pages settings for production):
-
-```env
-SUPABASE_URL=your_supabase_project_url
-SUPABASE_KEY=your_supabase_anon_key
+```bash
+npm install
+npm run dev
+npm run check
+npm run build
+npm run validate
 ```
 
-### Cloudflare Pages Deployment
+`npm run validate` runs `astro check` followed by a production build. CI runs the same check/build gate on pushes and pull requests.
 
-1.  Connect your GitHub repository to Cloudflare Pages.
-2.  **Build Command:** `npm run build`
-3.  **Build Output Directory:** `dist`
-4.  **Environment Variables:** Add the Supabase credentials in the dashboard.
-5.  **Compatibility Flags:** Ensure `nodejs_compat` is enabled if using specific Node APIs in functions.
+## Key Routes
 
-## Enquiry Workflow
+- `/` homepage
+- `/shop/` product listing with filters and sort
+- `/catalog/` research-area hub
+- `/catalog/[area]/` research-area pages
+- `/use-case/[slug]/` use-case pages
+- `/peptides/[slug]/` product detail pages
+- `/search/?q=...` server-rendered search results
+- `/blog/` and `/blog/[slug]/`
+- `/learn/` and `/learn/what-are-peptides/`
+- `/cart/`, `/checkout/`, `/account/dashboard/` noindex commerce/account pages
 
-1.  User adds items to the Enquiry Cart.
-2.  User submits the form (requires "Research Use Only" confirmation).
-3.  Data is posted to `/api/enquiry`.
-4.  Server validates and saves to Supabase `enquiries` table.
-5.  **Admin Action:**
-    *   Log in to Supabase Dashboard.
-    *   Review new rows in `enquiries`.
-    *   If approved, manually generate an invoice (PDF) and email it to the customer.
-    *   Update status to `approved` or `invoiced`.
+## Content Editing
 
-## Safety & Compliance
+Products live in `src/content/products/*.md`. Product slugs are filename-based, so do not add a `slug` frontmatter field. Required product taxonomy fields are:
 
-*   **Research Only:** All content must strictly adhere to "Research Use Only" language. No human use claims.
-*   **Disclaimer:** The site includes global disclaimers and a mandatory checkbox at checkout.
+- `researchArea`: one of the research-area slugs from `src/data/taxonomy.ts`
+- `useCases`: zero or more use-case slugs from `src/data/taxonomy.ts`
+- `images`: use `/images/products/research-vial.svg` unless a final approved product image exists
+
+Product copy must stay research-use-only. Avoid claims about human use, treatment, dosage, consumption, cosmetic outcomes or veterinary use.
+
+Blog articles live in `src/content/blog/*.md`. Use existing images in `public/images/blog/` unless new approved assets are added.
+
+## COA Flow
+
+Product pages currently link to `/coa-policy/` for COA policy and request guidance. Do not add direct `/coa/*.pdf` product links unless the corresponding PDF exists in `public/coa/` and has been approved for publication.
+
+## Compliance Notes
+
+- RUO banner appears on product pages and footer.
+- `/cart/`, `/checkout/`, `/account/**` and `/api/**` are excluded from sitemap and marked noindex where rendered.
+- Legacy peptide category/product-buy URLs are redirected in `astro.config.mjs`.
+- Keep legal review on product, shipping, terms, privacy and disclaimer updates before launch.
+
+## Deployment Notes
+
+This project uses Astro server output with the Node standalone adapter. Deploy to a Node-capable host, or update the adapter before deploying to a static-only platform.
+
+Production gate before launch:
+
+1. `npm run validate`
+2. Smoke test `/`, `/shop/`, `/catalog/`, one `/catalog/[area]/`, one `/use-case/[slug]/`, one product, `/cart/`, `/checkout/`, `/blog/`, one blog post, `/learn/what-are-peptides/`, and `/quality/`
+3. Verify redirects on the deployed host
+4. Run Lighthouse/PageSpeed on production output
+5. Confirm legal/compliance sign-off

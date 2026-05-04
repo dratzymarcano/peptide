@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { researchAreas, useCases } from '../data/taxonomy';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const areaName = (slug: string) => t(`taxonomy.researchAreas.${slug}.name`);
+const useCaseName = (slug: string) => t(`taxonomy.useCases.${slug}.name`);
+---
+
+<Layout
+  title={t('notFound.metaTitle')}
+  description={t('notFound.metaDescription')}
+  noindex={true}
+>
+  <section class="section not-found-page display-typography">
+    <div class="container not-found-grid">
+      <div>
+        <span class="eyebrow-rule">{t('notFound.eyebrow')}</span>
+        <h1 class="display" style="font-family: var(--font-display); font-size: var(--text-display-lg); letter-spacing:-0.03em; line-height:1.02;">{t('notFound.title')}</h1>
+        <p class="lead" style="margin-top: var(--space-5);">
+          {t('notFound.lead')}
+        </p>
+        <form class="search-form" action={href('/search/')} method="get" role="search">
+          <label class="sr-only" for="not-found-search">{t('search.searchCatalogue')}</label>
+          <input class="input" id="not-found-search" name="q" type="search" placeholder={t('notFound.searchPlaceholder')} />
+          <button class="btn btn-primary" type="submit">{t('search.search')}</button>
+        </form>
+        <div class="actions">
+          <a href={href('/catalog/')} class="btn btn-secondary">{t('catalogIndex.browseCatalogue')}</a>
+          <a href={href('/contact/')} class="btn btn-ghost">{t('footer.contactSupport')}</a>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h2>{t('notFound.topAreas')}</h2>
+        <ul class="link-list">
+          {researchAreas.slice(0, 6).map((area) => (
+            <li><a href={href(`/catalog/${area.slug}/`)}>{areaName(area.slug)}</a></li>
+          ))}
+        </ul>
+        <hr class="divider" />
+        <h2>{t('nav.useCases')}</h2>
+        <ul class="link-list">
+          {useCases.map((useCase) => (
+            <li><a href={href(`/use-case/${useCase.slug}/`)}>{useCaseName(useCase.slug)}</a></li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found-grid {
+    display: grid;
+    gap: var(--space-10);
+    align-items: start;
+  }
+  .search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    max-width: 720px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .link-list a {
+    color: var(--color-ink-2);
+    text-decoration: none;
+  }
+  .link-list a:hover { color: var(--color-primary); text-decoration: underline; }
+  @media (min-width: 960px) {
+    .not-found-grid { grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr); }
+  }
+  @media (max-width: 640px) {
+    .search-form { grid-template-columns: 1fr; }
+  }
+</style>

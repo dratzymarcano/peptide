@@ -1,144 +1,103 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import PageTitle from '../../components/PageTitle.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getLocaleFromPathname, localizePath } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const learnEntries = (await getCollection('learn'))
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
 
 const guides = [
   {
-    title: "What Are Peptides?",
-    description: "A comprehensive introduction to peptides, amino acid chains, and their significance in scientific research.",
-    href: "/learn/what-are-peptides",
-    icon: "book-open",
-    readTime: "8 min read"
-  }
+    title: t('learn.guides.peptides.title'),
+    description: t('learn.guides.peptides.description'),
+    href: href('/learn/what-are-peptides/'),
+    readTime: t('learn.readTimeEight'),
+    category: t('learn.eyebrow'),
+  },
+  ...learnEntries.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.description,
+    href: href(`/learn/${entry.slug}/`),
+    readTime: entry.data.readTime,
+    category: entry.data.category,
+  })),
 ];
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('learn.breadcrumb'), url: href('/learn/') },
+];
+
+const learningSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('learn.schemaName'),
+  description: t('learn.schemaDescription'),
+  url: new URL(href('/learn/'), Astro.site).toString(),
+  inLanguage: locale,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: guides.map((guide, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: guide.title,
+      url: new URL(guide.href, Astro.site).toString(),
+    })),
+  },
+};
 ---
 
-<Layout 
-  title="Learn About Peptides | Educational Resources | Peptide Shop" 
-  description="Educational resources about research peptides, synthesis, storage, and applications. Comprehensive guides for researchers and scientists."
-  breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Learn", url: "/learn" }
-  ]}
+<Layout
+  title={t('learn.metaTitle')}
+  description={t('learn.metaDescription')}
+  breadcrumbs={breadcrumbs}
 >
-  <style>
-    .learn-hero {
-      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-      padding: 100px 0 60px;
-    }
-    
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #1e293b;
-      margin-bottom: 16px;
-    }
-    
-    .hero-subtitle {
-      color: #64748b;
-      font-size: 1.125rem;
-      max-width: 600px;
-    }
-    
-    .guides-section {
-      padding: 80px 0;
-    }
-    
-    .guides-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-    
-    @media (max-width: 991px) {
-      .guides-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (max-width: 575px) {
-      .guides-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .guide-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 32px;
-      transition: all 0.3s;
-      text-decoration: none;
-      display: block;
-    }
-    
-    .guide-card:hover {
-      border-color: #0077b6;
-      box-shadow: 0 8px 24px rgba(0,119,182,0.1);
-      transform: translateY(-4px);
-    }
-    
-    .guide-icon {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    
-    .guide-icon svg {
-      width: 28px;
-      height: 28px;
-      stroke: #0077b6;
-    }
-    
-    .guide-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 12px;
-    }
-    
-    .guide-description {
-      color: #64748b;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    
-    .guide-meta {
-      color: #0077b6;
-      font-size: 14px;
-      font-weight: 600;
-    }
-  </style>
+  <JsonLd schema={learningSchema} />
 
-  <PageTitle 
-    title="Learn About Peptides"
-    subtitle="Educational resources and guides about research peptides, synthesis methods, storage protocols, and scientific applications."
-    breadcrumbs={[
-      { name: "Home", url: "/" },
-      { name: "Learn" }
-    ]}
-  />
-
-  <section class="guides-section">
+  <section class="content-page section">
     <div class="container">
-      <div class="guides-grid">
-        {guides.map((guide) => (
-          <a href={guide.href} class="guide-card">
-            <div class="guide-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                {guide.icon === 'book-open' && <><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></>}
-              </svg>
-            </div>
-            <h2 class="guide-title">{guide.title}</h2>
-            <p class="guide-description">{guide.description}</p>
-            <span class="guide-meta">{guide.readTime} →</span>
-          </a>
-        ))}
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="page-heading">
+        <span class="eyebrow">{t('learn.eyebrow')}</span>
+        <h1>{t('learn.title')}</h1>
+        <p>{t('learn.description')}</p>
+      </div>
+
+      <div class="content-layout">
+        <main class="article-grid" aria-label={t('learn.guidesLabel')}>
+          {guides.map((guide) => (
+            <a class="learning-card card" href={guide.href}>
+              <span class="badge badge-blue">{t('learn.guideBadge', { readTime: guide.readTime })}</span>
+              <h2>{guide.title}</h2>
+              <p>{guide.description}</p>
+              <span class="text-primary">{t('learn.readGuide')}</span>
+            </a>
+          ))}
+        </main>
+
+        <aside class="content-sidebar">
+          <section class="card">
+            <h2>{t('learn.relatedResources')}</h2>
+            <a class="btn btn-secondary" href={href('/quality/')}>{t('learn.qualityStandards')}</a>
+            <a class="btn btn-secondary" href={href('/coa-policy/')}>{t('support.coaPolicy')}</a>
+            <a class="btn btn-secondary" href={href('/blog/')}>{t('blog.breadcrumb')}</a>
+          </section>
+          <section class="card">
+            <h2>{t('nav.catalogue')}</h2>
+            <p>{t('learn.catalogueBody')}</p>
+            <a class="btn btn-primary" href={href('/catalog/')}>{t('learn.openCatalogue')}</a>
+          </section>
+        </aside>
       </div>
     </div>
   </section>

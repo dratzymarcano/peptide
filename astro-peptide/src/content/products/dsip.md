@@ -1,169 +1,104 @@
 ---
-id: "peptide-dsip"
-title: "Buy DSIP UK | Delta Sleep-Inducing Peptide"
-primary_keyword: "buy dsip uk"
-search_volume: "2200"
-slug: "/peptides/buy-dsip"
-aliases: ["Delta Sleep Inducing Peptide", "DSIP"]
-cas: "62568-57-4"
-molecular_weight: "848.8 g/mol"
-purity: "≥ 99%"
+id: peptide-dsip
+title: DSIP 5 mg — research grade
+primary_keyword: dsip research
+search_volume: 2200
+aliases:
+  - Delta Sleep Inducing Peptide
+  - DSIP
+cas: 62568-57-4
+molecular_weight: 848.8 g/mol
+purity: ≥ 99%
 storage: "-20°C recommended (research-only)"
-package_sizes: ["10 × 5 mg vials"]
-moq: 200
-price: 220
-price_range: "£220 per pack"
-coa_url: "/coa/dsip.pdf"
-short_description: "Buy DSIP UK. Delta sleep-inducing peptide for sleep research. ≥99% purity. Fast UK delivery."
-category: "cognitive"
-tags: ["research-peptide", "dsip-uk", "sleep", "buy-peptides-uk", "cognitive", "nootropic"]
-images: ["/images/products/dsip.jpg"]
+package_sizes:
+  - 1 × 5 mg vial
+moq: 1
+price: 15
+price_range: €15 per vial
+short_description: DSIP neuropeptide for sleep, stress-response and CNS research models. COA supplied. RUO.
+category: cognitive
+researchArea: neuroscience
+useCases:
+  - cognitive
+tags:
+  - research-use-only
+  - coa-included
+  - neuroscience
+  - cognitive
+  - research-peptide
+  - sleep
+  - nootropic
+  - dsip
+images:
+  - /images/products/dsip.svg
 meta:
-  title: "Buy DSIP UK | Sleep Peptide | Fast Delivery"
-  description: "Buy DSIP UK. Premium delta sleep-inducing peptide for research. ≥99% purity, COA included. Fast UK delivery."
+  title: DSIP 5 mg — research grade | Peptide Shop
+  description: Delta sleep-inducing peptide, lot COA, research-use labelling. RUO.
 faqs:
-  - question: "What is DSIP used for in research?"
-    answer: "DSIP is studied for its effects on sleep regulation, circadian rhythms, stress response, and neuroendocrine function. It was originally isolated from rabbit brain."
-  - question: "How does DSIP work?"
-    answer: "DSIP appears to modulate multiple receptor systems and influence the hypothalamic-pituitary axis. Its exact mechanisms continue to be investigated."
-  - question: "What is the origin of DSIP?"
-    answer: "DSIP was first isolated in 1977 from rabbit brain during sleep studies. It's a nonapeptide found in various tissues."
-  - question: "How should DSIP be stored?"
-    answer: "Store lyophilised DSIP at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks."
-  - question: "What purity is your DSIP?"
-    answer: "Our DSIP is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis."
-  - question: "Does DSIP affect cortisol?"
-    answer: "Research suggests DSIP may modulate stress hormone levels, including potential effects on cortisol and ACTH."
-  - question: "How do I reconstitute DSIP?"
-    answer: "Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve."
-  - question: "What sizes are available?"
-    answer: "DSIP is available in 2mg and 5mg vials."
-reviews:
-  - author: "Dr. Elizabeth Morgan"
-    rating: 5
-    date: "2024-12-07"
-    title: "Excellent for sleep research"
-    content: "Our circadian rhythm studies depend on quality DSIP. Peptide Shop delivers consistently."
-    verified: true
-  - author: "Cambridge Sleep Lab"
-    rating: 5
-    date: "2024-11-30"
-    title: "Premium quality"
-    content: "DSIP quality is exceptional for our neuroendocrine research."
-    verified: true
-  - author: "James Foster"
-    rating: 5
-    date: "2024-11-23"
-    title: "Excellent product"
-    content: "Fast delivery, excellent quality. Sleep studies progressing well."
-    verified: true
-  - author: "Edinburgh Neuroscience Lab"
-    rating: 5
-    date: "2024-11-16"
-    title: "Reliable supplier"
-    content: "Consistent quality for our stress response research."
-    verified: true
-  - author: "Dr. Michael Roberts"
-    rating: 5
-    date: "2024-11-09"
-    title: "Outstanding purity"
-    content: "Purity verification confirms excellent quality."
-    verified: true
-  - author: "Manchester Chronobiology Lab"
-    rating: 5
-    date: "2024-11-02"
-    title: "Excellent service"
-    content: "Fast delivery, great quality for circadian studies."
-    verified: true
-  - author: "Sophie Williams"
-    rating: 5
-    date: "2024-10-26"
-    title: "Fast delivery"
-    content: "Express delivery was prompt. Quality excellent."
-    verified: true
-  - author: "Oxford Sleep Research"
-    rating: 5
-    date: "2024-10-19"
-    title: "Very good"
-    content: "Quality is excellent for sleep architecture research."
-    verified: true
-  - author: "Dr. Catherine Moore"
-    rating: 5
-    date: "2024-10-12"
-    title: "Premium research peptide"
-    content: "Excellent for neuroendocrine studies."
-    verified: true
-  - author: "Newcastle Sleep Lab"
-    rating: 5
-    date: "2024-10-05"
-    title: "Reliable quality"
-    content: "Multiple orders, consistently excellent."
-    verified: true
+  - question: What is DSIP used for in research?
+    answer: DSIP is studied for its effects on sleep regulation, circadian rhythms, stress response, and neuroendocrine function. It was originally isolated from rabbit brain.
+  - question: How does DSIP work?
+    answer: DSIP appears to modulate multiple receptor systems and influence the hypothalamic-pituitary axis. Its exact mechanisms continue to be investigated.
+  - question: What is the origin of DSIP?
+    answer: DSIP was first isolated in 1977 from rabbit brain during sleep studies. It's a nonapeptide found in various tissues.
+  - question: How should DSIP be stored?
+    answer: Store lyophilised DSIP at -20°C. Once reconstituted, keep at 2-8°C and use within 3-4 weeks.
+  - question: What purity is your DSIP?
+    answer: Our DSIP is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
+  - question: Does DSIP affect cortisol?
+    answer: Research suggests DSIP may modulate stress hormone levels, including potential effects on cortisol and ACTH.
+  - question: How do I reconstitute DSIP?
+    answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
+  - question: What sizes are available?
+    answer: DSIP is available in 2mg and 5mg vials.
 ---
 
-## What is DSIP?
+## DSIP 5 mg research overview
 
-**DSIP** (Delta Sleep-Inducing Peptide) is a nonapeptide first isolated from rabbit brain in 1977 during research into sleep physiology. The peptide was named for its ability to promote delta wave sleep patterns in research models.
+DSIP neuropeptide for sleep, stress-response and CNS research models. COA supplied. RUO.
 
-Beyond sleep regulation, DSIP has demonstrated effects on stress response, pain perception, and neuroendocrine function, making it a versatile tool for neuroscience research.
+DSIP is a neuropeptide reference compound investigated in sleep, stress, endocrine and CNS-response research.
 
-Peptide Shop supplies **research-grade DSIP** with guaranteed ≥99% purity.
+Peptide Shop supplies DSIP 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
 
-## How Does DSIP Work?
+## Research use
 
-### Sleep Regulation
-- **Delta wave promotion** - Deep sleep patterns
-- **Circadian effects** - Rhythm modulation
-- **Sleep architecture** - Stage regulation
+- Sleep and circadian-response models
+- Stress-axis and endocrine studies
+- CNS neuropeptide research
 
-### Neuroendocrine
-- **HPA axis effects** - Stress response
-- **Cortisol modulation** - Hormone balance
-- **LH/FSH effects** - Reproductive hormones
+Use in neuroscience and cognitive research clusters.
 
-### Other Effects
-- **Analgesic properties** - Pain modulation
-- **Antioxidant** - Protective effects
-- **Stress adaptation** - Resilience
+## Sequence and analytical data
 
-## Research Applications
+| Field | Detail |
+|---|---|
+| Product ID | peptide-dsip |
+| Package size | 1 × 5 mg vial |
+| CAS number | 62568-57-4 |
+| Molecular weight | 848.8 g/mol |
+| Purity | ≥ 99% |
+| Storage | -20°C recommended (research-only) |
 
-### Sleep Research
-- **Insomnia models** - Sleep improvement
-- **Circadian rhythm** - Timing studies
-- **Sleep disorders** - Dysfunction research
+Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
 
-### Stress Research
-- **HPA axis** - Stress response
-- **Adaptation** - Resilience mechanisms
+## Reconstitution and handling
 
-## DSIP Specifications
+Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
 
-| Specification | Detail |
-|--------------|--------|
-| **CAS Number** | 62568-57-4 |
-| **Molecular Formula** | C35H48N10O15 |
-| **Molecular Weight** | 848.8 g/mol |
-| **Sequence** | Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu |
-| **Purity** | ≥99% (HPLC) |
-| **Appearance** | White lyophilised powder |
+Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
 
 ## Storage
 
-| Condition | Temperature | Duration |
-|-----------|-------------|----------|
-| **Lyophilised** | -20°C | Up to 24 months |
-| **Reconstituted** | 2-8°C | Up to 3-4 weeks |
+Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
 
-## Ordering Information
+## Related resources
 
-| Size | Price |
-|------|-------|
-| **2 mg** | From £32 |
-| **5 mg** | From £75 |
+- [Browse related research materials](/catalog/neuroscience/)
+- [View use-case hub](/use-case/cognitive/)
+- [COA policy](/coa-policy/)
+- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
 
-**Minimum order: £200** | **10% discount on orders over £200**
+## Research-use statement
 
-## Research Use Statement
-
-**For laboratory research only.** Not intended for human or veterinary use.
+DSIP 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.

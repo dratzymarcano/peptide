@@ -1,671 +1,461 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCanonicalCollection } from '../../lib/collections';
 import Layout from '../../layouts/Layout.astro';
-import PageTitle from '../../components/PageTitle.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import ProductOptions from '../../components/ProductOptions';
+import ProductCard from '../../components/ProductCard.astro';
+import { toCardProduct } from '../../lib/product';
 import ProductFAQs from '../../components/ProductFAQs.astro';
-import ProductReviews from '../../components/ProductReviews.astro';
-import RelatedProducts from '../../components/RelatedProducts.astro';
-import Sidebar from '../../components/Sidebar.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RUOBanner from '../../components/RUOBanner.astro';
+import ShopSidebar from '../../components/ShopSidebar.astro';
+import { getResearchArea, useCases } from '../../data/taxonomy';
+import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+import { getLocalizedProduct } from '../../i18n/productContent';
+import { getAvailableLocales, getLocalizedEntry } from '../../lib/localizedEntry';
+import { inLanguage } from '../../lib/schema';
+import { DEFAULT_LOCALE as DEFAULT_COA_LOCALE, SUPPORTED_LOCALES as SUPPORTED_COA_LOCALES } from '../../lib/coa/i18n';
+import entities from '../../data/entities.json';
 
-export const prerender = true;
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const products = await getCollection('products');
-  
-  return products.map(product => ({
-    params: { slug: product.slug.replace(/^\/peptides\//, '').replace(/^\//, '') },
-    props: { product },
-  }));
+const { slug: routeSlug } = Astro.params;
+const allProductsForLookup = await getCanonicalCollection('products');
+const product = allProductsForLookup.find((p) => {
+  const s = p.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+  return s === routeSlug;
+});
+if (!product) {
+  return new Response(null, { status: 404 });
+}
+const { Content } = await product.render();
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const currentSlug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+const availableLocales = await getAvailableLocales('products', currentSlug);
+
+// Per-locale markdown override. When a `<locale>/<slug>.md` exists under
+// `src/content/products/`, prefer its frontmatter (title, meta, faqs,
+// short_description, storage, price_range) and rendered body for non-English
+// locales. Falls back to the runtime helper otherwise.
+const localeOverride = locale !== 'en'
+  ? await getLocalizedEntry('products', currentSlug, locale)
+  : undefined;
+const hasOverride = !!(localeOverride && localeOverride.id !== `${currentSlug}.md`);
+const OverrideContent = hasOverride ? (await localeOverride!.render()).Content : null;
+
+let localizedProduct = getLocalizedProduct(product, locale);
+if (hasOverride && localeOverride) {
+  const od = localeOverride.data;
+  const cleanFromOverride = od.title.split(' — ')[0].split(' – ')[0].trim();
+  localizedProduct = {
+    ...localizedProduct,
+    title: od.title,
+    cleanTitle: cleanFromOverride,
+    shortDescription: od.short_description,
+    storage: od.storage,
+    priceRange: od.price_range,
+    meta: od.meta,
+    faqs: od.faqs ?? [],
+  };
 }
 
-// Helper to clean slug - removes /peptides/ prefix and leading slashes
-const cleanSlug = (slug: string) => slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+const cleanTitle = localizedProduct.cleanTitle;
+const productImage = product.data.images?.[0] ?? '/images/peptide-default.jpg';
+const siteUrl = 'https://peptide-shop.net';
+const productUrl = `${siteUrl}${href(`/peptides/${currentSlug}/`)}`;
+const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
+const researchArea = product.data.researchArea ? getResearchArea(product.data.researchArea) : undefined;
+const researchAreaName = researchArea ? t(`taxonomy.researchAreas.${researchArea.slug}.name`) : undefined;
+const productUseCases = (product.data.useCases ?? [])
+  .map((slug) => {
+    const useCase = useCases.find((candidate) => candidate.slug === slug);
+    return useCase ? { ...useCase, name: t(`taxonomy.useCases.${useCase.slug}.name`) } : undefined;
+  })
+  .filter(Boolean);
+const alternateCoaLocales = SUPPORTED_COA_LOCALES.filter((coaLocale) => coaLocale !== DEFAULT_COA_LOCALE);
 
-const { product } = Astro.props;
-const { Content } = await product.render();
-
-const priceRange = product.data.price_range;
-const productId = product.data.id;
-const productTitle = product.data.title;
-const currentSlug = cleanSlug(product.slug);
-const productImage = product.data.images && product.data.images[0] ? product.data.images[0] : '/images/peptide-default.jpg';
-
-// Extract numeric price from price_range
 const extractPrice = (priceStr: string): number => {
-  const match = priceStr?.match(/[\d,]+/);
+  const match = priceStr?.match(/[\d,]+(?:\.\d+)?/);
   return match ? parseFloat(match[0].replace(',', '')) : 99;
 };
-const productPrice = product.data.moq || extractPrice(priceRange);
 
-// Get FAQs and Reviews from frontmatter
-const faqs = product.data.faqs || [];
-const reviews = product.data.reviews || [];
+const productPrice = product.data.price ?? extractPrice(product.data.price_range);
+const reviews = product.data.reviews ?? [];
+const averageRating = reviews.length > 0
+  ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+  : null;
+const entityMap = entities as Record<string, { sameAs?: string[]; cas?: string | null; molecularFormula?: string | null; pubchem?: string | null; wikidata?: string | null }>;
+const productEntity = entityMap[currentSlug];
+const additionalProperties = [
+  product.data.cas && { '@type': 'PropertyValue', name: 'CAS Number', value: product.data.cas },
+  product.data.molecular_weight && { '@type': 'PropertyValue', name: 'Molecular weight', value: product.data.molecular_weight },
+  product.data.purity && { '@type': 'PropertyValue', name: 'Purity', value: product.data.purity },
+  productEntity?.molecularFormula && { '@type': 'PropertyValue', name: 'Molecular formula', value: productEntity.molecularFormula },
+].filter(Boolean);
 
-// Calculate average rating
-const avgRating = reviews.length > 0 
-  ? (reviews.reduce((sum: number, r: any) => sum + r.rating, 0) / reviews.length).toFixed(1)
-  : '5.0';
+const relatedProducts = allProductsForLookup
+  .filter((candidate) => candidate.slug !== product.slug && candidate.data.researchArea === product.data.researchArea)
+  .slice(0, 4);
 
-// Site URL for structured data
-const siteUrl = import.meta.env.SITE || 'https://peptide-shop.net';
-const productUrl = `${siteUrl}/peptides/${currentSlug}/`;
-const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
+const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
-// Product structured data for SEO
 const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', ''),
-  "description": product.data.meta.description,
-  "image": productImageUrl,
-  "sku": productId,
-  "brand": {
-    "@type": "Brand",
-    "name": "Peptide Shop"
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  inLanguage: inLanguage(locale),
+  name: cleanTitle,
+  description: localizedProduct.meta.description,
+  image: [productImageUrl],
+  sku: product.data.id,
+  mpn: product.data.id,
+  brand: {
+    '@type': 'Brand',
+    name: 'Peptide Shop',
   },
-  "offers": {
-    "@type": "Offer",
-    "url": productUrl,
-    "priceCurrency": "GBP",
-    "price": productPrice,
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Peptide Shop"
-    }
+  category: researchAreaName ?? product.data.category,
+  ...(productEntity?.sameAs?.length ? { sameAs: productEntity.sameAs } : {}),
+  ...(additionalProperties.length ? { additionalProperty: additionalProperties } : {}),
+  offers: {
+    '@type': 'Offer',
+    url: productUrl,
+    priceCurrency: 'EUR',
+    price: productPrice.toFixed(2),
+    priceValidUntil,
+    availability: 'https://schema.org/InStock',
+    itemCondition: 'https://schema.org/NewCondition',
+    seller: {
+      '@type': 'Organization',
+      name: 'Peptide Shop',
+    },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'DE',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 14,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/FreeReturn',
+    },
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'DE',
+      },
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '9.90',
+        currency: 'EUR',
+      },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 0,
+          maxValue: 1,
+          unitCode: 'DAY',
+        },
+        transitTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 1,
+          maxValue: 5,
+          unitCode: 'DAY',
+        },
+      },
+    },
   },
-  ...(reviews.length > 0 && {
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": avgRating,
-      "reviewCount": reviews.length,
-      "bestRating": "5",
-      "worstRating": "1"
-    }
-  })
+  ...(averageRating && {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.toFixed(1),
+      reviewCount: reviews.length,
+      bestRating: '5',
+      worstRating: '1',
+    },
+  }),
 };
+
+const faqSchema = localizedProduct.faqs.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+    inLanguage: inLanguage(locale),
+      mainEntity: localizedProduct.faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    }
+  : null;
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('productPage.catalogue'), url: href('/catalog/') },
+  ...(researchArea && researchAreaName ? [{ name: researchAreaName, url: href(`/catalog/${researchArea.slug}/`) }] : []),
+  { name: cleanTitle, url: href(`/peptides/${currentSlug}/`) },
+];
 ---
 
-<Layout 
-  title={product.data.meta.title} 
-  description={product.data.meta.description}
-  image={product.data.images && product.data.images[0]}
-  article={true}
-  breadcrumbs={[
-    { name: "Home", url: "/" },
-    { name: "Peptides", url: "/peptides" },
-    { name: product.data.category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()), url: `/peptides/${product.data.category}` },
-    { name: product.data.title, url: `/peptides/${product.slug}` }
-  ]}
+<Layout
+  title={localizedProduct.meta.title}
+  description={localizedProduct.meta.description}
+  image={productImage}
+  breadcrumbs={breadcrumbs}
+  availableLocales={availableLocales}
 >
-  <!-- Product Schema JSON-LD -->
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} />
-  
-  <PageTitle 
-    title={product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', '')}
-    subtitle={product.data.short_description}
-    breadcrumbs={[
-      { name: "Home", url: "/" },
-      { name: "Peptides", url: "/peptides" },
-      { name: product.data.category.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()), url: `/peptides/${product.data.category}` },
-      { name: product.data.title.split('|')[0].trim().replace('Buy ', '').replace(' UK', ''), url: `/peptides/${currentSlug}/` }
-    ]}
-  />
+  <JsonLd schema={faqSchema ? [productSchema, faqSchema] : productSchema} />
 
-  <section class="section course">
+  <section class="product-page section">
     <div class="container">
-      <div class="row">
-        <!-- Left Sidebar -->
-        <div class="col-lg-3 col-md-4 d-none d-md-block">
-          <div class="sticky-top" style="top: 100px;">
-            <Sidebar 
-              activeCategory={product.data.category} 
-              showProductInfo={true}
-              productInfo={{
-                cas: product.data.cas || undefined,
-                purity: product.data.purity || undefined,
-                rating: parseFloat(avgRating),
-                reviewCount: reviews.length
-              }}
-            />
+      <Breadcrumb items={[
+        { name: t('common.home'), url: href('/') },
+        { name: t('productPage.catalogue'), url: href('/catalog/') },
+        ...(researchArea && researchAreaName ? [{ name: researchAreaName, url: href(`/catalog/${researchArea.slug}/`) }] : []),
+        { name: cleanTitle },
+      ]} />
+
+      <RUOBanner
+        heading={t('productPage.ruoHeading')}
+        detail={t('productPage.ruoDetail')}
+      />
+
+      <div class="product-page-layout">
+        <aside class="product-page-sidebar" aria-label={t('productPage.browseCatalogue')}>
+          <ShopSidebar selectedArea={researchArea?.slug} />
+        </aside>
+
+        <div class="product-page-main">
+      <div class="product-grid-layout">
+        <div class="product-media card">
+          <img src={productImage} alt={t('productPage.imageAlt', { product: cleanTitle })} width="720" height="720" decoding="async" fetchpriority="high" />
+        </div>
+
+        <div class="product-summary">
+          <span class="eyebrow">{researchAreaName ?? product.data.category.replace(/-/g, ' ')}</span>
+          <h1>{cleanTitle}</h1>
+          <p class="lead">{localizedProduct.shortDescription}</p>
+
+          <div class="product-badges" aria-label={t('productPage.qualityBadges')}>
+            <span class="badge badge-success">{product.data.purity}</span>
+            <span class="badge">{t('productPage.coaSupported')}</span>
+            <span class="badge badge-warning">RUO</span>
+          </div>
+
+          <dl class="spec-list">
+            {product.data.cas && <><dt>CAS</dt><dd>{product.data.cas}</dd></>}
+            {product.data.molecular_weight && <><dt>{t('productPage.molecularWeight')}</dt><dd>{product.data.molecular_weight}</dd></>}
+            <dt>{t('productPage.storage')}</dt><dd>{localizedProduct.storage}</dd>
+            <dt>{t('productPage.packageSizes')}</dt><dd>{product.data.package_sizes.join(', ')}</dd>
+          </dl>
+
+          <div class="hub-links">
+            {researchArea && <a class="chip" href={href(`/catalog/${researchArea.slug}/`)}>{t('productPage.browseArea', { area: researchAreaName ?? researchArea.name })}</a>}
+            {productUseCases.map((useCase) => useCase && (
+              <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{useCase.name}</a>
+            ))}
           </div>
         </div>
-        
-        <!-- Main Content with Tabs -->
-        <div class="col-lg-5 col-md-8">
-          <div class="single-course">
-            <!-- Product Image -->
-            {product.data.images && product.data.images[0] && (
-              <div class="product-image-container mb-4 text-center bg-white p-4 rounded shadow-sm">
-                <img src={product.data.images[0]} alt={productTitle} class="img-fluid rounded" style="max-height: 350px; object-fit: contain;" />
-              </div>
-            )}
 
-            <!-- Tabbed Content -->
-            <div class="product-tabs bg-white rounded shadow-sm">
-              <!-- Tab Navigation -->
-              <ul class="nav nav-tabs nav-justified" id="productTabs" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">
-                    Description
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs" type="button" role="tab" aria-controls="specs" aria-selected="false">
-                    Specs
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs" type="button" role="tab" aria-controls="faqs" aria-selected="false">
-                    FAQs
-                    {faqs.length > 0 && <span class="tab-badge">{faqs.length}</span>}
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">
-                    Reviews
-                    {reviews.length > 0 && <span class="tab-badge tab-badge-reviews">{reviews.length}</span>}
-                  </button>
-                </li>
-              </ul>
-
-              <!-- Tab Content -->
-              <div class="tab-content p-4" id="productTabsContent">
-                <!-- Description Tab -->
-                <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                  <div class="product-description">
-                    <Content />
-                  </div>
-                </div>
-
-                <!-- Specifications Tab -->
-                <div class="tab-pane fade" id="specs" role="tabpanel" aria-labelledby="specs-tab">
-                  <h4 class="mb-4" style="color: #023e8a;">Product Specifications</h4>
-                  <table class="table table-striped">
-                    <tbody>
-                      <tr>
-                        <th scope="row" style="width: 40%;">CAS Number</th>
-                        <td>{product.data.cas}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Molecular Weight</th>
-                        <td>{product.data.molecular_weight}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Purity</th>
-                        <td class="text-success font-weight-bold">{product.data.purity}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Storage</th>
-                        <td>{product.data.storage}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Available Sizes</th>
-                        <td>{product.data.package_sizes?.join(', ') || 'Various sizes available'}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Price Range</th>
-                        <td class="font-weight-bold" style="color: #0077b6;">{priceRange}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                <!-- FAQs Tab -->
-                <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
-                  <ProductFAQs productName={productTitle} faqs={faqs} />
-                </div>
-
-                <!-- Reviews Tab -->
-                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                  <ProductReviews productName={productTitle} reviews={reviews} />
-                </div>
-              </div>
-            </div>
+        <aside class="buy-box card" aria-label={t('productPage.purchaseOptions')}>
+          <h2>{t('productPage.selectOptions')}</h2>
+          <ProductOptions
+            client:load
+            id={product.data.id}
+            title={localizedProduct.title}
+            basePrice={productPrice}
+            packageSizes={product.data.package_sizes}
+            moq={product.data.moq}
+            image={productImage}
+            category={product.data.category}
+            labels={{
+              price: t('productOptions.price'),
+              perVial: t('productOptions.perVial'),
+              defaultPackage: t('productOptions.defaultPackage'),
+              quantity: t('productOptions.quantity'),
+              selectQuantity: t('productOptions.selectQuantity'),
+              decreaseQuantity: t('productOptions.decreaseQuantity'),
+              increaseQuantity: t('productOptions.increaseQuantity'),
+              orderSummary: t('productOptions.orderSummary'),
+              subtotal: t('productOptions.subtotal'),
+              delivery: t('productOptions.delivery'),
+              free: t('productOptions.free'),
+              calculatedAtCheckout: t('productOptions.calculatedAtCheckout'),
+              addToCart: t('cartActions.addToCart'),
+              addedToCart: t('cartActions.addedToCart'),
+              minimumNote: t('productOptions.minimumNote'),
+              ruoNote: t('productOptions.ruoNote'),
+            }}
+          />
+          <div class="buy-box__links">
+            <a href={href('/coa-policy/')} class="btn btn-secondary btn-block">{t('productPage.coaPolicyRequests')}</a>
+            <a href={href('/shipping/')} class="btn btn-ghost btn-block">{t('productPage.shippingDetails')}</a>
           </div>
-        </div>
-        
-        <!-- Right Sidebar - Product Options -->
-        <div class="col-lg-4">
-          <div class="course-widget border py-4 px-3 mt-5 mt-lg-0 sticky-top bg-white rounded shadow-sm" style="top: 100px;">
-            <h3 class="text-center mb-4" style="color: #023e8a;">Select Options</h3>
-            
-            <!-- Product Options Component -->
-            <ProductOptions 
-              client:load
-              id={productId}
-              title={productTitle}
-              basePrice={product.data.price || productPrice}
-              packageSizes={product.data.package_sizes || []}
-              moq={product.data.moq}
-              image={productImage}
-              category={product.data.category}
-            />
-            
-            <!-- Quick Info -->
-            <div class="mt-4 pt-3 border-top">
-              <ul class="list-unstyled mb-0">
-                <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                  <span class="text-muted">Category</span>
-                  <a href={`/peptides/${product.data.category}/`} class="text-capitalize" style="color: #0077b6;">
-                    {product.data.category.replace(/-/g, ' ')}
-                  </a>
-                </li>
-                <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                  <span class="text-muted">Purity</span>
-                  <span class="text-success font-weight-bold">{product.data.purity}</span>
-                </li>
-                <li class="d-flex justify-content-between align-items-center py-2">
-                  <span class="d-flex align-items-center text-muted">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-1 text-success">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    Availability
-                  </span>
-                  <span class="text-success font-weight-bold">In Stock</span>
-                </li>
-              </ul>
-            </div>
-            
-            {product.data.coa_url && (
-              <div class="text-center mt-3">
-                <a href={product.data.coa_url} class="btn btn-outline-primary btn-sm w-100 d-flex align-items-center justify-content-center" target="_blank">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" x2="12" y1="15" y2="3"></line>
-                  </svg>
-                  Download COA
-                </a>
-              </div>
-            )}
-          </div>
-          
-          <div class="course-widget py-4 px-3 mt-3 border bg-white rounded shadow-sm">
-            <h5 class="mb-3 d-flex align-items-center">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" style="color: #0077b6;">
-                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                <path d="M15 18H9"></path>
-                <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                <circle cx="17" cy="18" r="2"></circle>
-                <circle cx="7" cy="18" r="2"></circle>
-              </svg>
-              UK Delivery
-            </h5>
-            <div class="d-flex justify-content-between mb-2 small">
-              <span>Standard (3-5 days)</span>
-              <strong>£5.99</strong>
-            </div>
-            <div class="d-flex justify-content-between mb-2 small">
-              <span>Express (1-2 days)</span>
-              <strong>£12.99</strong>
-            </div>
-            <div class="d-flex justify-content-between small text-success">
-              <span>Orders over £500</span>
-              <strong>FREE</strong>
-            </div>
-          </div>
+        </aside>
+      </div>
 
-          <div class="course-widget py-4 px-3 mt-3 bg-white rounded shadow-sm">
-            <div class="alert alert-warning d-flex align-items-start mb-0">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2 flex-shrink-0" style="margin-top: 2px;">
-                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-                <line x1="12" x2="12" y1="9" y2="13"></line>
-                <line x1="12" x2="12.01" y1="17" y2="17"></line>
-              </svg>
-              <div>
-                <strong>Research Use Only:</strong> This product is intended for laboratory research use only. Not for human consumption.
-              </div>
-            </div>
+      <nav class="tabs product-tabs" aria-label={t('productPage.detailSections')}>
+        <a class="tab" href="#description">{t('productPage.description')}</a>
+        <a class="tab" href="#data">{t('productPage.sequenceData')}</a>
+        <a class="tab" href="#storage">{t('productPage.storage')}</a>
+        <a class="tab" href="#coa">{t('productPage.coa')}</a>
+        {localizedProduct.faqs.length > 0 && <a class="tab" href="#faqs">{t('productPage.faqs')}</a>}
+      </nav>
+
+      <div class="product-detail-layout">
+        <article class="product-content card" id="description">
+          <h2>{t('productPage.description')}</h2>
+          <div class="prose-content">
+            {locale === 'en' ? <Content /> : (OverrideContent ? <OverrideContent /> : <Fragment set:html={localizedProduct.bodyHtml} />)}
           </div>
+        </article>
+
+        <section class="card" id="data">
+          <h2>{t('productPage.sequenceData')}</h2>
+          <table class="table-clean">
+            <tbody>
+              <tr><th scope="row">{t('productPage.productId')}</th><td>{product.data.id}</td></tr>
+              <tr><th scope="row">CAS</th><td>{product.data.cas ?? t('productPage.notAssigned')}</td></tr>
+              <tr><th scope="row">{t('productPage.molecularWeight')}</th><td>{product.data.molecular_weight ?? t('productPage.notAssigned')}</td></tr>
+              <tr><th scope="row">{t('productPage.purity')}</th><td>{product.data.purity}</td></tr>
+              {product.data.sequence && <tr><th scope="row">{t('productPage.sequence')}</th><td class="text-mono">{product.data.sequence}</td></tr>}
+            </tbody>
+          </table>
+        </section>
+
+        <section class="card" id="storage">
+          <h2>{t('productPage.storageHandling')}</h2>
+          <p>{localizedProduct.storage}</p>
+          <p>{t('productPage.storageHandlingBody')}</p>
+        </section>
+
+        <section class="card" id="coa">
+          <h2>{t('productPage.certificate')}</h2>
+          <p>{t('productPage.coaBody')}</p>
+          <div class="coa-actions">
+            <a class="btn btn-primary" href={`/api/coa/${currentSlug}.pdf`} download>
+              {t('productPage.downloadCoa')}
+            </a>
+            <a class="btn btn-secondary" href={`/coa/${currentSlug}.html`} target="_blank" rel="noopener">
+              {t('productPage.previewHtml')}
+            </a>
+            <a class="btn btn-ghost" href={href('/coa-policy/')}>{t('productPage.coaPolicy')}</a>
+          </div>
+          <details class="coa-langs">
+            <summary>{t('productPage.otherLanguages')}</summary>
+            <ul>
+              {alternateCoaLocales.map((coaLocale) => (
+                <li><a href={`/api/coa/${currentSlug}.pdf?lang=${coaLocale}`} download>{localeMeta[coaLocale].name} (PDF)</a> · <a href={`/coa/${currentSlug}.${coaLocale}.html`} target="_blank" rel="noopener">HTML</a></li>
+              ))}
+            </ul>
+          </details>
+        </section>
+
+        {localizedProduct.faqs.length > 0 && (
+          <section class="card" id="faqs">
+            <ProductFAQs productName={cleanTitle} faqs={localizedProduct.faqs} heading={t('productPage.faqs')} />
+          </section>
+        )}
+      </div>
+
+      {relatedProducts.length > 0 && (
+        <section class="section related-section" aria-labelledby="related-title">
+          <span class="eyebrow">{t('productPage.relatedEyebrow')}</span>
+          <h2 id="related-title">{t('productPage.relatedTitle', { area: researchAreaName ?? t('productPage.relatedFallbackArea') })}</h2>
+          <div class="grid grid-4" style="margin-top: var(--space-8);">
+            {relatedProducts.map((related) => (
+              <ProductCard product={toCardProduct(related, locale)} />
+            ))}
+          </div>
+        </section>
+      )}
         </div>
       </div>
-      
-      <!-- Related Products Section -->
-      <RelatedProducts currentSlug={currentSlug} category={product.data.category} limit={4} />
     </div>
   </section>
 </Layout>
 
 <style>
-  /* Product Hero Section - Compact */
-  .product-hero {
-    background: linear-gradient(135deg, #023e8a 0%, #0077b6 100%);
-    padding: 1.5rem 0 2rem;
-    position: relative;
+  .product-page { padding-top: var(--space-10); }
+  .product-page-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+    margin-top: var(--space-6);
   }
-  
-  .product-hero .container {
-    position: relative;
-    z-index: 1;
+  .product-page-sidebar {
+    position: sticky;
+    top: 88px;
   }
-  
-  /* Premium Breadcrumb */
-  .premium-breadcrumb {
-    margin-bottom: 1rem;
+  .product-page-main { min-width: 0; }
+  .product-grid-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(320px, 0.8fr);
+    gap: var(--space-8);
+    align-items: start;
+    margin-top: 0;
   }
-  
-  .breadcrumb-list {
+  .product-media { padding: var(--space-6); background: var(--color-surface-2); }
+  .product-media img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+  .product-summary h1 { margin-bottom: var(--space-4); }
+  .product-badges,
+  .hub-links {
     display: flex;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
     flex-wrap: wrap;
-    gap: 0;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
   }
-  
-  .breadcrumb-list .breadcrumb-item {
+  .spec-list {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: var(--space-2) var(--space-4);
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+  }
+  .spec-list dt { color: var(--color-ink-3); font-weight: 500; }
+  .spec-list dd { margin: 0; color: var(--color-ink); font-weight: 600; }
+  .buy-box { position: sticky; top: 96px; gap: var(--space-4); }
+  .buy-box h2 { font-size: var(--text-xl); }
+  .buy-box__links { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+  .product-tabs { margin-top: var(--space-12); }
+  .product-tabs a { text-decoration: none; }
+  .product-detail-layout {
+    display: grid;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+  .product-content { gap: var(--space-4); }
+  .prose-content :global(h2),
+  .prose-content :global(h3) { margin-top: var(--space-6); }
+  .prose-content :global(p),
+  .product-detail-layout p { color: var(--color-ink-2); }
+  .related-section { padding-bottom: 0; }
+  .coa-actions {
     display: flex;
-    align-items: center;
-    font-size: 0.85rem;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
   }
-  
-  .breadcrumb-list .breadcrumb-item a {
-    color: rgba(255, 255, 255, 0.7);
-    text-decoration: none;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
+  .coa-langs { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-ink-2); }
+  .coa-langs summary { cursor: pointer; color: var(--color-primary); font-weight: 600; }
+  .coa-langs ul { margin: var(--space-3) 0 0; padding-left: var(--space-5); display: grid; gap: var(--space-2); }
+  .coa-langs a { color: var(--color-primary); text-decoration: none; }
+  .coa-langs a:hover { text-decoration: underline; }
+  @media (max-width: 1100px) {
+    .product-page-layout { grid-template-columns: 1fr; }
+    .product-page-sidebar { position: static; order: 2; }
+    .product-page-main { order: 1; }
+    .product-grid-layout { grid-template-columns: 1fr 1fr; }
+    .buy-box { grid-column: 1 / -1; position: static; }
   }
-  
-  .breadcrumb-list .breadcrumb-item a:hover {
-    color: white;
-  }
-  
-  .breadcrumb-list .breadcrumb-item a svg {
-    opacity: 0.8;
-  }
-  
-  .breadcrumb-list .breadcrumb-item:not(:last-child)::after {
-    content: '';
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-right: 1.5px solid rgba(255, 255, 255, 0.4);
-    border-top: 1.5px solid rgba(255, 255, 255, 0.4);
-    transform: rotate(45deg);
-    margin: 0 0.75rem;
-  }
-  
-  .breadcrumb-list .breadcrumb-item.active {
-    color: white;
-    font-weight: 500;
-  }
-  
-  /* Product Title */
-  .product-title {
-    font-size: 1.85rem;
-    font-weight: 700;
-    line-height: 1.2;
-    color: white;
-    margin: 0 0 0.5rem 0;
-  }
-  
-  /* Product Subtitle */
-  .product-subtitle {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 1rem;
-    margin: 0;
-    max-width: 700px;
-  }
-
-  /* Tab Styling */
-  .nav-tabs {
-    border-bottom: 2px solid #e9ecef;
-  }
-  
-  .nav-tabs .nav-link {
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: #6c757d;
-    font-weight: 600;
-    padding: 1rem 1.5rem;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
-  }
-  
-  .nav-tabs .nav-link:hover {
-    border-color: transparent;
-    color: #0077b6;
-    background: transparent;
-  }
-  
-  .nav-tabs .nav-link.active {
-    color: #0077b6;
-    background: transparent;
-    border-bottom: 3px solid #0077b6;
-  }
-  
-  /* Tab Badges */
-  .tab-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    margin-left: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    color: white;
-    background-color: #0077b6;
-    border-radius: 10px;
-    vertical-align: middle;
-  }
-  
-  .tab-badge-reviews {
-    background-color: #f5a623;
-  }
-  
-  .tab-content {
-    min-height: 400px;
-  }
-
-  /* Product Description Styling */
-  .product-description :global(h1),
-  .product-description :global(h2),
-  .product-description :global(h3),
-  .product-description :global(h4) {
-    color: #023e8a;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .product-description :global(h2) {
-    font-size: 1.4rem;
-    border-bottom: 2px solid #0077b6;
-    padding-bottom: 0.5rem;
-  }
-  
-  .product-description :global(h3) {
-    font-size: 1.15rem;
-  }
-  
-  .product-description :global(ul) {
-    padding-left: 1.5rem;
-  }
-  
-  .product-description :global(li) {
-    margin-bottom: 0.5rem;
-  }
-  
-  .product-description :global(p) {
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-  
-  .product-description :global(strong) {
-    color: #023e8a;
-  }
-
-  .product-description :global(table) {
-    width: 100%;
-    margin: 1rem 0;
-  }
-
-  /* Sidebar Styling */
-  .sidebar-widget h4 {
-    color: #023e8a;
-    font-size: 1.1rem;
-  }
-
-  .sidebar-widget h5 {
-    color: #023e8a;
-    font-size: 1rem;
-  }
-
-  /* Mobile Adjustments */
-  @media (max-width: 991px) {
-    .product-title {
-      font-size: 1.5rem;
-    }
-    
-    .product-subtitle {
-      font-size: 0.9rem;
-    }
-    
-    /* Product image gallery on tablet */
-    .col-lg-5.col-md-6 {
-      margin-bottom: 24px;
-    }
-  }
-  
-  @media (max-width: 767px) {
-    .product-hero {
-      padding: 1rem 0 1.25rem;
-    }
-    
-    .product-title {
-      font-size: 1.25rem;
-      line-height: 1.3;
-    }
-    
-    .product-subtitle {
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-    
-    .breadcrumb-list .breadcrumb-item {
-      font-size: 0.7rem;
-    }
-    
-    .breadcrumb-list .breadcrumb-item:not(:last-child)::after {
-      margin: 0 0.4rem;
-      width: 5px;
-      height: 5px;
-    }
-    
-    .nav-tabs {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
-    }
-    
-    .nav-tabs .nav-link {
-      padding: 0.75rem 0.5rem;
-      font-size: 0.8rem;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    
-    /* Product cards full width stack */
-    .section.course {
-      padding: 30px 0;
-    }
-    
-    /* Price and buttons */
-    .product-main-card {
-      padding: 16px !important;
-    }
-  }
-  
-  @media (max-width: 575px) {
-    .product-hero {
-      padding: 0.75rem 0 1rem;
-    }
-    
-    .product-title {
-      font-size: 1.1rem;
-    }
-    
-    .premium-breadcrumb {
-      margin-bottom: 12px;
-    }
-    
-    .breadcrumb-list .breadcrumb-item {
-      font-size: 0.65rem;
-    }
-    
-    /* Only show essential breadcrumb items on mobile */
-    .breadcrumb-list .breadcrumb-item:nth-child(3) {
-      display: none;
-    }
-    
-    .nav-tabs .nav-link {
-      padding: 0.6rem 0.4rem;
-      font-size: 0.75rem;
-    }
-    
-    /* Touch-friendly add to cart */
-    button[type="submit"],
-    .btn-primary,
-    .btn-main {
-      min-height: 48px;
-      font-size: 15px;
-    }
-    
-    /* Tab content padding */
-    .tab-content {
-      padding: 16px 8px;
-    }
-  }
-  
-  /* Touch device optimizations */
-  @media (hover: none) and (pointer: coarse) {
-    .product-thumbnail:hover,
-    .nav-tabs .nav-link:hover {
-      transform: none;
-    }
+  @media (max-width: 768px) {
+    .product-grid-layout { grid-template-columns: 1fr; }
+    .spec-list { grid-template-columns: 1fr; }
   }
 </style>
-
-<script>
-  // Initialize Bootstrap tabs
-  document.addEventListener('DOMContentLoaded', function() {
-    const triggerTabList = document.querySelectorAll('#productTabs button');
-    triggerTabList.forEach(function(triggerEl) {
-      triggerEl.addEventListener('click', function(event: Event) {
-        event.preventDefault();
-        const clickedTab = event.currentTarget as HTMLElement;
-        
-        // Remove active from all tabs
-        triggerTabList.forEach(tab => {
-          tab.classList.remove('active');
-          tab.setAttribute('aria-selected', 'false');
-        });
-        
-        // Add active to clicked tab
-        clickedTab.classList.add('active');
-        clickedTab.setAttribute('aria-selected', 'true');
-        
-        // Hide all tab panes
-        const tabPanes = document.querySelectorAll('.tab-pane');
-        tabPanes.forEach(pane => {
-          pane.classList.remove('show', 'active');
-        });
-        
-        // Show target pane
-        const targetId = clickedTab.getAttribute('data-bs-target');
-        if (targetId) {
-          const targetPane = document.querySelector(targetId);
-          if (targetPane) {
-            targetPane.classList.add('show', 'active');
-          }
-        }
-      });
-    });
-  });
-</script>

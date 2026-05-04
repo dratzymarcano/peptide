@@ -32,9 +32,40 @@ const productsCollection = defineCollection({
     moq: z.number(),
     price: z.number().optional(),
     price_range: z.string(),
-    coa_url: z.string().optional(),
     short_description: z.string(),
     category: z.string(),
+    // Commerce metadata (all optional — safe defaults applied at runtime)
+    availability: z.enum(['in_stock', 'low_stock', 'out_of_stock', 'preorder']).optional(),
+    stock_qty: z.number().int().nonnegative().optional(),
+    compare_at_price: z.number().positive().optional(), // crossed-out reference price
+    promo: z.object({
+      label: z.string(),                                  // e.g. "Spring −15%"
+      discount_pct: z.number().min(0).max(95).optional(), // optional auto-discount
+      expires: z.string().optional(),                     // ISO date
+    }).optional(),
+    // NEW — IA mapping (Phase 2A). Optional during migration.
+    researchArea: z.enum([
+      'neuroscience',
+      'cardiovascular',
+      'diabetes',
+      'cancer-apoptosis',
+      'adhesion-ecm',
+      'cell-tissue',
+      'immunology',
+      'epigenetics',
+      'hormones',
+      'cell-signaling',
+      'protein-analysis',
+      'cell-permeable',
+    ]).optional(),
+    useCases: z.array(z.enum([
+      'weight-loss',
+      'muscle-recovery',
+      'cognitive',
+      'anti-aging',
+      'tanning',
+    ])).optional(),
+    sequence: z.string().optional(),
     tags: z.array(z.string()),
     images: z.array(z.string()),
     meta: z.object({
@@ -64,7 +95,29 @@ const blogCollection = defineCollection({
   }),
 });
 
+const learnCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.string(),
+    updatedDate: z.string().optional(),
+    author: z.string().default('Peptide Shop Editorial'),
+    category: z.string(),
+    readTime: z.string(),
+    tags: z.array(z.string()).optional(),
+    order: z.number().default(0),
+    primaryKeyword: z.string().optional(),
+    howTo: z.boolean().default(false),
+    meta: z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+  }),
+});
+
 export const collections = {
   'products': productsCollection,
   'blog': blogCollection,
+  'learn': learnCollection,
 };
