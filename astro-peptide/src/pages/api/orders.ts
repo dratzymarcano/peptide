@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
-import { createOrder, type PaymentMethod } from '../../lib/orders';
+import { createOrder, type OrderRecord, type PaymentMethod } from '../../lib/orders';
+import type { SupabaseServiceEnv } from '../../lib/supabase/server';
 import {
   sendBankTransferInstructions,
   sendOrderConfirmation,
@@ -87,32 +88,56 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   const method = paymentMethod(payload.paymentMethod);
-  const order = await createOrder({
-    id: payload.id,
-    email,
-    paymentMethod: method,
-    subtotal,
-    total,
-    currency,
-    locale: payload.locale ?? 'en',
-    shippingAddress: payload.shippingAddress ?? null,
-    metadata: {
-      shipping: Number(payload.shipping ?? 0),
-      discount: Number(payload.discount ?? 0),
-      source: 'checkout',
-    },
-    items,
-  });
-
-  const env = locals.runtime?.env as EmailEnv | undefined;
+  const env = locals.runtime?.env as (EmailEnv & SupabaseServiceEnv) | undefined;
+  let order: OrderRecord;
   try {
-    await sendOrderConfirmation(order, { env });
-    if (method === 'bank') await sendBankTransferInstructions(order, { env });
-    await sendOrderNotification(order, { env });
+    order = await createOrder({
+      id: payload.id,
+      email,
+      paymentMethod: method,
+      subtotal,
+      total,
+      currency,
+      locale: payload.locale ?? 'en',
+      shippingAddress: payload.shippingAddress ?? null,
+      metadata: {
+        shipping: Number(payload.shipping ?? 0),
+        discount: Number(payload.discount ?? 0),
+        source: 'checkout',
+      },
+      items,
+    }, { env });
   } catch (error) {
-    console.error('[orders] email dispatch failed', error);
-    return json({ success: false, code: 'order_email_failed', order }, 502);
+    console.error('[orders] persistence failed', error);
+    return json({ success: false, code: 'order_persistence_failed' }, 503);
   }
 
-  return json({ success: true, order });
+  const dispatchEmails = async () => {
+    const tasks = [
+      sendOrderConfirmation(order, { env }).catch((error) => {
+        console.error('[orders] customer confirmation email failed', error);
+      }),
+      ...(method === 'bank'
+        ? [sendBankTransferInstructions(order, { env }).catch((error) => {
+            console.error('[orders] bank transfer email failed', error);
+          })]
+        : []),
+      sendOrderNotification(order, { env }).catch((error) => {
+        console.error('[orders] internal notification email failed', error);
+      }),
+    ];
+    await Promise.all(tasks);
+  };
+
+  if (locals.runtime?.ctx) {
+    locals.runtime.ctx.waitUntil(dispatchEmails());
+  } else {
+    await dispatchEmails();
+  }
+
+  return json({
+    success: true,
+    order,
+    emailStatus: locals.runtime?.ctx ? 'queued' : 'sent_or_logged',
+  });
 };

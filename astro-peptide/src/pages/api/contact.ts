@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getSupabaseService, isSupabaseServiceConfigured } from '../../lib/supabase/server';
+import type { SupabaseServiceEnv } from '../../lib/supabase/server';
 import {
   sendContactAcknowledgement,
   sendContactNotification,
@@ -56,8 +57,10 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
       : redirect('/contact/?error=invalid', 303);
   }
 
-  if (isSupabaseServiceConfigured()) {
-    const supa = getSupabaseService();
+  const env = locals.runtime?.env as (EmailEnv & SupabaseServiceEnv) | undefined;
+
+  if (isSupabaseServiceConfigured(env)) {
+    const supa = getSupabaseService(env);
     if (supa) {
       const { error } = await supa.from('contact_messages').insert([
         { name, email, organisation, topic, message, locale: payload.locale ?? null },
@@ -72,7 +75,6 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
     console.log('[contact:dev]', { name, email, organisation, topic, message });
   }
 
-  const env = locals.runtime?.env as EmailEnv | undefined;
   try {
     const contactMessage = { name, email, organisation, topic, message, locale: payload.locale ?? null };
     await sendContactNotification(contactMessage, { env });

@@ -3,6 +3,7 @@
 // In dev (no Supabase configured): writes to a process-local Map so the checkout
 // flow remains testable end-to-end without external services.
 import { getSupabaseService, isSupabaseServiceConfigured } from './supabase/server';
+import type { SupabaseServiceEnv } from './supabase/server';
 
 export type OrderStatus = 'pending' | 'paid' | 'expired' | 'failed' | 'cancelled';
 export type PaymentMethod = 'bitcoin' | 'bank' | 'card';
@@ -49,6 +50,10 @@ export interface CreateOrderInput {
   items: OrderItem[];
 }
 
+export interface OrderPersistenceOptions {
+  env?: SupabaseServiceEnv;
+}
+
 const memoryOrders = new Map<string, OrderRecord>();
 
 function newId(): string {
@@ -59,7 +64,7 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
-export async function createOrder(input: CreateOrderInput): Promise<OrderRecord> {
+export async function createOrder(input: CreateOrderInput, options: OrderPersistenceOptions = {}): Promise<OrderRecord> {
   const order: OrderRecord = {
     id: input.id ?? newId(),
     email: input.email,
@@ -78,8 +83,8 @@ export async function createOrder(input: CreateOrderInput): Promise<OrderRecord>
     paidAt: null,
   };
 
-  if (isSupabaseServiceConfigured()) {
-    const supa = getSupabaseService();
+  if (isSupabaseServiceConfigured(options.env)) {
+    const supa = getSupabaseService(options.env);
     if (!supa) throw new Error('supabase_service_unavailable');
     const { error: orderErr } = await supa.from('orders').insert({
       id: order.id,
@@ -119,9 +124,9 @@ export async function createOrder(input: CreateOrderInput): Promise<OrderRecord>
   return order;
 }
 
-export async function getOrder(id: string): Promise<OrderRecord | null> {
-  if (isSupabaseServiceConfigured()) {
-    const supa = getSupabaseService();
+export async function getOrder(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
+  if (isSupabaseServiceConfigured(options.env)) {
+    const supa = getSupabaseService(options.env);
     if (!supa) return null;
     const { data, error } = await supa
       .from('orders')
@@ -138,10 +143,11 @@ async function updateStatus(
   id: string,
   status: OrderStatus,
   patch: Partial<OrderRecord> = {},
+  options: OrderPersistenceOptions = {},
 ): Promise<OrderRecord | null> {
   const updatedAt = nowIso();
-  if (isSupabaseServiceConfigured()) {
-    const supa = getSupabaseService();
+  if (isSupabaseServiceConfigured(options.env)) {
+    const supa = getSupabaseService(options.env);
     if (!supa) return null;
     const { data, error } = await supa
       .from('orders')
@@ -170,18 +176,19 @@ async function updateStatus(
 export async function markOrderPaid(
   id: string,
   ref: { provider: string; invoiceId: string | null },
+  options: OrderPersistenceOptions = {},
 ): Promise<OrderRecord | null> {
   return updateStatus(id, 'paid', {
     paymentReference: ref.invoiceId ? `${ref.provider}:${ref.invoiceId}` : ref.provider,
-  });
+  }, options);
 }
 
-export async function markOrderExpired(id: string): Promise<OrderRecord | null> {
-  return updateStatus(id, 'expired');
+export async function markOrderExpired(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
+  return updateStatus(id, 'expired', {}, options);
 }
 
-export async function markOrderFailed(id: string): Promise<OrderRecord | null> {
-  return updateStatus(id, 'failed');
+export async function markOrderFailed(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
+  return updateStatus(id, 'failed', {}, options);
 }
 
 function mapRow(row: Record<string, unknown>): OrderRecord {
