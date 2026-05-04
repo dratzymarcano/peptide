@@ -58,7 +58,7 @@ Target market: **United Kingdom** (primary), EU (secondary). Search intent: rese
   /learn/coa-explained/                         (NEW)
 /blog/                                          (news, time-sensitive)
 /about/  /quality/  /shipping/  /coa-policy/  /wholesale/  /contact/
-/cart/  /checkout/  /account/dashboard/         (noindex)
+/cart/  /checkout/                              (noindex)
 ```
 
 **Rule:** every product is reachable from **at least two** hubs (research area + use case) and at most **3 clicks** from the home page.
@@ -261,11 +261,11 @@ Per page-type, emit:
 
 | # | Item | Status (current) | Action |
 |---|---|---|---|
-| T1 | XML sitemap auto-generated | unverified | Use `@astrojs/sitemap`, exclude `/cart`, `/checkout`, `/account/**`, `/api/**` |
-| T2 | `robots.txt` | exists | Add `Sitemap:` line, disallow `/api/`, `/account/`, `/cart`, `/checkout` |
+| T1 | XML sitemap auto-generated | unverified | Use `@astrojs/sitemap`, exclude `/cart`, `/checkout`, `/api/**` |
+| T2 | `robots.txt` | exists | Add `Sitemap:` line, disallow `/api/`, `/cart`, `/checkout` |
 | T3 | hreflang | broken (self-loop) | Remove self-loop until real translations exist; keep only `<html lang="en-GB">` |
 | T4 | Canonical | OK | Audit for trailing slash consistency |
-| T5 | `noindex` on commerce flow | missing | Add `<meta name="robots" content="noindex,follow">` to `/cart`, `/checkout`, `/account/**` |
+| T5 | `noindex` on commerce flow | missing | Add `<meta name="robots" content="noindex,follow">` to `/cart`, `/checkout` |
 | T6 | 404 page | unverified | Custom branded 404 with search + top categories |
 | T7 | 301 redirect map (§ 3.3) | not in place | Implement |
 | T8 | Image alt text | inconsistent | Audit all `<img>`, enforce via lint rule |

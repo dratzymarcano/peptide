@@ -10,12 +10,10 @@ const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname)
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 const checkoutLabelKeys = [
-  'account', 'shipping', 'payment', 'review', 'summary', 'subtotal', 'delivery', 'free', 'total', 'bitcoinDiscount',
+  'shipping', 'payment', 'review', 'summary', 'subtotal', 'delivery', 'free', 'total', 'bitcoinDiscount',
   'ruoRequired', 'ruoRequiredBody', 'emptyCart', 'minimumRequired', 'addProducts', 'minimumBody', 'browseCatalogue',
   'orderReceived', 'completeBitcoin', 'orderConfirmed', 'orderId', 'sendExactly', 'to', 'copyAddress', 'bankInstructions',
-  'orderTotal', 'viewOrders', 'continueShopping', 'chooseContinue', 'guestCheckout', 'signIn', 'createAccount',
-  'continueGuest', 'firstName', 'lastName', 'email', 'password', 'confirmPassword', 'pleaseWait', 'google', 'facebook',
-  'passwordsMismatch', 'passwordLength', 'account_exists', 'invalid_credentials', 'shippingDetails', 'phone', 'address', 'city', 'county', 'postcode',
+  'orderTotal', 'continueShopping', 'firstName', 'lastName', 'email', 'shippingDetails', 'phone', 'address', 'city', 'county', 'postcode',
   'deliveryMethod', 'standardDelivery', 'standardTime', 'expressDelivery', 'expressTime', 'continuePayment',
   'selectPayment', 'bankTransfer', 'bankTransferHelp', 'bitcoin', 'bitcoinHelp', 'reviewOrder', 'back', 'confirmOrder',
   'bitcoinInvoice', 'bitcoinInvoiceError', 'researchUseOnly', 'reviewRuo', 'placingOrder', 'placeOrder',
@@ -40,7 +38,7 @@ const checkoutLabels = Object.fromEntries(checkoutLabelKeys.map((key) => [key, t
 
       <CheckoutComponent
         labels={checkoutLabels}
-        paths={{ shop: href('/shop/'), dashboard: href('/account/dashboard/') }}
+        paths={{ shop: href('/shop/') }}
         locale={locale}
         client:only="react"
       />

@@ -15,8 +15,8 @@
     "seo:check": "npm run build && npm run seo:hreflang && npm run seo:i18n",
     "legal:check": "node scripts/check-legal-readiness.mjs",
     "legal:claims": "node scripts/check-ymyl-claims.mjs",
-    "account:check": "node scripts/check-account-readiness.mjs",
-    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run account:check"
+    "launch:readiness": "node scripts/check-launch-readiness.mjs",
+    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run launch:readiness"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.13",

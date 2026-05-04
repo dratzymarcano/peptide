@@ -2,7 +2,7 @@
 
 > Benchmark: **Eurogentec — Catalog Peptides** (Kaneka group). A B2B, research‑grade peptide catalog with a 12‑research‑area hub‑and‑spoke information architecture, ~1000+ catalog SKUs, and a clean clinical/scientific brand voice.
 >
-> Subject: **peptide-shop.net** (Astro 4 + React islands + Bootstrap 4 + Raleway), B2C‑styled research‑peptide shop with ~24 product MD files, blog, learn hub, account/cart flows.
+> Subject: **peptide-shop.net** (Astro 4 + React islands + Bootstrap 4 + Raleway), B2C‑styled research‑peptide shop with ~24 product MD files, blog, learn hub and cart/checkout flows.
 
 The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, SEO/IA, and Content. Severity legend: 🟥 Critical · 🟧 High · 🟨 Medium · 🟩 Low.
 
@@ -30,7 +30,7 @@ The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, 
 |---|---|---|---|---|
 | A3.1 | Near‑monochrome: white background, dark slate ink (~#1a1a1a), one cool accent (Kaneka blue/teal), red used only for alerts. | Clinical. | Single primary `#0077b6` is fine, **but** home injects multi‑color category gradients (purple→pink, blue→cyan, green→emerald, orange→red). Conflicts with B2B trust positioning. | 🟧 |
 | A3.2 | Body text contrast ≥ 7:1 on white. | AAA. | `--shop-text-muted: #6b7280` on white = **4.83 : 1** (passes AA normal, fails AA small ≤ 14 px). Some SVG strokes use `#1e293b` on `#0077b6` background (~3.6 : 1, fails). | 🟨 |
-| A3.3 | Focus styles always visible. | Visible outline. | Custom dropdowns and nav links rely on default Bootstrap; account/search/cart React islands have no documented `:focus-visible` style. | 🟧 |
+| A3.3 | Focus styles always visible. | Visible outline. | Custom dropdowns and nav links rely on default Bootstrap; search/cart React islands have no documented `:focus-visible` style. | 🟧 |
 
 ### A4. Components (buttons, cards, forms, nav)
 | # | Finding | Benchmark | Our site | Severity |
@@ -38,7 +38,7 @@ The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, 
 | A4.1 | Two button variants (filled + ghost), 4 px / 6 px radius, no shadow, hover = 8% darken. | Consistent across site. | We have `.btn` from Bootstrap 4 + custom buttons in hero + `AddToCartButton.tsx` styled separately; multiple radii (4 / 8 / 12 px), drop shadows mixed. No documented states. | 🟧 |
 | A4.2 | Cards = white surface, 1 px `#e5e7eb` border, **no** shadow, image left or top, title link, short summary, CTA "View collection". | Library‑card pattern. | `ProductCard.tsx` mixes shadow, hover lift, badges (purity, reviews), price, "Add to cart" — closer to Amazon than Eurogentec. Acceptable for B2C, but inconsistent with science branding. | 🟨 |
 | A4.3 | Forms (search, filters) are single column, label above input, 40 px input height, no fancy outlines. | Plain. | Shop sort is a Bootstrap `<select class="form-control">` inline with text — not styled like Eurogentec; sidebar filters hidden on mobile via `display:none` (not collapsible). | 🟧 |
-| A4.4 | Mega‑menu by product family, with sub‑columns. Persistent utility row (Support / Account / Cart). | Yes. | Single dropdown of 5 categories, no mega‑menu, no sub‑hubs. Top bar has phone/email/Telegram. | 🟧 |
+| A4.4 | Mega‑menu by product family, with sub‑columns. Persistent utility row (Support / Cart). | Yes. | Single dropdown of 5 categories, no mega‑menu, no sub‑hubs. Top bar has phone/email/Telegram. | 🟧 |
 | A4.5 | Sticky search; live autocomplete by SKU/sequence. | Yes. | `SearchBar.tsx` exists but no documented behavior (need verification — see A4.5 note in UPDATE_PLAN). | 🟨 |
 
 ### A5. Global sections (header, footer, utility)
@@ -46,7 +46,7 @@ The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, 
 |---|---|---|---|---|
 | A5.1 | Footer = 6 columns (PRODUCTS, GMP SERVICES, COMPANY, SUPPORT, ORDER, LEGAL) + newsletter. Strong outbound link equity to category hubs. | Yes. | Footer has 4 columns (Brand, Products[5], Company[~5], …). Far fewer footer links → weaker internal link distribution. | 🟧 |
 | A5.2 | Newsletter capture, social, parent‑company line, telephone in footer. | Yes. | Social icons present but `href="#"` placeholders. No newsletter capture in footer. Phone shown in top bar only. | 🟨 |
-| A5.3 | Top‑bar utility: Support · Account · Cart count. Two languages (en/fr/de). | Multilingual ready. | Top bar has phone/trust line; no language switcher. `Layout.astro` hard‑codes `lang="en-GB"` and `geo.region=GB` and uses both `hreflang="en"` and `x-default` pointing to **the same URL** — not actually internationalized. | 🟨 |
+| A5.3 | Top‑bar utility: Support · Cart count. Two languages (en/fr/de). | Multilingual ready. | Top bar has phone/trust line; no language switcher. `Layout.astro` hard‑codes `lang="en-GB"` and `geo.region=GB` and uses both `hreflang="en"` and `x-default` pointing to **the same URL** — not actually internationalized. | 🟨 |
 
 ---
 
@@ -58,7 +58,7 @@ The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, 
 | B2 | jQuery 1.x + jQuery Form + jQuery Validate + Magnific Popup + Slick + Bootstrap JS loaded **on every page** via `Layout.astro` regardless of need (~250 KB pre‑gzip of legacy JS). Big LCP/TBT regression. | 🟥 |
 | B3 | Lucide icons loaded as a **UMD bundle from unpkg** on every page with `defer`, then re‑initialized on `DOMContentLoaded`. Render is correct but ships ~80 KB of icons; SVG is also inlined inside `Header.astro` and `Footer.astro`. Pick one approach. | 🟧 |
 | B4 | Google Fonts loaded with `<link>` for 6 weights of Raleway. No `font-display:swap` guarantee from Google's CSS for current variant, and no self‑hosting → extra DNS + render delay. | 🟧 |
-| B5 | Heavy use of `client:load` on header islands (`SearchBar`, `AccountButton`, `CartIcon`, `CartModal`, `CartNotification`). Five always‑hydrated islands at top of every page; should be `client:idle` or `client:visible` where possible. | 🟧 |
+| B5 | Heavy use of `client:load` on header islands (`SearchBar`, `CartIcon`, `CartModal`, `CartNotification`). Always‑hydrated islands at top of every page should be `client:idle` or `client:visible` where possible. | 🟧 |
 | B6 | Semantic HTML mostly present (good `<header>`, `<nav>`, `<main>` via `id="main-content"`, skip‑link). But `Header.astro` uses `<ul class="nav-links">` then a non‑accessible custom dropdown without `aria-expanded`/`aria-haspopup` and the mobile `<button class="mobile-toggle">` lacks `aria-controls`/`aria-expanded`. | 🟧 |
 | B7 | `Layout.astro` always sets `<html lang="en-GB">` and emits **both** `hreflang="en"` and `hreflang="x-default"` pointing to `Astro.url.href` — duplicate alternates pointing to self with no real translations. Either remove or wire to actual locales. | 🟨 |
 | B8 | `SEO.astro` does not emit `<meta name="robots">` per‑page (only the global `index, follow`), and there is no `og:site_name`, no `og:locale`, no Twitter `@site/@creator` handles. | 🟨 |
@@ -87,7 +87,7 @@ The audit uses the four pillars from the brief: UI/UX, Front‑end Engineering, 
 | C4 | Internal linking density: each category hub links to ~10–25 child pages; each child links back up to the hub and laterally to siblings. | Strong link equity flow. | Product pages do **not** link laterally to sibling peptides in the same use‑case (we have `RelatedProducts.astro` — verify it links by category, not just newest). Category hubs link only to a flat product grid. No cross‑linking from `/learn/` and `/blog/` into product pages. | 🟧 |
 | C5 | Title tags are templated: `{Page} \| Eurogentec`. | Consistent. | Templated by `Layout.astro` but **per‑page titles are inconsistent length and include both brand and category** (e.g. "Buy BPC‑157 UK | Peptide Shop"). Many pages exceed 60 chars and get truncated in SERPs. | 🟨 |
 | C6 | Canonicals correct, hreflang correct (en/fr/de), JSON‑LD `Organization` + `Product` + `BreadcrumbList`. | Comprehensive. | We emit `Product`, `BreadcrumbList`, `WebSite` (search action), `Organization`. Good. **But** `WebSite.potentialAction.target` points to `/search?q=…` and **there is no `/search` route** — Google may flag this. | 🟧 |
-| C7 | No duplicate canonicals, no `noindex` on commercial pages, paginated archives use `rel=prev/next` heritage but with self‑canonicals. | Clean. | Need to verify `/cart`, `/checkout`, `/account/dashboard` are `noindex` (they are not — they inherit the global `index, follow`). Account/cart pages will leak into the index. | 🟧 |
+| C7 | No duplicate canonicals, no `noindex` on commercial pages, paginated archives use `rel=prev/next` heritage but with self‑canonicals. | Clean. | Need to verify `/cart` and `/checkout` are `noindex` (they are not — they inherit the global `index, follow`). Cart/checkout pages will leak into the index. | 🟧 |
 | C8 | Sitemap.xml present, segmented by content type. | Yes. | `astro.config.mjs` sitemap integration status not verified — see UPDATE_PLAN B-A1. `robots.txt` present in `public/` but contents not audited. | 🟨 |
 | C9 | International: real `hreflang` cluster (en, fr, de, en‑US, x‑default). | Yes. | Self‑pointing duplicate `hreflang` (see B7) — actively harmful. | 🟧 |
 | C10 | Crawl depth: every product reachable in ≤ 4 clicks, with persistent footer links to top hubs. | Yes. | Long‑tail products only reachable via `/shop` filters that **don’t exist on mobile** (B9). Crawlers + mobile users see the same flat list. | 🟧 |

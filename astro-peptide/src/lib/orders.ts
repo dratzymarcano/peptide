@@ -19,7 +19,6 @@ export interface OrderItem {
 
 export interface OrderRecord {
   id: string;
-  userId: string | null;
   email: string;
   status: OrderStatus;
   paymentMethod: PaymentMethod;
@@ -38,7 +37,6 @@ export interface OrderRecord {
 
 export interface CreateOrderInput {
   id?: string;
-  userId?: string | null;
   email: string;
   paymentMethod: PaymentMethod;
   paymentReference?: string | null;
@@ -64,7 +62,6 @@ function nowIso(): string {
 export async function createOrder(input: CreateOrderInput): Promise<OrderRecord> {
   const order: OrderRecord = {
     id: input.id ?? newId(),
-    userId: input.userId ?? null,
     email: input.email,
     status: 'pending',
     paymentMethod: input.paymentMethod,
@@ -86,7 +83,6 @@ export async function createOrder(input: CreateOrderInput): Promise<OrderRecord>
     if (!supa) throw new Error('supabase_service_unavailable');
     const { error: orderErr } = await supa.from('orders').insert({
       id: order.id,
-      user_id: order.userId,
       email: order.email,
       status: order.status,
       payment_method: order.paymentMethod,
@@ -136,21 +132,6 @@ export async function getOrder(id: string): Promise<OrderRecord | null> {
     return mapRow(data);
   }
   return memoryOrders.get(id) ?? null;
-}
-
-export async function listOrdersForUser(userId: string): Promise<OrderRecord[]> {
-  if (isSupabaseServiceConfigured()) {
-    const supa = getSupabaseService();
-    if (!supa) return [];
-    const { data, error } = await supa
-      .from('orders')
-      .select('*, order_items(*)')
-      .eq('user_id', userId)
-      .order('created_at', { ascending: false });
-    if (error || !data) return [];
-    return data.map(mapRow);
-  }
-  return Array.from(memoryOrders.values()).filter((o) => o.userId === userId);
 }
 
 async function updateStatus(
@@ -217,7 +198,6 @@ function mapRow(row: Record<string, unknown>): OrderRecord {
     : [];
   return {
     id: String(row.id),
-    userId: (row.user_id as string | null) ?? null,
     email: String(row.email ?? ''),
     status: (row.status as OrderStatus) ?? 'pending',
     paymentMethod: (row.payment_method as PaymentMethod) ?? 'bitcoin',

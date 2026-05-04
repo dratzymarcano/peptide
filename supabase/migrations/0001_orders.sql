@@ -3,7 +3,6 @@
 
 create table if not exists public.orders (
   id text primary key,
-  user_id uuid null references auth.users(id) on delete set null,
   email text not null,
   status text not null default 'pending'
     check (status in ('pending', 'paid', 'expired', 'failed', 'cancelled')),
@@ -21,7 +20,6 @@ create table if not exists public.orders (
   paid_at timestamptz null
 );
 
-create index if not exists orders_user_id_idx on public.orders (user_id, created_at desc);
 create index if not exists orders_email_idx on public.orders (email);
 
 create table if not exists public.order_items (
@@ -41,16 +39,5 @@ create index if not exists order_items_order_id_idx on public.order_items (order
 -- Row level security
 alter table public.orders enable row level security;
 alter table public.order_items enable row level security;
-
--- Authenticated users can read their own orders
-create policy if not exists "orders_owner_select" on public.orders
-  for select using (auth.uid() = user_id);
-create policy if not exists "order_items_owner_select" on public.order_items
-  for select using (
-    exists (
-      select 1 from public.orders o
-      where o.id = order_items.order_id and o.user_id = auth.uid()
-    )
-  );
 
 -- Inserts/updates flow through the service-role key from API routes, which bypasses RLS.

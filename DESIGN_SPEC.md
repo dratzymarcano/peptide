@@ -217,11 +217,11 @@ States:
 
 ### 6.6 Navigation
 
-**Top utility bar (32 px):** support phone · COA policy · GBP/EUR · account · cart count.
+**Top utility bar (32 px):** support phone · COA policy · GBP/EUR · cart count.
 **Primary nav (64 px, sticky):**
 - Logo (28 px svg) + wordmark
 - Mega-menu: **Catalog** (by research area, 4 columns), **Custom synthesis**, **Bundles**, **Wholesale**, **Learn**, **About**
-- Right: search (icon → expanding input, ⌘K), account, cart
+- Right: search (icon → expanding input, ⌘K), cart
 
 **Mega-menu** opens on hover (≥ 1024 px) and on click (touch). Keyboard: `↓` to enter, `Esc` to close, focus trap inside.
 
@@ -306,10 +306,9 @@ Trust band (RUO disclaimer, ISO, returns)
 - Article hub with topic chips.
 - Post template: H1, eyebrow date+author, TOC sidebar (sticky), 65–72ch measure, in-line product callouts.
 
-### 7.8 Cart, checkout, account
+### 7.8 Cart and checkout
 - Single-column 480 px max on cart drawer.
-- Checkout: 3 steps (contact → shipping → payment), progress indicator, no surprise fees.
-- Account dashboard: orders, COA archive, saved addresses.
+- Checkout: delivery, payment and review steps, progress indicator, no surprise fees.
 
 ---
 
@@ -324,7 +323,7 @@ Trust band (RUO disclaimer, ISO, returns)
 4. **Wholesale**
 5. **Learn**
 6. **About**
-7. Right utilities: Search · Account · Cart
+7. Right utilities: Search · Cart
 
 ### 8.2 Footer (6 columns + utility row)
 
@@ -337,7 +336,7 @@ Trust band (RUO disclaimer, ISO, returns)
 
 Bottom utility row:
 - Newsletter capture (email + GDPR consent checkbox)
-- Social (LinkedIn, X) — remove placeholders if no real accounts
+- Social (LinkedIn, X) — remove placeholders if no real profiles
 - Address, VAT number, copyright
 - "For Research Use Only — Not for human consumption" pinned at the bottom of every page
 

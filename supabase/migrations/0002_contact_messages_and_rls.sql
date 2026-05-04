@@ -42,12 +42,12 @@ drop policy if exists "contact_messages_no_anon_write" on public.contact_message
 create policy "contact_messages_no_anon_write" on public.contact_messages
   for insert with check (false);
 
--- orders / order_items: harden owner-read policies and explicitly forbid writes
--- via the anon key. Service-role inserts continue to bypass RLS.
+-- orders / order_items: deny public reads and explicitly forbid writes via the
+-- anon key. Service-role inserts continue to bypass RLS.
 
-drop policy if exists "orders_owner_select" on public.orders;
-create policy "orders_owner_select" on public.orders
-  for select using (auth.uid() is not null and auth.uid() = user_id);
+drop policy if exists "orders_no_public_read" on public.orders;
+create policy "orders_no_public_read" on public.orders
+  for select using (false);
 
 drop policy if exists "orders_no_anon_write" on public.orders;
 create policy "orders_no_anon_write" on public.orders
@@ -61,16 +61,9 @@ drop policy if exists "orders_no_anon_delete" on public.orders;
 create policy "orders_no_anon_delete" on public.orders
   for delete using (false);
 
-drop policy if exists "order_items_owner_select" on public.order_items;
-create policy "order_items_owner_select" on public.order_items
-  for select using (
-    exists (
-      select 1 from public.orders o
-      where o.id = order_items.order_id
-        and auth.uid() is not null
-        and o.user_id = auth.uid()
-    )
-  );
+drop policy if exists "order_items_no_public_read" on public.order_items;
+create policy "order_items_no_public_read" on public.order_items
+  for select using (false);
 
 drop policy if exists "order_items_no_anon_write" on public.order_items;
 create policy "order_items_no_anon_write" on public.order_items
@@ -88,7 +81,3 @@ create policy "order_items_no_anon_delete" on public.order_items
 revoke all on table public.contact_messages from anon, authenticated;
 revoke all on table public.orders            from anon, authenticated;
 revoke all on table public.order_items       from anon, authenticated;
-
--- Allow authenticated users to read their own rows via the policies above.
-grant select on table public.orders      to authenticated;
-grant select on table public.order_items to authenticated;

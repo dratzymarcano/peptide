@@ -9,7 +9,6 @@ Disallow: /cart
 Disallow: /cart/
 Disallow: /checkout
 Disallow: /checkout/
-Disallow: /account/
 
 # Generative AI / answer-engine crawlers — explicitly allowed so the brand and
 # product entities are eligible for citation in AI Overviews, ChatGPT search,
@@ -20,7 +19,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -28,7 +26,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: ChatGPT-User
 Allow: /
@@ -36,7 +33,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: ClaudeBot
 Allow: /
@@ -44,7 +40,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: Claude-Web
 Allow: /
@@ -52,7 +47,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: PerplexityBot
 Allow: /
@@ -60,7 +54,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: Google-Extended
 Allow: /
@@ -68,7 +61,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: Applebot-Extended
 Allow: /
@@ -76,7 +68,6 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: CCBot
 Allow: /
@@ -84,6 +75,5 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 Sitemap: https://peptide-shop.net/sitemap-index.xml

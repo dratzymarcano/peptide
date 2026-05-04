@@ -361,23 +361,3 @@ export async function sendEnquiryNotification(message: EnquiryMessage, options: 
   });
   await send({ to: config.to, subject, html, text, replyTo: message.email }, options);
 }
-
-export async function sendPasswordReset(args: { to: string; resetUrl: string; locale?: string | null }, options: SendOptions = {}): Promise<void> {
-  const locale = pickLocale(args.locale);
-  const subject =
-    locale === 'de' ? 'Peptide-Shop-Passwort zuruecksetzen'
-    : locale === 'nl' ? 'Peptide Shop-wachtwoord opnieuw instellen'
-    : locale === 'fr' ? 'Reinitialiser votre mot de passe Peptide Shop'
-    : locale === 'it' ? 'Reimposta la password di Peptide Shop'
-    : locale === 'es' ? 'Restablecer su contrasena de Peptide Shop'
-    : 'Reset your Peptide Shop password';
-  const html = baseEmail({
-    preheader: 'Use this secure link to reset your Peptide Shop password.',
-    eyebrow: 'Account security',
-    title: subject,
-    intro: 'We received a password reset request for your account. The link below can be used once and should not be shared.',
-    body: '<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">If you did not request this, you can ignore this email.</p>',
-    cta: { label: 'Reset password', href: args.resetUrl },
-  });
-  await send({ to: args.to, subject, html, text: `${subject}\n\n${args.resetUrl}` }, options);
-}

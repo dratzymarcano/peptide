@@ -16,18 +16,16 @@
 | 4 | Only 1 of 48 COAs existed | Generated 47 missing COAs via `scripts/generate-coa-html.mjs` (custom front‑matter parser, splits on en/em‑dash to clean titles) |
 | 5 | Stale `node_modules` | `npm install` clean |
 | 6 | No visual regression baselines | Captured 16 baselines (8 pages × desktop+mobile) in `tests/e2e/visual.spec.ts-snapshots/` |
-| 7 | Account auth was mock-only | Wired real Supabase auth (email + Google + Facebook OAuth) |
 | 8 | Orders not persisted | Insert into `public.orders` on checkout success |
 | 9 | No transactional email | Resend HTTP API integration for order confirmations |
 
 ### Audit-phase bugs
 | Issue | Location | Fix |
 |------|----------|-----|
-| 5 empty `alt=""` images | `blog/index.astro`, `blog/[slug].astro`, `AccountButton.tsx`, `Dashboard.tsx` | Descriptive alts (post titles; `${name} avatar` for user avatars) + `decoding="async"` + dimensions |
+| Empty `alt=""` images | `blog/index.astro`, `blog/[slug].astro` | Descriptive alts (post titles) + `decoding="async"` + dimensions |
 | Contact form `action="#"` (dead) | `contact.astro` | New `/api/contact` endpoint with Zod-style validation, off-screen honeypot, locale field, JSON+form support, redirect-back UX, optional Supabase persistence to `contact_messages` |
 | Minimal `env.d.ts` | `src/env.d.ts` | Full `ImportMetaEnv` typings for `SUPABASE_*`, `RESEND_*`, `BTCPAY_*`, `SITE_URL` |
 | `<li role="option">` with focusable `<a>` (axe `no-focusable-content`, serious) | `LanguageSwitcher.astro` | Switched listbox→menu (`role="menu"`, `role="menuitem"` on links, `role="none"` on `<li>`, `aria-haspopup="menu"`) |
-| Mobile `account-trigger` button had no accessible name (axe `button-name`, **critical**) | `AccountButton.tsx` | Added `aria-label={displayName}` (visible label hidden under mobile breakpoint) |
 | Color contrast 4.14–4.48:1 on muted text (axe `color-contrast`, serious) on `.muted-label`, `.sidebar-ruo`, etc. | `public/css/design-system.css` | Darkened `--color-ink-3` from `#64748B` → `#475569` (slate-600). Lifts ratios to ≥7:1 on white, ≥6.7:1 on `#fff7ed`, ≥6.2:1 on `#e6f1f8` |
 | `<div aria-label>` without role (axe `aria-prohibited-attr`, serious) | `shop.astro` `.active-filters` | Added `role="region"` |
 
@@ -36,7 +34,7 @@
 ## 2. SEO Changes
 
 ### Already in place (verified)
-- Centralised `src/components/SEO.astro` emits per-page: `<title>`, `<meta name="description">`, canonical, `og:*`, `twitter:*`, `robots` (auto `noindex,follow` on cart/checkout/account), `geo.region=DE`.
+- Centralised `src/components/SEO.astro` emits per-page: `<title>`, `<meta name="description">`, canonical, `og:*`, `twitter:*`, `robots` (auto `noindex,follow` on cart/checkout), `geo.region=DE`.
 - Hreflang × 6 locales + `x-default` on every page (verified at runtime: 7 alternates emitted on `/de/`).
 - `sitemap-index.xml` (HTTP 200) via `@astrojs/sitemap`.
 - `robots.txt` permits crawl of public surfaces.
@@ -107,8 +105,6 @@ Recommended (not yet implemented — low risk, high upside):
 ## Files Touched (audit phase)
 
 - `src/components/LanguageSwitcher.astro`
-- `src/components/AccountButton.tsx`
-- `src/components/Dashboard.tsx`
 - `src/pages/blog/index.astro`
 - `src/pages/blog/[slug].astro`
 - `src/pages/faq.astro`

@@ -1,13 +1,13 @@
 # Peptide Shop Astro Website
 
-SEO-focused Astro storefront for research-use-only peptide catalogue content. The site keeps product, blog, catalogue, use-case and learn pages server-rendered or prerendered where possible, with React islands only for interactive search, cart, checkout and account UI.
+SEO-focused Astro storefront for research-use-only peptide catalogue content. The site keeps product, blog, catalogue, use-case and learn pages server-rendered or prerendered where possible, with React islands only for interactive search, cart, checkout and product options.
 
 ## Stack
 
 - Astro 5 with `@astrojs/node` standalone adapter
-- React islands for cart, checkout, account, search and product options
+- React islands for cart, checkout, search and product options
 - Astro content collections for products and blog articles
-- Nano Stores for browser cart/auth state
+- Nano Stores for browser cart state
 - Global design system in `public/css/design-system.css`
 - Sitemap generation with `@astrojs/sitemap`
 
@@ -34,7 +34,7 @@ npm run validate
 - `/search/?q=...` server-rendered search results
 - `/blog/` and `/blog/[slug]/`
 - `/learn/` and `/learn/what-are-peptides/`
-- `/cart/`, `/checkout/`, `/account/dashboard/` noindex commerce/account pages
+- `/cart/` and `/checkout/` noindex commerce pages
 
 ## Content Editing
 
@@ -55,7 +55,7 @@ Product pages currently link to `/coa-policy/` for COA policy and request guidan
 ## Compliance Notes
 
 - RUO banner appears on product pages and footer.
-- `/cart/`, `/checkout/`, `/account/**` and `/api/**` are excluded from sitemap and marked noindex where rendered.
+- `/cart/`, `/checkout/` and `/api/**` are excluded from sitemap and marked noindex where rendered.
 - Legacy peptide category/product-buy URLs are redirected in `astro.config.mjs`.
 - Keep legal review on product, shipping, terms, privacy and disclaimer updates before launch.
 

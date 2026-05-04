@@ -10,8 +10,8 @@ Core implementation is complete in the Astro app under `astro-peptide/`:
 
 - Phase 0 stabilisation is implemented: noindex handling, RUO messaging, search route, functional shop controls, robots/sitemap exclusions and legacy redirects are in place.
 - Phase 1 front-end foundation is implemented: legacy Bootstrap/jQuery/plugin assets were removed, self-hosted fonts and the global design system are active, and generated build/cache outputs are ignored.
-- Phase 2 IA, templates, schema and content rebuild are implemented: `/catalog/`, 12 research-area hubs, 5 use-case hubs, product pages, shop, search, blog, learn, commerce/account pages, secondary pages, 404 and structured data are live in source.
-- Header/cart/account/search islands hydrate with `client:load` for reliable commerce interaction while SSR/prerendered page content remains intact for SEO.
+- Phase 2 IA, templates, schema and content rebuild are implemented: `/catalog/`, 12 research-area hubs, 5 use-case hubs, product pages, shop, search, blog, learn, commerce pages, secondary pages, 404 and structured data are live in source.
+- Header/cart/search islands hydrate with `client:load` for reliable commerce interaction while SSR/prerendered page content remains intact for SEO.
 - Product COA CTAs now point to `/coa-policy/`; direct PDF metadata was removed until approved PDF assets exist.
 - CI is at `.github/workflows/astro-ci.yml`. The `validate` job runs `npm run check:i18n`, `npm run check`, and `npm run build`. The new `quality-gates` job runs `pa11y-ci`, `lighthouse-ci`, and `playwright test` (axe-core a11y suite + visual-regression baselines) against the built preview.
 
@@ -31,7 +31,7 @@ Fix actively harmful issues before any rebuild work.
 
 | ID | Track | P | Task | Owner | Acceptance criteria |
 |---|---|---|---|---|---|
-| 0-1 | T | P0 | Add `<meta name="robots" content="noindex,follow">` to `/cart`, `/checkout`, `/account/**`, `/api/**` | Dev | View-source confirms; GSC re-crawl shows excluded |
+| 0-1 | T | P0 | Add `<meta name="robots" content="noindex,follow">` to `/cart`, `/checkout`, `/api/**` | Dev | View-source confirms; GSC re-crawl shows excluded |
 | 0-2 | T | P0 | Remove duplicate self-pointing `hreflang` from `Layout.astro` (lines 38–40); leave only `<html lang="en-GB">` | Dev | No hreflang errors in GSC International Targeting |
 | 0-3 | S | P0 | Add visible **"For research use only — not for human consumption"** banner above the fold on every product page; full disclaimer in footer | Content + Dev | Banner present on all 24 product pages; legal review signed off |
 | 0-4 | S | P0 | Audit and remove or verify the home-page testimonials in `index.astro`; replace with real, attributable quotes or remove entirely | Content + Legal | No unattributed quotes on `/`; ASA/CAP compliance confirmed |
@@ -40,9 +40,9 @@ Fix actively harmful issues before any rebuild work.
 | 0-7 | T | P1 | Replace the mobile filter `display:none` with an off-canvas drawer (button: "Filters (n)") | Dev + Design | Mobile users can apply ≥ 1 filter; axe = 0 critical |
 | 0-8 | T | P1 | Add `noindex` headers to legacy `/peptides/{category}` pages that will be redirected in Phase 2 (avoid double indexation during migration) | Dev | GSC URL-Inspect returns "Excluded by noindex" |
 | 0-9 | S | P1 | Fix social `href="#"` placeholders in `Footer.astro` (real URLs or remove the icons) | Content | No `href="#"` remains in footer |
-| 0-10 | T | P1 | Add `Sitemap:` line + `Disallow: /cart, /checkout, /account, /api` to `robots.txt`; install `@astrojs/sitemap` and exclude the same paths | Dev | `robots.txt` valid in GSC; sitemap submitted; 0 disallowed URLs in sitemap |
+| 0-10 | T | P1 | Add `Sitemap:` line + `Disallow: /cart, /checkout, /api` to `robots.txt`; install `@astrojs/sitemap` and exclude the same paths | Dev | `robots.txt` valid in GSC; sitemap submitted; 0 disallowed URLs in sitemap |
 
-**Phase 0 success indicator:** 0 critical Lighthouse SEO/A11y violations on home, shop, and a sampled product page; GSC Coverage shows no `/cart` or `/account` URLs indexed within 14 days.
+**Phase 0 success indicator:** 0 critical Lighthouse SEO/A11y violations on home, shop, and a sampled product page; GSC Coverage shows no `/cart` or `/checkout` URLs indexed within 14 days.
 
 ---
 
@@ -59,7 +59,7 @@ Strip the legacy stack so Phase 2 design work lands on a fast base.
 | 1-5 | T | P1 | Remove Bootstrap 4 CSS link from `Layout.astro`; replace `.container`, `.row`, `.col-*` usages on `/shop`, `Footer.astro`, etc. with Tailwind grid | 1-3, 1-4 | `bootstrap.min.css` no longer requested |
 | 1-6 | T | P1 | **Self-host Inter** (variable, latin subset only). Remove Google Fonts `<link>`. Use `font-display: swap`, `preload` woff2. Drop Raleway. | 1-3 | No request to fonts.googleapis.com; FOUT < 100 ms |
 | 1-7 | T | P1 | Replace UMD Lucide CDN script with **per-component SVG imports** (Astro icons or hand-rolled SVG sprite) | — | No `unpkg.com` request; lucide global script removed |
-| 1-8 | T | P1 | Convert always-hydrated header islands (`SearchBar`, `AccountButton`, `CartIcon`) from `client:load` to `client:idle`; cart count uses event-based update | — | No JS executes before idle on first paint; cart still updates correctly |
+| 1-8 | T | P1 | Convert always-hydrated header islands (`SearchBar`, `CartIcon`) from `client:load` to `client:idle`; cart count uses event-based update | — | No JS executes before idle on first paint; cart still updates correctly |
 | 1-9 | T | P1 | Make `ProductCard` an **Astro component**. Hydrate only the inner `AddToCartButton` with `client:visible` | — | Shop page hydrates ≤ 2 islands instead of 24 |
 | 1-10 | T | P1 | Image discipline: `<img loading="lazy" decoding="async">` on all non-hero; `fetchpriority="high"` on hero LCP image; use `<picture>` with AVIF + WebP | — | Lighthouse "Properly size images" + "Serve next-gen formats" pass |
 | 1-11 | T | P2 | Remove placeholder Google Maps CDN script from `Layout.astro` | — | No `maps.googleapis.com` request anywhere it's not used |

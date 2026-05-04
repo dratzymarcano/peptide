@@ -13,12 +13,12 @@
 Implemented in code:
 
 - Custom locale layer for `en`, `de`, `nl`, `fr`, `it`, `es`, with default English unprefixed and non-default locale prefixes.
-- Locale-aware `Layout`, SEO metadata, language switcher, header/footer navigation, cart/checkout/account React islands, shop/product pages, support/legal pages, bundles, catalog and use-case hubs, search, 404, learn pages, and blog page chrome.
+- Locale-aware `Layout`, SEO metadata, language switcher, header/footer navigation, cart/checkout React islands, shop/product pages, support/legal pages, bundles, catalog and use-case hubs, search, 404, learn pages, and blog page chrome.
 - Blog index/detail metadata, categories, tags, structured data, and article bodies are localized through `src/i18n/blogContent.ts` while preserving the current English markdown collection as the canonical slug/date source.
 - Product detail pages, product cards, shop tables, catalog/use-case listings, search-visible product data, product FAQ text, generated product body copy, and product SEO/schema fields are localized at runtime through `src/i18n/productContent.ts` while preserving the current English product markdown files as canonical technical records.
 - Search API results now accept a locale and return localized product, blog, and static-page titles/categories; API failure responses now use stable machine-readable `code` fields instead of English UI strings for search, enquiry, Bitcoin invoice, webhook, and COA PDF error paths.
 - Sitemap generation now includes locale-prefixed virtual URLs with `@astrojs/sitemap` i18n alternate grouping for public pages, product detail routes, blog posts, catalog hubs, use-case hubs, and learn pages.
-- Checkout account errors use stable client-side codes rendered through localized checkout labels, and Bitcoin invoice creation now goes through the server API with the active locale passed to BTCPay checkout language settings.
+- Checkout validation and order-payment errors use stable client-side codes rendered through localized checkout labels, and Bitcoin invoice creation now goes through the server API with the active locale passed to BTCPay checkout language settings.
 - COA HTML/PDF output now supports all six target locales (`en/de/nl/fr/it/es`), including Dutch and Italian strings, generated static HTML variants, product-page language links, localized footer policy links, and homepage COA language counts.
 - Per-locale markdown drop folders exist at `src/content/products/<locale>/` and `src/content/blog/<locale>/` (`.gitkeep` placeholders). The loader at `src/lib/localizedEntry.ts` prefers `<locale>/<slug>.md` when present and falls back to the English canonical file. See `src/content/README.md`.
 - Translator tooling is scaffolded: locked-term glossary at `src/i18n/glossary.csv` and a hard-coded-string scanner at `scripts/extract-i18n.mjs` (`npm run extract:i18n` → `scripts/i18n-extract-report.json`).
@@ -50,7 +50,6 @@ Located under `src/pages/`. Every `<h1>`, paragraph, button label, eyebrow, list
 | Use case hubs | [src/pages/use-case/](astro-peptide/src/pages/use-case) | |
 | Cart | [src/pages/cart.astro](astro-peptide/src/pages/cart.astro) | Empty state, totals, minimum-order, CTA |
 | Checkout | [src/pages/checkout.astro](astro-peptide/src/pages/checkout.astro) | Form labels, validation, payment terms |
-| Account dashboard | [src/pages/account/dashboard.astro](astro-peptide/src/pages/account/dashboard.astro) | |
 | Bundles, About, Contact, FAQ, Quality, Shipping, COA policy, Privacy, Terms, Disclaimer, Wholesale, 404, Search | `src/pages/*.astro` | Include legal pages — must be reviewed by a native legal/medical translator |
 | Insights | [src/pages/blog/](astro-peptide/src/pages/blog) | Article bodies are content collection (see 1.3) |
 | Learn | [src/pages/learn/](astro-peptide/src/pages/learn) | |
@@ -63,7 +62,6 @@ Located in `src/components/` (Astro + React islands). Strings to extract:
 - Footer: [Footer.astro](astro-peptide/src/components/Footer.astro) — column titles, link labels, legal disclaimers.
 - Sidebar / filters: [ShopSidebar.astro](astro-peptide/src/components/ShopSidebar.astro), [ShopFilters.astro](astro-peptide/src/components/ShopFilters.astro) — block titles, RUO note, "All areas".
 - Cart islands (React): [CartModal.tsx](astro-peptide/src/components/CartModal.tsx), [CartNotification.tsx](astro-peptide/src/components/CartNotification.tsx), [CartIcon.tsx](astro-peptide/src/components/CartIcon.tsx), [CartPageContent.tsx](astro-peptide/src/components/CartPageContent.tsx), [Checkout.tsx](astro-peptide/src/components/Checkout.tsx), [AddToCartButton.tsx](astro-peptide/src/components/AddToCartButton.tsx), [ProductOptions.tsx](astro-peptide/src/components/ProductOptions.tsx).
-- Account: [AccountButton.tsx](astro-peptide/src/components/AccountButton.tsx), [Dashboard.tsx](astro-peptide/src/components/Dashboard.tsx).
 - Search: [SearchBar.tsx](astro-peptide/src/components/SearchBar.tsx) — placeholder, no-results message.
 - Misc: [PageTitle.astro](astro-peptide/src/components/PageTitle.astro), [PageHeading.astro](astro-peptide/src/components/PageHeading.astro), [SectionHeadingRow.astro](astro-peptide/src/components/SectionHeadingRow.astro), [Breadcrumb.astro](astro-peptide/src/components/Breadcrumb.astro), [RUOBanner.astro](astro-peptide/src/components/RUOBanner.astro), [ProductFAQs.astro](astro-peptide/src/components/ProductFAQs.astro), [ProductReviews.astro](astro-peptide/src/components/ProductReviews.astro), [RelatedProducts.astro](astro-peptide/src/components/RelatedProducts.astro), [ProductCard.tsx](astro-peptide/src/components/ProductCard.tsx).
 
@@ -95,7 +93,7 @@ Defined in [src/content/config.ts](astro-peptide/src/content/config.ts). Every t
 ### 1.5 Dynamic / runtime strings
 
 - API routes under [src/pages/api/](astro-peptide/src/pages/api) — error messages returned to the client (e.g. cart, checkout, COA download) must be either locale-aware or strictly machine-readable codes mapped client-side to localized strings.
-- Stores: [src/scripts/cartStore.ts](astro-peptide/src/scripts/cartStore.ts), [src/store/authStore.ts](astro-peptide/src/store/authStore.ts) — toast/notification text routed through the `t()` helper.
+- Store: [src/scripts/cartStore.ts](astro-peptide/src/scripts/cartStore.ts) — toast/notification text routed through the `t()` helper.
 - Date, number, and currency formatting → use `Intl.DateTimeFormat`/`Intl.NumberFormat` with the active locale; price stays in EUR (`€`) but decimal/group separators differ (`1.299,00 €` for de/nl/it/es vs `€1,299.00` for en).
 - Form validation libraries (HTML5 `required`, custom validators) — provide localized messages.
 
@@ -259,7 +257,7 @@ Detect locale from URL prefix in middleware; expose `context.locals.locale`. Loc
 
 ### 2.7 Email & invoice templates
 
-Order confirmation, shipping notification, password reset, invoice/PDF — must each accept a `locale` and load the matching template. Reuse the same dictionary subtree under a `transactional.*` namespace.
+Order confirmation, shipping notification, and invoice/PDF messages must each accept a `locale` and load the matching template. Reuse the same dictionary subtree under a `transactional.*` namespace.
 
 ### 2.8 Currency & legal
 
@@ -519,7 +517,7 @@ export const localeMeta = {
 
 - Cross-browser: Chrome, Edge, Firefox, Safari (macOS + iOS), Samsung Internet on Android.
 - Cross-device: 360px (small mobile), 768px (tablet), 1280px (desktop), 1920px (wide).
-- Functional flows per locale: browse shop → add to cart → checkout → confirmation; account login; COA download; language switch from each page persists path & cookie; back/forward navigation.
+- Functional flows per locale: browse shop → add to cart → checkout → confirmation; COA download; language switch from each page persists path & cookie; back/forward navigation.
 - Form validation messages render in the active locale.
 - Email previews per locale (use Mailtrap / Litmus).
 
@@ -605,7 +603,6 @@ shop.*
 product.*
 cart.*
 checkout.*
-account.*
 seo.*              # site-wide SEO defaults
 forms.*            # validation messages
 toast.*            # cartStore notifications

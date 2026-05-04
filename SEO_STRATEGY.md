@@ -258,7 +258,7 @@ Same outline mirrored in every locale (1:1 H2 set → enables hreflang clusters)
 
 - [ ] Generate per-locale sitemaps: `sitemap-en.xml`, `sitemap-de.xml`, `sitemap-nl.xml`, `sitemap-fr.xml`, `sitemap-it.xml`, `sitemap-es.xml`, plus `sitemap-index.xml`. The current `@astrojs/sitemap` config emits one combined file — split by extending `serialize` and writing 6 files, OR submit the single file and rely on the `<xhtml:link>` annotations.
 - [ ] Verify sitemap output contains `<xhtml:link rel="alternate" hreflang="…" />` siblings inside each `<url>`. If missing, the `i18n` config block in [astro.config.mjs](astro-peptide/astro.config.mjs#L107-L114) is not generating them — debug.
-- [ ] `robots.txt`: ensure `Allow: /` on all locales; `Disallow: /api/`, `/cart/`, `/checkout/`, `/account/`. Add `Sitemap: https://peptide-shop.net/sitemap-index.xml`.
+- [ ] `robots.txt`: ensure `Allow: /` on all locales; `Disallow: /api/`, `/cart/`, `/checkout/`. Add `Sitemap: https://peptide-shop.net/sitemap-index.xml`.
 - [ ] Cloudflare Worker: ensure no geo-routing (Workers shouldn't serve different responses to Googlebot regardless of edge location).
 - [ ] Add `Content-Language` HTTP header per response (set in [middleware.ts](astro-peptide/src/middleware.ts) based on detected locale).
 - [ ] Crawl budget: `noindex` thin filter pages, search results, paginated tail (page 5+).
@@ -332,9 +332,9 @@ LLM crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) cite content th
 
 # PHASE 6 — Google Merchant Center (multi-feed free listings)
 
-## 6.1 Account architecture
+## 6.1 Merchant Center architecture
 
-**Single MC account** (Germany business), Multi-Client structure NOT needed. Create feeds:
+**Single Merchant Center profile** (Germany business), Multi-Client structure NOT needed. Create feeds:
 
 | Feed name | Country | Language | Currency | URL pattern |
 |---|---|---|---|---|
@@ -661,7 +661,6 @@ Allow: /
 Disallow: /api/
 Disallow: /cart/
 Disallow: /checkout/
-Disallow: /account/
 
 User-agent: GPTBot
 Allow: /

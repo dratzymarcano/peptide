@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getUserFromCookies } from '../../lib/auth/session';
-import { createOrder, listOrdersForUser, type PaymentMethod } from '../../lib/orders';
+import { createOrder, type PaymentMethod } from '../../lib/orders';
 import {
   sendBankTransferInstructions,
   sendOrderConfirmation,
@@ -65,22 +64,7 @@ function normalizeItems(items: CheckoutOrderItem[] | undefined, currency: string
   });
 }
 
-export const GET: APIRoute = async ({ cookies }) => {
-  const user = await getUserFromCookies(cookies);
-  if (!user) {
-    return new Response(JSON.stringify({ orders: [] }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-  const orders = await listOrdersForUser(user.id);
-  return new Response(JSON.stringify({ orders }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
-};
-
-export const POST: APIRoute = async ({ request, cookies, locals }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   let payload: CheckoutOrderPayload;
   try {
     payload = await request.json();
@@ -102,11 +86,9 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
     return json({ success: false, code: 'minimum_order_required' }, 400);
   }
 
-  const user = await getUserFromCookies(cookies);
   const method = paymentMethod(payload.paymentMethod);
   const order = await createOrder({
     id: payload.id,
-    userId: user?.id ?? null,
     email,
     paymentMethod: method,
     subtotal,

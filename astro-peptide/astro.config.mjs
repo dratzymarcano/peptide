@@ -149,7 +149,6 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/cart') &&
         !page.includes('/checkout') &&
-        !page.includes('/account/') &&
         !page.includes('/api/'),
       changefreq: 'weekly',
       priority: 0.7,
