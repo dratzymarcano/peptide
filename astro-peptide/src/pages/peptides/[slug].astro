@@ -9,7 +9,7 @@ import ProductFAQs from '../../components/ProductFAQs.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RUOBanner from '../../components/RUOBanner.astro';
 import ShopSidebar from '../../components/ShopSidebar.astro';
-import { getResearchArea, useCases } from '../../data/taxonomy';
+import { getResearchArea, useCases, type UseCaseSlug } from '../../data/taxonomy';
 import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
 import { getLocalizedProduct } from '../../i18n/productContent';
@@ -71,11 +71,11 @@ const productImageUrl = productImage.startsWith('http') ? productImage : `${site
 const researchArea = product.data.researchArea ? getResearchArea(product.data.researchArea) : undefined;
 const researchAreaName = researchArea ? t(`taxonomy.researchAreas.${researchArea.slug}.name`) : undefined;
 const productUseCases = (product.data.useCases ?? [])
-  .map((slug) => {
-    const useCase = useCases.find((candidate) => candidate.slug === slug);
-    return useCase ? { ...useCase, name: t(`taxonomy.useCases.${useCase.slug}.name`) } : undefined;
+  .map((useCaseSlug: string) => {
+    const useCase = useCases.find((candidate) => candidate.slug === useCaseSlug);
+    return useCase ? { slug: useCase.slug, name: t(`taxonomy.useCases.${useCase.slug}.name`) } : undefined;
   })
-  .filter(Boolean);
+  .filter((useCase): useCase is { slug: UseCaseSlug; name: string } => Boolean(useCase));
 const alternateCoaLocales = SUPPORTED_COA_LOCALES.filter((coaLocale) => coaLocale !== DEFAULT_COA_LOCALE);
 
 const extractPrice = (priceStr: string): number => {
@@ -86,7 +86,7 @@ const extractPrice = (priceStr: string): number => {
 const productPrice = product.data.price ?? extractPrice(product.data.price_range);
 const reviews = product.data.reviews ?? [];
 const averageRating = reviews.length > 0
-  ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+  ? reviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) / reviews.length
   : null;
 const entityMap = entities as Record<string, { sameAs?: string[]; cas?: string | null; molecularFormula?: string | null; pubchem?: string | null; wikidata?: string | null }>;
 const productEntity = entityMap[currentSlug];
@@ -183,7 +183,7 @@ const faqSchema = localizedProduct.faqs.length
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
     inLanguage: inLanguage(locale),
-      mainEntity: localizedProduct.faqs.map((faq) => ({
+      mainEntity: localizedProduct.faqs.map((faq: { question: string; answer: string }) => ({
         '@type': 'Question',
         name: faq.question,
         acceptedAnswer: {
