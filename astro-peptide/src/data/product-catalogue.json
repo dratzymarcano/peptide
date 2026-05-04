@@ -1,0 +1,232 @@
+[
+  {
+    "product": "5-Amino-1MQ",
+    "oral_capsules": true,
+    "vials": false,
+    "powder": true,
+    "unit_quantity": "60 × 50 mg caps",
+    "unit_price_eur": 65,
+    "corresponding_quantity": "1 bottle (60 caps)",
+    "notes": ""
+  },
+  {
+    "product": "AOD-9604",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 25,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Bacteriostatic Water",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": false,
+    "unit_quantity": "10 × 10 mL vials",
+    "unit_price_eur": 18,
+    "corresponding_quantity": "1 pack (10 vials)",
+    "notes": ""
+  },
+  {
+    "product": "BPC-157",
+    "oral_capsules": true,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 22,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Cagrilintide",
+    "oral_capsules": false,
+    "vials": false,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 55,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "CJC-1295 (No DAC)",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 18,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "DSIP",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 15,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Epitalon",
+    "oral_capsules": true,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 15,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "GH Frag 176-191",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 22,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "GHK-Cu",
+    "oral_capsules": false,
+    "vials": false,
+    "powder": true,
+    "unit_quantity": "500 mg powder",
+    "unit_price_eur": 75,
+    "corresponding_quantity": "1 jar",
+    "notes": ""
+  },
+  {
+    "product": "GHRP-2",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 15,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "GHRP-6",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 15,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Ipamorelin",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 18,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Melanotan-2",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 15,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "NAD+",
+    "oral_capsules": true,
+    "vials": true,
+    "powder": false,
+    "unit_quantity": "1 × 500 mg vial",
+    "unit_price_eur": 55,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "O-304",
+    "oral_capsules": false,
+    "vials": false,
+    "powder": true,
+    "unit_quantity": "3 g powder",
+    "unit_price_eur": 95,
+    "corresponding_quantity": "1 jar",
+    "notes": ""
+  },
+  {
+    "product": "Retatrutide",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 119,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Selank",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 18,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Semaglutide",
+    "oral_capsules": true,
+    "vials": true,
+    "powder": false,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 45,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Semax",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 18,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "TB-500",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": true,
+    "unit_quantity": "1 × 5 mg vial",
+    "unit_price_eur": 25,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  },
+  {
+    "product": "Tesofensine",
+    "oral_capsules": true,
+    "vials": false,
+    "powder": false,
+    "unit_quantity": "60 × 0.5 mg caps",
+    "unit_price_eur": 55,
+    "corresponding_quantity": "1 bottle (60 caps)",
+    "notes": ""
+  },
+  {
+    "product": "Tirzepatide",
+    "oral_capsules": false,
+    "vials": true,
+    "powder": false,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 79,
+    "corresponding_quantity": "1 vial",
+    "notes": ""
+  }
+]

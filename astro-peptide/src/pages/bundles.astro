@@ -1,6 +1,60 @@
 ---
-// English bundles page - uses localized component
-import BundlesPage from '../components/pages/BundlesPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import RelatedLinkList from '../components/RelatedLinkList.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('bundles.eyebrow'), url: href('/bundles/') },
+];
 ---
 
-<BundlesPage lang="en" />
+<Layout
+  title={t('bundles.metaTitle')}
+  description={t('bundles.metaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('bundles.eyebrow')}
+        title={t('bundles.title')}
+        description={t('bundles.description')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('bundles.logicTitle')}</h2>
+          <div class="learning-grid">
+            <div class="learning-panel"><h3>{t('bundles.metabolicTitle')}</h3><p>{t('bundles.metabolicBody')}</p></div>
+            <div class="learning-panel"><h3>{t('bundles.repairTitle')}</h3><p>{t('bundles.repairBody')}</p></div>
+            <div class="learning-panel"><h3>{t('bundles.cnsTitle')}</h3><p>{t('bundles.cnsBody')}</p></div>
+            <div class="learning-panel"><h3>{t('bundles.handlingTitle')}</h3><p>{t('bundles.handlingBody')}</p></div>
+          </div>
+
+          <h2>{t('bundles.buildTitle')}</h2>
+          <p>{t('bundles.buildBody')}</p>
+
+          <p><a class="btn btn-primary" href={href('/catalog/')}>{t('bundles.browseCatalogue')}</a></p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('bundles.popularHubs')}</h2>
+            <RelatedLinkList items={[
+              { url: href('/catalog/diabetes/'), title: t('bundles.hubDiabetesTitle'), subtitle: t('bundles.hubDiabetesSubtitle') },
+              { url: href('/catalog/cell-tissue/'), title: t('bundles.hubRepairTitle'), subtitle: t('bundles.hubRepairSubtitle') },
+              { url: href('/catalog/neuroscience/'), title: t('bundles.hubNeuroTitle'), subtitle: t('bundles.hubNeuroSubtitle') },
+            ]} />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -23,8 +23,6 @@ const productsCollection = defineCollection({
     title: z.string(),
     primary_keyword: z.string(),
     search_volume: z.union([z.number(), z.string()]),
-    urlPath: z.string().optional(), // URL path for the product page (renamed from 'slug' to avoid Astro collision)
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']).optional(), // Language identifier
     aliases: z.array(z.string()).optional(),
     cas: z.string().nullable(),
     molecular_weight: z.string().nullable(),
@@ -34,9 +32,40 @@ const productsCollection = defineCollection({
     moq: z.number(),
     price: z.number().optional(),
     price_range: z.string(),
-    coa_url: z.string().optional(),
     short_description: z.string(),
     category: z.string(),
+    // Commerce metadata (all optional — safe defaults applied at runtime)
+    availability: z.enum(['in_stock', 'low_stock', 'out_of_stock', 'preorder']).optional(),
+    stock_qty: z.number().int().nonnegative().optional(),
+    compare_at_price: z.number().positive().optional(), // crossed-out reference price
+    promo: z.object({
+      label: z.string(),                                  // e.g. "Spring −15%"
+      discount_pct: z.number().min(0).max(95).optional(), // optional auto-discount
+      expires: z.string().optional(),                     // ISO date
+    }).optional(),
+    // NEW — IA mapping (Phase 2A). Optional during migration.
+    researchArea: z.enum([
+      'neuroscience',
+      'cardiovascular',
+      'diabetes',
+      'cancer-apoptosis',
+      'adhesion-ecm',
+      'cell-tissue',
+      'immunology',
+      'epigenetics',
+      'hormones',
+      'cell-signaling',
+      'protein-analysis',
+      'cell-permeable',
+    ]).optional(),
+    useCases: z.array(z.enum([
+      'weight-loss',
+      'muscle-recovery',
+      'cognitive',
+      'anti-aging',
+      'tanning',
+    ])).optional(),
+    sequence: z.string().optional(),
     tags: z.array(z.string()),
     images: z.array(z.string()),
     meta: z.object({
@@ -51,7 +80,6 @@ const productsCollection = defineCollection({
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']).default('en'),
     title: z.string(),
     description: z.string(),
     publishDate: z.string(),
@@ -64,49 +92,32 @@ const blogCollection = defineCollection({
       title: z.string(),
       description: z.string(),
     }),
-    seo: z.object({
-      primaryKeyword: z.string(),
-      searchVolume: z.number(),
-      secondaryKeywords: z.array(z.object({
-        keyword: z.string(),
-        volume: z.number(),
-      })).optional(),
-    }).optional(),
   }),
 });
 
-const siteCollection = defineCollection({
+const learnCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']),
-    email: z.string(),
-    telegram: z.string(),
-    seo: z.object({
-      homeName: z.string(),
-      homeDescription: z.string(),
-      organizationDescription: z.string(),
-      primaryKeyword: z.string().optional(),
-      searchVolume: z.number().optional(),
-      secondaryKeywords: z.array(z.object({
-        keyword: z.string(),
-        volume: z.number(),
-      })).optional(),
+    title: z.string(),
+    description: z.string(),
+    publishDate: z.string(),
+    updatedDate: z.string().optional(),
+    author: z.string().default('Peptide Shop Editorial'),
+    category: z.string(),
+    readTime: z.string(),
+    tags: z.array(z.string()).optional(),
+    order: z.number().default(0),
+    primaryKeyword: z.string().optional(),
+    howTo: z.boolean().default(false),
+    meta: z.object({
+      title: z.string(),
+      description: z.string(),
     }),
-  }),
-});
-
-const pageCopyCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    lang: z.enum(['en', 'nl', 'de', 'fr', 'es', 'it', 'ru']),
-    page: z.string(),
-    copy: z.record(z.any()),
   }),
 });
 
 export const collections = {
   'products': productsCollection,
   'blog': blogCollection,
-  'site': siteCollection,
-  'pageCopy': pageCopyCollection,
+  'learn': learnCollection,
 };

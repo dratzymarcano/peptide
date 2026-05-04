@@ -1,5 +1,60 @@
 ---
-import PrivacyPage from '../components/pages/PrivacyPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('footer.privacy'), url: href('/privacy/') },
+];
 ---
 
-<PrivacyPage lang="en" />
+<Layout
+  title={t('legal.privacyMetaTitle')}
+  description={t('legal.privacyMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('footer.privacy')}
+        title={t('legal.privacyTitle')}
+        description={t('legal.privacyDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('legal.privacyCollectTitle')}</h2>
+          <p>{t('legal.privacyCollectBody')}</p>
+
+          <h2>{t('legal.privacyUseTitle')}</h2>
+          <ul>
+            <li>{t('legal.privacyUseEnquiries')}</li>
+            <li>{t('legal.privacyUseOrders')}</li>
+            <li>{t('legal.privacyUseDocuments')}</li>
+            <li>{t('legal.privacyUseCompliance')}</li>
+          </ul>
+
+          <h2>{t('legal.privacyRetentionTitle')}</h2>
+          <p>{t('legal.privacyRetentionBody')}</p>
+
+          <h2>{t('legal.privacyChoicesTitle')}</h2>
+          <p>{t('legal.privacyChoicesBody')}</p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('legal.privacyContactTitle')}</h2>
+            <p>{t('legal.privacyContactBody')}</p>
+            <a class="btn btn-secondary" href={href('/contact/')}>{t('nav.contact')}</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

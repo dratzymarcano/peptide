@@ -1,0 +1,186 @@
+---
+/**
+ * ShopSidebar — discovery + filter navigation.
+ *
+ * Used on:
+ *   - /shop/ (filter mode: links carry sort/view URL state)
+ *   - /peptides/[slug]/ (browse mode: highlights the product's research area)
+ *
+ * Renders four blocks: Research areas (with counts), Use cases (with counts),
+ * Support / quality links, and a small RUO note. All links go to /shop/?area=...
+ * so the same component drives both contexts.
+ */
+import { getCanonicalCollection } from '../lib/collections';
+import { researchAreas, useCases } from '../data/taxonomy';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  selectedArea?: string;
+  selectedUseCase?: string;
+  sort?: string;
+  view?: 'grid' | 'table';
+}
+
+const {
+  selectedArea = '',
+  selectedUseCase = '',
+  sort = 'featured',
+  view = 'grid',
+} = Astro.props;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const allProducts = await getCanonicalCollection('products');
+const totalProducts = allProducts.length;
+
+const areaCounts = new Map<string, number>();
+const useCaseCounts = new Map<string, number>();
+
+for (const product of allProducts) {
+  if (product.data.researchArea) {
+    areaCounts.set(product.data.researchArea, (areaCounts.get(product.data.researchArea) ?? 0) + 1);
+  }
+  for (const useCase of product.data.useCases ?? []) {
+    useCaseCounts.set(useCase, (useCaseCounts.get(useCase) ?? 0) + 1);
+  }
+}
+
+const hrefWith = (changes: Record<string, string | null>) => {
+  const next = new URLSearchParams();
+  if (selectedArea) next.set('area', selectedArea);
+  if (selectedUseCase) next.set('useCase', selectedUseCase);
+  if (sort && sort !== 'featured') next.set('sort', sort);
+  if (view && view !== 'grid') next.set('view', view);
+
+  for (const [key, value] of Object.entries(changes)) {
+    if (!value) next.delete(key);
+    else next.set(key, value);
+  }
+
+  const query = next.toString();
+  const shopPath = href('/shop/');
+  return query ? `${shopPath}?${query}` : shopPath;
+};
+---
+
+<div class="shop-sidebar">
+  <section class="sidebar-block">
+    <h2 class="sidebar-title">{t('shopSidebar.researchArea')}</h2>
+    <ul class="sidebar-list">
+      <li>
+        <a class:list={["sidebar-link", { 'is-active': !selectedArea }]} href={hrefWith({ area: null })}>
+          <span>{t('shopSidebar.allAreas')}</span><span class="sidebar-count">{totalProducts}</span>
+        </a>
+      </li>
+      {researchAreas.map((area) => (
+        <li>
+          <a
+            class:list={["sidebar-link", { 'is-active': selectedArea === area.slug }]}
+            href={hrefWith({ area: area.slug })}
+          >
+            <span>{area.name}</span>
+            <span class="sidebar-count">{areaCounts.get(area.slug) ?? 0}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="sidebar-block">
+    <h2 class="sidebar-title">{t('shopSidebar.useCase')}</h2>
+    <ul class="sidebar-list">
+      <li>
+        <a class:list={["sidebar-link", { 'is-active': !selectedUseCase }]} href={hrefWith({ useCase: null })}>
+          <span>{t('shopSidebar.allUseCases')}</span><span class="sidebar-count">{totalProducts}</span>
+        </a>
+      </li>
+      {useCases.map((useCase) => (
+        <li>
+          <a
+            class:list={["sidebar-link", { 'is-active': selectedUseCase === useCase.slug }]}
+            href={hrefWith({ useCase: useCase.slug })}
+          >
+            <span>{useCase.name}</span>
+            <span class="sidebar-count">{useCaseCounts.get(useCase.slug) ?? 0}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="sidebar-block">
+    <h2 class="sidebar-title">{t('shopSidebar.why')}</h2>
+    <ul class="sidebar-list">
+      <li><a class="sidebar-link" href={href('/quality/')}><span>{t('shopSidebar.hplc')}</span></a></li>
+      <li><a class="sidebar-link" href={href('/coa-policy/')}><span>{t('shopSidebar.coa')}</span></a></li>
+      <li><a class="sidebar-link" href={href('/shipping/')}><span>{t('shopSidebar.shipping')}</span></a></li>
+      <li><a class="sidebar-link" href={href('/bundles/')}><span>{t('shopSidebar.bundles')}</span></a></li>
+      <li><a class="sidebar-link" href={href('/contact/')}><span>{t('shopSidebar.quotes')}</span></a></li>
+    </ul>
+  </section>
+
+  <p class="sidebar-ruo">
+    {t('shopSidebar.ruo')}
+  </p>
+</div>
+
+<style>
+  .shop-sidebar {
+    display: grid;
+    gap: var(--space-5);
+  }
+  .sidebar-block {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background: #fff;
+  }
+  .sidebar-title {
+    font-size: var(--text-base);
+    margin: 0 0 var(--space-3);
+  }
+  .sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .sidebar-link {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink-2);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    line-height: 1.35;
+  }
+  .sidebar-link:hover,
+  .sidebar-link.is-active {
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+  }
+  .sidebar-count {
+    color: var(--color-ink-3);
+    font-variant-numeric: tabular-nums;
+    font-size: var(--text-xs);
+  }
+  .sidebar-link:hover .sidebar-count,
+  .sidebar-link.is-active .sidebar-count {
+    color: var(--color-primary);
+  }
+  .sidebar-ruo {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-xs);
+    color: var(--color-ink-3);
+    border-left: 3px solid var(--color-warning, #d97706);
+    background: var(--color-warning-50, #fff7ed);
+    border-radius: var(--radius-sm);
+  }
+</style>

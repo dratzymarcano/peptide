@@ -1,0 +1,32 @@
+{
+  "defaults": {
+    "timeout": 30000,
+    "wait": 1500,
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "ignore": [
+      "warning",
+      "notice"
+    ],
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    }
+  },
+  "urls": [
+    "http://127.0.0.1:4321/",
+    "http://127.0.0.1:4321/shop/",
+    "http://127.0.0.1:4321/peptides/bpc-157/",
+    "http://127.0.0.1:4321/catalog/",
+    "http://127.0.0.1:4321/use-case/weight-loss/",
+    "http://127.0.0.1:4321/cart/",
+    "http://127.0.0.1:4321/checkout/",
+    "http://127.0.0.1:4321/blog/",
+    "http://127.0.0.1:4321/learn/",
+    "http://127.0.0.1:4321/quality/",
+    "http://127.0.0.1:4321/de/",
+    "http://127.0.0.1:4321/de/shop/",
+    "http://127.0.0.1:4321/de/peptides/bpc-157/",
+    "http://127.0.0.1:4321/fr/",
+    "http://127.0.0.1:4321/es/"
+  ]
+}

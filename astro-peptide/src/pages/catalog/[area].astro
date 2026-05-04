@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { toCardProduct } from '../../lib/product';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import RUOBanner from '../../components/RUOBanner.astro';
+import { researchAreas, getResearchArea } from '../../data/taxonomy';
+import { getCanonicalCollection } from '../../lib/collections';
+import { getLocaleFromPathname, localizePath } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+import { getLocalizedProduct } from '../../i18n/productContent';
+
+export const prerender = false;
+
+const { area } = Astro.params;
+const meta = getResearchArea(area as string);
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+if (!meta) {
+  return Astro.redirect(href('/catalog/'), 302);
+}
+
+const areaName = t(`taxonomy.researchAreas.${meta.slug}.name`);
+const areaDescription = t(`taxonomy.researchAreas.${meta.slug}.description`);
+const areaKeywords = meta.keywords.map((_, index) => t(`taxonomy.researchAreas.${meta.slug}.keywords.${index}`));
+
+const all = await getCanonicalCollection('products');
+const products = all
+  .filter((p) => p.data.researchArea === area)
+  .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const url = new URL(Astro.url.pathname, Astro.site).toString();
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListOrder: 'https://schema.org/ItemListOrderAscending',
+  numberOfItems: products.length,
+  itemListElement: products.map((p, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+      url: new URL(href(`/peptides/${p.slug}/`), Astro.site).toString(),
+      name: getLocalizedProduct(p, locale).title,
+  })),
+};
+
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('catalogArea.schemaName', { area: areaName }),
+  description: areaDescription,
+  url,
+  inLanguage: locale,
+};
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('nav.catalogue'), url: href('/catalog/') },
+  { name: areaName, url: href(`/catalog/${meta.slug}/`) },
+];
+---
+
+<Layout
+  title={t('catalogArea.metaTitle', { area: areaName })}
+  description={t('catalogArea.metaDescription', { description: areaDescription })}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={[collectionPageSchema, itemListSchema]} />
+
+  <section class="section">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <span class="eyebrow">{t('shopSidebar.researchArea')}</span>
+      <h1>{t('catalogArea.title', { area: areaName })}</h1>
+      <p class="lead">{areaDescription}</p>
+
+      <RUOBanner heading={t('productPage.ruoHeading')} detail={t('productPage.ruoDetail')} style="margin-top: var(--space-6);" />
+
+      {products.length === 0 ? (
+        <p style="margin-top: var(--space-8); color: var(--color-ink-3);">
+          {t('catalogArea.noProducts')} <a href={href('/contact/')}>{t('catalogArea.requestQuote')}</a>.
+        </p>
+      ) : (
+        <div class="grid grid-3" style="margin-top: var(--space-10);">
+          {products.map((p) => (
+            <ProductCard product={toCardProduct(p, locale)} />
+          ))}
+        </div>
+      )}
+
+      <hr class="divider" />
+
+      <h2>{t('catalogArea.relatedSearches')}</h2>
+      <div style="display:flex; flex-wrap:wrap; gap: var(--space-2); margin-top: var(--space-3);">
+        {areaKeywords.map((kw) => (
+          <span class="chip" aria-label={t('catalogArea.topicAria', { topic: kw })}>{kw}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

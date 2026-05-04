@@ -1,5 +1,86 @@
 ---
-import ShippingPage from '../components/pages/ShippingPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('support.shipping'), url: href('/shipping/') },
+];
 ---
 
-<ShippingPage lang="en" />
+<Layout
+  title={t('support.shippingMetaTitle')}
+  description={t('support.shippingMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('support.shipping')}
+        title={t('support.shippingTitle')}
+        description={t('support.shippingDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('support.dispatchTitle')}</h2>
+          <figure class="editorial-figure">
+            <img
+              src="/images/lifestyle/peptide-shipping-box.jpg"
+              alt="Peptide vials packaged in a shipping box with cold-chain protection"
+              loading="lazy"
+              width="800"
+              height="1067"
+            />
+          </figure>
+          <p>{t('support.dispatchBody')}</p>
+
+          <h2>{t('support.temperatureTitle')}</h2>
+          <p>{t('support.temperatureBody')}</p>
+
+          <h2>{t('support.receivingTitle')}</h2>
+          <ul>
+            <li>{t('support.receivingInspect')}</li>
+            <li>{t('support.receivingMatch')}</li>
+            <li>{t('support.receivingStore')}</li>
+            <li>{t('support.receivingRecord')}</li>
+          </ul>
+
+          <h2>{t('support.internationalTitle')}</h2>
+          <p>{t('support.internationalBody')}</p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('support.needDocuments')}</h2>
+            <p>{t('support.needDocumentsBody')}</p>
+            <a class="btn btn-primary" href={href('/contact/')}>{t('support.contactSupport')}</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .editorial-figure {
+    margin: 0 0 var(--space-6, 1.5rem);
+    border-radius: var(--radius-xl, 1rem);
+    overflow: hidden;
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+    box-shadow: var(--shadow-soft-3, 0 8px 32px rgba(0, 0, 0, 0.06));
+    aspect-ratio: 4 / 3;
+  }
+  .editorial-figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

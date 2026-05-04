@@ -1,5 +1,85 @@
 ---
-import FAQPage from '../components/pages/FAQPage.astro';
+import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import PageHeading from '../components/PageHeading.astro';
+import RelatedLinkList from '../components/RelatedLinkList.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('support.faq'), url: href('/faq/') },
+];
+
+const faqEntries: Array<{ q: string; a: string }> = [
+  { q: t('support.faqHumanUseQ'), a: t('support.faqHumanUseA') },
+  { q: t('support.faqResearchAreaQ'), a: t('support.faqResearchAreaA') },
+  { q: t('support.faqCoaQ'), a: t('support.faqCoaA') },
+  { q: t('support.faqHplcQ'), a: t('support.faqHplcA') },
+  { q: t('support.faqStorageQ'), a: t('support.faqStorageA') },
+  { q: t('support.faqMinimumQ'), a: t('support.faqMinimumA') },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: locale,
+  mainEntity: faqEntries.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
-<FAQPage lang="en" />
+<Layout
+  title={t('support.faqMetaTitle')}
+  description={t('support.faqMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={faqSchema} />
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('support.faq')}
+        title={t('support.faqTitle')}
+        description={t('support.faqDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('support.faqProductsUse')}</h2>
+          <details class="learning-panel" open><summary><strong>{t('support.faqHumanUseQ')}</strong></summary><p>{t('support.faqHumanUseA')}</p></details>
+          <details class="learning-panel"><summary><strong>{t('support.faqResearchAreaQ')}</strong></summary><p>{t('support.faqResearchAreaA')}</p></details>
+
+          <h2>{t('support.faqCoaQuality')}</h2>
+          <details class="learning-panel"><summary><strong>{t('support.faqCoaQ')}</strong></summary><p>{t('support.faqCoaA')}</p></details>
+          <details class="learning-panel"><summary><strong>{t('support.faqHplcQ')}</strong></summary><p>{t('support.faqHplcA')}</p></details>
+
+          <h2>{t('support.faqShippingHandling')}</h2>
+          <details class="learning-panel"><summary><strong>{t('support.faqStorageQ')}</strong></summary><p>{t('support.faqStorageA')}</p></details>
+          <details class="learning-panel"><summary><strong>{t('support.faqMinimumQ')}</strong></summary><p>{t('support.faqMinimumA')}</p></details>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('support.stillNeedHelp')}</h2>
+            <p>{t('support.stillNeedHelpBody')}</p>
+            <a class="btn btn-primary" href={href('/contact/')}>{t('support.contactSupport')}</a>
+          </div>
+          <div class="card">
+            <h2>{t('support.browseByRoute')}</h2>
+            <RelatedLinkList items={[
+              { url: href('/catalog/'), title: t('support.researchAreas'), subtitle: t('support.scientificNavigation') },
+              { url: href('/use-case/weight-loss/'), title: t('support.useCases'), subtitle: t('support.appliedClusters') },
+            ]} />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

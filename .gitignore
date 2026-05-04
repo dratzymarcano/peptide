@@ -1,10 +1,11 @@
 node_modules
+dist
+.astro
+.vite
 
-# Astro build output / caches
-astro-peptide/dist
-astro-peptide/.astro
-
-# Local tooling
-astro-peptide/.wrangler
-*.log
-.DS_Store
+# Test artefacts
+playwright-report
+test-results
+.lighthouseci
+astro-peptide/scripts/i18n-extract-report.json
+astro-peptide/.preview.pid

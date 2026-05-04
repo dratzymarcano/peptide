@@ -1,0 +1,85 @@
+---
+import { getCanonicalCollection } from '../lib/collections';
+import { researchAreas, useCases } from '../data/taxonomy';
+
+interface Props {
+  selectedArea?: string;
+  selectedUseCase?: string;
+  sort?: string;
+  view?: 'grid' | 'table';
+}
+
+const {
+  selectedArea = '',
+  selectedUseCase = '',
+  sort = 'featured',
+  view = 'grid',
+} = Astro.props;
+
+const allProducts = await getCanonicalCollection('products');
+const areaCounts = new Map<string, number>();
+const useCaseCounts = new Map<string, number>();
+
+for (const product of allProducts) {
+  if (product.data.researchArea) {
+    areaCounts.set(product.data.researchArea, (areaCounts.get(product.data.researchArea) ?? 0) + 1);
+  }
+  for (const useCase of product.data.useCases ?? []) {
+    useCaseCounts.set(useCase, (useCaseCounts.get(useCase) ?? 0) + 1);
+  }
+}
+
+const hrefWith = (changes: Record<string, string | null>) => {
+  const next = new URLSearchParams();
+  if (selectedArea) next.set('area', selectedArea);
+  if (selectedUseCase) next.set('useCase', selectedUseCase);
+  if (sort && sort !== 'featured') next.set('sort', sort);
+  if (view && view !== 'grid') next.set('view', view);
+
+  for (const [key, value] of Object.entries(changes)) {
+    if (!value) next.delete(key);
+    else next.set(key, value);
+  }
+
+  const query = next.toString();
+  return query ? `/shop/?${query}` : '/shop/';
+};
+---
+
+<div class="filter-group">
+  <h2>Research area</h2>
+  <ul class="filter-list">
+    <li><a class:list={{ 'is-active': !selectedArea }} href={hrefWith({ area: null })}>All areas <span>{allProducts.length}</span></a></li>
+    {researchAreas.map((area) => (
+      <li>
+        <a class:list={{ 'is-active': selectedArea === area.slug }} href={hrefWith({ area: area.slug })}>
+          {area.name}<span>{areaCounts.get(area.slug) ?? 0}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<div class="filter-group">
+  <h2>Use case</h2>
+  <ul class="filter-list">
+    <li><a class:list={{ 'is-active': !selectedUseCase }} href={hrefWith({ useCase: null })}>All use cases <span>{allProducts.length}</span></a></li>
+    {useCases.map((useCase) => (
+      <li>
+        <a class:list={{ 'is-active': selectedUseCase === useCase.slug }} href={hrefWith({ useCase: useCase.slug })}>
+          {useCase.name}<span>{useCaseCounts.get(useCase.slug) ?? 0}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<div class="filter-group">
+  <h2>Why Peptide Shop?</h2>
+  <ul class="filter-list">
+    <li><a href="/quality/">HPLC verification</a></li>
+    <li><a href="/coa-policy/">COA on every batch</a></li>
+    <li><a href="/shipping/">Discreet dispatch</a></li>
+    <li><a href="/disclaimer/">Research use only</a></li>
+  </ul>
+</div>

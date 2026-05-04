@@ -1,0 +1,33 @@
+---
+/**
+ * PageHeading — the standard page header used on content + commerce pages.
+ *
+ *   <PageHeading eyebrow="Quality" title="Quality data..." description="..." />
+ *
+ * `as` lets you switch between <h1> (default) and <h2>.
+ * `compact` is the default look (matches existing `page-heading-compact`);
+ * pass `compact={false}` for the full-bleed variant.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  as?: 'h1' | 'h2';
+  compact?: boolean;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  as: Tag = 'h1',
+  compact = true,
+}: Props = Astro.props;
+---
+
+<header class={`page-heading${compact ? ' page-heading-compact' : ''}`}>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+  <Tag>{title}</Tag>
+  {description && <p>{description}</p>}
+  <slot />
+</header>

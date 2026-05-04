@@ -1,5 +1,290 @@
 ---
-import AboutPage from '../components/pages/AboutPage.astro';
+import Layout from '../layouts/Layout.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
 ---
 
-<AboutPage lang="en" />
+<Layout
+  title={t('about.metaTitle')}
+  description={t('about.metaDescription')}
+  breadcrumbs={[
+    { name: t('common.home'), url: href('/') },
+    { name: t('nav.about'), url: href('/about/') },
+  ]}
+>
+  <!-- PAGE HERO -->
+  <section class="page-hero display-typography">
+    <div class="container">
+      <span class="eyebrow-rule">{t('about.eyebrow')}</span>
+      <h1>{t('about.title')}</h1>
+      <p>
+        {t('about.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- INTRO + PULL QUOTE -->
+  <section class="section section-loose">
+    <div class="container">
+      <div class="split split-7-5">
+        <article class="article-body">
+          <h2>{t('about.whatTitle')}</h2>
+          <p>
+            {t('about.whatBody1')}
+          </p>
+          <p>
+            {t('about.whatBody2')}
+          </p>
+        </article>
+        <aside>
+          <figure class="about-figure">
+            <img
+              src="/images/lifestyle/peptide-collection-organized.webp"
+              alt={t('about.figureAlt')}
+              loading="lazy"
+              width="640"
+              height="800"
+            />
+          </figure>
+          <blockquote class="pull-quote">
+            {t('about.quote')}
+          </blockquote>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATING PRINCIPLES (value grid) -->
+  <section class="section section-loose surface-mist" aria-labelledby="principles-title">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow-rule">{t('about.principlesEyebrow')}</span>
+        <h2 id="principles-title" class="display">{t('about.principlesTitle')}</h2>
+      </div>
+      <div class="value-grid">
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </span>
+          <h3>{t('about.principle1Title')}</h3>
+          <p>{t('about.principle1Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <h3>{t('about.principle2Title')}</h3>
+          <p>{t('about.principle2Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <h3>{t('about.principle3Title')}</h3>
+          <p>{t('about.principle3Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </span>
+          <h3>{t('about.principle4Title')}</h3>
+          <p>{t('about.principle4Body')}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVENTORY GALLERY -->
+  <section class="section section-loose" aria-label="Inventory and storage">
+    <div class="container">
+      <div class="about-gallery">
+        <figure>
+          <img src="/images/lifestyle/peptide-storage-case.webp" alt="Peptide vials organised in a tray" loading="lazy" width="800" height="800" />
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/peptide-vial-cases-stacked.jpg" alt="Stacked peptide vial cases with colour-coded caps" loading="lazy" width="800" height="1067" />
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/research-lab-bench.webp" alt="Research bench setup with vials and bacteriostatic water" loading="lazy" width="800" height="800" />
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/peptide-stack-flatlay.webp" alt="Researcher peptide reagent inventory laid out for documentation" loading="lazy" width="800" height="800" />
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/peptide-vials-batch.jpg" alt="Lyophilised peptide vials grouped by batch" loading="lazy" width="800" height="1067" />
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/research-use-only-label.webp" alt="Research-use-only labelling on lyophilised vials" loading="lazy" width="800" height="800" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- THIRD-PARTY RESEARCH NOTES -->
+  <section class="section section-loose surface-mist" aria-labelledby="community-notes-title">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow-rule">Third-party research notes</span>
+        <h2 id="community-notes-title" class="display">Observational reports from the research community</h2>
+        <p style="color: var(--color-ink-2); max-width: 60ch;">
+          The photographs below are unaffiliated, observational reports submitted by independent researchers documenting their own work. They are reproduced here verbatim and are <strong>not endorsements, claims, or guarantees</strong> of any therapeutic effect. Peptide Shop sells reference materials for laboratory research only; the products are not for human or veterinary therapeutic use.
+        </p>
+      </div>
+      <div class="community-grid">
+        <figure>
+          <img src="/images/lifestyle/research-progress-three-months.webp" alt="Researcher-submitted three-month observation reference photo" loading="lazy" width="800" height="800" />
+          <figcaption>Three-month observation reference (researcher submission)</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/research-progress-physique.jpg" alt="Researcher-submitted body composition reference photo" loading="lazy" width="800" height="800" />
+          <figcaption>Body-composition reference (researcher submission)</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/research-progress-male.jpg" alt="Researcher-submitted before/after reference photo, male subject" loading="lazy" width="800" height="800" />
+          <figcaption>Before / after reference (researcher submission)</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/lifestyle/research-progress-female.jpg" alt="Researcher-submitted before/after reference photo, female subject" loading="lazy" width="800" height="800" />
+          <figcaption>Before / after reference (researcher submission)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section section-loose" aria-labelledby="how-we-work-title">
+    <div class="container">
+      <div class="split split-6-6">
+        <div>
+          <span class="eyebrow-rule">{t('about.timelineEyebrow')}</span>
+          <h2 id="how-we-work-title" class="display">{t('about.timelineTitle')}</h2>
+          <p style="color: var(--color-ink-2); font-size: var(--text-lg);">
+            {t('about.timelineLead')}
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <time>01</time>
+            <div>
+              <h3>{t('about.timeline1Title')}</h3>
+              <p>{t('about.timeline1Body')}</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>02</time>
+            <div>
+              <h3>{t('about.timeline2Title')}</h3>
+              <p>{t('about.timeline2Body')}</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>03</time>
+            <div>
+              <h3>{t('about.timeline3Title')}</h3>
+              <p>{t('about.timeline3Body')}</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <time>04</time>
+            <div>
+              <h3>{t('about.timeline4Title')}</h3>
+              <p>{t('about.timeline4Body')}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section section-loose">
+    <div class="container">
+      <div class="cta-band display-typography">
+        <span class="eyebrow-rule" style="color:#90E0EF;">{t('about.ctaEyebrow')}</span>
+        <h2>{t('about.ctaTitle')}</h2>
+        <p>{t('about.ctaBody')}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href={href('/quality/')}>{t('about.ctaPrimary')}</a>
+          <a class="btn btn-secondary btn-lg" href={href('/contact/')}>{t('about.ctaSecondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4, 1rem);
+  }
+  .about-gallery figure {
+    margin: 0;
+    border-radius: var(--radius-md, 0.75rem);
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+  }
+  .about-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .about-gallery { grid-template-columns: 1fr; }
+  }
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4, 1rem);
+    margin-top: var(--space-6, 1.5rem);
+  }
+  .community-grid figure {
+    margin: 0;
+    border-radius: var(--radius-md, 0.75rem);
+    overflow: hidden;
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
+  }
+  .community-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+  .community-grid figcaption {
+    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-ink-3, #555);
+  }
+  @media (max-width: 1024px) {
+    .community-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .community-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<style>
+  .hero-actions {
+    display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6);
+  }
+  .about-figure {
+    margin: 0 0 var(--space-6) 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft-3);
+    border: 1px solid var(--color-border);
+    aspect-ratio: 4 / 3;
+  }
+  .about-figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

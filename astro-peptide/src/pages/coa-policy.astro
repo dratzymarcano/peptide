@@ -1,5 +1,61 @@
 ---
-import CoaPolicyPage from '../components/pages/CoaPolicyPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import RelatedLinkList from '../components/RelatedLinkList.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('support.coaPolicy'), url: href('/coa-policy/') },
+];
 ---
 
-<CoaPolicyPage lang="en" />
+<Layout
+  title={t('support.coaMetaTitle')}
+  description={t('support.coaMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('support.coaPolicy')}
+        title={t('support.coaTitle')}
+        description={t('support.coaDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('support.coaIncludeTitle')}</h2>
+          <ul>
+            <li>{t('support.coaIncludeProduct')}</li>
+            <li>{t('support.coaIncludeHplc')}</li>
+            <li>{t('support.coaIncludeMass')}</li>
+            <li>{t('support.coaIncludeStorage')}</li>
+          </ul>
+
+          <h2>{t('support.coaRequestTitle')}</h2>
+          <p>{t('support.coaRequestBody')}</p>
+
+          <h2>{t('support.coaScopeTitle')}</h2>
+          <p>{t('support.coaScopeBody')}</p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('support.relatedPolicies')}</h2>
+            <RelatedLinkList items={[
+              { url: href('/quality/'), title: t('support.relatedQualityTitle'), subtitle: t('support.relatedQualitySubtitle') },
+              { url: href('/terms/'), title: t('support.relatedTermsTitle'), subtitle: t('support.relatedTermsSubtitle') },
+              { url: href('/disclaimer/'), title: t('support.relatedDisclaimerTitle'), subtitle: t('support.relatedDisclaimerSubtitle') },
+            ]} />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

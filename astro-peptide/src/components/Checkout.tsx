@@ -1,18 +1,16 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { cartItems, cartTotal, clearCart } from '../scripts/cartStore';
-import { type SupportedLanguage, t } from '../i18n/translations';
-import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
-import { 
-  currentUser, 
-  isAuthenticated, 
+import {
   addOrder,
-  registerWithEmail,
-  loginWithEmail,
-  loginWithGoogle,
-  loginWithFacebook,
+  authError,
+  currentUser,
+  isAuthenticated,
   isAuthLoading,
-  authError
+  loginWithEmail,
+  loginWithFacebook,
+  loginWithGoogle,
+  registerWithEmail,
 } from '../store/authStore';
 import type { Order } from '../store/authStore';
 
@@ -20,133 +18,58 @@ type Step = 'account' | 'shipping' | 'payment' | 'review';
 type PaymentMethod = 'bank-transfer' | 'bitcoin';
 type ShippingMethod = 'standard' | 'express';
 type CheckoutMode = 'guest' | 'login' | 'register';
-type BitcoinPaymentStatus = 'awaiting' | 'detected' | 'confirming' | 'confirmed' | 'expired' | 'cancelled';
 
-interface CheckoutProps {
-  lang?: SupportedLanguage;
-}
-
-// Shipping costs
-const SHIPPING_COSTS = {
-  standard: { price: 5.99, name: 'Standard Delivery', time: '3-5 business days' },
-  express: { price: 12.99, name: 'Express Delivery', time: '1-2 business days' }
+const SHIPPING_COSTS: Record<ShippingMethod, { price: number; labelKey: string; timeKey: string }> = {
+  standard: { price: 9.90, labelKey: 'standardDelivery', timeKey: 'standardTime' },
+  express: { price: 19.90, labelKey: 'expressDelivery', timeKey: 'expressTime' },
 };
 
 const MIN_ORDER_AMOUNT = 200;
 const FREE_DELIVERY_THRESHOLD = 500;
 
-const DEFAULT_COUNTRY_BY_LANG: Record<SupportedLanguage, string> = {
-  en: 'GB',
-  nl: 'NL',
-  de: 'DE',
-  fr: 'FR',
-  es: 'ES',
-  it: 'IT',
-  ru: 'RU',
+const checkoutSteps: Step[] = ['account', 'shipping', 'payment', 'review'];
+
+interface CheckoutProps {
+  labels?: Record<string, string>;
+  paths?: {
+    shop?: string;
+    dashboard?: string;
+  };
+  locale?: string;
+}
+
+const defaultLabels: Record<string, string> = {
+  account: 'Account', shipping: 'Delivery', payment: 'Payment', review: 'Review', summary: 'Summary', subtotal: 'Subtotal', delivery: 'Delivery', free: 'Free', total: 'Total', bitcoinDiscount: 'Bitcoin discount', ruoRequired: 'RUO confirmation required.', ruoRequiredBody: 'These materials are supplied only for laboratory research use.', emptyCart: 'Your cart is empty', minimumRequired: 'Minimum order required', addProducts: 'Add research products before checkout.', minimumBody: 'A minimum order value of €{minimum} applies. Add further items to continue.', browseCatalogue: 'Browse catalogue', orderReceived: 'Order received', completeBitcoin: 'Complete Bitcoin payment', orderConfirmed: 'Order confirmed', orderId: 'Order ID:', sendExactly: 'Send exactly', to: 'to:', copyAddress: 'Copy address', bankInstructions: 'Bank transfer instructions will be sent to {email}.', orderTotal: 'Order total:', viewOrders: 'View orders', continueShopping: 'Continue shopping', chooseContinue: 'Choose how to continue', guestCheckout: 'Guest checkout', signIn: 'Sign in', createAccount: 'Create account', continueGuest: 'Continue as guest', firstName: 'First name', lastName: 'Last name', email: 'Email', password: 'Password', confirmPassword: 'Confirm password', pleaseWait: 'Please wait...', google: 'Google', facebook: 'Facebook', passwordsMismatch: 'Passwords do not match.', passwordLength: 'Password must be at least 8 characters.', shippingDetails: 'Shipping details', phone: 'Phone', address: 'Address', city: 'City', county: 'Region / state', postcode: 'Postal code', deliveryMethod: 'Delivery method', standardDelivery: 'Standard delivery', standardTime: '3-5 business days', expressDelivery: 'Express delivery', expressTime: '1-2 business days', continuePayment: 'Continue to payment', selectPayment: 'Select payment method', bankTransfer: 'Bank transfer', bankTransferHelp: 'Instructions are emailed after order confirmation.', bitcoin: 'Bitcoin', bitcoinHelp: 'Includes a 10% payment discount.', reviewOrder: 'Review order', back: 'Back', confirmOrder: 'Confirm research-use order', bitcoinInvoice: 'Bitcoin invoice', researchUseOnly: 'Research use only.', reviewRuo: 'By placing this order you confirm the products will be used only for in-vitro laboratory research.', placingOrder: 'Placing order...', placeOrder: 'Place order · €{total}'
 };
 
-const cardStyle: React.CSSProperties = {
-  background: 'white',
-  borderRadius: '16px',
-  boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
-  border: '1px solid rgba(0,0,0,0.06)',
-  overflow: 'hidden',
-};
-
-const inputStyle: React.CSSProperties = {
-  padding: '14px 16px',
-  border: '2px solid #e2e8f0',
-  borderRadius: '10px',
-  fontSize: '15px',
-  transition: 'all 0.2s ease',
-  width: '100%',
-};
-
-const labelStyle: React.CSSProperties = {
-  display: 'block',
-  color: '#64748b',
-  fontWeight: '600',
-  marginBottom: '8px',
-  fontSize: '14px',
-};
-
-export default function Checkout({ lang = 'en' }: CheckoutProps) {
+export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps) {
+  const copy = { ...defaultLabels, ...labels };
   const $cartItems = useStore(cartItems);
-  const currency = useStore(currentCurrency);
-  useStore(exchangeRate);
   const $cartTotal = useStore(cartTotal);
   const $currentUser = useStore(currentUser);
   const $isAuthenticated = useStore(isAuthenticated);
   const $isAuthLoading = useStore(isAuthLoading);
   const $authError = useStore(authError);
-  
-  useEffect(() => {
-    // Check for auth errors in URL
-    if (typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const error = urlParams.get('error');
-      
-      if (error) {
-         let errorMessage = 'Authentication failed';
-         if (error === 'auth_failed') errorMessage = 'Authentication was cancelled or failed';
-         if (error === 'token_failed') errorMessage = 'Failed to connect to Google';
-         if (error === 'userinfo_failed') errorMessage = 'Failed to get user info from Google';
-         if (error === 'oauth_error') errorMessage = 'Detailed Google OAuth Error';
-         
-         authError.set(errorMessage);
-         
-         // Clean URL
-         const url = new URL(window.location.href);
-         url.searchParams.delete('error');
-         window.history.replaceState({}, '', url);
-      }
-    }
-  }, []);
+
   const products = Object.values($cartItems);
   const [currentStep, setCurrentStep] = useState<Step>('account');
   const [checkoutMode, setCheckoutMode] = useState<CheckoutMode>('guest');
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [orderComplete, setOrderComplete] = useState(false);
-  const [orderId, setOrderId] = useState('');
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('bank-transfer');
   const [shippingMethod, setShippingMethod] = useState<ShippingMethod>('standard');
-  const [bitcoinInvoice, setBitcoinInvoice] = useState<{id: string; address: string; amount: string; expiresAt: string; createdAt?: string} | null>(null);
-  // Store final order total before cart is cleared
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [orderError, setOrderError] = useState('');
+  const [orderComplete, setOrderComplete] = useState(false);
+  const [orderId, setOrderId] = useState('');
+  const [bitcoinInvoice, setBitcoinInvoice] = useState<{ address: string; amount: string } | null>(null);
   const [finalOrderTotal, setFinalOrderTotal] = useState(0);
-  
-  // Bitcoin payment monitoring state
-  const [bitcoinPaymentStatus, setBitcoinPaymentStatus] = useState<BitcoinPaymentStatus>('awaiting');
-  const [timeRemaining, setTimeRemaining] = useState<number>(0); // seconds
-  const [paymentTxHash, setPaymentTxHash] = useState<string | null>(null);
-  const [paymentConfirmations, setPaymentConfirmations] = useState<number>(0);
-  const paymentCheckIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  
-  // Auth form state
+
   const [authEmail, setAuthEmail] = useState('');
   const [authPassword, setAuthPassword] = useState('');
   const [authConfirmPassword, setAuthConfirmPassword] = useState('');
   const [authFirstName, setAuthFirstName] = useState('');
   const [authLastName, setAuthLastName] = useState('');
   const [localAuthError, setLocalAuthError] = useState('');
-  
-  // Skip account step if already authenticated
-  useEffect(() => {
-    if ($isAuthenticated && currentStep === 'account') {
-      setCurrentStep('shipping');
-      // Pre-fill shipping info if user is logged in
-      if ($currentUser) {
-        setShippingInfo(prev => ({
-          ...prev,
-          firstName: $currentUser.firstName || prev.firstName,
-          lastName: $currentUser.lastName || prev.lastName,
-          email: $currentUser.email || prev.email,
-          phone: $currentUser.phone || prev.phone
-        }));
-      }
-    }
-  }, [$isAuthenticated, $currentUser]);
-  
+
   const [shippingInfo, setShippingInfo] = useState({
     firstName: '',
     lastName: '',
@@ -156,2628 +79,386 @@ export default function Checkout({ lang = 'en' }: CheckoutProps) {
     city: '',
     county: '',
     postcode: '',
-    country: DEFAULT_COUNTRY_BY_LANG[lang] ?? 'GB'
+    country: 'DE',
   });
 
-  const subtotal = $cartTotal;
-  const qualifiesForFreeDelivery = subtotal >= FREE_DELIVERY_THRESHOLD;
-  const baseShippingCost = SHIPPING_COSTS[shippingMethod].price;
-  const shippingCost = qualifiesForFreeDelivery ? 0 : baseShippingCost;
-  const total = subtotal + shippingCost;
-  // Products can only be added to cart after meeting £200 threshold at product page
-  // So if there are products in cart, user has already qualified
-  const canCheckout = products.length > 0;
-
-  const generateOrderId = () => {
-    return 'PS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
-  };
-
-  const handleShippingSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setCurrentStep('payment');
-  };
-
-  const handlePaymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setCurrentStep('review');
-  };
-
-  const createBitcoinInvoice = async () => {
-    // Use the actual Bitcoin address for payments
-    const BITCOIN_ADDRESS = 'bc1qev9qvwxennyypmth024jndwlqqh7ft9mzjnapr';
-    const PAYMENT_TIMEOUT_MINUTES = 15;
-    const now = new Date();
-    return {
-      id: 'INV-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
-      address: BITCOIN_ADDRESS,
-      amount: (total / 78000).toFixed(8),
-      createdAt: now.toISOString(),
-      expiresAt: new Date(now.getTime() + PAYMENT_TIMEOUT_MINUTES * 60 * 1000).toISOString()
-    };
-  };
-
-  // Check for Bitcoin payment
-  const checkBitcoinPayment = useCallback(async () => {
-    if (!bitcoinInvoice || !orderId) return;
-    
-    try {
-      const response = await fetch('/api/check-bitcoin-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderId,
-          expectedAmount: bitcoinInvoice.amount,
-          orderCreatedAt: bitcoinInvoice.createdAt
-        })
-      });
-      
-      if (!response.ok) return;
-      
-      const data = await response.json();
-      
-      if (data.success && data.payment) {
-        const { payment } = data;
-        
-        if (payment.found) {
-          if (payment.status === 'mempool') {
-            // Payment detected but not confirmed yet
-            setBitcoinPaymentStatus('detected');
-            setPaymentTxHash(payment.txHash);
-            
-            // Update order status to processing
-            await fetch('/api/update-order-status', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                orderId,
-                newStatus: 'processing'
-              })
-            });
-          } else if (payment.status === 'confirmed') {
-            // Payment confirmed!
-            setBitcoinPaymentStatus('confirmed');
-            setPaymentTxHash(payment.txHash);
-            setPaymentConfirmations(payment.confirmations || 1);
-            
-            // Clear the cart
-            clearCart();
-            
-            // Update order status to completed and send confirmation email
-            await fetch('/api/update-order-status', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                orderId,
-                newStatus: 'completed',
-                paymentConfirmed: true,
-                orderData: {
-                  customerEmail: shippingInfo.email,
-                  customerName: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
-                  items: products.map(p => ({
-                    id: p.id,
-                    title: p.title,
-                    quantity: p.quantity,
-                    price: p.price
-                  })),
-                  subtotal: $cartTotal,
-                  shipping: shippingCost,
-                  discount: finalOrderTotal * 0.1, // 10% Bitcoin discount
-                  total: finalOrderTotal,
-                  shippingAddress: shippingInfo,
-                  currency,
-                  lang
-                }
-              })
-            });
-            
-            // Stop polling
-            if (paymentCheckIntervalRef.current) {
-              clearInterval(paymentCheckIntervalRef.current);
-              paymentCheckIntervalRef.current = null;
-            }
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Error checking Bitcoin payment:', error);
-    }
-  }, [bitcoinInvoice, orderId, shippingInfo, products, $cartTotal, shippingCost, finalOrderTotal, currency, lang]);
-
-  // Start payment monitoring when Bitcoin order is placed
   useEffect(() => {
-    if (orderComplete && paymentMethod === 'bitcoin' && bitcoinInvoice && bitcoinPaymentStatus === 'awaiting') {
-      // Calculate initial time remaining
-      const expiryTime = new Date(bitcoinInvoice.expiresAt).getTime();
-      const now = Date.now();
-      const secondsRemaining = Math.max(0, Math.floor((expiryTime - now) / 1000));
-      setTimeRemaining(secondsRemaining);
-      
-      // Start countdown timer
-      countdownIntervalRef.current = setInterval(() => {
-        setTimeRemaining(prev => {
-          if (prev <= 1) {
-            // Time expired
-            setBitcoinPaymentStatus('expired');
-            
-            // Stop all intervals
-            if (countdownIntervalRef.current) {
-              clearInterval(countdownIntervalRef.current);
-              countdownIntervalRef.current = null;
-            }
-            if (paymentCheckIntervalRef.current) {
-              clearInterval(paymentCheckIntervalRef.current);
-              paymentCheckIntervalRef.current = null;
-            }
-            
-            // Update order status
-            fetch('/api/update-order-status', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                orderId,
-                newStatus: 'expired'
-              })
-            });
-            
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      
-      // Start payment checking (every 15 seconds to avoid rate limiting)
-      checkBitcoinPayment(); // Check immediately
-      paymentCheckIntervalRef.current = setInterval(checkBitcoinPayment, 15000);
-      
-      // Cleanup on unmount
-      return () => {
-        if (countdownIntervalRef.current) {
-          clearInterval(countdownIntervalRef.current);
-        }
-        if (paymentCheckIntervalRef.current) {
-          clearInterval(paymentCheckIntervalRef.current);
-        }
-      };
+    if ($isAuthenticated && $currentUser) {
+      setShippingInfo((previous) => ({
+        ...previous,
+        firstName: $currentUser.firstName || previous.firstName,
+        lastName: $currentUser.lastName || previous.lastName,
+        email: $currentUser.email || previous.email,
+        phone: $currentUser.phone || previous.phone,
+      }));
+      if (currentStep === 'account') setCurrentStep('shipping');
     }
-  }, [orderComplete, paymentMethod, bitcoinInvoice, bitcoinPaymentStatus, checkBitcoinPayment, orderId]);
+  }, [$isAuthenticated, $currentUser, currentStep]);
 
-  // Format time remaining as MM:SS
-  const formatTimeRemaining = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+  const qualifiesForFreeDelivery = $cartTotal >= FREE_DELIVERY_THRESHOLD;
+  const shippingCost = qualifiesForFreeDelivery ? 0 : SHIPPING_COSTS[shippingMethod].price;
+  const paymentDiscount = paymentMethod === 'bitcoin' ? ($cartTotal + shippingCost) * 0.1 : 0;
+  const orderTotal = $cartTotal + shippingCost - paymentDiscount;
+  const canCheckout = products.length > 0 && $cartTotal >= MIN_ORDER_AMOUNT;
+  const authErrorText = $authError ? copy[$authError] || $authError : '';
 
-  const handlePlaceOrder = async () => {
+  function generateOrderId() {
+    return `PS-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+  }
+
+  async function handleAuthSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setLocalAuthError('');
+
+    if (checkoutMode === 'register') {
+      if (authPassword !== authConfirmPassword) {
+        setLocalAuthError(copy.passwordsMismatch);
+        return;
+      }
+      if (authPassword.length < 8) {
+        setLocalAuthError(copy.passwordLength);
+        return;
+      }
+      await registerWithEmail(authEmail, authPassword, authFirstName, authLastName);
+      setShippingInfo((previous) => ({ ...previous, firstName: authFirstName, lastName: authLastName, email: authEmail }));
+      setCurrentStep('shipping');
+      return;
+    }
+
+    if (checkoutMode === 'login') {
+      await loginWithEmail(authEmail, authPassword);
+      setCurrentStep('shipping');
+    }
+  }
+
+  async function handleSocialLogin(provider: 'google' | 'facebook') {
+    if (provider === 'google') await loginWithGoogle();
+    if (provider === 'facebook') await loginWithFacebook();
+    setCurrentStep('shipping');
+  }
+
+  function handleShippingSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setCurrentStep('payment');
+  }
+
+  function handlePaymentSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    setCurrentStep('review');
+  }
+
+  async function createBitcoinInvoice(invoiceOrderId: string) {
+    const response = await fetch('/api/create-bitcoin-invoice', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderId: invoiceOrderId,
+        amount: Number(orderTotal.toFixed(2)),
+        currency: 'EUR',
+        buyerEmail: shippingInfo.email || authEmail,
+        description: `Peptide Shop order ${invoiceOrderId}`,
+        locale,
+      }),
+    });
+    const data = await response.json();
+    if (!response.ok || !data.success || !data.invoice?.btcAddress || !data.invoice?.btcAmount) {
+      throw new Error(data.code || 'bitcoin_invoice_create_failed');
+    }
+    return {
+      address: data.invoice.btcAddress,
+      amount: data.invoice.btcAmount,
+    };
+  }
+
+  async function createServerOrder(serverOrderId: string) {
+    const response = await fetch('/api/orders', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: serverOrderId,
+        email: shippingInfo.email || authEmail,
+        paymentMethod,
+        subtotal: Number($cartTotal.toFixed(2)),
+        shipping: Number(shippingCost.toFixed(2)),
+        discount: Number(paymentDiscount.toFixed(2)),
+        total: Number(orderTotal.toFixed(2)),
+        currency: 'EUR',
+        locale,
+        shippingAddress: {
+          firstName: shippingInfo.firstName,
+          lastName: shippingInfo.lastName,
+          phone: shippingInfo.phone,
+          address: shippingInfo.address,
+          city: shippingInfo.city,
+          county: shippingInfo.county,
+          postcode: shippingInfo.postcode,
+          country: shippingInfo.country,
+        },
+        items: products.map((product) => ({
+          id: product.id,
+          productId: product.id,
+          slug: product.id,
+          title: product.title,
+          variant: [product.size, product.color].filter(Boolean).join(' / ') || 'Standard',
+          quantity: product.quantity,
+          unitPrice: product.price,
+        })),
+      }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.success) {
+      throw new Error(data.code || 'order_create_failed');
+    }
+    return data.order;
+  }
+
+  async function handlePlaceOrder() {
     setIsProcessing(true);
+    setOrderError('');
     const newOrderId = generateOrderId();
     setOrderId(newOrderId);
-    
-    // Create order object for user history
+
     const orderData: Omit<Order, 'id' | 'date'> = {
       status: 'pending',
       paymentMethod,
       paymentStatus: 'pending',
-      items: products.map(p => ({
-        id: p.id,
-        title: p.title,
-        quantity: p.quantity,
-        price: p.price
+      items: products.map((product) => ({
+        id: product.id,
+        title: product.title,
+        quantity: product.quantity,
+        price: product.price,
       })),
       subtotal: $cartTotal,
       shipping: shippingCost,
-      discount: paymentMethod === 'bitcoin' ? total * 0.1 : 0,
-      total: paymentMethod === 'bitcoin' ? total * 0.9 : total,
+      discount: paymentDiscount,
+      total: orderTotal,
       shippingAddress: {
         firstName: shippingInfo.firstName,
         lastName: shippingInfo.lastName,
         address: shippingInfo.address,
         city: shippingInfo.city,
         county: shippingInfo.county,
-        postcode: shippingInfo.postcode
-      }
+        postcode: shippingInfo.postcode,
+      },
     };
-    
-    // Save order if user is authenticated
-    if ($isAuthenticated) {
-      addOrder(orderData);
-    }
 
-    // Send order notification emails
     try {
-      await fetch('/api/order-notification', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderId: newOrderId,
-          customerEmail: shippingInfo.email || $currentUser?.email,
-          customerName: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
-          items: orderData.items,
-          subtotal: orderData.subtotal,
-          shipping: orderData.shipping,
-          discount: orderData.discount,
-          total: orderData.total,
-          paymentMethod,
-          shippingAddress: orderData.shippingAddress,
-          currency: currency,
-          lang
-        })
-      });
-    } catch (emailErr) {
-      console.warn('Failed to send order notification:', emailErr);
-    }
-    
-    if (paymentMethod === 'bitcoin') {
-      const invoice = await createBitcoinInvoice();
-      setBitcoinInvoice(invoice);
-      // Store totals before clearing cart
-      setFinalOrderTotal(total * 0.9); // Bitcoin gets 10% off
-      setIsProcessing(false);
+      let invoice: { address: string; amount: string } | null = null;
+      if (paymentMethod === 'bitcoin') {
+        invoice = await createBitcoinInvoice(newOrderId);
+      }
+
+      await createServerOrder(newOrderId);
+
+      if (paymentMethod === 'bitcoin') setBitcoinInvoice(invoice);
+      else clearCart();
+
+      if ($isAuthenticated) addOrder(orderData);
+      setFinalOrderTotal(orderTotal);
       setOrderComplete(true);
-    } else {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Store totals before clearing cart
-      setFinalOrderTotal(total);
-      clearCart();
-      setOrderComplete(true);
+    } catch (error) {
+      setOrderError(paymentMethod === 'bitcoin' ? copy.bitcoinInvoiceError : 'Order could not be placed. Please try again or contact support.');
+    } finally {
       setIsProcessing(false);
     }
-  };
+  }
 
-  // Auth handlers
-  const handleAuthSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLocalAuthError('');
-    
-    if (checkoutMode === 'register') {
-      if (authPassword !== authConfirmPassword) {
-        setLocalAuthError(t(lang, 'checkout.errors.passwordsDoNotMatch'));
-        return;
-      }
-      if (authPassword.length < 8) {
-        setLocalAuthError(t(lang, 'checkout.errors.passwordTooShort'));
-        return;
-      }
-      try {
-        await registerWithEmail(authEmail, authPassword, authFirstName, authLastName);
-        setShippingInfo(prev => ({
-          ...prev,
-          firstName: authFirstName,
-          lastName: authLastName,
-          email: authEmail
-        }));
-        setCurrentStep('shipping');
-      } catch (err) {}
-    } else if (checkoutMode === 'login') {
-      try {
-        await loginWithEmail(authEmail, authPassword);
-        setCurrentStep('shipping');
-      } catch (err) {}
-    }
-  };
+  function ProgressSteps() {
+    const visibleSteps = $isAuthenticated ? checkoutSteps.filter((step) => step !== 'account') : checkoutSteps;
+    const activeIndex = visibleSteps.indexOf(currentStep);
 
-  const handleGoogleLogin = () => {
-    // OAuth flow will redirect back to checkout after login
-    loginWithGoogle('/checkout/');
-  };
-
-  const handleFacebookLogin = async () => {
-    try {
-      await loginWithFacebook();
-      setCurrentStep('shipping');
-    } catch (err) {}
-  };
-
-  const handleContinueAsGuest = () => {
-    setCheckoutMode('guest');
-    setCurrentStep('shipping');
-  };
-
-  // Progress Step Component
-  const ProgressSteps = () => {
-    // Don't show account step in progress if authenticated or guest
-    const steps = currentStep === 'account' 
-      ? ['account', 'shipping', 'payment', 'review']
-      : ['shipping', 'payment', 'review'];
-    const stepLabelsMap: Record<string, string> = {
-      account: t(lang, 'checkout.steps.account'),
-      shipping: t(lang, 'checkout.steps.shipping'),
-      payment: t(lang, 'checkout.steps.payment'),
-      review: t(lang, 'checkout.steps.review')
-    };
-    
-    const isStepCompleted = (step: string) => {
-      const stepOrder = ['account', 'shipping', 'payment', 'review'];
-      return stepOrder.indexOf(step) < stepOrder.indexOf(currentStep);
-    };
-    
     return (
-      <div style={{ 
-        ...cardStyle, 
-        padding: '24px 32px', 
-        marginBottom: '32px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-        {steps.map((step, index) => {
-          const isActive = currentStep === step;
-          const isCompleted = isStepCompleted(step);
-          
-          return (
-            <div key={step} style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '50%',
-                  background: isCompleted 
-                    ? 'linear-gradient(135deg, #10b981, #059669)'
-                    : isActive 
-                      ? 'linear-gradient(135deg, #0077b6, #023e8a)'
-                      : '#f1f5f9',
-                  color: isCompleted || isActive ? 'white' : '#94a3b8',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  boxShadow: isActive ? '0 4px 12px rgba(0, 119, 182, 0.3)' : 'none'
-                }}>
-                  {isCompleted ? (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  ) : (
-                    index + 1
-                  )}
-              </div>
-              <span style={{ 
-                fontWeight: isActive ? '700' : '600', 
-                color: isActive ? '#0077b6' : isCompleted ? '#10b981' : '#94a3b8',
-                fontSize: '15px'
-              }}>
-                {stepLabelsMap[step]}
-              </span>
-            </div>
-            {index < steps.length - 1 && (
-              <div style={{ 
-                width: '60px', 
-                height: '3px', 
-                background: isCompleted ? '#10b981' : '#e2e8f0',
-                margin: '0 20px',
-                borderRadius: '10px'
-              }}></div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-  };
-
-  // Minimum order warning
-  if (!canCheckout && products.length > 0 && !orderComplete) {
-    return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            <div style={{ ...cardStyle, padding: '60px 40px', textAlign: 'center' }}>
-              <div style={{ 
-                width: '100px', 
-                height: '100px', 
-                background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1))',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 28px'
-              }}>
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                  <line x1="12" y1="9" x2="12" y2="13"></line>
-                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
-              </div>
-              <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '16px', fontSize: '1.75rem' }}>
-                {t(lang, 'checkout.minOrder.title')}
-              </h3>
-              <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '1.1rem', maxWidth: '450px', margin: '0 auto 24px' }}>
-                Our minimum order value is <strong style={{ color: '#1e293b' }}>{formatPrice(MIN_ORDER_AMOUNT, currency)}</strong>.<br />
-                {t(lang, 'checkout.minOrder.currentTotal')} <strong style={{ color: '#0077b6' }}>{formatPrice(subtotal, currency)}</strong>.
-              </p>
-              <div style={{ 
-                background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1))',
-                padding: '16px 24px',
-                borderRadius: '12px',
-                display: 'inline-block',
-                marginBottom: '32px'
-              }}>
-                <span style={{ color: '#92400e', fontWeight: '600' }}>
-                  Add <strong>{formatPrice(MIN_ORDER_AMOUNT - subtotal, currency)}</strong> more to proceed
-                </span>
-              </div>
-              <br />
-              <a 
-                href="/shop/" 
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontWeight: '700',
-                  textDecoration: 'none',
-                  fontSize: '16px',
-                  boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                }}
-              >
-                {t(lang, 'checkout.actions.continueShopping')}
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ol className="checkout-progress" aria-label="Checkout progress">
+        {visibleSteps.map((step, index) => (
+          <li key={step} className={index < activeIndex ? 'is-complete' : index === activeIndex ? 'is-active' : ''}>
+            <span>{index + 1}</span>
+            {copy[step]}
+          </li>
+        ))}
+      </ol>
     );
   }
 
-  if (products.length === 0 && !orderComplete) {
+  function OrderSummary() {
     return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            <div style={{ ...cardStyle, padding: '80px 40px', textAlign: 'center' }}>
-              <div style={{ 
-                width: '120px', 
-                height: '120px', 
-                background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 32px'
-              }}>
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5">
-                  <circle cx="8" cy="21" r="1"></circle>
-                  <circle cx="19" cy="21" r="1"></circle>
-                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-                </svg>
-              </div>
-              <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '12px', fontSize: '1.75rem' }}>
-                {t(lang, 'checkout.empty.title')}
-              </h3>
-              <p style={{ color: '#64748b', marginBottom: '32px', fontSize: '1.1rem' }}>
-                {t(lang, 'checkout.empty.description')}
-              </p>
-              <a 
-                href="/shop/" 
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontWeight: '700',
-                  textDecoration: 'none',
-                  fontSize: '16px',
-                  boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                }}
-              >
-                {t(lang, 'checkout.actions.browsePeptides')}
-              </a>
+      <aside className="order-summary card" aria-labelledby="checkout-summary-title">
+        <h2 id="checkout-summary-title">{copy.summary}</h2>
+        <div className="checkout-summary-items">
+          {products.map((product) => (
+            <div key={product.id}>
+              <span>{product.title} × {product.quantity}</span>
+              <strong>€{(product.price * product.quantity).toFixed(2)}</strong>
             </div>
-          </div>
+          ))}
         </div>
+        <dl>
+          <div><dt>{copy.subtotal}</dt><dd>€{$cartTotal.toFixed(2)}</dd></div>
+          <div><dt>{copy.delivery}</dt><dd>{shippingCost === 0 ? copy.free : `€${shippingCost.toFixed(2)}`}</dd></div>
+          {paymentDiscount > 0 && <div><dt>{copy.bitcoinDiscount}</dt><dd>-€{paymentDiscount.toFixed(2)}</dd></div>}
+          <div className="summary-total"><dt>{copy.total}</dt><dd>€{orderTotal.toFixed(2)}</dd></div>
+        </dl>
+        <div className="ruo-banner compact"><strong>{copy.ruoRequired}</strong><span>{copy.ruoRequiredBody}</span></div>
+      </aside>
+    );
+  }
+
+  if (!canCheckout && !orderComplete) {
+    return (
+      <div className="commerce-empty card">
+        <h2>{products.length === 0 ? copy.emptyCart : copy.minimumRequired}</h2>
+        <p>{products.length === 0 ? copy.addProducts : copy.minimumBody.replace('{minimum}', MIN_ORDER_AMOUNT.toFixed(2))}</p>
+        <a className="btn btn-primary" href={paths?.shop || '/shop/'}>{copy.browseCatalogue}</a>
       </div>
     );
   }
 
   if (orderComplete) {
-    if (paymentMethod === 'bitcoin' && bitcoinInvoice) {
-      // Payment confirmed - show success
-      if (bitcoinPaymentStatus === 'confirmed') {
-        return (
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div style={{ ...cardStyle, padding: '48px' }}>
-                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                    <div style={{ 
-                      width: '80px', 
-                      height: '80px', 
-                      background: 'linear-gradient(135deg, #10b981, #059669)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto 24px',
-                      boxShadow: '0 8px 24px rgba(16, 185, 129, 0.35)'
-                    }}>
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                      {t(lang, 'checkout.bitcoin.paymentConfirmed') || 'Payment Confirmed!'}
-                    </h3>
-                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
-                  </div>
-                  
-                  <div style={{ 
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
-                    borderRadius: '16px',
-                    padding: '24px',
-                    marginBottom: '24px',
-                    textAlign: 'center'
-                  }}>
-                    <p style={{ color: '#065f46', fontWeight: '600', marginBottom: '8px' }}>
-                      {t(lang, 'checkout.bitcoin.paymentReceived') || 'Your Bitcoin payment has been received and confirmed!'}
-                    </p>
-                    {paymentTxHash && (
-                      <p style={{ color: '#64748b', fontSize: '12px', marginBottom: '8px' }}>
-                        TX: <a 
-                          href={`https://mempool.space/tx/${paymentTxHash}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          style={{ color: '#0077b6', textDecoration: 'underline' }}
-                        >
-                          {paymentTxHash.substring(0, 16)}...{paymentTxHash.substring(paymentTxHash.length - 8)}
-                        </a>
-                      </p>
-                    )}
-                    <p style={{ color: '#10b981', fontWeight: '700', fontSize: '1.25rem' }}>
-                      {bitcoinInvoice.amount} BTC ≈ {formatPrice(finalOrderTotal, currency)}
-                    </p>
-                  </div>
-                  
-                  <div style={{ 
-                    background: 'rgba(16, 185, 129, 0.1)',
-                    border: '2px solid rgba(16, 185, 129, 0.2)',
-                    borderRadius: '12px',
-                    padding: '16px 20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginBottom: '24px'
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span style={{ color: '#059669' }}>
-                      {t(lang, 'checkout.bitcoin.confirmationEmailSent') || 'A confirmation email has been sent to'} <strong>{shippingInfo.email}</strong>
-                    </span>
-                  </div>
-                  
-                  <div style={{ textAlign: 'center' }}>
-                    <a 
-                      href="/shop/" 
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                        color: 'white',
-                        padding: '16px 32px',
-                        borderRadius: '12px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        fontSize: '16px',
-                        boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                      }}
-                    >
-                      {t(lang, 'checkout.actions.continueShopping')}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-      
-      // Payment expired - show cancellation message
-      if (bitcoinPaymentStatus === 'expired') {
-        return (
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div style={{ ...cardStyle, padding: '48px' }}>
-                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                    <div style={{ 
-                      width: '80px', 
-                      height: '80px', 
-                      background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto 24px',
-                      boxShadow: '0 8px 24px rgba(239, 68, 68, 0.35)'
-                    }}>
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="15" y1="9" x2="9" y2="15"></line>
-                        <line x1="9" y1="9" x2="15" y2="15"></line>
-                      </svg>
-                    </div>
-                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                      {t(lang, 'checkout.bitcoin.paymentExpired') || 'Payment Time Expired'}
-                    </h3>
-                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#64748b' }}>{orderId}</strong></p>
-                  </div>
-                  
-                  <div style={{ 
-                    background: 'rgba(239, 68, 68, 0.1)',
-                    borderRadius: '16px',
-                    padding: '24px',
-                    marginBottom: '24px',
-                    textAlign: 'center'
-                  }}>
-                    <p style={{ color: '#b91c1c', fontWeight: '600', marginBottom: '12px' }}>
-                      {t(lang, 'checkout.bitcoin.orderCancelled') || 'Your order has been cancelled due to payment timeout.'}
-                    </p>
-                    <p style={{ color: '#64748b', fontSize: '14px' }}>
-                      {t(lang, 'checkout.bitcoin.tryAgain') || 'Please try again or contact support if you need assistance.'}
-                    </p>
-                  </div>
-                  
-                  <div style={{ textAlign: 'center', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <a 
-                      href="/cart/" 
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                        color: 'white',
-                        padding: '16px 32px',
-                        borderRadius: '12px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        fontSize: '16px',
-                        boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                      }}
-                    >
-                      {t(lang, 'checkout.actions.tryAgain') || 'Try Again'}
-                    </a>
-                    <a 
-                      href="/contact/" 
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        background: 'white',
-                        color: '#64748b',
-                        padding: '16px 32px',
-                        borderRadius: '12px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        fontSize: '16px',
-                        border: '2px solid #e2e8f0'
-                      }}
-                    >
-                      {t(lang, 'checkout.actions.contactSupport') || 'Contact Support'}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-      
-      // Payment detected - show processing status
-      if (bitcoinPaymentStatus === 'detected') {
-        return (
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-8">
-                <div style={{ ...cardStyle, padding: '48px' }}>
-                  <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                    <div style={{ 
-                      width: '80px', 
-                      height: '80px', 
-                      background: 'linear-gradient(135deg, #f7931a, #e8821c)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto 24px',
-                      boxShadow: '0 8px 24px rgba(247, 147, 26, 0.35)',
-                      animation: 'pulse 2s infinite'
-                    }}>
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                    </div>
-                    <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                      {t(lang, 'checkout.bitcoin.paymentDetected') || 'Payment Detected!'}
-                    </h3>
-                    <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
-                  </div>
-                  
-                  <div style={{ 
-                    background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-                    borderRadius: '16px',
-                    padding: '24px',
-                    marginBottom: '24px',
-                    textAlign: 'center'
-                  }}>
-                    <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>
-                      {t(lang, 'checkout.bitcoin.waitingConfirmation') || 'Waiting for blockchain confirmation...'}
-                    </p>
-                    <div style={{ 
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      marginBottom: '12px'
-                    }}>
-                      <div style={{
-                        width: '12px',
-                        height: '12px',
-                        background: '#f59e0b',
-                        borderRadius: '50%',
-                        animation: 'blink 1s infinite'
-                      }}></div>
-                      <span style={{ color: '#78350f', fontWeight: '600' }}>
-                        {t(lang, 'checkout.bitcoin.processing') || 'Processing...'}
-                      </span>
-                    </div>
-                    {paymentTxHash && (
-                      <p style={{ color: '#64748b', fontSize: '12px' }}>
-                        TX: <a 
-                          href={`https://mempool.space/tx/${paymentTxHash}`} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          style={{ color: '#0077b6', textDecoration: 'underline' }}
-                        >
-                          {paymentTxHash.substring(0, 16)}...{paymentTxHash.substring(paymentTxHash.length - 8)}
-                        </a>
-                      </p>
-                    )}
-                  </div>
-                  
-                  <p style={{ color: '#64748b', textAlign: 'center', fontSize: '14px' }}>
-                    {t(lang, 'checkout.bitcoin.confirmationNotice') || 'You will receive an email confirmation once your payment is confirmed.'}
-                  </p>
-                  
-                  <style>{`
-                    @keyframes pulse {
-                      0%, 100% { transform: scale(1); }
-                      50% { transform: scale(1.05); }
-                    }
-                    @keyframes blink {
-                      0%, 100% { opacity: 1; }
-                      50% { opacity: 0.3; }
-                    }
-                  `}</style>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      }
-      
-      // Awaiting payment - show payment details with countdown
-      return (
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <div style={{ ...cardStyle, padding: '48px' }}>
-                <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                  <div style={{ 
-                    width: '80px', 
-                    height: '80px', 
-                    background: 'linear-gradient(135deg, #f7931a, #e8821c)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 24px',
-                    boxShadow: '0 8px 24px rgba(247, 147, 26, 0.35)'
-                  }}>
-                    <svg width="40" height="40" viewBox="0 0 32 32" fill="white">
-                      <path d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16zm5.155-21.672c-.372-2.453-2.341-3.267-5.008-3.49V4h-2.064v2.76c-.543 0-1.098.012-1.65.024V4H10.37v2.838H6.646v1.846s1.527-.028 1.502 0c.84 0 1.11.487 1.19.906v3.842h.2l-.2.044v5.38c-.037.266-.193.69-.778.69.028.024-1.5 0-1.5 0l-.41 2.064h3.603v2.87h2.064v-2.82c.563.012 1.11.018 1.65.018v2.802h2.063v-2.838c3.484-.2 5.92-1.017 6.224-4.106.245-2.488-1.147-3.6-3.446-4.048 1.407-.547 2.28-1.594 2.016-3.391zm-2.678 5.883c0 2.434-4.166 2.157-5.497 2.157v-4.32c1.33 0 5.497-.38 5.497 2.163zm-.918-5.02c0 2.2-3.475 1.946-4.58 1.946v-3.9c1.104 0 4.58-.348 4.58 1.954z"/>
-                    </svg>
-                  </div>
-                  <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                    {t(lang, 'checkout.bitcoin.completePayment')}
-                  </h3>
-                  <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
-                </div>
-                
-                {/* Countdown Timer */}
-                <div style={{ 
-                  background: timeRemaining < 120 ? 'linear-gradient(135deg, #fef2f2, #fee2e2)' : 'linear-gradient(135deg, #fef3c7, #fde68a)',
-                  border: timeRemaining < 120 ? '2px solid #ef4444' : '2px solid #f59e0b',
-                  borderRadius: '12px',
-                  padding: '16px 24px',
-                  marginBottom: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '12px'
-                }}>
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={timeRemaining < 120 ? '#ef4444' : '#f59e0b'} strokeWidth="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ 
-                      fontFamily: 'monospace', 
-                      fontSize: '2rem', 
-                      fontWeight: '800', 
-                      color: timeRemaining < 120 ? '#dc2626' : '#78350f',
-                      lineHeight: 1
-                    }}>
-                      {formatTimeRemaining(timeRemaining)}
-                    </div>
-                    <div style={{ fontSize: '12px', color: timeRemaining < 120 ? '#b91c1c' : '#92400e', fontWeight: '600' }}>
-                      {t(lang, 'checkout.bitcoin.timeRemaining') || 'Time Remaining'}
-                    </div>
-                  </div>
-                </div>
-                
-                <div style={{ 
-                  background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-                  borderRadius: '16px',
-                  padding: '32px',
-                  marginBottom: '24px',
-                  textAlign: 'center'
-                }}>
-                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '8px' }}>{t(lang, 'checkout.bitcoin.sendExactly')}</p>
-                  <h2 style={{ color: '#78350f', fontWeight: '800', marginBottom: '24px', fontSize: '2rem' }}>{bitcoinInvoice.amount} BTC</h2>
-                  
-                  {/* QR Code for Bitcoin Address */}
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '20px', 
-                    borderRadius: '16px',
-                    border: '2px solid rgba(120, 53, 15, 0.2)',
-                    display: 'inline-block',
-                    marginBottom: '20px'
-                  }}>
-                    <img 
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=bitcoin:${bitcoinInvoice.address}?amount=${bitcoinInvoice.amount}&bgcolor=ffffff&color=000000&format=svg`}
-                      alt="Bitcoin QR Code"
-                      width="200"
-                      height="200"
-                      style={{ display: 'block' }}
-                    />
-                    <p style={{ 
-                      color: '#64748b', 
-                      fontSize: '12px', 
-                      marginTop: '12px',
-                      marginBottom: 0
-                    }}>
-                      {t(lang, 'checkout.bitcoin.scanQRCode')}
-                    </p>
-                  </div>
-                  
-                  <p style={{ color: '#92400e', fontWeight: '600', marginBottom: '12px' }}>{t(lang, 'checkout.bitcoin.toAddress')}</p>
-                  <div style={{ 
-                    background: 'white', 
-                    padding: '16px', 
-                    borderRadius: '12px',
-                    border: '2px solid rgba(120, 53, 15, 0.2)',
-                    wordBreak: 'break-all',
-                    fontFamily: 'monospace',
-                    fontSize: '14px',
-                    color: '#1e293b'
-                  }}>
-                    {bitcoinInvoice.address}
-                  </div>
-                  <button 
-                    onClick={() => {
-                      navigator.clipboard.writeText(bitcoinInvoice.address);
-                      const btn = document.getElementById('copy-btc-btn');
-                      if (btn) {
-                        const originalText = btn.textContent;
-                        btn.textContent = '✓ Copied!';
-                        setTimeout(() => { btn.textContent = originalText; }, 2000);
-                      }
-                    }}
-                    id="copy-btc-btn"
-                    style={{
-                      marginTop: '16px',
-                      background: '#78350f',
-                      color: 'white',
-                      border: 'none',
-                      padding: '10px 20px',
-                      borderRadius: '8px',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-                    </svg>
-                    {t(lang, 'checkout.actions.copyAddress')}
-                  </button>
-                </div>
-                
-                {/* Payment status indicator */}
-                <div style={{ 
-                  background: 'rgba(0, 119, 182, 0.05)',
-                  border: '2px solid rgba(0, 119, 182, 0.2)',
-                  borderRadius: '12px',
-                  padding: '16px 20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                  marginBottom: '24px'
-                }}>
-                  <div style={{
-                    width: '12px',
-                    height: '12px',
-                    background: '#0077b6',
-                    borderRadius: '50%',
-                    animation: 'blink 1.5s infinite'
-                  }}></div>
-                  <span style={{ color: '#0077b6', fontWeight: '500' }}>
-                    {t(lang, 'checkout.bitcoin.monitoringPayment') || 'Monitoring blockchain for your payment...'}
-                  </span>
-                </div>
-                
-                <p style={{ color: '#64748b', textAlign: 'center', fontSize: '14px', marginBottom: '24px' }}>
-                  {t(lang, 'checkout.bitcoin.paymentConfirmation')} <strong>{shippingInfo.email}</strong>
-                </p>
-                
-                <div style={{ borderTop: '2px solid #f1f5f9', paddingTop: '24px', textAlign: 'center' }}>
-                  <p style={{ color: '#64748b', marginBottom: '8px' }}>{t(lang, 'checkout.titles.orderSummary')}</p>
-                  <p style={{ color: '#0077b6', fontWeight: '800', fontSize: '1.5rem', margin: 0 }}>
-                    {formatPrice(finalOrderTotal, currency)} <span style={{ color: '#64748b', fontWeight: '500', fontSize: '14px' }}>(≈ {bitcoinInvoice.amount} BTC)</span>
-                  </p>
-                </div>
-                
-                <style>{`
-                  @keyframes blink {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.3; }
-                  }
-                `}</style>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    // Bank Transfer confirmation
     return (
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-lg-8">
-            <div style={{ ...cardStyle, padding: '48px' }}>
-              <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <div style={{ 
-                  width: '80px', 
-                  height: '80px', 
-                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 24px'
-                }}>
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </div>
-                <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '8px', fontSize: '1.75rem' }}>
-                  {t(lang, 'checkout.confirmation.orderConfirmed')}
-                </h3>
-                <p style={{ color: '#64748b', marginBottom: '4px' }}>{t(lang, 'checkout.confirmation.orderId')}: <strong style={{ color: '#0077b6' }}>{orderId}</strong></p>
-                <p style={{ color: '#64748b' }}>{t(lang, 'checkout.confirmation.confirmationSent')} <strong>{shippingInfo.email}</strong></p>
-              </div>
-              
-              <div style={{ 
-                background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.05), rgba(0, 150, 199, 0.05))',
-                borderRadius: '16px',
-                padding: '32px',
-                marginBottom: '24px'
-              }}>
-                <h5 style={{ 
-                  color: '#1e293b', 
-                  fontWeight: '700', 
-                  marginBottom: '20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px'
-                }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                  </svg>
-                  {t(lang, 'checkout.confirmation.paymentInstructions')}
-                </h5>
-                <p style={{ color: '#64748b', marginBottom: '20px', lineHeight: '1.7' }}>
-                  {t(lang, 'checkout.confirmation.paymentInstructionsDesc').replace('{email}', shippingInfo.email)}
-                </p>
-                <div style={{ 
-                  background: 'white',
-                  borderRadius: '12px',
-                  padding: '20px',
-                  border: '1px solid #e2e8f0'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <div style={{
-                      width: '40px',
-                      height: '40px',
-                      background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                      borderRadius: '10px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
-                        <path d="M12 6v6l4 2"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <p style={{ color: '#1e293b', fontWeight: '600', marginBottom: '4px' }}>{t(lang, 'checkout.confirmation.whatHappensNext')}</p>
-                      <p style={{ color: '#64748b', margin: 0, fontSize: '14px', lineHeight: '1.6' }}>
-                        {t(lang, 'checkout.confirmation.whatHappensNextDesc').replace('{amount}', formatPrice(finalOrderTotal, currency))}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div style={{ 
-                background: 'rgba(16, 185, 129, 0.1)',
-                border: '2px solid rgba(16, 185, 129, 0.2)',
-                borderRadius: '12px',
-                padding: '16px 20px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                marginBottom: '32px'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                <span style={{ color: '#059669' }}>
-                  {t(lang, 'checkout.confirmation.checkSpam')}
-                </span>
-              </div>
-              
-              <div style={{ textAlign: 'center', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                {$isAuthenticated ? (
-                  <a 
-                    href="/account/dashboard/" 
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                      color: 'white',
-                      padding: '16px 32px',
-                      borderRadius: '12px',
-                      fontWeight: '700',
-                      textDecoration: 'none',
-                      fontSize: '16px',
-                      boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                    }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    {t(lang, 'checkout.actions.viewMyOrders')}
-                  </a>
-                ) : (
-                  <a 
-                    href="/shop/" 
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                      color: 'white',
-                      padding: '16px 32px',
-                      borderRadius: '12px',
-                      fontWeight: '700',
-                      textDecoration: 'none',
-                      fontSize: '16px',
-                      boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                    }}
-                  >
-                    {t(lang, 'checkout.actions.continueShopping')}
-                  </a>
-                )}
-              </div>
-            </div>
+      <div className="checkout-complete card">
+        <span className="eyebrow">{copy.orderReceived}</span>
+        <h2>{paymentMethod === 'bitcoin' ? copy.completeBitcoin : copy.orderConfirmed}</h2>
+        <p>{copy.orderId} <strong>{orderId}</strong></p>
+        {paymentMethod === 'bitcoin' && bitcoinInvoice ? (
+          <div className="payment-instructions">
+            <p>{copy.sendExactly} <strong>{bitcoinInvoice.amount} BTC</strong> {copy.to}</p>
+            <code>{bitcoinInvoice.address}</code>
+            <button className="btn btn-secondary" type="button" onClick={() => navigator.clipboard.writeText(bitcoinInvoice.address)}>{copy.copyAddress}</button>
           </div>
+        ) : (
+          <div className="payment-instructions">
+            <p>{copy.bankInstructions.replace('{email}', shippingInfo.email)}</p>
+            <p>{copy.orderTotal} <strong>€{finalOrderTotal.toFixed(2)}</strong></p>
+          </div>
+        )}
+        <div className="checkout-actions">
+          {$isAuthenticated && <a className="btn btn-primary" href={paths?.dashboard || '/account/dashboard/'}>{copy.viewOrders}</a>}
+          <a className="btn btn-secondary" href={paths?.shop || '/shop/'}>{copy.continueShopping}</a>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="container">
-      {/* Progress Steps */}
+    <div className="checkout-flow">
       <ProgressSteps />
-
-      <div className="row">
-        <div className="col-lg-8">
-          {/* Account Step */}
+      <div className="commerce-layout">
+        <main className="checkout-main">
           {currentStep === 'account' && (
-            <div style={{ ...cardStyle, padding: '32px' }}>
-              <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <div style={{
-                  width: '72px',
-                  height: '72px',
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  borderRadius: '18px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  margin: '0 auto 20px',
-                  boxShadow: '0 8px 24px rgba(0, 119, 182, 0.3)'
-                }}>
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '10px', fontSize: '1.5rem' }}>
-                  {t(lang, 'checkout.account.title')}
-                </h3>
-                <p style={{ color: '#64748b', marginBottom: '0' }}>
-                  {t(lang, 'checkout.account.subtitle')}
-                </p>
+            <section className="card checkout-panel">
+              <span className="eyebrow">{copy.account}</span>
+              <h2>{copy.chooseContinue}</h2>
+              <div className="checkout-mode-grid">
+                <button className={checkoutMode === 'guest' ? 'is-selected' : ''} type="button" onClick={() => setCheckoutMode('guest')}>{copy.guestCheckout}</button>
+                <button className={checkoutMode === 'login' ? 'is-selected' : ''} type="button" onClick={() => setCheckoutMode('login')}>{copy.signIn}</button>
+                <button className={checkoutMode === 'register' ? 'is-selected' : ''} type="button" onClick={() => setCheckoutMode('register')}>{copy.createAccount}</button>
               </div>
 
-              {/* Checkout Options */}
-              <div style={{ display: 'grid', gap: '16px', marginBottom: '28px' }}>
-                {/* Guest Checkout */}
-                <button
-                  type="button"
-                  onClick={handleContinueAsGuest}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '16px',
-                    padding: '20px 24px',
-                    background: checkoutMode === 'guest' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    border: checkoutMode === 'guest' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    background: 'linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.1))',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2">
-                      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                      <path d="M3 6h18"></path>
-                      <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.account.guestCheckout')}</div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.guestDesc')}</div>
-                  </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
-                    <path d="m9 18 6-6-6-6"></path>
-                  </svg>
-                </button>
-
-                {/* Sign In */}
-                <button
-                  type="button"
-                  onClick={() => setCheckoutMode('login')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '16px',
-                    padding: '20px 24px',
-                    background: checkoutMode === 'login' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    border: checkoutMode === 'login' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                      <polyline points="10 17 15 12 10 7"></polyline>
-                      <line x1="15" x2="3" y1="12" y2="12"></line>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.account.signInOption')}</div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.signInDesc')}</div>
-                  </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
-                    <path d="m9 18 6-6-6-6"></path>
-                  </svg>
-                </button>
-
-                {/* Create Account */}
-                <button
-                  type="button"
-                  onClick={() => setCheckoutMode('register')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '16px',
-                    padding: '20px 24px',
-                    background: checkoutMode === 'register' ? 'rgba(16, 185, 129, 0.05)' : 'white',
-                    border: checkoutMode === 'register' ? '2px solid #10b981' : '2px solid #e2e8f0',
-                    borderRadius: '12px',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div style={{
-                    width: '48px',
-                    height: '48px',
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
-                    borderRadius: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0
-                  }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <line x1="19" x2="19" y1="8" y2="14"></line>
-                      <line x1="22" x2="16" y1="11" y2="11"></line>
-                    </svg>
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                      <span style={{ fontWeight: '700', color: '#1e293b' }}>{t(lang, 'checkout.account.createAccountOption')}</span>
-                      <span style={{
-                        background: 'linear-gradient(135deg, #10b981, #059669)',
-                        color: 'white',
-                        padding: '2px 8px',
-                        borderRadius: '10px',
-                        fontSize: '11px',
-                        fontWeight: '700'
-                      }}>{t(lang, 'checkout.account.recommended')}</span>
-                    </div>
-                    <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.account.createAccountDesc')}</div>
-                  </div>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2">
-                    <path d="m9 18 6-6-6-6"></path>
-                  </svg>
-                </button>
-              </div>
-
-              {/* Login/Register Form */}
-              {(checkoutMode === 'login' || checkoutMode === 'register') && (
-                <div style={{ 
-                  background: '#f8fafc',
-                  borderRadius: '16px',
-                  padding: '28px'
-                }}>
-                  {/* Social Login Buttons */}
-                  <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-                    <button
-                      type="button"
-                      onClick={handleGoogleLogin}
-                      disabled={$isAuthLoading}
-                      style={{
-                        flex: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '10px',
-                        padding: '14px',
-                        background: 'white',
-                        border: '2px solid #e2e8f0',
-                        borderRadius: '12px',
-                        cursor: 'pointer',
-                        fontWeight: '600',
-                        color: '#1e293b',
-                        fontSize: '14px'
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                      </svg>
-                      Google
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleFacebookLogin}
-                      disabled={$isAuthLoading}
-                      style={{
-                        flex: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '10px',
-                        padding: '14px',
-                        background: '#1877f2',
-                        border: 'none',
-                        borderRadius: '12px',
-                        cursor: 'pointer',
-                        fontWeight: '600',
-                        color: 'white',
-                        fontSize: '14px'
-                      }}
-                    >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                      </svg>
-                      Facebook
-                    </button>
-                  </div>
-
-                  {/* Divider */}
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '16px', 
-                    marginBottom: '24px' 
-                  }}>
-                    <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
-                    <span style={{ color: '#94a3b8', fontSize: '13px', fontWeight: '500' }}>{t(lang, 'checkout.account.orWithEmail')}</span>
-                    <div style={{ flex: 1, height: '1px', background: '#e2e8f0' }}></div>
-                  </div>
-
-                  {/* Error Display */}
-                  {(localAuthError || $authError) && (
-                    <div style={{
-                      background: 'rgba(239, 68, 68, 0.1)',
-                      border: '1px solid rgba(239, 68, 68, 0.2)',
-                      borderRadius: '10px',
-                      padding: '12px 16px',
-                      marginBottom: '20px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px'
-                    }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="15" x2="9" y1="9" y2="15"></line>
-                        <line x1="9" x2="15" y1="9" y2="15"></line>
-                      </svg>
-                      <span style={{ color: '#dc2626', fontSize: '14px', fontWeight: '500' }}>{localAuthError || $authError}</span>
-                    </div>
+              {checkoutMode === 'guest' ? (
+                <div className="checkout-actions"><button className="btn btn-primary" type="button" onClick={() => setCurrentStep('shipping')}>{copy.continueGuest}</button></div>
+              ) : (
+                <form className="checkout-form" onSubmit={handleAuthSubmit}>
+                  {checkoutMode === 'register' && (
+                    <>
+                      <label className="field"><span>{copy.firstName}</span><input className="input" required value={authFirstName} onChange={(event) => setAuthFirstName(event.target.value)} /></label>
+                      <label className="field"><span>{copy.lastName}</span><input className="input" required value={authLastName} onChange={(event) => setAuthLastName(event.target.value)} /></label>
+                    </>
                   )}
-
-                  {/* Auth Form */}
-                  <form onSubmit={handleAuthSubmit}>
-                    {checkoutMode === 'register' && (
-                      <div className="row">
-                        <div className="col-md-6 mb-3">
-                          <label style={labelStyle}>{t(lang, 'checkout.fields.firstName')}</label>
-                          <input 
-                            type="text" 
-                            style={{ ...inputStyle, background: 'white' }}
-                            value={authFirstName}
-                            onChange={e => setAuthFirstName(e.target.value)}
-                            placeholder="John"
-                            required
-                          />
-                        </div>
-                        <div className="col-md-6 mb-3">
-                          <label style={labelStyle}>{t(lang, 'checkout.fields.lastName')}</label>
-                          <input 
-                            type="text" 
-                            style={{ ...inputStyle, background: 'white' }}
-                            value={authLastName}
-                            onChange={e => setAuthLastName(e.target.value)}
-                            placeholder="Doe"
-                            required
-                          />
-                        </div>
-                      </div>
-                    )}
-
-                    <div style={{ marginBottom: '16px' }}>
-                      <label style={labelStyle}>{t(lang, 'checkout.fields.email')}</label>
-                      <input 
-                        type="email" 
-                        style={{ ...inputStyle, background: 'white' }}
-                        value={authEmail}
-                        onChange={e => setAuthEmail(e.target.value)}
-                        placeholder="you@example.com"
-                        required
-                      />
-                    </div>
-
-                    <div style={{ marginBottom: checkoutMode === 'register' ? '16px' : '24px' }}>
-                      <label style={labelStyle}>{t(lang, 'checkout.fields.password')}</label>
-                      <input 
-                        type="password" 
-                        style={{ ...inputStyle, background: 'white' }}
-                        value={authPassword}
-                        onChange={e => setAuthPassword(e.target.value)}
-                        placeholder="••••••••"
-                        required
-                      />
-                    </div>
-
-                    {checkoutMode === 'register' && (
-                      <div style={{ marginBottom: '24px' }}>
-                        <label style={labelStyle}>{t(lang, 'checkout.fields.confirmPassword')}</label>
-                        <input 
-                          type="password" 
-                          style={{ ...inputStyle, background: 'white' }}
-                          value={authConfirmPassword}
-                          onChange={e => setAuthConfirmPassword(e.target.value)}
-                          placeholder="••••••••"
-                          required
-                        />
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={$isAuthLoading}
-                      style={{
-                        width: '100%',
-                        padding: '16px',
-                        background: $isAuthLoading ? '#94a3b8' : 'linear-gradient(135deg, #0077b6, #023e8a)',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '12px',
-                        fontWeight: '700',
-                        fontSize: '16px',
-                        cursor: $isAuthLoading ? 'not-allowed' : 'pointer',
-                        boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '10px'
-                      }}
-                    >
-                      {$isAuthLoading ? (
-                        <>
-                          <div style={{
-                            width: '20px',
-                            height: '20px',
-                            border: '2px solid white',
-                            borderTopColor: 'transparent',
-                            borderRadius: '50%',
-                            animation: 'spin 1s linear infinite'
-                          }}></div>
-                          {checkoutMode === 'login' ? t(lang, 'checkout.actions.signingIn') : t(lang, 'checkout.actions.creatingAccount')}
-                        </>
-                      ) : (
-                        <>
-                          {checkoutMode === 'login' ? t(lang, 'checkout.actions.signInContinue') : t(lang, 'checkout.actions.createAccountContinue')}
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                          </svg>
-                        </>
-                      )}
-                    </button>
-                  </form>
-
-                  {/* Toggle Mode */}
-                  <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                    <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>
-                      {checkoutMode === 'login' ? t(lang, 'checkout.account.dontHaveAccount') : t(lang, 'checkout.account.alreadyHaveAccount')}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setCheckoutMode(checkoutMode === 'login' ? 'register' : 'login');
-                          setLocalAuthError('');
-                        }}
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          color: '#0077b6',
-                          fontWeight: '600',
-                          cursor: 'pointer',
-                          marginLeft: '6px'
-                        }}
-                      >
-                        {checkoutMode === 'login' ? t(lang, 'checkout.account.createOne') : t(lang, 'checkout.actions.signIn')}
-                      </button>
-                    </p>
+                  <label className="field"><span>{copy.email}</span><input className="input" type="email" required value={authEmail} onChange={(event) => setAuthEmail(event.target.value)} /></label>
+                  <label className="field"><span>{copy.password}</span><input className="input" type="password" required value={authPassword} onChange={(event) => setAuthPassword(event.target.value)} /></label>
+                  {checkoutMode === 'register' && <label className="field"><span>{copy.confirmPassword}</span><input className="input" type="password" required value={authConfirmPassword} onChange={(event) => setAuthConfirmPassword(event.target.value)} /></label>}
+                  {(localAuthError || authErrorText) && <p className="form-error">{localAuthError || authErrorText}</p>}
+                  <div className="checkout-actions">
+                    <button className="btn btn-primary" type="submit" disabled={$isAuthLoading}>{$isAuthLoading ? copy.pleaseWait : checkoutMode === 'login' ? copy.signIn : copy.createAccount}</button>
+                    <button className="btn btn-secondary" type="button" onClick={() => handleSocialLogin('google')}>{copy.google}</button>
+                    <button className="btn btn-secondary" type="button" onClick={() => handleSocialLogin('facebook')}>{copy.facebook}</button>
                   </div>
-                </div>
+                </form>
               )}
-            </div>
+            </section>
           )}
 
-          {/* Shipping Form */}
           {currentStep === 'shipping' && (
-            <div style={{ ...cardStyle, padding: '32px' }}>
-              <h4 style={{ 
-                color: '#1e293b', 
-                fontWeight: '700', 
-                marginBottom: '28px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                {t(lang, 'checkout.titles.shippingInformation')}
-              </h4>
-              <form onSubmit={handleShippingSubmit}>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.firstName')} *</label>
-                    <input type="text" style={inputStyle} required value={shippingInfo.firstName} onChange={e => setShippingInfo({...shippingInfo, firstName: e.target.value})} placeholder="John" />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.lastName')} *</label>
-                    <input type="text" style={inputStyle} required value={shippingInfo.lastName} onChange={e => setShippingInfo({...shippingInfo, lastName: e.target.value})} placeholder="Doe" />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.email')} *</label>
-                    <input type="email" style={inputStyle} required value={shippingInfo.email} onChange={e => setShippingInfo({...shippingInfo, email: e.target.value})} placeholder="john@example.com" />
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.phoneOptional')}</label>
-                    <input type="tel" style={inputStyle} value={shippingInfo.phone} onChange={e => setShippingInfo({...shippingInfo, phone: e.target.value})} placeholder="+44 7123 456789" />
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <label style={labelStyle}>{t(lang, 'checkout.fields.address')} *</label>
-                  <input type="text" style={inputStyle} required value={shippingInfo.address} onChange={e => setShippingInfo({...shippingInfo, address: e.target.value})} placeholder="123 Research Lane" />
-                </div>
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.city')} *</label>
-                    <input type="text" style={inputStyle} required value={shippingInfo.city} onChange={e => setShippingInfo({...shippingInfo, city: e.target.value})} placeholder="London" />
-                  </div>
-                  <div className="col-md-3 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.county')}</label>
-                    <input type="text" style={inputStyle} value={shippingInfo.county} onChange={e => setShippingInfo({...shippingInfo, county: e.target.value})} placeholder="Greater London" />
-                  </div>
-                  <div className="col-md-3 mb-3">
-                    <label style={labelStyle}>{t(lang, 'checkout.fields.postcode')} *</label>
-                    <input type="text" style={inputStyle} required placeholder="SW1A 1AA" value={shippingInfo.postcode} onChange={e => setShippingInfo({...shippingInfo, postcode: e.target.value})} />
-                  </div>
-                </div>
-
-                {/* Shipping Method Selection */}
-                <h5 style={{ 
-                  color: '#1e293b', 
-                  fontWeight: '700', 
-                  marginTop: '32px', 
-                  marginBottom: '20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px'
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                    <path d="M15 18H9"></path>
-                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                    <circle cx="17" cy="18" r="2"></circle>
-                    <circle cx="7" cy="18" r="2"></circle>
-                  </svg>
-                  {t(lang, 'checkout.titles.deliveryMethod')}
-                </h5>
-                <div 
-                  onClick={() => setShippingMethod('standard')}
-                  style={{ 
-                    padding: '20px',
-                    borderRadius: '12px',
-                    border: shippingMethod === 'standard' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    background: shippingMethod === 'standard' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    cursor: 'pointer',
-                    marginBottom: '12px',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div className="d-flex align-items-center">
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      border: shippingMethod === 'standard' ? '6px solid #0077b6' : '2px solid #cbd5e1',
-                      marginRight: '16px',
-                      flexShrink: 0
-                    }}></div>
-                    <div style={{ 
-                      width: '48px', 
-                      height: '48px', 
-                      background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                      borderRadius: '10px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px'
-                    }}>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                      </svg>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px' }}>{t(lang, 'checkout.shipping.standard')}</div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.shipping.standardTime')}</div>
-                    </div>
-                    <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
-                      {qualifiesForFreeDelivery ? (
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>{formatPrice(SHIPPING_COSTS.standard.price, currency)}</span>
-                          {t(lang, 'common.free')}
-                        </span>
-                      ) : (
-                        formatPrice(SHIPPING_COSTS.standard.price, currency)
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div 
-                  onClick={() => setShippingMethod('express')}
-                  style={{ 
-                    padding: '20px',
-                    borderRadius: '12px',
-                    border: shippingMethod === 'express' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    background: shippingMethod === 'express' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    cursor: 'pointer',
-                    marginBottom: '28px',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div className="d-flex align-items-center">
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      border: shippingMethod === 'express' ? '6px solid #0077b6' : '2px solid #cbd5e1',
-                      marginRight: '16px',
-                      flexShrink: 0
-                    }}></div>
-                    <div style={{ 
-                      width: '48px', 
-                      height: '48px', 
-                      background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1))',
-                      borderRadius: '10px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '16px'
-                    }}>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                        <span style={{ fontWeight: '700', color: '#1e293b' }}>{t(lang, 'checkout.shipping.express')}</span>
-                        <span style={{ 
-                          background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                          color: 'white',
-                          padding: '2px 8px',
-                          borderRadius: '10px',
-                          fontSize: '10px',
-                          fontWeight: '700'
-                        }}>{t(lang, 'checkout.payment.fastBadge')}</span>
-                      </div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.shipping.expressTime')}</div>
-                    </div>
-                    <div style={{ fontWeight: '700', color: qualifiesForFreeDelivery ? '#10b981' : '#0077b6', fontSize: '1.1rem' }}>
-                      {qualifiesForFreeDelivery ? (
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.85rem' }}>{formatPrice(SHIPPING_COSTS.express.price, currency)}</span>
-                          {t(lang, 'common.free')}
-                        </span>
-                      ) : (
-                        formatPrice(SHIPPING_COSTS.express.price, currency)
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                <button 
-                  type="submit" 
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px',
-                    width: '100%',
-                    background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                    color: 'white',
-                    padding: '18px 24px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    fontWeight: '700',
-                    fontSize: '16px',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                  }}
-                >
-                  {t(lang, 'checkout.actions.continue')}
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                </button>
+            <section className="card checkout-panel">
+              <span className="eyebrow">{copy.shipping}</span>
+              <h2>{copy.shippingDetails}</h2>
+              <form className="checkout-form" onSubmit={handleShippingSubmit}>
+                {(['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'county', 'postcode'] as const).map((field) => {
+                  const labelMap: Record<string, string> = {
+                    firstName: copy.firstName,
+                    lastName: copy.lastName,
+                    email: copy.email,
+                    phone: copy.phone,
+                    address: copy.address,
+                    city: copy.city,
+                    county: copy.county,
+                    postcode: copy.postcode,
+                  };
+                  return (
+                  <label className={field === 'address' ? 'field checkout-form-wide' : 'field'} key={field}>
+                    <span>{labelMap[field]}</span>
+                    <input
+                      className="input"
+                      type={field === 'email' ? 'email' : 'text'}
+                      required={field !== 'phone'}
+                      value={shippingInfo[field]}
+                      onChange={(event) => setShippingInfo({ ...shippingInfo, [field]: event.target.value })}
+                    />
+                  </label>
+                  );
+                })}
+                <fieldset className="checkout-choice-group checkout-form-wide">
+                  <legend>{copy.deliveryMethod}</legend>
+                  {(Object.keys(SHIPPING_COSTS) as ShippingMethod[]).map((method) => (
+                    <label className="choice-card" key={method}>
+                      <input type="radio" name="shippingMethod" checked={shippingMethod === method} onChange={() => setShippingMethod(method)} />
+                      <span><strong>{copy[SHIPPING_COSTS[method].labelKey]}</strong><small>{qualifiesForFreeDelivery ? copy.free : `€${SHIPPING_COSTS[method].price.toFixed(2)}`} · {copy[SHIPPING_COSTS[method].timeKey]}</small></span>
+                    </label>
+                  ))}
+                </fieldset>
+                <div className="checkout-actions checkout-form-wide"><button className="btn btn-primary" type="submit">{copy.continuePayment}</button></div>
               </form>
-            </div>
+            </section>
           )}
 
-          {/* Payment Form */}
           {currentStep === 'payment' && (
-            <div style={{ ...cardStyle, padding: '32px' }}>
-              <h4 style={{ 
-                color: '#1e293b', 
-                fontWeight: '700', 
-                marginBottom: '28px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                  <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                  <line x1="2" x2="22" y1="10" y2="10"></line>
-                </svg>
-                {t(lang, 'checkout.titles.paymentMethod')}
-              </h4>
-              <form onSubmit={handlePaymentSubmit}>
-                
-                {/* Bank Transfer Option */}
-                <div 
-                  onClick={() => setPaymentMethod('bank-transfer')}
-                  style={{ 
-                    padding: '24px',
-                    borderRadius: '12px',
-                    border: paymentMethod === 'bank-transfer' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    background: paymentMethod === 'bank-transfer' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    cursor: 'pointer',
-                    marginBottom: '16px',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div className="d-flex align-items-center">
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      border: paymentMethod === 'bank-transfer' ? '6px solid #0077b6' : '2px solid #cbd5e1',
-                      marginRight: '16px',
-                      flexShrink: 0
-                    }}></div>
-                    <div style={{ 
-                      width: '56px', 
-                      height: '56px', 
-                      background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '20px'
-                    }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="#0077b6">
-                        <path d="M12.5 1.5l10 5v1H1.5v-1l10-5h1zM4.5 9h2v7h-2V9zm5 0h2v7h-2V9zm5 0h2v7h-2V9zm5 0h2v7h-2V9zM2.5 17.5h19v2h-19v-2z"/>
-                      </svg>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontWeight: '700', color: '#1e293b', marginBottom: '4px', fontSize: '1.1rem' }}>{t(lang, 'checkout.payment.bankTransfer')}</div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.payment.bankTransferDesc')}</div>
-                    </div>
-                  </div>
-                  {paymentMethod === 'bank-transfer' && (
-                    <div style={{ 
-                      marginTop: '16px', 
-                      paddingTop: '16px', 
-                      borderTop: '1px solid #e2e8f0'
-                    }}>
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        color: '#64748b',
-                        fontSize: '13px',
-                        marginBottom: '12px'
-                      }}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <line x1="12" x2="12" y1="16" y2="12"></line>
-                          <line x1="12" x2="12.01" y1="8" y2="8"></line>
-                        </svg>
-                        {t(lang, 'checkout.payment.ordersProcessedInfo')}
-                      </div>
-                      <div style={{
-                        background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
-                        border: '1px solid #f59e0b',
-                        borderRadius: '8px',
-                        padding: '12px 16px',
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '10px'
-                      }}>
-                        <span style={{ fontSize: '18px' }}>📸</span>
-                        <div style={{ fontSize: '13px', color: '#92400e', fontWeight: '500' }}>
-                          <strong>{t(lang, 'common.important')}:</strong> {t(lang, 'checkout.payment.screenshotInfo')}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bitcoin Option */}
-                <div 
-                  onClick={() => setPaymentMethod('bitcoin')}
-                  style={{ 
-                    padding: '24px',
-                    borderRadius: '12px',
-                    border: paymentMethod === 'bitcoin' ? '2px solid #0077b6' : '2px solid #e2e8f0',
-                    background: paymentMethod === 'bitcoin' ? 'rgba(0, 119, 182, 0.05)' : 'white',
-                    cursor: 'pointer',
-                    marginBottom: '28px',
-                    transition: 'all 0.2s ease'
-                  }}
-                >
-                  <div className="d-flex align-items-center">
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      border: paymentMethod === 'bitcoin' ? '6px solid #0077b6' : '2px solid #cbd5e1',
-                      marginRight: '16px',
-                      flexShrink: 0
-                    }}></div>
-                    <div style={{ 
-                      width: '56px', 
-                      height: '56px', 
-                      background: 'linear-gradient(135deg, #f7931a, #e8821c)',
-                      borderRadius: '12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginRight: '20px',
-                      boxShadow: '0 4px 12px rgba(247, 147, 26, 0.3)'
-                    }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M9.5 8h4a2 2 0 1 1 0 4h-4v-4Z"></path>
-                        <path d="M9.5 12h4.5a2 2 0 1 1 0 4H9.5v-4Z"></path>
-                        <path d="M12 6v2"></path>
-                        <path d="M12 16v2"></path>
-                      </svg>
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-                        <span style={{ fontWeight: '700', color: '#1e293b', fontSize: '1.1rem' }}>{t(lang, 'checkout.payment.bitcoin')}</span>
-                        <span style={{ 
-                          background: 'linear-gradient(135deg, #10b981, #059669)',
-                          color: 'white',
-                          padding: '4px 10px',
-                          borderRadius: '10px',
-                          fontSize: '11px',
-                          fontWeight: '700'
-                        }}>{t(lang, 'checkout.payment.bitcoinDiscount')}</span>
-                      </div>
-                      <div style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'checkout.payment.bitcoinDesc')}</div>
-                    </div>
-                  </div>
-                  {paymentMethod === 'bitcoin' && (
-                    <div style={{ 
-                      marginTop: '16px', 
-                      paddingTop: '16px', 
-                      borderTop: '1px solid #e2e8f0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      color: '#64748b',
-                      fontSize: '13px'
-                    }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" x2="12" y1="16" y2="12"></line>
-                        <line x1="12" x2="12.01" y1="8" y2="8"></line>
-                      </svg>
-                      {t(lang, 'checkout.bitcoin.paymentInfo')}
-                    </div>
-                  )}
-                </div>
-
-                <div className="d-flex justify-content-between">
-                  <button 
-                    type="button" 
-                    onClick={() => setCurrentStep('shipping')}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      background: 'white',
-                      color: '#64748b',
-                      padding: '14px 24px',
-                      borderRadius: '12px',
-                      border: '2px solid #e2e8f0',
-                      fontWeight: '600',
-                      fontSize: '15px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="m15 18-6-6 6-6"></path>
-                    </svg>
-                    {t(lang, 'checkout.actions.back')}
-                  </button>
-                  <button 
-                    type="submit" 
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                      color: 'white',
-                      padding: '14px 32px',
-                      borderRadius: '12px',
-                      border: 'none',
-                      fontWeight: '700',
-                      fontSize: '16px',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                    }}
-                  >
-                    {t(lang, 'checkout.actions.reviewOrder')}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M5 12h14"></path>
-                      <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-                  </button>
-                </div>
+            <section className="card checkout-panel">
+              <span className="eyebrow">{copy.payment}</span>
+              <h2>{copy.selectPayment}</h2>
+              <form className="checkout-stack" onSubmit={handlePaymentSubmit}>
+                <label className="choice-card">
+                  <input type="radio" name="payment" checked={paymentMethod === 'bank-transfer'} onChange={() => setPaymentMethod('bank-transfer')} />
+                  <span><strong>{copy.bankTransfer}</strong><small>{copy.bankTransferHelp}</small></span>
+                </label>
+                <label className="choice-card">
+                  <input type="radio" name="payment" checked={paymentMethod === 'bitcoin'} onChange={() => setPaymentMethod('bitcoin')} />
+                  <span><strong>{copy.bitcoin}</strong><small>{copy.bitcoinHelp}</small></span>
+                </label>
+                <div className="checkout-actions"><button className="btn btn-primary" type="submit">{copy.reviewOrder}</button><button className="btn btn-ghost" type="button" onClick={() => setCurrentStep('shipping')}>{copy.back}</button></div>
               </form>
-            </div>
+            </section>
           )}
 
-          {/* Review Order */}
           {currentStep === 'review' && (
-            <div style={{ ...cardStyle, padding: '32px' }}>
-              <h4 style={{ 
-                color: '#1e293b', 
-                fontWeight: '700', 
-                marginBottom: '28px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                  <path d="M9 11l3 3L22 4"></path>
-                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                </svg>
-                {t(lang, 'checkout.titles.reviewOrder')}
-              </h4>
-              
-              {/* Shipping Address */}
-              <div style={{ 
-                background: '#f8fafc', 
-                borderRadius: '12px', 
-                padding: '20px',
-                marginBottom: '16px'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px',
-                  marginBottom: '12px',
-                  color: '#0077b6',
-                  fontWeight: '600'
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                  {t(lang, 'checkout.review.shippingAddress')}
-                </div>
-                <p style={{ color: '#1e293b', margin: 0, lineHeight: '1.6' }}>
-                  <strong>{shippingInfo.firstName} {shippingInfo.lastName}</strong><br />
-                  {shippingInfo.address}<br />
-                  {shippingInfo.city}{shippingInfo.county ? `, ${shippingInfo.county}` : ''} {shippingInfo.postcode}<br />
-                  United Kingdom
-                </p>
+            <section className="card checkout-panel">
+              <span className="eyebrow">{copy.review}</span>
+              <h2>{copy.confirmOrder}</h2>
+              <div className="review-block">
+                <h3>{copy.delivery}</h3>
+                <p>{shippingInfo.firstName} {shippingInfo.lastName}<br />{shippingInfo.address}<br />{shippingInfo.city}, {shippingInfo.county} {shippingInfo.postcode}</p>
               </div>
-
-              {/* Payment Method */}
-              <div style={{ 
-                background: '#f8fafc', 
-                borderRadius: '12px', 
-                padding: '20px',
-                marginBottom: '16px'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px',
-                  marginBottom: '12px',
-                  color: '#0077b6',
-                  fontWeight: '600'
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect width="20" height="14" x="2" y="5" rx="2"></rect>
-                    <line x1="2" x2="22" y1="10" y2="10"></line>
-                  </svg>
-                  {t(lang, 'checkout.review.paymentMethod')}
-                </div>
-                <p style={{ color: '#1e293b', margin: 0 }}>
-                  {paymentMethod === 'bank-transfer' ? t(lang, 'checkout.payment.bankTransfer') : t(lang, 'checkout.payment.bitcoin')}
-                  {paymentMethod === 'bitcoin' && (
-                    <span style={{ color: '#10b981', fontWeight: '600', marginLeft: '8px' }}>• {t(lang, 'checkout.review.discountApplied')}</span>
-                  )}
-                </p>
+              <div className="review-block">
+                <h3>{copy.payment}</h3>
+                <p>{paymentMethod === 'bitcoin' ? copy.bitcoinInvoice : copy.bankTransfer} · {copy[SHIPPING_COSTS[shippingMethod].labelKey]}</p>
               </div>
-
-              {/* Items */}
-              <div style={{ 
-                background: '#f8fafc', 
-                borderRadius: '12px', 
-                padding: '20px',
-                marginBottom: '16px'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px',
-                  marginBottom: '16px',
-                  color: '#0077b6',
-                  fontWeight: '600'
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                    <path d="M3 6h18"></path>
-                    <path d="M16 10a4 4 0 0 1-8 0"></path>
-                  </svg>
-                  {t(lang, 'checkout.review.items')} ({products.length})
-                </div>
-                {products.map(product => (
-                  <div key={product.id} style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    padding: '12px 0',
-                    borderBottom: '1px solid #e2e8f0'
-                  }}>
-                    <span style={{ color: '#1e293b' }}>{product.title} × {product.quantity}</span>
-                    <span style={{ fontWeight: '600', color: '#0077b6' }}>{formatPrice(product.price * product.quantity, currency)}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Delivery */}
-              <div style={{ 
-                background: '#f8fafc', 
-                borderRadius: '12px', 
-                padding: '20px',
-                marginBottom: '28px'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px',
-                  marginBottom: '12px',
-                  color: '#0077b6',
-                  fontWeight: '600'
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                    <path d="M15 18H9"></path>
-                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                    <circle cx="17" cy="18" r="2"></circle>
-                    <circle cx="7" cy="18" r="2"></circle>
-                  </svg>
-                  {t(lang, 'checkout.review.delivery')}
-                </div>
-                <p style={{ color: '#1e293b', margin: 0 }}>
-                  {shippingMethod === 'express' ? t(lang, 'checkout.shipping.expressDelivery') : t(lang, 'checkout.shipping.standardDelivery')} — 
-                  {qualifiesForFreeDelivery ? (
-                    <strong style={{ marginLeft: '4px', color: '#10b981' }}>{t(lang, 'checkout.review.free')}</strong>
-                  ) : (
-                    <strong style={{ marginLeft: '4px' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</strong>
-                  )}
-                </p>
-              </div>
-
-              <div className="d-flex justify-content-between">
-                <button 
-                  type="button" 
-                  onClick={() => setCurrentStep('payment')}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    background: 'white',
-                    color: '#64748b',
-                    padding: '14px 24px',
-                    borderRadius: '12px',
-                    border: '2px solid #e2e8f0',
-                    fontWeight: '600',
-                    fontSize: '15px',
-                    cursor: 'pointer'
-                  }}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="m15 18-6-6 6-6"></path>
-                  </svg>
-                  {t(lang, 'checkout.actions.back')}
-                </button>
-                <button 
-                  onClick={handlePlaceOrder}
-                  disabled={isProcessing}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '10px',
-                    background: isProcessing ? '#94a3b8' : 'linear-gradient(135deg, #10b981, #059669)',
-                    color: 'white',
-                    padding: '16px 32px',
-                    borderRadius: '12px',
-                    border: 'none',
-                    fontWeight: '700',
-                    fontSize: '16px',
-                    cursor: isProcessing ? 'not-allowed' : 'pointer',
-                    boxShadow: isProcessing ? 'none' : '0 4px 14px rgba(16, 185, 129, 0.4)'
-                  }}
-                >
-                  {isProcessing ? (
-                    <>
-                      <div style={{
-                        width: '20px',
-                        height: '20px',
-                        border: '2px solid white',
-                        borderTopColor: 'transparent',
-                        borderRadius: '50%',
-                        animation: 'spin 1s linear infinite'
-                      }}></div>
-                      {t(lang, 'checkout.actions.processing')}
-                    </>
-                  ) : (
-                    <>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                      </svg>
-                      {t(lang, 'checkout.actions.placeOrder')} — {formatPrice((paymentMethod === 'bitcoin' ? total * 0.9 : total), currency)}
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
+              <div className="ruo-banner compact"><strong>{copy.researchUseOnly}</strong><span>{copy.reviewRuo}</span></div>
+              {orderError && <p className="form-error">{orderError}</p>}
+              <div className="checkout-actions"><button className="btn btn-primary" type="button" disabled={isProcessing} onClick={handlePlaceOrder}>{isProcessing ? copy.placingOrder : copy.placeOrder.replace('{total}', orderTotal.toFixed(2))}</button><button className="btn btn-ghost" type="button" onClick={() => setCurrentStep('payment')}>{copy.back}</button></div>
+            </section>
           )}
-        </div>
-
-        {/* Order Summary Sidebar */}
-        <div className="col-lg-4 mt-4 mt-lg-0">
-          <div style={{ position: 'sticky', top: '100px' }}>
-            <div style={{ ...cardStyle, padding: '28px' }}>
-              <h5 style={{ 
-                color: '#1e293b', 
-                fontWeight: '700', 
-                marginBottom: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px'
-              }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                  <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
-                  <path d="M3 6h18"></path>
-                  <path d="M16 10a4 4 0 0 1-8 0"></path>
-                </svg>
-                {t(lang, 'checkout.titles.orderSummary')}
-              </h5>
-              
-              {/* Items */}
-              <div style={{ marginBottom: '20px' }}>
-                {products.map(product => (
-                  <div key={product.id} style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    padding: '12px 0',
-                    borderBottom: '1px solid #f1f5f9'
-                  }}>
-                    <div>
-                      <div style={{ color: '#1e293b', fontWeight: '500' }}>{product.title}</div>
-                      <div style={{ color: '#94a3b8', fontSize: '13px' }}>{t(lang, 'checkout.review.qty')}: {product.quantity}</div>
-                    </div>
-                    <span style={{ fontWeight: '600', color: '#0077b6' }}>{formatPrice(product.price * product.quantity, currency)}</span>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Pricing Breakdown */}
-              <div style={{ 
-                background: '#f8fafc', 
-                borderRadius: '10px', 
-                padding: '16px',
-                marginBottom: '20px'
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                  <span style={{ color: '#64748b' }}>{t(lang, 'checkout.summary.subtotal')}</span>
-                  <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice($cartTotal, currency)}</span>
-                </div>
-                
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                  <span style={{ color: '#64748b' }}>
-                    {shippingMethod === 'express' ? t(lang, 'checkout.shipping.express') : t(lang, 'checkout.shipping.standard')} {t(lang, 'checkout.summary.shipping')}
-                  </span>
-                  {qualifiesForFreeDelivery ? (
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'checkout.review.free')}</span>
-                  ) : (
-                    <span style={{ color: '#1e293b', fontWeight: '500' }}>{formatPrice(SHIPPING_COSTS[shippingMethod].price, currency)}</span>
-                  )}
-                </div>
-
-                {qualifiesForFreeDelivery && (
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '8px 0',
-                    marginBottom: '6px'
-                  }}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span style={{ color: '#10b981', fontSize: '13px', fontWeight: '500' }}>{t(lang, 'checkout.shipping.freeDeliveryMessage').replace('{amount}', formatPrice(FREE_DELIVERY_THRESHOLD, currency))}</span>
-                  </div>
-                )}
-
-                {paymentMethod === 'bitcoin' && (
-                  <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    padding: '10px 0',
-                    marginTop: '10px',
-                    borderTop: '1px dashed #cbd5e1'
-                  }}>
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'checkout.payment.bitcoinDiscountLabel')}</span>
-                    <span style={{ color: '#10b981', fontWeight: '600' }}>-{formatPrice(total * 0.1, currency)}</span>
-                  </div>
-                )}
-              </div>
-              
-              {/* Total */}
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '16px 0',
-                borderTop: '2px solid #e2e8f0'
-              }}>
-                <span style={{ color: '#1e293b', fontSize: '1.1rem', fontWeight: '700' }}>{t(lang, 'checkout.summary.total')}</span>
-                <span style={{ 
-                  fontSize: '1.5rem', 
-                  fontWeight: '800',
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}>
-                  {formatPrice((paymentMethod === 'bitcoin' ? total * 0.9 : total), currency)}
-                </span>
-              </div>
-
-              {/* Security Badge */}
-              <div style={{ 
-                background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
-                border: '1px solid rgba(16, 185, 129, 0.2)',
-                borderRadius: '10px',
-                padding: '14px',
-                marginTop: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <div style={{
-                  width: '36px',
-                  height: '36px',
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </div>
-                <div>
-                  <div style={{ color: '#059669', fontWeight: '600', fontSize: '14px' }}>{t(lang, 'checkout.security.sslSecure')}</div>
-                  <div style={{ color: '#64748b', fontSize: '12px' }}>{t(lang, 'checkout.security.encryption')}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Payment Methods Card */}
-            <div style={{ ...cardStyle, padding: '24px', marginTop: '16px' }}>
-              <h6 style={{ 
-                color: '#1e293b', 
-                fontWeight: '600', 
-                marginBottom: '16px',
-                fontSize: '14px'
-              }}>{t(lang, 'checkout.security.weAccept')}</h6>
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <div style={{ 
-                  width: '64px', 
-                  height: '44px', 
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 2px 8px rgba(0, 119, 182, 0.3)'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M12.5 1.5l10 5v1H1.5v-1l10-5h1zM4.5 9h2v7h-2V9zm5 0h2v7h-2V9zm5 0h2v7h-2V9zm5 0h2v7h-2V9zM2.5 17.5h19v2h-19v-2z"/>
-                  </svg>
-                </div>
-                <div style={{ 
-                  width: '64px', 
-                  height: '44px', 
-                  background: 'linear-gradient(135deg, #f7931a, #e8821c)',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 2px 8px rgba(247, 147, 26, 0.3)'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 32 32" fill="white">
-                    <path d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16zm5.155-21.672c-.372-2.453-2.341-3.267-5.008-3.49V4h-2.064v2.76c-.543 0-1.098.012-1.65.024V4H10.37v2.838H6.646v1.846s1.527-.028 1.502 0c.84 0 1.11.487 1.19.906v3.842h.2l-.2.044v5.38c-.037.266-.193.69-.778.69.028.024-1.5 0-1.5 0l-.41 2.064h3.603v2.87h2.064v-2.82c.563.012 1.11.018 1.65.018v2.802h2.063v-2.838c3.484-.2 5.92-1.017 6.224-4.106.245-2.488-1.147-3.6-3.446-4.048 1.407-.547 2.28-1.594 2.016-3.391zm-2.678 5.883c0 2.434-4.166 2.157-5.497 2.157v-4.32c1.33 0 5.497-.38 5.497 2.163zm-.918-5.02c0 2.2-3.475 1.946-4.58 1.946v-3.9c1.104 0 4.58-.348 4.58 1.954z"/>
-                  </svg>
-                </div>
-              </div>
-              <p style={{ color: '#64748b', fontSize: '13px', marginTop: '12px', marginBottom: 0, lineHeight: '1.5' }}>
-                {t(lang, 'checkout.security.paymentMethodsDesc')}
-              </p>
-            </div>
-
-            {/* Trust & Reassurance Section */}
-            <div style={{ ...cardStyle, padding: '24px', marginTop: '16px' }}>
-              <h6 style={{ 
-                color: '#1e293b', 
-                fontWeight: '600', 
-                marginBottom: '16px',
-                fontSize: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                  <path d="m9 12 2 2 4-4"></path>
-                </svg>
-                {t(lang, 'checkout.trust.title')}
-              </h6>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.purityTitle')}</strong> — {t(lang, 'checkout.trust.purityDesc')}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.discreetTitle')}</strong> — {t(lang, 'checkout.trust.discreetDesc')}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.dispatchTitle')}</strong> — {t(lang, 'checkout.trust.dispatchDesc')}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.supportTitle')}</strong> — {t(lang, 'checkout.trust.supportDesc')}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}>
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
-                    <strong style={{ color: '#1e293b' }}>{t(lang, 'checkout.trust.ordersTitle')}</strong> — {t(lang, 'checkout.trust.ordersDesc')}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trust Badges */}
-            <div style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(3, 1fr)', 
-              gap: '12px',
-              marginTop: '16px'
-            }}>
-              <div style={{ 
-                background: 'white',
-                borderRadius: '12px',
-                padding: '16px 12px',
-                textAlign: 'center',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                  <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                  <path d="M15 18H9"></path>
-                  <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                  <circle cx="17" cy="18" r="2"></circle>
-                  <circle cx="7" cy="18" r="2"></circle>
-                </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.ukShipping')}</div>
-              </div>
-              <div style={{ 
-                background: 'white',
-                borderRadius: '12px',
-                padding: '16px 12px',
-                textAlign: 'center',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.labTested')}</div>
-              </div>
-              <div style={{ 
-                background: 'white',
-                borderRadius: '12px',
-                padding: '16px 12px',
-                textAlign: 'center',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.05)'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="17,8 12,3 7,8"></polyline>
-                  <line x1="12" x2="12" y1="3" y2="15"></line>
-                </svg>
-                <div style={{ color: '#64748b', fontSize: '11px', fontWeight: '500' }}>{t(lang, 'checkout.badges.fastDispatch')}</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </main>
+        <OrderSummary />
       </div>
-
-      {/* Mobile Responsive Styles */}
-      <style>{`
-        /* Mobile First Checkout Styles */
-        @media (max-width: 991px) {
-          .checkout-container .col-lg-8,
-          .checkout-container .col-lg-4 {
-            flex: 0 0 100%;
-            max-width: 100%;
-          }
-          
-          .checkout-container .col-lg-4 {
-            margin-top: 24px;
-          }
-        }
-        
-        @media (max-width: 767px) {
-          /* Make progress steps more compact */
-          .checkout-container [style*="display: flex"][style*="gap: 12px"] {
-            gap: 8px !important;
-          }
-          
-          /* Stack social login buttons on mobile */
-          .checkout-container [style*="display: grid"][style*="gridTemplateColumns: 1fr 1fr"] {
-            grid-template-columns: 1fr !important;
-          }
-          
-          /* Improve touch targets */
-          .checkout-container button,
-          .checkout-container input,
-          .checkout-container select {
-            min-height: 48px;
-            font-size: 16px !important; /* Prevent iOS zoom */
-          }
-          
-          /* Cart item in sidebar */
-          .checkout-container .d-flex.align-items-center {
-            flex-wrap: wrap;
-          }
-          
-          /* Form inputs */
-          .checkout-container input,
-          .checkout-container select,
-          .checkout-container textarea {
-            padding: 14px 16px !important;
-            border-radius: 12px !important;
-          }
-        }
-        
-        @media (max-width: 575px) {
-          /* Form padding adjustments */
-          .checkout-container [style*="padding: 32px"] {
-            padding: 16px !important;
-          }
-          
-          .checkout-container [style*="padding: 28px"] {
-            padding: 14px !important;
-          }
-          
-          /* Trust badges - 2 column on small screens */
-          .checkout-container [style*="gridTemplateColumns: repeat(3, 1fr)"] {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 8px !important;
-          }
-          
-          /* Hide third badge on very small screens */
-          .checkout-container [style*="gridTemplateColumns: repeat(3, 1fr)"] > div:nth-child(3) {
-            display: none;
-          }
-          
-          /* Step indicators */
-          .checkout-container [style*="width: 36px"][style*="height: 36px"] {
-            width: 32px !important;
-            height: 32px !important;
-          }
-          
-          /* Better spacing for form fields */
-          .checkout-container .row {
-            --bs-gutter-x: 0.75rem;
-          }
-          
-          /* Shipping method cards */
-          .checkout-container [style*="border: 2px solid"] {
-            padding: 14px !important;
-          }
-        }
-        
-        @media (max-width: 360px) {
-          /* Extra small phone adjustments */
-          .checkout-container [style*="padding: 32px"],
-          .checkout-container [style*="padding: 28px"] {
-            padding: 12px !important;
-          }
-          
-          .checkout-container button {
-            padding: 12px 16px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,1138 +1,415 @@
 ---
+// Header — DESIGN_SPEC §5.1
+// Mega-menu by research area, accessible, no Bootstrap, no jQuery.
 import CartIcon from './CartIcon';
 import CartModal from './CartModal';
 import CartNotification from './CartNotification';
-import AccountButton from './AccountButton';
 import SearchBar from './SearchBar';
-import LanguageSwitcher from './LanguageSwitcher';
-import { getEntry } from 'astro:content';
-import { getLangFromUrl, t, getLocalizedPath, translateCategorySlug, type SupportedLanguage } from '../i18n/translations';
+import { researchAreas, useCases } from '../data/taxonomy';
+import { defaultLocale, getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
-const { availableLangs } = Astro.props as { availableLangs?: SupportedLanguage[] };
-const currentLang = getLangFromUrl(Astro.url);
-const siteCopy = await getEntry('site', currentLang === 'ru' ? 'ru' : 'en') || await getEntry('site', 'en');
-const siteData = siteCopy?.data;
-const contactTelegram = siteData?.telegram ?? '@Nebelzee';
-
-// Helper to get category URL with translated slug
-const getCategoryUrl = (category: string) => {
-  if (currentLang === 'en') {
-    return `/peptides/${category}/`;
-  }
-  const translatedSlug = translateCategorySlug(category, currentLang);
-  return `/${currentLang}/peptides/${translatedSlug}/`;
-};
+const halfA = researchAreas.slice(0, 6);
+const halfB = researchAreas.slice(6, 12);
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
 ---
 
-<!-- Top Announcement Bar -->
-<div class="top-bar">
-	<div class="container-fluid px-4">
-		<div class="top-bar-content">
-			<div class="top-bar-left">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-					<path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-					<path d="M2 17l10 5 10-5"></path>
-					<path d="M2 12l10 5 10-5"></path>
-				</svg>
-				<span>{t(currentLang, 'home.heroBadge')}</span>
-			</div>
-			<div class="top-bar-center">
-					<span>✓ {t(currentLang, 'home.heroBadge')} | {t(currentLang, 'home.stats.purityGuarantee')}</span>
-			</div>
-			<div class="top-bar-right">
-			   <span>Telegram: {contactTelegram}</span>
-			</div>
-		</div>
-	</div>
+<div class="topbar">
+  <div class="container topbar__inner">
+    <span class="topbar__item"><strong>{t('nav.researchUseOnlyStrong')}</strong> {t('nav.researchUseOnlyShort')}</span>
+    <span class="topbar__min-order" aria-label={t('nav.minOrderAria')}>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <strong>{t('nav.minOrderTopbar')}</strong>
+    </span>
+    <div class="topbar__right">
+      <a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a>
+      <span aria-hidden="true">·</span>
+      <a href={href('/quality/')}>{t('nav.qualityTopbar')}</a>
+    </div>
+  </div>
 </div>
 
-<!-- Main Navigation Bar -->
-<nav class="main-nav" id="navbar">
-	<div class="container-fluid px-4">
-		<div class="nav-wrapper">
-			<!-- Logo -->
-			<a class="nav-logo" href={getLocalizedPath('/', currentLang)}>
-				<div class="logo-icon">
-					<img src="/favicon.png" alt="Peptide Shop" width="32" height="32" />
-				</div>
-				<span class="logo-text">Peptide<span class="logo-highlight">Shop</span></span>
-			</a>
+<header class="site-header" id="site-header">
+  <div class="container site-header__inner">
+    <a href={href('/')} class="brand" aria-label={t('nav.homeLabel')}>
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" class="brand__mark">
+        <rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-primary)" />
+        <path d="M10 22 V10 h5 a4 4 0 0 1 0 8 h-5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="22" cy="22" r="2" fill="#90E0EF" />
+      </svg>
+      <span class="brand__text">Peptide<span class="brand__accent">Shop</span></span>
+    </a>
 
-			<!-- Desktop Navigation Links -->
-			<div class="desktop-nav">
-				<ul class="nav-links">
-					<li class="nav-item dropdown">
-						<a class="nav-link" href={getLocalizedPath('/peptides/', currentLang)}>
-							<span>{t(currentLang, 'nav.categories')}</span>
-							<svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<polyline points="6 9 12 15 18 9"></polyline>
-							</svg>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href={getLocalizedPath('/peptides/', currentLang)}>{t(currentLang, 'nav.allPeptides')}</a></li>
-							<li><a class="dropdown-item" href={getCategoryUrl('weight-loss')}>{t(currentLang, 'nav.weightLoss')}</a></li>
-							<li><a class="dropdown-item" href={getCategoryUrl('muscle-recovery')}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-							<li><a class="dropdown-item" href={getCategoryUrl('growth-hormone')}>{t(currentLang, 'nav.growthHormone')}</a></li>
-							<li><a class="dropdown-item" href={getCategoryUrl('tanning')}>{t(currentLang, 'nav.tanning')}</a></li>
-							<li><a class="dropdown-item" href={getCategoryUrl('cognitive')}>{t(currentLang, 'nav.cognitive')}</a></li>
-						</ul>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/blog/', currentLang)}>
-							<span>{t(currentLang, 'nav.blog')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/about/', currentLang)}>
-							<span>{t(currentLang, 'nav.about')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/quality/', currentLang)}>
-							<span>{t(currentLang, 'nav.quality')}</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href={getLocalizedPath('/contact/', currentLang)}>
-							<span>{t(currentLang, 'nav.contact')}</span>
-						</a>
-					</li>
-				</ul>
-			</div>
+    <nav class="primary-nav" aria-label={t('common.primaryNavigation')}>
+      <ul class="primary-nav__list">
+        <li class="has-mega">
+          <button
+            class="primary-nav__link"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-controls="mega-catalog"
+            data-mega-toggle="catalog"
+          >
+            {t('nav.catalogue')}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div id="mega-catalog" class="mega" role="region" aria-label={t('nav.catalogueRegion')} hidden>
+            <div class="container mega__inner">
+              <div class="mega__col">
+                <span class="eyebrow">{t('nav.byResearchArea')}</span>
+                <ul class="mega__list">
+                  {halfA.map((a) => (
+                    <li>
+                      <a href={href(`/catalog/${a.slug}/`)}>
+                        <strong>{a.name}</strong>
+                        <span class="muted">{a.short}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mega__col">
+                <span class="eyebrow">&nbsp;</span>
+                <ul class="mega__list">
+                  {halfB.map((a) => (
+                    <li>
+                      <a href={href(`/catalog/${a.slug}/`)}>
+                        <strong>{a.name}</strong>
+                        <span class="muted">{a.short}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mega__col mega__col--side">
+                <span class="eyebrow">{t('nav.byUseCase')}</span>
+                <ul class="mega__list mega__list--compact">
+                  {useCases.map((u) => (
+                    <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+                  ))}
+                </ul>
+                <div class="mega__cta">
+                  <a href={href('/catalog/')} class="btn btn-secondary btn-sm">{t('nav.browseFullCatalogue')}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a class="primary-nav__link" href={href('/shop/')}>{t('nav.shop')}</a></li>
+        <li><a class="primary-nav__link" href={href('/quality/')}>{t('nav.quality')}</a></li>
+        <li><a class="primary-nav__link" href={href('/blog/')}>{t('nav.insights')}</a></li>
+        <li><a class="primary-nav__link" href={href('/about/')}>{t('nav.about')}</a></li>
+        <li><a class="primary-nav__link" href={href('/contact/')}>{t('nav.contact')}</a></li>
+      </ul>
+    </nav>
 
-			<!-- Right Actions (desktop only) -->
-			<div class="nav-actions" aria-label="Header actions">
-				<div class="desktop-only-action">
-					<SearchBar client:load lang={currentLang} />
-				</div>
-				<div class="desktop-only-action">
-					<LanguageSwitcher client:load currentLang={currentLang} availableLangs={availableLangs} />
-				</div>
-				<div class="desktop-only-action">
-					<AccountButton client:load lang={currentLang} />
-				</div>
-				<div class="desktop-only-action cart-wrapper">
-					<CartIcon client:load lang={currentLang} />
-				</div>
-			</div>
+    <div class="header-actions">
+      <SearchBar
+        labels={{
+          openSearch: t('search.openSearch'),
+          searchCatalogue: t('search.searchCatalogue'),
+          search: t('search.search'),
+          closeSearch: t('search.closeSearch'),
+          close: t('common.closeMenu'),
+          searching: t('search.searching'),
+          noResults: t('search.noResults'),
+        }}
+        localePrefix={localePrefix}
+        searchPath={href('/search/')}
+        locale={locale}
+        client:load
+      />
+      <CartIcon label={t('cart.openCart')} client:load />
+      <button
+        class="mobile-toggle"
+        type="button"
+        aria-label={t('common.openMenu')}
+        aria-expanded="false"
+        aria-controls="mobile-drawer"
+        data-mobile-toggle
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="4" y1="6"  x2="20" y2="6" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="18" x2="20" y2="18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
 
-			<!-- Mobile Toggle - Modern menu icon -->
-			<button
-				class="mobile-toggle"
-				type="button"
-				aria-label="Open menu"
-				aria-expanded="false"
-				aria-controls="mobile-menu"
-			>
-				<svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<line x1="4" y1="6" x2="20" y2="6"></line>
-					<line x1="4" y1="12" x2="20" y2="12"></line>
-					<line x1="4" y1="18" x2="20" y2="18"></line>
-				</svg>
-			</button>
+<!-- Mobile drawer -->
+<div class="drawer-backdrop" data-drawer-backdrop></div>
+<aside class="drawer" id="mobile-drawer" aria-label={t('common.mobileNavigation')} hidden>
+  <div class="drawer-header">
+    <strong>{t('common.menu')}</strong>
+    <button class="btn btn-ghost btn-sm" type="button" aria-label={t('common.closeMenu')} data-drawer-close>✕</button>
+  </div>
+  <div class="drawer-body">
+    <details class="m-acc">
+      <summary>{t('nav.catalogue')}</summary>
+      <ul class="m-list">
+        <li><a href={href('/catalog/')}><strong>{t('nav.allResearchAreas')}</strong></a></li>
+        {researchAreas.map((a) => (
+          <li><a href={href(`/catalog/${a.slug}/`)}>{a.name}</a></li>
+        ))}
+      </ul>
+    </details>
+    <details class="m-acc">
+      <summary>{t('nav.useCases')}</summary>
+      <ul class="m-list">
+        {useCases.map((u) => (
+          <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+        ))}
+      </ul>
+    </details>
+    <ul class="m-list" style="margin-top: var(--space-4);">
+      <li><a href={href('/shop/')}>{t('nav.shop')}</a></li>
+      <li><a href={href('/quality/')}>{t('nav.quality')}</a></li>
+      <li><a href={href('/blog/')}>{t('nav.insights')}</a></li>
+      <li><a href={href('/about/')}>{t('nav.about')}</a></li>
+      <li><a href={href('/contact/')}>{t('nav.contact')}</a></li>
+    </ul>
+  </div>
+</aside>
 
-			<!-- Mobile Menu - slide-out drawer -->
-			<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label={t(currentLang, 'nav.menu')} tabindex="-1">
-				<div class="mobile-menu-header">
-					<span class="mobile-menu-title">{t(currentLang, 'nav.menu')}</span>
-					<button class="mobile-menu-close" type="button" aria-label="Close menu">
-						<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-							<path d="M18 6L6 18"></path>
-							<path d="M6 6l12 12"></path>
-						</svg>
-					</button>
-				</div>
-
-				<!-- Navigation Links - Primary content at top -->
-				<nav class="mobile-nav-section" aria-label="Main navigation">
-					<ul class="mobile-nav-links">
-						<li class="mobile-nav-item">
-							<a class="mobile-nav-link" href={getLocalizedPath('/peptides/', currentLang)}>
-								<span class="nav-link-text">{t(currentLang, 'nav.allPeptides')}</span>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="9 18 15 12 9 6"></polyline>
-								</svg>
-							</a>
-						</li>
-						<li class="mobile-nav-item dropdown">
-							<button class="mobile-nav-link dropdown-toggle" type="button" aria-expanded="false">
-								<span class="nav-link-text">{t(currentLang, 'nav.categories')}</span>
-								<svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="6 9 12 15 18 9"></polyline>
-								</svg>
-							</button>
-							<ul class="mobile-dropdown-menu">
-								<li><a class="mobile-dropdown-item" href={getCategoryUrl('weight-loss')}>{t(currentLang, 'nav.weightLoss')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getCategoryUrl('muscle-recovery')}>{t(currentLang, 'nav.muscleRecovery')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getCategoryUrl('growth-hormone')}>{t(currentLang, 'nav.growthHormone')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getCategoryUrl('tanning')}>{t(currentLang, 'nav.tanning')}</a></li>
-								<li><a class="mobile-dropdown-item" href={getCategoryUrl('cognitive')}>{t(currentLang, 'nav.cognitive')}</a></li>
-							</ul>
-						</li>
-						<li class="mobile-nav-item">
-							<a class="mobile-nav-link" href={getLocalizedPath('/blog/', currentLang)}>
-								<span class="nav-link-text">{t(currentLang, 'nav.blog')}</span>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="9 18 15 12 9 6"></polyline>
-								</svg>
-							</a>
-						</li>
-						<li class="mobile-nav-item">
-							<a class="mobile-nav-link" href={getLocalizedPath('/about/', currentLang)}>
-								<span class="nav-link-text">{t(currentLang, 'nav.about')}</span>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="9 18 15 12 9 6"></polyline>
-								</svg>
-							</a>
-						</li>
-						<li class="mobile-nav-item">
-							<a class="mobile-nav-link" href={getLocalizedPath('/quality/', currentLang)}>
-								<span class="nav-link-text">{t(currentLang, 'nav.quality')}</span>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="9 18 15 12 9 6"></polyline>
-								</svg>
-							</a>
-						</li>
-						<li class="mobile-nav-item">
-							<a class="mobile-nav-link" href={getLocalizedPath('/contact/', currentLang)}>
-								<span class="nav-link-text">{t(currentLang, 'nav.contact')}</span>
-								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-									<polyline points="9 18 15 12 9 6"></polyline>
-								</svg>
-							</a>
-						</li>
-					</ul>
-				</nav>
-
-				<!-- Spacer to push footer to bottom -->
-				<div class="mobile-menu-spacer"></div>
-
-				<!-- Footer Section - Search, Language, Account, Cart -->
-				<div class="mobile-menu-footer">
-					<!-- Search - always expanded in mobile menu -->
-					<div class="mobile-footer-search">
-						<SearchBar client:load lang={currentLang} alwaysExpanded={true} />
-					</div>
-
-					<!-- Action Grid -->
-					<div class="mobile-footer-actions">
-						<a href="/account/dashboard/" class="mobile-action-btn">
-							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-								<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-								<circle cx="12" cy="7" r="4"></circle>
-							</svg>
-							<span>{t(currentLang, 'nav.account')}</span>
-						</a>
-						<div class="mobile-action-btn cart-action">
-							<CartIcon client:load lang={currentLang} />
-						</div>
-					</div>
-
-					<!-- Language Switcher -->
-						<div class="mobile-footer-lang">
-							<LanguageSwitcher client:load currentLang={currentLang} availableLangs={availableLangs} />
-						</div>
-				</div>
-			</div>
-
-			<!-- Mobile Menu Overlay -->
-			<div class="mobile-menu-overlay"></div>
-		</div>
-	</div>
-</nav>
-
-<!-- Cart Modal - React Component -->
-<CartModal client:load lang={currentLang} />
-
-<!-- Cart Notification - React Component -->
-<CartNotification client:load lang={currentLang} />
+<CartModal
+  labels={{
+    closeCart: t('cart.closeCart'),
+    shoppingCart: t('cart.shoppingCart'),
+    cart: t('cart.cart'),
+    item: t('cart.item'),
+    items: t('cart.items'),
+    emptyTitle: t('cart.emptyTitle'),
+    emptyModalBody: t('cart.emptyModalBody'),
+    browseCatalogue: t('cart.browseCatalogue'),
+    quantityFor: t('cart.quantityFor'),
+    decreaseQuantity: t('productOptions.decreaseQuantity'),
+    increaseQuantity: t('productOptions.increaseQuantity'),
+    remove: t('cart.remove'),
+    subtotal: t('productOptions.subtotal'),
+    minimumOrder: t('cart.minimumOrder'),
+    addToContinue: t('cart.addToContinue'),
+    checkout: t('cart.checkout'),
+    minimum: t('cart.minimum'),
+    viewCart: t('cart.viewCart'),
+  }}
+  paths={{ catalogue: href('/catalog/'), checkout: href('/checkout/'), cart: href('/cart/') }}
+  client:load
+/>
+<CartNotification
+  labels={{
+    cartUpdate: t('cart.cartUpdate'),
+    addedToCart: t('cart.addedToCart'),
+    closeNotification: t('cart.closeNotification'),
+    close: t('common.closeMenu'),
+    viewCart: t('cart.viewCart'),
+    checkout: t('cart.checkout'),
+  }}
+  paths={{ checkout: href('/checkout/') }}
+  client:load
+/>
 
 <style>
-	/* ===== ENTERPRISE MOBILE-FIRST DESIGN SYSTEM ===== */
-	/* Based on 8px grid, 48px minimum touch targets, generous spacing */
-	
-	/* CSS Variables for consistent spacing */
-	:root {
-		--header-height-mobile: 56px;
-		--topbar-height-mobile: 32px;
-		--spacing-xs: 4px;
-		--spacing-sm: 8px;
-		--spacing-md: 16px;
-		--spacing-lg: 24px;
-		--spacing-xl: 32px;
-		--spacing-2xl: 48px;
-		--touch-target: 48px;
-		--radius-sm: 8px;
-		--radius-md: 12px;
-		--radius-lg: 16px;
-		--transition-fast: 0.15s ease;
-		--transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		--color-primary: #0077b6;
-		--color-primary-dark: #023e8a;
-		--color-text: #1e293b;
-		--color-text-muted: #64748b;
-		--color-border: #e2e8f0;
-		--color-surface: #f8fafc;
-		--shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-		--shadow-md: 0 4px 12px rgba(0,0,0,0.08);
-		--shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
-		--safe-area-left: env(safe-area-inset-left, 0px);
-		--safe-area-right: env(safe-area-inset-right, 0px);
-		--safe-area-top: env(safe-area-inset-top, 0px);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		* {
-			scroll-behavior: auto !important;
-			transition-duration: 1ms !important;
-			animation-duration: 1ms !important;
-		}
-	}
-
-	/* Top Announcement Bar - Slim & Professional */
-	.top-bar {
-		background: linear-gradient(90deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-		color: white;
-		padding: var(--spacing-sm) 0;
-		padding-top: calc(var(--spacing-sm) + var(--safe-area-top));
-		font-size: 11px;
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		z-index: 9998;
-		letter-spacing: 0.2px;
-	}
-
-	.top-bar-content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		padding: 0 calc(var(--spacing-md) + var(--safe-area-left)) 0 calc(var(--spacing-md) + var(--safe-area-right));
-		min-height: 24px;
-	}
-
-	.top-bar-left,
-	.top-bar-right {
-		display: none;
-	}
-
-	.top-bar-center {
-		font-weight: 600;
-		color: white !important;
-		font-size: clamp(10px, 2.5vw, 11px);
-		line-height: 1.3;
-	}
-
-	.top-bar-center span {
-		color: white !important;
-	}
-
-	/* Main Navigation - Clean & Spacious */
-	.main-nav {
-		background: white;
-		border-bottom: 1px solid var(--color-border);
-		padding: 0;
-		position: fixed;
-		top: calc(var(--topbar-height-mobile) + var(--safe-area-top));
-		left: 0;
-		right: 0;
-		z-index: 9999;
-		height: var(--header-height-mobile);
-		display: flex;
-		align-items: center;
-		box-shadow: var(--shadow-sm);
-	}
-
-	.nav-wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		padding: 0 calc(var(--spacing-md) + var(--safe-area-right)) 0 calc(var(--spacing-md) + var(--safe-area-left));
-		height: 100%;
-		gap: var(--spacing-sm);
-	}
-
-	/* Enterprise mobile header: logo + hamburger only */
-	@media (max-width: 767.98px) {
-		.nav-actions {
-			display: none !important;
-		}
-	}
-
-	/* Logo - Prominent but not overwhelming */
-	.nav-logo {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-sm);
-		text-decoration: none;
-		flex-shrink: 0;
-		height: 100%;
-	}
-
-	.logo-icon img {
-		width: 32px;
-		height: 32px;
-		object-fit: contain;
-	}
-
-	.logo-text {
-		font-size: 18px;
-		font-weight: 800;
-		color: var(--color-text);
-		letter-spacing: -0.5px;
-	}
-
-	.logo-highlight {
-		color: var(--color-primary);
-	}
-
-	/* Desktop Nav - Hidden on mobile */
-	.desktop-nav {
-		display: none;
-	}
-
-	/* Desktop-only actions - Hidden on mobile */
-	.desktop-only-action {
-		display: none;
-	}
-
-	/* Right Actions - desktop only */
-	.nav-actions {
-		display: flex;
-		align-items: center;
-		gap: var(--spacing-sm);
-		height: 100%;
-	}
-
-	/* Cart Wrapper - touch target */
-	.cart-wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.cart-wrapper :global(button) {
-		width: var(--touch-target);
-		height: var(--touch-target);
-		padding: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: var(--radius-md);
-		-webkit-tap-highlight-color: transparent;
-		transition: var(--transition-fast);
-	}
-
-	.cart-wrapper :global(button:active) {
-		background: rgba(0, 119, 182, 0.1);
-		transform: scale(0.95);
-	}
-
-	/* Mobile Toggle - Animated Hamburger */
-	.mobile-toggle {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
-		width: var(--touch-target);
-		height: var(--touch-target);
-		background: none;
-		border: none;
-		padding: 0;
-		cursor: pointer;
-		border-radius: var(--radius-md);
-		-webkit-tap-highlight-color: transparent;
-		position: relative;
-		z-index: 9999;
-		margin-left: var(--spacing-sm);
-	}
-
-	/* Hide hamburger when menu is open - close button in menu header is used */
-	.mobile-toggle.active {
-		visibility: hidden;
-		pointer-events: none;
-	}
-
-	/* Defensive: ensure desktop-only actions never appear on mobile */
-	@media (max-width: 991.98px) {
-		.desktop-only-action {
-			display: none !important;
-		}
-	}
-
-	/* Menu icon styling */
-	.menu-icon {
-		color: var(--color-text);
-		transition: var(--transition-smooth);
-	}
-
-	.mobile-toggle:hover .menu-icon,
-	.mobile-toggle:active .menu-icon {
-		color: var(--color-primary);
-	}
-
-	/* Mobile Menu - Professional slide-out drawer */
-	.mobile-menu {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		width: min(340px, 90vw);
-		background: #ffffff;
-		z-index: 10002;
-		display: flex;
-		flex-direction: column;
-		transform: translateX(100%);
-		transition: transform var(--transition-smooth), visibility 0s linear 0.3s;
-		will-change: transform;
-		box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		visibility: hidden;
-	}
-
-	.mobile-menu.open {
-		transform: translate3d(0, 0, 0);
-		visibility: visible;
-		transition: transform var(--transition-smooth), visibility 0s linear 0s;
-	}
-
-	/* Mobile Menu Header - Logo + Close */
-	.mobile-menu-header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 20px 24px;
-		border-bottom: 1px solid var(--color-border);
-		flex-shrink: 0;
-		background: #ffffff;
-	}
-
-	.mobile-menu-title {
-		font-size: 17px;
-		font-weight: 700;
-		color: var(--color-text);
-		letter-spacing: -0.3px;
-	}
-
-	.mobile-menu-close {
-		width: 44px;
-		height: 44px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: var(--color-surface);
-		border: none;
-		border-radius: 10px;
-		cursor: pointer;
-		-webkit-tap-highlight-color: transparent;
-		color: var(--color-text-muted);
-		transition: var(--transition-fast);
-	}
-
-	.mobile-menu-close:hover,
-	.mobile-menu-close:active {
-		background: var(--color-border);
-		color: var(--color-text);
-	}
-
-	/* Navigation Section */
-	.mobile-nav-section {
-		padding: 16px 0;
-		flex-shrink: 0;
-	}
-
-	.mobile-nav-links {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.mobile-nav-item {
-		border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-	}
-
-	.mobile-nav-item:last-child {
-		border-bottom: none;
-	}
-
-	.mobile-nav-link {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		padding: 16px 24px;
-		background: none;
-		border: none;
-		color: var(--color-text);
-		font-size: 15px;
-		font-weight: 600;
-		text-decoration: none;
-		cursor: pointer;
-		transition: var(--transition-fast);
-		min-height: 52px;
-	}
-
-	.mobile-nav-link:hover,
-	.mobile-nav-link:active {
-		background: var(--color-surface);
-		color: var(--color-primary);
-	}
-
-	.mobile-nav-link svg {
-		color: var(--color-text-muted);
-		flex-shrink: 0;
-		transition: var(--transition-fast);
-	}
-
-	.mobile-nav-link:hover svg {
-		color: var(--color-primary);
-	}
-
-	.nav-link-text {
-		flex: 1;
-		text-align: left;
-	}
-
-	/* Dropdown Toggle */
-	.mobile-nav-link.dropdown-toggle .dropdown-arrow {
-		transition: transform var(--transition-smooth);
-	}
-
-	.mobile-nav-item.dropdown.open .dropdown-toggle .dropdown-arrow {
-		transform: rotate(180deg);
-	}
-
-	/* Dropdown Menu */
-	.mobile-dropdown-menu {
-		display: grid;
-		grid-template-rows: 0fr;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		background: var(--color-surface);
-		transition: grid-template-rows var(--transition-smooth);
-		overflow: hidden;
-	}
-
-	.mobile-dropdown-menu > li {
-		overflow: hidden;
-	}
-
-	.mobile-nav-item.dropdown.open .mobile-dropdown-menu {
-		grid-template-rows: 1fr;
-	}
-
-	.mobile-dropdown-item {
-		display: block;
-		padding: 14px 24px 14px 40px;
-		color: var(--color-text-muted);
-		text-decoration: none;
-		font-size: 14px;
-		font-weight: 500;
-		transition: var(--transition-fast);
-		border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-	}
-
-	.mobile-dropdown-item:last-child {
-		border-bottom: none;
-	}
-
-	.mobile-dropdown-item:hover,
-	.mobile-dropdown-item:active {
-		background: rgba(0, 119, 182, 0.06);
-		color: var(--color-primary);
-	}
-
-	/* Spacer to push footer down */
-	.mobile-menu-spacer {
-		flex: 1;
-		min-height: 24px;
-	}
-
-	/* Mobile Menu Footer */
-	.mobile-menu-footer {
-		padding: 20px 24px;
-		padding-bottom: calc(20px + var(--safe-area-bottom, 0px));
-		background: var(--color-surface);
-		border-top: 1px solid var(--color-border);
-		display: flex;
-		flex-direction: column;
-		gap: 16px;
-		flex-shrink: 0;
-	}
-
-	/* Footer Search */
-	.mobile-footer-search {
-		width: 100%;
-	}
-
-	.mobile-footer-search :global(input),
-	.mobile-footer-search :global(form) {
-		width: 100%;
-	}
-
-	.mobile-footer-search :global(input) {
-		min-height: 48px;
-		border-radius: 12px;
-		font-size: 15px;
-		border: 1px solid var(--color-border);
-		background: #ffffff;
-	}
-
-	/* Footer Actions Grid */
-	.mobile-footer-actions {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 12px;
-	}
-
-	.mobile-action-btn {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-		padding: 14px 16px;
-		background: #ffffff;
-		border: 1px solid var(--color-border);
-		border-radius: 12px;
-		color: var(--color-text);
-		font-size: 14px;
-		font-weight: 600;
-		text-decoration: none;
-		cursor: pointer;
-		transition: var(--transition-fast);
-		min-height: 52px;
-	}
-
-	.mobile-action-btn:hover,
-	.mobile-action-btn:active {
-		border-color: var(--color-primary);
-		color: var(--color-primary);
-		background: rgba(0, 119, 182, 0.04);
-	}
-
-	.mobile-action-btn svg {
-		color: var(--color-text-muted);
-		flex-shrink: 0;
-	}
-
-	.mobile-action-btn:hover svg {
-		color: var(--color-primary);
-	}
-
-	/* Cart action special styling */
-	.cart-action {
-		padding: 0;
-	}
-
-	.cart-action :global(button) {
-		width: 100%;
-		height: 100%;
-		min-height: 52px;
-		border-radius: 12px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 10px;
-		font-size: 14px;
-		font-weight: 600;
-	}
-
-	/* Footer Language */
-	.mobile-footer-lang {
-		display: flex;
-		justify-content: center;
-		padding-top: 4px;
-	}
-
-	.mobile-footer-lang :global(button),
-	.mobile-footer-lang :global(select) {
-		min-height: 44px;
-		border-radius: 10px;
-	}
-
-	/* Fix language switcher dropdown positioning on mobile */
-	.mobile-footer-lang :global(.absolute) {
-		right: auto !important;
-		left: 50% !important;
-		transform: translateX(-50%) !important;
-		max-width: calc(100vw - 48px) !important;
-	}
-
-	/* Hide the search close button in mobile menu - use main close button instead */
-	.mobile-footer-search :global(.input-group-append) {
-		display: none;
-	}
-	
-	.mobile-footer-search :global(.form-control) {
-		border-radius: 12px !important;
-	}
-
-	/* Mobile Menu Overlay */
-	.mobile-menu-overlay {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.5);
-		z-index: 10001;
-		opacity: 0;
-		visibility: hidden;
-		transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
-	}
-
-	.mobile-menu-overlay.active {
-		opacity: 1;
-		visibility: visible;
-	}
-
-	/* Focus styles (WCAG AA) */
-	:global(a:focus-visible),
-	:global(button:focus-visible),
-	:global(input:focus-visible),
-	:global(select:focus-visible) {
-		outline: 3px solid rgba(0, 119, 182, 0.35);
-		outline-offset: 2px;
-	}
-
-	/* Body padding for fixed headers */
-	:global(body) {
-		padding-top: calc(var(--topbar-height-mobile) + var(--header-height-mobile)) !important;
-	}
-
-	/* Lock body scroll when menu is open */
-	:global(body.menu-open) {
-		overflow: hidden;
-		position: fixed;
-		width: 100%;
-	}
-
-	/* ===== TABLET BREAKPOINT (768px+) ===== */
-	@media (min-width: 768px) {
-		:root {
-			--header-height-mobile: 64px;
-			--topbar-height-mobile: 36px;
-		}
-
-		.top-bar {
-			font-size: 12px;
-			padding: var(--spacing-sm) 0;
-		}
-
-		.nav-wrapper {
-			padding: 0 var(--spacing-lg);
-		}
-
-		.logo-text {
-			font-size: 20px;
-		}
-
-		.mobile-menu {
-			width: min(380px, 75vw);
-		}
-	}
-
-	/* ===== DESKTOP BREAKPOINT (992px+) ===== */
-	@media (min-width: 992px) {
-		:root {
-			--header-height-mobile: 72px;
-			--topbar-height-mobile: 40px;
-		}
-
-		.top-bar {
-			font-size: 13px;
-		}
-
-		.top-bar-content {
-			justify-content: space-between;
-		}
-
-		.top-bar-left {
-			display: flex;
-			align-items: center;
-			gap: var(--spacing-sm);
-			font-weight: 500;
-		}
-
-		.top-bar-left span { color: white !important; }
-		.top-bar-right { display: block; font-weight: 500; color: white !important; }
-		.top-bar-right span { color: white !important; }
-
-		.nav-wrapper {
-			gap: var(--spacing-xl);
-			padding: 0 var(--spacing-xl);
-		}
-
-		.logo-text {
-			font-size: 24px;
-		}
-
-		/* Show desktop actions */
-		.desktop-only-action {
-			display: flex;
-		}
-
-		/* Hide mobile menu components on desktop */
-		.mobile-toggle,
-		.mobile-menu,
-		.mobile-menu-overlay {
-			display: none !important;
-		}
-
-		.nav-actions {
-			gap: var(--spacing-sm);
-		}
-
-		/* Desktop Nav Links - Show inline */
-		.desktop-nav {
-			display: block;
-			flex: 1;
-		}
-
-		.desktop-nav .nav-links {
-			display: flex !important;
-			position: static;
-			flex-direction: row;
-			align-items: center;
-			gap: var(--spacing-xs);
-			padding: 0;
-			margin: 0;
-			justify-content: center;
-			list-style: none;
-		}
-
-		.nav-link {
-			padding: var(--spacing-sm) var(--spacing-md);
-			font-size: 15px;
-			border-radius: var(--radius-sm);
-			white-space: nowrap;
-			min-height: auto;
-		}
-
-		.nav-link svg:first-child {
-			display: none;
-		}
-
-		.nav-link:hover {
-			background: rgba(0, 119, 182, 0.06);
-		}
-
-		/* Desktop Dropdown */
-		.nav-item .dropdown-menu {
-			display: block;
-			position: absolute;
-			top: 100%;
-			left: 0;
-			min-width: 220px;
-			background: white;
-			border-radius: var(--radius-md);
-			box-shadow: var(--shadow-lg);
-			padding: var(--spacing-sm) 0;
-			margin: 0;
-			opacity: 0;
-			visibility: hidden;
-			transform: translateY(8px);
-			transition: all 0.2s ease;
-			z-index: 1000;
-			grid-template-rows: unset;
-			overflow: visible;
-		}
-
-		.nav-item.dropdown:hover .dropdown-menu {
-			opacity: 1;
-			visibility: visible;
-			transform: translateY(0);
-		}
-
-		.dropdown-item {
-			padding: var(--spacing-md) var(--spacing-lg);
-			border-radius: 0;
-		}
-
-		.dropdown-arrow {
-			display: inline-block;
-		}
-
-		/* Desktop action buttons */
-		.nav-actions :global(button),
-		.cart-wrapper :global(button) {
-			width: auto;
-			height: auto;
-			padding: var(--spacing-sm) var(--spacing-md);
-		}
-
-		.cart-wrapper :global(button:hover) {
-			background: rgba(0, 119, 182, 0.08);
-		}
-	}
-
-	/* ===== LARGE DESKTOP (1200px+) ===== */
-	@media (min-width: 1200px) {
-		.nav-wrapper {
-			padding: 0 var(--spacing-2xl);
-		}
-	}
+  .topbar {
+    background: var(--color-ink);
+    color: #E2E8F0;
+    font-size: 12px;
+    padding: 6px 0;
+  }
+  .topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .topbar__right { display: inline-flex; gap: var(--space-2); align-items: center; }
+  .topbar__min-order {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 10px;
+    background: rgba(144, 224, 239, 0.18);
+    color: #E0FBFC;
+    border: 1px solid rgba(144, 224, 239, 0.45);
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .topbar__min-order strong { color: #fff; font-weight: 700; }
+  .topbar a { color: #E2E8F0; text-decoration: underline; text-decoration-color: rgb(255 255 255 / 0.25); }
+  .topbar a:hover { color: #fff; }
+  @media (max-width: 600px) {
+    .topbar__inner { row-gap: 4px; }
+    .topbar__min-order { order: 2; }
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    height: 64px;
+  }
+
+  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand__mark { display: block; }
+  .brand__text { font-family: var(--font-display); font-weight: 700; color: var(--color-ink); font-size: 19px; letter-spacing: -0.02em; }
+  .brand__accent { color: var(--color-primary); }
+
+  .primary-nav { display: none; flex: 1; }
+  .primary-nav__list { display: flex; gap: var(--space-1); list-style: none; margin: 0; padding: 0; }
+  .primary-nav__link {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 4px;
+    height: 64px; padding: 0 var(--space-3);
+    background: transparent; border: 0;
+    color: var(--color-ink-2); font-weight: 600; font-size: 14px;
+    cursor: pointer; text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out-soft);
+  }
+  .primary-nav__link::after {
+    content: "";
+    position: absolute; left: var(--space-3); right: var(--space-3); bottom: 14px;
+    height: 2px; background: var(--color-primary); border-radius: 2px;
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform var(--dur-base) var(--ease-out-soft);
+  }
+  .primary-nav__link:hover { color: var(--color-primary); }
+  .primary-nav__link:hover::after,
+  .primary-nav__link[aria-expanded="true"]::after { transform: scaleX(1); }
+  .has-mega { position: relative; }
+  .has-mega .primary-nav__link[aria-expanded="true"] { color: var(--color-primary); }
+
+  .header-actions { display: inline-flex; align-items: center; gap: var(--space-2); margin-left: auto; }
+  .mobile-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    background: transparent; border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm); color: var(--color-ink);
+  }
+  .mobile-toggle:hover { background: var(--color-surface-2); }
+
+  /* Mega panel */
+  .mega {
+    position: absolute;
+    left: 0; right: auto;
+    top: 100%;
+    width: min(960px, calc(100vw - var(--container-pad) * 2));
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-2);
+    padding: var(--space-6);
+    margin-top: 4px;
+  }
+  .mega[hidden] { display: none; }
+  .mega__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.8fr;
+    gap: var(--space-8);
+    padding: 0;
+    max-width: none;
+  }
+  .mega__list { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: var(--space-1); }
+  .mega__list a {
+    display: block; padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm); text-decoration: none;
+  }
+  .mega__list a:hover { background: var(--color-primary-50); }
+  .mega__list strong { display: block; color: var(--color-ink); font-size: 14px; }
+  .mega__list .muted { color: var(--color-ink-3); font-size: 12px; }
+  .mega__list--compact a { padding: 6px var(--space-3); color: var(--color-ink-2); font-size: 14px; }
+  .mega__col--side { border-left: 1px solid var(--color-border); padding-left: var(--space-6); }
+  .mega__cta { margin-top: var(--space-4); }
+
+  /* Mobile-first */
+  @media (max-width: 1023px) {
+    .primary-nav { display: none !important; }
+  }
+  @media (min-width: 1024px) {
+    .primary-nav { display: flex; }
+    .mobile-toggle { display: none; }
+  }
+
+  /* Mobile drawer overrides (drawer base in design-system.css) */
+  .m-acc { border-bottom: 1px solid var(--color-border); padding: var(--space-3) 0; }
+  .m-acc summary {
+    cursor: pointer; font-weight: 600; color: var(--color-ink);
+    list-style: none; display: flex; align-items: center; justify-content: space-between;
+  }
+  .m-acc summary::-webkit-details-marker { display: none; }
+  .m-acc summary::after { content: '+'; font-size: 18px; color: var(--color-ink-3); }
+  .m-acc[open] summary::after { content: '-'; }
+  .m-list { list-style: none; padding: var(--space-2) 0 0; margin: 0; display: grid; gap: 4px; }
+  .m-list a { display: block; padding: var(--space-2) var(--space-3); color: var(--color-ink-2); border-radius: var(--radius-sm); text-decoration: none; }
+  .m-list a:hover { background: var(--color-primary-50); color: var(--color-primary); }
 </style>
 
-<script is:inline>
-	// Enterprise-grade mobile menu with smooth animations
-	document.addEventListener('DOMContentLoaded', function() {
-		const toggle = document.querySelector('.mobile-toggle');
-		const mobileMenu = document.querySelector('.mobile-menu');
-		const mobileMenuClose = document.querySelector('.mobile-menu-close');
-		const overlay = document.querySelector('.mobile-menu-overlay');
-		const body = document.body;
-		const dropdowns = document.querySelectorAll('.nav-item.dropdown');
-		
-		let scrollPosition = 0;
-		let lastActiveElement = null;
+<script>
+  // Mega-menu accessibility (Esc, focus trap-light, click-outside)
+  document.querySelectorAll<HTMLButtonElement>('[data-mega-toggle]').forEach((btn) => {
+    const id = btn.getAttribute('aria-controls');
+    if (!id) return;
+    const panel = document.getElementById(id);
+    if (!panel) return;
 
-		function getFocusableElements() {
-			if (!mobileMenu) return [];
-			const nodes = mobileMenu.querySelectorAll(
-				'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-			);
-			return Array.from(nodes).filter((el) => {
-				if (!(el instanceof HTMLElement)) return false;
-				const style = window.getComputedStyle(el);
-				return style.visibility !== 'hidden' && style.display !== 'none';
-			});
-		}
+    const close = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      panel.hidden = true;
+    };
+    const open = () => {
+      btn.setAttribute('aria-expanded', 'true');
+      panel.hidden = false;
+    };
 
-		function focusFirstInMenu() {
-			const focusables = getFocusableElements();
-			const first = focusables[0];
-			if (first && first instanceof HTMLElement) {
-				first.focus();
-				return;
-			}
-			mobileMenu?.focus();
-		}
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      expanded ? close() : open();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+        close();
+        btn.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      const t = e.target as Node;
+      if (btn.getAttribute('aria-expanded') !== 'true') return;
+      if (!panel.contains(t) && !btn.contains(t)) close();
+    });
+  });
 
-		function openMenu() {
-			scrollPosition = window.pageYOffset;
-			lastActiveElement = document.activeElement;
-			body.style.top = `-${scrollPosition}px`;
-			mobileMenu?.classList.add('open');
-			overlay?.classList.add('active');
-			toggle?.classList.add('active');
-			toggle?.setAttribute('aria-expanded', 'true');
-			body.classList.add('menu-open');
-			window.setTimeout(() => focusFirstInMenu(), 0);
-		}
-
-		function closeMenu() {
-			mobileMenu?.classList.remove('open');
-			overlay?.classList.remove('active');
-			toggle?.classList.remove('active');
-			toggle?.setAttribute('aria-expanded', 'false');
-			body.classList.remove('menu-open');
-			body.style.top = '';
-			window.scrollTo(0, scrollPosition);
-			const restoreTarget = (lastActiveElement && lastActiveElement instanceof HTMLElement) ? lastActiveElement : toggle;
-			restoreTarget?.focus();
-		}
-
-		// Toggle button click
-		toggle?.addEventListener('click', function() {
-			if (mobileMenu?.classList.contains('open')) {
-				closeMenu();
-			} else {
-				openMenu();
-			}
-		});
-
-		// Close button click
-		mobileMenuClose?.addEventListener('click', closeMenu);
-
-		// Overlay click
-		overlay?.addEventListener('click', closeMenu);
-
-		// Close menu when clicking nav links
-		mobileMenu?.querySelectorAll('a.mobile-nav-link, a.mobile-dropdown-item').forEach(link => {
-			link.addEventListener('click', function() {
-				if (window.innerWidth < 992) {
-					closeMenu();
-				}
-			});
-		});
-
-		// Mobile dropdown accordion - handle both old and new selectors
-		const mobileDropdowns = document.querySelectorAll('.mobile-nav-item.dropdown');
-		mobileDropdowns.forEach(dropdown => {
-			const toggleBtn = dropdown.querySelector('.dropdown-toggle');
-			if (toggleBtn) {
-				toggleBtn.addEventListener('click', function(e) {
-					e.preventDefault();
-					mobileDropdowns.forEach(d => {
-						if (d !== dropdown) d.classList.remove('open');
-					});
-					dropdown.classList.toggle('open');
-					const isOpen = dropdown.classList.contains('open');
-					toggleBtn.setAttribute('aria-expanded', String(isOpen));
-				});
-			}
-		});
-
-		// Legacy dropdown support
-		dropdowns.forEach(dropdown => {
-			const link = dropdown.querySelector('.nav-link');
-			if (link) {
-				link.addEventListener('click', function(e) {
-					if (window.innerWidth < 992) {
-						e.preventDefault();
-						dropdowns.forEach(d => {
-							if (d !== dropdown) d.classList.remove('open');
-						});
-						dropdown.classList.toggle('open');
-					}
-				});
-			}
-		});
-
-		// Close on resize to desktop
-		window.addEventListener('resize', function() {
-			if (window.innerWidth >= 992) {
-				closeMenu();
-				dropdowns.forEach(d => d.classList.remove('open'));
-			}
-		});
-
-		// Escape key handler + focus trap
-		document.addEventListener('keydown', function(e) {
-			if (!mobileMenu?.classList.contains('open')) return;
-			if (e.key === 'Escape') {
-				closeMenu();
-				return;
-			}
-			if (e.key === 'Tab') {
-				const focusables = getFocusableElements();
-				if (focusables.length === 0) {
-					e.preventDefault();
-					mobileMenu?.focus();
-					return;
-				}
-				const first = focusables[0];
-				const last = focusables[focusables.length - 1];
-				const active = document.activeElement;
-				if (e.shiftKey) {
-					if (active === first || active === mobileMenu) {
-						e.preventDefault();
-						last.focus();
-					}
-				} else {
-					if (active === last) {
-						e.preventDefault();
-						first.focus();
-					}
-				}
-			}
-		});
-	});
+  // Mobile drawer
+  const toggleBtn = document.querySelector<HTMLButtonElement>('[data-mobile-toggle]');
+  const drawer = document.getElementById('mobile-drawer');
+  const backdrop = document.querySelector<HTMLElement>('[data-drawer-backdrop]');
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-drawer-close]');
+  const setOpen = (open: boolean) => {
+    if (!drawer || !backdrop || !toggleBtn) return;
+    drawer.hidden = !open;
+    drawer.classList.toggle('is-open', open);
+    backdrop.classList.toggle('is-open', open);
+    toggleBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  toggleBtn?.addEventListener('click', () => setOpen(drawer?.hidden === true));
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  backdrop?.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 </script>

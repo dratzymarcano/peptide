@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import legalEntity from '../data/legalEntity.json';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('legal.impressumTitle'), url: href('/impressum/') },
+];
+
+const responsibleAddressLines = legalEntity.contentResponsibleAddress.split('\n').filter(Boolean);
+---
+
+<Layout
+  title={t('legal.impressumMetaTitle')}
+  description={t('legal.impressumMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('legal.impressumEyebrow')}
+        title={t('legal.impressumTitle')}
+        description={t('legal.impressumDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+          <h2>{t('legal.impressumProviderTitle')}</h2>
+          <address>
+            <strong>{legalEntity.brandName}</strong><br />
+            {legalEntity.legalName}<br />
+            {legalEntity.streetAddress}<br />
+            {legalEntity.postalCode} {legalEntity.addressLocality}<br />
+            Germany
+          </address>
+
+          <h2>{t('legal.impressumContactTitle')}</h2>
+          <p>
+            <strong>{t('legal.impressumEmailLabel')}:</strong>
+            <a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a>
+          </p>
+
+          <h2>{t('legal.impressumRegistryTitle')}</h2>
+          <p>
+            {legalEntity.legalForm}<br />
+            {legalEntity.registerCourt}<br />
+            {legalEntity.commercialRegisterNumber}
+          </p>
+
+          <h2>{t('legal.impressumVatTitle')}</h2>
+          <p>{legalEntity.vatId}</p>
+
+          <h2>{t('legal.impressumResponsibleTitle')}</h2>
+          <p>
+            {legalEntity.contentResponsibleName}<br />
+            {responsibleAddressLines.map((line) => <><span>{line}</span><br /></>)}
+          </p>
+
+          <h2>{t('legal.impressumDisputeTitle')}</h2>
+          <p set:html={t('legal.impressumDisputeBody')}></p>
+
+          <h2>{t('legal.impressumLiabilityTitle')}</h2>
+          <p>{t('legal.impressumLiabilityBody')}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .content-page { padding-block: var(--space-8) var(--space-12); }
+  .content-layout { display: grid; gap: var(--space-6); margin-top: var(--space-8); }
+  .article-body { max-width: 72ch; }
+  .article-body h2 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-xl);
+    font-weight: 600;
+  }
+  .article-body p,
+  .article-body address { margin-bottom: var(--space-4); line-height: 1.7; }
+  .article-body address { font-style: normal; }
+  .article-body a { color: var(--color-primary); text-decoration: underline; }
+</style>

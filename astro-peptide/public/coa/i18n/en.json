@@ -1,0 +1,85 @@
+{
+  "coa": {
+    "title": "Certificate of Analysis",
+    "ruo": {
+      "title": "Research Use Only",
+      "subtitle": "Not for human or veterinary use"
+    },
+    "meta": {
+      "docNo": "Doc No.",
+      "revision": "Rev.",
+      "issued": "Issued"
+    },
+    "sections": {
+      "identification": "Product Identification",
+      "physicalChemical": "Physical and Chemical Properties",
+      "analyticalData": "Analytical Data",
+      "conclusion": "Conclusion"
+    },
+    "fields": {
+      "catalogNo": "Catalog No.",
+      "casNo": "CAS No.",
+      "pubchemCid": "PubChem CID",
+      "chemicalName": "Chemical Name",
+      "netContent": "Net Content per Vial",
+      "batchNo": "Batch / Lot No.",
+      "manufactureDate": "Manufacture Date",
+      "retestDate": "Retest Date",
+      "molecularFormula": "Molecular Formula",
+      "molecularWeight": "Molecular Weight",
+      "appearance": "Appearance",
+      "solubility": "Solubility",
+      "storage": "Storage Conditions",
+      "sequence": "Amino Acid Sequence"
+    },
+    "values": {
+      "storage": {
+        "lyophilized": "Lyophilized: −20 °C / 36 months · 4 °C / 24 months · 15 °C / 3 months",
+        "reconstituted": "Reconstituted: −80 °C / 6 months · −2 °C / 1 month · 10 °C / 1 week"
+      }
+    },
+    "table": {
+      "parameter": "Test Parameter",
+      "method": "Method",
+      "specification": "Specification",
+      "result": "Result",
+      "status": "Status"
+    },
+    "tests": {
+      "appearance": "Appearance",
+      "purityHplc": "Purity (HPLC)",
+      "identityMs": "Identity (MS)",
+      "tfaContent": "TFA Content",
+      "waterContent": "Water Content",
+      "bioburden": "Bioburden"
+    },
+    "methods": {
+      "visual": "Visual inspection"
+    },
+    "specs": {
+      "appearanceWhitePowder": "White to off-white lyophilized solid"
+    },
+    "results": {
+      "conforms": "Conforms"
+    },
+    "status": {
+      "pass": "Pass",
+      "fail": "Fail"
+    },
+    "conclusion": {
+      "body": "The product identified above has been tested using validated analytical methods and complies with all listed specifications. This batch is released for research distribution."
+    },
+    "caution": {
+      "body": "Caution: This product is supplied for laboratory research use only. It has not been evaluated by any regulatory authority for safety or efficacy in humans or animals. Not for diagnostic, therapeutic, food, or cosmetic use."
+    },
+    "sig": {
+      "qcAnalyst": "Quality Control Analyst",
+      "qaApprover": "Quality Assurance Approver",
+      "date": "Date"
+    },
+    "footer": {
+      "contact": "Technical contact",
+      "docControl": "Controlled document — reproduction outside the original PDF invalidates this certificate."
+    }
+  }
+}

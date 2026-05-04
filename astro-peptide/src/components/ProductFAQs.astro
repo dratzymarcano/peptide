@@ -1,172 +1,88 @@
 ---
-import { t, type SupportedLanguage } from '../i18n/translations';
-
 interface FAQ {
   question: string;
   answer: string;
 }
 
 interface Props {
-  productName?: string;
+  productName: string;
   faqs: FAQ[];
-  lang?: SupportedLanguage;
+  heading?: string;
 }
 
-const { faqs, lang = 'en' } = Astro.props;
+const { faqs, heading = 'Frequently asked questions' } = Astro.props;
 ---
 
 {faqs.length > 0 && (
-  <div class="product-faqs">
-    <h3 class="mb-4 d-flex align-items-center" style="color: #023e8a;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2" style="color: #0077b6;">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-      </svg>
-      {t(lang, 'product.faq')}
-    </h3>
-    
-    <div class="faq-accordion">
+  <div class="product-faqs-clean">
+    <h2>{heading}</h2>
+    <div class="faq-list">
       {faqs.map((faq, index) => (
-        <div class="faq-item">
-          <button 
-            class={`faq-question ${index === 0 ? 'active' : ''}`}
-            type="button"
-            aria-expanded={index === 0 ? "true" : "false"}
-          >
-            <span class="faq-question-text">{faq.question}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="faq-chevron">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </button>
-          <div class={`faq-answer ${index === 0 ? 'open' : ''}`}>
-            <div class="faq-answer-content">
-              <p>{faq.answer}</p>
-            </div>
-          </div>
-        </div>
+        <details class="faq-item" open={index === 0}>
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
       ))}
     </div>
   </div>
 )}
 
 <style>
-  .faq-accordion {
+  .product-faqs-clean h2 {
+    margin: 0 0 var(--space-5);
+  }
+
+  .faq-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-3);
   }
-  
+
   .faq-item {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    background: white;
+    background: var(--color-surface);
   }
-  
-  .faq-question {
-    width: 100%;
+
+  .faq-item summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.25rem;
-    background: white;
-    border: none;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
     cursor: pointer;
-    text-align: left;
-    font-size: 0.95rem;
     font-weight: 600;
-    color: #333;
-    transition: background-color 0.2s ease;
+    color: var(--color-ink);
+    list-style: none;
   }
-  
-  .faq-question:hover {
-    background-color: #f8f9fa;
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
   }
-  
-  .faq-question.active {
-    background-color: #f8f9fa;
+
+  .faq-item summary::after {
+    content: '+';
+    width: 1.5rem;
+    height: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+    font-weight: 700;
+    flex: 0 0 auto;
   }
-  
-  .faq-question-text {
-    flex: 1;
-    padding-right: 1rem;
+
+  .faq-item[open] summary::after {
+    content: '-';
   }
-  
-  .faq-chevron {
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    color: #0077b6;
-  }
-  
-  .faq-question.active .faq-chevron {
-    transform: rotate(180deg);
-  }
-  
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-  }
-  
-  .faq-answer.open {
-    max-height: 500px;
-    transition: max-height 0.5s ease-in;
-  }
-  
-  .faq-answer-content {
-    padding: 0 1.25rem 1.25rem;
-    background: #f8f9fa;
-    border-top: 1px solid #e9ecef;
-  }
-  
-  .faq-answer-content p {
+
+  .faq-item p {
     margin: 0;
-    padding-top: 1rem;
+    padding: 0 var(--space-5) var(--space-5);
+    color: var(--color-ink-2);
     line-height: 1.7;
-    color: #555;
   }
 </style>
-
-<script>
-  // Use event delegation for FAQ accordion - works regardless of when elements are added
-  document.addEventListener('click', function(e: MouseEvent) {
-    const target = e.target as Element;
-    if (!target) return;
-    
-    const questionBtn = target.closest('.faq-question');
-    if (!questionBtn) return;
-    
-    e.preventDefault();
-    
-    const faqItem = questionBtn.closest('.faq-item');
-    if (!faqItem) return;
-    
-    const answer = faqItem.querySelector('.faq-answer');
-    if (!answer) return;
-    
-    const isActive = questionBtn.classList.contains('active');
-    
-    // Close all other FAQs in the same accordion
-    const accordion = questionBtn.closest('.faq-accordion');
-    if (accordion) {
-      accordion.querySelectorAll('.faq-item').forEach((item: Element) => {
-        if (item !== faqItem) {
-          item.querySelector('.faq-question')?.classList.remove('active');
-          item.querySelector('.faq-answer')?.classList.remove('open');
-        }
-      });
-    }
-    
-    // Toggle current FAQ
-    if (isActive) {
-      questionBtn.classList.remove('active');
-      questionBtn.setAttribute('aria-expanded', 'false');
-      answer.classList.remove('open');
-    } else {
-      questionBtn.classList.add('active');
-      questionBtn.setAttribute('aria-expanded', 'true');
-      answer.classList.add('open');
-    }
-  });
-</script>

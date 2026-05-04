@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300" role="img" aria-label="Protein analysis mass spectrometry standard vial">
+  <defs>
+    <linearGradient id="bgP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/><stop offset="1" stop-color="#E6F1F8"/>
+    </linearGradient>
+    <linearGradient id="vialP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E6EEF4"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="300" fill="url(#bgP)"/>
+  <g transform="translate(110 60)">
+    <rect x="6" y="0" width="68" height="14" rx="3" fill="#475569"/>
+    <rect x="10" y="14" width="60" height="8" fill="#94A3B8"/>
+    <path d="M4 22 H76 V160 a16 16 0 0 1 -16 16 H20 a16 16 0 0 1 -16 -16 Z" fill="url(#vialP)" stroke="#CBD5E1" stroke-width="1.5"/>
+    <rect x="14" y="60" width="52" height="80" fill="#DBEAFE" opacity="0.85"/>
+    <text x="40" y="110" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="#1E40AF">m/z</text>
+  </g>
+  <!-- mass spectrum baseline + peaks -->
+  <g transform="translate(0 230)" stroke="#005B8C" stroke-width="2" fill="#005B8C" stroke-linecap="round">
+    <line x1="20" y1="50" x2="290" y2="50" stroke-width="1.2" opacity="0.4"/>
+    <line x1="40" y1="50" x2="40" y2="20" stroke-width="2"/>
+    <line x1="70" y1="50" x2="70" y2="38" stroke-width="2"/>
+    <line x1="100" y1="50" x2="100" y2="8" stroke-width="2.4"/>
+    <line x1="120" y1="50" x2="120" y2="44" stroke-width="2"/>
+    <line x1="150" y1="50" x2="150" y2="22" stroke-width="2"/>
+    <line x1="180" y1="50" x2="180" y2="14" stroke-width="2.4"/>
+    <line x1="210" y1="50" x2="210" y2="40" stroke-width="2"/>
+    <line x1="240" y1="50" x2="240" y2="28" stroke-width="2"/>
+    <line x1="270" y1="50" x2="270" y2="42" stroke-width="2"/>
+  </g>
+  <g transform="translate(20 22)">
+    <rect width="135" height="22" rx="11" fill="#005B8C"/>
+    <text x="67.5" y="15" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.08em">MS · PROTEOMICS</text>
+  </g>
+</svg>

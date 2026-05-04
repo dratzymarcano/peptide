@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { researchAreas, useCases } from '../../data/taxonomy';
+import { getCanonicalCollection } from '../../lib/collections';
+import { getLocaleFromPathname, localizePath } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+export const prerender = false;
+
+const products = await getCanonicalCollection('products');
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const areaLabel = (slug: string, field: 'name' | 'short' | 'description') => t(`taxonomy.researchAreas.${slug}.${field}`);
+const useCaseLabel = (slug: string, field: 'name' | 'description') => t(`taxonomy.useCases.${slug}.${field}`);
+
+// Count products per research area for hub badges
+const counts = new Map<string, number>();
+for (const p of products) {
+  const ra = p.data.researchArea;
+  if (ra) counts.set(ra, (counts.get(ra) ?? 0) + 1);
+}
+
+const url = new URL(href('/catalog/'), Astro.site).toString();
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('catalogIndex.schemaName'),
+  description: t('catalogIndex.schemaDescription'),
+  url,
+  inLanguage: locale,
+  isPartOf: { '@type': 'WebSite', name: 'Peptide Shop', url: 'https://peptide-shop.net' },
+};
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('nav.catalogue'), url: href('/catalog/') },
+];
+---
+
+<Layout
+  title={t('catalogIndex.metaTitle')}
+  description={t('catalogIndex.metaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={collectionSchema} />
+
+  <section class="section">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <span class="eyebrow">{t('nav.catalogue')}</span>
+      <h1>{t('catalogIndex.title')}</h1>
+      <p class="lead">{t('catalogIndex.lead', { productCount: products.length, areaCount: researchAreas.length })}</p>
+
+      <div class="grid grid-3" style="margin-top: var(--space-12);">
+        {researchAreas.map((area) => (
+          <a href={href(`/catalog/${area.slug}/`)} class="card card-category" style="text-decoration:none; color:inherit;">
+            <span class="eyebrow">{areaLabel(area.slug, 'short')}</span>
+            <h3>{areaLabel(area.slug, 'name')}</h3>
+            <p style="color: var(--color-ink-3); font-size: var(--text-sm);">{areaLabel(area.slug, 'description')}</p>
+            <div class="cta" style="display:flex; align-items:center; justify-content:space-between;">
+              <span class="badge">{t('home.productCount', { count: counts.get(area.slug) ?? 0 })}</span>
+              <span class="text-primary" style="font-weight:600;">{t('catalogIndex.browse')}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <hr class="divider" />
+
+      <span class="eyebrow">{t('nav.useCases')}</span>
+      <h2>{t('catalogIndex.useCasesTitle')}</h2>
+      <p class="lead">{t('catalogIndex.useCasesLead')}</p>
+      <div class="grid grid-3" style="margin-top: var(--space-8);">
+        {useCases.map((uc) => (
+          <a href={href(`/use-case/${uc.slug}/`)} class="card" style="text-decoration:none; color:inherit;">
+            <h3 style="font-size: var(--text-lg);">{useCaseLabel(uc.slug, 'name')}</h3>
+            <p style="color: var(--color-ink-3); font-size: var(--text-sm);">{useCaseLabel(uc.slug, 'description')}</p>
+            <span class="text-primary" style="font-weight:600; margin-top:auto;">{t('catalogIndex.browse')}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

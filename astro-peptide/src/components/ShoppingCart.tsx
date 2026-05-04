@@ -1,667 +1,167 @@
 import { useStore } from '@nanostores/react';
-import { cartItems, deleteCartItem, updateCartItemQuantity, cartTotal } from '../scripts/cartStore';
-import { getLocalizedPath, t, type SupportedLanguage } from '../i18n/translations';
-import { currentCurrency, exchangeRate, formatPrice } from '../store/currencyStore';
+import { cartItems, cartTotal, deleteCartItem, updateCartItemQuantity } from '../scripts/cartStore';
 
-// Free delivery threshold
 const FREE_DELIVERY_THRESHOLD = 500;
+const SHIPPING_COST = 5.99;
+const MIN_ORDER_AMOUNT = 150;
 
 interface ShoppingCartProps {
-  lang?: SupportedLanguage;
+  labels?: {
+    emptyTitle?: string;
+    emptyPageBody?: string;
+    browseCatalogue?: string;
+    checkoutReady?: string;
+    itemSelected?: string;
+    itemsSelected?: string;
+    freeDeliveryReached?: string;
+    addForFreeDelivery?: string;
+    ruoLine?: string;
+    quantityFor?: string;
+    decreaseQuantity?: string;
+    increaseQuantity?: string;
+    remove?: string;
+    each?: string;
+    orderSummary?: string;
+    subtotal?: string;
+    delivery?: string;
+    free?: string;
+    total?: string;
+    ruoHeading?: string;
+    ruoBody?: string;
+    minimumRequired?: string;
+    proceedCheckout?: string;
+    minimumOrder?: string;
+    continueShopping?: string;
+  };
+  paths?: {
+    shop?: string;
+    checkout?: string;
+  };
 }
 
-export default function ShoppingCart({ lang = 'en' }: ShoppingCartProps) {
+const defaultLabels = {
+  emptyTitle: 'Your cart is empty',
+  emptyPageBody: 'Browse the catalogue to add research peptides with purity and COA information before checkout.',
+  browseCatalogue: 'Browse catalogue',
+  checkoutReady: 'Checkout ready',
+  itemSelected: '{count} item selected',
+  itemsSelected: '{count} items selected',
+  freeDeliveryReached: 'Free delivery threshold reached.',
+  addForFreeDelivery: 'Add €{amount} for free delivery.',
+  ruoLine: 'RUO labelled · COA supplied where available',
+  quantityFor: 'Quantity for {product}',
+  decreaseQuantity: 'Decrease quantity',
+  increaseQuantity: 'Increase quantity',
+  remove: 'Remove',
+  each: 'each',
+  orderSummary: 'Order summary',
+  subtotal: 'Subtotal',
+  delivery: 'Delivery',
+  free: 'Free',
+  total: 'Total',
+  ruoHeading: 'Research use only.',
+  ruoBody: 'Not for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.',
+  minimumRequired: 'A minimum order value of €{minimum} is required. Add €{amount} to continue to checkout.',
+  proceedCheckout: 'Proceed to checkout',
+  minimumOrder: 'Minimum order €{minimum}',
+  continueShopping: 'Continue shopping',
+};
+
+export default function ShoppingCart({ labels, paths }: ShoppingCartProps) {
+  const copy = { ...defaultLabels, ...labels };
   const $cartItems = useStore(cartItems);
   const $cartTotal = useStore(cartTotal);
-  const currency = useStore(currentCurrency);
-  useStore(exchangeRate);
   const products = Object.values($cartItems);
-  
-  // Products can only be added to cart after meeting £200 threshold at product page
-  // So if there are products in cart, user has already qualified
   const hasProducts = products.length > 0;
   const qualifiesForFreeDelivery = $cartTotal >= FREE_DELIVERY_THRESHOLD;
+  const shipping = hasProducts && !qualifiesForFreeDelivery ? SHIPPING_COST : 0;
+  const orderTotal = $cartTotal + shipping;
+  const remainingForFreeDelivery = Math.max(0, FREE_DELIVERY_THRESHOLD - $cartTotal);
+  const meetsMinimum = $cartTotal >= MIN_ORDER_AMOUNT;
+  const remainingForMinimum = Math.max(0, MIN_ORDER_AMOUNT - $cartTotal);
 
-  const cardStyle: React.CSSProperties = {
-    background: 'white',
-    borderRadius: '16px',
-    boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
-    border: '1px solid rgba(0,0,0,0.06)',
-    overflow: 'hidden',
-  };
-
-  const productCardStyle: React.CSSProperties = {
-    ...cardStyle,
-    padding: '24px',
-    marginBottom: '16px',
-    transition: 'all 0.3s ease',
-  };
+  if (!hasProducts) {
+    return (
+      <div className="commerce-empty card">
+        <div className="commerce-empty-icon" aria-hidden="true">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <circle cx="8" cy="21" r="1" />
+            <circle cx="19" cy="21" r="1" />
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+          </svg>
+        </div>
+        <h2>{copy.emptyTitle}</h2>
+        <p>{copy.emptyPageBody}</p>
+        <a className="btn btn-primary" href={paths?.shop || '/shop/'}>{copy.browseCatalogue}</a>
+      </div>
+    );
+  }
 
   return (
-    <div className="container">
-      {/* Order Status Banner */}
-      {hasProducts && (
-        <div style={{ 
-          ...cardStyle, 
-          padding: '24px 32px', 
-          marginBottom: '32px',
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))',
-          border: '2px solid rgba(16, 185, 129, 0.3)',
-        }}>
-          <div className="d-flex align-items-center justify-content-between">
-            <div className="d-flex align-items-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ marginRight: '12px' }}>
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <div>
-                <div style={{ fontWeight: '700', color: '#1e293b', fontSize: '16px' }}>
-                  {t(lang, 'cart.readyToCheckout')}
-                </div>
-                <div style={{ color: '#64748b', fontSize: '14px' }}>
-                  {qualifiesForFreeDelivery
-                    ? t(lang, 'cart.freeDeliveryIncluded')
-                    : t(lang, 'cart.addMoreForFreeDelivery').replace('{amount}', (FREE_DELIVERY_THRESHOLD - $cartTotal).toFixed(2))}
-                </div>
-              </div>
-            </div>
-            <div style={{ 
-              background: '#10b981', 
-              color: 'white', 
-              padding: '8px 16px', 
-              borderRadius: '20px',
-              fontWeight: '700',
-              fontSize: '14px'
-            }}>
-              {formatPrice($cartTotal, currency)}
-            </div>
+    <div className="commerce-layout">
+      <section className="commerce-main" aria-labelledby="cart-items-title">
+        <div className="commerce-status card">
+          <div>
+            <span className="eyebrow">{copy.checkoutReady}</span>
+            <h2 id="cart-items-title">{(products.length === 1 ? copy.itemSelected : copy.itemsSelected).replace('{count}', String(products.length))}</h2>
           </div>
+          <p>{qualifiesForFreeDelivery ? copy.freeDeliveryReached : copy.addForFreeDelivery.replace('{amount}', remainingForFreeDelivery.toFixed(2))}</p>
         </div>
-      )}
 
-      <div className="row">
-        {/* Cart Items Column */}
-        <div className="col-12 col-lg-8">
-          {products.length === 0 ? (
-            <div style={{ ...cardStyle, padding: '80px 40px', textAlign: 'center' }}>
-              <div style={{ 
-                width: '120px', 
-                height: '120px', 
-                background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(0, 150, 199, 0.1))',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 32px'
-              }}>
-                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5">
-                  <circle cx="8" cy="21" r="1"></circle>
-                  <circle cx="19" cy="21" r="1"></circle>
-                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-                </svg>
-              </div>
-              <h3 style={{ color: '#1e293b', fontWeight: '700', marginBottom: '12px', fontSize: '1.75rem' }}>
-                {t(lang, 'cart.empty')}
-              </h3>
-              <p style={{ color: '#64748b', marginBottom: '32px', fontSize: '1.1rem', maxWidth: '400px', margin: '0 auto 32px' }}>
-                {t(lang, 'shopPage.subtitle')}
-              </p>
-              <a 
-                href={getLocalizedPath('/shop/', lang)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                  color: 'white',
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontWeight: '700',
-                  textDecoration: 'none',
-                  fontSize: '16px',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)'
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                {t(lang, 'cart.browsePeptides')}
-              </a>
-            </div>
-          ) : (
-            <>
-              <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <h4 style={{ color: '#1e293b', fontWeight: '700', margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                    <circle cx="8" cy="21" r="1"></circle>
-                    <circle cx="19" cy="21" r="1"></circle>
-                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-                  </svg>
-                  {t(lang, 'cart.cartItemsLabel')}
-                </h4>
-                <span style={{ color: '#64748b', fontSize: '14px', fontWeight: '600' }}>
-                  {products.length} {products.length === 1 ? t(lang, 'cart.item') : t(lang, 'cart.items')}
-                </span>
-              </div>
-
-              {products.map((product) => (
-                <div 
-                  key={product.id} 
-                  style={productCardStyle}
-                  className="cart-item-card"
-                >
-                  <div className="d-flex align-items-start">
-                    {/* Product Image */}
-                    <div style={{ 
-                      width: '100px', 
-                      height: '100px', 
-                      borderRadius: '12px',
-                      overflow: 'hidden',
-                      flexShrink: 0,
-                      background: 'linear-gradient(135deg, #f8fafc, #e2e8f0)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}>
-                      <img 
-                        src={product.thumb_src} 
-                        alt={product.thumb_alt} 
-                        style={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          objectFit: 'cover' 
-                        }}
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
-                    </div>
-
-                    {/* Product Details */}
-                    <div style={{ flex: 1, marginLeft: '20px' }}>
-                      <div className="d-flex justify-content-between align-items-start">
-                        <div>
-                          <h5 style={{ 
-                            color: '#1e293b', 
-                            fontWeight: '700', 
-                            marginBottom: '6px',
-                            fontSize: '1.1rem'
-                          }}>
-                            {product.title}
-                          </h5>
-                          {product.size && (
-                            <span style={{ 
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '6px',
-                              background: 'rgba(0, 119, 182, 0.1)',
-                              color: '#0077b6',
-                              padding: '4px 12px',
-                              borderRadius: '20px',
-                              fontSize: '13px',
-                              fontWeight: '600',
-                              marginBottom: '8px'
-                            }}>
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                              </svg>
-                              {product.size}
-                            </span>
-                          )}
-                          <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '6px',
-                            color: '#10b981',
-                            fontSize: '13px',
-                            fontWeight: '600',
-                            marginTop: '8px'
-                          }}>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            {t(lang, 'cart.inStockFastDelivery')}
-                          </div>
-                        </div>
-                        <div style={{ textAlign: 'right' }}>
-                          <div style={{ 
-                            color: '#0077b6', 
-                            fontWeight: '800', 
-                            fontSize: '1.35rem'
-                          }}>
-                            {formatPrice(product.price * product.quantity, currency)}
-                          </div>
-                          {product.quantity > 1 && (
-                            <div style={{ color: '#64748b', fontSize: '13px' }}>
-                              {formatPrice(product.price, currency)} {t(lang, 'cart.each')}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Quantity & Remove */}
-                      <div className="d-flex align-items-center justify-content-between" style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid #f1f5f9' }}>
-                        <div className="d-flex align-items-center" style={{ gap: '12px' }}>
-                          <span style={{ color: '#64748b', fontSize: '14px', fontWeight: '600' }}>{t(lang, 'cart.quantity')}:</span>
-                          <div style={{ 
-                            display: 'flex', 
-                            alignItems: 'center',
-                            background: '#f8fafc',
-                            borderRadius: '10px',
-                            border: '2px solid #e2e8f0',
-                            overflow: 'hidden'
-                          }}>
-                            <button
-                              onClick={() => product.quantity > 1 && updateCartItemQuantity(product.id, product.quantity - 1)}
-                              style={{
-                                width: '36px',
-                                height: '36px',
-                                border: 'none',
-                                background: 'transparent',
-                                cursor: product.quantity > 1 ? 'pointer' : 'not-allowed',
-                                color: product.quantity > 1 ? '#0077b6' : '#cbd5e1',
-                                fontWeight: '700',
-                                fontSize: '18px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}
-                              disabled={product.quantity <= 1}
-                            >
-                              −
-                            </button>
-                            <span style={{ 
-                              width: '48px', 
-                              textAlign: 'center', 
-                              fontWeight: '700',
-                              color: '#1e293b',
-                              fontSize: '15px'
-                            }}>
-                              {product.quantity}
-                            </span>
-                            <button
-                              onClick={() => updateCartItemQuantity(product.id, product.quantity + 1)}
-                              style={{
-                                width: '36px',
-                                height: '36px',
-                                border: 'none',
-                                background: 'transparent',
-                                cursor: 'pointer',
-                                color: '#0077b6',
-                                fontWeight: '700',
-                                fontSize: '18px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                        <button 
-                          onClick={() => deleteCartItem(product.id)}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '6px',
-                            background: 'rgba(239, 68, 68, 0.1)',
-                            color: '#ef4444',
-                            border: 'none',
-                            padding: '8px 16px',
-                            borderRadius: '8px',
-                            fontWeight: '600',
-                            fontSize: '14px',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                          }}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M3 6h18"></path>
-                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                          </svg>
-                          {t(lang, 'cart.remove')}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+        <div className="cart-items-list">
+          {products.map((product) => (
+            <article className="cart-line card" key={product.id}>
+              <img src={product.thumb_src} alt={product.thumb_alt} loading="lazy" />
+              <div className="cart-line-body">
+                <div>
+                  <h3>{product.title}</h3>
+                  {product.size && <span className="badge badge-blue">{product.size}</span>}
+                  <p className="cart-line-note">{copy.ruoLine}</p>
                 </div>
-              ))}
-
-              {/* Continue Shopping Link */}
-              <a 
-                href={getLocalizedPath('/shop/', lang)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: '#0077b6',
-                  fontWeight: '600',
-                  textDecoration: 'none',
-                  marginTop: '16px',
-                  padding: '12px 0'
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="m15 18-6-6 6-6"></path>
-                </svg>
-                {t(lang, 'cart.continueShopping')}
-              </a>
-            </>
-          )}
+                <div className="cart-line-actions">
+                  <div className="quantity-stepper" aria-label={copy.quantityFor.replace('{product}', product.title)}>
+                    <button type="button" onClick={() => updateCartItemQuantity(product.id, product.quantity - 1)} aria-label={copy.decreaseQuantity}>-</button>
+                    <span>{product.quantity}</span>
+                    <button type="button" onClick={() => updateCartItemQuantity(product.id, product.quantity + 1)} aria-label={copy.increaseQuantity}>+</button>
+                  </div>
+                  <button className="btn btn-ghost btn-sm" type="button" onClick={() => deleteCartItem(product.id)}>{copy.remove}</button>
+                </div>
+              </div>
+              <div className="cart-line-price">
+                <strong>€{(product.price * product.quantity).toFixed(2)}</strong>
+                {product.quantity > 1 && <span>€{product.price.toFixed(2)} {copy.each}</span>}
+              </div>
+            </article>
+          ))}
         </div>
-        
-        {/* Order Summary Column */}
-        {products.length > 0 && (
-          <div className="col-12 col-lg-4 mt-4 mt-lg-0">
-            <div style={{ position: 'sticky', top: '100px' }}>
-              {/* Order Summary Card */}
-              <div style={{ ...cardStyle, padding: '28px' }}>
-                <h5 style={{ 
-                  color: '#1e293b', 
-                  fontWeight: '700', 
-                  marginBottom: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  fontSize: '1.25rem'
-                }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                    <path d="M9 5H2v7l6.29 6.29c.94.94 2.48.94 3.42 0l3.58-3.58c.94-.94.94-2.48 0-3.42L9 5Z"></path>
-                    <path d="M6 9.01V9"></path>
-                    <path d="m15 5 6.3 6.3a2.4 2.4 0 0 1 0 3.4L17 19"></path>
-                  </svg>
-                  {t(lang, 'cart.orderSummary')}
-                </h5>
-                
-                <div style={{ marginBottom: '20px' }}>
-                  <div className="d-flex justify-content-between" style={{ marginBottom: '12px' }}>
-                    <span style={{ color: '#64748b' }}>
-                      {t(lang, 'cart.subtotal')} ({products.length} {products.length === 1 ? t(lang, 'cart.item') : t(lang, 'cart.items')})
-                    </span>
-                    <span style={{ color: '#1e293b', fontWeight: '600' }}>{formatPrice($cartTotal, currency)}</span>
-                  </div>
-                  
-                  <div className="d-flex justify-content-between" style={{ marginBottom: '12px' }}>
-                    <span style={{ color: '#64748b' }}>{t(lang, 'cart.shipping')}</span>
-                    {qualifiesForFreeDelivery ? (
-                      <span style={{ color: '#10b981', fontWeight: '600' }}>{t(lang, 'common.free').toUpperCase()}</span>
-                    ) : (
-                      <span style={{ color: '#64748b', fontSize: '14px' }}>{t(lang, 'cart.calculatedAtCheckout')}</span>
-                    )}
-                  </div>
+      </section>
 
-                  {/* Discounts already applied notice */}
-                  <div className="d-flex justify-content-between" style={{ 
-                    background: 'rgba(16, 185, 129, 0.1)', 
-                    padding: '10px 12px', 
-                    borderRadius: '8px',
-                    marginTop: '12px'
-                  }}>
-                    <span style={{ color: '#059669', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                      {t(lang, 'cart.bulkDiscountsApplied')}
-                    </span>
-                    <span style={{ color: '#059669', fontWeight: '700' }}>✓</span>
-                  </div>
-                </div>
-                
-                <div style={{ 
-                  borderTop: '2px solid #f1f5f9', 
-                  paddingTop: '20px', 
-                  marginBottom: '24px' 
-                }}>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span style={{ color: '#1e293b', fontWeight: '700', fontSize: '1.1rem' }}>{t(lang, 'cart.total')}</span>
-                    <span style={{ 
-                      color: '#0077b6', 
-                      fontWeight: '800', 
-                      fontSize: '1.5rem'
-                    }}>
-                      {formatPrice($cartTotal, currency)}
-                    </span>
-                  </div>
-                  {qualifiesForFreeDelivery && (
-                    <div style={{ textAlign: 'right', marginTop: '4px' }}>
-                      <span style={{ 
-                        color: '#10b981',
-                        fontSize: '14px',
-                        fontWeight: '600'
-                      }}>
-                        + {t(lang, 'cart.freeDelivery')}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                
-                <a 
-                  href={getLocalizedPath('/checkout/', lang)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px',
-                    width: '100%',
-                    background: 'linear-gradient(135deg, #0077b6, #023e8a)',
-                    color: 'white',
-                    padding: '18px 24px',
-                    borderRadius: '12px',
-                    fontWeight: '700',
-                    textDecoration: 'none',
-                    fontSize: '16px',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 14px rgba(0, 119, 182, 0.4)',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14"></path>
-                    <path d="m12 5 7 7-7 7"></path>
-                  </svg>
-                  {t(lang, 'cart.proceedToCheckout')}
-                </a>
-                
-                <div style={{ 
-                  textAlign: 'center', 
-                  marginTop: '20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  color: '#64748b',
-                  fontSize: '13px'
-                }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  {t(lang, 'cart.secureSslEncryptedCheckout')}
-                </div>
-              </div>
-
-              {/* Delivery Info Card */}
-              <div style={{ ...cardStyle, padding: '24px', marginTop: '16px' }}>
-                <h6 style={{ 
-                  color: '#1e293b', 
-                  fontWeight: '700', 
-                  marginBottom: '16px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px'
-                }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2">
-                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                    <path d="M15 18H9"></path>
-                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                    <circle cx="17" cy="18" r="2"></circle>
-                    <circle cx="7" cy="18" r="2"></circle>
-                  </svg>
-                  {t(lang, 'cart.deliveryOptions')}
-                </h6>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  padding: '12px',
-                  background: '#f8fafc',
-                  borderRadius: '8px',
-                  marginBottom: '10px'
-                }}>
-                  <div>
-                    <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px' }}>{t(lang, 'cart.standardDelivery')}</div>
-                    <div style={{ color: '#64748b', fontSize: '13px' }}>{t(lang, 'cart.standardDeliveryTime')}</div>
-                  </div>
-                  <div style={{ fontWeight: '700', color: '#0077b6' }}>{formatPrice(5.99, currency)}</div>
-                </div>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  padding: '12px',
-                  background: 'linear-gradient(135deg, rgba(0, 119, 182, 0.05), rgba(0, 150, 199, 0.05))',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(0, 119, 182, 0.15)'
-                }}>
-                  <div>
-                    <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      {t(lang, 'cart.expressDelivery')}
-                      <span style={{ 
-                        background: '#0077b6', 
-                        color: 'white', 
-                        padding: '2px 8px', 
-                        borderRadius: '10px',
-                        fontSize: '10px',
-                        fontWeight: '700'
-                      }}>{t(lang, 'checkout.payment.fastBadge')}</span>
-                    </div>
-                    <div style={{ color: '#64748b', fontSize: '13px' }}>{t(lang, 'cart.expressDeliveryTime')}</div>
-                  </div>
-                  <div style={{ fontWeight: '700', color: '#0077b6' }}>{formatPrice(12.99, currency)}</div>
-                </div>
-                {/* Free delivery note */}
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between',
-                  padding: '12px',
-                  background: qualifiesForFreeDelivery 
-                    ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1))'
-                    : '#f8fafc',
-                  borderRadius: '8px',
-                  marginTop: '10px',
-                  border: qualifiesForFreeDelivery ? '1px solid rgba(16, 185, 129, 0.3)' : 'none'
-                }}>
-                  <div>
-                    <div style={{ fontWeight: '600', color: qualifiesForFreeDelivery ? '#059669' : '#64748b', fontSize: '14px' }}>
-                      {t(lang, 'cart.ordersOverThreshold').replace('{amount}', String(FREE_DELIVERY_THRESHOLD))}
-                    </div>
-                  </div>
-                  <div style={{ fontWeight: '700', color: '#10b981' }}>{t(lang, 'common.free').toUpperCase()}</div>
-                </div>
-              </div>
-
-              {/* Trust Badges */}
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(3, 1fr)', 
-                gap: '12px',
-                marginTop: '16px'
-              }}>
-                <div style={{ 
-                  ...cardStyle, 
-                  padding: '16px 12px', 
-                  textAlign: 'center'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.secureBadge')}</div>
-                </div>
-                <div style={{ 
-                  ...cardStyle, 
-                  padding: '16px 12px', 
-                  textAlign: 'center'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.pureBadge')}</div>
-                </div>
-                <div style={{ 
-                  ...cardStyle, 
-                  padding: '16px 12px', 
-                  textAlign: 'center'
-                }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" style={{ marginBottom: '8px' }}>
-                    <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
-                    <path d="M15 18H9"></path>
-                    <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
-                    <circle cx="17" cy="18" r="2"></circle>
-                    <circle cx="7" cy="18" r="2"></circle>
-                  </svg>
-                  <div style={{ color: '#1e293b', fontWeight: '600', fontSize: '11px' }}>{t(lang, 'cart.fastDeliveryBadge')}</div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <aside className="order-summary card" aria-labelledby="order-summary-title">
+        <h2 id="order-summary-title">{copy.orderSummary}</h2>
+        <dl>
+          <div><dt>{copy.subtotal}</dt><dd>€{$cartTotal.toFixed(2)}</dd></div>
+          <div><dt>{copy.delivery}</dt><dd>{shipping === 0 ? copy.free : `€${shipping.toFixed(2)}`}</dd></div>
+          <div className="summary-total"><dt>{copy.total}</dt><dd>€{orderTotal.toFixed(2)}</dd></div>
+        </dl>
+        <div className="ruo-banner compact">
+          <strong>{copy.ruoHeading}</strong>
+          <span>{copy.ruoBody}</span>
+        </div>
+        {!meetsMinimum && (
+          <p className="minimum-note" role="status" style={{ margin: '0 0 var(--space-3)' }}>
+            {copy.minimumRequired.replace('{minimum}', String(MIN_ORDER_AMOUNT)).replace('{amount}', remainingForMinimum.toFixed(2))}
+          </p>
         )}
-      </div>
-
-      {/* Mobile Responsive Styles */}
-      <style>{`
-        /* Mobile First Cart Styles */
-        @media (max-width: 991px) {
-          .cart-item-card .d-flex.align-items-start {
-            flex-direction: column !important;
-          }
-          
-          .cart-item-card .d-flex.align-items-start > div:first-child {
-            width: 100% !important;
-            height: 140px !important;
-            margin-bottom: 16px;
-          }
-          
-          .cart-item-card .d-flex.align-items-start > div:last-child {
-            margin-left: 0 !important;
-            width: 100%;
-          }
-          
-          .cart-item-card .d-flex.justify-content-between.align-items-start {
-            flex-direction: column;
-          }
-          
-          .cart-item-card .d-flex.justify-content-between.align-items-start > div:last-child {
-            margin-top: 12px;
-            text-align: left !important;
-          }
-        }
-        
-        @media (max-width: 767px) {
-          .container > .d-flex.align-items-center.justify-content-between.mb-3 {
-            flex-direction: column !important;
-            align-items: flex-start !important;
-            gap: 8px;
-          }
-          
-          .cart-item-card .d-flex.align-items-center.justify-content-between {
-            flex-wrap: wrap;
-            gap: 12px;
-          }
-        }
-        
-        @media (max-width: 575px) {
-          .cart-item-card {
-            padding: 16px !important;
-          }
-          
-          .cart-item-card .d-flex.align-items-start > div:first-child {
-            height: 120px !important;
-          }
-        }
-      `}</style>
+        <a
+          className="btn btn-primary btn-block"
+          href={meetsMinimum ? paths?.checkout || '/checkout/' : undefined}
+          aria-disabled={!meetsMinimum}
+          style={!meetsMinimum ? { pointerEvents: 'none', opacity: 0.55 } : undefined}
+        >
+          {meetsMinimum ? copy.proceedCheckout : copy.minimumOrder.replace('{minimum}', String(MIN_ORDER_AMOUNT))}
+        </a>
+        <a className="btn btn-secondary btn-block" href={paths?.shop || '/shop/'}>{copy.continueShopping}</a>
+      </aside>
     </div>
   );
 }

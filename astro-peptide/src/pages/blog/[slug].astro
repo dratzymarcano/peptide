@@ -1,22 +1,180 @@
 ---
-/**
- * Default English blog post page.
- * Route: /blog/[slug]/
- */
-import { getCollection } from 'astro:content';
-import BlogPostPage from '../../components/pages/BlogPostPage.astro';
+import { getCanonicalCollection } from '../../lib/collections';
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ChipList from '../../components/ChipList.astro';
+import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+import { getLocalizedBlogPost } from '../../i18n/blogContent';
+import { getAvailableLocales, getLocalizedEntry } from '../../lib/localizedEntry';
+import { inLanguage } from '../../lib/schema';
 
-export const prerender = true;
+export const prerender = false;
 
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+const { slug: routeSlug } = Astro.params;
+const allPosts = await getCanonicalCollection('blog');
+const post = allPosts.find((p) => p.slug === routeSlug);
+if (!post) {
+  return new Response(null, { status: 404 });
 }
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const dateLocale = localeMeta[locale].og.replace('_', '-');
+let localizedPost = getLocalizedBlogPost(post.slug, locale, post.data);
+const availableLocales = await getAvailableLocales('blog', post.slug);
 
-const { post } = Astro.props;
+// Per-locale markdown override. When `<locale>/<slug>.md` exists, prefer its
+// frontmatter and rendered body over the runtime helper output.
+const localeOverride = locale !== 'en'
+  ? await getLocalizedEntry('blog', post.slug, locale)
+  : undefined;
+const hasOverride = !!(localeOverride && localeOverride.id !== `${post.slug}.md`);
+const OverrideBody = hasOverride ? (await localeOverride!.render()).Content : null;
+if (hasOverride && localeOverride) {
+  const od = localeOverride.data;
+  localizedPost = {
+    ...localizedPost,
+    title: od.title,
+    description: od.description,
+    metaTitle: od.meta.title,
+    metaDescription: od.meta.description,
+    category: od.category,
+    tags: od.tags ?? localizedPost.tags,
+    image: od.image ?? localizedPost.image,
+  };
+}
+const relatedPosts = allPosts
+  .filter((candidate) => candidate.data.category === post.data.category && candidate.slug !== post.slug)
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+  .slice(0, 3)
+  .map((entry) => ({ entry, content: getLocalizedBlogPost(entry.slug, locale, entry.data) }));
+
+const siteUrl = 'https://peptide-shop.net';
+const postUrl = new URL(href(`/blog/${post.slug}/`), Astro.site).toString();
+const imageUrl = post.data.image ? new URL(post.data.image, siteUrl).href : `${siteUrl}/favicon.svg`;
+const authorSlug = String(localizedPost.author || 'editorial-team').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: localizedPost.title,
+  description: localizedPost.metaDescription,
+  image: [imageUrl],
+  inLanguage: inLanguage(locale),
+  datePublished: new Date(post.data.publishDate).toISOString(),
+  dateModified: new Date(post.data.publishDate).toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  author: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/about/#${authorSlug}`,
+    name: localizedPost.author,
+    url: `${siteUrl}/about/`,
+    jobTitle: 'Scientific writer, Peptide Shop editorial',
+    worksFor: { '@type': 'Organization', '@id': `${siteUrl}/#organization`, name: 'Peptide Shop' },
+    sameAs: [`${siteUrl}/about/`],
+  },
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: 'Peptide Shop',
+    url: siteUrl,
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
+  },
+};
+
+// HowTo schema: emit on the storage/handling article only.
+const howToSchema = post.slug === 'peptide-storage-handling-best-practices'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to store and reconstitute lyophilised research peptides',
+      description: 'Step-by-step storage and reconstitution workflow for lyophilised research peptides to maintain stability and analytical purity.',
+      inLanguage: inLanguage(locale),
+      totalTime: 'PT15M',
+      tool: [
+        { '@type': 'HowToTool', name: 'Bacteriostatic water (0.9% benzyl alcohol)' },
+        { '@type': 'HowToTool', name: 'Sterile insulin syringe' },
+        { '@type': 'HowToTool', name: 'Lyophilised peptide vial' },
+      ],
+      step: [
+        { '@type': 'HowToStep', position: 1, name: 'Equilibrate the vial', text: 'Remove the lyophilised peptide vial from −20 °C storage and let it equilibrate at room temperature for 20–30 minutes to prevent moisture condensation on the powder.' },
+        { '@type': 'HowToStep', position: 2, name: 'Calculate diluent volume', text: 'Calculate the volume of bacteriostatic water required for your target concentration based on the labelled mass per vial.' },
+        { '@type': 'HowToStep', position: 3, name: 'Reconstitute slowly', text: 'Direct the diluent stream against the inner glass wall — never onto the lyophilisate cake — to avoid foaming and shear stress.' },
+        { '@type': 'HowToStep', position: 4, name: 'Dissolve gently', text: 'Swirl the vial gently until fully dissolved. Do not shake. The solution should be clear and free of particulates.' },
+        { '@type': 'HowToStep', position: 5, name: 'Refrigerate', text: 'Store reconstituted peptide at 2–8 °C and use within the validated stability window stated on the certificate of analysis.' },
+      ],
+    }
+  : null;
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('blog.breadcrumb'), url: href('/blog/') },
+  { name: localizedPost.title, url: href(`/blog/${post.slug}/`) },
+];
 ---
 
-<BlogPostPage post={post} lang="en" />
+<Layout
+  title={localizedPost.metaTitle}
+  description={localizedPost.metaDescription}
+  image={localizedPost.image}
+  article={true}
+  breadcrumbs={breadcrumbs}
+  availableLocales={availableLocales}
+>
+  <JsonLd schema={howToSchema ? [articleSchema, howToSchema] : articleSchema} />
+
+  <article class="content-page article-page section">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <header class="article-header">
+        <span class="badge badge-blue">{localizedPost.category}</span>
+        <h1>{localizedPost.title}</h1>
+        <p>{localizedPost.description}</p>
+        <div class="article-meta">
+          <span>{localizedPost.author}</span>
+          <span>{new Date(localizedPost.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        </div>
+      </header>
+
+      {localizedPost.image && (
+        <figure class="article-hero-image">
+          <img src={localizedPost.image} alt={localizedPost.title} loading="eager" width="1200" height="630" decoding="async" />
+        </figure>
+      )}
+
+      <div class="content-layout">
+        <main class="article-body card">
+          {OverrideBody ? <OverrideBody /> : <Fragment set:html={localizedPost.bodyHtml} />}
+          {localizedPost.tags.length > 0 && (
+            <footer class="article-tags">
+              <ChipList items={localizedPost.tags} />
+            </footer>
+          )}
+        </main>
+
+        <aside class="content-sidebar">
+          {relatedPosts.length > 0 && (
+            <section class="card">
+              <h2>{t('blogArticle.relatedArticles')}</h2>
+              <div class="related-list">
+                {relatedPosts.map((related) => (
+                  <a href={href(`/blog/${related.entry.slug}/`)}>
+                    <strong>{related.content.title}</strong>
+                    <span>{new Date(related.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' })}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+          <section class="card">
+            <h2>{t('blogArticle.exploreProducts')}</h2>
+            <p>{t('blogArticle.exploreProductsBody')}</p>
+            <a class="btn btn-primary" href={href('/catalog/')}>{t('learn.openCatalogue')}</a>
+          </section>
+          <a class="btn btn-secondary btn-block" href={href('/blog/')}>{t('blogArticle.backToNotes')}</a>
+        </aside>
+      </div>
+    </div>
+  </article>
+</Layout>

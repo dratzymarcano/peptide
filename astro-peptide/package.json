@@ -5,21 +5,32 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "npm run seo:feeds",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "seo:feeds": "node scripts/generate-merchant-feeds.mjs",
+    "seo:hreflang": "node scripts/validate-hreflang.mjs",
+    "seo:i18n": "node scripts/check-i18n-coverage.mjs",
+    "seo:check": "npm run build && npm run seo:hreflang && npm run seo:i18n",
+    "legal:check": "node scripts/check-legal-readiness.mjs",
+    "legal:claims": "node scripts/check-ymyl-claims.mjs",
+    "account:check": "node scripts/check-account-readiness.mjs",
+    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run account:check"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
-    "@astrojs/node": "^9.5.1",
-    "@astrojs/react": "^3.0.0",
-    "@astrojs/sitemap": "^3.0.0",
-    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/cloudflare": "^12.6.13",
+    "@astrojs/react": "^5.0.4",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/tailwind": "^6.0.2",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource-variable/inter-tight": "^5.2.7",
+    "@fontsource/jetbrains-mono": "^5.2.8",
     "@nanostores/react": "^0.7.1",
     "@supabase/supabase-js": "^2.39.0",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/typography": "^0.5.19",
-    "astro": "^5.16.6",
+    "astro": "^5.18.1",
     "nanostores": "^0.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,10 +38,10 @@
     "zod": "^3.22.0"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@playwright/test": "^1.57.0",
+    "@astrojs/check": "^0.9.9",
     "@types/react": "^18.3.27",
     "@types/react-dom": "^18.3.7",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.87.0"
   }
 }

@@ -1,92 +1,100 @@
 ---
-id: "peptide-semaglutide"
-lang: "es"
-title: "Comprar Semaglutide | Péptido GLP-1 Research Grade"
-primary_keyword: "comprar semaglutide"
-search_volume: "2400"
-urlPath: "/es/peptides/semaglutide-comprar"
-aliases: ["Análogo GLP-1 (7-37)", "Péptido Ozempic", "Péptido Wegovy"]
-cas: "910463-68-2"
-molecular_weight: "4113.58 g/mol"
-purity: "≥ 99%"
-storage: "-20°C recomendado (solo para investigación)"
-package_sizes: ["Suministro de 1 mes"]
-moq: 200
-price: 200
-price_range: "€200 por mes"
-coa_url: "/coa/peptide-semaglutide.pdf"
-short_description: "Semaglutide Premium. Agonista del receptor GLP-1 de acción prolongada para investigación de pérdida de peso. Envío rápido. Pureza ≥99% verificada en laboratorio."
-category: "weight-loss"
-tags: ["research-peptide", "glp-1", "perdida-de-peso", "comprar-semaglutide", "comprar-peptidos"]
-images: ["/images/products/semaglutide.png"]
+id: peptide-semaglutide
+title: Semaglutida 5 mg — grado investigación, COA
+primary_keyword: semaglutida investigación
+search_volume: 9900
+aliases:
+  - Análogo de GLP-1 (7-37)
+  - Péptido Ozempic
+  - Péptido Wegovy
+cas: 910463-68-2
+molecular_weight: 4113.58 g/mol
+purity: ≥ 99%
+storage: "−20 °C recomendado (solo investigación)"
+package_sizes:
+  - 1 vial × 5 mg
+moq: 1
+price: 45
+price_range: 45 € por vial
+short_description: Semaglutida análogo de GLP-1 para investigación metabólica. ≥99 % HPLC, vial sellado y COA por lote. Solo investigación (RUO).
+category: weight-loss
+researchArea: diabetes
+useCases:
+  - weight-loss
+tags:
+  - research-use-only
+  - coa-included
+  - diabetes
+  - weight-loss
+  - research-peptide
+  - glp-1
+  - semaglutide
+images:
+  - /images/products/semaglutide.svg
 meta:
-  title: "Comprar Semaglutide | Péptido Research Grade | Envío Rápido"
-  description: "Comprar Semaglutide. Péptido GLP-1 premium de grado de investigación para pérdida de peso. Pureza ≥99%, COA incluido. Envío rápido disponible."
+  title: Semaglutida 5 mg — investigación, COA | Peptide Shop
+  description: Semaglutida para investigación in vitro, ≥99 % HPLC, vial sellado y COA por lote. Solo investigación.
 faqs:
-  - question: "¿Para qué se utiliza el Semaglutide en investigación?"
-    answer: "El Semaglutide se utiliza principalmente en investigación metabólica para estudiar la activación del receptor GLP-1, la secreción de insulina dependiente de glucosa, la regulación del apetito y los mecanismos de control de peso. Las aplicaciones de investigación incluyen el estudio de la función de las células beta, las tasas de vaciamiento gástrico y las propiedades neuroprotectoras potenciales en modelos de enfermedad."
-  - question: "¿Cómo debo almacenar el péptido Semaglutide?"
-    answer: "El Semaglutide liofilizado debe almacenarse a -20°C para estabilidad a largo plazo. Después de la reconstitución, almacenar a 2-8°C (refrigerador) y usar dentro de 4 semanas. Evite ciclos repetidos de congelación-descongelación y proteja de la luz. Siempre almacenar en contenedores herméticos para evitar la absorción de humedad."
-  - question: "¿Qué pureza tiene su Semaglutide?"
-    answer: "Nuestro Semaglutide es ≥99% puro, verificado por análisis HPLC. Cada lote viene con un Certificado de Análisis (COA) que confirma la pureza, identidad por espectrometría de masas y contenido de péptido. Mantenemos estricto control de calidad durante toda la producción y envío."
-  - question: "¿Cómo reconstituyo el Semaglutide para investigación?"
-    answer: "Reconstituya el Semaglutide en agua bacteriostática estéril o un tampón ligeramente alcalino (pH 7.4-8.0). El Semaglutide puede ser difícil de disolver en agua pura cerca del punto isoeléctrico. Gire suavemente en lugar de agitar vigorosamente para evitar la degradación del péptido."
-  - question: "¿Es esto lo mismo que Ozempic o Wegovy?"
-    answer: "No. Ozempic y Wegovy son medicamentos de marca que contienen semaglutide como ingrediente farmacéutico activo. Nuestro producto es el péptido crudo de grado de investigación vendido exclusivamente para fines de investigación de laboratorio, no para consumo humano o tratamiento médico."
-  - question: "¿Cuál es la vida media del Semaglutide?"
-    answer: "El Semaglutide tiene una vida media extendida de aproximadamente 7 días gracias a la modificación de ácido graso-diácido C-18 que promueve la unión a la albúmina. Esta vida media extendida lo hace particularmente valioso para estudiar la activación sostenida del receptor GLP-1 en modelos de investigación."
-  - question: "¿Envían Semaglutide internacionalmente?"
-    answer: "Ofrecemos envío rápido en toda Europa con opciones de envío estándar y express. Para envíos internacionales, por favor contacte a nuestro servicio al cliente para discutir opciones y regulaciones para su país específico."
-  - question: "¿Qué tamaños de envase están disponibles?"
-    answer: "El Semaglutide está disponible en viales de 2mg, 5mg y 10mg para satisfacer diferentes necesidades de investigación y presupuestos. Cantidades mayores están disponibles para proyectos de investigación institucional - contáctenos para precios por volumen y pedidos personalizados."
-reviews:
-  - author: "Dr. Carlos García"
-    rating: 5
-    date: "2024-12-15"
-    title: "Excelente pureza para nuestra investigación metabólica"
-    content: "Hemos estado usando el Semaglutide de Peptide Shop durante seis meses para nuestro programa de investigación de diabetes. La consistencia entre lotes es notable y la documentación del COA hace que nuestros informes de cumplimiento sean fáciles. Altamente recomendado para investigación seria."
-    verified: true
-  - author: "María Rodríguez"
-    rating: 5
-    date: "2024-12-10"
-    title: "Envío rápido y excelente calidad"
-    content: "Pedido el lunes, recibido el miércoles. El embalaje fue discreto y profesional. El péptido se disolvió fácilmente y mostró la actividad esperada en nuestros ensayos. Definitivamente volveré a pedir."
-    verified: true
-  - author: "Laboratorio de Investigación Madrid"
-    rating: 5
-    date: "2024-12-05"
-    title: "El mejor proveedor que hemos encontrado"
-    content: "Después de probar varios proveedores, Peptide Shop ofrece la mejor combinación de pureza, precio y servicio. El mínimo de €200 es razonable para cantidades de investigación."
-    verified: true
+  - question: ¿Para qué se utiliza la semaglutida en investigación?
+    answer: Se emplea en investigación metabólica para estudiar la activación del receptor GLP-1, la secreción de insulina dependiente de glucosa, la regulación del apetito y los mecanismos de control del peso. Las aplicaciones incluyen función de células beta, vaciamiento gástrico y posibles propiedades neuroprotectoras en modelos de enfermedad.
+  - question: ¿Cómo debo conservar la semaglutida?
+    answer: La semaglutida liofilizada debe conservarse a −20 °C para una estabilidad prolongada. Una vez reconstituida, mantenga a 2-8 °C y utilice en 4 semanas. Evite ciclos repetidos de congelación-descongelación y proteja de la luz.
+  - question: ¿Qué pureza tiene su semaglutida?
+    answer: Nuestra semaglutida alcanza ≥99 % de pureza verificada por HPLC. Cada lote incluye certificado de análisis con datos de pureza, identidad por espectrometría de masas y contenido peptídico.
+  - question: ¿Cómo reconstituyo la semaglutida?
+    answer: Reconstituya en agua bacteriostática estéril o tampón ligeramente alcalino (pH 7,4-8,0). La semaglutida puede ser difícil de disolver cerca de su punto isoeléctrico en agua pura. Agite suavemente, sin vortex.
+  - question: ¿Es lo mismo que Ozempic o Wegovy?
+    answer: No. Ozempic y Wegovy son medicamentos de prescripción que contienen semaglutida como principio activo. Nuestro producto es el péptido en bruto de grado investigación, exclusivamente para uso de laboratorio.
+  - question: ¿Cuál es la vida media de la semaglutida?
+    answer: La semaglutida presenta una vida media prolongada de ~7 días gracias a su modificación con ácido C18 que favorece la unión a albúmina. Esta vida media es valiosa para estudiar la activación sostenida del receptor GLP-1.
+  - question: ¿Envían semaglutida internacionalmente?
+    answer: Ofrecemos envío rápido dentro de la UE con opciones estándar y exprés. Para envíos internacionales, póngase en contacto con atención al cliente para conocer las opciones disponibles.
+  - question: ¿Qué tamaños hay disponibles?
+    answer: La semaglutida está disponible en viales de 2 mg, 5 mg y 10 mg. Para cantidades mayores destinadas a proyectos institucionales, contáctenos.
 ---
 
-## ¿Qué es el Semaglutide?
+## Semaglutida 5 mg — visión general de investigación
 
-El Semaglutide es un agonista del receptor del péptido similar al glucagón tipo 1 (GLP-1) de acción prolongada que se estudia ampliamente para aplicaciones de investigación metabólica. Como análogo sintético del GLP-1 humano, el semaglutide exhibe estabilidad mejorada y vida media extendida en comparación con la hormona nativa.
+Semaglutida análogo de GLP-1 para investigación metabólica. ≥99 % HPLC, vial sellado y COA por lote. Solo para investigación.
 
-## Aplicaciones de Investigación
+La semaglutida es un análogo agonista del receptor GLP-1 de acción prolongada utilizado para estudiar la señalización de incretinas, la homeostasis de la glucosa y la regulación del apetito.
 
-El Semaglutide se utiliza comúnmente en investigación para:
+Peptide Shop suministra Semaglutida 5 mg como material de investigación sellado con documentación por lote cuando esté disponible. Solo investigación in vitro.
 
-- **Investigación metabólica**: Estudio de la homeostasis de la glucosa y secreción de insulina
-- **Control de peso**: Investigación sobre regulación del apetito y mecanismos de saciedad
-- **Investigación cardiovascular**: Evaluación de efectos cardioprotectores potenciales
-- **Neurociencia**: Exploración de la expresión del receptor GLP-1 en el sistema nervioso central
+## Aplicación en investigación
 
-## Garantía de Calidad
+- Activación del receptor GLP-1 y vías de señalización descendentes
+- Modelos de secreción de insulina y regulación de glucagón
+- Investigación metabólica, de saciedad y vaciamiento gástrico
 
-Cada producto viene con:
+Comparable con tirzepatida, retatrutida y cagrilintida en el ámbito de diabetes y metabolismo.
 
-- ✓ Certificado de Análisis (COA)
-- ✓ Pureza ≥99% verificada por HPLC
-- ✓ Confirmación por espectrometría de masas
-- ✓ Documentación específica del lote
+## Secuencia y datos analíticos
 
-## Directrices de Almacenamiento y Manejo
+| Campo | Detalle |
+|---|---|
+| ID de producto | peptide-semaglutide |
+| Tamaño de envase | 1 vial × 5 mg |
+| Número CAS | 910463-68-2 |
+| Peso molecular | 4113,58 g/mol |
+| Pureza | ≥ 99 % |
+| Conservación | −20 °C recomendado (solo investigación) |
 
-Para estabilidad óptima:
+## Reconstitución y manipulación
 
-- Almacenar polvo liofilizado a -20°C
-- Después de reconstitución, almacenar a 2-8°C
-- Usar producto reconstituido dentro de 4 semanas
-- Proteger de la luz y la humedad
+Permitir que el material liofilizado se equilibre antes de abrir, añadir el disolvente lentamente por la pared del vial, evitar agitación vigorosa y registrar la concentración final. Utilizar técnica aséptica y disolventes validados.
+
+## Conservación
+
+Conservar el material sin abrir a −20 °C, seco, sellado y protegido de la luz. Las soluciones reconstituidas deben mantenerse en condiciones validadas y desecharse según SOP internos.
+
+## Recursos relacionados
+
+- [Materiales relacionados](/es/catalog/diabetes/)
+- [Caso de uso](/es/use-case/weight-loss/)
+- [Política de COA](/es/coa-policy/)
+- [Almacenamiento y manipulación de péptidos](/es/blog/peptide-storage-handling-best-practices/)
+
+## Declaración de uso para investigación
+
+Semaglutida 5 mg es vendida por Peptide Shop exclusivamente con fines de investigación. No es un medicamento, alimento, cosmético, suplemento ni producto de diagnóstico.

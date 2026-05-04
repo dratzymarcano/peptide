@@ -1,9 +1,134 @@
 ---
-/**
- * Default English blog index page.
- * Route: /blog/
- */
-import BlogPage from '../../components/pages/BlogPage.astro';
+import { getCanonicalCollection } from '../../lib/collections';
+import Layout from '../../layouts/Layout.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ChipList from '../../components/ChipList.astro';
+import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+import { getLocalizedBlogPost } from '../../i18n/blogContent';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const dateLocale = localeMeta[locale].og.replace('_', '-');
+
+const entries = (await getCanonicalCollection('blog')).sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+const posts = entries.map((entry) => ({
+  entry,
+  content: getLocalizedBlogPost(entry.slug, locale, entry.data),
+}));
+const featuredPost = posts.find((post) => post.content.featured) ?? posts[0];
+const latestPosts = posts.filter((post) => post.entry.slug !== featuredPost?.entry.slug);
+const categories = [...new Set(posts.map((post) => post.content.category))].sort();
+const siteUrl = 'https://peptide-shop.net';
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('blog.breadcrumb'), url: href('/blog/') },
+];
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: t('blog.schemaName'),
+  description: t('blog.schemaDescription'),
+  url: new URL(href('/blog/'), Astro.site).toString(),
+  inLanguage: locale,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Peptide Shop',
+    url: siteUrl,
+  },
+  blogPost: posts.map((post) => ({
+    '@type': 'BlogPosting',
+    headline: post.content.title,
+    description: post.content.description,
+    datePublished: new Date(post.content.publishDate).toISOString(),
+    author: { '@type': 'Person', name: post.content.author },
+    url: new URL(href(`/blog/${post.entry.slug}/`), Astro.site).toString(),
+  })),
+};
 ---
 
-<BlogPage lang="en" />
+<Layout
+  title={t('blog.metaTitle')}
+  description={t('blog.metaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={blogSchema} />
+
+  <section class="content-page section">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <div class="page-heading">
+        <span class="eyebrow">{t('blog.eyebrow')}</span>
+        <h1>{t('blog.title')}</h1>
+        <p>{t('blog.description')}</p>
+      </div>
+
+      {featuredPost && (
+        <article class="feature-article card">
+          {featuredPost.content.image && (
+            <a class="feature-article-image" href={href(`/blog/${featuredPost.entry.slug}/`)} aria-hidden="true" tabindex="-1">
+              <img src={featuredPost.content.image} alt={featuredPost.content.title} loading="eager" width="1200" height="630" decoding="async" />
+            </a>
+          )}
+          <div class="feature-article-body">
+            <span class="badge badge-blue">{t('blog.featuredBadge', { category: featuredPost.content.category })}</span>
+            <h2><a href={href(`/blog/${featuredPost.entry.slug}/`)}>{featuredPost.content.title}</a></h2>
+            <p>{featuredPost.content.description}</p>
+            <div class="article-meta">
+              <span>{featuredPost.content.author}</span>
+              <span>{new Date(featuredPost.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+            </div>
+          </div>
+        </article>
+      )}
+
+      <div class="content-layout">
+        <main class="article-list" aria-labelledby="latest-title">
+          <div class="section-heading-row">
+            <div>
+              <span class="eyebrow">{t('blog.latestEyebrow')}</span>
+              <h2 id="latest-title">{t('blog.latestTitle')}</h2>
+            </div>
+            <a class="btn btn-secondary" href={href('/learn/')}>{t('blog.viewLearningHub')}</a>
+          </div>
+
+          <div class="article-grid">
+            {latestPosts.map((post) => (
+              <article class="article-card card">
+                {post.content.image && <img src={post.content.image} alt={post.content.title} loading="lazy" width="600" height="400" decoding="async" />}
+                <div>
+                  <span class="badge badge-blue">{post.content.category}</span>
+                  <h3><a href={href(`/blog/${post.entry.slug}/`)}>{post.content.title}</a></h3>
+                  <p>{post.content.description}</p>
+                </div>
+                <div class="article-meta">
+                  <span>{new Date(post.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                  <a href={href(`/blog/${post.entry.slug}/`)}>{t('blog.readArticle')}</a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </main>
+
+        <aside class="content-sidebar">
+          <section class="card">
+            <h2>{t('blog.topics')}</h2>
+            <ChipList items={categories} />
+          </section>
+          <section class="card">
+            <h2>{t('blog.ruoTitle')}</h2>
+            <p>{t('blog.ruoBody')}</p>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

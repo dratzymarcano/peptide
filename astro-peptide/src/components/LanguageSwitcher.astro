@@ -1,0 +1,271 @@
+---
+import { getLocaleFromPathname, localizePath, localeMeta, locales, type Locale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const activeLocale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(activeLocale);
+const alternateLinks = locales.map((locale) => ({
+  locale,
+  href: localizePath(Astro.url.pathname, locale),
+  ...localeMeta[locale],
+}));
+
+// Inline SVG flags (24x18) — reliable across all OS/font stacks, no emoji-font dependency.
+const flagSvg: Record<Locale, string> = {
+  en: '<svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><clipPath id="lsf-en"><path d="M0 0v45h60V0z"/></clipPath><path fill="#012169" d="M0 0h60v45H0z"/><path d="M0 0l60 45m0-45L0 45" stroke="#fff" stroke-width="6"/><path d="M0 0l60 45m0-45L0 45" clip-path="url(#lsf-en)" stroke="#C8102E" stroke-width="3"/><path d="M30 0v45M0 22.5h60" stroke="#fff" stroke-width="10"/><path d="M30 0v45M0 22.5h60" stroke="#C8102E" stroke-width="6"/></svg>',
+  de: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#000" d="M0 0h60v12H0z"/><path fill="#DD0000" d="M0 12h60v12H0z"/><path fill="#FFCE00" d="M0 24h60v12H0z"/></svg>',
+  nl: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#AE1C28" d="M0 0h60v12H0z"/><path fill="#fff" d="M0 12h60v12H0z"/><path fill="#21468B" d="M0 24h60v12H0z"/></svg>',
+  fr: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0055A4" d="M0 0h20v36H0z"/><path fill="#fff" d="M20 0h20v36H20z"/><path fill="#EF4135" d="M40 0h20v36H40z"/></svg>',
+  it: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#009246" d="M0 0h20v36H0z"/><path fill="#fff" d="M20 0h20v36H20z"/><path fill="#CE2B37" d="M40 0h20v36H40z"/></svg>',
+  es: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#AA151B" d="M0 0h60v9H0zM0 27h60v9H0z"/><path fill="#F1BF00" d="M0 9h60v18H0z"/></svg>',
+};
+---
+
+<div class="language-switcher" data-language-switcher>
+  <button
+    class="language-switcher__trigger"
+    type="button"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    aria-controls="language-switcher-list"
+    aria-label={`${t('common.changeLanguage')}. ${t('common.currentLanguage', { language: localeMeta[activeLocale].name })}`}
+    title={t('common.changeLanguage')}
+  >
+    <svg class="language-switcher__globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a14 14 0 0 1 0 18" />
+      <path d="M12 3a14 14 0 0 0 0 18" />
+    </svg>
+    <span class="language-switcher__active-flag" aria-hidden="true" set:html={flagSvg[activeLocale]} />
+    <span class="language-switcher__active-label">
+      <span class="language-switcher__hint">{t('common.changeLanguage')}</span>
+      <span class="language-switcher__current">{localeMeta[activeLocale].name}</span>
+    </span>
+    <svg class="language-switcher__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  </button>
+
+  <ul id="language-switcher-list" class="language-switcher__list" role="menu" aria-label={t('common.changeLanguage')} hidden>
+    {alternateLinks.map((item) => (
+      <li role="none">
+        <a
+          href={item.href}
+          hreflang={item.hreflang}
+          data-locale={item.locale}
+          role="menuitem"
+          aria-current={item.locale === activeLocale ? 'true' : undefined}
+        >
+          <span class="language-switcher__flag" aria-hidden="true" set:html={flagSvg[item.locale]} />
+          <span class="language-switcher__name">{item.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  /* Language switcher — uses global design tokens (.btn-secondary look + card panel). */
+  .language-switcher {
+    position: fixed;
+    left: var(--space-4);
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+    z-index: 200;
+    font-family: var(--font-sans);
+  }
+
+  /* Pill-shaped trigger that reads as a language picker:
+     [globe] [flag] Hint / Current language [chevron] */
+  .language-switcher__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    height: 44px;
+    padding: 0 var(--space-3) 0 var(--space-3);
+    color: var(--color-ink);
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-2);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--text-sm);
+    line-height: 1.1;
+    transition: border-color 150ms ease-out, box-shadow 150ms ease-out, transform 150ms ease-out;
+  }
+  .language-switcher__trigger:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-3);
+  }
+  .language-switcher__trigger:hover .language-switcher__globe,
+  .language-switcher__trigger:hover .language-switcher__chevron {
+    color: var(--color-primary-600);
+  }
+  .language-switcher__trigger:active { transform: translateY(1px); }
+  .language-switcher__trigger:focus-visible,
+  .language-switcher__list a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .language-switcher__globe,
+  .language-switcher__chevron {
+    color: var(--color-ink-3, #555);
+    flex-shrink: 0;
+  }
+
+  .language-switcher__active-flag {
+    display: inline-block;
+    width: 22px;
+    height: 16px;
+    line-height: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgb(15 23 42 / 0.08);
+    flex-shrink: 0;
+  }
+  .language-switcher__active-flag :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .language-switcher__active-label {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    text-align: left;
+  }
+  .language-switcher__hint {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink-3, #6b7280);
+    line-height: 1;
+  }
+  .language-switcher__current {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.1;
+  }
+
+  .language-switcher__flag {
+    display: inline-block;
+    width: 20px;
+    height: 14px;
+    line-height: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgb(15 23 42 / 0.08);
+    flex-shrink: 0;
+  }
+  .language-switcher__flag :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .language-switcher__trigger[aria-expanded="true"] {
+    border-color: var(--color-primary);
+  }
+  .language-switcher__trigger[aria-expanded="true"] .language-switcher__chevron {
+    transform: rotate(180deg);
+  }
+  .language-switcher__chevron {
+    transition: transform 150ms ease-out;
+  }
+
+  /* Panel styled like a card / dropdown surface */
+  .language-switcher__list {
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + var(--space-2));
+    grid-template-columns: 1fr;
+    gap: 2px;
+    min-width: 220px;
+    margin: 0;
+    padding: var(--space-2);
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-2);
+  }
+  .language-switcher__list:not([hidden]) { display: grid; }
+  .language-switcher__list[hidden] { display: none; }
+
+  .language-switcher__list a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    height: 40px;
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink-2);
+    background: transparent;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    transition: background 150ms ease-out, color 150ms ease-out;
+  }
+  .language-switcher__list a:hover {
+    background: var(--color-surface-2);
+    color: var(--color-ink);
+  }
+  .language-switcher__list a[aria-current="true"] {
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 600px) {
+    .language-switcher {
+      left: var(--space-3);
+      bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    }
+    /* Collapse to icon + flag only on narrow screens to save space */
+    .language-switcher__active-label { display: none; }
+    .language-switcher__trigger { padding: 0 var(--space-2); gap: var(--space-1); }
+  }
+
+  @media print {
+    .language-switcher { display: none; }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-language-switcher]');
+  const trigger = root?.querySelector<HTMLButtonElement>('.language-switcher__trigger');
+  const list = root?.querySelector<HTMLUListElement>('.language-switcher__list');
+
+  const setOpen = (open: boolean) => {
+    if (!trigger || !list) return;
+    list.hidden = !open;
+    trigger.setAttribute('aria-expanded', String(open));
+  };
+
+  trigger?.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setOpen(Boolean(list?.hidden));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (root && !root.contains(event.target as Node)) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setOpen(false);
+  });
+
+  list?.querySelectorAll<HTMLAnchorElement>('a[data-locale]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const locale = link.dataset.locale;
+      if (!locale) return;
+      document.cookie = `pref-lang=${locale}; path=/; max-age=31536000; samesite=lax`;
+    });
+  });
+</script>

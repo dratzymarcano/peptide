@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ChipList from '../../components/ChipList.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+export const prerender = false;
+
+const { slug: routeSlug } = Astro.params;
+const allArticles = await getCollection('learn');
+const article = allArticles.find((a) => a.slug === routeSlug);
+if (!article) {
+  return new Response(null, { status: 404 });
+}
+const { Content } = await article.render();
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const dateLocale = localeMeta[locale].og.replace('_', '-');
+
+const related = allArticles
+  .filter((a) => a.slug !== article.slug)
+  .sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
+  .slice(0, 4);
+
+const siteUrl = 'https://peptide-shop.net';
+const articleUrl = new URL(href(`/learn/${article.slug}/`), Astro.site).toString();
+
+const articleSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: article.data.title,
+  description: article.data.meta.description,
+  inLanguage: locale,
+  datePublished: new Date(article.data.publishDate).toISOString(),
+  dateModified: new Date(article.data.updatedDate || article.data.publishDate).toISOString(),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+  author: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: article.data.author || 'Peptide Shop Editorial',
+    url: `${siteUrl}/about/`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: 'Peptide Shop',
+    url: siteUrl,
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
+  },
+};
+
+// HowTo schema for procedural articles
+const howToSchema = article.data.howTo && article.slug === 'reconstitution-guide'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: 'How to reconstitute a lyophilised research peptide',
+      description: 'Step-by-step reconstitution and aliquoting workflow that preserves analytical purity of a lyophilised research peptide vial.',
+      inLanguage: locale,
+      totalTime: 'PT30M',
+      tool: [
+        { '@type': 'HowToTool', name: 'Lyophilised peptide vial' },
+        { '@type': 'HowToTool', name: 'Bacteriostatic water (0.9% benzyl alcohol)' },
+        { '@type': 'HowToTool', name: 'Sterile syringe and 25G needle' },
+        { '@type': 'HowToTool', name: 'Protein LoBind aliquot tubes' },
+      ],
+      step: [
+        { '@type': 'HowToStep', position: 1, name: 'Equilibrate the vial', text: 'Remove the lyophilised vial from cold storage and let it sit, sealed, at room temperature for 20–30 minutes before opening.' },
+        { '@type': 'HowToStep', position: 2, name: 'Choose the diluent', text: 'Pick the diluent appropriate to the assay: bacteriostatic water for repeated draws, sterile water for single use, 0.1% acetic acid for basic peptides, or DMSO for hydrophobic sequences.' },
+        { '@type': 'HowToStep', position: 3, name: 'Calculate volume', text: 'Use the net peptide content from the COA to calculate diluent volume for your target concentration: volume (mL) = net peptide mass (mg) / target concentration (mg/mL).' },
+        { '@type': 'HowToStep', position: 4, name: 'Add diluent slowly', text: 'Direct the diluent stream onto the inner glass wall of the vial, never directly onto the cake. Allow the cake to dissolve from the bottom up over 1–10 minutes; do not vortex.' },
+        { '@type': 'HowToStep', position: 5, name: 'Confirm dissolution', text: 'Verify the solution is clear and free of particulates. Cloudiness indicates pH-driven aggregation, hydrophobic aggregation, or genuine insolubility for the chosen diluent.' },
+        { '@type': 'HowToStep', position: 6, name: 'Aliquot immediately', text: 'Pipette single-use volumes into low-binding tubes, label with peptide, lot, concentration, diluent and date, and freeze upright at −80 °C for long-term storage.' },
+      ],
+    }
+  : null;
+
+const schemas: Array<Record<string, unknown>> = [articleSchema];
+if (howToSchema) schemas.push(howToSchema);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('learn.breadcrumb'), url: href('/learn/') },
+  { name: article.data.title, url: href(`/learn/${article.slug}/`) },
+];
+---
+
+<Layout
+  title={article.data.meta.title}
+  description={article.data.meta.description}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={schemas} />
+
+  <article class="content-page article-page section">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <header class="article-header">
+        <span class="badge badge-blue">{article.data.category}</span>
+        <h1>{article.data.title}</h1>
+        <p>{article.data.description}</p>
+        <div class="article-meta">
+          <span>{article.data.author}</span>
+          <span>{article.data.readTime}</span>
+          <span>{new Date(article.data.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        </div>
+      </header>
+
+      <div class="content-layout">
+        <main class="article-body card">
+          <Content />
+          {article.data.tags && article.data.tags.length > 0 && (
+            <footer class="article-tags">
+              <ChipList items={article.data.tags} />
+            </footer>
+          )}
+        </main>
+
+        <aside class="content-sidebar">
+          {related.length > 0 && (
+            <section class="card">
+              <h2>{t('learn.relatedResources')}</h2>
+              <div class="related-list">
+                {related.map((entry) => (
+                  <a href={href(`/learn/${entry.slug}/`)}>
+                    <strong>{entry.data.title}</strong>
+                    <span>{entry.data.readTime}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+          <section class="card">
+            <h2>{t('nav.catalogue')}</h2>
+            <p>{t('learn.catalogueBody')}</p>
+            <a class="btn btn-primary" href={href('/catalog/')}>{t('learn.openCatalogue')}</a>
+          </section>
+          <a class="btn btn-secondary btn-block" href={href('/learn/')}>← {t('learn.breadcrumb')}</a>
+        </aside>
+      </div>
+    </div>
+  </article>
+</Layout>

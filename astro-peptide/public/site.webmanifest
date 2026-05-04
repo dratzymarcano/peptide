@@ -1,0 +1,18 @@
+{
+  "name": "Peptide Shop",
+  "short_name": "Peptide Shop",
+  "description": "Research-grade peptides with batch COA and discreet EU dispatch.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#005B8C",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64 192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

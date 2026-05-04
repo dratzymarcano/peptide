@@ -1,0 +1,30 @@
+---
+/**
+ * RUOBanner — research-use-only disclosure banner.
+ * Wording is configurable; defaults match the most common usage.
+ *
+ *   <RUOBanner />
+ *   <RUOBanner variant="compact" detail="Custom wording..." />
+ */
+interface Props {
+  variant?: 'standard' | 'compact';
+  /** Bold lead text. */
+  heading?: string;
+  /** Trailing detail sentence. */
+  detail?: string;
+  /** Optional inline-style override (e.g. extra top margin). */
+  style?: string;
+}
+
+const {
+  variant = 'standard',
+  heading = 'For research use only (RUO).',
+  detail = 'Not for human or veterinary use, food, or cosmetic application. Buyer assumes all responsibility for safe handling and use.',
+  style,
+} = Astro.props;
+---
+
+<div class={`ruo-banner${variant === 'compact' ? ' compact' : ''}`} role="note" {...(style ? { style } : {})}>
+  <strong>{heading}</strong>
+  <span>{detail}</span>
+</div>

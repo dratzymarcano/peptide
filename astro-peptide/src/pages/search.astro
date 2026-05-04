@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { toCardProduct } from '../lib/product';
+import { getCanonicalCollection } from '../lib/collections';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import { getLocalizedProduct } from '../i18n/productContent';
+
+const rawQuery = Astro.url.searchParams.get('q') ?? '';
+const query = rawQuery.trim().toLowerCase();
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const products = await getCanonicalCollection('products');
+const posts = await getCanonicalCollection('blog');
+
+const productResults = query.length >= 2
+  ? products.filter((product) => {
+      const localizedProduct = getLocalizedProduct(product, locale);
+      const searchable = [
+        localizedProduct.title,
+        localizedProduct.shortDescription,
+        product.data.primary_keyword,
+        product.data.category,
+        product.data.researchArea,
+        ...(product.data.useCases ?? []),
+        ...(product.data.aliases ?? []),
+        ...(product.data.tags ?? []),
+        product.data.cas ?? '',
+      ].join(' ').toLowerCase();
+      return searchable.includes(query);
+    })
+  : [];
+
+const postResults = query.length >= 2
+  ? posts.filter((post) => {
+      const searchable = [
+        post.data.title,
+        post.data.description,
+        post.data.category,
+        ...(post.data.tags ?? []),
+      ].join(' ').toLowerCase();
+      return searchable.includes(query);
+    })
+  : [];
+
+const resultCount = productResults.length + postResults.length;
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('search.search'), url: href('/search/') },
+];
+---
+
+<Layout
+  title={query ? t('searchPage.resultsMetaTitle', { query: rawQuery }) : t('searchPage.metaTitle')}
+  description={t('searchPage.metaDescription')}
+  noindex={true}
+>
+  <section class="section search-page">
+    <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
+      <span class="eyebrow">{t('search.search')}</span>
+      <h1>{t('searchPage.title')}</h1>
+      <p class="lead">{t('searchPage.lead')}</p>
+
+      <form class="search-form" method="get" action={href('/search/')} role="search">
+        <label class="sr-only" for="q">{t('searchPage.queryLabel')}</label>
+        <input
+          class="input search-form__input"
+          id="q"
+          name="q"
+          type="search"
+          value={rawQuery}
+          placeholder={t('searchPage.placeholder')}
+          autocomplete="off"
+        />
+        <button class="btn btn-primary" type="submit">{t('search.search')}</button>
+      </form>
+
+      {query.length > 0 && query.length < 2 && (
+        <p class="search-status">{t('searchPage.tooShort')}</p>
+      )}
+
+      {query.length >= 2 && (
+        <p class="search-status">
+          {resultCount === 0 ? t('searchPage.noResults') : t(resultCount === 1 ? 'searchPage.resultOne' : 'searchPage.resultMany', { count: resultCount, query: rawQuery })}
+        </p>
+      )}
+
+      {productResults.length > 0 && (
+        <section class="search-section" aria-labelledby="product-results-title">
+          <h2 id="product-results-title">{t('searchPage.products')}</h2>
+          <div class="grid grid-4" style="margin-top: var(--space-6);">
+            {productResults.map((product) => (
+              <ProductCard product={toCardProduct(product, locale)} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {postResults.length > 0 && (
+        <section class="search-section" aria-labelledby="article-results-title">
+          <h2 id="article-results-title">{t('searchPage.researchNotes')}</h2>
+          <div class="grid grid-3" style="margin-top: var(--space-6);">
+            {postResults.map((post) => (
+              <article class="card">
+                <span class="eyebrow">{post.data.category}</span>
+                <h3 style="font-size: var(--text-xl);"><a href={href(`/blog/${post.slug}/`)} style="color:inherit; text-decoration:none;">{post.data.title}</a></h3>
+                <p style="color: var(--color-ink-3);">{post.data.description}</p>
+                <a class="text-primary" style="font-weight:600; margin-top:auto;" href={href(`/blog/${post.slug}/`)}>{t('home.readArticle')}</a>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .search-page h1 { margin-bottom: var(--space-3); }
+  .search-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    max-width: 760px;
+  }
+  .search-form__input { height: 48px; }
+  .search-status {
+    margin-top: var(--space-5);
+    color: var(--color-ink-3);
+  }
+  .search-section { margin-top: var(--space-12); }
+  @media (max-width: 640px) {
+    .search-form { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,5 +1,291 @@
 ---
-import ShopPage from '../components/pages/ShopPage.astro';
+import { getCanonicalCollection } from '../lib/collections';
+import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { toCardProduct } from '../lib/product';
+import ShopSidebar from '../components/ShopSidebar.astro';
+import { researchAreas, useCases, type UseCaseSlug } from '../data/taxonomy';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import { getLocalizedProduct } from '../i18n/productContent';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const params = Astro.url.searchParams;
+const selectedArea = params.get('area') ?? '';
+const selectedUseCase = params.get('useCase') ?? '';
+const sort = params.get('sort') ?? 'featured';
+const view = params.get('view') === 'table' ? 'table' : 'grid';
+
+const allProducts = await getCanonicalCollection('products');
+const knownUseCases = new Set<string>(useCases.map((uc) => uc.slug));
+const useCaseFilter: UseCaseSlug | null = selectedUseCase && knownUseCases.has(selectedUseCase) ? (selectedUseCase as UseCaseSlug) : null;
+
+let products = allProducts.filter((product) => {
+  const areaMatch = !selectedArea || product.data.researchArea === selectedArea;
+  const useCaseMatch = !useCaseFilter || product.data.useCases?.includes(useCaseFilter);
+  return areaMatch && useCaseMatch;
+});
+
+const priceFor = (product: (typeof allProducts)[number]) => product.data.price ?? Number.MAX_SAFE_INTEGER;
+
+products = products.sort((a, b) => {
+  if (sort === 'price-asc') return priceFor(a) - priceFor(b);
+  if (sort === 'price-desc') return priceFor(b) - priceFor(a);
+  if (sort === 'name-asc') return getLocalizedProduct(a, locale).title.localeCompare(getLocalizedProduct(b, locale).title);
+  if (sort === 'purity') return b.data.purity.localeCompare(a.data.purity);
+  return a.data.category.localeCompare(b.data.category) || getLocalizedProduct(a, locale).title.localeCompare(getLocalizedProduct(b, locale).title);
+});
+
+const basePath = href('/shop/');
+const hrefWith = (changes: Record<string, string | null>) => {
+  const next = new URLSearchParams(params);
+  for (const [key, value] of Object.entries(changes)) {
+    if (!value) next.delete(key);
+    else next.set(key, value);
+  }
+  const query = next.toString();
+  return query ? `${basePath}?${query}` : basePath;
+};
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('nav.shop'), url: href('/shop/') },
+];
+
+const shopUrl = new URL(href('/shop/'), Astro.site).toString();
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: t('shopPage.metaTitle'),
+  description: t('shopPage.metaDescription'),
+  url: shopUrl,
+  inLanguage: locale,
+  isPartOf: { '@type': 'WebSite', name: 'Peptide Shop', url: 'https://peptide-shop.net' },
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: products.length,
+    itemListElement: products.slice(0, 30).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: new URL(href(`/peptides/${p.slug}/`), Astro.site).toString(),
+      name: getLocalizedProduct(p, locale).title,
+    })),
+  },
+};
 ---
 
-<ShopPage lang="en" />
+<Layout
+  title={t('shopPage.metaTitle')}
+  description={t('shopPage.metaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={collectionSchema} />
+  <section class="section shop-page">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href={href('/')}>{t('common.home')}</a></li>
+          <li aria-current="page">{t('nav.shop')}</li>
+        </ol>
+      </nav>
+
+      <span class="eyebrow-rule">{t('shopPage.eyebrow')}</span>
+      <h1 class="display" style="font-family: var(--font-display); font-size: var(--text-display-md); letter-spacing:-0.025em; line-height:1.05; max-width: 22ch;">{t('shopPage.title')}</h1>
+      <p class="lead">{t('shopPage.lead')}</p>
+
+      <div class="shop-toolbar" aria-label={t('shopPage.controls')}>
+        <button class="btn btn-secondary mobile-filter-button" type="button" data-filter-open aria-controls="filter-drawer" aria-expanded="false">
+          {(selectedArea || selectedUseCase) ? t('shopPage.filtersActive') : t('shopPage.filters')}
+        </button>
+
+        <p class="shop-count">{t('shopPage.showing', { shown: products.length, total: allProducts.length })}</p>
+
+        <form class="sort-form" method="get" action={href('/shop/')}>
+          {selectedArea && <input type="hidden" name="area" value={selectedArea} />}
+          {selectedUseCase && <input type="hidden" name="useCase" value={selectedUseCase} />}
+          <input type="hidden" name="view" value={view} />
+          <label class="sr-only" for="sort">{t('shopPage.sortLabel')}</label>
+          <select class="select" id="sort" name="sort" onchange="this.form.submit()">
+            <option value="featured" selected={sort === 'featured'}>{t('shopPage.sortFeatured')}</option>
+            <option value="price-asc" selected={sort === 'price-asc'}>{t('shopPage.sortPriceAsc')}</option>
+            <option value="price-desc" selected={sort === 'price-desc'}>{t('shopPage.sortPriceDesc')}</option>
+            <option value="name-asc" selected={sort === 'name-asc'}>{t('shopPage.sortNameAsc')}</option>
+            <option value="purity" selected={sort === 'purity'}>{t('shopPage.sortPurity')}</option>
+          </select>
+        </form>
+
+        <div class="view-toggle" aria-label={t('shopPage.viewMode')}>
+          <a class:list={["btn", "btn-sm", view === 'grid' ? 'btn-primary' : 'btn-secondary']} href={hrefWith({ view: 'grid' })}>{t('shopPage.grid')}</a>
+          <a class:list={["btn", "btn-sm", view === 'table' ? 'btn-primary' : 'btn-secondary']} href={hrefWith({ view: 'table' })}>{t('shopPage.table')}</a>
+        </div>
+      </div>
+
+      <div class="active-filters" role="region" aria-label={t('shopPage.activeFilters')}>
+        {selectedArea && (
+          <a class="chip is-selected" href={hrefWith({ area: null })} aria-label={t('shopPage.removeArea')}>
+            {researchAreas.find((area) => area.slug === selectedArea)?.name ?? selectedArea} ×
+          </a>
+        )}
+        {selectedUseCase && (
+          <a class="chip is-selected" href={hrefWith({ useCase: null })} aria-label={t('shopPage.removeUseCase')}>
+            {useCases.find((useCase) => useCase.slug === selectedUseCase)?.name ?? selectedUseCase} ×
+          </a>
+        )}
+        {(selectedArea || selectedUseCase) && <a href={href('/shop/')} class="chip">{t('shopPage.clearAll')}</a>}
+      </div>
+
+      <div class="shop-layout">
+        <aside class="filter-panel desktop-filter" aria-label={t('shopPage.productFilters')}>
+          <ShopSidebar selectedArea={selectedArea} selectedUseCase={selectedUseCase} sort={sort} view={view} />
+        </aside>
+
+        <div class="shop-results">
+          {products.length === 0 ? (
+            <div class="card empty-state">
+              <h2>{t('shopPage.noProducts')}</h2>
+              <p>{t('shopPage.noProductsHelp')}</p>
+              <a href={href('/shop/')} class="btn btn-secondary">{t('shopPage.clearFilters')}</a>
+            </div>
+          ) : view === 'table' ? (
+            <div class="table-wrap">
+              <table class="table-clean catalog-table">
+                <caption class="sr-only">{t('shopPage.resultsCaption')}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{t('shopPage.tableProduct')}</th>
+                    <th scope="col">{t('shopPage.tableArea')}</th>
+                    <th scope="col">{t('shopPage.tablePurity')}</th>
+                    <th scope="col">{t('shopPage.tablePackage')}</th>
+                    <th scope="col" class="num">{t('shopPage.tablePrice')}</th>
+                    <th scope="col">{t('shopPage.tableAction')}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr>
+                      <td><a href={href(`/peptides/${product.slug}/`)}><strong>{getLocalizedProduct(product, locale).title}</strong></a></td>
+                      <td>{researchAreas.find((area) => area.slug === product.data.researchArea)?.name ?? product.data.category}</td>
+                      <td>{product.data.purity}</td>
+                      <td>{product.data.package_sizes?.[0] ?? '-'}</td>
+                      <td class="num">{product.data.price ? `€${product.data.price.toFixed(2)}` : getLocalizedProduct(product, locale).priceRange}</td>
+                      <td><a class="btn btn-secondary btn-sm" href={href(`/peptides/${product.slug}/`)}>{t('shopPage.viewProduct')}</a></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div class="grid grid-3">
+              {products.map((product) => (
+                <ProductCard product={toCardProduct(product, locale)} />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="drawer-backdrop" data-filter-backdrop></div>
+  <aside class="drawer" id="filter-drawer" aria-label={t('shopPage.productFilters')} hidden>
+    <div class="drawer-header">
+      <strong>{t('shopPage.filters')}</strong>
+      <button class="btn btn-ghost btn-sm" type="button" data-filter-close aria-label={t('shopPage.closeFilters')}>×</button>
+    </div>
+    <div class="drawer-body">
+      <ShopSidebar selectedArea={selectedArea} selectedUseCase={selectedUseCase} sort={sort} view={view} />
+    </div>
+  </aside>
+</Layout>
+
+<style>
+  .shop-page h1 { margin-bottom: var(--space-3); }
+  .shop-toolbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: var(--space-3);
+    align-items: center;
+    margin-top: var(--space-8);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: var(--shadow-soft-1);
+  }
+  .shop-count { margin: 0; color: var(--color-ink-3); font-size: var(--text-sm); }
+  .sort-form { min-width: 220px; }
+  .view-toggle { display: inline-flex; gap: var(--space-2); }
+  .active-filters { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); min-height: 32px; }
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+    align-items: start;
+  }
+  .filter-panel {
+    position: sticky;
+    top: 88px;
+    display: grid;
+    gap: var(--space-6);
+  }
+  .filter-group {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    background: #fff;
+  }
+  .filter-group h2 {
+    font-size: var(--text-base);
+    margin-bottom: var(--space-3);
+  }
+  .filter-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+  .filter-list a {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink-2);
+    text-decoration: none;
+    font-size: var(--text-sm);
+  }
+  .filter-list a:hover,
+  .filter-list a.is-active { background: var(--color-primary-50); color: var(--color-primary); }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .catalog-table { min-width: 820px; }
+  .empty-state { align-items: flex-start; gap: var(--space-3); }
+  .mobile-filter-button { display: none; }
+  @media (max-width: 1023px) {
+    .shop-toolbar { grid-template-columns: 1fr; }
+    .shop-layout { display: block; }
+    .desktop-filter { display: none; }
+    .mobile-filter-button { display: inline-flex; width: fit-content; }
+    .sort-form { min-width: 0; }
+    .view-toggle { justify-content: flex-start; }
+  }
+</style>
+
+<script>
+  const openButton = document.querySelector<HTMLButtonElement>('[data-filter-open]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-filter-close]');
+  const drawer = document.getElementById('filter-drawer');
+  const backdrop = document.querySelector<HTMLElement>('[data-filter-backdrop]');
+  const setFilterOpen = (open: boolean) => {
+    if (!drawer || !backdrop || !openButton) return;
+    drawer.hidden = !open;
+    drawer.classList.toggle('is-open', open);
+    backdrop.classList.toggle('is-open', open);
+    openButton.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  openButton?.addEventListener('click', () => setFilterOpen(true));
+  closeButton?.addEventListener('click', () => setFilterOpen(false));
+  backdrop?.addEventListener('click', () => setFilterOpen(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setFilterOpen(false);
+  });
+</script>

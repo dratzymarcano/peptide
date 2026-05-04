@@ -1,10 +1,20 @@
 import type { APIRoute } from 'astro';
+import { createHmac, timingSafeEqual } from 'node:crypto';
+import { defaultLocale, isLocale } from '../../i18n/config';
+import { markOrderExpired, markOrderFailed, markOrderPaid } from '../../lib/orders';
 
-// BTCPay Server Configuration
-// Replace these with your actual BTCPay Server details
-const BTCPAY_SERVER_URL = import.meta.env.BTCPAY_SERVER_URL || 'https://btcpay.peptide-shop.net';
-const BTCPAY_STORE_ID = import.meta.env.BTCPAY_STORE_ID || 'YOUR_STORE_ID';
-const BTCPAY_API_KEY = import.meta.env.BTCPAY_API_KEY || 'YOUR_API_KEY';
+const BTCPAY_SERVER_URL = import.meta.env.BTCPAY_SERVER_URL ?? '';
+const BTCPAY_STORE_ID = import.meta.env.BTCPAY_STORE_ID ?? '';
+const BTCPAY_API_KEY = import.meta.env.BTCPAY_API_KEY ?? '';
+const BTCPAY_WEBHOOK_SECRET = import.meta.env.BTCPAY_WEBHOOK_SECRET ?? '';
+const SITE_URL = import.meta.env.SITE_URL ?? 'https://peptide-shop.net';
+const IS_DEV = Boolean(import.meta.env.DEV);
+
+const json = (body: unknown, status = 200) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 
 interface CreateInvoiceRequest {
   orderId: string;
@@ -12,6 +22,7 @@ interface CreateInvoiceRequest {
   currency: string;
   buyerEmail: string;
   description?: string;
+  locale?: string;
 }
 
 interface BTCPayInvoice {
@@ -22,102 +33,87 @@ interface BTCPayInvoice {
   currency: string;
   cryptoInfo?: {
     cryptoCode: string;
-    paymentUrls: {
-      BIP21: string;
-    };
+    paymentUrls: { BIP21: string };
     address: string;
     due: string;
     rate: number;
   }[];
 }
 
+function btcpayConfigured(): boolean {
+  return Boolean(BTCPAY_SERVER_URL && BTCPAY_STORE_ID && BTCPAY_API_KEY);
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body: CreateInvoiceRequest = await request.json();
-    const { orderId, amount, currency = 'GBP', buyerEmail, description } = body;
+    const { orderId, amount, currency = 'EUR', buyerEmail, description } = body;
+    const locale = isLocale(body.locale) ? body.locale : defaultLocale;
 
     if (!orderId || !amount || !buyerEmail) {
-      return new Response(JSON.stringify({ 
-        error: 'Missing required fields: orderId, amount, buyerEmail' 
-      }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
+      return json(
+        { success: false, code: 'missing_required_fields', fields: ['orderId', 'amount', 'buyerEmail'] },
+        400,
+      );
+    }
+
+    if (!btcpayConfigured()) {
+      if (!IS_DEV) {
+        console.error('[btcpay] missing BTCPAY_SERVER_URL/STORE_ID/API_KEY');
+        return json({ success: false, code: 'btcpay_not_configured' }, 500);
+      }
+      return json({
+        success: true,
+        invoice: {
+          id: 'DEV-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
+          checkoutLink: '/checkout/mock-bitcoin',
+          status: 'New',
+          amount: amount.toString(),
+          currency,
+          btcAddress: 'bc1qmockmockmockmockmockmockmockmockmockmockmock',
+          btcAmount: (amount / 78000).toFixed(8),
+          expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+          mock: true,
+        },
       });
     }
 
-    // Create invoice via BTCPay Server API
-    // Documentation: https://docs.btcpayserver.org/API/Greenfield/v1/
     const invoiceResponse = await fetch(
       `${BTCPAY_SERVER_URL}/api/v1/stores/${BTCPAY_STORE_ID}/invoices`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `token ${BTCPAY_API_KEY}`
+          Authorization: `token ${BTCPAY_API_KEY}`,
         },
         body: JSON.stringify({
           amount: amount.toString(),
-          currency: currency,
-          metadata: {
-            orderId: orderId,
-            buyerEmail: buyerEmail,
-            itemDesc: description || `Peptide Shop Order ${orderId}`
-          },
+          currency,
+          metadata: { orderId, buyerEmail, itemDesc: description || `Peptide Shop Order ${orderId}` },
           checkout: {
-            speedPolicy: 'MediumSpeed', // 1 confirmation
+            speedPolicy: 'MediumSpeed',
             expirationMinutes: 15,
             monitoringMinutes: 60,
             paymentTolerance: 0,
-            redirectURL: `${import.meta.env.SITE_URL || 'https://peptide-shop.net'}/order-confirmation?orderId=${orderId}`,
+            redirectURL: `${SITE_URL}/order-confirmation?orderId=${orderId}`,
             redirectAutomatically: true,
-            defaultLanguage: 'en-GB'
+            defaultLanguage: locale,
           },
-          receipt: {
-            enabled: true,
-            showQR: true
-          }
-        })
-      }
+          receipt: { enabled: true, showQR: true },
+        }),
+      },
     );
 
     if (!invoiceResponse.ok) {
-      const errorText = await invoiceResponse.text();
-      console.error('BTCPay Server error:', errorText);
-      
-      // Return mock invoice for development/demo
-      if (import.meta.env.DEV) {
-        return new Response(JSON.stringify({
-          success: true,
-          invoice: {
-            id: 'DEV-' + Math.random().toString(36).substring(2, 10).toUpperCase(),
-            checkoutLink: `${BTCPAY_SERVER_URL}/i/demo`,
-            status: 'New',
-            amount: amount.toString(),
-            currency: currency,
-            btcAddress: 'bc1q' + Math.random().toString(36).substring(2, 34),
-            btcAmount: (amount / 78000).toFixed(8), // Mock conversion
-            expiresAt: new Date(Date.now() + 15 * 60 * 1000).toISOString()
-          }
-        }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      
-      return new Response(JSON.stringify({ 
-        error: 'Failed to create Bitcoin invoice' 
-      }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' }
-      });
+      const errorText = await invoiceResponse.text().catch(() => '');
+      console.error('[btcpay] invoice create failed', invoiceResponse.status, errorText);
+      return json({ success: false, code: 'bitcoin_invoice_create_failed' }, 502);
     }
 
     const invoice: BTCPayInvoice = await invoiceResponse.json();
+    const btcInfo = invoice.cryptoInfo?.find((c) => c.cryptoCode === 'BTC');
 
-    // Extract Bitcoin payment info
-    const btcInfo = invoice.cryptoInfo?.find(c => c.cryptoCode === 'BTC');
-
-    return new Response(JSON.stringify({
+    return json({
       success: true,
       invoice: {
         id: invoice.id,
@@ -128,69 +124,70 @@ export const POST: APIRoute = async ({ request }) => {
         btcAddress: btcInfo?.address,
         btcAmount: btcInfo?.due,
         btcRate: btcInfo?.rate,
-        paymentUrl: btcInfo?.paymentUrls?.BIP21
-      }
-    }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
+        paymentUrl: btcInfo?.paymentUrls?.BIP21,
+      },
     });
-
   } catch (error) {
-    console.error('Error creating Bitcoin invoice:', error);
-    return new Response(JSON.stringify({ 
-      error: 'Internal server error' 
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    console.error('[btcpay] error creating invoice', error);
+    return json({ success: false, code: 'internal_server_error' }, 500);
   }
 };
 
-// Webhook endpoint for BTCPay Server payment notifications
-export const PUT: APIRoute = async ({ request }) => {
+function verifyBTCPaySignature(rawBody: string, signatureHeader: string | null): boolean {
+  if (!BTCPAY_WEBHOOK_SECRET || !signatureHeader) return false;
+  const provided = signatureHeader.startsWith('sha256=') ? signatureHeader.slice(7) : signatureHeader;
+  const expected = createHmac('sha256', BTCPAY_WEBHOOK_SECRET).update(rawBody, 'utf8').digest('hex');
+  if (provided.length !== expected.length) return false;
   try {
-    // BTCPay Server sends webhook notifications when payment status changes
-    // IMPORTANT: In production, implement proper HMAC verification using:
-    // - import.meta.env.BTCPAY_WEBHOOK_SECRET
-    // - request.headers.get('BTCPay-Sig')
-    
-    const body = await request.json();
-    const { type } = body;
-    // Additional fields available: invoiceId, storeId
+    return timingSafeEqual(Buffer.from(provided, 'hex'), Buffer.from(expected, 'hex'));
+  } catch {
+    return false;
+  }
+}
 
-    // Handle different webhook events
-    switch (type) {
+async function handleWebhook(request: Request): Promise<Response> {
+  const rawBody = await request.text();
+
+  if (!IS_DEV || BTCPAY_WEBHOOK_SECRET) {
+    const sig = request.headers.get('BTCPay-Sig') ?? request.headers.get('btcpay-sig');
+    if (!verifyBTCPaySignature(rawBody, sig)) {
+      console.warn('[btcpay] webhook signature mismatch');
+      return json({ received: false, code: 'invalid_signature' }, 401);
+    }
+  }
+
+  let payload: { type?: string; invoiceId?: string; storeId?: string; metadata?: Record<string, unknown> };
+  try {
+    payload = JSON.parse(rawBody);
+  } catch {
+    return json({ received: false, code: 'invalid_json' }, 400);
+  }
+
+  const orderId = (payload?.metadata?.['orderId'] as string | undefined) ?? payload?.invoiceId;
+  if (!orderId) {
+    return json({ received: true, code: 'no_order_reference' });
+  }
+
+  try {
+    switch (payload.type) {
       case 'InvoiceSettled':
-        // Payment confirmed - fulfill the order
-        // Implement: Update order status in database
-        // Implement: Send confirmation email to customer
+        await markOrderPaid(orderId, { provider: 'btcpay', invoiceId: payload.invoiceId ?? null });
         break;
-        
       case 'InvoiceExpired':
-        // Payment not received in time
-        // Implement: Mark order as payment expired
+        await markOrderExpired(orderId);
         break;
-        
       case 'InvoiceInvalid':
-        // Payment was invalid (double spend, etc)
-        // Implement: Mark order as payment failed
+        await markOrderFailed(orderId);
         break;
-        
       default:
-        // Other webhook types (InvoiceCreated, InvoiceReceivedPayment, etc.)
         break;
     }
-
-    return new Response(JSON.stringify({ received: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-  } catch (error) {
-    // Log to server-side monitoring (not console in production)
-    return new Response(JSON.stringify({ error: 'Webhook processing failed' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+  } catch (err) {
+    console.error('[btcpay] order update failed', err);
+    return json({ received: false, code: 'order_update_failed' }, 500);
   }
-};
+
+  return json({ received: true });
+}
+
+export const PUT: APIRoute = async ({ request }) => handleWebhook(request);

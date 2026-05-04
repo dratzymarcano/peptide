@@ -1,5 +1,161 @@
 ---
-import ContactPage from '../components/pages/ContactPage.astro';
+import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
+
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'OnlineStore'],
+  '@id': 'https://peptide-shop.net/#organization',
+  name: 'Peptide Shop',
+  url: 'https://peptide-shop.net',
+  logo: 'https://peptide-shop.net/favicon.svg',
+  email: 'info@peptide-shop.net',
+  description: 'Research-grade peptides with batch-specific certificates of analysis (≥98% HPLC). Sold strictly for research use only (RUO).',
+  areaServed: [
+    { '@type': 'Place', name: 'European Union' },
+    { '@type': 'Country', name: 'United Kingdom' },
+    { '@type': 'Country', name: 'Switzerland' },
+  ],
+  knowsLanguage: ['en', 'de', 'nl', 'fr', 'it', 'es'],
+  contactPoint: [{
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'info@peptide-shop.net',
+    availableLanguage: ['en', 'de', 'nl', 'fr', 'it', 'es'],
+    areaServed: 'EU',
+  }],
+  sameAs: [
+    'https://peptide-shop.net/about/',
+    'https://peptide-shop.net/quality/',
+  ],
+};
 ---
 
-<ContactPage lang="en" />
+<Layout
+  title={t('contact.metaTitle')}
+  description={t('contact.metaDescription')}
+  breadcrumbs={[
+    { name: t('common.home'), url: href('/') },
+    { name: t('nav.contact'), url: href('/contact/') },
+  ]}
+>
+  <JsonLd schema={contactSchema} />
+  <!-- PAGE HERO -->
+  <section class="page-hero display-typography">
+    <div class="container">
+      <span class="eyebrow-rule">{t('contact.eyebrow')}</span>
+      <h1>{t('contact.title')}</h1>
+      <p>
+        {t('contact.lead')}
+      </p>
+    </div>
+  </section>
+
+  <!-- SPLIT: FORM + INFO -->
+  <section class="section section-loose">
+    <div class="container">
+      <div class="split split-form">
+        <article>
+          {Astro.url.searchParams.get('sent') === '1' && (
+            <div class="card" role="status" style="padding: var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid var(--color-success, #0F7B3F);">
+              <strong>{t('contact.successTitle') || 'Message received'}</strong>
+              <p style="margin: 4px 0 0;">{t('contact.successBody') || 'Thanks — we will reply within one business day.'}</p>
+            </div>
+          )}
+          {Astro.url.searchParams.get('error') && (
+            <div class="card" role="alert" style="padding: var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid var(--color-danger, #B42318);">
+              <strong>{t('contact.errorTitle') || 'Could not send'}</strong>
+              <p style="margin: 4px 0 0;">{t('contact.errorBody') || 'Please check the fields and try again, or email info@peptide-shop.net directly.'}</p>
+            </div>
+          )}
+          <form class="card" method="post" action={href('/api/contact')} aria-label={t('contact.formAria')} style="padding: var(--space-8); display: grid; gap: var(--space-5);">
+            <input type="hidden" name="locale" value={locale} />
+            <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
+            <div>
+              <span class="eyebrow">{t('contact.formEyebrow')}</span>
+              <h2 style="font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing:-0.02em; margin: 4px 0 0;">{t('contact.formTitle')}</h2>
+            </div>
+            <div class="learning-grid">
+              <div class="field">
+                <label for="name">{t('contact.name')}</label>
+                <input class="input" id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">{t('contact.email')}</label>
+                <input class="input" id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+            </div>
+            <div class="learning-grid">
+              <div class="field">
+                <label for="organisation">{t('contact.organisation')}</label>
+                <input class="input" id="organisation" name="organisation" autocomplete="organization" placeholder={t('contact.organisationPlaceholder')} />
+              </div>
+              <div class="field">
+                <label for="topic">{t('contact.topic')}</label>
+                <select class="select" id="topic" name="topic">
+                  <option>{t('contact.topicCoa')}</option>
+                  <option>{t('contact.topicProduct')}</option>
+                  <option>{t('contact.topicWholesale')}</option>
+                  <option>{t('contact.topicOrder')}</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="message">{t('contact.message')}</label>
+              <textarea class="textarea" id="message" name="message" rows="7" required placeholder={t('contact.messagePlaceholder')}></textarea>
+              <span class="help">{t('contact.replyHelp')}</span>
+            </div>
+            <div style="display:flex; gap: var(--space-3); align-items:center; flex-wrap: wrap;">
+              <button class="btn btn-primary btn-lg" type="submit">{t('contact.send')}</button>
+              <span style="color: var(--color-ink-3); font-size: var(--text-sm);">{t('contact.orEmail')} <a href="mailto:info@peptide-shop.net" style="color: var(--color-primary); font-weight: 600;">info@peptide-shop.net</a></span>
+            </div>
+          </form>
+        </article>
+
+        <aside style="display: grid; gap: var(--space-6);">
+          <div class="info-card">
+            <h3>{t('contact.directContact')}</h3>
+            <div class="info-row">
+              <span>{t('contact.email')}</span>
+              <strong><a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a></strong>
+            </div>
+            <div class="info-row">
+              <span>{t('contact.responseTime')}</span>
+              <strong>{t('contact.responseTimeValue')}</strong>
+            </div>
+            <div class="info-row">
+              <span>{t('contact.hours')}</span>
+              <strong>{t('contact.hoursValue')}</strong>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>{t('contact.includeTitle')}</h3>
+            <ul style="margin:0; padding-left: var(--space-5); color: var(--color-ink-2); display: grid; gap: var(--space-2);">
+              <li>{t('contact.includeProduct')}</li>
+              <li>{t('contact.includeBatch')}</li>
+              <li>{t('contact.includeProcurement')}</li>
+              <li>{t('contact.includeDestination')}</li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <h3>{t('contact.otherSupport')}</h3>
+            <div class="related-list" style="display: grid; gap: var(--space-2);">
+              <a href={href('/coa-policy/')}><strong>{t('contact.linkCoaTitle')}</strong><span style="color:var(--color-ink-3); font-size: var(--text-sm);">{t('contact.linkCoaSubtitle')}</span></a>
+              <a href={href('/shipping/')}><strong>{t('contact.linkShippingTitle')}</strong><span style="color:var(--color-ink-3); font-size: var(--text-sm);">{t('contact.linkShippingSubtitle')}</span></a>
+              <a href={href('/quality/')}><strong>{t('contact.linkQualityTitle')}</strong><span style="color:var(--color-ink-3); font-size: var(--text-sm);">{t('contact.linkQualitySubtitle')}</span></a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

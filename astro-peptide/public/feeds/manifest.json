@@ -1,0 +1,54 @@
+{
+  "generatedAt": "2026-05-04T00:16:57.421Z",
+  "productCount": 48,
+  "feeds": [
+    {
+      "id": "de-de",
+      "locale": "de",
+      "targetCountry": "DE",
+      "url": "https://peptide-shop.net/feeds/feed-de-de.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    },
+    {
+      "id": "de-en",
+      "locale": "en",
+      "targetCountry": "DE",
+      "url": "https://peptide-shop.net/feeds/feed-de-en.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    },
+    {
+      "id": "nl-nl",
+      "locale": "nl",
+      "targetCountry": "NL",
+      "url": "https://peptide-shop.net/feeds/feed-nl-nl.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    },
+    {
+      "id": "fr-fr",
+      "locale": "fr",
+      "targetCountry": "FR",
+      "url": "https://peptide-shop.net/feeds/feed-fr-fr.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    },
+    {
+      "id": "it-it",
+      "locale": "it",
+      "targetCountry": "IT",
+      "url": "https://peptide-shop.net/feeds/feed-it-it.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    },
+    {
+      "id": "es-es",
+      "locale": "es",
+      "targetCountry": "ES",
+      "url": "https://peptide-shop.net/feeds/feed-es-es.xml",
+      "uploadMode": "Merchant Center scheduled fetch",
+      "policyReview": "Required before activation for research peptide products."
+    }
+  ]
+}

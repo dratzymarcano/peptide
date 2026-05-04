@@ -1,5 +1,63 @@
 ---
-import TermsPage from '../components/pages/TermsPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import RelatedLinkList from '../components/RelatedLinkList.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('footer.terms'), url: href('/terms/') },
+];
 ---
 
-<TermsPage lang="en" />
+<Layout
+  title={t('legal.termsMetaTitle')}
+  description={t('legal.termsMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('footer.terms')}
+        title={t('legal.termsTitle')}
+        description={t('legal.termsDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<h2>{t('legal.termsRestrictionTitle')}</h2>
+          <p>{t('legal.termsRestrictionBody')}</p>
+
+          <h2>{t('legal.termsBuyerTitle')}</h2>
+          <ul>
+            <li>{t('legal.termsBuyerAble')}</li>
+            <li>{t('legal.termsBuyerLaws')}</li>
+            <li>{t('legal.termsBuyerHandle')}</li>
+          </ul>
+
+          <h2>{t('legal.termsOrdersTitle')}</h2>
+          <p>{t('legal.termsOrdersBody')}</p>
+
+          <h2>{t('legal.termsDocumentationTitle')}</h2>
+          <p>{t('legal.termsDocumentationBody')}</p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('legal.policyLinks')}</h2>
+            <RelatedLinkList items={[
+              { url: href('/privacy/'), title: t('footer.privacy'), subtitle: t('legal.privacyLinkSubtitle') },
+              { url: href('/shipping/'), title: t('support.shipping'), subtitle: t('legal.shippingLinkSubtitle') },
+              { url: href('/disclaimer/'), title: t('footer.disclaimer'), subtitle: t('legal.disclaimerLinkSubtitle') },
+            ]} />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

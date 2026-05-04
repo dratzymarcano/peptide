@@ -1,5 +1,61 @@
 ---
-import DisclaimerPage from '../components/pages/DisclaimerPage.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import RUOBanner from '../components/RUOBanner.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: t('footer.disclaimer'), url: href('/disclaimer/') },
+];
 ---
 
-<DisclaimerPage lang="en" />
+<Layout
+  title={t('legal.disclaimerMetaTitle')}
+  description={t('legal.disclaimerMetaDescription')}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="section content-page">
+    <div class="container">
+      <PageHeading
+        eyebrow={t('footer.disclaimer')}
+        title={t('legal.disclaimerTitle')}
+        description={t('legal.disclaimerDescription')}
+      />
+
+      <div class="content-layout">
+        <article class="article-body">
+<RUOBanner
+  heading={t('legal.disclaimerBannerHeading')}
+  detail={t('legal.disclaimerBannerDetail')}
+/>
+
+          <h2>{t('legal.disclaimerPermittedTitle')}</h2>
+          <p>{t('legal.disclaimerPermittedBody')}</p>
+
+          <h2>{t('legal.disclaimerProhibitedTitle')}</h2>
+          <ul>
+            <li>{t('legal.disclaimerNoHuman')}</li>
+            <li>{t('legal.disclaimerNoDiagnostic')}</li>
+            <li>{t('legal.disclaimerNoResale')}</li>
+          </ul>
+
+          <h2>{t('legal.disclaimerScientificTitle')}</h2>
+          <p>{t('legal.disclaimerScientificBody')}</p>
+        </article>
+
+        <aside class="content-sidebar" aria-label={t('support.relatedInfo')}>
+<div class="card">
+            <h2>{t('legal.disclaimerBeforeTitle')}</h2>
+            <p>{t('legal.disclaimerBeforeBody')}</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>

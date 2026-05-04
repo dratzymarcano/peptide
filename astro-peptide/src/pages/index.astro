@@ -1,18 +1,407 @@
 ---
-import HomePage from '../components/pages/HomePage.astro';
-import { supportedLanguages } from '../i18n/translations';
+import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
+import ProductCard from '../components/ProductCard.astro';
+import SectionHeadingRow from '../components/SectionHeadingRow.astro';
+import { toCardProduct } from '../lib/product';
+import { researchAreas, useCases } from '../data/taxonomy';
+import { getCanonicalCollection } from '../lib/collections';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import { SUPPORTED_LOCALES as SUPPORTED_COA_LOCALES } from '../lib/coa/i18n';
+import { inLanguage, organizationSchema, localBusinessSchema, websiteSchema } from '../lib/schema';
 
-// Browser language detection - redirect non-English users to their locale
-const acceptLanguage = Astro.request.headers.get('accept-language') || '';
-const browserLangs = acceptLanguage.split(',').map(l => l.split(';')[0].trim().substring(0, 2).toLowerCase());
-const preferredLang = browserLangs.find(lang => supportedLanguages.includes(lang as any) && lang !== 'en');
+export const prerender = false;
 
-// Only redirect if user hasn't explicitly visited root (check for cookie or referrer)
-const hasVisitedBefore = Astro.cookies.get('lang_preference')?.value;
-if (preferredLang && !hasVisitedBefore) {
-  Astro.cookies.set('lang_preference', preferredLang, { path: '/', maxAge: 60 * 60 * 24 * 365 });
-  return Astro.redirect(`/${preferredLang}/`);
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+const siteUrl = 'https://peptide-shop.net';
+
+const products = (await getCanonicalCollection('products'))
+  .filter((product) => product.data.category !== 'supplies')
+  .sort((a, b) => (a.data.price ?? 9999) - (b.data.price ?? 9999));
+
+const featuredProducts = products.slice(0, 8);
+const posts = (await getCanonicalCollection('blog'))
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+  .slice(0, 3);
+
+const productCounts = new Map<string, number>();
+for (const product of products) {
+  const area = product.data.researchArea;
+  if (area) productCounts.set(area, (productCounts.get(area) ?? 0) + 1);
 }
+const totalProducts = products.length;
+const coaLocaleCount = SUPPORTED_COA_LOCALES.length;
+
+const websiteJsonLd = websiteSchema({
+  locale,
+  homeUrl: `${siteUrl}${href('/')}`,
+  searchUrl: `${siteUrl}${href('/search/')}`,
+});
+
+const organizationJsonLd = organizationSchema({ locale });
+const localBusinessJsonLd = localBusinessSchema({ locale });
+
+const featuredItemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: t('home.schemaFeaturedProducts'),
+  inLanguage: inLanguage(locale),
+  itemListElement: featuredProducts.map((product, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: `${siteUrl}${href(`/peptides/${product.slug}/`)}`,
+    name: product.data.title,
+  })),
+};
 ---
 
-<HomePage lang="en" />
+<Layout
+  title={t('home.metaTitle')}
+  description={t('home.metaDescription')}
+>
+  <JsonLd schema={[websiteJsonLd, organizationJsonLd, localBusinessJsonLd, featuredItemList]} />
+
+  <!-- HERO ----------------------------------------------------------------- -->
+  <section class="hero hero-bg display-typography">
+    <div class="hero-bg-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow-rule">{t('home.heroEyebrow')}</span>
+          <h1>{t('home.heroTitle')}</h1>
+          <p class="lead">
+            {t('home.heroLead')}
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href={href('/catalog/')}>{t('home.heroPrimary')}</a>
+            <a class="btn btn-secondary btn-lg" href={href('/coa-policy/')}>{t('home.heroSecondary')}</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong>≥98%</strong><span>{t('home.heroMetaPurity')}</span></div>
+            <div><strong>{totalProducts}</strong><span>{t('home.heroMetaProducts')}</span></div>
+            <div><strong>1 lot</strong><span>{t('home.heroMetaCoa')}</span></div>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label={t('home.qualityCardAria')}>
+          <header>
+            <span class="eyebrow">{t('home.qualityCardEyebrow')}</span>
+            <h2 class="display">{t('home.qualityCardTitle')}</h2>
+          </header>
+          <ul>
+            <li>
+              <span class="dot"></span>
+              <div><strong>{t('home.qualityItem1Title')}</strong><span>{t('home.qualityItem1Body')}</span></div>
+            </li>
+            <li>
+              <span class="dot"></span>
+              <div><strong>{t('home.qualityItem2Title')}</strong><span>{t('home.qualityItem2Body')}</span></div>
+            </li>
+            <li>
+              <span class="dot"></span>
+              <div><strong>{t('home.qualityItem3Title')}</strong><span>{t('home.qualityItem3Body')}</span></div>
+            </li>
+          </ul>
+          <a class="btn btn-secondary btn-sm" href={href('/quality/')}>{t('home.qualityCardAction')}</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP ---------------------------------------------------------- -->
+  <section aria-label={t('home.serviceHighlights')}>
+    <div class="container">
+      <div class="trust-strip">
+        <div class="item"><strong>≥98%</strong><span>{t('home.trustPurity')}</span></div>
+        <div class="item"><strong>1:1</strong><span>{t('home.trustTraceability')}</span></div>
+        <div class="item"><strong>EU</strong><span>{t('home.trustDispatch')}</span></div>
+        <div class="item"><strong>RUO</strong><span>{t('home.trustCompliance')}</span></div>
+        <div class="item"><strong>{coaLocaleCount} langs</strong><span>{t('home.trustCoaLanguages')}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE GRID ----------------------------------------------------------- -->
+  <section class="section section-loose surface-mist" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow-rule">{t('home.whyEyebrow')}</span>
+        <h2 id="why-title" class="display">{t('home.whyTitle')}</h2>
+        <p>{t('home.whyLead')}</p>
+      </div>
+      <div class="value-grid">
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V7a3 3 0 1 1 6 0v4"/><rect x="5" y="11" width="14" height="10" rx="2"/></svg>
+          </span>
+          <h3>{t('home.value1Title')}</h3>
+          <p>{t('home.value1Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+          </span>
+          <h3>{t('home.value2Title')}</h3>
+          <p>{t('home.value2Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </span>
+          <h3>{t('home.value3Title')}</h3>
+          <p>{t('home.value3Body')}</p>
+        </article>
+        <article class="value-card">
+          <span class="icon-tile" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </span>
+          <h3>{t('home.value4Title')}</h3>
+          <p>{t('home.value4Body')}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH AREAS ------------------------------------------------------- -->
+  <section class="section section-loose" aria-labelledby="research-areas-title">
+    <div class="container">
+      <SectionHeadingRow
+        eyebrow={t('home.researchAreasEyebrow')}
+        title={t('home.researchAreasTitle')}
+        titleId="research-areas-title"
+        description={t('home.researchAreasDescription')}
+        actionLabel={t('home.researchAreasAction')}
+        actionHref={href('/catalog/')}
+      />
+
+      <div class="grid grid-4" style="margin-top: var(--space-10);">
+        {researchAreas.map((area) => (
+          <a class="card card-category" href={href(`/catalog/${area.slug}/`)} style="text-decoration:none; color:inherit;">
+            <span class="eyebrow">{area.short}</span>
+            <h3>{area.name}</h3>
+            <p style="color: var(--color-ink-3); font-size: var(--text-sm);">{area.description}</p>
+            <div class="cta" style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge">{t('home.productCount', { count: productCounts.get(area.slug) ?? 0 })}</span>
+              <span class="text-primary" style="font-weight:600;">{t('home.view')}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES ------------------------------------------------------------ -->
+  <section class="section section-loose surface-soft" aria-labelledby="use-cases-title">
+    <div class="container">
+      <div class="section-heading">
+        <span class="eyebrow-rule">{t('home.useCasesEyebrow')}</span>
+        <h2 id="use-cases-title" class="display">{t('home.useCasesTitle')}</h2>
+        <p>{t('home.useCasesLead')}</p>
+      </div>
+      <div class="grid grid-3">
+        {useCases.map((useCase) => (
+          <a href={href(`/use-case/${useCase.slug}/`)} class="card" style="text-decoration:none; color:inherit;">
+            <h3 style="font-size: var(--text-lg);">{useCase.name}</h3>
+            <p style="color: var(--color-ink-3); font-size: var(--text-sm);">{useCase.description}</p>
+            <span class="text-primary" style="font-weight:600; margin-top:auto;">{t('home.browseProducts')}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS ---------------------------------------------------- -->
+  <section class="section section-loose" aria-labelledby="featured-title">
+    <div class="container">
+      <SectionHeadingRow
+        eyebrow={t('home.featuredEyebrow')}
+        title={t('home.featuredTitle')}
+        titleId="featured-title"
+        description={t('home.featuredDescription')}
+        actionLabel={t('home.featuredAction')}
+        actionHref={href('/shop/')}
+      />
+
+      <div class="grid grid-4" style="margin-top: var(--space-10);">
+        {featuredProducts.map((product) => (
+          <ProductCard product={toCardProduct(product, locale)} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT BAND ------------------------------------------------------------ -->
+  <section class="section" aria-labelledby="numbers-title">
+    <div class="container">
+      <div class="stat-band display-typography">
+        <div class="stat"><strong>{totalProducts}</strong><span>{t('home.statProducts')}</span></div>
+        <div class="stat"><strong>≥98%</strong><span>{t('home.statPurity')}</span></div>
+        <div class="stat"><strong>{totalProducts * coaLocaleCount}</strong><span>{t('home.statCoaDocuments')}</span></div>
+        <div class="stat"><strong>{coaLocaleCount}</strong><span>{t('home.statCoaLanguages')}</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG ----------------------------------------------------------------- -->
+  <section class="section section-loose" aria-labelledby="learn-title">
+    <div class="container">
+      <SectionHeadingRow
+        eyebrow={t('home.insightsEyebrow')}
+        title={t('home.insightsTitle')}
+        titleId="learn-title"
+        description={t('home.insightsDescription')}
+        actionLabel={t('home.insightsAction')}
+        actionHref={href('/blog/')}
+      />
+      <div class="grid grid-3" style="margin-top: var(--space-8);">
+        {posts.map((post) => (
+          <article class="card">
+            <span class="eyebrow">{post.data.category}</span>
+            <h3 style="font-size: var(--text-xl);"><a href={href(`/blog/${post.slug}/`)} style="color:inherit; text-decoration:none;">{post.data.title}</a></h3>
+            <p style="color: var(--color-ink-3);">{post.data.description}</p>
+            <a href={href(`/blog/${post.slug}/`)} class="text-primary" style="font-weight:600; margin-top:auto;">{t('home.readArticle')}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL BAND ------------------------------------------------------- -->
+  <section class="editorial-band" aria-hidden="true">
+    <div class="editorial-band-overlay"></div>
+  </section>
+
+  <!-- CTA BAND ------------------------------------------------------------- -->
+  <section class="section section-loose">
+    <div class="container">
+      <div class="cta-band display-typography">
+        <span class="eyebrow-rule" style="color:#90E0EF;">{t('home.ctaEyebrow')}</span>
+        <h2>{t('home.ctaTitle')}</h2>
+        <p>{t('home.ctaBody', { count: totalProducts })}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href={href('/catalog/')}>{t('home.ctaPrimary')}</a>
+          <a class="btn btn-secondary btn-lg" href={href('/contact/')}>{t('home.ctaSecondary')}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-bg {
+    position: relative;
+    isolation: isolate;
+    background-image: url('/images/site/peptide_shop.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+  }
+  /* Disable fixed-attachment parallax on touch / small screens (perf + iOS bug) */
+  @media (max-width: 1024px), (hover: none) {
+    .hero-bg { background-attachment: scroll; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg { background-attachment: scroll; }
+  }
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, rgba(4, 8, 18, 0.92) 0%, rgba(4, 8, 18, 0.78) 60%, rgba(4, 8, 18, 0.9) 100%);
+  }
+  .hero-bg .container { position: relative; }
+  .hero-bg h1,
+  .hero-bg .lead,
+  .hero-bg .eyebrow-rule {
+    color: #fff;
+  }
+  .hero-bg .lead { color: rgba(255, 255, 255, 0.88); }
+  .hero-bg .eyebrow-rule { color: rgba(255, 255, 255, 0.78); }
+  .hero-bg .hero-meta { border-top-color: rgba(255, 255, 255, 0.18); }
+  .hero-bg .hero-meta strong { color: #fff; }
+  .hero-bg .hero-meta span { color: rgba(255, 255, 255, 0.72); }
+
+  .editorial-band {
+    position: relative;
+    height: clamp(180px, 28vw, 320px);
+    background-image: url('/images/lifestyle/peptide-collection-organized.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    isolation: isolate;
+  }
+  .editorial-band-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(4, 8, 18, 0.4) 0%, rgba(4, 8, 18, 0.15) 50%, rgba(4, 8, 18, 0.4) 100%);
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: var(--space-12);
+    align-items: center;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-8);
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+  .hero-meta strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    color: var(--color-ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+  .hero-meta span {
+    color: var(--color-ink-3);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .hero-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-soft-3);
+    display: grid;
+    gap: var(--space-5);
+  }
+  .hero-card header { display: grid; gap: var(--space-2); }
+  .hero-card h2 { font-size: var(--text-2xl); margin: 0; line-height: 1.2; }
+  .hero-card ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: var(--space-4);
+  }
+  .hero-card li {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: var(--space-3);
+    align-items: start;
+  }
+  .hero-card .dot {
+    margin-top: 7px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-50);
+  }
+  .hero-card li strong { display: block; color: var(--color-ink); font-size: var(--text-base); margin-bottom: 2px; }
+  .hero-card li span { color: var(--color-ink-3); font-size: var(--text-sm); }
+
+  @media (min-width: 1024px) {
+    .hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(380px, 0.8fr); gap: var(--space-16); }
+  }
+</style>
