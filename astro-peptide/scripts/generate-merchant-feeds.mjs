@@ -7,7 +7,7 @@ import { parse } from 'yaml';
 const rootDir = fileURLToPath(new URL('..', import.meta.url));
 const productsDir = join(rootDir, 'src/content/products');
 const outputDir = join(rootDir, 'public/feeds');
-const site = 'https://peptide-shop.net';
+const site = 'https://xtremepropeptide.com';
 const defaultLocale = 'en';
 
 const localeMeta = {

@@ -1,9 +1,7 @@
-// Order persistence layer.
-// In production: writes to Supabase tables `orders` + `order_items`.
-// In dev (no Supabase configured): writes to a process-local Map so the checkout
-// flow remains testable end-to-end without external services.
-import { getSupabaseService, isSupabaseServiceConfigured } from './supabase/server';
-import type { SupabaseServiceEnv } from './supabase/server';
+// Order persistence layer (database-free).
+// Orders live in a process-local Map. On Cloudflare Workers this state is per-isolate
+// and not durable — BTCPay remains the source of truth for payments. The store-side
+// record is best-effort and used to drive confirmation emails / order-confirmation page.
 
 export type OrderStatus = 'pending' | 'paid' | 'expired' | 'failed' | 'cancelled';
 export type PaymentMethod = 'bitcoin' | 'bank' | 'card';
@@ -50,10 +48,6 @@ export interface CreateOrderInput {
   items: OrderItem[];
 }
 
-export interface OrderPersistenceOptions {
-  env?: SupabaseServiceEnv;
-}
-
 const memoryOrders = new Map<string, OrderRecord>();
 
 function newId(): string {
@@ -64,7 +58,7 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
-export async function createOrder(input: CreateOrderInput, options: OrderPersistenceOptions = {}): Promise<OrderRecord> {
+export async function createOrder(input: CreateOrderInput): Promise<OrderRecord> {
   const order: OrderRecord = {
     id: input.id ?? newId(),
     email: input.email,
@@ -82,60 +76,11 @@ export async function createOrder(input: CreateOrderInput, options: OrderPersist
     updatedAt: nowIso(),
     paidAt: null,
   };
-
-  if (isSupabaseServiceConfigured(options.env)) {
-    const supa = getSupabaseService(options.env);
-    if (!supa) throw new Error('supabase_service_unavailable');
-    const { error: orderErr } = await supa.from('orders').insert({
-      id: order.id,
-      email: order.email,
-      status: order.status,
-      payment_method: order.paymentMethod,
-      payment_reference: order.paymentReference,
-      subtotal: order.subtotal,
-      total: order.total,
-      currency: order.currency,
-      locale: order.locale,
-      shipping_address: order.shippingAddress,
-      metadata: order.metadata,
-      created_at: order.createdAt,
-      updated_at: order.updatedAt,
-    });
-    if (orderErr) throw new Error(`order_insert_failed:${orderErr.message}`);
-    if (order.items.length > 0) {
-      const { error: itemsErr } = await supa.from('order_items').insert(
-        order.items.map((item) => ({
-          order_id: order.id,
-          product_id: item.productId,
-          slug: item.slug,
-          title: item.title,
-          variant: item.variant,
-          quantity: item.quantity,
-          unit_price: item.unitPrice,
-          currency: item.currency,
-        })),
-      );
-      if (itemsErr) throw new Error(`order_items_insert_failed:${itemsErr.message}`);
-    }
-    return order;
-  }
-
   memoryOrders.set(order.id, order);
   return order;
 }
 
-export async function getOrder(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
-  if (isSupabaseServiceConfigured(options.env)) {
-    const supa = getSupabaseService(options.env);
-    if (!supa) return null;
-    const { data, error } = await supa
-      .from('orders')
-      .select('*, order_items(*)')
-      .eq('id', id)
-      .single();
-    if (error || !data) return null;
-    return mapRow(data);
-  }
+export async function getOrder(id: string): Promise<OrderRecord | null> {
   return memoryOrders.get(id) ?? null;
 }
 
@@ -143,31 +88,12 @@ async function updateStatus(
   id: string,
   status: OrderStatus,
   patch: Partial<OrderRecord> = {},
-  options: OrderPersistenceOptions = {},
 ): Promise<OrderRecord | null> {
-  const updatedAt = nowIso();
-  if (isSupabaseServiceConfigured(options.env)) {
-    const supa = getSupabaseService(options.env);
-    if (!supa) return null;
-    const { data, error } = await supa
-      .from('orders')
-      .update({
-        status,
-        updated_at: updatedAt,
-        ...(status === 'paid' ? { paid_at: updatedAt } : {}),
-        ...(patch.paymentReference !== undefined ? { payment_reference: patch.paymentReference } : {}),
-      })
-      .eq('id', id)
-      .select('*, order_items(*)')
-      .single();
-    if (error || !data) return null;
-    return mapRow(data);
-  }
   const existing = memoryOrders.get(id);
   if (!existing) return null;
   existing.status = status;
-  existing.updatedAt = updatedAt;
-  if (status === 'paid') existing.paidAt = updatedAt;
+  existing.updatedAt = nowIso();
+  if (status === 'paid') existing.paidAt = existing.updatedAt;
   if (patch.paymentReference !== undefined) existing.paymentReference = patch.paymentReference;
   memoryOrders.set(id, existing);
   return existing;
@@ -176,48 +102,16 @@ async function updateStatus(
 export async function markOrderPaid(
   id: string,
   ref: { provider: string; invoiceId: string | null },
-  options: OrderPersistenceOptions = {},
 ): Promise<OrderRecord | null> {
   return updateStatus(id, 'paid', {
     paymentReference: ref.invoiceId ? `${ref.provider}:${ref.invoiceId}` : ref.provider,
-  }, options);
+  });
 }
 
-export async function markOrderExpired(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
-  return updateStatus(id, 'expired', {}, options);
+export async function markOrderExpired(id: string): Promise<OrderRecord | null> {
+  return updateStatus(id, 'expired');
 }
 
-export async function markOrderFailed(id: string, options: OrderPersistenceOptions = {}): Promise<OrderRecord | null> {
-  return updateStatus(id, 'failed', {}, options);
-}
-
-function mapRow(row: Record<string, unknown>): OrderRecord {
-  const items = Array.isArray(row.order_items)
-    ? (row.order_items as Record<string, unknown>[]).map((it) => ({
-        productId: String(it.product_id ?? ''),
-        slug: String(it.slug ?? ''),
-        title: String(it.title ?? ''),
-        variant: String(it.variant ?? ''),
-        quantity: Number(it.quantity ?? 0),
-        unitPrice: Number(it.unit_price ?? 0),
-        currency: String(it.currency ?? 'EUR'),
-      }))
-    : [];
-  return {
-    id: String(row.id),
-    email: String(row.email ?? ''),
-    status: (row.status as OrderStatus) ?? 'pending',
-    paymentMethod: (row.payment_method as PaymentMethod) ?? 'bitcoin',
-    paymentReference: (row.payment_reference as string | null) ?? null,
-    subtotal: Number(row.subtotal ?? 0),
-    total: Number(row.total ?? 0),
-    currency: String(row.currency ?? 'EUR'),
-    locale: String(row.locale ?? 'en'),
-    shippingAddress: (row.shipping_address as Record<string, unknown> | null) ?? null,
-    metadata: (row.metadata as Record<string, unknown> | null) ?? null,
-    items,
-    createdAt: String(row.created_at ?? nowIso()),
-    updatedAt: String(row.updated_at ?? nowIso()),
-    paidAt: (row.paid_at as string | null) ?? null,
-  };
+export async function markOrderFailed(id: string): Promise<OrderRecord | null> {
+  return updateStatus(id, 'failed');
 }

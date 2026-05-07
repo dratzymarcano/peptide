@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getSupabaseService, isSupabaseServiceConfigured } from '../../lib/supabase/server';
-import type { SupabaseServiceEnv } from '../../lib/supabase/server';
+import { env as cfEnv } from 'cloudflare:workers';
 import {
   sendContactAcknowledgement,
   sendContactNotification,
@@ -57,23 +56,7 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
       : redirect('/contact/?error=invalid', 303);
   }
 
-  const env = locals.runtime?.env as (EmailEnv & SupabaseServiceEnv) | undefined;
-
-  if (isSupabaseServiceConfigured(env)) {
-    const supa = getSupabaseService(env);
-    if (supa) {
-      const { error } = await supa.from('contact_messages').insert([
-        { name, email, organisation, topic, message, locale: payload.locale ?? null },
-      ]);
-      if (error) {
-        console.error('[contact] storage error', error);
-      }
-    }
-  } else if (import.meta.env.DEV) {
-    // Dev fallback: log and pretend success so the UI flow stays testable.
-    // eslint-disable-next-line no-console
-    console.log('[contact:dev]', { name, email, organisation, topic, message });
-  }
+  const env = cfEnv as unknown as EmailEnv | undefined;
 
   try {
     const contactMessage = { name, email, organisation, topic, message, locale: payload.locale ?? null };
@@ -81,8 +64,8 @@ export const POST: APIRoute = async ({ request, redirect, locals }) => {
     const acknowledgement = sendContactAcknowledgement(contactMessage, { env }).catch((error) => {
       console.error('[contact] acknowledgement email failed', error);
     });
-    if (locals.runtime?.ctx) {
-      locals.runtime.ctx.waitUntil(acknowledgement);
+    if (locals.cfContext) {
+      locals.cfContext.waitUntil(acknowledgement);
     } else {
       await acknowledgement;
     }

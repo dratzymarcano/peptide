@@ -3,6 +3,7 @@ interface Props {
 	title: string;
 	description?: string;
 	image?: string;
+	imageAlt?: string;
 	article?: boolean;
 	noindex?: boolean;
 	availableLocales?: typeof locales[number][];
@@ -10,12 +11,16 @@ interface Props {
 
 import { getLocaleFromPathname, localizePath, localeMeta, locales } from '../i18n/config';
 
-const { title, description, image, article, noindex = false, availableLocales = locales } = Astro.props;
+const { title, description, image, imageAlt, article, noindex = false, availableLocales = locales } = Astro.props;
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const canonicalURL = new URL(localizePath(Astro.url.pathname, locale), Astro.site);
 const siteName = 'Peptide Shop';
 const ogLocale = localeMeta[locale].og;
 const twitterHandle = '@peptideshop';
+const defaultOgImage = '/brand/peptide-shop-logo.svg';
+const ogImage = image ?? defaultOgImage;
+const ogImageUrl = new URL(ogImage, Astro.url);
+const ogImageAlt = imageAlt ?? title;
 const alternateUrls = locales.filter((alternateLocale) => availableLocales.includes(alternateLocale)).map((alternateLocale) => ({
 	locale: alternateLocale,
 	hreflang: localeMeta[alternateLocale].hreflang,
@@ -26,6 +31,8 @@ const alternateUrls = locales.filter((alternateLocale) => availableLocales.inclu
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light" />
+<meta name="format-detection" content="telephone=no" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="apple-touch-icon" href="/favicon.svg" />
 <link rel="manifest" href="/site.webmanifest" />
@@ -51,7 +58,8 @@ const alternateUrls = locales.filter((alternateLocale) => availableLocales.inclu
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:alt" content={ogImageAlt} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -59,7 +67,8 @@ const alternateUrls = locales.filter((alternateLocale) => availableLocales.inclu
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 {description && <meta property="twitter:description" content={description} />}
-{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
+<meta property="twitter:image" content={ogImageUrl} />
+<meta property="twitter:image:alt" content={ogImageAlt} />
 
 <!-- Robots -->
 {noindex

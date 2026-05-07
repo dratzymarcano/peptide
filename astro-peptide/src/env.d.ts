@@ -10,8 +10,6 @@ declare namespace App {
 
 interface ImportMetaEnv {
 	readonly SITE_URL?: string;
-	readonly SUPABASE_URL?: string;
-	readonly SUPABASE_SERVICE_ROLE_KEY?: string;
 	readonly RESEND_API_KEY?: string;
 	readonly RESEND_FROM?: string;
 	readonly RESEND_TO?: string;
@@ -19,12 +17,12 @@ interface ImportMetaEnv {
 	readonly BANK_IBAN?: string;
 	readonly BANK_BIC?: string;
 	readonly BANK_BENEFICIARY?: string;
-	readonly BTCPAY_SERVER_URL?: string;
-	readonly BTCPAY_STORE_ID?: string;
-	readonly BTCPAY_API_KEY?: string;
-	readonly BTCPAY_WEBHOOK_SECRET?: string;
 }
 
 interface ImportMeta {
 	readonly env: ImportMetaEnv;
+}
+
+declare module 'cloudflare:workers' {
+	export const env: Record<string, string | undefined>;
 }

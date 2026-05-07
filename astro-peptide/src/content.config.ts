@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 // FAQ schema for product pages
 const faqSchema = z.object({
@@ -17,7 +18,7 @@ const reviewSchema = z.object({
 });
 
 const productsCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/products' }),
   schema: z.object({
     id: z.string(),
     title: z.string(),
@@ -78,7 +79,7 @@ const productsCollection = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -96,7 +97,7 @@ const blogCollection = defineCollection({
 });
 
 const learnCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/learn' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),

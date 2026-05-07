@@ -28,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const products = await getCanonicalCollection('products');
   const paths: { params: { variant: string }; props: { slug: string; locale: CoaLocale } }[] = [];
   for (const product of products) {
-    const slug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+    const slug = product.id;
     paths.push({ params: { variant: slug }, props: { slug, locale: DEFAULT_LOCALE } });
     for (const lang of SUPPORTED_LOCALES) {
       if (lang === DEFAULT_LOCALE) continue;
@@ -42,7 +42,7 @@ export const GET: APIRoute = async ({ props }) => {
   const { slug, locale } = props as { slug: string; locale: CoaLocale };
   const products = await getCanonicalCollection('products');
   const product = products.find(
-    (p) => p.slug.replace(/^\/peptides\//, '').replace(/^\//, '') === slug
+    (p) => p.id === slug
   );
   if (!product) {
     return new Response('Product not found', { status: 404 });

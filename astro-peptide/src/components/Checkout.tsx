@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { cartItems, cartTotal, clearCart } from '../scripts/cartStore';
+import { COUNTRIES, countryName } from '../data/countries';
 
 type Step = 'shipping' | 'payment' | 'review';
-type PaymentMethod = 'bank-transfer' | 'bitcoin';
+type PaymentMethod = 'bank-transfer';
 type ShippingMethod = 'standard' | 'express';
 
 const SHIPPING_COSTS: Record<ShippingMethod, { price: number; labelKey: string; timeKey: string }> = {
@@ -42,6 +43,8 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
   const [bitcoinInvoice, setBitcoinInvoice] = useState<{ address: string; amount: string } | null>(null);
+  void setBitcoinInvoice;
+  void bitcoinInvoice;
   const [finalOrderTotal, setFinalOrderTotal] = useState(0);
 
   const [shippingInfo, setShippingInfo] = useState({
@@ -58,7 +61,7 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
 
   const qualifiesForFreeDelivery = $cartTotal >= FREE_DELIVERY_THRESHOLD;
   const shippingCost = qualifiesForFreeDelivery ? 0 : SHIPPING_COSTS[shippingMethod].price;
-  const paymentDiscount = paymentMethod === 'bitcoin' ? ($cartTotal + shippingCost) * 0.1 : 0;
+  const paymentDiscount = 0;
   const orderTotal = $cartTotal + shippingCost - paymentDiscount;
   const canCheckout = products.length > 0 && $cartTotal >= MIN_ORDER_AMOUNT;
 
@@ -76,28 +79,10 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
     setCurrentStep('review');
   }
 
-  async function createBitcoinInvoice(invoiceOrderId: string) {
-    const response = await fetch('/api/create-bitcoin-invoice', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        orderId: invoiceOrderId,
-        amount: Number(orderTotal.toFixed(2)),
-        currency: 'EUR',
-        buyerEmail: shippingInfo.email,
-        description: `Peptide Shop order ${invoiceOrderId}`,
-        locale,
-      }),
-    });
-    const data = await response.json();
-    if (!response.ok || !data.success || !data.invoice?.btcAddress || !data.invoice?.btcAmount) {
-      throw new Error(data.code || 'bitcoin_invoice_create_failed');
-    }
-    return {
-      address: data.invoice.btcAddress,
-      amount: data.invoice.btcAmount,
-    };
+  async function createBitcoinInvoice(_invoiceOrderId: string): Promise<{ address: string; amount: string }> {
+    throw new Error('bitcoin_disabled');
   }
+  void createBitcoinInvoice;
 
   async function createServerOrder(serverOrderId: string) {
     const response = await fetch('/api/orders', {
@@ -149,20 +134,12 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
     setOrderId(newOrderId);
 
     try {
-      let invoice: { address: string; amount: string } | null = null;
-      if (paymentMethod === 'bitcoin') {
-        invoice = await createBitcoinInvoice(newOrderId);
-      }
-
       await createServerOrder(newOrderId);
-
-      if (paymentMethod === 'bitcoin') setBitcoinInvoice(invoice);
-      else clearCart();
-
+      clearCart();
       setFinalOrderTotal(orderTotal);
       setOrderComplete(true);
     } catch (error) {
-      setOrderError(paymentMethod === 'bitcoin' ? copy.bitcoinInvoiceError : 'Order could not be placed. Please try again or contact support.');
+      setOrderError('Order could not be placed. Please try again or contact support.');
     } finally {
       setIsProcessing(false);
     }
@@ -220,20 +197,12 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
     return (
       <div className="checkout-complete card">
         <span className="eyebrow">{copy.orderReceived}</span>
-        <h2>{paymentMethod === 'bitcoin' ? copy.completeBitcoin : copy.orderConfirmed}</h2>
+        <h2>{copy.orderConfirmed}</h2>
         <p>{copy.orderId} <strong>{orderId}</strong></p>
-        {paymentMethod === 'bitcoin' && bitcoinInvoice ? (
-          <div className="payment-instructions">
-            <p>{copy.sendExactly} <strong>{bitcoinInvoice.amount} BTC</strong> {copy.to}</p>
-            <code>{bitcoinInvoice.address}</code>
-            <button className="btn btn-secondary" type="button" onClick={() => navigator.clipboard.writeText(bitcoinInvoice.address)}>{copy.copyAddress}</button>
-          </div>
-        ) : (
-          <div className="payment-instructions">
-            <p>{copy.bankInstructions.replace('{email}', shippingInfo.email)}</p>
-            <p>{copy.orderTotal} <strong>€{finalOrderTotal.toFixed(2)}</strong></p>
-          </div>
-        )}
+        <div className="payment-instructions">
+          <p>{copy.bankInstructions.replace('{email}', shippingInfo.email)}</p>
+          <p>{copy.orderTotal} <strong>€{finalOrderTotal.toFixed(2)}</strong></p>
+        </div>
         <div className="checkout-actions">
           <a className="btn btn-secondary" href={paths?.shop || '/shop/'}>{copy.continueShopping}</a>
         </div>
@@ -275,6 +244,19 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
                   </label>
                   );
                 })}
+                <label className="field checkout-form-wide">
+                  <span>{copy.country ?? 'Country'}</span>
+                  <select
+                    className="input"
+                    required
+                    value={shippingInfo.country}
+                    onChange={(event) => setShippingInfo({ ...shippingInfo, country: event.target.value })}
+                  >
+                    {COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>{c.name}</option>
+                    ))}
+                  </select>
+                </label>
                 <fieldset className="checkout-choice-group checkout-form-wide">
                   <legend>{copy.deliveryMethod}</legend>
                   {(Object.keys(SHIPPING_COSTS) as ShippingMethod[]).map((method) => (
@@ -298,10 +280,6 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
                   <input type="radio" name="payment" checked={paymentMethod === 'bank-transfer'} onChange={() => setPaymentMethod('bank-transfer')} />
                   <span><strong>{copy.bankTransfer}</strong><small>{copy.bankTransferHelp}</small></span>
                 </label>
-                <label className="choice-card">
-                  <input type="radio" name="payment" checked={paymentMethod === 'bitcoin'} onChange={() => setPaymentMethod('bitcoin')} />
-                  <span><strong>{copy.bitcoin}</strong><small>{copy.bitcoinHelp}</small></span>
-                </label>
                 <div className="checkout-actions"><button className="btn btn-primary" type="submit">{copy.reviewOrder}</button><button className="btn btn-ghost" type="button" onClick={() => setCurrentStep('shipping')}>{copy.back}</button></div>
               </form>
             </section>
@@ -313,11 +291,11 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
               <h2>{copy.confirmOrder}</h2>
               <div className="review-block">
                 <h3>{copy.delivery}</h3>
-                <p>{shippingInfo.firstName} {shippingInfo.lastName}<br />{shippingInfo.address}<br />{shippingInfo.city}, {shippingInfo.county} {shippingInfo.postcode}</p>
+                <p>{shippingInfo.firstName} {shippingInfo.lastName}<br />{shippingInfo.address}<br />{shippingInfo.city}, {shippingInfo.county} {shippingInfo.postcode}<br />{countryName(shippingInfo.country)}</p>
               </div>
               <div className="review-block">
                 <h3>{copy.payment}</h3>
-                <p>{paymentMethod === 'bitcoin' ? copy.bitcoinInvoice : copy.bankTransfer} · {copy[SHIPPING_COSTS[shippingMethod].labelKey]}</p>
+                <p>{copy.bankTransfer} · {copy[SHIPPING_COSTS[shippingMethod].labelKey]}</p>
               </div>
               <div className="ruo-banner compact"><strong>{copy.researchUseOnly}</strong><span>{copy.reviewRuo}</span></div>
               {orderError && <p className="form-error">{orderError}</p>}

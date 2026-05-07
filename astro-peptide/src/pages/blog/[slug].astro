@@ -1,5 +1,6 @@
 ---
 import { getCanonicalCollection } from '../../lib/collections';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
@@ -14,7 +15,7 @@ export const prerender = false;
 
 const { slug: routeSlug } = Astro.params;
 const allPosts = await getCanonicalCollection('blog');
-const post = allPosts.find((p) => p.slug === routeSlug);
+const post = allPosts.find((p) => p.id === routeSlug);
 if (!post) {
   return new Response(null, { status: 404 });
 }
@@ -22,16 +23,16 @@ const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname)
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 const dateLocale = localeMeta[locale].og.replace('_', '-');
-let localizedPost = getLocalizedBlogPost(post.slug, locale, post.data);
-const availableLocales = await getAvailableLocales('blog', post.slug);
+let localizedPost = getLocalizedBlogPost(post.id, locale, post.data);
+const availableLocales = await getAvailableLocales('blog', post.id);
 
 // Per-locale markdown override. When `<locale>/<slug>.md` exists, prefer its
 // frontmatter and rendered body over the runtime helper output.
 const localeOverride = locale !== 'en'
-  ? await getLocalizedEntry('blog', post.slug, locale)
+  ? await getLocalizedEntry('blog', post.id, locale)
   : undefined;
-const hasOverride = !!(localeOverride && localeOverride.id !== `${post.slug}.md`);
-const OverrideBody = hasOverride ? (await localeOverride!.render()).Content : null;
+const hasOverride = !!(localeOverride && localeOverride.id !== post.id);
+const OverrideBody = hasOverride ? (await render(localeOverride!)).Content : null;
 if (hasOverride && localeOverride) {
   const od = localeOverride.data;
   localizedPost = {
@@ -46,13 +47,13 @@ if (hasOverride && localeOverride) {
   };
 }
 const relatedPosts = allPosts
-  .filter((candidate) => candidate.data.category === post.data.category && candidate.slug !== post.slug)
+  .filter((candidate) => candidate.data.category === post.data.category && candidate.id !== post.id)
   .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
   .slice(0, 3)
-  .map((entry) => ({ entry, content: getLocalizedBlogPost(entry.slug, locale, entry.data) }));
+  .map((entry) => ({ entry, content: getLocalizedBlogPost(entry.id, locale, entry.data) }));
 
-const siteUrl = 'https://peptide-shop.net';
-const postUrl = new URL(href(`/blog/${post.slug}/`), Astro.site).toString();
+const siteUrl = 'https://xtremepropeptide.com';
+const postUrl = new URL(href(`/blog/${post.id}/`), Astro.site).toString();
 const imageUrl = post.data.image ? new URL(post.data.image, siteUrl).href : `${siteUrl}/favicon.svg`;
 const authorSlug = String(localizedPost.author || 'editorial-team').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const articleSchema = {
@@ -84,7 +85,7 @@ const articleSchema = {
 };
 
 // HowTo schema: emit on the storage/handling article only.
-const howToSchema = post.slug === 'peptide-storage-handling-best-practices'
+const howToSchema = post.id === 'peptide-storage-handling-best-practices'
   ? {
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -109,7 +110,7 @@ const howToSchema = post.slug === 'peptide-storage-handling-best-practices'
 const breadcrumbs = [
   { name: t('common.home'), url: href('/') },
   { name: t('blog.breadcrumb'), url: href('/blog/') },
-  { name: localizedPost.title, url: href(`/blog/${post.slug}/`) },
+  { name: localizedPost.title, url: href(`/blog/${post.id}/`) },
 ];
 ---
 
@@ -159,7 +160,7 @@ const breadcrumbs = [
               <h2>{t('blogArticle.relatedArticles')}</h2>
               <div class="related-list">
                 {relatedPosts.map((related) => (
-                  <a href={href(`/blog/${related.entry.slug}/`)}>
+                  <a href={href(`/blog/${related.entry.id}/`)}>
                     <strong>{related.content.title}</strong>
                     <span>{new Date(related.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' })}</span>
                   </a>

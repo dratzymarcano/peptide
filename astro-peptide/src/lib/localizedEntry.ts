@@ -21,11 +21,11 @@ export async function getLocalizedEntry<C extends CollectionKey>(
 ): Promise<CollectionEntry<C> | undefined> {
   const all = await getCollection(collection);
   if (locale !== defaultLocale) {
-    const localized = all.find((entry) => entry.id === `${locale}/${slug}.md` || entry.slug === `${locale}/${slug}`);
+    const localized = all.find((entry) => entry.id === `${locale}/${slug}`);
     if (localized) return localized;
   }
   return all.find(
-    (entry) => entry.id === `${slug}.md` || entry.slug === slug || entry.id === `${defaultLocale}/${slug}.md`,
+    (entry) => entry.id === slug || entry.id === `${defaultLocale}/${slug}`,
   );
 }
 
@@ -35,14 +35,14 @@ export async function getAvailableLocales<C extends CollectionKey>(
 ): Promise<Locale[]> {
   const all = await getCollection(collection);
   const hasCanonical = all.some(
-    (entry) => entry.id === `${slug}.md` || entry.slug === slug || entry.id === `${defaultLocale}/${slug}.md`,
+    (entry) => entry.id === slug || entry.id === `${defaultLocale}/${slug}`,
   );
   const available = hasCanonical ? new Set<Locale>([defaultLocale]) : new Set<Locale>();
 
   for (const locale of locales) {
     if (locale === defaultLocale) continue;
     const hasLocalizedEntry = all.some(
-      (entry) => entry.id === `${locale}/${slug}.md` || entry.slug === `${locale}/${slug}`,
+      (entry) => entry.id === `${locale}/${slug}`,
     );
     if (hasLocalizedEntry) available.add(locale);
   }

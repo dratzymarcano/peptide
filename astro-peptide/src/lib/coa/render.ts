@@ -18,7 +18,7 @@ import { getCoaStrings, normalizeLocale, type CoaLocale } from './i18n';
 
 type Product = CollectionEntry<'products'>;
 
-const SITE = 'https://peptide-shop.net';
+const SITE = 'https://xtremepropeptide.com';
 
 interface AnalyticalRow {
   parameter: string;
@@ -237,7 +237,7 @@ export interface RenderOptions {
 export function renderCoaHtml(product: Product, opts: RenderOptions = {}): string {
   const locale = normalizeLocale(opts.locale);
   const t = getCoaStrings(locale);
-  const slug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+  const slug = product.id.replace(/^\/peptides\//, '').replace(/^\//, '');
   const lot = { ...deriveLot(slug), ...opts.lotOverrides };
   const lotHash = hash(slug);
   const rows = buildAnalyticalRows(product, lotHash, t);
@@ -399,7 +399,7 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
 <body>
   <div class="sheet">
     <header class="brand-bar">
-      <img src="${SITE}/brand/peptide-shop-logo.svg" alt="Peptide Shop" />
+      <img src="${SITE}/brand/peptide-shop-logo.svg" alt="XtremePro Peptide" />
       <div class="ruo">
         <strong>${escapeHtml(t.ruoTitle)}</strong>
         <span>${escapeHtml(t.ruoSubtitle)}</span>
@@ -500,8 +500,8 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
 
     <footer class="doc-footer">
       <div>
-        <a href="${SITE}">peptide-shop.net</a> ·
-        ${escapeHtml(t.footerContact)}: <a href="mailto:info@peptide-shop.net">info@peptide-shop.net</a>
+        <a href="${SITE}">xtremepropeptide.com</a> ·
+        ${escapeHtml(t.footerContact)}: <a href="mailto:info@xtremepropeptide.com">info@xtremepropeptide.com</a>
       </div>
       <div>
         ${escapeHtml(t.footerControl)} <a href="${policyHref}">${escapeHtml(t.footerPolicy)}</a>.

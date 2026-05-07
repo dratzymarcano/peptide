@@ -35,7 +35,7 @@ export const GET: APIRoute = async ({ params, url, redirect }) => {
 
   const products = await getCanonicalCollection('products');
   const product = products.find(
-    (p) => p.slug.replace(/^\/peptides\//, '').replace(/^\//, '') === slug
+    (p) => p.id === slug
   );
   if (!product) {
     return json({ code: 'product_not_found' }, 404);

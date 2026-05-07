@@ -54,9 +54,9 @@ interface EnquiryMessage {
 }
 
 const IS_DEV = Boolean(import.meta.env.DEV);
-const FALLBACK_FROM = 'Peptide Shop <orders@peptide-shop.net>';
-const FALLBACK_TO = 'info@peptide-shop.net';
-const FALLBACK_SITE_URL = 'https://peptide-shop.net';
+const FALLBACK_FROM = 'Peptide Shop <orders@xtremepropeptide.com>';
+const FALLBACK_TO = 'info@xtremepropeptide.com';
+const FALLBACK_SITE_URL = 'https://xtremepropeptide.com';
 
 function envValue(env: EmailEnv | undefined, key: keyof EmailEnv, fallback = ''): string {
   const runtimeValue = env?.[key];

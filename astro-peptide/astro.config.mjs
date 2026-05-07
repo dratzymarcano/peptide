@@ -1,5 +1,4 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
@@ -8,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const rootDir = dirname(fileURLToPath(import.meta.url));
-const site = 'https://peptide-shop.net';
+const site = 'https://xtremepropeptide.com';
 const locales = ['en', 'de', 'nl', 'fr', 'it', 'es'];
 const defaultLocale = 'en';
 const sitemapLocaleMap = {
@@ -146,6 +145,7 @@ export default defineConfig({
     react(),
     sitemap({
       customPages: localizedSitemapPages,
+      xslURL: '/sitemap.xsl',
       filter: (page) =>
         !page.includes('/cart') &&
         !page.includes('/checkout') &&
@@ -163,11 +163,11 @@ export default defineConfig({
         return { ...item, links };
       },
     }),
-    tailwind(),
   ],
   output: 'server', // Hybrid rendering for API endpoints
   adapter: cloudflare({
     imageService: 'compile',
+    prerenderEnvironment: 'node',
     platformProxy: { enabled: true },
   }),
   // 301 redirects for IA migration (legacy /peptides/{category} → /use-case/{slug})

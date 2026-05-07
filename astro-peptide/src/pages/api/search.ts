@@ -63,7 +63,7 @@ export const GET: APIRoute = async ({ url }) => {
         return {
           id: `product-${product.data.id}`,
           title: localizedProduct.title,
-          slug: `/peptides/${cleanSlug(product.slug)}`,
+          slug: `/peptides/${cleanSlug(product.id)}`,
           category: area ? t(`taxonomy.researchAreas.${area}.name`) : t('searchPage.products'),
           type: 'product' as const
         };
@@ -73,7 +73,7 @@ export const GET: APIRoute = async ({ url }) => {
     const posts = await getCanonicalCollection('blog');
     const blogResults = posts
       .filter(post => {
-        const localizedPost = getLocalizedBlogPost(post.slug, locale, post.data);
+        const localizedPost = getLocalizedBlogPost(post.id, locale, post.data);
         const title = localizedPost.title.toLowerCase();
         const description = localizedPost.description.toLowerCase();
         const category = localizedPost.category.toLowerCase();
@@ -86,11 +86,11 @@ export const GET: APIRoute = async ({ url }) => {
       })
       .slice(0, 3)
       .map(post => {
-        const localizedPost = getLocalizedBlogPost(post.slug, locale, post.data);
+        const localizedPost = getLocalizedBlogPost(post.id, locale, post.data);
         return {
-          id: `blog-${post.slug}`,
+          id: `blog-${post.id}`,
           title: localizedPost.title,
-          slug: `/blog/${post.slug}/`,
+          slug: `/blog/${post.id}/`,
           category: localizedPost.category || t('searchPage.researchNotes'),
           type: 'blog' as const
         };

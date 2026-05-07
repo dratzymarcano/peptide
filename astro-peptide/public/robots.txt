@@ -1,4 +1,4 @@
-# peptide-shop.net robots.txt
+# xtremepropeptide.com robots.txt
 # Default: allow all conforming crawlers; block transactional and admin paths.
 
 User-agent: *
@@ -76,4 +76,4 @@ Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
 
-Sitemap: https://peptide-shop.net/sitemap-index.xml
+Sitemap: https://xtremepropeptide.com/sitemap-index.xml

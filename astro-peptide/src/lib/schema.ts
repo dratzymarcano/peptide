@@ -14,7 +14,7 @@
 import type { Locale } from '../i18n/config';
 import legalEntity from '../data/legalEntity.json';
 
-const SITE = 'https://peptide-shop.net';
+const SITE = 'https://xtremepropeptide.com';
 
 // Map UI locale codes to BCP 47 language tags emitted in schema. English is
 // region-less (global default); the other locales are region-qualified to

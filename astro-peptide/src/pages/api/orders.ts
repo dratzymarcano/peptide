@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
+import { env as cfEnv } from 'cloudflare:workers';
 import { createOrder, type OrderRecord, type PaymentMethod } from '../../lib/orders';
-import type { SupabaseServiceEnv } from '../../lib/supabase/server';
 import {
   sendBankTransferInstructions,
   sendOrderConfirmation,
@@ -88,7 +88,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
   }
 
   const method = paymentMethod(payload.paymentMethod);
-  const env = locals.runtime?.env as (EmailEnv & SupabaseServiceEnv) | undefined;
+  const env = cfEnv as unknown as EmailEnv | undefined;
   let order: OrderRecord;
   try {
     order = await createOrder({
@@ -106,7 +106,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         source: 'checkout',
       },
       items,
-    }, { env });
+    });
   } catch (error) {
     console.error('[orders] persistence failed', error);
     return json({ success: false, code: 'order_persistence_failed' }, 503);
@@ -129,8 +129,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
     await Promise.all(tasks);
   };
 
-  if (locals.runtime?.ctx) {
-    locals.runtime.ctx.waitUntil(dispatchEmails());
+  if (locals.cfContext) {
+    locals.cfContext.waitUntil(dispatchEmails());
   } else {
     await dispatchEmails();
   }
@@ -138,6 +138,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
   return json({
     success: true,
     order,
-    emailStatus: locals.runtime?.ctx ? 'queued' : 'sent_or_logged',
+    emailStatus: locals.cfContext ? 'queued' : 'sent_or_logged',
   });
 };

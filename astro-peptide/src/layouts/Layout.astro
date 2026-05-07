@@ -66,8 +66,11 @@ const breadcrumbSchema = breadcrumbs && breadcrumbs.length > 0 ? buildBreadcrumb
 
 		<!-- Design-system tokens (DESIGN_SPEC § 13). Loaded globally. -->
 		<link rel="stylesheet" href="/css/design-system.css" />
+		<style is:inline>
+			body { background-color: #ffffff; color: var(--color-ink, #0F172A); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+		</style>
 	</head>
-	<body class="bg-white text-ink antialiased">
+	<body>
 		<a href="#main-content" class="skip-to-content">Skip to main content</a>
 		<Header />
 		<main id="main-content" class="main-wrapper">

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { createClient } from '@supabase/supabase-js';
+import { env as cfEnv } from 'cloudflare:workers';
 import { sendEnquiryNotification, type EmailEnv } from '../../lib/email/sender';
 
 const json = (body: unknown, status = 200) =>
@@ -8,43 +8,14 @@ const json = (body: unknown, status = 200) =>
     headers: { 'Content-Type': 'application/json' },
   });
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   const data = await request.json();
 
-  // Basic validation
   if (!data.email || !data.items || data.items.length === 0 || !data.researchConfirm) {
     return json({ success: false, code: 'invalid_request' }, 400);
   }
 
-  // Initialize Supabase (Environment variables needed)
-  const supabaseUrl = import.meta.env.SUPABASE_URL;
-  const supabaseKey = import.meta.env.SUPABASE_KEY;
-
-  const env = locals.runtime?.env as EmailEnv | undefined;
-
-  if (supabaseUrl && supabaseKey) {
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    const { error } = await supabase
-      .from('enquiries')
-      .insert([
-        {
-          email: data.email,
-          name: data.name,
-          institution: data.institution,
-          message: data.message,
-          items: data.items,
-          status: 'pending',
-          payload: data,
-        },
-      ]);
-
-    if (error) {
-      console.error('Enquiry storage error:', error);
-    }
-  } else if (import.meta.env.DEV) {
-    console.log('[enquiry:dev]', data);
-  }
+  const env = cfEnv as unknown as EmailEnv | undefined;
 
   try {
     await sendEnquiryNotification(

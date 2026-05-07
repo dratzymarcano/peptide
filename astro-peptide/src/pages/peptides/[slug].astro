@@ -1,5 +1,6 @@
 ---
 import { getCanonicalCollection } from '../../lib/collections';
+import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import ProductOptions from '../../components/ProductOptions';
@@ -22,19 +23,16 @@ export const prerender = false;
 
 const { slug: routeSlug } = Astro.params;
 const allProductsForLookup = await getCanonicalCollection('products');
-const product = allProductsForLookup.find((p) => {
-  const s = p.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
-  return s === routeSlug;
-});
+const product = allProductsForLookup.find((p) => p.id === routeSlug);
 if (!product) {
   return new Response(null, { status: 404 });
 }
-const { Content } = await product.render();
+const { Content } = await render(product);
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 
-const currentSlug = product.slug.replace(/^\/peptides\//, '').replace(/^\//, '');
+const currentSlug = product.id;
 const availableLocales = await getAvailableLocales('products', currentSlug);
 
 // Per-locale markdown override. When a `<locale>/<slug>.md` exists under
@@ -44,8 +42,8 @@ const availableLocales = await getAvailableLocales('products', currentSlug);
 const localeOverride = locale !== 'en'
   ? await getLocalizedEntry('products', currentSlug, locale)
   : undefined;
-const hasOverride = !!(localeOverride && localeOverride.id !== `${currentSlug}.md`);
-const OverrideContent = hasOverride ? (await localeOverride!.render()).Content : null;
+const hasOverride = !!(localeOverride && localeOverride.id !== currentSlug);
+const OverrideContent = hasOverride ? (await render(localeOverride!)).Content : null;
 
 let localizedProduct = getLocalizedProduct(product, locale);
 if (hasOverride && localeOverride) {
@@ -65,7 +63,7 @@ if (hasOverride && localeOverride) {
 
 const cleanTitle = localizedProduct.cleanTitle;
 const productImage = product.data.images?.[0] ?? '/images/peptide-default.jpg';
-const siteUrl = 'https://peptide-shop.net';
+const siteUrl = 'https://xtremepropeptide.com';
 const productUrl = `${siteUrl}${href(`/peptides/${currentSlug}/`)}`;
 const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
 const researchArea = product.data.researchArea ? getResearchArea(product.data.researchArea) : undefined;
@@ -98,7 +96,7 @@ const additionalProperties = [
 ].filter(Boolean);
 
 const relatedProducts = allProductsForLookup
-  .filter((candidate) => candidate.slug !== product.slug && candidate.data.researchArea === product.data.researchArea)
+  .filter((candidate) => candidate.id !== product.id && candidate.data.researchArea === product.data.researchArea)
   .slice(0, 4);
 
 const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);

@@ -20,12 +20,12 @@ const entries = (await getCanonicalCollection('blog')).sort(
 );
 const posts = entries.map((entry) => ({
   entry,
-  content: getLocalizedBlogPost(entry.slug, locale, entry.data),
+  content: getLocalizedBlogPost(entry.id, locale, entry.data),
 }));
 const featuredPost = posts.find((post) => post.content.featured) ?? posts[0];
-const latestPosts = posts.filter((post) => post.entry.slug !== featuredPost?.entry.slug);
+const latestPosts = posts.filter((post) => post.entry.id !== featuredPost?.entry.id);
 const categories = [...new Set(posts.map((post) => post.content.category))].sort();
-const siteUrl = 'https://peptide-shop.net';
+const siteUrl = 'https://xtremepropeptide.com';
 const breadcrumbs = [
   { name: t('common.home'), url: href('/') },
   { name: t('blog.breadcrumb'), url: href('/blog/') },
@@ -49,7 +49,7 @@ const blogSchema = {
     description: post.content.description,
     datePublished: new Date(post.content.publishDate).toISOString(),
     author: { '@type': 'Person', name: post.content.author },
-    url: new URL(href(`/blog/${post.entry.slug}/`), Astro.site).toString(),
+    url: new URL(href(`/blog/${post.entry.id}/`), Astro.site).toString(),
   })),
 };
 ---
@@ -74,13 +74,13 @@ const blogSchema = {
       {featuredPost && (
         <article class="feature-article card">
           {featuredPost.content.image && (
-            <a class="feature-article-image" href={href(`/blog/${featuredPost.entry.slug}/`)} aria-hidden="true" tabindex="-1">
+            <a class="feature-article-image" href={href(`/blog/${featuredPost.entry.id}/`)} aria-hidden="true" tabindex="-1">
               <img src={featuredPost.content.image} alt={featuredPost.content.title} loading="eager" width="1200" height="630" decoding="async" />
             </a>
           )}
           <div class="feature-article-body">
             <span class="badge badge-blue">{t('blog.featuredBadge', { category: featuredPost.content.category })}</span>
-            <h2><a href={href(`/blog/${featuredPost.entry.slug}/`)}>{featuredPost.content.title}</a></h2>
+            <h2><a href={href(`/blog/${featuredPost.entry.id}/`)}>{featuredPost.content.title}</a></h2>
             <p>{featuredPost.content.description}</p>
             <div class="article-meta">
               <span>{featuredPost.content.author}</span>
@@ -106,12 +106,12 @@ const blogSchema = {
                 {post.content.image && <img src={post.content.image} alt={post.content.title} loading="lazy" width="600" height="400" decoding="async" />}
                 <div>
                   <span class="badge badge-blue">{post.content.category}</span>
-                  <h3><a href={href(`/blog/${post.entry.slug}/`)}>{post.content.title}</a></h3>
+                  <h3><a href={href(`/blog/${post.entry.id}/`)}>{post.content.title}</a></h3>
                   <p>{post.content.description}</p>
                 </div>
                 <div class="article-meta">
                   <span>{new Date(post.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-                  <a href={href(`/blog/${post.entry.slug}/`)}>{t('blog.readArticle')}</a>
+                  <a href={href(`/blog/${post.entry.id}/`)}>{t('blog.readArticle')}</a>
                 </div>
               </article>
             ))}

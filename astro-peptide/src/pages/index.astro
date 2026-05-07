@@ -16,7 +16,7 @@ export const prerender = false;
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
-const siteUrl = 'https://peptide-shop.net';
+const siteUrl = 'https://xtremepropeptide.com';
 
 const products = (await getCanonicalCollection('products'))
   .filter((product) => product.data.category !== 'supplies')
@@ -52,7 +52,7 @@ const featuredItemList = {
   itemListElement: featuredProducts.map((product, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    url: `${siteUrl}${href(`/peptides/${product.slug}/`)}`,
+    url: `${siteUrl}${href(`/peptides/${product.id}/`)}`,
     name: product.data.title,
   })),
 };
@@ -259,9 +259,9 @@ const featuredItemList = {
         {posts.map((post) => (
           <article class="card">
             <span class="eyebrow">{post.data.category}</span>
-            <h3 style="font-size: var(--text-xl);"><a href={href(`/blog/${post.slug}/`)} style="color:inherit; text-decoration:none;">{post.data.title}</a></h3>
+            <h3 style="font-size: var(--text-xl);"><a href={href(`/blog/${post.id}/`)} style="color:inherit; text-decoration:none;">{post.data.title}</a></h3>
             <p style="color: var(--color-ink-3);">{post.data.description}</p>
-            <a href={href(`/blog/${post.slug}/`)} class="text-primary" style="font-weight:600; margin-top:auto;">{t('home.readArticle')}</a>
+            <a href={href(`/blog/${post.id}/`)} class="text-primary" style="font-weight:600; margin-top:auto;">{t('home.readArticle')}</a>
           </article>
         ))}
       </div>

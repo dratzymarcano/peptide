@@ -2,6 +2,7 @@ node_modules
 dist
 .astro
 .vite
+.wrangler
 
 # Test artefacts
 playwright-report

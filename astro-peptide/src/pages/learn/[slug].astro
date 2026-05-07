@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ChipList from '../../components/ChipList.astro';
@@ -11,11 +11,11 @@ export const prerender = false;
 
 const { slug: routeSlug } = Astro.params;
 const allArticles = await getCollection('learn');
-const article = allArticles.find((a) => a.slug === routeSlug);
+const article = allArticles.find((a) => a.id === routeSlug);
 if (!article) {
   return new Response(null, { status: 404 });
 }
-const { Content } = await article.render();
+const { Content } = await render(article);
 
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
@@ -23,12 +23,12 @@ const href = (path: string) => localizePath(path, locale);
 const dateLocale = localeMeta[locale].og.replace('_', '-');
 
 const related = allArticles
-  .filter((a) => a.slug !== article.slug)
+  .filter((a) => a.id !== article.id)
   .sort((a, b) => (a.data.order || 999) - (b.data.order || 999))
   .slice(0, 4);
 
-const siteUrl = 'https://peptide-shop.net';
-const articleUrl = new URL(href(`/learn/${article.slug}/`), Astro.site).toString();
+const siteUrl = 'https://xtremepropeptide.com';
+const articleUrl = new URL(href(`/learn/${article.id}/`), Astro.site).toString();
 
 const articleSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
@@ -55,7 +55,7 @@ const articleSchema: Record<string, unknown> = {
 };
 
 // HowTo schema for procedural articles
-const howToSchema = article.data.howTo && article.slug === 'reconstitution-guide'
+const howToSchema = article.data.howTo && article.id === 'reconstitution-guide'
   ? {
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -86,7 +86,7 @@ if (howToSchema) schemas.push(howToSchema);
 const breadcrumbs = [
   { name: t('common.home'), url: href('/') },
   { name: t('learn.breadcrumb'), url: href('/learn/') },
-  { name: article.data.title, url: href(`/learn/${article.slug}/`) },
+  { name: article.data.title, url: href(`/learn/${article.id}/`) },
 ];
 ---
 
@@ -128,7 +128,7 @@ const breadcrumbs = [
               <h2>{t('learn.relatedResources')}</h2>
               <div class="related-list">
                 {related.map((entry) => (
-                  <a href={href(`/learn/${entry.slug}/`)}>
+                  <a href={href(`/learn/${entry.id}/`)}>
                     <strong>{entry.data.title}</strong>
                     <span>{entry.data.readTime}</span>
                   </a>

@@ -63,7 +63,7 @@ const collectionSchema = {
   description: t('shopPage.metaDescription'),
   url: shopUrl,
   inLanguage: locale,
-  isPartOf: { '@type': 'WebSite', name: 'Peptide Shop', url: 'https://peptide-shop.net' },
+  isPartOf: { '@type': 'WebSite', name: 'Peptide Shop', url: 'https://xtremepropeptide.com' },
   mainEntity: {
     '@type': 'ItemList',
     numberOfItems: products.length,
@@ -166,12 +166,12 @@ const collectionSchema = {
                 <tbody>
                   {products.map((product) => (
                     <tr>
-                      <td><a href={href(`/peptides/${product.slug}/`)}><strong>{getLocalizedProduct(product, locale).title}</strong></a></td>
+                      <td><a href={href(`/peptides/${product.id}/`)}><strong>{getLocalizedProduct(product, locale).title}</strong></a></td>
                       <td>{researchAreas.find((area) => area.slug === product.data.researchArea)?.name ?? product.data.category}</td>
                       <td>{product.data.purity}</td>
                       <td>{product.data.package_sizes?.[0] ?? '-'}</td>
                       <td class="num">{product.data.price ? `€${product.data.price.toFixed(2)}` : getLocalizedProduct(product, locale).priceRange}</td>
-                      <td><a class="btn btn-secondary btn-sm" href={href(`/peptides/${product.slug}/`)}>{t('shopPage.viewProduct')}</a></td>
+                      <td><a class="btn btn-secondary btn-sm" href={href(`/peptides/${product.id}/`)}>{t('shopPage.viewProduct')}</a></td>
                     </tr>
                   ))}
                 </tbody>

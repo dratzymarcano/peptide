@@ -68,7 +68,7 @@ export function toCardProduct(entry: CollectionEntry<'products'>, locale: Locale
   const d = entry.data;
   const localized = getLocalizedProduct(entry, locale);
   const t = useTranslations(locale);
-  const slug = entry.slug.replace(/^\//, '');
+  const slug = entry.id.replace(/^\//, '');
   const basePrice = d.price;
   const finalPrice = applyPromo(basePrice, d.promo);
   const compareAt =
