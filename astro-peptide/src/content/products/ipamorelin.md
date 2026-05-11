@@ -13,8 +13,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 18
-price_range: €18 per vial
+price: 28
+price_range: €28 per vial
 short_description: Ipamorelin selective GHRP research peptide for ghrelin receptor and GH signalling studies. COA supplied. RUO.
 category: growth-hormone
 researchArea: hormones
@@ -34,8 +34,8 @@ tags:
 images:
   - /images/products/ipamorelin.svg
 meta:
-  title: Ipamorelin 5 mg — ≥99 % HPLC, COA | Peptide Shop
-  description: Selective GHRP research peptide, lot COA, ≥99 % HPLC. RUO.
+  title: Buy Ipamorelin 5 mg — Selective GHSR Agonist, ≥99% HPLC | Peptide Shop Europe
+  description: Buy ipamorelin 5 mg from Europe. Selective GHSR-1a agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Ipamorelin used for in research?
     answer: Ipamorelin is used to study growth hormone secretion, ghrelin receptor (GHS-R) activation, and somatotrope cell function. It's valued for its selectivity, causing minimal effects on cortisol and prolactin compared to other GHRPs.
@@ -53,6 +53,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly along the vial wall and gently swirl to dissolve. Ipamorelin dissolves readily in water.
   - question: What sizes are available?
     answer: Ipamorelin is available in 2mg and 5mg vials for various research scales.
+  - question: What class of peptide is ipamorelin?
+    answer: Ipamorelin is a pentapeptide and selective growth hormone secretagogue receptor (GHSR-1a) agonist. Unlike GHRP-2 and GHRP-6, it does not significantly stimulate cortisol or prolactin release in preclinical models. CAS number 170851-70-4.
+  - question: How does ipamorelin compare to GHRP-2 and GHRP-6?
+    answer: Ipamorelin is the most selective GHSR agonist of the three, with minimal effect on cortisol/prolactin. GHRP-2 and GHRP-6 produce stronger GH pulses but also stimulate secondary hormonal release. Researchers select based on whether selective or broad GH axis stimulation is required.
+  - question: What is the CAS number for ipamorelin?
+    answer: "Ipamorelin CAS number: 170851-70-4. Molecular weight: 711.87 g/mol. Molecular formula: C38H49N9O5."
+  - question: Can ipamorelin be combined with CJC-1295 No DAC in research?
+    answer: Yes. Ipamorelin and CJC-1295 No DAC are frequently used together in GH secretagogue research, targeting complementary pathways — GHSR-1a and GHRH receptor respectively.
 ---
 
 ## Ipamorelin 5 mg research overview
@@ -104,3 +112,10 @@ Store unopened material according to the stated condition: -20°C recommended (r
 ## Research-use statement
 
 Ipamorelin 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+
+## References
+
+1. Raun K et al. "Ipamorelin, the first selective growth hormone secretagogue." *Eur J Endocrinol.* 1998;139(5):552–561. [PMID 9849822](https://pubmed.ncbi.nlm.nih.gov/9849822/)
+2. Bowers CY. "Unnatural Growth Hormone-Releasing Peptide Begets Natural Ghrelin." *J Clin Endocrinol Metab.* 2001;86(4):1464–1469. [PMID 11297567](https://pubmed.ncbi.nlm.nih.gov/11297567/)
+3. Gobburu JV et al. "Pharmacokinetic-pharmacodynamic modeling of ipamorelin, a growth hormone releasing peptide, in human volunteers." *Pharm Res.* 1999;16(9):1412–1416. [PMID 10496659](https://pubmed.ncbi.nlm.nih.gov/10496659/)
+4. Lall S et al. "Growth hormone (GH)-independent stimulation of adiposity by GH secretagogues." *Biochem Biophys Res Commun.* 2001;280(1):132–138. [PMID 11162490](https://pubmed.ncbi.nlm.nih.gov/11162490/)

@@ -13,8 +13,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 18
-price_range: €18 per vial
+price: 32
+price_range: €32 per vial
 short_description: Selank research peptide for CNS, stress-response and neuropeptide signalling models. COA supplied. RUO.
 category: cognitive
 researchArea: neuroscience
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/selank.svg
 meta:
-  title: Selank 5 mg — research grade | Peptide Shop
-  description: Anxiolytic research peptide, lot COA, research-use labelling. RUO.
+  title: Buy Selank 10 mg — Anxiolytic Research Peptide | Peptide Shop Europe
+  description: Buy selank 10 mg from Europe. Anxiolytic research peptide derived from tuftsin. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Selank used for in research?
     answer: Selank is studied for anxiolytic effects, cognitive enhancement, immune modulation, and neurotransmitter regulation. It's based on the natural peptide tuftsin.
@@ -51,6 +51,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
   - question: What sizes are available?
     answer: Selank is available in 5mg and 10mg vials.
+  - question: What is selank?
+    answer: Selank is a synthetic heptapeptide (Thr-Lys-Pro-Arg-Pro-Gly-Pro) derived from the neuropeptide tuftsin. It is studied as an anxiolytic and nootropic research compound acting on GABA-A receptor and enkephalin-degrading pathways. CAS number 129954-34-3.
+  - question: How does selank differ from semax?
+    answer: Selank is derived from tuftsin and studied for anxiolytic and anti-stress pathway research. Semax is derived from ACTH and studied for cognitive and neuroprotective applications. Both are neuropeptides but they target distinct receptor systems.
+  - question: What is the molecular weight of selank?
+    answer: "Selank molecular weight: 751.88 g/mol. Molecular formula: C33H57N11O9. CAS number 129954-34-3."
+  - question: Why is selank now supplied as a 10 mg vial?
+    answer: Selank is now supplied in 10 mg vials to match EU market standards. Most European research peptide vendors stock selank exclusively in 10 mg format, and the larger vial offers better cost-efficiency per milligram.
 ---
 
 ## Selank 10 mg research overview

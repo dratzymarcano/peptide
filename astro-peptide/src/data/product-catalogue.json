@@ -5,7 +5,7 @@
     "vials": false,
     "powder": true,
     "unit_quantity": "60 × 50 mg caps",
-    "unit_price_eur": 65,
+    "unit_price_eur": 125,
     "corresponding_quantity": "1 bottle (60 caps)",
     "notes": ""
   },
@@ -15,7 +15,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 25,
+    "unit_price_eur": 35,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -25,7 +25,7 @@
     "vials": true,
     "powder": false,
     "unit_quantity": "10 × 10 mL vials",
-    "unit_price_eur": 18,
+    "unit_price_eur": 22,
     "corresponding_quantity": "1 pack (10 vials)",
     "notes": ""
   },
@@ -35,7 +35,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 22,
+    "unit_price_eur": 32,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -45,7 +45,7 @@
     "vials": false,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 55,
+    "unit_price_eur": 115,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -55,7 +55,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 18,
+    "unit_price_eur": 25,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -65,7 +65,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 15,
+    "unit_price_eur": 25,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -75,7 +75,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 10 mg vial",
-    "unit_price_eur": 15,
+    "unit_price_eur": 38,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -85,7 +85,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 22,
+    "unit_price_eur": 30,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -95,7 +95,7 @@
     "vials": false,
     "powder": true,
     "unit_quantity": "500 mg powder",
-    "unit_price_eur": 75,
+    "unit_price_eur": 85,
     "corresponding_quantity": "1 jar",
     "notes": ""
   },
@@ -105,7 +105,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 15,
+    "unit_price_eur": 25,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -115,7 +115,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 15,
+    "unit_price_eur": 25,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -125,7 +125,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 18,
+    "unit_price_eur": 28,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -135,7 +135,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 10 mg vial",
-    "unit_price_eur": 15,
+    "unit_price_eur": 38,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -145,7 +145,7 @@
     "vials": true,
     "powder": false,
     "unit_quantity": "1 × 500 mg vial",
-    "unit_price_eur": 55,
+    "unit_price_eur": 85,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -155,7 +155,7 @@
     "vials": false,
     "powder": true,
     "unit_quantity": "3 g powder",
-    "unit_price_eur": 95,
+    "unit_price_eur": 75,
     "corresponding_quantity": "1 jar",
     "notes": ""
   },
@@ -165,7 +165,7 @@
     "vials": true,
     "powder": true,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 119,
+    "unit_price_eur": 129,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -174,8 +174,8 @@
     "oral_capsules": false,
     "vials": true,
     "powder": true,
-    "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 18,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 32,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -185,7 +185,7 @@
     "vials": true,
     "powder": false,
     "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 45,
+    "unit_price_eur": 60,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -194,8 +194,8 @@
     "oral_capsules": false,
     "vials": true,
     "powder": true,
-    "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 18,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 30,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -204,8 +204,8 @@
     "oral_capsules": false,
     "vials": true,
     "powder": true,
-    "unit_quantity": "1 × 5 mg vial",
-    "unit_price_eur": 25,
+    "unit_quantity": "1 × 10 mg vial",
+    "unit_price_eur": 45,
     "corresponding_quantity": "1 vial",
     "notes": ""
   },
@@ -215,7 +215,7 @@
     "vials": false,
     "powder": false,
     "unit_quantity": "60 × 0.5 mg caps",
-    "unit_price_eur": 55,
+    "unit_price_eur": 175,
     "corresponding_quantity": "1 bottle (60 caps)",
     "notes": ""
   },
@@ -225,7 +225,7 @@
     "vials": true,
     "powder": false,
     "unit_quantity": "1 × 10 mg vial",
-    "unit_price_eur": 79,
+    "unit_price_eur": 89,
     "corresponding_quantity": "1 vial",
     "notes": ""
   }

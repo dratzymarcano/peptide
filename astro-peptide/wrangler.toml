@@ -1,5 +1,5 @@
 name = "peptide-shop"
-compatibility_date = "2025-09-01"
+compatibility_date = "2026-01-01"
 compatibility_flags = ["nodejs_compat"]
 main = "@astrojs/cloudflare/entrypoints/server"
 account_id = "0e31401129b47a5411914cb62b93d15b"
@@ -9,8 +9,8 @@ assets = { directory = "./dist", binding = "ASSETS" }
 
 # Custom domain bindings for the Cloudflare zone.
 routes = [
-  { pattern = "xtremepropeptide.com", custom_domain = true },
-  { pattern = "www.xtremepropeptide.com/*", zone_name = "xtremepropeptide.com" }
+  { pattern = "peptide-kaufen.net", custom_domain = true },
+  { pattern = "www.peptide-kaufen.net/*", zone_name = "peptide-kaufen.net" }
 ]
 
 # Application secrets (set via `npx wrangler secret put NAME`):
@@ -18,7 +18,7 @@ routes = [
 #   RESEND_FROM
 
 [vars]
-SITE_URL = "https://xtremepropeptide.com"
+SITE_URL = "https://peptide-kaufen.net"
 
 [observability]
 enabled = true

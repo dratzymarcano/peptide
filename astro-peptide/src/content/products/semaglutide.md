@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 45
-price_range: €45 per vial
+price: 60
+price_range: €60 per vial
 short_description: Semaglutide GLP-1 analogue for metabolic research. ≥99% HPLC purity, sealed vial and lot COA. RUO.
 category: weight-loss
 researchArea: diabetes
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/semaglutide.svg
 meta:
-  title: Semaglutide 5 mg — research grade, COA | Peptide Shop
-  description: Semaglutide for in-vitro research, ≥99 % HPLC, sealed vial, lot COA. RUO.
+  title: Buy Semaglutide 5 mg — GLP-1 Agonist, ≥99% HPLC | Peptide Shop Europe
+  description: Buy semaglutide 5 mg research peptide from Europe. GLP-1 receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Semaglutide used for in research?
     answer: Semaglutide is primarily used in metabolic research to study GLP-1 receptor activation, glucose-dependent insulin secretion, appetite regulation, and weight management mechanisms. Research applications include investigating beta-cell function, gastric emptying rates, and potential neuroprotective properties in disease models.
@@ -51,6 +51,14 @@ faqs:
     answer: We offer fast delivery within the EU with next-day and standard shipping options. For international shipping enquiries, please contact our customer service team to discuss options and regulations for your specific country.
   - question: What package sizes are available?
     answer: Semaglutide is available in 2mg, 5mg, and 10mg vials to suit various research needs and budgets. Larger quantities are available for institutional research projects - contact us for bulk pricing and custom orders.
+  - question: What class of peptide is semaglutide?
+    answer: Semaglutide is a GLP-1 receptor agonist. It is a 31-amino acid analogue of human glucagon-like peptide-1 with a C18 fatty diacid modification that extends plasma half-life. CAS number 910463-68-2.
+  - question: Is semaglutide the same compound as in Ozempic or Wegovy?
+    answer: Semaglutide is the active pharmaceutical ingredient in Ozempic and Wegovy. The research compound supplied by Peptide Shop is for in-vitro and preclinical laboratory research only — it is not intended for human administration.
+  - question: How should semaglutide be reconstituted?
+    answer: Add sterile bacteriostatic water slowly down the vial wall and gently swirl until dissolved. Do not shake vigorously. Store reconstituted material at 2–8°C and use within 4 weeks.
+  - question: What purity is your semaglutide?
+    answer: Our semaglutide is ≥99% pure by HPLC with identity confirmation. Each batch ships with a lot-specific Certificate of Analysis.
 ---
 
 ## Semaglutide 5 mg research overview
@@ -102,3 +110,11 @@ Store unopened material according to the stated condition: -20°C recommended (r
 ## Research-use statement
 
 Semaglutide 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+
+## References
+
+1. Lau J et al. "Discovery of the Once-Weekly Glucagon-Like Peptide-1 (GLP-1) Analogue Semaglutide." *J Med Chem.* 2015;58(18):7370–7380. [PMID 26308095](https://pubmed.ncbi.nlm.nih.gov/26308095/)
+2. Marso SP et al. "Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes." *N Engl J Med.* 2016;375(19):1834–1844. [PMID 27633186](https://pubmed.ncbi.nlm.nih.gov/27633186/)
+3. Gabery S et al. "Semaglutide lowers body weight in rodents via distributed neural pathways." *JCI Insight.* 2020;5(6):e133429. [PMID 32213704](https://pubmed.ncbi.nlm.nih.gov/32213704/)
+4. Blundell J et al. "Effects of once-weekly semaglutide on appetite, energy intake, energy expenditure, gastric emptying, and blood glucose in subjects with obesity." *Diabetes Obes Metab.* 2017;19(9):1242–1251. [PMID 28266779](https://pubmed.ncbi.nlm.nih.gov/28266779/)
+5. Wilding JPH et al. "Once-Weekly Semaglutide in Adults with Overweight or Obesity." *N Engl J Med.* 2021;384(11):989–1002. [PMID 33567185](https://pubmed.ncbi.nlm.nih.gov/33567185/)

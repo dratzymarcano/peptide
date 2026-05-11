@@ -13,8 +13,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 18
-price_range: €18 per vial
+price: 30
+price_range: €30 per vial
 short_description: Semax ACTH(4-10) analogue for CNS, cognition and neuroprotection research. COA supplied. RUO.
 category: cognitive
 researchArea: neuroscience
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/semax.svg
 meta:
-  title: Semax 5 mg — research grade | Peptide Shop
-  description: ACTH(4-10) heptapeptide research compound, lot COA, research-use labelling. RUO.
+  title: Buy Semax 10 mg — Neuroprotective Research Peptide | Peptide Shop Europe
+  description: Buy semax 10 mg from Europe. ACTH-derived neuroprotective peptide. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Semax used for in research?
     answer: Semax is studied for cognitive enhancement, neuroprotection, BDNF modulation, and neurotransmitter regulation. It's based on ACTH(4-10).
@@ -51,6 +51,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
   - question: What sizes are available?
     answer: Semax is available in 5mg, 10mg, and 30mg vials.
+  - question: What is semax?
+    answer: Semax is a synthetic heptapeptide (Met-Glu-His-Phe-Pro-Gly-Pro) derived from ACTH 4-10. It is studied for neuroprotective, cognitive-enhancing, and BDNF-upregulating effects in preclinical models. CAS number 80714-61-0.
+  - question: What is BDNF and how does semax relate to it?
+    answer: BDNF (brain-derived neurotrophic factor) is a neurotrophin supporting neuronal survival and plasticity. Preclinical research has examined semax for its ability to upregulate BDNF and NGF expression in brain tissue, making it a tool for neuroprotection and synaptic plasticity research.
+  - question: How does semax differ from selank?
+    answer: Semax is derived from ACTH and primarily studied for cognitive and neuroprotective effects. Selank is derived from tuftsin and primarily studied for anxiolytic pathway effects. They are complementary neuropeptides with distinct mechanisms.
+  - question: Why is semax now supplied in 10 mg vials?
+    answer: Semax is supplied in 10 mg to align with EU market standards. Most European research vendors stock semax in 10 mg format as the predominant supply unit.
 ---
 
 ## Semax 30 mg research overview

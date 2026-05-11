@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 10 mg vial
 moq: 1
-price: 79
-price_range: €79 per vial
+price: 89
+price_range: €89 per vial
 short_description: Tirzepatide dual GIP/GLP-1 agonist research peptide with ≥99% HPLC purity and lot COA. RUO.
 category: weight-loss
 researchArea: diabetes
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/tirzepatide.svg
 meta:
-  title: Tirzepatide 10 mg — ≥99 % HPLC, COA | Peptide Shop
-  description: Research-grade tirzepatide, dual GIP/GLP-1 agonist, lot COA, ≥99 % HPLC. RUO.
+  title: Buy Tirzepatide 10 mg — Dual GLP-1/GIP Agonist, ≥99% HPLC | Peptide Shop
+  description: Buy tirzepatide 10 mg from Europe. Dual GLP-1/GIP receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What makes Tirzepatide different from Semaglutide?
     answer: Tirzepatide is a dual agonist that activates both GIP and GLP-1 receptors, while Semaglutide only targets the GLP-1 receptor. This dual mechanism of action provides researchers with a unique tool for studying the synergistic effects of incretin hormone signalling in metabolic research.
@@ -51,6 +51,14 @@ faqs:
     answer: Tirzepatide has an extended half-life of approximately 5 days due to its C20 fatty diacid modification that enables albumin binding. This prolonged duration of action is valuable for studying sustained dual receptor activation in research models.
   - question: What package sizes are available?
     answer: Tirzepatide is available in 5mg, 10mg, and 15mg vials. Larger quantities are available for institutional research projects - contact us for bulk pricing on custom orders.
+  - question: What is tirzepatide and what makes it unique?
+    answer: Tirzepatide is a dual GLP-1/GIP receptor agonist peptide. Unlike semaglutide, which targets only GLP-1 receptors, tirzepatide also activates glucose-dependent insulinotropic polypeptide (GIP) receptors — making it a distinct tool for studying dual incretin signalling pathways.
+  - question: What is the CAS number for tirzepatide?
+    answer: "Tirzepatide CAS number: 2023788-19-2. Approximate molecular weight: 4813.5 g/mol. It is a 39-amino acid synthetic peptide."
+  - question: Is tirzepatide the same as Mounjaro?
+    answer: Tirzepatide is the active ingredient in Mounjaro. The research compound from Peptide Shop is for in-vitro and preclinical laboratory research only.
+  - question: How does tirzepatide differ from semaglutide in research models?
+    answer: Tirzepatide activates both GLP-1 and GIP receptors simultaneously, while semaglutide is a mono-agonist. Researchers use tirzepatide when studying incretin pathways requiring dual receptor activation.
 ---
 
 ## Tirzepatide 10 mg research overview
@@ -102,3 +110,11 @@ Store unopened material according to the stated condition: -20°C recommended (r
 ## Research-use statement
 
 Tirzepatide 10 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+
+## References
+
+1. Frias JP et al. "Tirzepatide versus Semaglutide Once Weekly in Patients with Type 2 Diabetes." *N Engl J Med.* 2021;385(6):503–515. [PMID 34170647](https://pubmed.ncbi.nlm.nih.gov/34170647/)
+2. Jastreboff AM et al. "Tirzepatide Once Weekly for the Treatment of Obesity." *N Engl J Med.* 2022;387(3):205–216. [PMID 35658024](https://pubmed.ncbi.nlm.nih.gov/35658024/)
+3. Min T, Bain SC. "The Role of Tirzepatide, Dual GIP and GLP-1 Receptor Agonist, in the Management of Type 2 Diabetes." *Drug Des Devel Ther.* 2021;15:4547–4561. [PMID 34824514](https://pubmed.ncbi.nlm.nih.gov/34824514/)
+4. Thomas MK et al. "Dual GIP and GLP-1 Receptor Agonist Tirzepatide Improves Beta-cell Function and Insulin Sensitivity in Type 2 Diabetes." *J Clin Endocrinol Metab.* 2021;106(2):388–396. [PMID 33165593](https://pubmed.ncbi.nlm.nih.gov/33165593/)
+5. Coskun T et al. "LY3298176, a novel dual GIP and GLP-1 receptor agonist for the treatment of type 2 diabetes mellitus: From discovery to clinical proof of concept." *Mol Metab.* 2018;18:3–14. [PMID 30473097](https://pubmed.ncbi.nlm.nih.gov/30473097/)

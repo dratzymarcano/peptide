@@ -13,8 +13,8 @@ storage: Room temperature, protected from light
 package_sizes:
   - 60 × 50 mg caps
 moq: 1
-price: 65
-price_range: €65 per pack
+price: 125
+price_range: €125 per pack
 short_description: 5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO.
 category: weight-loss
 researchArea: diabetes
@@ -34,8 +34,8 @@ tags:
 images:
   - /images/products/5-amino-1mq.svg
 meta:
-  title: 5-Amino-1MQ 50 mg — NNMT inhibitor | Peptide Shop
-  description: NNMT inhibitor research compound, lot COA, research-use labelling. RUO.
+  title: Buy 5-Amino-1MQ (60 × 50 mg capsules) — NNMT Inhibitor | Peptide Shop
+  description: Buy 5-Amino-1MQ NNMT inhibitor capsules from Europe. 60 × 50 mg. HPLC-verified purity, lot-specific COA, EU dispatch. Research use only.
 faqs:
   - question: What forms of 5-Amino-1MQ are available?
     answer: "We offer 5-Amino-1MQ in two convenient forms: Oral Capsules (50mg per capsule) for precise dosing convenience, and High-Purity Powder (99%) for flexible research applications. Both forms maintain the same exceptional purity standards."
@@ -53,6 +53,14 @@ faqs:
     answer: Oral Capsules (50mg) offer precise, pre-measured doses ideal for consistent research protocols. High-Purity Powder (99%) provides flexibility for custom concentration preparation and larger-scale studies.
   - question: What is the minimum order requirement?
     answer: A site-wide minimum order value of €150 applies; combine multiple items to reach the threshold. This applies to any combination of capsules or powder forms.
+  - question: What is 5-Amino-1MQ?
+    answer: 5-Amino-1-methylquinolinium (5-Amino-1MQ) is a small-molecule NNMT (nicotinamide N-methyltransferase) inhibitor. It is studied for effects on NAD+ metabolism, adipogenesis inhibition, and energy expenditure. CAS number 5765-44-6.
+  - question: What is NNMT and why is it a research target?
+    answer: NNMT methylates nicotinamide, reducing NAD+ availability and affecting cellular metabolism. Inhibiting NNMT has been studied as a strategy to increase NAD+ levels, reduce adipogenesis, and modulate metabolic pathways in obesity and metabolic disease research.
+  - question: Why is 5-Amino-1MQ supplied as capsules?
+    answer: 5-Amino-1MQ is supplied as oral capsules (60 × 50 mg) because research protocols frequently involve oral bioavailability studies and in-vivo metabolic experiments. The capsule format matches how it is administered in animal model protocols.
+  - question: What is the CAS number for 5-Amino-1MQ?
+    answer: "CAS number: 5765-44-6. Molecular formula: C10H11ClN2 (as HCl salt). It is a quinolinium compound and NNMT inhibitor distinct from 1-methylnicotinamide."
 ---
 
 ## 5-Amino-1MQ 50 mg research overview

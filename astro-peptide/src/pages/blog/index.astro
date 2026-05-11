@@ -25,7 +25,7 @@ const posts = entries.map((entry) => ({
 const featuredPost = posts.find((post) => post.content.featured) ?? posts[0];
 const latestPosts = posts.filter((post) => post.entry.id !== featuredPost?.entry.id);
 const categories = [...new Set(posts.map((post) => post.content.category))].sort();
-const siteUrl = 'https://xtremepropeptide.com';
+const siteUrl = 'https://peptide-kaufen.net';
 const breadcrumbs = [
   { name: t('common.home'), url: href('/') },
   { name: t('blog.breadcrumb'), url: href('/blog/') },

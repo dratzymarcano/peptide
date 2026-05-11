@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 18
-price_range: €18 per vial
+price: 25
+price_range: €25 per vial
 short_description: CJC-1295 No DAC GHRH analogue for growth-hormone signalling research. ≥99% HPLC purity with COA. RUO.
 category: growth-hormone
 researchArea: hormones
@@ -35,8 +35,8 @@ tags:
 images:
   - /images/products/cjc-1295-no-dac.svg
 meta:
-  title: CJC-1295 No DAC 5 mg — ≥99 % HPLC | Peptide Shop
-  description: GHRH analogue without DAC, HPLC ≥99 %, lot COA. For research use only.
+  title: Buy CJC-1295 No DAC 5 mg — Mod GRF 1-29, ≥99% HPLC | Peptide Shop
+  description: Buy CJC-1295 No DAC (Mod GRF 1-29) 5 mg from Europe. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is CJC-1295 No DAC used for in research?
     answer: CJC-1295 No DAC (Modified GRF 1-29) is used to study GHRH receptor activation and pulsatile growth hormone release. It's a modified GHRH analog with enhanced stability for research applications.
@@ -54,6 +54,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly along the vial wall and gently swirl to dissolve.
   - question: What sizes are available?
     answer: CJC-1295 No DAC is available in 2mg and 5mg vials.
+  - question: What is CJC-1295 No DAC?
+    answer: CJC-1295 No DAC (Mod GRF 1-29) is a 29-amino acid stabilised GHRH analogue. It is studied for GHRH receptor activation in pituitary and growth hormone axis research. Half-life approximately 30 minutes in research models. CAS number 863288-34-0.
+  - question: What is the difference between CJC-1295 with DAC and without DAC?
+    answer: The DAC (Drug Affinity Complex) variant binds albumin, extending plasma half-life from ~30 minutes to several days. The No DAC version produces pulsatile GH release patterns, making it suited for studying acute GHRH receptor stimulation.
+  - question: Can CJC-1295 No DAC be combined with ipamorelin?
+    answer: Yes. CJC-1295 No DAC (GHRH analogue) and ipamorelin (GHSR agonist) act via complementary pathways, providing synergistic GH axis stimulation in research models.
+  - question: What is the molecular weight of CJC-1295 No DAC?
+    answer: "CJC-1295 No DAC (Mod GRF 1-29) has a molecular weight of approximately 3357.9 g/mol. Molecular formula: C149H246N44O42S."
 ---
 
 ## CJC-1295 No DAC 2 mg research overview

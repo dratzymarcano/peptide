@@ -14,8 +14,8 @@ storage: Room temperature (15-25°C)
 package_sizes:
   - 10 × 10 mL vials
 moq: 1
-price: 18
-price_range: €18 per pack
+price: 22
+price_range: €22 per pack
 short_description: USP-grade bacteriostatic water with 0.9% benzyl alcohol for laboratory reconstitution workflows. RUO.
 category: supplies
 tags:
@@ -29,8 +29,8 @@ tags:
 images:
   - /images/products/bacteriostatic-water.svg
 meta:
-  title: Bacteriostatic water 30 ml | Peptide Shop
-  description: 0.9 % benzyl-alcohol bacteriostatic water for laboratory reconstitution workflows. RUO.
+  title: Buy Bacteriostatic Water (10 × 10 mL vials) — EU Dispatch | Peptide Shop
+  description: Buy bacteriostatic water (10 × 10 mL vials) for peptide reconstitution. EU dispatch, research grade. Peptide Shop Europe.
 faqs:
   - question: What is bacteriostatic water?
     answer: Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. It's used to reconstitute lyophilized peptides for multi-use applications.
@@ -48,6 +48,14 @@ faqs:
     answer: Unopened bacteriostatic water has a shelf life of 2 years when stored properly. Once opened, use within 28 days.
   - question: What size syringe should I use?
     answer: We recommend using insulin syringes with a 29-31 gauge needle for accurate measurement. Always use a new sterile syringe for each withdrawal.
+  - question: What is bacteriostatic water used for?
+    answer: Bacteriostatic water (0.9% benzyl alcohol in water for injection) is the standard solvent for reconstituting lyophilised research peptides. Benzyl alcohol inhibits bacterial growth, extending the usable shelf life of reconstituted solutions to approximately 28 days when refrigerated.
+  - question: How much bacteriostatic water should be used to reconstitute a peptide vial?
+    answer: The volume depends on your target concentration. A common approach is adding 1–2 mL to a 5 mg peptide vial to achieve a 2.5–5 mg/mL stock. Always use a calibrated syringe and aseptic technique.
+  - question: Can bacteriostatic water be used with all research peptides?
+    answer: Bacteriostatic water is compatible with most lyophilised research peptides. Some peptides with pH-sensitive structures may require specific solvents. Always check the individual product COA and reconstitution notes.
+  - question: What is the difference between bacteriostatic water and sterile water?
+    answer: Bacteriostatic water contains 0.9% benzyl alcohol as a preservative, while sterile water contains no antimicrobial additives. For multi-use peptide vials, bacteriostatic water is preferred as it allows reconstituted solutions to be stored for up to 4 weeks at 2–8°C.
 ---
 
 ## Bacteriostatic water 30 ml research overview

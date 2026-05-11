@@ -14,10 +14,12 @@
   --color-surface-2:      #F8FAFC;
   --color-border:         #E2E8F0;
   --color-border-strong:  #CBD5E1;
-  --color-primary:        #005B8C;
-  --color-primary-600:    #00496F;
-  --color-primary-50:     #E6F1F8;
-  --color-success:        #0F7B3F;
+  --color-primary:        #0066CC;   /* vivid royal blue — WCAG AA on white (5.6:1) */
+  --color-primary-600:    #0052A5;
+  --color-primary-50:     #E3F0FF;
+  --color-accent:         #00B4A0;   /* fresh teal — secondary conversion accent */
+  --color-accent-50:      #E0F7F4;
+  --color-success:        #0D9948;
   --color-warning:        #B45309;
   --color-danger:         #B42318;
   --color-info:           #0B5FB7;
@@ -1505,9 +1507,9 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
   /* Refined neutral / brand ramps */
   --color-ink-4:          #94A3B8;   /* slate-400, captions and dividers */
   --color-surface-3:      #F1F5F9;   /* alt-alt surface for depth without color */
-  --color-primary-100:    #CFE2EE;   /* soft outline tint */
-  --color-primary-700:    #033C5C;
-  --color-primary-900:    #02263A;
+  --color-primary-100:    #BAD8FF;   /* soft outline tint */
+  --color-primary-700:    #003F80;
+  --color-primary-900:    #00254D;
 
   /* Soft shadow scale (lower opacity, longer reach — reads modern, not chunky) */
   --shadow-soft-1: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 1px rgb(15 23 42 / 0.03);
@@ -1587,7 +1589,7 @@ h1.display, h2.display, h3.display,
 
 /* Soft tinted surfaces (for alternating bands without losing minimalism) */
 .surface-soft     { background: var(--color-surface-2); }
-.surface-mist     { background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%); }
+.surface-mist     { background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 100%); }
 .surface-ink      { background: var(--color-primary-900); color: #fff; }
 .surface-ink h1, .surface-ink h2, .surface-ink h3 { color: #fff; }
 .surface-ink .eyebrow,
@@ -1602,7 +1604,7 @@ h1.display, h2.display, h3.display,
   isolation: isolate;
   padding-block: clamp(var(--space-20), 12vw, var(--space-32));
   overflow: hidden;
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 60%);
+  background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 65%);
 }
 .hero::before {
   content: "";
@@ -1830,8 +1832,8 @@ h1.display, h2.display, h3.display,
                    border-color var(--dur-fast) var(--ease-out-soft),
                    box-shadow var(--dur-fast) var(--ease-out-soft),
                    transform var(--dur-fast) var(--ease-out-soft); }
-.btn-primary { box-shadow: 0 1px 0 rgb(0 0 0 / 0.05), inset 0 1px 0 rgb(255 255 255 / 0.10); }
-.btn-primary:hover { box-shadow: 0 4px 12px -2px rgb(0 91 140 / 0.30), inset 0 1px 0 rgb(255 255 255 / 0.15); transform: translateY(-1px); }
+.btn-primary { box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), inset 0 1px 0 rgb(255 255 255 / 0.12); }
+.btn-primary:hover { box-shadow: 0 5px 14px -3px rgb(0 102 204 / 0.38), inset 0 1px 0 rgb(255 255 255 / 0.18); transform: translateY(-1px); }
 .btn-secondary:hover { box-shadow: var(--shadow-soft-1); }
 .btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 
@@ -1892,7 +1894,7 @@ h1.display, h2.display, h3.display,
 /* --- Page hero (compact for inner pages) ---------------------------------- */
 .page-hero {
   padding-block: clamp(var(--space-16), 8vw, var(--space-20));
-  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 100%);
   border-bottom: 1px solid var(--color-border);
 }
 .page-hero h1 {
@@ -2043,6 +2045,23 @@ h1.display, h2.display, h3.display,
   padding-left: var(--space-5);
   margin-bottom: var(--space-4);
 }
+
+/* --- Accent / conversion utilities ----------------------------------------- */
+/* Teal accent button — use for secondary conversion CTAs where blue is already dominant */
+.btn-accent {
+  background: var(--color-accent); color: #fff; border-color: var(--color-accent);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06), inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+.btn-accent:hover {
+  background: #009485; border-color: #009485; color: #fff;
+  box-shadow: 0 5px 14px -3px rgb(0 180 160 / 0.38), inset 0 1px 0 rgb(255 255 255 / 0.18);
+  transform: translateY(-1px);
+}
+.badge-accent { background: var(--color-accent-50); color: var(--color-accent); }
+.text-accent { color: var(--color-accent); }
+
+/* Trust-strip numbers in primary for visual weight */
+.trust-strip .item strong { color: var(--color-primary); }
 
 /* Section--alt aligned with new soft surfaces */
 .section--alt { background: var(--color-surface-2); }

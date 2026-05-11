@@ -15,8 +15,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 10 mg vial
 moq: 1
-price: 15
-price_range: €15 per vial
+price: 38
+price_range: €38 per vial
 short_description: Melanotan-2 alpha-MSH analogue for melanocortin receptor and pigmentation research. COA supplied. RUO.
 category: tanning
 researchArea: hormones
@@ -34,8 +34,8 @@ tags:
 images:
   - /images/products/melanotan-2.svg
 meta:
-  title: Melanotan-2 10 mg — ≥99 %, COA | Peptide Shop
-  description: MT-II research peptide, alpha-MSH analogue, lot COA, ≥99 % HPLC. RUO.
+  title: Buy Melanotan-2 10 mg — Melanocortin Agonist, ≥99% HPLC | Peptide Shop Europe
+  description: Buy melanotan-2 10 mg from Europe. Melanocortin receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Melanotan 2 used for in research?
     answer: Melanotan 2 is primarily used in melanocortin receptor research, studying melanogenesis (skin pigmentation), appetite regulation, sexual function, and energy homeostasis. It's a non-selective agonist of melanocortin receptors MC1, MC3, MC4, and MC5.
@@ -53,6 +53,14 @@ faqs:
     answer: MT-2 has good stability due to its cyclic lactam structure. Reconstituted peptide should be stored refrigerated (2-8°C) and used within 4 weeks. For longer storage, prepare aliquots and freeze at -20°C.
   - question: What sizes are available?
     answer: Melanotan 2 is available in 10mg and 20mg vials. These sizes are suitable for various research scales. Bulk quantities are available for institutional research - contact us for pricing.
+  - question: What is melanotan-2?
+    answer: Melanotan-2 (MT-II) is a cyclic heptapeptide analogue of alpha-melanocyte stimulating hormone (α-MSH). It is a potent melanocortin receptor agonist studied in pigmentation, neuroendocrine, and receptor pharmacology research. CAS number 121062-08-6.
+  - question: How does melanotan-2 differ from melanotan-1?
+    answer: Melanotan-1 (afamelanotide) is a linear α-MSH analogue while MT-2 is a shorter cyclic structure with broader MC1R, MC3R, MC4R and MC5R receptor affinity, making it a more versatile pharmacological probe for melanocortin receptor research.
+  - question: What are the primary research applications of melanotan-2?
+    answer: Melanotan-2 is studied in melanocortin receptor pharmacology, UV-independent pigmentation research, energy homeostasis models, and neuroendocrine pathway investigations.
+  - question: What purity and format is your melanotan-2?
+    answer: Our melanotan-2 is ≥99% pure by HPLC in a 10 mg lyophilised vial with lot-specific COA. CAS number 121062-08-6.
 ---
 
 ## Melanotan-2 10 mg research overview

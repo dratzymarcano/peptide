@@ -13,8 +13,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 15
-price_range: €15 per vial
+price: 25
+price_range: €25 per vial
 short_description: GHRP-6 research peptide for growth-hormone secretagogue and ghrelin pathway studies. COA supplied. RUO.
 category: growth-hormone
 researchArea: hormones
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/ghrp-6.svg
 meta:
-  title: GHRP-6 5 mg — research grade | Peptide Shop
-  description: Growth-hormone-releasing peptide-6, ≥99 % HPLC, lot COA. RUO.
+  title: Buy GHRP-6 5 mg — Ghrelin Receptor Agonist | Peptide Shop Europe
+  description: Buy GHRP-6 5 mg from Europe. Ghrelin receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is GHRP-6 used for in research?
     answer: GHRP-6 is used to study growth hormone secretion, ghrelin receptor activation, appetite regulation, and metabolic effects. It's one of the original synthetic GH secretagogues with well-characterised pharmacology.
@@ -51,6 +51,14 @@ faqs:
     answer: Yes, GHRP-6 with GHRH analogs like CJC-1295 is a common research combination to study synergistic GH release.
   - question: What sizes are available?
     answer: GHRP-6 is available in 5mg and 10mg vials.
+  - question: What is GHRP-6?
+    answer: GHRP-6 is a synthetic hexapeptide (His-D-Trp-Ala-Trp-D-Phe-Lys-NH2) and the prototypical ghrelin receptor (GHSR-1a) agonist. It is studied in growth hormone secretion, appetite regulation, and gastrointestinal motility research. CAS number 87616-84-0.
+  - question: Why does GHRP-6 stimulate appetite in research models?
+    answer: GHRP-6 activates ghrelin receptors (GHSR-1a) expressed in the hypothalamus and gastric mucosa. Ghrelin receptor activation is associated with orexigenic (appetite-stimulating) signalling, making GHRP-6 a tool for feeding behaviour and energy homeostasis research.
+  - question: Is GHRP-6 the same as GHRP-2?
+    answer: GHRP-2 and GHRP-6 are distinct peptides that both activate GHSR-1a. GHRP-6 (His-D-Trp-Ala-Trp-D-Phe-Lys-NH2) was the first in this class. GHRP-2 was developed as a more potent analogue with different secondary hormonal profiles.
+  - question: What is the molecular weight of GHRP-6?
+    answer: "GHRP-6 molecular weight: 873.05 g/mol. Molecular formula: C46H56N12O6. CAS number 87616-84-0."
 ---
 
 ## GHRP-6 5 mg research overview

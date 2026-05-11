@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 500 mg vial
 moq: 1
-price: 55
-price_range: €55 per vial
+price: 85
+price_range: €85 per vial
 short_description: NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO.
 category: cognitive
 researchArea: cell-permeable
@@ -35,8 +35,8 @@ tags:
 images:
   - /images/products/nad-plus.svg
 meta:
-  title: NAD+ 500 mg — research grade | Peptide Shop
-  description: Research-grade NAD⁺, lot COA and research-use labelling. RUO.
+  title: Buy NAD+ 500 mg — Research Grade Coenzyme | Peptide Shop Europe
+  description: Buy NAD+ 500 mg research grade from Europe. Cellular energy coenzyme. Lot-specific COA, EU dispatch. Research use only.
 faqs:
   - question: What is NAD+ used for in research?
     answer: NAD+ is studied in cellular energy metabolism, sirtuin activation, DNA-damage response, mitochondrial function, and ageing-biology mechanisms.
@@ -54,6 +54,14 @@ faqs:
     answer: Reconstitute in sterile water. Use freshly prepared solutions for best results.
   - question: What sizes are available?
     answer: NAD+ is available in 100mg, 500mg, and 1g quantities.
+  - question: What is NAD+ and why is it used in research?
+    answer: NAD+ (nicotinamide adenine dinucleotide) is a coenzyme central to cellular energy metabolism, DNA repair, and sirtuin activation. It is studied in longevity, metabolic, and neuroprotection research models. CAS number 53-84-9.
+  - question: Why is NAD+ supplied as a research vial rather than capsules?
+    answer: The 500 mg research vial format ensures purity control, lot traceability, and flexibility for laboratory reconstitution and assay design that dietary supplement capsule formats cannot provide.
+  - question: How should NAD+ be reconstituted for research?
+    answer: Dissolve lyophilised NAD+ in sterile phosphate-buffered saline or sterile water at your required concentration. NAD+ is water-soluble. Prepare fresh solutions where possible as aqueous solutions degrade over time.
+  - question: What is the CAS number and molecular weight of NAD+?
+    answer: "NAD+ (oxidised form) CAS number: 53-84-9. Molecular formula: C21H27N7O14P2. Molecular weight: 663.43 g/mol."
 ---
 
 ## NAD+ 500 mg research overview

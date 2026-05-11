@@ -50,7 +50,7 @@ export default function ProductOptions({ id, title, basePrice, packageSizes, ima
     calculatedAtCheckout: labels?.calculatedAtCheckout ?? 'Calculated at checkout',
     addToCart: labels?.addToCart ?? 'Add to cart',
     addedToCart: labels?.addedToCart ?? 'Added to cart',
-    minimumNote: labels?.minimumNote ?? 'A minimum order value of €150 applies at checkout.',
+    minimumNote: labels?.minimumNote ?? 'A minimum order value of €200 applies at checkout.',
     ruoNote: labels?.ruoNote ?? 'For research use only. Not for human or veterinary use.',
   };
 

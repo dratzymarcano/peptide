@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 10 mg vial
 moq: 1
-price: 15
-price_range: €15 per vial
+price: 38
+price_range: €38 per vial
 short_description: Epitalon tetrapeptide for telomere, circadian and longevity-pathway research. COA supplied. RUO.
 category: cognitive
 researchArea: epigenetics
@@ -35,8 +35,8 @@ tags:
 images:
   - /images/products/epitalon.svg
 meta:
-  title: Epitalon 10 mg — research grade | Peptide Shop
-  description: Telomerase research peptide, lot COA and research-use labelling. RUO.
+  title: Buy Epitalon 10 mg — Telomere Research Peptide | Peptide Shop Europe
+  description: Buy epitalon 10 mg research peptide from Europe. Telomere research compound. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Epitalon used for in research?
     answer: Epitalon is studied for telomerase activation, cellular ageing, melatonin regulation, and longevity mechanisms. It was developed from pineal gland research.
@@ -54,6 +54,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
   - question: What sizes are available?
     answer: Epitalon is available in 10mg, 20mg, and 50mg vials.
+  - question: What is epitalon?
+    answer: Epitalon (Epithalon) is a synthetic tetrapeptide (Ala-Glu-Asp-Gly) derived from pineal gland extract epithalamin. It is studied in telomere biology, antioxidant activity, and circadian rhythm research. CAS number 307297-39-8.
+  - question: What is epitalon studied for in telomere research?
+    answer: In preclinical research, epitalon has been studied as a potential telomerase activator. Laboratory investigations have explored its effects on telomere length, replicative lifespan of cultured cells, and regulation of the cell cycle in aging models.
+  - question: How should epitalon be stored and reconstituted?
+    answer: Store lyophilised epitalon at -20°C. Reconstitute in sterile bacteriostatic water when needed. Store reconstituted solution at 2–8°C and use within 4 weeks.
+  - question: Why is epitalon now supplied in 10 mg vials?
+    answer: Epitalon is supplied in 10 mg vials to align with EU market standards and offer better per-milligram value. The 10 mg vial is the predominant format among European research vendors.
 ---
 
 ## Epitalon 50 mg research overview

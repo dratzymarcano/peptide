@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 15
-price_range: €15 per vial
+price: 25
+price_range: €25 per vial
 short_description: GHRP-2 growth-hormone secretagogue research peptide with ≥99% HPLC purity and COA. RUO.
 category: growth-hormone
 researchArea: hormones
@@ -33,8 +33,8 @@ tags:
 images:
   - /images/products/ghrp-2.svg
 meta:
-  title: GHRP-2 5 mg — research grade | Peptide Shop
-  description: Growth-hormone-releasing peptide-2, ≥99 % HPLC, lot COA. RUO.
+  title: Buy GHRP-2 5 mg — Growth Hormone Secretagogue | Peptide Shop Europe
+  description: Buy GHRP-2 5 mg from Europe. Growth hormone secretagogue. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is GHRP-2 used for in research?
     answer: GHRP-2 is used to study growth hormone secretion, ghrelin receptor activation, and somatotrope function. It's considered more selective than GHRP-6 with less appetite stimulation.
@@ -52,6 +52,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
   - question: What sizes are available?
     answer: GHRP-2 is available in 5mg and 10mg vials.
+  - question: What is GHRP-2?
+    answer: GHRP-2 is a synthetic hexapeptide (D-Ala-D-2-Nal-Ala-Trp-D-Phe-Lys-NH2) and potent GHSR-1a agonist. It is studied for growth hormone axis research, ghrelin receptor pharmacology, and metabolic pathway investigations. CAS number 158861-67-7.
+  - question: How does GHRP-2 differ from ipamorelin in research?
+    answer: GHRP-2 produces a strong GH pulse but also stimulates cortisol and prolactin release. Ipamorelin is more selective for GHSR-1a with minimal secondary hormonal effects. Researchers choose based on whether broad or selective GH stimulation is needed.
+  - question: Can GHRP-2 and GHRP-6 be compared in the same study?
+    answer: GHRP-2 and GHRP-6 target the same receptor (GHSR-1a) but differ in potency and secondary hormonal effects. They are useful as comparative research tools in GHSR pharmacology and growth hormone secretion studies.
+  - question: What is the molecular weight of GHRP-2?
+    answer: "GHRP-2 molecular weight: 817.94 g/mol. Molecular formula: C45H55N9O6. CAS number 158861-67-7."
 ---
 
 ## GHRP-2 5 mg research overview

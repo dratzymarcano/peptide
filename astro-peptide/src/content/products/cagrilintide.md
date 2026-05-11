@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 55
-price_range: €55 per vial
+price: 115
+price_range: €115 per vial
 short_description: Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO.
 category: weight-loss
 researchArea: diabetes
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/cagrilintide.svg
 meta:
-  title: Cagrilintide 5 mg — ≥99 % HPLC | Peptide Shop
-  description: Amylin analogue research peptide, lot COA, ≥99 % HPLC. For research use only.
+  title: Buy Cagrilintide 5 mg — GLP-1/Amylin Dual Agonist | Peptide Shop Europe
+  description: Buy cagrilintide 5 mg from Europe. GLP-1/amylin receptor agonist. ≥99% HPLC purity, lot COA. EU dispatch. Research use only.
 faqs:
   - question: What is Cagrilintide used for in research?
     answer: Cagrilintide is used in metabolic research to study amylin receptor signalling, appetite regulation, gastric emptying, and glucagon suppression. It provides a long-acting tool for investigating amylin's role in energy homeostasis.
@@ -51,6 +51,14 @@ faqs:
     answer: Yes, research often investigates cagrilintide in combination with semaglutide (the 'CagriSema' approach) to study complementary satiety mechanisms. Both peptides are available from Peptide Shop.
   - question: What sizes are available?
     answer: Cagrilintide is available in 2mg and 5mg vials suitable for various research scales.
+  - question: What is cagrilintide?
+    answer: Cagrilintide (AM833) is a long-acting synthetic amylin and calcitonin receptor agonist studied in metabolic research. Unlike GLP-1 agonists, it targets amylin receptors, making it a unique tool for studying complementary appetite-regulating pathways. CAS number 2413571-02-3.
+  - question: What makes cagrilintide different from semaglutide and tirzepatide?
+    answer: Cagrilintide acts via amylin and calcitonin receptors, while semaglutide, tirzepatide, and retatrutide target incretin (GLP-1/GIP) receptors. This distinct mechanism makes it valuable for studying combined amylin/GLP-1 pathway interactions.
+  - question: What is the molecular structure of cagrilintide?
+    answer: Cagrilintide is a 33-amino acid synthetic peptide with a fatty acid conjugation that extends plasma half-life. CAS number 2413571-02-3.
+  - question: What documentation is included with cagrilintide?
+    answer: Each order includes a lot-specific COA with HPLC purity data and identity confirmation. HPLC and mass spectrometry data are provided where available, given synthesis complexity.
 ---
 
 ## Cagrilintide 5 mg research overview

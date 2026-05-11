@@ -14,8 +14,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 500 mg powder
 moq: 1
-price: 75
-price_range: €75 per pack
+price: 85
+price_range: €85 per pack
 short_description: GHK-Cu copper tripeptide for ECM, collagen and tissue-remodelling research. COA supplied. RUO.
 category: muscle-recovery
 researchArea: adhesion-ecm
@@ -36,8 +36,8 @@ tags:
 images:
   - /images/products/ghk-cu.svg
 meta:
-  title: GHK-Cu 500 mg powder — copper peptide, COA | Peptide Shop
-  description: Copper tripeptide research compound, lot COA, research-use labelling. RUO.
+  title: Buy GHK-Cu 500 mg — Copper Peptide Powder, COA | Peptide Shop Europe
+  description: Buy GHK-Cu 500 mg copper peptide powder from Europe. Lot-specific COA, EU dispatch. Tissue regeneration research compound. Research use only.
 faqs:
   - question: What is GHK-Cu used for in research?
     answer: GHK-Cu is studied in wound-closure assays, dermal-cell models, collagen-expression workflows and inflammation-pathway research. It is a naturally occurring tripeptide with copper binding.
@@ -55,6 +55,14 @@ faqs:
     answer: Reconstitute in sterile water. GHK-Cu is highly soluble and dissolves readily.
   - question: What sizes are available?
     answer: GHK-Cu is available in 50mg, 100mg, and 500mg quantities.
+  - question: What is GHK-Cu?
+    answer: GHK-Cu (glycyl-L-histidyl-L-lysine copper) is a copper-binding tripeptide naturally found in human plasma. It is studied for roles in tissue regeneration, collagen synthesis, antioxidant activity, and gene expression regulation. CAS number 49557-75-7, PubChem CID 73587.
+  - question: Why is GHK-Cu sold as 500 mg powder?
+    answer: The 500 mg bulk powder format serves research labs requiring larger quantities for cell-culture assays, stability studies, or formulation development. It provides significant cost efficiency per milligram compared to small-vial formats.
+  - question: What solvent is compatible with GHK-Cu?
+    answer: GHK-Cu is water-soluble and dissolves readily in sterile water or phosphate-buffered saline. It can also be dissolved in dilute ethanol or DMSO for specific applications.
+  - question: What is the PubChem and Wikidata ID for GHK-Cu?
+    answer: GHK-Cu is registered in PubChem under CID 73587 and in the Wikidata knowledge graph under Q5520780. CAS number 49557-75-7.
 ---
 
 ## GHK-Cu 50 mg research overview

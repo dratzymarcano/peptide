@@ -13,8 +13,8 @@ storage: Room temperature, protected from light
 package_sizes:
   - 60 × 0.5 mg caps
 moq: 1
-price: 55
-price_range: €55 per pack
+price: 175
+price_range: €175 per pack
 short_description: Tesofensine research compound for monoamine transporter and metabolic CNS studies. COA supplied. RUO.
 category: weight-loss
 researchArea: neuroscience
@@ -33,8 +33,8 @@ tags:
 images:
   - /images/products/tesofensine.svg
 meta:
-  title: Tesofensine 5 mg — research compound | Peptide Shop
-  description: Triple monoamine reuptake inhibitor, lot COA, research-use labelling. RUO.
+  title: Buy Tesofensine (60 × 0.5 mg capsules) — Research Compound | Peptide Shop
+  description: Buy tesofensine 60 × 0.5 mg capsules from Europe. SNDRI metabolic research compound. Lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is Tesofensine used for in research?
     answer: Tesofensine is used in neuroscience and obesity research to study triple monoamine reuptake inhibition. It blocks reuptake of norepinephrine, dopamine, and serotonin, enabling research into appetite regulation and energy expenditure mechanisms.
@@ -52,6 +52,14 @@ faqs:
     answer: Tesofensine can be dissolved in DMSO or appropriate organic solvents for in vitro research. Consult literature for specific research application protocols.
   - question: What sizes are available?
     answer: Tesofensine is available in 10mg and 25mg sizes for various research scales.
+  - question: What is tesofensine?
+    answer: Tesofensine is a serotonin-noradrenaline-dopamine reuptake inhibitor (SNDRI) originally developed for neurological research. It is studied in weight management research as a monoamine reuptake inhibitor affecting appetite and metabolism. CAS number 457657-66-8.
+  - question: Why is tesofensine supplied as 0.5 mg capsules?
+    answer: Tesofensine is highly potent; in-vivo research doses are typically in the microgram-to-low-milligram range per kilogram. The 0.5 mg/capsule format (60 capsules = 30 mg total) matches standard dosing for metabolic research in animal models.
+  - question: Is tesofensine a peptide?
+    answer: Tesofensine is not a peptide. It is a small-molecule piperidine compound. Peptide Shop includes it in its research catalogue because it is commonly used alongside GLP-1 and metabolic peptide research workflows.
+  - question: What is the CAS number for tesofensine?
+    answer: "Tesofensine CAS number: 457657-66-8. Molecular formula: C17H22ClNO·HCl. Molecular weight: 319.23 g/mol (free base)."
 ---
 
 ## Tesofensine 5 mg research overview

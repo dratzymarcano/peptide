@@ -18,7 +18,7 @@ import { getCoaStrings, normalizeLocale, type CoaLocale } from './i18n';
 
 type Product = CollectionEntry<'products'>;
 
-const SITE = 'https://xtremepropeptide.com';
+const SITE = 'https://peptide-kaufen.net';
 
 interface AnalyticalRow {
   parameter: string;
@@ -399,7 +399,7 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
 <body>
   <div class="sheet">
     <header class="brand-bar">
-      <img src="${SITE}/brand/peptide-shop-logo.svg" alt="XtremePro Peptide" />
+      <img src="${SITE}/brand/peptide-shop-logo.svg" alt="Peptide Shop" />
       <div class="ruo">
         <strong>${escapeHtml(t.ruoTitle)}</strong>
         <span>${escapeHtml(t.ruoSubtitle)}</span>
@@ -500,8 +500,8 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
 
     <footer class="doc-footer">
       <div>
-        <a href="${SITE}">xtremepropeptide.com</a> ·
-        ${escapeHtml(t.footerContact)}: <a href="mailto:info@xtremepropeptide.com">info@xtremepropeptide.com</a>
+        <a href="${SITE}">peptide-kaufen.net</a> ·
+        ${escapeHtml(t.footerContact)}: <a href="mailto:info@peptide-kaufen.net">info@peptide-kaufen.net</a>
       </div>
       <div>
         ${escapeHtml(t.footerControl)} <a href="${policyHref}">${escapeHtml(t.footerPolicy)}</a>.

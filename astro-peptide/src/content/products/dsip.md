@@ -13,8 +13,8 @@ storage: "-20°C recommended (research-only)"
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
-price: 15
-price_range: €15 per vial
+price: 25
+price_range: €25 per vial
 short_description: DSIP neuropeptide for sleep, stress-response and CNS research models. COA supplied. RUO.
 category: cognitive
 researchArea: neuroscience
@@ -32,8 +32,8 @@ tags:
 images:
   - /images/products/dsip.svg
 meta:
-  title: DSIP 5 mg — research grade | Peptide Shop
-  description: Delta sleep-inducing peptide, lot COA, research-use labelling. RUO.
+  title: Buy DSIP 5 mg — Delta Sleep-Inducing Peptide | Peptide Shop Europe
+  description: Buy DSIP 5 mg (delta sleep-inducing peptide) from Europe. Research grade, lot COA, EU dispatch. Research use only.
 faqs:
   - question: What is DSIP used for in research?
     answer: DSIP is studied for its effects on sleep regulation, circadian rhythms, stress response, and neuroendocrine function. It was originally isolated from rabbit brain.
@@ -51,6 +51,14 @@ faqs:
     answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly and gently swirl to dissolve.
   - question: What sizes are available?
     answer: DSIP is available in 2mg and 5mg vials.
+  - question: What is DSIP?
+    answer: DSIP (delta sleep-inducing peptide) is a nonapeptide (Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu) originally isolated from rabbit cerebral venous blood. It is studied in sleep physiology, stress response, neuroendocrine regulation, and antioxidant activity research. CAS number 62568-57-4.
+  - question: What are the primary research applications of DSIP?
+    answer: DSIP is studied in sleep architecture research, stress and ACTH-modulating pathway models, antioxidant pathway investigations, and opioid receptor interaction studies.
+  - question: What is the molecular weight of DSIP?
+    answer: "DSIP molecular weight: 848.85 g/mol. Molecular formula: C35H48N10O15. CAS number 62568-57-4."
+  - question: How should DSIP be stored and reconstituted?
+    answer: Store lyophilised DSIP at -20°C. Reconstitute in sterile bacteriostatic water as needed. Store reconstituted solution at 2–8°C and use within 4 weeks.
 ---
 
 ## DSIP 5 mg research overview

@@ -63,7 +63,7 @@ if (hasOverride && localeOverride) {
 
 const cleanTitle = localizedProduct.cleanTitle;
 const productImage = product.data.images?.[0] ?? '/images/peptide-default.jpg';
-const siteUrl = 'https://xtremepropeptide.com';
+const siteUrl = 'https://peptide-kaufen.net';
 const productUrl = `${siteUrl}${href(`/peptides/${currentSlug}/`)}`;
 const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
 const researchArea = product.data.researchArea ? getResearchArea(product.data.researchArea) : undefined;
@@ -131,7 +131,7 @@ const productSchema = {
     },
     hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
-      applicableCountry: 'DE',
+      applicableCountry: ['DE', 'NL', 'FR', 'IT', 'ES', 'AT', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'],
       returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
       merchantReturnDays: 14,
       returnMethod: 'https://schema.org/ReturnByMail',
@@ -141,7 +141,7 @@ const productSchema = {
       '@type': 'OfferShippingDetails',
       shippingDestination: {
         '@type': 'DefinedRegion',
-        addressCountry: 'DE',
+        addressCountry: ['DE', 'NL', 'FR', 'IT', 'ES', 'AT', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'],
       },
       shippingRate: {
         '@type': 'MonetaryAmount',

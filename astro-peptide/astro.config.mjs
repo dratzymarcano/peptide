@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const rootDir = dirname(fileURLToPath(import.meta.url));
-const site = 'https://xtremepropeptide.com';
+const site = 'https://peptide-kaufen.net';
 const locales = ['en', 'de', 'nl', 'fr', 'it', 'es'];
 const defaultLocale = 'en';
 const sitemapLocaleMap = {

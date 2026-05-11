@@ -29,6 +29,7 @@ const faqs = [
 ];
 
 const pageUrl = new URL(href('/learn/what-are-peptides/'), Astro.site).toString();
+const siteUrl = 'https://peptide-kaufen.net';
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -36,8 +37,76 @@ const articleSchema = {
   description: t('learnArticle.metaDescription'),
   inLanguage: locale,
   mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
-  author: { '@type': 'Organization', name: 'Peptide Shop' },
-  publisher: { '@type': 'Organization', name: 'Peptide Shop', url: 'https://xtremepropeptide.com' },
+  author: {
+    '@type': 'Person',
+    '@id': `${siteUrl}/about/#editorial-team`,
+    name: 'Peptide Shop Research Team',
+    url: `${siteUrl}/about/`,
+    worksFor: { '@type': 'Organization', '@id': `${siteUrl}/#organization`, name: 'Peptide Shop' },
+  },
+  publisher: {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: 'Peptide Shop',
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/brand/peptide-shop-logo.svg` },
+  },
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to reconstitute a research peptide',
+  inLanguage: locale,
+  description: 'Step-by-step guide for reconstituting lyophilised research peptides with bacteriostatic water in a laboratory setting.',
+  totalTime: 'PT10M',
+  supply: [
+    { '@type': 'HowToSupply', name: 'Lyophilised research peptide vial' },
+    { '@type': 'HowToSupply', name: 'Bacteriostatic water' },
+    { '@type': 'HowToSupply', name: 'Sterile syringe and needle' },
+    { '@type': 'HowToSupply', name: 'Alcohol swabs' },
+  ],
+  tool: [
+    { '@type': 'HowToTool', name: 'Calibrated micropipette or insulin syringe' },
+    { '@type': 'HowToTool', name: 'Laminar flow hood or clean bench (recommended)' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: 'Allow the vial to reach room temperature',
+      text: 'Remove the peptide vial from the freezer and allow it to equilibrate to room temperature for 5–10 minutes before opening. This reduces condensation forming on the lyophilised material.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: 'Swab and prepare the vial',
+      text: 'Wipe the rubber septum of both the peptide vial and bacteriostatic water vial with a fresh alcohol swab. Allow to air-dry for 30 seconds.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: 'Draw up bacteriostatic water',
+      text: 'Using a sterile syringe, draw up the calculated volume of bacteriostatic water. A common starting point is 1–2 mL per 5 mg of peptide (yielding a 2.5–5 mg/mL stock).',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: 'Add solvent slowly down the vial wall',
+      text: 'Insert the needle at the side of the rubber septum and slowly release the bacteriostatic water so it runs down the inside wall of the vial. Do not inject directly onto the lyophilised cake.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: 'Gently swirl to dissolve',
+      text: 'Gently rotate the vial between your fingers until the lyophilised material is fully dissolved. Do not shake vigorously as this can denature peptide bonds.',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 6,
+      name: 'Label and store the reconstituted solution',
+      text: 'Label the vial with the concentration, date of reconstitution, and lot number. Store at 2–8°C and use within 4 weeks. Record the preparation in your laboratory notebook or LIMS.',
+    },
+  ],
 };
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -61,7 +130,7 @@ const breadcrumbs = [
   description={t('learnArticle.metaDescription')}
   breadcrumbs={breadcrumbs}
 >
-  <JsonLd schema={[articleSchema, faqSchema]} />
+  <JsonLd schema={[articleSchema, faqSchema, howToSchema]} />
 
   <article class="content-page article-page section">
     <div class="container">

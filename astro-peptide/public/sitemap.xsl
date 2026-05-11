@@ -9,7 +9,7 @@
       <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>XML Sitemap — Xtreme Pro Peptide</title>
+        <title>XML Sitemap — Peptide Shop</title>
         <style>
           :root { color-scheme: light dark; }
           * { box-sizing: border-box; }
@@ -78,7 +78,7 @@
       <body>
         <header>
           <h1>XML Sitemap</h1>
-          <p>Xtreme Pro Peptide — machine-readable index for search engines</p>
+          <p>Peptide Shop — machine-readable index for search engines</p>
         </header>
 
         <xsl:choose>

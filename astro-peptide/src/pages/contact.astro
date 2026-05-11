@@ -12,11 +12,11 @@ const href = (path: string) => localizePath(path, locale);
 const contactSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'OnlineStore'],
-  '@id': 'https://xtremepropeptide.com/#organization',
+  '@id': 'https://peptide-kaufen.net/#organization',
   name: 'Peptide Shop',
-  url: 'https://xtremepropeptide.com',
-  logo: 'https://xtremepropeptide.com/favicon.svg',
-  email: 'info@xtremepropeptide.com',
+  url: 'https://peptide-kaufen.net',
+  logo: 'https://peptide-kaufen.net/favicon.svg',
+  email: 'info@peptide-kaufen.net',
   description: 'Research-grade peptides with batch-specific certificates of analysis (≥98% HPLC). Sold strictly for research use only (RUO).',
   areaServed: [
     { '@type': 'Place', name: 'European Union' },
@@ -27,13 +27,13 @@ const contactSchema = {
   contactPoint: [{
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    email: 'info@xtremepropeptide.com',
+    email: 'info@peptide-kaufen.net',
     availableLanguage: ['en', 'de', 'nl', 'fr', 'it', 'es'],
     areaServed: 'EU',
   }],
   sameAs: [
-    'https://xtremepropeptide.com/about/',
-    'https://xtremepropeptide.com/quality/',
+    'https://peptide-kaufen.net/about/',
+    'https://peptide-kaufen.net/quality/',
   ],
 };
 ---
@@ -72,7 +72,7 @@ const contactSchema = {
           {Astro.url.searchParams.get('error') && (
             <div class="card" role="alert" style="padding: var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid var(--color-danger, #B42318);">
               <strong>{t('contact.errorTitle') || 'Could not send'}</strong>
-              <p style="margin: 4px 0 0;">{t('contact.errorBody') || 'Please check the fields and try again, or email info@xtremepropeptide.com directly.'}</p>
+              <p style="margin: 4px 0 0;">{t('contact.errorBody') || 'Please check the fields and try again, or email info@peptide-kaufen.net directly.'}</p>
             </div>
           )}
           <form class="card" method="post" action={href('/api/contact')} aria-label={t('contact.formAria')} style="padding: var(--space-8); display: grid; gap: var(--space-5);">
@@ -114,7 +114,7 @@ const contactSchema = {
             </div>
             <div style="display:flex; gap: var(--space-3); align-items:center; flex-wrap: wrap;">
               <button class="btn btn-primary btn-lg" type="submit">{t('contact.send')}</button>
-              <span style="color: var(--color-ink-3); font-size: var(--text-sm);">{t('contact.orEmail')} <a href="mailto:info@xtremepropeptide.com" style="color: var(--color-primary); font-weight: 600;">info@xtremepropeptide.com</a></span>
+              <span style="color: var(--color-ink-3); font-size: var(--text-sm);">{t('contact.orEmail')} <a href="mailto:info@peptide-kaufen.net" style="color: var(--color-primary); font-weight: 600;">info@peptide-kaufen.net</a></span>
             </div>
           </form>
         </article>
@@ -124,7 +124,7 @@ const contactSchema = {
             <h3>{t('contact.directContact')}</h3>
             <div class="info-row">
               <span>{t('contact.email')}</span>
-              <strong><a href="mailto:info@xtremepropeptide.com">info@xtremepropeptide.com</a></strong>
+              <strong><a href="mailto:info@peptide-kaufen.net">info@peptide-kaufen.net</a></strong>
             </div>
             <div class="info-row">
               <span>{t('contact.responseTime')}</span>

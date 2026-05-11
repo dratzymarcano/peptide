@@ -16,7 +16,7 @@ export const prerender = false;
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
-const siteUrl = 'https://xtremepropeptide.com';
+const siteUrl = 'https://peptide-kaufen.net';
 
 const products = (await getCanonicalCollection('products'))
   .filter((product) => product.data.category !== 'supplies')
@@ -56,13 +56,23 @@ const featuredItemList = {
     name: product.data.title,
   })),
 };
+
+const speakableSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}${href('/')}`,
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['.hero h1', '.hero .lead', '.trust-strip'],
+  },
+};
 ---
 
 <Layout
   title={t('home.metaTitle')}
   description={t('home.metaDescription')}
 >
-  <JsonLd schema={[websiteJsonLd, organizationJsonLd, localBusinessJsonLd, featuredItemList]} />
+  <JsonLd schema={[websiteJsonLd, organizationJsonLd, localBusinessJsonLd, featuredItemList, speakableSchema]} />
 
   <!-- HERO ----------------------------------------------------------------- -->
   <section class="hero hero-bg display-typography">

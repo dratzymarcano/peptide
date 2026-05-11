@@ -52,7 +52,7 @@ const relatedPosts = allPosts
   .slice(0, 3)
   .map((entry) => ({ entry, content: getLocalizedBlogPost(entry.id, locale, entry.data) }));
 
-const siteUrl = 'https://xtremepropeptide.com';
+const siteUrl = 'https://peptide-kaufen.net';
 const postUrl = new URL(href(`/blog/${post.id}/`), Astro.site).toString();
 const imageUrl = post.data.image ? new URL(post.data.image, siteUrl).href : `${siteUrl}/favicon.svg`;
 const authorSlug = String(localizedPost.author || 'editorial-team').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');

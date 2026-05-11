@@ -7,12 +7,27 @@
     "pubchem": "CID 9941957",
     "chembl": null,
     "labels": {
-      "en": ["BPC-157", "Body Protection Compound 157", "PL 14736"],
-      "de": ["BPC-157", "Körperschutzverbindung 157"],
-      "nl": ["BPC-157"],
-      "fr": ["BPC-157"],
-      "it": ["BPC-157"],
-      "es": ["BPC-157"]
+      "en": [
+        "BPC-157",
+        "Body Protection Compound 157",
+        "PL 14736"
+      ],
+      "de": [
+        "BPC-157",
+        "Körperschutzverbindung 157"
+      ],
+      "nl": [
+        "BPC-157"
+      ],
+      "fr": [
+        "BPC-157"
+      ],
+      "it": [
+        "BPC-157"
+      ],
+      "es": [
+        "BPC-157"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q4836570",
@@ -25,14 +40,35 @@
     "wikidata": "Q1361853",
     "pubchem": null,
     "labels": {
-      "en": ["TB-500", "Thymosin Beta-4", "Tβ4"],
-      "de": ["TB-500", "Thymosin Beta-4"],
-      "nl": ["TB-500", "Thymosine Beta-4"],
-      "fr": ["TB-500", "Thymosine Bêta-4"],
-      "it": ["TB-500", "Timosina Beta-4"],
-      "es": ["TB-500", "Timosina Beta-4"]
+      "en": [
+        "TB-500",
+        "Thymosin Beta-4",
+        "Tβ4"
+      ],
+      "de": [
+        "TB-500",
+        "Thymosin Beta-4"
+      ],
+      "nl": [
+        "TB-500",
+        "Thymosine Beta-4"
+      ],
+      "fr": [
+        "TB-500",
+        "Thymosine Bêta-4"
+      ],
+      "it": [
+        "TB-500",
+        "Timosina Beta-4"
+      ],
+      "es": [
+        "TB-500",
+        "Timosina Beta-4"
+      ]
     },
-    "sameAs": ["https://www.wikidata.org/wiki/Q1361853"]
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q1361853"
+    ]
   },
   "ghk-cu": {
     "cas": "49557-75-7",
@@ -40,12 +76,31 @@
     "wikidata": "Q5520780",
     "pubchem": "CID 73587",
     "labels": {
-      "en": ["GHK-Cu", "Copper Tripeptide-1", "Glycyl-L-histidyl-L-lysine copper"],
-      "de": ["GHK-Cu", "Kupfer-Tripeptid-1"],
-      "nl": ["GHK-Cu", "Koper-tripeptide-1"],
-      "fr": ["GHK-Cu", "Cuivre-tripeptide-1"],
-      "it": ["GHK-Cu", "Rame tripeptide-1"],
-      "es": ["GHK-Cu", "Cobre tripéptido-1"]
+      "en": [
+        "GHK-Cu",
+        "Copper Tripeptide-1",
+        "Glycyl-L-histidyl-L-lysine copper"
+      ],
+      "de": [
+        "GHK-Cu",
+        "Kupfer-Tripeptid-1"
+      ],
+      "nl": [
+        "GHK-Cu",
+        "Koper-tripeptide-1"
+      ],
+      "fr": [
+        "GHK-Cu",
+        "Cuivre-tripeptide-1"
+      ],
+      "it": [
+        "GHK-Cu",
+        "Rame tripeptide-1"
+      ],
+      "es": [
+        "GHK-Cu",
+        "Cobre tripéptido-1"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q5520780",
@@ -58,12 +113,24 @@
     "wikidata": "Q27077134",
     "pubchem": "CID 56843331",
     "labels": {
-      "en": ["Semaglutide"],
-      "de": ["Semaglutid"],
-      "nl": ["Semaglutide"],
-      "fr": ["Sémaglutide"],
-      "it": ["Semaglutide"],
-      "es": ["Semaglutida"]
+      "en": [
+        "Semaglutide"
+      ],
+      "de": [
+        "Semaglutid"
+      ],
+      "nl": [
+        "Semaglutide"
+      ],
+      "fr": [
+        "Sémaglutide"
+      ],
+      "it": [
+        "Semaglutide"
+      ],
+      "es": [
+        "Semaglutida"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q27077134",
@@ -76,12 +143,24 @@
     "wikidata": "Q108812085",
     "pubchem": "CID 156588324",
     "labels": {
-      "en": ["Tirzepatide"],
-      "de": ["Tirzepatid"],
-      "nl": ["Tirzepatide"],
-      "fr": ["Tirzépatide"],
-      "it": ["Tirzepatide"],
-      "es": ["Tirzepatida"]
+      "en": [
+        "Tirzepatide"
+      ],
+      "de": [
+        "Tirzepatid"
+      ],
+      "nl": [
+        "Tirzepatide"
+      ],
+      "fr": [
+        "Tirzépatide"
+      ],
+      "it": [
+        "Tirzepatide"
+      ],
+      "es": [
+        "Tirzepatida"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q108812085",
@@ -90,18 +169,40 @@
   },
   "retatrutide": {
     "cas": "2381089-83-2",
-    "molecularFormula": null,
+    "molecularFormula": "C194H316N50O65",
     "wikidata": null,
-    "pubchem": null,
+    "pubchem": "CID 145680298",
+    "chembl": null,
     "labels": {
-      "en": ["Retatrutide", "LY3437943"],
-      "de": ["Retatrutid"],
-      "nl": ["Retatrutide"],
-      "fr": ["Rétatrutide"],
-      "it": ["Retatrutide"],
-      "es": ["Retatrutida"]
+      "en": [
+        "Retatrutide",
+        "LY3437943",
+        "GLP-1/GIP/Glucagon triple agonist"
+      ],
+      "de": [
+        "Retatrutid",
+        "LY3437943"
+      ],
+      "nl": [
+        "Retatrutide",
+        "LY3437943"
+      ],
+      "fr": [
+        "Rétatrutide",
+        "LY3437943"
+      ],
+      "it": [
+        "Retatrutide",
+        "LY3437943"
+      ],
+      "es": [
+        "Retatrutida",
+        "LY3437943"
+      ]
     },
-    "sameAs": []
+    "sameAs": [
+      "https://pubchem.ncbi.nlm.nih.gov/compound/145680298"
+    ]
   },
   "cjc-1295-no-dac": {
     "cas": "863288-34-0",
@@ -109,14 +210,31 @@
     "wikidata": "Q5012604",
     "pubchem": null,
     "labels": {
-      "en": ["CJC-1295 (no DAC)", "Modified GRF (1-29)", "Mod GRF 1-29"],
-      "de": ["CJC-1295 (ohne DAC)", "Modifiziertes GRF (1-29)"],
-      "nl": ["CJC-1295 (zonder DAC)"],
-      "fr": ["CJC-1295 (sans DAC)"],
-      "it": ["CJC-1295 (senza DAC)"],
-      "es": ["CJC-1295 (sin DAC)"]
+      "en": [
+        "CJC-1295 (no DAC)",
+        "Modified GRF (1-29)",
+        "Mod GRF 1-29"
+      ],
+      "de": [
+        "CJC-1295 (ohne DAC)",
+        "Modifiziertes GRF (1-29)"
+      ],
+      "nl": [
+        "CJC-1295 (zonder DAC)"
+      ],
+      "fr": [
+        "CJC-1295 (sans DAC)"
+      ],
+      "it": [
+        "CJC-1295 (senza DAC)"
+      ],
+      "es": [
+        "CJC-1295 (sin DAC)"
+      ]
     },
-    "sameAs": ["https://www.wikidata.org/wiki/Q5012604"]
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q5012604"
+    ]
   },
   "ipamorelin": {
     "cas": "170851-70-4",
@@ -124,12 +242,24 @@
     "wikidata": "Q3149726",
     "pubchem": "CID 9831659",
     "labels": {
-      "en": ["Ipamorelin"],
-      "de": ["Ipamorelin"],
-      "nl": ["Ipamoreline"],
-      "fr": ["Ipamoréline"],
-      "it": ["Ipamorelina"],
-      "es": ["Ipamorelina"]
+      "en": [
+        "Ipamorelin"
+      ],
+      "de": [
+        "Ipamorelin"
+      ],
+      "nl": [
+        "Ipamoreline"
+      ],
+      "fr": [
+        "Ipamoréline"
+      ],
+      "it": [
+        "Ipamorelina"
+      ],
+      "es": [
+        "Ipamorelina"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q3149726",
@@ -142,12 +272,26 @@
     "wikidata": "Q5384402",
     "pubchem": "CID 219042",
     "labels": {
-      "en": ["Epitalon", "Epithalon", "Epithalamin"],
-      "de": ["Epitalon"],
-      "nl": ["Epitalon"],
-      "fr": ["Épitalon"],
-      "it": ["Epitalone"],
-      "es": ["Epitalón"]
+      "en": [
+        "Epitalon",
+        "Epithalon",
+        "Epithalamin"
+      ],
+      "de": [
+        "Epitalon"
+      ],
+      "nl": [
+        "Epitalon"
+      ],
+      "fr": [
+        "Épitalon"
+      ],
+      "it": [
+        "Epitalone"
+      ],
+      "es": [
+        "Epitalón"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q5384402",
@@ -160,12 +304,24 @@
     "wikidata": "Q1996088",
     "pubchem": "CID 11765620",
     "labels": {
-      "en": ["Selank"],
-      "de": ["Selank"],
-      "nl": ["Selank"],
-      "fr": ["Sélank"],
-      "it": ["Selank"],
-      "es": ["Selank"]
+      "en": [
+        "Selank"
+      ],
+      "de": [
+        "Selank"
+      ],
+      "nl": [
+        "Selank"
+      ],
+      "fr": [
+        "Sélank"
+      ],
+      "it": [
+        "Selank"
+      ],
+      "es": [
+        "Selank"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q1996088",
@@ -178,12 +334,24 @@
     "wikidata": "Q4416428",
     "pubchem": "CID 11765619",
     "labels": {
-      "en": ["Semax"],
-      "de": ["Semax"],
-      "nl": ["Semax"],
-      "fr": ["Sémax"],
-      "it": ["Semax"],
-      "es": ["Semax"]
+      "en": [
+        "Semax"
+      ],
+      "de": [
+        "Semax"
+      ],
+      "nl": [
+        "Semax"
+      ],
+      "fr": [
+        "Sémax"
+      ],
+      "it": [
+        "Semax"
+      ],
+      "es": [
+        "Semax"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q4416428",
@@ -196,12 +364,27 @@
     "wikidata": "Q584321",
     "pubchem": "CID 92432",
     "labels": {
-      "en": ["Melanotan II", "Melanotan-2", "MT-2"],
-      "de": ["Melanotan II", "Melanotan-2"],
-      "nl": ["Melanotan II"],
-      "fr": ["Mélanotan II"],
-      "it": ["Melanotan II"],
-      "es": ["Melanotán II"]
+      "en": [
+        "Melanotan II",
+        "Melanotan-2",
+        "MT-2"
+      ],
+      "de": [
+        "Melanotan II",
+        "Melanotan-2"
+      ],
+      "nl": [
+        "Melanotan II"
+      ],
+      "fr": [
+        "Mélanotan II"
+      ],
+      "it": [
+        "Melanotan II"
+      ],
+      "es": [
+        "Melanotán II"
+      ]
     },
     "sameAs": [
       "https://www.wikidata.org/wiki/Q584321",
