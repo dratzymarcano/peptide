@@ -279,9 +279,9 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
   <meta name="robots" content="noindex,follow" />
   <style>
     :root {
-      --color-primary:        #005B8C;
-      --color-primary-600:    #00496F;
-      --color-primary-50:     #E6F1F8;
+      --color-primary:        #0066CC;
+      --color-primary-600:    #0052A5;
+      --color-primary-50:     #E3F0FF;
       --color-ink:            #0F172A;
       --color-ink-2:          #334155;
       --color-ink-3:          #64748B;
