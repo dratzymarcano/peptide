@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Peptide Shop">
   <title>Peptide Shop</title>
-  <circle cx="32" cy="32" r="30" fill="#005B8C"/>
-  <path d="M21 32c0-6 4.5-11 11-11s11 5 11 11-4.5 11-11 11"
-        fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="32" cy="32" r="5" fill="#90E0EF"/>
+  <circle cx="32" cy="32" r="30" fill="#0066CC"/>
+  <!-- peptide backbone bond lines -->
+  <line x1="15" y1="46" x2="32" y2="18" stroke="#fff" stroke-width="4.5" stroke-linecap="round" opacity="0.55"/>
+  <line x1="32" y1="18" x2="49" y2="46" stroke="#fff" stroke-width="4.5" stroke-linecap="round" opacity="0.55"/>
+  <!-- residue nodes -->
+  <circle cx="15" cy="46" r="9" fill="#fff"/>
+  <circle cx="32" cy="18" r="9" fill="#fff"/>
+  <circle cx="49" cy="46" r="9" fill="#00B4A0"/>
 </svg>
