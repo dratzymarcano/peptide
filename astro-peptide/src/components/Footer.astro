@@ -18,9 +18,12 @@ const href = (path: string) => localizePath(path, locale);
       <div class="footer-col footer-col--brand">
         <a href={href('/')} class="footer-brand" aria-label={t('nav.homeLabel')}>
           <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
-            <rect x="1" y="1" width="30" height="30" rx="8" fill="var(--color-primary)" />
-            <path d="M10 22 V10 h5 a4 4 0 0 1 0 8 h-5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-            <circle cx="22" cy="22" r="2" fill="#90E0EF" />
+            <rect x="1" y="1" width="30" height="30" rx="7" fill="var(--color-primary)" />
+            <line x1="8" y1="23" x2="16" y2="9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+            <line x1="16" y1="9" x2="24" y2="23" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
+            <circle cx="8" cy="23" r="4.5" fill="#fff"/>
+            <circle cx="16" cy="9" r="4.5" fill="#fff"/>
+            <circle cx="24" cy="23" r="4.5" fill="#00B4A0"/>
           </svg>
           <span><strong>Peptide</strong>Shop</span>
         </a>

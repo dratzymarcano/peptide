@@ -129,28 +129,40 @@ function baseEmail(args: {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(args.title)}</title>
   </head>
-  <body style="margin:0;background:#f3f7f8;color:#14262f;font-family:Inter,Arial,sans-serif;">
+  <body style="margin:0;background:#EFF6FF;color:#0F172A;font-family:Inter,Arial,sans-serif;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(args.preheader)}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f3f7f8;padding:28px 12px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#EFF6FF;padding:28px 12px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #dce8eb;border-radius:12px;overflow:hidden;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;">
+            <!-- Logo bar -->
             <tr>
-              <td style="background:#0b5f7c;padding:24px 28px;color:#ffffff;">
-                <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#bde7f2;font-weight:700;">${escapeHtml(args.eyebrow)}</div>
-                <div style="font-size:28px;line-height:1.2;font-weight:800;margin-top:8px;">${escapeHtml(args.title)}</div>
+              <td style="padding:20px 28px 0;background:#ffffff;">
+                <img src="https://peptide-kaufen.net/brand/peptide-shop-logo.svg" alt="Peptide Shop" width="160" height="39" style="display:block;height:39px;width:160px;">
               </td>
             </tr>
+            <!-- Header band -->
+            <tr>
+              <td style="background:#0066CC;padding:20px 28px 24px;color:#ffffff;">
+                <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E3F0FF;font-weight:700;">${escapeHtml(args.eyebrow)}</div>
+                <div style="font-size:26px;line-height:1.2;font-weight:800;margin-top:6px;">${escapeHtml(args.title)}</div>
+              </td>
+            </tr>
+            <!-- Body -->
             <tr>
               <td style="padding:28px;">
-                <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#314852;">${escapeHtml(args.intro)}</p>
+                <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#334155;">${escapeHtml(args.intro)}</p>
                 ${args.body}
-                ${args.cta ? `<p style="margin:28px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0b5f7c;color:#ffffff;text-decoration:none;border-radius:8px;padding:13px 18px;font-weight:700;">${escapeHtml(args.cta.label)}</a></p>` : ''}
+                ${args.cta ? `<p style="margin:28px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0066CC;color:#ffffff;text-decoration:none;border-radius:8px;padding:13px 22px;font-weight:700;font-size:15px;">${escapeHtml(args.cta.label)}</a></p>` : ''}
               </td>
             </tr>
+            <!-- Footer -->
             <tr>
-              <td style="padding:18px 28px;background:#f8fbfc;border-top:1px solid #e2ecef;color:#5c7078;font-size:13px;line-height:1.6;">
+              <td style="padding:18px 28px;background:#F8FAFC;border-top:1px solid #E2E8F0;color:#475569;font-size:13px;line-height:1.6;">
                 ${escapeHtml(args.footerNote ?? 'Peptide Shop supplies research-use materials only. Please keep this message for your records.')}
+                <br><br>
+                <a href="https://peptide-kaufen.net" style="color:#0066CC;text-decoration:none;">peptide-kaufen.net</a> ·
+                <a href="mailto:info@peptide-kaufen.net" style="color:#0066CC;text-decoration:none;">info@peptide-kaufen.net</a>
               </td>
             </tr>
           </table>
