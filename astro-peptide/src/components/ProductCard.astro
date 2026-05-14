@@ -140,6 +140,7 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
     >
       <meta itemprop="priceCurrency" content="EUR" />
       {p.price != null && <meta itemprop="price" content={p.price.toFixed(2)} />}
+      <meta itemprop="brand" content="Peptide Shop" />
       <meta
         itemprop="availability"
         content={`https://schema.org/${
@@ -150,6 +151,54 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
             : 'InStock'
         }`}
       />
+      <div itemprop="hasMerchantReturnPolicy" itemscope itemtype="https://schema.org/MerchantReturnPolicy" hidden>
+        <meta itemprop="applicableCountry" content="DE" />
+        <meta itemprop="applicableCountry" content="NL" />
+        <meta itemprop="applicableCountry" content="FR" />
+        <meta itemprop="applicableCountry" content="IT" />
+        <meta itemprop="applicableCountry" content="ES" />
+        <meta itemprop="applicableCountry" content="AT" />
+        <meta itemprop="applicableCountry" content="BE" />
+        <meta itemprop="applicableCountry" content="PL" />
+        <meta itemprop="applicableCountry" content="SE" />
+        <meta itemprop="applicableCountry" content="DK" />
+        <meta itemprop="applicableCountry" content="FI" />
+        <meta itemprop="returnPolicyCategory" content="https://schema.org/MerchantReturnFiniteReturnWindow" />
+        <meta itemprop="merchantReturnDays" content="14" />
+        <meta itemprop="returnMethod" content="https://schema.org/ReturnByMail" />
+        <meta itemprop="returnFees" content="https://schema.org/FreeReturn" />
+      </div>
+      <div itemprop="shippingDetails" itemscope itemtype="https://schema.org/OfferShippingDetails" hidden>
+        <div itemprop="shippingDestination" itemscope itemtype="https://schema.org/DefinedRegion">
+          <meta itemprop="addressCountry" content="DE" />
+          <meta itemprop="addressCountry" content="NL" />
+          <meta itemprop="addressCountry" content="FR" />
+          <meta itemprop="addressCountry" content="IT" />
+          <meta itemprop="addressCountry" content="ES" />
+          <meta itemprop="addressCountry" content="AT" />
+          <meta itemprop="addressCountry" content="BE" />
+          <meta itemprop="addressCountry" content="PL" />
+          <meta itemprop="addressCountry" content="SE" />
+          <meta itemprop="addressCountry" content="DK" />
+          <meta itemprop="addressCountry" content="FI" />
+        </div>
+        <div itemprop="shippingRate" itemscope itemtype="https://schema.org/MonetaryAmount">
+          <meta itemprop="value" content="9.90" />
+          <meta itemprop="currency" content="EUR" />
+        </div>
+        <div itemprop="deliveryTime" itemscope itemtype="https://schema.org/ShippingDeliveryTime">
+          <div itemprop="handlingTime" itemscope itemtype="https://schema.org/QuantitativeValue">
+            <meta itemprop="minValue" content="0" />
+            <meta itemprop="maxValue" content="1" />
+            <meta itemprop="unitCode" content="DAY" />
+          </div>
+          <div itemprop="transitTime" itemscope itemtype="https://schema.org/QuantitativeValue">
+            <meta itemprop="minValue" content="1" />
+            <meta itemprop="maxValue" content="5" />
+            <meta itemprop="unitCode" content="DAY" />
+          </div>
+        </div>
+      </div>
       <ProductLivePrice
         client:visible
         id={p.id}
