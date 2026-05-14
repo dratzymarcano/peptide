@@ -73,16 +73,12 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
 <article
   class={`card card-product${isOutOfStock ? ' is-oos' : ''}`}
   data-product-id={p.id}
-  itemscope
-  itemtype="https://schema.org/Product"
 >
-  <meta itemprop="sku" content={p.id} />
 
   <a href={productUrl} class="img-wrap" tabindex="-1" aria-hidden="true">
     <img
       src={p.image}
       alt={p.imageAlt}
-      itemprop="image"
       loading="lazy"
       decoding="async"
       width="300"
@@ -101,14 +97,14 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
       <span class="badge" aria-hidden="true">{p.category.replace(/-/g, ' ')}</span>
     )}
 
-    <h3 class="title" itemprop="name">
+    <h3 class="title">
       <a href={productUrl}>{p.title}</a>
     </h3>
 
     {p.packageSize && <p class="meta">{p.packageSize}</p>}
 
     {showDescription && (
-      <p class="meta meta-desc" itemprop="description">
+      <p class="meta meta-desc">
         {p.shortDescription!.length > 90
           ? p.shortDescription!.slice(0, 87) + '…'
           : p.shortDescription}
@@ -118,7 +114,6 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
     {p.rating && (
       <div
         class="rating"
-        itemprop="aggregateRating"
         itemscope
         itemtype="https://schema.org/AggregateRating"
         aria-label={t('productCard.ratingAria', { rating: p.rating.average.toFixed(1), count: p.rating.count })}
@@ -134,7 +129,6 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
 
     <div
       class="price-block"
-      itemprop="offers"
       itemscope
       itemtype="https://schema.org/Offer"
     >

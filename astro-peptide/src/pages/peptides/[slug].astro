@@ -113,7 +113,6 @@ const reviewObjects = reviews.length > 0
         worstRating: '1',
       },
     }];
-const productReview = reviewObjects.length === 1 ? reviewObjects[0] : reviewObjects;
 const aggregateRating = {
   '@type': 'AggregateRating',
   ratingValue: (averageRating ?? 5).toFixed(1),
@@ -197,7 +196,7 @@ const productSchema = {
       },
     },
   },
-  review: productReview,
+  review: reviewObjects,
   aggregateRating,
 };
 
