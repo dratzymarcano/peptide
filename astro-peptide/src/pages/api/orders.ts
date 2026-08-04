@@ -1,14 +1,13 @@
 import type { APIRoute } from 'astro';
 import { env as cfEnv } from 'cloudflare:workers';
 import { createOrder, type OrderRecord, type PaymentMethod } from '../../lib/orders';
+import { priceOrder } from '../../lib/pricing';
 import {
   sendBankTransferInstructions,
   sendOrderConfirmation,
   sendOrderNotification,
   type EmailEnv,
 } from '../../lib/email/sender';
-
-const MIN_ORDER_AMOUNT = 200;
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -20,20 +19,16 @@ interface CheckoutOrderItem {
   id?: string;
   productId?: string;
   slug?: string;
-  title?: string;
   variant?: string;
   quantity?: number;
-  price?: number;
-  unitPrice?: number;
 }
 
 interface CheckoutOrderPayload {
   id?: string;
   email?: string;
   paymentMethod?: 'bank-transfer' | 'bitcoin';
-  subtotal?: number;
-  shipping?: number;
-  discount?: number;
+  shippingMethod?: string;
+  /** Client's own figure. Advisory only — compared, never billed on. */
   total?: number;
   currency?: string;
   locale?: string;
@@ -47,24 +42,6 @@ function paymentMethod(input?: string): PaymentMethod {
   return input === 'bitcoin' ? 'bitcoin' : 'bank';
 }
 
-function normalizeItems(items: CheckoutOrderItem[] | undefined, currency: string) {
-  return (items ?? []).map((item) => {
-    const unitPrice = Number(item.unitPrice ?? item.price ?? 0);
-    const productId = String(item.productId ?? item.id ?? item.slug ?? '').trim();
-    const title = String(item.title ?? '').trim();
-    const variant = String(item.variant ?? 'Standard').trim() || 'Standard';
-    return {
-      productId,
-      slug: String(item.slug ?? productId).trim() || productId,
-      title,
-      variant,
-      quantity: Math.max(1, Number(item.quantity ?? 1)),
-      unitPrice,
-      currency,
-    };
-  });
-}
-
 export const POST: APIRoute = async ({ request, locals }) => {
   let payload: CheckoutOrderPayload;
   try {
@@ -75,16 +52,28 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   const currency = String(payload.currency ?? 'EUR').toUpperCase();
   const email = String(payload.email ?? '').trim().slice(0, 200);
-  const items = normalizeItems(payload.items, currency);
-  const subtotal = Number(payload.subtotal ?? items.reduce((sum, item) => sum + item.unitPrice * item.quantity, 0));
-  const total = Number(payload.total ?? subtotal);
 
-  if (!email || !isEmail(email) || items.length === 0 || items.some((item) => !item.productId || !item.title || item.unitPrice <= 0)) {
+  if (!email || !isEmail(email)) {
     return json({ success: false, code: 'invalid_order' }, 400);
   }
 
-  if (subtotal < MIN_ORDER_AMOUNT || total <= 0) {
-    return json({ success: false, code: 'minimum_order_required' }, 400);
+  // Prices, subtotal, shipping and total are derived from the catalogue. The
+  // request body only says *what* and *how many* — never what it costs.
+  const priced = await priceOrder(payload.items, {
+    currency,
+    shippingMethod: payload.shippingMethod,
+  });
+  if (!priced.ok) {
+    return json({ success: false, code: priced.code, detail: priced.detail }, 400);
+  }
+  const { items, subtotal, shipping, total } = priced;
+
+  // A mismatch means the cart was stale or tampered with. Either way the
+  // customer must not be shown one total and charged another.
+  const claimedTotal = Number(payload.total);
+  if (Number.isFinite(claimedTotal) && Math.abs(claimedTotal - total) > 0.01) {
+    console.warn(`[orders] client total ${claimedTotal} != server total ${total}`);
+    return json({ success: false, code: 'total_mismatch', expected: total }, 409);
   }
 
   const method = paymentMethod(payload.paymentMethod);
@@ -101,8 +90,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
       locale: payload.locale ?? 'en',
       shippingAddress: payload.shippingAddress ?? null,
       metadata: {
-        shipping: Number(payload.shipping ?? 0),
-        discount: Number(payload.discount ?? 0),
+        shipping,
+        discount: 0,
         source: 'checkout',
       },
       items,

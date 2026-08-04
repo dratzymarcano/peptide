@@ -624,7 +624,7 @@
     "bankTransfer": "Bank transfer",
     "bankTransferHelp": "Instructions are emailed after order confirmation.",
     "bitcoin": "Bitcoin",
-    "bitcoinHelp": "Includes a 10% payment discount.",
+    "bitcoinHelp": "A payment address is shown after you confirm the order.",
     "reviewOrder": "Review order",
     "back": "Back",
     "confirmOrder": "Confirm research-use order",

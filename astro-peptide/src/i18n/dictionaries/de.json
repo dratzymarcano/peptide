@@ -538,7 +538,7 @@
     "description": "Prüfen Sie ausgewählte Forschungsmaterialien vor dem Checkout. Produkte werden nur für In-vitro-Forschungszwecke geliefert."
   },
   "checkoutPage": {
-    "metaTitle": "Checkout | Peptide Shop",
+    "metaTitle": "Kasse | Peptide Shop",
     "metaDescription": "Schließen Sie einen sicheren Noindex-Checkout für Forschungspeptid-Bestellungen mit RUO-Bestätigung und verfügbarer COA-Dokumentation ab.",
     "eyebrow": "Sicherer Checkout",
     "title": "Bestellung abschließen",
@@ -624,7 +624,7 @@
     "bankTransfer": "Banküberweisung",
     "bankTransferHelp": "Anweisungen werden nach Bestellbestätigung per E-Mail gesendet.",
     "bitcoin": "Bitcoin",
-    "bitcoinHelp": "Enthält 10 % Zahlungsrabatt.",
+    "bitcoinHelp": "Nach der Bestellbestätigung wird eine Zahlungsadresse angezeigt.",
     "reviewOrder": "Bestellung prüfen",
     "back": "Zurück",
     "confirmOrder": "Forschungsbestellung bestätigen",

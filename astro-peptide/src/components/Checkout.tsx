@@ -93,9 +93,10 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
         id: serverOrderId,
         email: shippingInfo.email,
         paymentMethod,
-        subtotal: Number($cartTotal.toFixed(2)),
-        shipping: Number(shippingCost.toFixed(2)),
-        discount: Number(paymentDiscount.toFixed(2)),
+        shippingMethod,
+        // Sent so the server can reject a stale cart, not so it can bill on it.
+        // Line prices, subtotal, shipping and total are recomputed server-side
+        // from the catalogue in src/lib/pricing.ts.
         total: Number(orderTotal.toFixed(2)),
         currency: 'EUR',
         locale,
@@ -110,13 +111,9 @@ export default function Checkout({ labels, paths, locale = 'en' }: CheckoutProps
           country: shippingInfo.country,
         },
         items: products.map((product) => ({
-          id: product.id,
           productId: product.id,
-          slug: product.id,
-          title: product.title,
           variant: [product.size, product.color].filter(Boolean).join(' / ') || 'Standard',
           quantity: product.quantity,
-          unitPrice: product.price,
         })),
       }),
     });
