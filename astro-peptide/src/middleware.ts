@@ -16,8 +16,11 @@ const CSP = [
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline'",
-  "connect-src 'self' https://api.resend.com",
+  // Cloudflare Web Analytics is injected at the edge, so it cannot be served
+  // from 'self'. Without these two entries the beacon was blocked on every
+  // page: analytics recorded nothing and every visit logged a CSP violation.
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
+  "connect-src 'self' https://api.resend.com https://cloudflareinsights.com https://static.cloudflareinsights.com",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
