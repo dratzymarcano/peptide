@@ -142,7 +142,13 @@
     "relatedEyebrow": "Ähnliche Produkte",
     "relatedTitle": "Mehr aus {area}",
     "relatedFallbackArea": "diesem Forschungsbereich",
-    "purity": "Reinheit"
+    "purity": "Reinheit",
+    "zoomHint": "Zum Zoomen bewegen · zum Vergrößern klicken",
+    "closeViewer": "Bildansicht schließen",
+    "previousImage": "Vorheriges Bild",
+    "nextImage": "Nächstes Bild",
+    "viewLarger": "Größeres Bild anzeigen",
+    "thumbnailFor": "Bild anzeigen"
   },
   "productCard": {
     "promotion": "Aktion: {label}",

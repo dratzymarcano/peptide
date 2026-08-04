@@ -142,7 +142,13 @@
     "relatedEyebrow": "Gerelateerde producten",
     "relatedTitle": "Meer uit {area}",
     "relatedFallbackArea": "dit onderzoeksgebied",
-    "purity": "Zuiverheid"
+    "purity": "Zuiverheid",
+    "zoomHint": "Beweeg om te zoomen · klik om te vergroten",
+    "closeViewer": "Afbeeldingweergave sluiten",
+    "previousImage": "Vorige afbeelding",
+    "nextImage": "Volgende afbeelding",
+    "viewLarger": "Grotere afbeelding bekijken",
+    "thumbnailFor": "Afbeelding bekijken"
   },
   "productCard": {
     "promotion": "Promotie: {label}",

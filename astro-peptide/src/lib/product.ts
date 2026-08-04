@@ -79,7 +79,10 @@ export function toCardProduct(entry: CollectionEntry<'products'>, locale: Locale
     id: d.id,
     slug,
     url: `/peptides/${slug}/`,
-    title: localized.title,
+    // Cards show the product name, not the search-results title. The full
+    // "— ≥99 % HPLC, COA" tail wrapped to two lines in a grid cell and
+    // repeated the purity pill already overlaid on the image.
+    title: localized.cleanTitle,
     shortDescription: localized.shortDescription,
     image: d.images?.[0] ?? FALLBACK_IMAGE,
     imageAlt: localized.cleanTitle,

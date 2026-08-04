@@ -142,7 +142,13 @@
     "relatedEyebrow": "Produits associés",
     "relatedTitle": "Plus de {area}",
     "relatedFallbackArea": "ce domaine de recherche",
-    "purity": "Pureté"
+    "purity": "Pureté",
+    "zoomHint": "Survolez pour zoomer · cliquez pour agrandir",
+    "closeViewer": "Fermer la visionneuse d'images",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "viewLarger": "Afficher l'image en grand",
+    "thumbnailFor": "Afficher l'image"
   },
   "productCard": {
     "promotion": "Promotion : {label}",

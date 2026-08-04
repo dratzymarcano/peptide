@@ -4,12 +4,12 @@ import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import ProductOptions from '../../components/ProductOptions';
+import ProductGallery from '../../components/ProductGallery';
 import ProductCard from '../../components/ProductCard.astro';
 import { toCardProduct } from '../../lib/product';
 import ProductFAQs from '../../components/ProductFAQs.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RUOBanner from '../../components/RUOBanner.astro';
-import ShopSidebar from '../../components/ShopSidebar.astro';
 import { getResearchArea, useCases, type UseCaseSlug } from '../../data/taxonomy';
 import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
@@ -62,7 +62,8 @@ if (hasOverride && localeOverride) {
 }
 
 const cleanTitle = localizedProduct.cleanTitle;
-const productImage = product.data.images?.[0] ?? '/images/peptide-default.jpg';
+const productImages = (product.data.images?.length ? product.data.images : ['/images/peptide-default.jpg']);
+const productImage = productImages[0];
 const siteUrl = 'https://peptide-kaufen.net';
 const productUrl = `${siteUrl}${href(`/peptides/${currentSlug}/`)}`;
 const productImageUrl = productImage.startsWith('http') ? productImage : `${siteUrl}${productImage}`;
@@ -236,50 +237,41 @@ const breadcrumbs = [
         { name: cleanTitle },
       ]} />
 
-      <RUOBanner
-        heading={t('productPage.ruoHeading')}
-        detail={t('productPage.ruoDetail')}
-      />
-
-      <div class="product-page-layout">
-        <aside class="product-page-sidebar" aria-label={t('productPage.browseCatalogue')}>
-          <ShopSidebar selectedArea={researchArea?.slug} />
-        </aside>
-
-        <div class="product-page-main">
-      <div class="product-grid-layout">
-        <div class="product-media card">
-          <img src={productImage} alt={t('productPage.imageAlt', { product: cleanTitle })} width="720" height="720" decoding="async" fetchpriority="high" />
+      {/*
+        Above the fold is two columns: image, then buy. The catalogue sidebar,
+        the full-width RUO slab and the long spec list previously split this
+        row four ways and squeezed the product shot to roughly 250px — the one
+        element a shopper actually looks at first. RUO stays visible as a badge
+        here and in the buy box, with the full statement kept further down.
+      */}
+      <div class="pdp">
+        <div class="pdp__media">
+          <ProductGallery
+            client:load
+            images={productImages}
+            alt={t('productPage.imageAlt', { product: cleanTitle })}
+            labels={{
+              zoomHint: t('productPage.zoomHint'),
+              close: t('productPage.closeViewer'),
+              previous: t('productPage.previousImage'),
+              next: t('productPage.nextImage'),
+              viewLarger: t('productPage.viewLarger'),
+              thumbnailFor: t('productPage.thumbnailFor'),
+            }}
+          />
         </div>
 
-        <div class="product-summary">
+        <div class="pdp__info">
           <span class="eyebrow">{researchAreaName ?? product.data.category.replace(/-/g, ' ')}</span>
-          <h1>{cleanTitle}</h1>
-          <p class="lead">{localizedProduct.shortDescription}</p>
+          <h1 class="pdp__title">{cleanTitle}</h1>
 
-          <div class="product-badges" aria-label={t('productPage.qualityBadges')}>
+          <div class="pdp__badges" aria-label={t('productPage.qualityBadges')}>
             <span class="badge badge-success">{product.data.purity}</span>
             <span class="badge">{t('productPage.coaSupported')}</span>
             <span class="badge badge-warning">RUO</span>
           </div>
 
-          <dl class="spec-list">
-            {product.data.cas && <><dt>CAS</dt><dd>{product.data.cas}</dd></>}
-            {product.data.molecular_weight && <><dt>{t('productPage.molecularWeight')}</dt><dd>{product.data.molecular_weight}</dd></>}
-            <dt>{t('productPage.storage')}</dt><dd>{localizedProduct.storage}</dd>
-            <dt>{t('productPage.packageSizes')}</dt><dd>{product.data.package_sizes.join(', ')}</dd>
-          </dl>
-
-          <div class="hub-links">
-            {researchArea && <a class="chip" href={href(`/catalog/${researchArea.slug}/`)}>{t('productPage.browseArea', { area: researchAreaName ?? researchArea.name })}</a>}
-            {productUseCases.map((useCase) => useCase && (
-              <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{useCase.name}</a>
-            ))}
-          </div>
-        </div>
-
-        <aside class="buy-box card" aria-label={t('productPage.purchaseOptions')}>
-          <h2>{t('productPage.selectOptions')}</h2>
+          <aside class="buy-box card" aria-label={t('productPage.purchaseOptions')}>
           <ProductOptions
             client:load
             id={product.data.id}
@@ -312,72 +304,105 @@ const breadcrumbs = [
             <a href={href('/coa-policy/')} class="btn btn-secondary btn-block">{t('productPage.coaPolicyRequests')}</a>
             <a href={href('/shipping/')} class="btn btn-ghost btn-block">{t('productPage.shippingDetails')}</a>
           </div>
-        </aside>
+          </aside>
+
+          {/* Four numbers a buyer scans before anything else, value first. */}
+          <dl class="fact-grid">
+            {product.data.cas && (
+              <div class="fact"><dt>CAS</dt><dd>{product.data.cas}</dd></div>
+            )}
+            {product.data.molecular_weight && (
+              <div class="fact"><dt>{t('productPage.molecularWeight')}</dt><dd>{product.data.molecular_weight}</dd></div>
+            )}
+            <div class="fact"><dt>{t('productPage.packageSizes')}</dt><dd>{product.data.package_sizes.join(', ')}</dd></div>
+            <div class="fact"><dt>{t('productPage.storage')}</dt><dd>{localizedProduct.storage.split('(')[0].trim()}</dd></div>
+          </dl>
+
+          <div class="hub-links">
+            {researchArea && <a class="chip" href={href(`/catalog/${researchArea.slug}/`)}>{researchAreaName ?? researchArea.name}</a>}
+            {productUseCases.map((useCase) => useCase && (
+              <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{useCase.name}</a>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <nav class="tabs product-tabs" aria-label={t('productPage.detailSections')}>
-        <a class="tab" href="#description">{t('productPage.description')}</a>
-        <a class="tab" href="#data">{t('productPage.sequenceData')}</a>
-        <a class="tab" href="#storage">{t('productPage.storage')}</a>
-        <a class="tab" href="#coa">{t('productPage.coa')}</a>
-        {localizedProduct.faqs.length > 0 && <a class="tab" href="#faqs">{t('productPage.faqs')}</a>}
-      </nav>
-
-      <div class="product-detail-layout">
-        <article class="product-content card" id="description">
-          <h2>{t('productPage.description')}</h2>
-          <div class="prose-content">
+      {/*
+        Detail is collapsed by default. The anchor-link tab strip that used to
+        sit here scrolled to sections that were already fully expanded below
+        it, so the page opened with several screens of prose nobody had asked
+        for. Description stays open as the one section most people want.
+      */}
+      <div class="pdp-detail">
+        <details class="disclose" id="description" open>
+          <summary><span>{t('productPage.description')}</span></summary>
+          <div class="disclose__body prose-content">
             {locale === 'en' ? <Content /> : (OverrideContent ? <OverrideContent /> : <Fragment set:html={localizedProduct.bodyHtml} />)}
           </div>
-        </article>
+        </details>
 
-        <section class="card" id="data">
-          <h2>{t('productPage.sequenceData')}</h2>
-          <table class="table-clean">
-            <tbody>
-              <tr><th scope="row">{t('productPage.productId')}</th><td>{product.data.id}</td></tr>
-              <tr><th scope="row">CAS</th><td>{product.data.cas ?? t('productPage.notAssigned')}</td></tr>
-              <tr><th scope="row">{t('productPage.molecularWeight')}</th><td>{product.data.molecular_weight ?? t('productPage.notAssigned')}</td></tr>
-              <tr><th scope="row">{t('productPage.purity')}</th><td>{product.data.purity}</td></tr>
-              {product.data.sequence && <tr><th scope="row">{t('productPage.sequence')}</th><td class="text-mono">{product.data.sequence}</td></tr>}
-            </tbody>
-          </table>
-        </section>
-
-        <section class="card" id="storage">
-          <h2>{t('productPage.storageHandling')}</h2>
-          <p>{localizedProduct.storage}</p>
-          <p>{t('productPage.storageHandlingBody')}</p>
-        </section>
-
-        <section class="card" id="coa">
-          <h2>{t('productPage.certificate')}</h2>
-          <p>{t('productPage.coaBody')}</p>
-          <div class="coa-actions">
-            <a class="btn btn-primary" href={`/api/coa/${currentSlug}.pdf`} download>
-              {t('productPage.downloadCoa')}
-            </a>
-            <a class="btn btn-secondary" href={`/coa/${currentSlug}.html`} target="_blank" rel="noopener">
-              {t('productPage.previewHtml')}
-            </a>
-            <a class="btn btn-ghost" href={href('/coa-policy/')}>{t('productPage.coaPolicy')}</a>
+        <details class="disclose" id="data">
+          <summary><span>{t('productPage.sequenceData')}</span></summary>
+          <div class="disclose__body">
+            <table class="table-clean">
+              <tbody>
+                <tr><th scope="row">{t('productPage.productId')}</th><td>{product.data.id}</td></tr>
+                <tr><th scope="row">CAS</th><td>{product.data.cas ?? t('productPage.notAssigned')}</td></tr>
+                <tr><th scope="row">{t('productPage.molecularWeight')}</th><td>{product.data.molecular_weight ?? t('productPage.notAssigned')}</td></tr>
+                <tr><th scope="row">{t('productPage.purity')}</th><td>{product.data.purity}</td></tr>
+                {product.data.sequence && <tr><th scope="row">{t('productPage.sequence')}</th><td class="text-mono">{product.data.sequence}</td></tr>}
+              </tbody>
+            </table>
           </div>
-          <details class="coa-langs">
-            <summary>{t('productPage.otherLanguages')}</summary>
-            <ul>
-              {alternateCoaLocales.map((coaLocale) => (
-                <li><a href={`/api/coa/${currentSlug}.pdf?lang=${coaLocale}`} download>{localeMeta[coaLocale].name} (PDF)</a> · <a href={`/coa/${currentSlug}.${coaLocale}.html`} target="_blank" rel="noopener">HTML</a></li>
-              ))}
-            </ul>
-          </details>
-        </section>
+        </details>
+
+        <details class="disclose" id="storage">
+          <summary><span>{t('productPage.storageHandling')}</span></summary>
+          <div class="disclose__body">
+            <p>{localizedProduct.storage}</p>
+            <p>{t('productPage.storageHandlingBody')}</p>
+          </div>
+        </details>
+
+        <details class="disclose" id="coa">
+          <summary><span>{t('productPage.certificate')}</span></summary>
+          <div class="disclose__body">
+            <p>{t('productPage.coaBody')}</p>
+            <div class="coa-actions">
+              <a class="btn btn-primary" href={`/api/coa/${currentSlug}.pdf`} download>
+                {t('productPage.downloadCoa')}
+              </a>
+              <a class="btn btn-secondary" href={`/coa/${currentSlug}.html`} target="_blank" rel="noopener">
+                {t('productPage.previewHtml')}
+              </a>
+              <a class="btn btn-ghost" href={href('/coa-policy/')}>{t('productPage.coaPolicy')}</a>
+            </div>
+            <details class="coa-langs">
+              <summary>{t('productPage.otherLanguages')}</summary>
+              <ul>
+                {alternateCoaLocales.map((coaLocale) => (
+                  <li><a href={`/api/coa/${currentSlug}.pdf?lang=${coaLocale}`} download>{localeMeta[coaLocale].name} (PDF)</a> · <a href={`/coa/${currentSlug}.${coaLocale}.html`} target="_blank" rel="noopener">HTML</a></li>
+                ))}
+              </ul>
+            </details>
+          </div>
+        </details>
 
         {localizedProduct.faqs.length > 0 && (
-          <section class="card" id="faqs">
-            <ProductFAQs productName={cleanTitle} faqs={localizedProduct.faqs} heading={t('productPage.faqs')} />
-          </section>
+          <details class="disclose" id="faqs">
+            <summary><span>{t('productPage.faqs')}</span></summary>
+            <div class="disclose__body">
+              <ProductFAQs productName={cleanTitle} faqs={localizedProduct.faqs} heading="" />
+            </div>
+          </details>
         )}
       </div>
+
+      {/* Full research-use statement, kept on the page for compliance. */}
+      <RUOBanner
+        heading={t('productPage.ruoHeading')}
+        detail={t('productPage.ruoDetail')}
+      />
 
       {relatedProducts.length > 0 && (
         <section class="section related-section" aria-labelledby="related-title">
@@ -390,62 +415,104 @@ const breadcrumbs = [
           </div>
         </section>
       )}
-        </div>
-      </div>
     </div>
   </section>
 </Layout>
 
 <style>
-  .product-page { padding-top: var(--space-10); }
-  .product-page-layout {
+  .product-page { padding-top: var(--space-8); }
+
+  /* Two columns: the image gets the larger share. */
+  .pdp {
     display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: var(--space-8);
+    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+    gap: clamp(var(--space-6), 4vw, var(--space-10));
     align-items: start;
     margin-top: var(--space-6);
   }
-  .product-page-sidebar {
-    position: sticky;
-    top: 88px;
+  .pdp__media { position: sticky; top: 88px; min-width: 0; }
+  .pdp__info { min-width: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+  .pdp__title {
+    margin: 0;
+    font-size: clamp(2rem, 1.4rem + 2vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
-  .product-page-main { min-width: 0; }
-  .product-grid-layout {
+  .pdp__badges,
+  .hub-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .pdp__info .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
+
+  /* Value-first tiles scan faster than a dt/dd run of labels. */
+  .fact-grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(320px, 0.8fr);
-    gap: var(--space-8);
-    align-items: start;
-    margin-top: 0;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-3);
+    margin: 0;
   }
-  .product-media { padding: var(--space-6); background: var(--color-surface-2); }
-  .product-media img { width: 100%; aspect-ratio: 1; object-fit: contain; }
-  .product-summary h1 { margin-bottom: var(--space-4); }
-  .product-badges,
-  .hub-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: var(--space-5);
+  .fact {
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 0.75rem);
   }
-  .spec-list {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    gap: var(--space-2) var(--space-4);
-    margin-top: var(--space-6);
+  .fact dt {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-3);
+    font-weight: 600;
+  }
+  .fact dd {
+    margin: 2px 0 0;
+    font-weight: 650;
+    color: var(--color-ink);
     font-size: var(--text-sm);
+    line-height: 1.35;
   }
-  .spec-list dt { color: var(--color-ink-3); font-weight: 500; }
-  .spec-list dd { margin: 0; color: var(--color-ink); font-weight: 600; }
-  .buy-box { position: sticky; top: 96px; gap: var(--space-4); }
-  .buy-box h2 { font-size: var(--text-xl); }
+
+  .buy-box { gap: var(--space-4); margin: 0; }
+  .buy-box h2 { font-size: var(--text-lg); }
   .buy-box__links { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
-  .product-tabs { margin-top: var(--space-12); }
-  .product-tabs a { text-decoration: none; }
-  .product-detail-layout {
+
+  /* Collapsed detail: one row per topic, opened on demand. */
+  .pdp-detail {
     display: grid;
-    gap: var(--space-6);
-    margin-top: var(--space-6);
+    gap: var(--space-3);
+    margin-top: var(--space-12);
   }
+  .disclose {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 1rem);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .disclose > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    font-weight: 650;
+    font-size: var(--text-lg);
+    list-style: none;
+    transition: background 0.15s ease;
+  }
+  .disclose > summary::-webkit-details-marker { display: none; }
+  .disclose > summary:hover { background: var(--color-surface-2); }
+  .disclose > summary::after {
+    content: '';
+    flex: none;
+    width: 10px; height: 10px;
+    border-right: 2px solid var(--color-ink-3);
+    border-bottom: 2px solid var(--color-ink-3);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform 0.2s ease;
+  }
+  .disclose[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
+  .disclose[open] > summary { border-bottom: 1px solid var(--color-border); }
+  .disclose__body { padding: var(--space-5); }
+  .disclose__body > :first-child { margin-top: 0; }
   .product-content { gap: var(--space-4); }
   .prose-content :global(h2),
   .prose-content :global(h3) { margin-top: var(--space-6); }
@@ -463,15 +530,126 @@ const breadcrumbs = [
   .coa-langs ul { margin: var(--space-3) 0 0; padding-left: var(--space-5); display: grid; gap: var(--space-2); }
   .coa-langs a { color: var(--color-primary); text-decoration: none; }
   .coa-langs a:hover { text-decoration: underline; }
-  @media (max-width: 1100px) {
-    .product-page-layout { grid-template-columns: 1fr; }
-    .product-page-sidebar { position: static; order: 2; }
-    .product-page-main { order: 1; }
-    .product-grid-layout { grid-template-columns: 1fr 1fr; }
-    .buy-box { grid-column: 1 / -1; position: static; }
+  @media (max-width: 960px) {
+    .pdp { grid-template-columns: 1fr; }
+    .pdp__media { position: static; }
   }
-  @media (max-width: 768px) {
-    .product-grid-layout { grid-template-columns: 1fr; }
-    .spec-list { grid-template-columns: 1fr; }
+  @media (prefers-reduced-motion: reduce) {
+    .disclose > summary,
+    .disclose > summary::after { transition: none; }
+  }
+</style>
+
+<style is:global>
+  /* ProductGallery — the image is the largest element on the page. */
+  .pgallery { display: grid; gap: var(--space-3); }
+  .pgallery__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg, 1rem);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface-2);
+    cursor: zoom-in;
+    aspect-ratio: 1;
+  }
+  .pgallery__frame:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+  .pgallery__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.25s ease-out;
+    will-change: transform;
+  }
+  .pgallery__hint {
+    position: absolute;
+    left: var(--space-3);
+    bottom: var(--space-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 550;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    pointer-events: none;
+  }
+  .pgallery__frame:hover .pgallery__hint,
+  .pgallery__frame:focus-visible .pgallery__hint { opacity: 1; transform: translateY(0); }
+
+  .pgallery__thumbs { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .pgallery__thumb {
+    width: 72px; height: 72px;
+    padding: 4px;
+    border-radius: var(--radius-md, 0.75rem);
+    border: 2px solid var(--color-border);
+    background: var(--color-surface-2);
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .pgallery__thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .pgallery__thumb:hover { transform: translateY(-2px); }
+  .pgallery__thumb.is-active { border-color: var(--color-primary); }
+
+  .pgallery__lightbox {
+    position: fixed;
+    inset: 0;
+    /* Above the sticky header (10011) and the cart drawer. */
+    z-index: 10020;
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 5vw, 4rem);
+  }
+  .pgallery__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 12, 22, 0.92);
+    animation: pgallery-fade 0.18s ease-out;
+  }
+  .pgallery__full {
+    position: relative;
+    max-width: min(100%, 1100px);
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: var(--radius-lg, 1rem);
+    background: #fff;
+    animation: pgallery-pop 0.2s ease-out;
+  }
+  .pgallery__close,
+  .pgallery__nav {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px; height: 46px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .pgallery__close:hover,
+  .pgallery__nav:hover { background: rgba(255, 255, 255, 0.3); }
+  .pgallery__close { top: clamp(0.75rem, 3vw, 2rem); right: clamp(0.75rem, 3vw, 2rem); }
+  .pgallery__nav--prev { left: clamp(0.5rem, 3vw, 2rem); }
+  .pgallery__nav--next { right: clamp(0.5rem, 3vw, 2rem); }
+
+  @keyframes pgallery-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pgallery-pop { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pgallery__frame img,
+    .pgallery__hint,
+    .pgallery__thumb,
+    .pgallery__full,
+    .pgallery__backdrop { transition: none; animation: none; }
   }
 </style>

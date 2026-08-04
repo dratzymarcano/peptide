@@ -211,8 +211,22 @@ const tableLabels: Record<Exclude<Locale, 'en'>, Record<string, string>> = {
   es: { field: 'Campo', detail: 'Detalle', productId: 'ID de producto', packageSize: 'Tamaño de envase', cas: 'CAS', molecularWeight: 'Peso molecular', purity: 'Pureza', storage: 'Almacenamiento' },
 };
 
+/**
+ * Display name for a product, stripped of the SEO tail.
+ *
+ * Frontmatter titles are written for search results ("Ipamorelin 5 mg — ≥99 %
+ * HPLC, COA"), so rendering one as an <h1> produced a three-line heading that
+ * pushed the product image and buy box below the fold. The purity and COA
+ * status are shown as badges instead, where they are far easier to scan.
+ */
 function cleanProductTitle(title: string): string {
-  return title.split('|')[0].trim().replace(/^Buy\s+/i, '').replace(/\s+UK$/i, '');
+  return title
+    .split('|')[0]
+    // Everything from the first em/en dash onward is the SEO qualifier.
+    .split(/\s+[—–]\s+/)[0]
+    .trim()
+    .replace(/^Buy\s+/i, '')
+    .replace(/\s+UK$/i, '');
 }
 
 function escapeHtml(value: string): string {

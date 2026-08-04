@@ -92,9 +92,13 @@ const collectionSchema = {
         </ol>
       </nav>
 
-      <span class="eyebrow-rule">{t('shopPage.eyebrow')}</span>
-      <h1 class="display" style="font-family: var(--font-display); font-size: var(--text-display-md); letter-spacing:-0.025em; line-height:1.05; max-width: 22ch;">{t('shopPage.title')}</h1>
-      <p class="lead">{t('shopPage.lead')}</p>
+      {/*
+        A listing page exists to show products. The display-size heading plus
+        lead paragraph pushed the first row of the grid off the fold, so the
+        heading is sized down here and the lead dropped — the products say
+        what the page is far better than a sentence about it does.
+      */}
+      <h1 class="shop-title">{t('shopPage.title')}</h1>
 
       <div class="shop-toolbar" aria-label={t('shopPage.controls')}>
         <button class="btn btn-secondary mobile-filter-button" type="button" data-filter-open aria-controls="filter-drawer" aria-expanded="false">
@@ -202,6 +206,14 @@ const collectionSchema = {
 </Layout>
 
 <style>
+  .shop-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 1.3rem + 2vw, 2.6rem);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    max-width: 22ch;
+    margin: var(--space-2) 0 var(--space-5);
+  }
   .shop-page h1 { margin-bottom: var(--space-3); }
   .shop-toolbar {
     display: grid;
