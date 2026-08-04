@@ -3,10 +3,16 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url).pathname;
-const sitemapPath = join(root, 'dist/sitemap-0.xml');
 
-if (!existsSync(sitemapPath)) {
-	console.error('dist/sitemap-0.xml not found. Run npm run build before validate-hreflang.');
+// The Cloudflare adapter emits static output under dist/client/, so the
+// sitemap is not at the plain dist/ path a static build would produce. Check
+// both, newest layout first — pointing at only the old path meant this gate
+// exited 1 on every run and never validated a single URL.
+const candidatePaths = ['dist/client/sitemap-0.xml', 'dist/sitemap-0.xml'];
+const sitemapPath = candidatePaths.map((path) => join(root, path)).find((path) => existsSync(path));
+
+if (!sitemapPath) {
+	console.error(`sitemap-0.xml not found (looked in: ${candidatePaths.join(', ')}). Run npm run build first.`);
 	process.exit(1);
 }
 

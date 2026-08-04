@@ -82,6 +82,19 @@ export interface CoaStrings {
   download: string;
   countryEu: string;
   notApplicable: string;
+  // Testing-laboratory attribution block.
+  sectionTestingLaboratory: string;
+  fieldLabName: string;
+  fieldLabLocation: string;
+  fieldLabAccreditation: string;
+  fieldLabReportNo: string;
+  fieldLabReportUrl: string;
+  // Shown instead of a certificate when no analytical report is on record.
+  unavailableTitle: string;
+  unavailableIntro: (product: string) => string;
+  unavailableNotice: string;
+  unavailableSteps: string[];
+  unavailableContactCta: string;
 }
 
 const en: CoaStrings = {
@@ -157,6 +170,23 @@ const en: CoaStrings = {
   download: 'Download PDF',
   countryEu: 'European Union',
   notApplicable: 'N/A',
+  sectionTestingLaboratory: 'Testing laboratory',
+  fieldLabName: 'Laboratory',
+  fieldLabLocation: 'Location',
+  fieldLabAccreditation: 'Accreditation',
+  fieldLabReportNo: 'Laboratory report no.',
+  fieldLabReportUrl: 'Laboratory report',
+  unavailableTitle: 'Certificate of Analysis available on request',
+  unavailableIntro: (product) =>
+    `A Certificate of Analysis is issued per lot. We do not publish a certificate for ${product} until the analytical report for the lot you receive is on file.`,
+  unavailableNotice:
+    'No analytical report is currently published for this product. Any purity or content figures shown elsewhere on this site are release specifications, not measured results for a specific lot.',
+  unavailableSteps: [
+    'Every shipment is dispatched with the certificate for the lot supplied.',
+    'To review the certificate before ordering, contact us with the product name and we will send the current lot report.',
+    'The lot number on the certificate matches the number printed on the vial label.',
+  ],
+  unavailableContactCta: 'Request the current lot report',
 };
 
 const de: CoaStrings = {
@@ -225,6 +255,23 @@ const de: CoaStrings = {
   footerPolicy: 'Vollständige CoA-Richtlinie ansehen',
   download: 'PDF herunterladen',
   countryEu: 'Europäische Union',
+  sectionTestingLaboratory: 'Prüflabor',
+  fieldLabName: 'Labor',
+  fieldLabLocation: 'Standort',
+  fieldLabAccreditation: 'Akkreditierung',
+  fieldLabReportNo: 'Laborberichtsnr.',
+  fieldLabReportUrl: 'Laborbericht',
+  unavailableTitle: 'Analysenzertifikat auf Anfrage erhältlich',
+  unavailableIntro: (product) =>
+    `Ein Analysenzertifikat wird chargenbezogen ausgestellt. Für ${product} veröffentlichen wir kein Zertifikat, solange der Analysenbericht der an Sie gelieferten Charge nicht vorliegt.`,
+  unavailableNotice:
+    'Für dieses Produkt ist derzeit kein Analysenbericht veröffentlicht. Auf dieser Website genannte Reinheits- oder Gehaltsangaben sind Freigabespezifikationen, keine Messergebnisse einer bestimmten Charge.',
+  unavailableSteps: [
+    'Jede Sendung wird mit dem Zertifikat der gelieferten Charge versandt.',
+    'Wenn Sie das Zertifikat vor der Bestellung einsehen möchten, kontaktieren Sie uns mit dem Produktnamen; wir senden Ihnen den aktuellen Chargenbericht.',
+    'Die Chargennummer auf dem Zertifikat stimmt mit der Nummer auf dem Vial-Etikett überein.',
+  ],
+  unavailableContactCta: 'Aktuellen Chargenbericht anfordern',
 };
 
 const nl: CoaStrings = {
@@ -293,6 +340,23 @@ const nl: CoaStrings = {
   footerPolicy: 'Volledig CoA-beleid bekijken',
   download: 'PDF downloaden',
   countryEu: 'Europese Unie',
+  sectionTestingLaboratory: 'Testlaboratorium',
+  fieldLabName: 'Laboratorium',
+  fieldLabLocation: 'Locatie',
+  fieldLabAccreditation: 'Accreditatie',
+  fieldLabReportNo: 'Labrapportnr.',
+  fieldLabReportUrl: 'Laboratoriumrapport',
+  unavailableTitle: 'Analysecertificaat op aanvraag beschikbaar',
+  unavailableIntro: (product) =>
+    `Een analysecertificaat wordt per partij afgegeven. Voor ${product} publiceren wij geen certificaat zolang het analyserapport van de aan u geleverde partij niet beschikbaar is.`,
+  unavailableNotice:
+    'Voor dit product is momenteel geen analyserapport gepubliceerd. Zuiverheids- of gehaltewaarden elders op deze site zijn vrijgavespecificaties, geen gemeten resultaten van een specifieke partij.',
+  unavailableSteps: [
+    'Elke zending wordt verstuurd met het certificaat van de geleverde partij.',
+    'Wilt u het certificaat vóór bestelling inzien? Neem contact op met de productnaam en wij sturen het actuele partijrapport.',
+    'Het partijnummer op het certificaat komt overeen met het nummer op het vial-etiket.',
+  ],
+  unavailableContactCta: 'Actueel partijrapport aanvragen',
 };
 
 const fr: CoaStrings = {
@@ -361,6 +425,23 @@ const fr: CoaStrings = {
   footerPolicy: 'Voir la politique CoA complète',
   download: 'Télécharger le PDF',
   countryEu: 'Union européenne',
+  sectionTestingLaboratory: 'Laboratoire d\'analyse',
+  fieldLabName: 'Laboratoire',
+  fieldLabLocation: 'Localisation',
+  fieldLabAccreditation: 'Accréditation',
+  fieldLabReportNo: 'N° de rapport du laboratoire',
+  fieldLabReportUrl: 'Rapport du laboratoire',
+  unavailableTitle: 'Certificat d\'analyse disponible sur demande',
+  unavailableIntro: (product) =>
+    `Un certificat d\'analyse est émis par lot. Nous ne publions pas de certificat pour ${product} tant que le rapport d\'analyse du lot qui vous est livré n\'est pas disponible.`,
+  unavailableNotice:
+    'Aucun rapport d\'analyse n\'est actuellement publié pour ce produit. Les valeurs de pureté ou de teneur indiquées ailleurs sur ce site sont des spécifications de libération, et non des résultats mesurés pour un lot donné.',
+  unavailableSteps: [
+    'Chaque expédition est accompagnée du certificat du lot fourni.',
+    'Pour consulter le certificat avant de commander, contactez-nous en indiquant le nom du produit ; nous vous enverrons le rapport du lot en cours.',
+    'Le numéro de lot du certificat correspond à celui imprimé sur l\'étiquette du flacon.',
+  ],
+  unavailableContactCta: 'Demander le rapport du lot en cours',
 };
 
 const it: CoaStrings = {
@@ -429,6 +510,23 @@ const it: CoaStrings = {
   footerPolicy: 'Vedi la politica CoA completa',
   download: 'Scarica PDF',
   countryEu: 'Unione Europea',
+  sectionTestingLaboratory: 'Laboratorio di analisi',
+  fieldLabName: 'Laboratorio',
+  fieldLabLocation: 'Sede',
+  fieldLabAccreditation: 'Accreditamento',
+  fieldLabReportNo: 'N. rapporto di laboratorio',
+  fieldLabReportUrl: 'Rapporto di laboratorio',
+  unavailableTitle: 'Certificato di analisi disponibile su richiesta',
+  unavailableIntro: (product) =>
+    `Il certificato di analisi viene emesso per lotto. Non pubblichiamo un certificato per ${product} finché non è disponibile il rapporto analitico del lotto che vi viene consegnato.`,
+  unavailableNotice:
+    'Per questo prodotto non è attualmente pubblicato alcun rapporto analitico. I valori di purezza o contenuto indicati altrove su questo sito sono specifiche di rilascio, non risultati misurati su un lotto specifico.',
+  unavailableSteps: [
+    'Ogni spedizione viene inviata con il certificato del lotto fornito.',
+    'Per visionare il certificato prima dell\'ordine, contattaci indicando il nome del prodotto: invieremo il rapporto del lotto corrente.',
+    'Il numero di lotto sul certificato corrisponde a quello stampato sull\'etichetta del flacone.',
+  ],
+  unavailableContactCta: 'Richiedi il rapporto del lotto corrente',
 };
 
 const es: CoaStrings = {
@@ -497,6 +595,23 @@ const es: CoaStrings = {
   footerPolicy: 'Ver política completa de CoA',
   download: 'Descargar PDF',
   countryEu: 'Unión Europea',
+  sectionTestingLaboratory: 'Laboratorio de ensayo',
+  fieldLabName: 'Laboratorio',
+  fieldLabLocation: 'Ubicación',
+  fieldLabAccreditation: 'Acreditación',
+  fieldLabReportNo: 'N.º de informe de laboratorio',
+  fieldLabReportUrl: 'Informe de laboratorio',
+  unavailableTitle: 'Certificado de análisis disponible a petición',
+  unavailableIntro: (product) =>
+    `El certificado de análisis se emite por lote. No publicamos un certificado para ${product} hasta que dispongamos del informe analítico del lote que se le entrega.`,
+  unavailableNotice:
+    'Actualmente no hay ningún informe analítico publicado para este producto. Los valores de pureza o contenido indicados en otras partes de este sitio son especificaciones de liberación, no resultados medidos de un lote concreto.',
+  unavailableSteps: [
+    'Cada envío se despacha con el certificado del lote suministrado.',
+    'Para revisar el certificado antes de pedir, contáctenos indicando el nombre del producto y le enviaremos el informe del lote actual.',
+    'El número de lote del certificado coincide con el impreso en la etiqueta del vial.',
+  ],
+  unavailableContactCta: 'Solicitar el informe del lote actual',
 };
 
 const dictionaries: Record<CoaLocale, CoaStrings> = { en, de, nl, fr, it, es };

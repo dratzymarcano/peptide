@@ -6,8 +6,8 @@ search_volume: 0
 aliases:
   - Thymalin polypeptide complex
   - Tималин
-cas: "null"
-molecular_weight: "null"
+cas: null
+molecular_weight: null
 purity: ≥ 98%
 storage: "-20°C lyophilised, desiccated, protected from light (research only)"
 package_sizes:
@@ -15,7 +15,7 @@ package_sizes:
 moq: 1
 price: 40
 price_range: €40 per vial
-short_description: ">- Thymalin polypeptide complex for thymic-immunology and immuno-oncology adjuvant research. ≥98% HPLC. RUO."
+short_description: "Thymalin polypeptide complex for thymic-immunology and immuno-oncology adjuvant research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cancer-apoptosis
 tags:

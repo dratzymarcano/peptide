@@ -31,7 +31,7 @@ tags:
   - growth-hormone
   - ghrp-2
 images:
-  - /images/products/ghrp-2.svg
+  - /images/products/ghrp-2.webp
 meta:
   title: Buy GHRP-2 5 mg — Growth Hormone Secretagogue | Peptide Shop Europe
   description: Buy GHRP-2 5 mg from Europe. Growth hormone secretagogue. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

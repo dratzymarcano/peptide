@@ -6,8 +6,10 @@ import { existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { SITE_ORIGIN } from './site.config.mjs';
+
 const rootDir = dirname(fileURLToPath(import.meta.url));
-const site = 'https://peptide-kaufen.net';
+const site = SITE_ORIGIN;
 const locales = ['en', 'de', 'nl', 'fr', 'it', 'es'];
 const defaultLocale = 'en';
 const sitemapLocaleMap = {
@@ -108,34 +110,11 @@ const localizedSitemapPages = publicBasePaths.flatMap((path) =>
   localesForPath(path).map((locale) => localizedUrl(path, locale))
 );
 
-const productSlugs = [
-  '5-amino-1mq',
-  'aod-9604',
-  'bacteriostatic-water',
-  'bpc-157',
-  'cagrilintide',
-  'cjc-1295-no-dac',
-  'dsip',
-  'epitalon',
-  'gh-frag-176-191',
-  'ghk-cu',
-  'ghrp-2',
-  'ghrp-6',
-  'ipamorelin',
-  'melanotan-2',
-  'nad-plus',
-  'o-304',
-  'retatrutide',
-  'selank',
-  'semaglutide',
-  'semax',
-  'tb-500',
-  'tesofensine',
-  'tirzepatide',
-];
-
+// Legacy `/peptides/buy-<slug>` URLs redirect to the canonical product page.
+// Derived from the content directory so a new product cannot silently miss its
+// redirect, and a removed one cannot leave a redirect pointing at a 404.
 const productRedirects = Object.fromEntries(
-  productSlugs.map((slug) => [`/peptides/buy-${slug}`, `/peptides/${slug}/`])
+  contentSlugs('products').map((slug) => [`/peptides/buy-${slug}`, `/peptides/${slug}/`])
 );
 
 // https://astro.build/config

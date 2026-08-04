@@ -30,7 +30,7 @@ tags:
   - dual-agonist
   - tirzepatide
 images:
-  - /images/products/tirzepatide.svg
+  - /images/products/tirzepatide.webp
 meta:
   title: Buy Tirzepatide 10 mg — Dual GLP-1/GIP Agonist, ≥99% HPLC | Peptide Shop
   description: Buy tirzepatide 10 mg from Europe. Dual GLP-1/GIP receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

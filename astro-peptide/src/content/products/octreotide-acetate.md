@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 60
 price_range: €60 per vial
-short_description: ">- Octreotide acetate, somatostatin-receptor (SSTR2/5) reference for tumour-imaging and neuroendocrine research. ≥98% HPLC. RUO."
+short_description: "Octreotide acetate, somatostatin-receptor (SSTR2/5) reference for tumour-imaging and neuroendocrine research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cancer-apoptosis
 tags:

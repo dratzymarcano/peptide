@@ -7,7 +7,7 @@ aliases:
   - ACTH fragments
   - MALDI-TOF calibration
   - Adrenocorticotropic hormone fragments
-cas: "null"
+cas: null
 molecular_weight: 2093.4 g/mol (1-17) + 2465.2 g/mol (18-39)
 purity: ≥ 98%
 storage: "-20°C lyophilised, desiccated, protected from light (research only)"
@@ -16,7 +16,7 @@ package_sizes:
 moq: 1
 price: 115
 price_range: €115 per pack
-short_description: ">- ACTH (1-17) and (18-39) fragment pair for MALDI-TOF mass calibration in the 2000–2500 Da range. ≥98% HPLC each. RUO."
+short_description: "ACTH (1-17) and (18-39) fragment pair for MALDI-TOF mass calibration in the 2000–2500 Da range. ≥98% HPLC each. RUO."
 category: mass-spec-standard
 researchArea: protein-analysis
 tags:

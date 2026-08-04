@@ -41,7 +41,7 @@ const itemListSchema = {
   itemListElement: products.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: new URL(href(`/peptides/${p.slug}/`), Astro.site).toString(),
+    url: new URL(href(`/peptides/${p.id}/`), Astro.site).toString(),
     name: getLocalizedProduct(p, locale).title,
   })),
 };

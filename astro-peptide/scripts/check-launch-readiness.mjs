@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { SITE_ORIGIN } from '../site.config.mjs';
 
 const root = new URL('..', import.meta.url).pathname;
+const SITE_HOST = new URL(SITE_ORIGIN).host;
 const failures = [];
 const warnings = [];
 
@@ -36,8 +38,8 @@ if (existsSync(join(root, 'public/feeds/manifest.json'))) {
     for (const feed of manifest.feeds) {
       const path = `public/feeds/feed-${feed.id}.xml`;
       if (!existsSync(join(root, path))) failures.push(`${path}: feed listed in manifest but missing`);
-      if (!String(feed.url || '').startsWith('https://xtremepropeptide.com/feeds/')) {
-        failures.push(`manifest feed ${feed.id}: URL must be a xtremepropeptide.com /feeds/ URL`);
+      if (!String(feed.url || '').startsWith(`${SITE_ORIGIN}/feeds/`)) {
+        failures.push(`manifest feed ${feed.id}: URL must be a ${SITE_ORIGIN}/feeds/ URL`);
       }
     }
   }
@@ -45,10 +47,10 @@ if (existsSync(join(root, 'public/feeds/manifest.json'))) {
 
 const manualGoogleItems = [
   'Merchant Center: select the Peptide Shop German business profile',
-  'Merchant Center: verify and claim https://xtremepropeptide.com',
+  `Merchant Center: verify and claim ${SITE_ORIGIN}`,
   'Merchant Center: add scheduled fetches for every URL in public/feeds/manifest.json',
   'Merchant Center: request policy review before enabling research-peptide listings',
-  'Search Console: create domain property xtremepropeptide.com and URL-prefix properties for /de/, /nl/, /fr/, /it/, /es/',
+  `Search Console: create domain property ${SITE_HOST} and URL-prefix properties for /de/, /nl/, /fr/, /it/, /es/`,
   'GA4: configure Consent Mode v2, locale custom dimension, ecommerce events, and DSGVO-compliant retention',
 ];
 

@@ -33,7 +33,7 @@ tags:
   - telomerase
   - epitalon
 images:
-  - /images/products/epitalon.svg
+  - /images/products/epitalon.webp
 meta:
   title: Buy Epitalon 10 mg — Telomere Research Peptide | Peptide Shop Europe
   description: Buy epitalon 10 mg research peptide from Europe. Telomere research compound. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

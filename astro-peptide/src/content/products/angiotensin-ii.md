@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 40
 price_range: €40 per vial
-short_description: ">- Angiotensin II octapeptide reference standard for RAAS, AT1/AT2 receptor and vasoconstriction research. ≥98% HPLC. RUO."
+short_description: "Angiotensin II octapeptide reference standard for RAAS, AT1/AT2 receptor and vasoconstriction research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
 tags:

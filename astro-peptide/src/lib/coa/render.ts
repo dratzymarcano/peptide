@@ -6,112 +6,20 @@
  *   - Static prerender at /coa/<slug>/<lang>/
  *   - PDF generation via Puppeteer at /api/coa/<slug>.pdf
  *
- * Analytical data is derived deterministically from the product slug so that
- * the same lot/result values appear on the website and in any generated PDF.
- * Real lot data should override these fields once a per-batch CoA pipeline is
- * connected to the QC LIMS.
+ * Every value on the certificate comes from a real laboratory report recorded
+ * in `src/data/coa-lots.json` and typed by `./lots`. This module deliberately
+ * has no fallback: a product with no lot on record gets
+ * `renderCoaUnavailableHtml`, never a certificate with placeholder numbers.
  */
 
 import type { CollectionEntry } from 'astro:content';
 import { localizePath } from '../../i18n/config';
 import { getCoaStrings, normalizeLocale, type CoaLocale } from './i18n';
+import type { CoaLot, CoaResultRow } from './lots';
 
 type Product = CollectionEntry<'products'>;
 
 const SITE = 'https://peptide-kaufen.net';
-
-interface AnalyticalRow {
-  parameter: string;
-  method: string;
-  specification: string;
-  result: string;
-  status: 'pass' | 'fail';
-  numeric?: boolean;
-}
-
-interface DerivedLot {
-  batchNo: string;
-  manufactureDate: string;
-  retestDate: string;
-  issuedDate: string;
-  docNo: string;
-  qcName: string;
-  qcSignature: string;
-  qaName: string;
-  qaSignature: string;
-}
-
-const QC_NAMES = [
-  { full: 'Maja Kovač, MSc', short: 'M. Kovač' },
-  { full: 'Anya Petrov, MSc', short: 'A. Petrov' },
-  { full: 'Tomáš Beneš, MSc', short: 'T. Beneš' },
-  { full: 'Sara Lindqvist, MSc', short: 'S. Lindqvist' },
-];
-const QA_NAMES = [
-  { full: 'Dr. Daniel Lindgren', short: 'D. Lindgren' },
-  { full: 'Dr. Helena Brandt', short: 'H. Brandt' },
-  { full: 'Dr. Ivo Marković', short: 'I. Marković' },
-  { full: 'Dr. Ana Ribeiro', short: 'A. Ribeiro' },
-];
-
-/** Stable hash for deterministic lot data per slug. */
-function hash(s: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
-}
-
-function isoDate(d: Date): string {
-  return d.toISOString().slice(0, 10);
-}
-
-function deriveLot(slug: string): DerivedLot {
-  const h = hash(slug);
-  const code = slug.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
-  const seq = String(100 + (h % 900));
-  const batchNo = `PS-2604-${seq.padStart(4, '0')}`;
-
-  // Manufactured ~6 weeks ago, retest in 36 months, issued 3 days after mfg.
-  const now = new Date('2026-04-12T00:00:00Z');
-  const mfg = new Date(now);
-  mfg.setUTCDate(mfg.getUTCDate() - 30 - (h % 21));
-  const issued = new Date(mfg);
-  issued.setUTCDate(issued.getUTCDate() + 3 + (h % 5));
-  const retest = new Date(mfg);
-  retest.setUTCFullYear(retest.getUTCFullYear() + 3);
-
-  const qc = QC_NAMES[h % QC_NAMES.length];
-  const qa = QA_NAMES[(h >>> 4) % QA_NAMES.length];
-
-  return {
-    batchNo,
-    manufactureDate: isoDate(mfg),
-    retestDate: isoDate(retest),
-    issuedDate: isoDate(issued),
-    docNo: `CoA-${code || 'PROD'}-${seq.padStart(4, '0')}`,
-    qcName: qc.full,
-    qcSignature: qc.short,
-    qaName: qa.full,
-    qaSignature: qa.short,
-  };
-}
-
-/** Parse "≥ 99%" / "≥99 %" / "98%" → 99. Fallback 98. */
-function parseMinPurity(purity: string | undefined): number {
-  if (!purity) return 98;
-  const m = purity.match(/(\d+(?:\.\d+)?)/);
-  return m ? Number(m[1]) : 98;
-}
-
-/** Parse "1419.5 g/mol" → 1419.5. */
-function parseMw(mw: string | null | undefined): number | null {
-  if (!mw) return null;
-  const m = mw.match(/(\d+(?:\.\d+)?)/);
-  return m ? Number(m[1]) : null;
-}
 
 function escapeHtml(s: string): string {
   return s
@@ -121,106 +29,6 @@ function escapeHtml(s: string): string {
     .replace(/"/g, '&quot;');
 }
 
-function buildAnalyticalRows(product: Product, lotHash: number, t: ReturnType<typeof getCoaStrings>): AnalyticalRow[] {
-  const minPurity = parseMinPurity(product.data.purity);
-  const purityResult = Math.min(99.95, minPurity + 0.2 + ((lotHash % 70) / 100));
-  const singleImpurity = Math.max(0.05, 0.5 - (purityResult - minPurity) * 0.4);
-  const water = 2.5 + ((lotHash >>> 3) % 25) / 10;
-  const acetate = 5 + ((lotHash >>> 5) % 60) / 10;
-
-  const mw = parseMw(product.data.molecular_weight);
-  const expectedMs = mw ? (mw + 1.008).toFixed(1) : t.notDetermined;
-  const observedMs = mw ? (mw + 1.008 + ((lotHash % 7) - 3) * 0.05).toFixed(1) : t.notDetermined;
-
-  return [
-    {
-      parameter: t.testAppearance,
-      method: t.methodVisual,
-      specification: t.specAppearance,
-      result: t.specAppearance,
-      status: 'pass',
-    },
-    {
-      parameter: t.testIdentityMs,
-      method: t.methodEsiMs,
-      specification: mw ? `[M+H]⁺ = ${expectedMs} ± 0.5` : t.notApplicable,
-      result: observedMs,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testPurityHplc,
-      method: t.methodHplc220,
-      specification: `≥ ${minPurity.toFixed(1)} %`,
-      result: `${purityResult.toFixed(2)} %`,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testSingleImpurity,
-      method: t.methodHplc220,
-      specification: '≤ 0.50 %',
-      result: `${singleImpurity.toFixed(2)} %`,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testAaa,
-      method: t.methodAaa,
-      specification: t.specConformsToTheoretical,
-      result: t.conforms,
-      status: 'pass',
-    },
-    {
-      parameter: t.testAcetate,
-      method: t.methodIc,
-      specification: '≤ 12.0 %',
-      result: `${acetate.toFixed(1)} %`,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testTfa,
-      method: t.methodHplc220,
-      specification: '≤ 0.50 %',
-      result: '< 0.10 %',
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testWater,
-      method: t.methodKf,
-      specification: '≤ 6.0 %',
-      result: `${water.toFixed(1)} %`,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testNetPeptide,
-      method: t.methodCalc,
-      specification: '≥ 80.0 %',
-      result: `${(82 + ((lotHash >>> 7) % 80) / 10).toFixed(1)} %`,
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testEndotoxin,
-      method: t.methodLal,
-      specification: '< 5 EU/mg',
-      result: '< 0.5 EU/mg',
-      status: 'pass',
-      numeric: true,
-    },
-    {
-      parameter: t.testBioburden,
-      method: t.methodUsp61,
-      specification: '< 100 CFU/g',
-      result: '< 10 CFU/g',
-      status: 'pass',
-      numeric: true,
-    },
-  ];
-}
 
 function getProductDisplayName(product: Product): string {
   return product.data.title.split('—')[0].split('|')[0].trim();
@@ -228,19 +36,21 @@ function getProductDisplayName(product: Product): string {
 
 export interface RenderOptions {
   locale?: CoaLocale | string;
-  /** Override derived lot fields (e.g. when wired into a real LIMS). */
-  lotOverrides?: Partial<DerivedLot>;
   /** Optional "Download PDF" link injected as a no-print floating button. */
   pdfHref?: string;
 }
 
-export function renderCoaHtml(product: Product, opts: RenderOptions = {}): string {
+/**
+ * Render the certificate for one real, on-record lot.
+ *
+ * `lot` is required and must come from the registry in `./lots` — there is no
+ * derived-data path. Callers that cannot supply a lot must render
+ * `renderCoaUnavailableHtml` instead.
+ */
+export function renderCoaHtml(product: Product, lot: CoaLot, opts: RenderOptions = {}): string {
   const locale = normalizeLocale(opts.locale);
   const t = getCoaStrings(locale);
-  const slug = product.id.replace(/^\/peptides\//, '').replace(/^\//, '');
-  const lot = { ...deriveLot(slug), ...opts.lotOverrides };
-  const lotHash = hash(slug);
-  const rows = buildAnalyticalRows(product, lotHash, t);
+  const rows: CoaResultRow[] = lot.results;
 
   const productName = getProductDisplayName(product);
   const sequence = product.data.sequence;
@@ -268,6 +78,56 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
 
   const pdfButton = opts.pdfHref
     ? `<a class="no-print download-pill" href="${escapeHtml(opts.pdfHref)}" download>${escapeHtml(t.download)}</a>`
+    : '';
+
+  // Naming the testing laboratory is the certificate's load-bearing trust
+  // signal — an unattributed results table is worth very little.
+  const labSection = `
+    <section>
+      <h2 class="section">${escapeHtml(t.sectionTestingLaboratory)}</h2>
+      <dl class="kv">
+        <dt>${escapeHtml(t.fieldLabName)}</dt>
+        <dd>${escapeHtml(lot.laboratory.name)}</dd>
+        <dt>${escapeHtml(t.fieldLabLocation)}</dt>
+        <dd>${escapeHtml(lot.laboratory.location)}</dd>
+        ${
+          lot.laboratory.accreditation
+            ? `<dt>${escapeHtml(t.fieldLabAccreditation)}</dt>
+               <dd class="mono">${escapeHtml(lot.laboratory.accreditation)}</dd>`
+            : ''
+        }
+        ${
+          lot.laboratory.reportNumber
+            ? `<dt>${escapeHtml(t.fieldLabReportNo)}</dt>
+               <dd class="mono">${escapeHtml(lot.laboratory.reportNumber)}</dd>`
+            : ''
+        }
+        ${
+          lot.laboratory.reportUrl
+            ? `<dt>${escapeHtml(t.fieldLabReportUrl)}</dt>
+               <dd><a href="${escapeHtml(lot.laboratory.reportUrl)}">${escapeHtml(lot.laboratory.reportUrl)}</a></dd>`
+            : ''
+        }
+      </dl>
+    </section>`;
+
+  // Approvals list the people who actually signed the laboratory report. The
+  // previous template drew a cursive pseudo-signature under an invented name;
+  // a typed name, role and date is both honest and sufficient.
+  const signatureSection = lot.signatories?.length
+    ? `
+    <section class="sigs">
+      ${lot.signatories
+        .map(
+          (signatory) => `
+      <div class="sig">
+        <div class="role">${escapeHtml(signatory.role)}</div>
+        <div class="name">${escapeHtml(signatory.name)}</div>
+        <div class="date">${escapeHtml(t.sigDate)}: ${escapeHtml(signatory.date)}</div>
+      </div>`
+        )
+        .join('')}
+    </section>`
     : '';
 
   return `<!doctype html>
@@ -370,10 +230,6 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
       padding-top: 2mm; font-size: 10pt; color: var(--color-ink-2);
     }
     .sig .role { font-weight: 600; color: var(--color-ink); }
-    .sig .signature {
-      font-family: "Brush Script MT", "Lucida Handwriting", cursive;
-      font-size: 16pt; color: var(--color-primary-600); margin: 1mm 0 0;
-    }
     .sig .name { margin-top: 1mm; }
     .sig .date { font-family: var(--font-mono); color: var(--color-ink-3); margin-top: 1mm; }
     footer.doc-footer {
@@ -410,7 +266,7 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
       <h1>${escapeHtml(t.documentTitle)}</h1>
       <div class="meta">
         <span>${escapeHtml(t.metaDocNo)}: ${escapeHtml(lot.docNo)}</span>
-        <span>${escapeHtml(t.metaRevision)}: 1.0</span>
+        <span>${escapeHtml(t.metaRevision)}: ${escapeHtml(lot.revision)}</span>
         <span>${escapeHtml(t.metaIssued)}: ${escapeHtml(lot.issuedDate)}</span>
       </div>
     </div>
@@ -436,7 +292,7 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
         <dt>${escapeHtml(t.fieldRetestDate)}</dt>
         <dd class="mono">${escapeHtml(lot.retestDate)}</dd>
         <dt>${escapeHtml(t.fieldOrigin)}</dt>
-        <dd>${escapeHtml(t.countryEu)}</dd>
+        <dd>${escapeHtml(lot.origin ?? t.countryEu)}</dd>
       </dl>
     </section>
 
@@ -483,20 +339,9 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
       <div class="caution">${escapeHtml(t.cautionBody)}</div>
     </section>
 
-    <section class="sigs">
-      <div class="sig">
-        <div class="role">${escapeHtml(t.sigQc)}</div>
-        <div class="signature">${escapeHtml(lot.qcSignature)}</div>
-        <div class="name">${escapeHtml(lot.qcName)}</div>
-        <div class="date">${escapeHtml(t.sigDate)}: ${escapeHtml(lot.manufactureDate)}</div>
-      </div>
-      <div class="sig">
-        <div class="role">${escapeHtml(t.sigQa)}</div>
-        <div class="signature">${escapeHtml(lot.qaSignature)}</div>
-        <div class="name">${escapeHtml(lot.qaName)}</div>
-        <div class="date">${escapeHtml(t.sigDate)}: ${escapeHtml(lot.issuedDate)}</div>
-      </div>
-    </section>
+    ${labSection}
+
+    ${signatureSection}
 
     <footer class="doc-footer">
       <div>
@@ -509,6 +354,113 @@ export function renderCoaHtml(product: Product, opts: RenderOptions = {}): strin
     </footer>
 
     ${pdfButton}
+  </div>
+</body>
+</html>`;
+}
+
+/**
+ * Page served at /coa/<slug> when no analytical report is on record.
+ *
+ * This is deliberately not a certificate: no results table, no batch number,
+ * no approval block. It states plainly that the certificate is issued per lot
+ * and how to obtain the one for a given shipment.
+ */
+export function renderCoaUnavailableHtml(product: Product, opts: RenderOptions = {}): string {
+  const locale = normalizeLocale(opts.locale);
+  const t = getCoaStrings(locale);
+  const productName = getProductDisplayName(product);
+  const policyHref = `${SITE}${localizePath('/coa-policy/', locale)}`;
+  const contactHref = `${SITE}${localizePath('/contact/', locale)}`;
+
+  return `<!doctype html>
+<html lang="${escapeHtml(locale)}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>${escapeHtml(`${t.unavailableTitle} — ${productName}`)}</title>
+  <meta name="description" content="${escapeHtml(t.unavailableIntro(productName))}" />
+  <meta name="robots" content="noindex,follow" />
+  <style>
+    :root {
+      --color-primary: #0066CC;
+      --color-ink:     #0F172A;
+      --color-ink-2:   #334155;
+      --color-ink-3:   #64748B;
+      --color-border:  #E2E8F0;
+      --color-warning: #B45309;
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-sans); color: var(--color-ink);
+      font-size: 16px; line-height: 1.6; background: #fff;
+    }
+    .sheet { max-width: 680px; margin: 0 auto; padding: 48px 24px; }
+    .brand-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 24px; border-bottom: 1px solid var(--color-border);
+    }
+    .brand-bar img { height: 36px; display: block; }
+    .brand-bar .ruo {
+      text-align: right; font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--color-ink-3);
+    }
+    h1 { font-size: 28px; letter-spacing: -0.01em; margin: 32px 0 8px; }
+    .lede { color: var(--color-ink-2); margin: 0 0 24px; }
+    .notice {
+      padding: 16px 20px; background: #FEF7E6;
+      border-left: 3px solid var(--color-warning); border-radius: 2px;
+      color: var(--color-ink-2); font-size: 15px;
+    }
+    ul { color: var(--color-ink-2); padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block; padding: 12px 20px; border-radius: 6px;
+      background: var(--color-primary); color: #fff;
+      text-decoration: none; font-weight: 600;
+    }
+    .btn.secondary {
+      background: #fff; color: var(--color-primary);
+      border: 1px solid var(--color-border);
+    }
+    footer {
+      margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--color-border);
+      font-size: 14px; color: var(--color-ink-3);
+    }
+    a { color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="brand-bar">
+      <img src="${SITE}/brand/peptide-shop-logo.svg" alt="Peptide Shop" />
+      <div class="ruo">
+        <strong>${escapeHtml(t.ruoTitle)}</strong>
+        <span>${escapeHtml(t.ruoSubtitle)}</span>
+      </div>
+    </header>
+
+    <h1>${escapeHtml(t.unavailableTitle)}</h1>
+    <p class="lede">${escapeHtml(t.unavailableIntro(productName))}</p>
+
+    <div class="notice">${escapeHtml(t.unavailableNotice)}</div>
+
+    <ul>
+      ${t.unavailableSteps.map((step) => `<li>${escapeHtml(step)}</li>`).join('\n      ')}
+    </ul>
+
+    <div class="actions">
+      <a class="btn" href="${contactHref}">${escapeHtml(t.unavailableContactCta)}</a>
+      <a class="btn secondary" href="${policyHref}">${escapeHtml(t.footerPolicy)}</a>
+    </div>
+
+    <footer>
+      <a href="${SITE}">peptide-kaufen.net</a> ·
+      ${escapeHtml(t.footerContact)}: <a href="mailto:info@peptide-kaufen.net">info@peptide-kaufen.net</a>
+    </footer>
   </div>
 </body>
 </html>`;

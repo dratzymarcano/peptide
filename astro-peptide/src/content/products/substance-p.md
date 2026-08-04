@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 40
 price_range: €40 per vial
-short_description: ">- Substance P undecapeptide — reference NK1 (tachykinin) receptor agonist for pain and neurogenic-inflammation research. ≥98% HPLC. RUO."
+short_description: "Substance P undecapeptide — reference NK1 (tachykinin) receptor agonist for pain and neurogenic-inflammation research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
 tags:

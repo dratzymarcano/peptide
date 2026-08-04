@@ -7,7 +7,7 @@ aliases:
   - PNC27
   - p53 / HDM2 membranolytic peptide
   - Penetratin-coupled p53 peptide
-cas: "null"
+cas: null
 molecular_weight: 3823.6 g/mol
 purity: ≥ 98%
 storage: "-20°C lyophilised, desiccated, protected from light (research only)"
@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 95
 price_range: €95 per vial
-short_description: ">- PNC-27 fusion peptide for p53/HDM2-pathway and membranolytic-apoptosis tumour-cell research. ≥98% HPLC. RUO."
+short_description: "PNC-27 fusion peptide for p53/HDM2-pathway and membranolytic-apoptosis tumour-cell research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cancer-apoptosis
 tags:

@@ -3,11 +3,12 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { basename, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'yaml';
+import { SITE_ORIGIN } from '../site.config.mjs';
 
 const rootDir = fileURLToPath(new URL('..', import.meta.url));
 const productsDir = join(rootDir, 'src/content/products');
 const outputDir = join(rootDir, 'public/feeds');
-const site = 'https://xtremepropeptide.com';
+const site = SITE_ORIGIN;
 const defaultLocale = 'en';
 
 const localeMeta = {
@@ -85,6 +86,17 @@ function productFiles() {
 		});
 }
 
+// Merchant Center accepts JPEG, WebP, PNG, GIF, BMP and TIFF only — SVG is
+// rejected outright, and the image policy additionally forbids placeholder art
+// that does not depict the actual product. Feeding such items guarantees
+// per-item disapproval and, at volume, risks account-level review, so they are
+// held back until a real product photograph exists.
+const FEEDABLE_IMAGE = /\.(jpe?g|webp|png|gif|bmp|tiff?)$/i;
+
+function hasFeedableImage(product) {
+	return FEEDABLE_IMAGE.test(product.data.images?.[0] ?? '');
+}
+
 function availability(product) {
 	if (product.data.availability === 'out_of_stock') return 'out_of_stock';
 	if (product.data.availability === 'preorder') return 'preorder';
@@ -118,7 +130,6 @@ function feedItem(product, feed) {
 		<g:brand>Peptide Shop</g:brand>
 		<g:condition>new</g:condition>
 		<g:mpn>${escapeXml(data.id || product.slug)}</g:mpn>
-		<g:identifier_exists>no</g:identifier_exists>
 		<g:google_product_category>${escapeXml(googleCategory(product))}</g:google_product_category>
 		<g:product_type>${escapeXml(feed.productType)}</g:product_type>
 		<g:shipping>
@@ -165,8 +176,19 @@ function writeManifest(products) {
 }
 
 mkdirSync(outputDir, { recursive: true });
-const products = productFiles();
+const allProducts = productFiles();
+const products = allProducts.filter(hasFeedableImage);
+const skipped = allProducts.filter((product) => !hasFeedableImage(product));
+
 for (const feed of feeds) writeFeed(feed, products);
 writeManifest(products);
 
 console.log(`Generated ${feeds.length} Merchant Center feeds for ${products.length} products in public/feeds/`);
+if (skipped.length) {
+	console.warn(
+		`\nSkipped ${skipped.length} product(s) with no Merchant-Center-eligible image ` +
+		`(SVG placeholders are rejected by Google):`
+	);
+	for (const product of skipped) console.warn(`  - ${product.slug} → ${product.data.images?.[0] ?? '(none)'}`);
+	console.warn('Add a real product photograph (JPEG/WebP/PNG, ≥500×500) to include these in the feed.\n');
+}

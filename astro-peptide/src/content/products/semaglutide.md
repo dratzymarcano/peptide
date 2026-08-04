@@ -30,7 +30,7 @@ tags:
   - glp-1
   - semaglutide
 images:
-  - /images/products/semaglutide.svg
+  - /images/products/semaglutide.webp
 meta:
   title: Buy Semaglutide 5 mg — GLP-1 Agonist, ≥99% HPLC | Peptide Shop Europe
   description: Buy semaglutide 5 mg research peptide from Europe. GLP-1 receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

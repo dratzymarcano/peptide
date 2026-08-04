@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 70
 price_range: €70 per vial
-short_description: ">- Thymulin (zinc-bound FTS nonapeptide) for thymic-immunology, T-cell and immunosenescence research. ≥98% HPLC. RUO."
+short_description: "Thymulin (zinc-bound FTS nonapeptide) for thymic-immunology, T-cell and immunosenescence research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: immunology
 tags:

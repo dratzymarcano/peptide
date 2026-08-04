@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 25
 price_range: €25 per vial
-short_description: ">- Bradykinin (1-7), ≥99% HPLC, low-mass MS calibration reference ([M+H]+ = 758.4). RUO."
+short_description: "Bradykinin (1-7), ≥99% HPLC, low-mass MS calibration reference ([M+H]+ = 758.4). RUO."
 category: mass-spec-standard
 researchArea: protein-analysis
 tags:

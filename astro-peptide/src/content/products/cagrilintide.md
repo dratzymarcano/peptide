@@ -30,7 +30,7 @@ tags:
   - amylin
   - cagrilintide
 images:
-  - /images/products/cagrilintide.svg
+  - /images/products/cagrilintide.webp
 meta:
   title: Buy Cagrilintide 5 mg — GLP-1/Amylin Dual Agonist | Peptide Shop Europe
   description: Buy cagrilintide 5 mg from Europe. GLP-1/amylin receptor agonist. ≥99% HPLC purity, lot COA. EU dispatch. Research use only.

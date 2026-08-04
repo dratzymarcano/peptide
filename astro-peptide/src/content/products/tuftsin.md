@@ -16,7 +16,7 @@ package_sizes:
 moq: 1
 price: 30
 price_range: €30 per vial
-short_description: ">- Tuftsin tetrapeptide for macrophage-activation, phagocytosis and innate-immunity research. ≥98% HPLC. RUO."
+short_description: "Tuftsin tetrapeptide for macrophage-activation, phagocytosis and innate-immunity research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: immunology
 tags:

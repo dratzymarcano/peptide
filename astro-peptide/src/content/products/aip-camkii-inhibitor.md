@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 70
 price_range: €70 per vial
-short_description: ">- AIP — the most selective Ca²⁺/calmodulin-dependent protein kinase II inhibitor peptide. ≥98% HPLC. RUO."
+short_description: "AIP — the most selective Ca²⁺/calmodulin-dependent protein kinase II inhibitor peptide. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
 tags:

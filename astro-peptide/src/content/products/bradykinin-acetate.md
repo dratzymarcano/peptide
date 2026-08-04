@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 30
 price_range: €30 per vial
-short_description: ">- Bradykinin (acetate salt) for B1 / B2 kinin-receptor research, vascular permeability and inflammation studies. ≥98% HPLC. RUO."
+short_description: "Bradykinin (acetate salt) for B1 / B2 kinin-receptor research, vascular permeability and inflammation studies. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
 tags:

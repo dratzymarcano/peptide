@@ -32,7 +32,7 @@ tags:
   - mt2
   - melanotan-2
 images:
-  - /images/products/melanotan-2.svg
+  - /images/products/melanotan-2.webp
 meta:
   title: Buy Melanotan-2 10 mg — Melanocortin Agonist, ≥99% HPLC | Peptide Shop Europe
   description: Buy melanotan-2 10 mg from Europe. Melanocortin receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

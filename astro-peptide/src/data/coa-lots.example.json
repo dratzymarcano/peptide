@@ -1,0 +1,52 @@
+{
+  "bpc-157": [
+    {
+      "batchNo": "REPLACE-WITH-LOT-NUMBER-ON-VIAL",
+      "docNo": "CoA-BPC157-0001",
+      "revision": "1.0",
+      "issuedDate": "2026-01-15",
+      "manufactureDate": "2025-12-02",
+      "retestDate": "2028-12-02",
+      "origin": "EU",
+      "laboratory": {
+        "name": "REPLACE WITH THE TESTING LABORATORY'S REGISTERED NAME",
+        "location": "City, Country",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "LAB-REPORT-REF",
+        "reportUrl": "https://example-lab.test/reports/LAB-REPORT-REF"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual",
+          "specification": "White to off-white lyophilised powder",
+          "result": "White lyophilised powder",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "[M+H]+ = 1420.5 ± 0.5",
+          "result": "TRANSCRIBE FROM REPORT",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity",
+          "method": "RP-HPLC, 220 nm",
+          "specification": "≥ 99.0 %",
+          "result": "TRANSCRIBE FROM REPORT",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "REPLACE WITH THE PERSON WHO ACTUALLY SIGNED THE REPORT",
+          "role": "Quality Control Analyst",
+          "date": "2026-01-15"
+        }
+      ]
+    }
+  ]
+}

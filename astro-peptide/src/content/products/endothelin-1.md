@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 70
 price_range: €70 per vial
-short_description: ">- Human Endothelin-1 reference peptide for vasoconstriction, endothelial-dysfunction and pulmonary-hypertension research. ≥98% HPLC. RUO."
+short_description: "Human Endothelin-1 reference peptide for vasoconstriction, endothelial-dysfunction and pulmonary-hypertension research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
 tags:

@@ -18,7 +18,7 @@ package_sizes:
 moq: 1
 price: 55
 price_range: €55 per vial
-short_description: ">- Thymosin α1 (28-residue, N-acetylated) for T-cell maturation, dendritic-cell and antiviral immunology research. ≥98% HPLC. RUO."
+short_description: "Thymosin α1 (28-residue, N-acetylated) for T-cell maturation, dendritic-cell and antiviral immunology research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: immunology
 tags:

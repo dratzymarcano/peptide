@@ -55,7 +55,6 @@ const relatedPosts = allPosts
 const siteUrl = 'https://peptide-kaufen.net';
 const postUrl = new URL(href(`/blog/${post.id}/`), Astro.site).toString();
 const imageUrl = post.data.image ? new URL(post.data.image, siteUrl).href : `${siteUrl}/favicon.svg`;
-const authorSlug = String(localizedPost.author || 'editorial-team').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -66,14 +65,17 @@ const articleSchema = {
   datePublished: new Date(post.data.publishDate).toISOString(),
   dateModified: new Date(post.data.publishDate).toISOString(),
   mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
+  // Authored by the editorial desk rather than a named individual, so the
+  // author is an Organization. Emitting `Person` for a collective byline
+  // invents credentials that cannot be verified (and pointed `@id`/`sameAs`
+  // at an /about/ anchor that does not exist). Swap this back to a `Person`
+  // with a real bio page the moment articles carry a named, credentialed
+  // author — that is the strongest available E-E-A-T signal for YMYL content.
   author: {
-    '@type': 'Person',
-    '@id': `${siteUrl}/about/#${authorSlug}`,
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
     name: localizedPost.author,
     url: `${siteUrl}/about/`,
-    jobTitle: 'Scientific writer, Peptide Shop editorial',
-    worksFor: { '@type': 'Organization', '@id': `${siteUrl}/#organization`, name: 'Peptide Shop' },
-    sameAs: [`${siteUrl}/about/`],
   },
   publisher: {
     '@type': 'Organization',

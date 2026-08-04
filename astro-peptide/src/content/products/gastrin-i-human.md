@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 55
 price_range: €55 per vial
-short_description: ">- Human Gastrin I 17-residue peptide for CCK / gastrin GPCR signalling and gastric-physiology research. ≥98% HPLC. RUO."
+short_description: "Human Gastrin I 17-residue peptide for CCK / gastrin GPCR signalling and gastric-physiology research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
 tags:

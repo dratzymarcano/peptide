@@ -14,7 +14,8 @@
  */
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCanonicalCollection } from '../../lib/collections';
-import { renderCoaHtml } from '../../lib/coa/render';
+import { renderCoaHtml, renderCoaUnavailableHtml } from '../../lib/coa/render';
+import { getCurrentLot } from '../../lib/coa/lots';
 import {
   SUPPORTED_LOCALES,
   DEFAULT_LOCALE,
@@ -47,8 +48,18 @@ export const GET: APIRoute = async ({ props }) => {
   if (!product) {
     return new Response('Product not found', { status: 404 });
   }
+  // No analytical report on record → serve the "available on request" page
+  // rather than a certificate. A certificate is only ever rendered from a real
+  // lot in src/data/coa-lots.json.
+  const lot = getCurrentLot(slug);
+  if (!lot) {
+    return new Response(renderCoaUnavailableHtml(product, { locale: normalizeLocale(locale) }), {
+      headers: { 'content-type': 'text/html; charset=utf-8' },
+    });
+  }
+
   const langSuffix = locale !== DEFAULT_LOCALE ? `?lang=${locale}` : '';
-  const html = renderCoaHtml(product, {
+  const html = renderCoaHtml(product, lot, {
     locale: normalizeLocale(locale),
     pdfHref: `/api/coa/${slug}.pdf${langSuffix}`,
   });

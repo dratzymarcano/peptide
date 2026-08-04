@@ -31,7 +31,7 @@ tags:
   - triple-reuptake
   - tesofensine
 images:
-  - /images/products/tesofensine.svg
+  - /images/products/tesofensine.webp
 meta:
   title: Buy Tesofensine (60 × 0.5 mg capsules) — Research Compound | Peptide Shop
   description: Buy tesofensine 60 × 0.5 mg capsules from Europe. SNDRI metabolic research compound. Lot COA, EU dispatch. Research use only.

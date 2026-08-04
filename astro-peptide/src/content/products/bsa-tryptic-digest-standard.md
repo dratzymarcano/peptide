@@ -7,8 +7,8 @@ aliases:
   - BSA digest
   - Tryptic BSA
   - LC-MS QC standard
-cas: "null"
-molecular_weight: "null"
+cas: null
+molecular_weight: null
 purity: ≥ 98%
 storage: "-20°C lyophilised, desiccated, protected from light (research only)"
 package_sizes:
@@ -16,7 +16,7 @@ package_sizes:
 moq: 1
 price: 40
 price_range: €40 per vial
-short_description: ">- Bovine Serum Albumin tryptic digest standard for daily LC-MS/MS QC, system-suitability and proteomics-pipeline validation. RUO."
+short_description: "Bovine Serum Albumin tryptic digest standard for daily LC-MS/MS QC, system-suitability and proteomics-pipeline validation. RUO."
 category: mass-spec-standard
 researchArea: protein-analysis
 tags:

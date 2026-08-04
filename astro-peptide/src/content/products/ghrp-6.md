@@ -30,7 +30,7 @@ tags:
   - growth-hormone
   - ghrp-6
 images:
-  - /images/products/ghrp-6.svg
+  - /images/products/ghrp-6.webp
 meta:
   title: Buy GHRP-6 5 mg — Ghrelin Receptor Agonist | Peptide Shop Europe
   description: Buy GHRP-6 5 mg from Europe. Ghrelin receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

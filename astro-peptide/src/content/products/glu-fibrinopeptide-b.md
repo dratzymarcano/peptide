@@ -18,7 +18,7 @@ package_sizes:
 moq: 1
 price: 40
 price_range: €40 per vial
-short_description: ">- [Glu1]-Fibrinopeptide B (Glu-Fib), the universal LC-MS lock-mass and collision-energy tuning reference. ≥99% HPLC. RUO."
+short_description: "[Glu1]-Fibrinopeptide B (Glu-Fib), the universal LC-MS lock-mass and collision-energy tuning reference. ≥99% HPLC. RUO."
 category: mass-spec-standard
 researchArea: protein-analysis
 tags:

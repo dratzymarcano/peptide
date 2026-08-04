@@ -15,8 +15,11 @@
     "seo:check": "npm run build && npm run seo:hreflang && npm run seo:i18n",
     "legal:check": "node scripts/check-legal-readiness.mjs",
     "legal:claims": "node scripts/check-ymyl-claims.mjs",
+    "coa:check": "node scripts/check-coa-lots.mjs",
+    "photos:ingest": "node scripts/ingest-product-photos.mjs",
+    "photos:check": "node scripts/ingest-product-photos.mjs --check",
     "launch:readiness": "node scripts/check-launch-readiness.mjs",
-    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run launch:readiness"
+    "launch:check": "npm run seo:check && npm run legal:check && npm run legal:claims && npm run coa:check && npm run launch:readiness"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.3.1",
@@ -36,6 +39,7 @@
     "@astrojs/check": "^0.9.9",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.9.3",
     "wrangler": "^4.87.0"
   }

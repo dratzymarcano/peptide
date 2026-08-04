@@ -18,7 +18,7 @@ package_sizes:
 moq: 1
 price: 70
 price_range: €70 per vial
-short_description: ">- Human B-type Natriuretic Peptide (BNP-32) reference standard for heart-failure biomarker and ELISA-control research. ≥98% HPLC. RUO."
+short_description: "Human B-type Natriuretic Peptide (BNP-32) reference standard for heart-failure biomarker and ELISA-control research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
 tags:

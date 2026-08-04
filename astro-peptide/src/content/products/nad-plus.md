@@ -33,7 +33,7 @@ tags:
   - cellular-energy
   - nad-plus
 images:
-  - /images/products/nad-plus.svg
+  - /images/products/nad-plus.webp
 meta:
   title: Buy NAD+ 500 mg — Research Grade Coenzyme | Peptide Shop Europe
   description: Buy NAD+ 500 mg research grade from Europe. Cellular energy coenzyme. Lot-specific COA, EU dispatch. Research use only.

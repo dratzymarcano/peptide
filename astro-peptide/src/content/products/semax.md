@@ -30,7 +30,7 @@ tags:
   - neuroprotection
   - semax
 images:
-  - /images/products/semax.svg
+  - /images/products/semax.webp
 meta:
   title: Buy Semax 10 mg — Neuroprotective Research Peptide | Peptide Shop Europe
   description: Buy semax 10 mg from Europe. ACTH-derived neuroprotective peptide. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

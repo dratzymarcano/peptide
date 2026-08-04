@@ -30,7 +30,7 @@ tags:
   - triple-agonist
   - retatrutide
 images:
-  - /images/products/retatrutide.svg
+  - /images/products/retatrutide.webp
 meta:
   title: Buy Retatrutide 5 mg — Triple GLP-1/GIP/Glucagon Agonist | Peptide Shop
   description: Buy retatrutide 5 mg from Europe. Triple GLP-1/GIP/glucagon agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

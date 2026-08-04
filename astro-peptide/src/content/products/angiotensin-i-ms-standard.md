@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 30
 price_range: €30 per vial
-short_description: ">- Angiotensin I, ≥99% HPLC, supplied as a mass-spectrometry calibration standard ([M+H]+ = 1297.5). RUO."
+short_description: "Angiotensin I, ≥99% HPLC, supplied as a mass-spectrometry calibration standard ([M+H]+ = 1297.5). RUO."
 category: mass-spec-standard
 researchArea: protein-analysis
 tags:

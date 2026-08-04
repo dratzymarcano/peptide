@@ -124,37 +124,6 @@ const href = (path: string) => localizePath(path, locale);
     </div>
   </section>
 
-  <!-- THIRD-PARTY RESEARCH NOTES -->
-  <section class="section section-loose surface-mist" aria-labelledby="community-notes-title">
-    <div class="container">
-      <div class="section-heading">
-        <span class="eyebrow-rule">Third-party research notes</span>
-        <h2 id="community-notes-title" class="display">Observational reports from the research community</h2>
-        <p style="color: var(--color-ink-2); max-width: 60ch;">
-          The photographs below are unaffiliated, observational reports submitted by independent researchers documenting their own work. They are reproduced here verbatim and are <strong>not endorsements, claims, or guarantees</strong> of any therapeutic effect. Peptide Shop sells reference materials for laboratory research only; the products are not for human or veterinary therapeutic use.
-        </p>
-      </div>
-      <div class="community-grid">
-        <figure>
-          <img src="/images/lifestyle/research-progress-three-months.webp" alt="Researcher-submitted three-month observation reference photo" loading="lazy" width="800" height="800" />
-          <figcaption>Three-month observation reference (researcher submission)</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/lifestyle/research-progress-physique.jpg" alt="Researcher-submitted body composition reference photo" loading="lazy" width="800" height="800" />
-          <figcaption>Body-composition reference (researcher submission)</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/lifestyle/research-progress-male.jpg" alt="Researcher-submitted before/after reference photo, male subject" loading="lazy" width="800" height="800" />
-          <figcaption>Before / after reference (researcher submission)</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/lifestyle/research-progress-female.jpg" alt="Researcher-submitted before/after reference photo, female subject" loading="lazy" width="800" height="800" />
-          <figcaption>Before / after reference (researcher submission)</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- TIMELINE -->
   <section class="section section-loose" aria-labelledby="how-we-work-title">
     <div class="container">
@@ -236,36 +205,6 @@ const href = (path: string) => localizePath(path, locale);
   }
   @media (max-width: 768px) {
     .about-gallery { grid-template-columns: 1fr; }
-  }
-  .community-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-4, 1rem);
-    margin-top: var(--space-6, 1.5rem);
-  }
-  .community-grid figure {
-    margin: 0;
-    border-radius: var(--radius-md, 0.75rem);
-    overflow: hidden;
-    background: var(--color-surface, #fff);
-    border: 1px solid var(--color-border, rgba(0, 0, 0, 0.08));
-  }
-  .community-grid img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    display: block;
-  }
-  .community-grid figcaption {
-    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
-    font-size: var(--text-sm, 0.875rem);
-    color: var(--color-ink-3, #555);
-  }
-  @media (max-width: 1024px) {
-    .community-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .community-grid { grid-template-columns: 1fr; }
   }
 </style>
 

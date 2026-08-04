@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import PageHeading from '../components/PageHeading.astro';
 import legalEntity from '../data/legalEntity.json';
+import { isComplete, isKleinunternehmer, missingFields, resolve } from '../lib/legalEntity';
 import { getLocaleFromPathname, localizePath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 
@@ -16,13 +17,22 @@ const breadcrumbs = [
   { name: t('legal.impressumTitle'), url: href('/impressum/') },
 ];
 
-const responsibleAddressLines = legalEntity.contentResponsibleAddress.split('\n').filter(Boolean);
+// Unfilled fields render as an explicit gap rather than a `TODO_IMPRESSUM_*`
+// sentinel. While anything is missing the page is also kept out of the index —
+// an incomplete Impressum is a §5 DDG problem, and indexing it turns a private
+// gap into a public, cached one.
+const pending = missingFields();
+const impressumComplete = isComplete();
+const responsibleAddressLines = (resolve('contentResponsibleAddress') ?? '')
+  .split('\n')
+  .filter(Boolean);
 ---
 
 <Layout
   title={t('legal.impressumMetaTitle')}
   description={t('legal.impressumMetaDescription')}
   breadcrumbs={breadcrumbs}
+  noindex={!impressumComplete}
 >
   <section class="section content-page">
     <div class="container">
@@ -34,12 +44,29 @@ const responsibleAddressLines = legalEntity.contentResponsibleAddress.split('\n'
 
       <div class="content-layout">
         <article class="article-body">
+          {!impressumComplete && (
+            <p class="impressum-pending" role="status">
+              <strong>Diese Angaben sind unvollständig.</strong>
+              Die eingetragenen Unternehmensdaten werden derzeit ergänzt. Für verbindliche
+              Auskünfte wenden Sie sich bitte an <a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a>.
+              <span class="impressum-pending-fields">Ausstehend: {pending.join(', ')}</span>
+            </p>
+          )}
+
+          {/*
+            Sole trader (Einzelunternehmen): §5 DDG requires the operator's own
+            full name, not a registered company name. Where a trading name is
+            used it is shown alongside, never instead of, the personal name.
+            There is no Handelsregister entry, so no Amtsgericht/HRB block.
+          */}
           <h2>{t('legal.impressumProviderTitle')}</h2>
           <address>
-            <strong>{legalEntity.brandName}</strong><br />
-            {legalEntity.legalName}<br />
-            {legalEntity.streetAddress}<br />
-            {legalEntity.postalCode} {legalEntity.addressLocality}<br />
+            {resolve('ownerName') && <><strong>{resolve('ownerName')}</strong><br /></>}
+            {resolve('tradingName') && <>{resolve('tradingName')}<br /></>}
+            {resolve('streetAddress') && <>{resolve('streetAddress')}<br /></>}
+            {resolve('postalCode') && resolve('addressLocality') && (
+              <>{resolve('postalCode')} {resolve('addressLocality')}<br /></>
+            )}
             Germany
           </address>
 
@@ -47,23 +74,25 @@ const responsibleAddressLines = legalEntity.contentResponsibleAddress.split('\n'
           <p>
             <strong>{t('legal.impressumEmailLabel')}:</strong>
             <a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a>
-          </p>
-
-          <h2>{t('legal.impressumRegistryTitle')}</h2>
-          <p>
-            {legalEntity.legalForm}<br />
-            {legalEntity.registerCourt}<br />
-            {legalEntity.commercialRegisterNumber}
+            {resolve('phone') && <><br />{resolve('phone')}</>}
           </p>
 
           <h2>{t('legal.impressumVatTitle')}</h2>
-          <p>{legalEntity.vatId}</p>
+          {resolve('vatId')
+            ? <p>{resolve('vatId')}</p>
+            : isKleinunternehmer
+              ? <p>Kleinunternehmer gemäß §19 UStG — es wird keine Umsatzsteuer ausgewiesen.</p>
+              : <p class="impressum-field-missing">Wird ergänzt.</p>}
 
-          <h2>{t('legal.impressumResponsibleTitle')}</h2>
-          <p>
-            {legalEntity.contentResponsibleName}<br />
-            {responsibleAddressLines.map((line) => <><span>{line}</span><br /></>)}
-          </p>
+          {(resolve('contentResponsibleName') || responsibleAddressLines.length > 0) && (
+            <>
+              <h2>{t('legal.impressumResponsibleTitle')}</h2>
+              <p>
+                {resolve('contentResponsibleName') && <>{resolve('contentResponsibleName')}<br /></>}
+                {responsibleAddressLines.map((line) => <><span>{line}</span><br /></>)}
+              </p>
+            </>
+          )}
 
           <h2>{t('legal.impressumDisputeTitle')}</h2>
           <p set:html={t('legal.impressumDisputeBody')}></p>
@@ -90,4 +119,19 @@ const responsibleAddressLines = legalEntity.contentResponsibleAddress.split('\n'
   .article-body address { margin-bottom: var(--space-4); line-height: 1.7; }
   .article-body address { font-style: normal; }
   .article-body a { color: var(--color-primary); text-decoration: underline; }
+  .impressum-pending {
+    padding: var(--space-4);
+    border-left: 3px solid var(--color-warning, #B45309);
+    background: #FEF7E6;
+    border-radius: 2px;
+  }
+  .impressum-pending strong { display: block; margin-bottom: var(--space-2); }
+  .impressum-field-missing { color: var(--color-ink-3); font-style: italic; }
+  .impressum-pending-fields {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-ink-3);
+    font-family: var(--font-mono, monospace);
+  }
 </style>

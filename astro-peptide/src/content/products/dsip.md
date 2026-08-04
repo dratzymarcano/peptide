@@ -30,7 +30,7 @@ tags:
   - nootropic
   - dsip
 images:
-  - /images/products/dsip.svg
+  - /images/products/dsip.webp
 meta:
   title: Buy DSIP 5 mg — Delta Sleep-Inducing Peptide | Peptide Shop Europe
   description: Buy DSIP 5 mg (delta sleep-inducing peptide) from Europe. Research grade, lot COA, EU dispatch. Research use only.

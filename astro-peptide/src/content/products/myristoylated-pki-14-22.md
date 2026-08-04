@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 60
 price_range: €60 per vial
-short_description: ">- Cell-permeable myristoylated PKI (14-22) amide for intact-cell PKA inhibition in kinase-pathway research. ≥98% HPLC. RUO."
+short_description: "Cell-permeable myristoylated PKI (14-22) amide for intact-cell PKA inhibition in kinase-pathway research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
 tags:

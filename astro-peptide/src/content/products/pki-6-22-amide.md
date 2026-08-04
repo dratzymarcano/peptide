@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 55
 price_range: €55 per vial
-short_description: ">- PKI (6-22) amide, the most widely cited specific PKA inhibitor peptide for kinase-pathway research. ≥98% HPLC. RUO."
+short_description: "PKI (6-22) amide, the most widely cited specific PKA inhibitor peptide for kinase-pathway research. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
 tags:

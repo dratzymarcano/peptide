@@ -4,6 +4,17 @@ dist
 .vite
 .wrangler
 
+# Photography source files. Full-resolution originals are inputs to
+# `npm run photos:ingest`, not build artefacts — archive them outside the repo.
+# Only the generated variants under public/images/products/ are committed.
+astro-peptide/photo-intake
+
+# Raw image source material (25 MB of AI renders plus Windows alternate-data
+# stream artefacts like `foo.png:Zone.Identifier`, whose colons break checkout
+# on non-NTFS filesystems). Superseded by the photo-intake pipeline.
+product-images/
+peptides-images/
+
 # Test artefacts
 playwright-report
 test-results

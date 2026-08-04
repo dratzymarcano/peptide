@@ -30,7 +30,7 @@ tags:
   - anxiolytic
   - selank
 images:
-  - /images/products/selank.svg
+  - /images/products/selank.webp
 meta:
   title: Buy Selank 10 mg — Anxiolytic Research Peptide | Peptide Shop Europe
   description: Buy selank 10 mg from Europe. Anxiolytic research peptide derived from tuftsin. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

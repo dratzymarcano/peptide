@@ -32,7 +32,7 @@ tags:
   - powder
   - 5-amino-1mq
 images:
-  - /images/products/5-amino-1mq.svg
+  - /images/products/5-amino-1mq.webp
 meta:
   title: Buy 5-Amino-1MQ (60 × 50 mg capsules) — NNMT Inhibitor | Peptide Shop
   description: Buy 5-Amino-1MQ NNMT inhibitor capsules from Europe. 60 × 50 mg. HPLC-verified purity, lot-specific COA, EU dispatch. Research use only.

@@ -34,7 +34,7 @@ tags:
   - collagen
   - ghk-cu
 images:
-  - /images/products/ghk-cu.svg
+  - /images/products/ghk-cu.webp
 meta:
   title: Buy GHK-Cu 500 mg — Copper Peptide Powder, COA | Peptide Shop Europe
   description: Buy GHK-Cu 500 mg copper peptide powder from Europe. Lot-specific COA, EU dispatch. Tissue regeneration research compound. Research use only.
@@ -56,7 +56,7 @@ faqs:
   - question: What sizes are available?
     answer: GHK-Cu is available in 50mg, 100mg, and 500mg quantities.
   - question: What is GHK-Cu?
-    answer: GHK-Cu (glycyl-L-histidyl-L-lysine copper) is a copper-binding tripeptide naturally found in human plasma. It is studied for roles in tissue regeneration, collagen synthesis, antioxidant activity, and gene expression regulation. CAS number 49557-75-7, PubChem CID 73587.
+    answer: GHK-Cu (glycyl-L-histidyl-L-lysine copper) is a copper-binding tripeptide naturally found in human plasma. Published literature examines its roles in extracellular-matrix remodelling, collagen synthesis, antioxidant activity, and gene-expression regulation. CAS number 49557-75-7, PubChem CID 73587.
   - question: Why is GHK-Cu sold as 500 mg powder?
     answer: The 500 mg bulk powder format serves research labs requiring larger quantities for cell-culture assays, stability studies, or formulation development. It provides significant cost efficiency per milligram compared to small-vial formats.
   - question: What solvent is compatible with GHK-Cu?

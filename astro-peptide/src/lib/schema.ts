@@ -13,6 +13,7 @@
 
 import type { Locale } from '../i18n/config';
 import legalEntity from '../data/legalEntity.json';
+import { postalAddress, resolve as resolveLegalField } from './legalEntity';
 
 const SITE = 'https://peptide-kaufen.net';
 
@@ -32,13 +33,13 @@ export function inLanguage(locale: Locale): string {
   return inLanguageMap[locale] ?? locale;
 }
 
-const registeredAddress = {
-  '@type': 'PostalAddress',
-  streetAddress: legalEntity.streetAddress,
-  postalCode: legalEntity.postalCode,
-  addressLocality: legalEntity.addressLocality,
-  addressCountry: legalEntity.addressCountry,
-};
+// Null until the real Impressum data lands. Callers spread this conditionally
+// so a half-filled PostalAddress full of TODO sentinels never reaches Google.
+const registeredAddress = postalAddress();
+// Sole trader: the legal person behind the shop is the owner, so `legalName`
+// is their own name rather than a registered company name. Omitted entirely
+// until supplied — never emitted as a placeholder.
+const registeredLegalName = resolveLegalField('ownerName');
 
 // ---------------------------------------------------------------------------
 // Organization
@@ -61,14 +62,14 @@ export function organizationSchema({ locale, sameAs = [] }: OrganizationArgs) {
     '@type': 'Organization',
     '@id': `${SITE}/#organization`,
     name: legalEntity.brandName,
-    legalName: legalEntity.legalName,
+    ...(registeredLegalName ? { legalName: registeredLegalName } : {}),
     url: SITE,
     logo: {
       '@type': 'ImageObject',
       url: `${SITE}/favicon.svg`,
     },
     inLanguage: inLanguage(locale),
-    address: registeredAddress,
+    ...(registeredAddress ? { address: registeredAddress } : {}),
     contactPoint: [
       {
         '@type': 'ContactPoint',
@@ -95,11 +96,11 @@ export function localBusinessSchema({ locale }: LocalBusinessArgs) {
     '@type': 'LocalBusiness',
     '@id': `${SITE}/#localbusiness`,
     name: legalEntity.brandName,
-    legalName: legalEntity.legalName,
+    ...(registeredLegalName ? { legalName: registeredLegalName } : {}),
     url: SITE,
     inLanguage: inLanguage(locale),
     parentOrganization: { '@id': `${SITE}/#organization` },
-    address: registeredAddress,
+    ...(registeredAddress ? { address: registeredAddress } : {}),
     email: legalEntity.email,
     priceRange: '€€',
   };

@@ -86,40 +86,34 @@ const reviews = product.data.reviews ?? [];
 const averageRating = reviews.length > 0
   ? reviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) / reviews.length
   : null;
-const reviewObjects = reviews.length > 0
-  ? reviews.map((review) => ({
-      '@type': 'Review',
-      author: { '@type': 'Person', name: review.author },
-      datePublished: review.date,
-      name: review.title,
-      reviewBody: review.content,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: String(review.rating),
-        bestRating: '5',
-        worstRating: '1',
-      },
-    }))
-  : [{
-      '@type': 'Review',
-      author: { '@type': 'Organization', name: 'Peptide Shop' },
-      datePublished: new Date().toISOString().slice(0, 10),
-      name: `Peptide Shop review of ${cleanTitle}`,
-      reviewBody: `This product page documents the ${cleanTitle} research-use peptide, including availability, shipping and COA support for laboratory research orders.`,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: '5',
-        bestRating: '5',
-        worstRating: '1',
-      },
-    }];
-const aggregateRating = {
-  '@type': 'AggregateRating',
-  ratingValue: (averageRating ?? 5).toFixed(1),
-  reviewCount: reviews.length > 0 ? reviews.length : 1,
-  bestRating: '5',
-  worstRating: '1',
-};
+// Review / AggregateRating are emitted ONLY when genuine, user-sourced reviews
+// exist in the product frontmatter. Google's review-snippet policy forbids
+// ratings the reviewed entity creates about itself ("Ratings must be sourced
+// directly from users"), so a placeholder self-review is never synthesised —
+// omitting the optional field is correct; fabricating it risks a structured
+// data manual action.
+const reviewObjects = reviews.map((review) => ({
+  '@type': 'Review',
+  author: { '@type': 'Person', name: review.author },
+  datePublished: review.date,
+  name: review.title,
+  reviewBody: review.content,
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: String(review.rating),
+    bestRating: '5',
+    worstRating: '1',
+  },
+}));
+const aggregateRating = reviews.length > 0 && averageRating !== null
+  ? {
+      '@type': 'AggregateRating',
+      ratingValue: averageRating.toFixed(1),
+      reviewCount: reviews.length,
+      bestRating: '5',
+      worstRating: '1',
+    }
+  : null;
 const entityMap = entities as Record<string, { sameAs?: string[]; cas?: string | null; molecularFormula?: string | null; pubchem?: string | null; wikidata?: string | null }>;
 const productEntity = entityMap[currentSlug];
 const additionalProperties = [
@@ -196,8 +190,8 @@ const productSchema = {
       },
     },
   },
-  review: reviewObjects,
-  aggregateRating,
+  ...(reviewObjects.length ? { review: reviewObjects } : {}),
+  ...(aggregateRating ? { aggregateRating } : {}),
 };
 
 const faqSchema = localizedProduct.faqs.length

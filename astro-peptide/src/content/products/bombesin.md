@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 55
 price_range: €55 per vial
-short_description: ">- Bombesin tetradecapeptide for GRPR / NMBR receptor research and tumour-targeting / imaging studies. ≥98% HPLC. RUO."
+short_description: "Bombesin tetradecapeptide for GRPR / NMBR receptor research and tumour-targeting / imaging studies. ≥98% HPLC. RUO."
 category: research-peptide
 researchArea: cancer-apoptosis
 tags:

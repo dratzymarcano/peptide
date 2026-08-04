@@ -17,7 +17,7 @@ package_sizes:
 moq: 1
 price: 95
 price_range: €95 per vial
-short_description: ">- Human Neutrophil Peptide 1 (HNP-1, α-defensin 1) for innate-immunity and antimicrobial-peptide research. ≥95% HPLC. RUO."
+short_description: "Human Neutrophil Peptide 1 (HNP-1, α-defensin 1) for innate-immunity and antimicrobial-peptide research. ≥95% HPLC. RUO."
 category: research-peptide
 researchArea: immunology
 tags:

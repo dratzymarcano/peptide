@@ -32,7 +32,7 @@ tags:
   - growth-hormone
   - ipamorelin
 images:
-  - /images/products/ipamorelin.svg
+  - /images/products/ipamorelin.webp
 meta:
   title: Buy Ipamorelin 5 mg — Selective GHSR Agonist, ≥99% HPLC | Peptide Shop Europe
   description: Buy ipamorelin 5 mg from Europe. Selective GHSR-1a agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.

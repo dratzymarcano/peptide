@@ -33,7 +33,7 @@ tags:
   - growth-hormone
   - cjc-1295-no-dac
 images:
-  - /images/products/cjc-1295-no-dac.svg
+  - /images/products/cjc-1295-no-dac.webp
 meta:
   title: Buy CJC-1295 No DAC 5 mg — Mod GRF 1-29, ≥99% HPLC | Peptide Shop
   description: Buy CJC-1295 No DAC (Mod GRF 1-29) 5 mg from Europe. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
