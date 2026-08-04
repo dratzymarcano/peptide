@@ -2,6 +2,18 @@
 import { getLocaleFromPathname, localizePath, localeMeta, locales, type Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 
+interface Props {
+  /**
+   * `floating` is the fixed bottom-left puck used on desktop. `inline` renders
+   * the same control in normal flow — used inside the mobile drawer, because a
+   * persistently floating control sat on top of the hero call-to-action on a
+   * 390px screen with no way for the user to move it out of the way.
+   */
+  variant?: 'floating' | 'inline';
+}
+const { variant = 'floating' }: Props = Astro.props;
+const listId = variant === 'inline' ? 'language-switcher-list-inline' : 'language-switcher-list';
+
 const activeLocale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(activeLocale);
 const alternateLinks = locales.map((locale) => ({
@@ -11,8 +23,11 @@ const alternateLinks = locales.map((locale) => ({
 }));
 
 // Inline SVG flags (24x18) — reliable across all OS/font stacks, no emoji-font dependency.
+// The English flag needs a clipPath, whose id must stay unique when this
+// component renders more than once (floating + in-drawer).
+const clipId = `lsf-en-${variant}`;
 const flagSvg: Record<Locale, string> = {
-  en: '<svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><clipPath id="lsf-en"><path d="M0 0v45h60V0z"/></clipPath><path fill="#012169" d="M0 0h60v45H0z"/><path d="M0 0l60 45m0-45L0 45" stroke="#fff" stroke-width="6"/><path d="M0 0l60 45m0-45L0 45" clip-path="url(#lsf-en)" stroke="#C8102E" stroke-width="3"/><path d="M30 0v45M0 22.5h60" stroke="#fff" stroke-width="10"/><path d="M30 0v45M0 22.5h60" stroke="#C8102E" stroke-width="6"/></svg>',
+  en: `<svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><clipPath id="${clipId}"><path d="M0 0v45h60V0z"/></clipPath><path fill="#012169" d="M0 0h60v45H0z"/><path d="M0 0l60 45m0-45L0 45" stroke="#fff" stroke-width="6"/><path d="M0 0l60 45m0-45L0 45" clip-path="url(#${clipId})" stroke="#C8102E" stroke-width="3"/><path d="M30 0v45M0 22.5h60" stroke="#fff" stroke-width="10"/><path d="M30 0v45M0 22.5h60" stroke="#C8102E" stroke-width="6"/></svg>`,
   de: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#000" d="M0 0h60v12H0z"/><path fill="#DD0000" d="M0 12h60v12H0z"/><path fill="#FFCE00" d="M0 24h60v12H0z"/></svg>',
   nl: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#AE1C28" d="M0 0h60v12H0z"/><path fill="#fff" d="M0 12h60v12H0z"/><path fill="#21468B" d="M0 24h60v12H0z"/></svg>',
   fr: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#0055A4" d="M0 0h20v36H0z"/><path fill="#fff" d="M20 0h20v36H20z"/><path fill="#EF4135" d="M40 0h20v36H40z"/></svg>',
@@ -21,13 +36,13 @@ const flagSvg: Record<Locale, string> = {
 };
 ---
 
-<div class="language-switcher" data-language-switcher>
+<div class={`language-switcher language-switcher--${variant}`} data-language-switcher>
   <button
     class="language-switcher__trigger"
     type="button"
     aria-haspopup="menu"
     aria-expanded="false"
-    aria-controls="language-switcher-list"
+    aria-controls={listId}
     aria-label={`${t('common.changeLanguage')}. ${t('common.currentLanguage', { language: localeMeta[activeLocale].name })}`}
     title={t('common.changeLanguage')}
   >
@@ -47,7 +62,7 @@ const flagSvg: Record<Locale, string> = {
     </svg>
   </button>
 
-  <ul id="language-switcher-list" class="language-switcher__list" role="menu" aria-label={t('common.changeLanguage')} hidden>
+  <ul id={listId} class="language-switcher__list" role="menu" aria-label={t('common.changeLanguage')} hidden>
     {alternateLinks.map((item) => (
       <li role="none">
         <a
@@ -221,14 +236,22 @@ const flagSvg: Record<Locale, string> = {
     color: var(--color-primary);
   }
 
+  /* Inline variant sits in normal flow (mobile drawer). */
+  .language-switcher--inline {
+    position: static;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
+    width: 100%;
+  }
+  .language-switcher--inline .language-switcher__trigger { width: 100%; justify-content: flex-start; }
+  .language-switcher--inline .language-switcher__list { bottom: auto; top: calc(100% + var(--space-2)); }
+
   @media (max-width: 600px) {
-    .language-switcher {
-      left: var(--space-3);
-      bottom: calc(72px + env(safe-area-inset-bottom, 0px));
-    }
-    /* Collapse to icon + flag only on narrow screens to save space */
-    .language-switcher__active-label { display: none; }
-    .language-switcher__trigger { padding: 0 var(--space-2); gap: var(--space-1); }
+    /* The floating puck overlapped the hero call-to-action on a 390px
+       screen. Below this breakpoint language selection lives in the drawer
+       instead, where it is discoverable and covers nothing. */
+    .language-switcher--floating { display: none; }
   }
 
   @media print {
@@ -237,7 +260,8 @@ const flagSvg: Record<Locale, string> = {
 </style>
 
 <script>
-  const root = document.querySelector<HTMLElement>('[data-language-switcher]');
+  // Both the floating and in-drawer instances must be wired.
+  document.querySelectorAll<HTMLElement>('[data-language-switcher]').forEach((root) => {
   const trigger = root?.querySelector<HTMLButtonElement>('.language-switcher__trigger');
   const list = root?.querySelector<HTMLUListElement>('.language-switcher__list');
 
@@ -267,5 +291,6 @@ const flagSvg: Record<Locale, string> = {
       if (!locale) return;
       document.cookie = `pref-lang=${locale}; path=/; max-age=31536000; samesite=lax`;
     });
+  });
   });
 </script>

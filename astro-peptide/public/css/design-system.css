@@ -1,3 +1,85 @@
+/*
+ * Self-hosted fonts on stable URLs.
+ *
+ * The @fontsource CSS imports emitted content-hashed filenames under
+ * /_astro/, which change every build and therefore cannot be preloaded from
+ * the layout — so the fonts were always discovered late and swapped in after
+ * first paint. Serving them from /fonts/ makes the <link rel=preload> in
+ * Layout.astro possible. Only latin + latin-ext ship; the six locales need
+ * nothing else, which drops 17 unused subset files from the build.
+ */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter Tight Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-tight-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Tight Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-tight-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Metric-matched fallbacks.
+ *
+ * Every remaining layout shift on the site traced to the web-font swap:
+ * headings rendered in the fallback wrapped onto an extra line, then
+ * re-wrapped when Inter arrived, moving content up by ~63px. Blocking web
+ * fonts entirely measured CLS 0 on every page, which isolated the cause.
+ *
+ * size-adjust values are measured, not assumed: a probe string rendered at
+ * 100px is 2447px wide in Inter and 2307px in Arial (106.05%), and 2227px in
+ * Inter Tight (96.52%). ascent/descent overrides are Inter's own metrics
+ * (unitsPerEm 2816, ascender 2728, descender 680) divided by the size-adjust
+ * factor so the fallback line box matches too.
+ */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 106.05%;
+  ascent-override: 91.34%;
+  descent-override: 22.77%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Tight Fallback';
+  src: local('Arial'), local('Helvetica'), local('Liberation Sans');
+  size-adjust: 96.52%;
+  ascent-override: 100.36%;
+  descent-override: 25.02%;
+  line-gap-override: 0%;
+}
+
 /* ==========================================================================
    PEPTIDE SHOP — DESIGN SYSTEM (DESIGN_SPEC.md §13)
    Single global stylesheet. Tokens, base, and primitive components.
@@ -19,13 +101,16 @@
   --color-primary-50:     #E3F0FF;
   --color-accent:         #00B4A0;   /* fresh teal — secondary conversion accent */
   --color-accent-50:      #E0F7F4;
-  --color-success:        #0D9948;
+  /* Darkened from #0D9948, which measured 3.37:1 on the badge tint and
+     3.71:1 on white — both below the WCAG AA 4.5:1 floor for normal text.
+     #0B7C3A gives 4.83:1 and 5.31:1 respectively. */
+  --color-success:        #0B7C3A;
   --color-warning:        #B45309;
   --color-danger:         #B42318;
   --color-info:           #0B5FB7;
 
   /* Type */
-  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', 'Inter Fallback', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Spacing (4 px scale) */
@@ -86,6 +171,19 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
+  /*
+   * German and Dutch compounds run long — "Forschungsanwendungen",
+   * "Hochleistungsflüssigkeitschromatographie" (40 chars) — and at display
+   * sizes a single word was wider than a 390px phone, giving the whole
+   * document a horizontal scrollbar.
+   *
+   * Deliberately NOT `hyphens: auto`: Chromium fetches the per-language
+   * hyphenation dictionary asynchronously, so German headings re-wrapped
+   * after paint. That measured 0.14 CLS on /de/ in 3 of 6 cold loads —
+   * intermittent, which is worse than a steady regression because it hides
+   * from a single test run. `overflow-wrap` needs no dictionary.
+   */
+  overflow-wrap: break-word;
 }
 h1 { font-size: var(--text-4xl); }
 h2 { font-size: var(--text-3xl); }
@@ -361,7 +459,13 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 }
 .breadcrumb li { display: inline-flex; align-items: center; gap: var(--space-2); }
 .breadcrumb li + li::before { content: '/'; color: var(--color-border-strong); }
-.breadcrumb a { color: var(--color-ink-3); }
+.breadcrumb a {
+  color: var(--color-ink-3);
+  /* 24px minimum touch target (WCAG 2.2 SC 2.5.8). */
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
 .breadcrumb a:hover { color: var(--color-primary); }
 .breadcrumb [aria-current="page"] { color: var(--color-ink); font-weight: 600; }
 
@@ -1502,7 +1606,7 @@ code, pre, kbd, samp { font-family: var(--font-mono); }
 :root {
   /* Display font (Inter Tight Variable) for hero/section headlines.
      Body keeps Inter for maximum legibility at small sizes. */
-  --font-display: 'Inter Tight Variable', 'Inter Tight', 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-display: 'Inter Tight Variable', 'Inter Tight', 'Inter Tight Fallback', system-ui, sans-serif;
 
   /* Refined neutral / brand ramps */
   --color-ink-4:          #94A3B8;   /* slate-400, captions and dividers */

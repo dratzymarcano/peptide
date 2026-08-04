@@ -143,12 +143,18 @@ const href = (path: string) => localizePath(path, locale);
   }
   .footer-col ul {
     list-style: none; padding: 0; margin: 0;
-    display: grid; gap: 6px;
+    display: grid; gap: 2px;
   }
   .footer-col a {
     color: var(--color-ink-2);
     font-size: 14px;
     text-decoration: none;
+    /* 17px tall links are hard to hit on a phone. A 24px minimum meets
+       WCAG 2.2 SC 2.5.8; the gap above was reduced to keep the block
+       the same overall height. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
   }
   .footer-col a:hover { color: var(--color-primary); text-decoration: underline; }
 
@@ -177,8 +183,25 @@ const href = (path: string) => localizePath(path, locale);
     font-size: 13px; color: var(--color-ink-3);
   }
   .footer-bottom p { margin: 0; }
-  .footer-legal { display: flex; gap: var(--space-4); list-style: none; padding: 0; margin: 0; }
-  .footer-legal a { color: var(--color-ink-3); text-decoration: none; }
+  /* Without wrapping, the German labels ("Nutzungsbedingungen",
+     "Haftungsausschluss") pushed this row to 434px inside a 390px viewport
+     and gave the whole page a horizontal scrollbar. */
+  .footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-legal a {
+    color: var(--color-ink-3);
+    text-decoration: none;
+    /* WCAG 2.2 SC 2.5.8 asks for a 24px minimum touch target. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
   .footer-legal a:hover { color: var(--color-primary); }
 
   .muted { color: var(--color-ink-3); }

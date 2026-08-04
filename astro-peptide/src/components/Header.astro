@@ -5,6 +5,7 @@ import CartIcon from './CartIcon';
 import CartModal from './CartModal';
 import CartNotification from './CartNotification';
 import SearchBar from './SearchBar';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 import { researchAreas, useCases } from '../data/taxonomy';
 import { defaultLocale, getLocaleFromPathname, localizePath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
@@ -179,6 +180,12 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
       <li><a href={href('/about/')}>{t('nav.about')}</a></li>
       <li><a href={href('/contact/')}>{t('nav.contact')}</a></li>
     </ul>
+
+    {/* Mobile language selection lives here rather than in a floating puck
+        that sat on top of the hero call-to-action. */}
+    <div class="drawer-language">
+      <LanguageSwitcher variant="inline" />
+    </div>
   </div>
 </aside>
 
@@ -248,7 +255,16 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
     white-space: nowrap;
   }
   .topbar__min-order strong { color: #fff; font-weight: 700; }
-  .topbar a { color: #E2E8F0; text-decoration: underline; text-decoration-color: rgb(255 255 255 / 0.25); }
+  /* 19px-tall links are awkward to hit on a phone; WCAG 2.2 SC 2.5.8 asks
+     for 24px. The bar keeps its height because it already has row padding. */
+  .topbar a {
+    color: #E2E8F0;
+    text-decoration: underline;
+    text-decoration-color: rgb(255 255 255 / 0.25);
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
   .topbar a:hover { color: #fff; }
   @media (max-width: 600px) {
     .topbar__inner { row-gap: 4px; }
@@ -347,6 +363,12 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
   @media (min-width: 1024px) {
     .primary-nav { display: flex; }
     .mobile-toggle { display: none; }
+  }
+
+  .drawer-language {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
   }
 
   /* Mobile drawer overrides (drawer base in design-system.css) */

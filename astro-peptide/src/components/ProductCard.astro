@@ -65,7 +65,6 @@ const variant = props.variant ?? 'default';
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 const productUrl = p.url.startsWith('/') ? localizePath(p.url, locale) : p.url;
-const showDescription = variant !== 'compact' && !!p.shortDescription;
 const isOutOfStock = p.availability === 'out_of_stock';
 const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
 ---
@@ -304,7 +303,16 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
     padding: var(--space-4);
     flex: 1 1 auto;
   }
-  .card-product .title a { color: inherit; text-decoration: none; }
+  .card-product .title a {
+    color: inherit;
+    text-decoration: none;
+    /* The image above links to the same product and is a large target, so
+       this already satisfies WCAG 2.2's equivalent-control exception — but a
+       20px-tall title is still fiddly to tap, so give it the 24px minimum. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
   .card-product .title a:hover,
   .card-product .title a:focus-visible {
     color: var(--color-primary);
