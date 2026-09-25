@@ -1,16 +1,2 @@
-# Cloudflare Edge Redirects (Permanent 301)
-/sitemap.xml /sitemap-index.xml 301
-/peptides /catalog/ 301
-/peptides/ /catalog/ 301
-/peptides/weight-loss /use-case/weight-loss/ 301
-/peptides/weight-loss/ /use-case/weight-loss/ 301
-/peptides/muscle-recovery /use-case/muscle-recovery/ 301
-/peptides/muscle-recovery/ /use-case/muscle-recovery/ 301
-/peptides/growth-hormone /use-case/anti-aging/ 301
-/peptides/growth-hormone/ /use-case/anti-aging/ 301
-/peptides/tanning /use-case/tanning/ 301
-/peptides/tanning/ /use-case/tanning/ 301
-/peptides/cognitive /use-case/cognitive/ 301
-/peptides/cognitive/ /use-case/cognitive/ 301
-/peptides/buy-:slug /peptides/:slug/ 301
-/peptides/buy-:slug/ /peptides/:slug/ 301
+# Cloudflare Edge Redirects for legacy product buy-* prefix
+/peptides/buy-* /peptides/:splat/ 301

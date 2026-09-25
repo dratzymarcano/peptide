@@ -66,7 +66,25 @@ function legacyLocaleRedirect(url: URL): Response | null {
   return null;
 }
 
+function legacyProductBuyRedirect(url: URL): Response | null {
+  const match = url.pathname.match(/^\/peptides\/buy-([a-z0-9-]+)\/?$/);
+  if (match) {
+    const slug = match[1];
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: `/peptides/${slug}/`,
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    });
+  }
+  return null;
+}
+
 export const onRequest = defineMiddleware(async (context, next) => {
+  const buyRedirect = legacyProductBuyRedirect(context.url);
+  if (buyRedirect) return applySecurityHeaders(buyRedirect);
+
   const redirect = legacyLocaleRedirect(context.url);
   if (redirect) return applySecurityHeaders(redirect);
 

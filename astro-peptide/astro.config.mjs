@@ -145,15 +145,7 @@ const localizedSitemapPages = publicBasePaths.flatMap((path) =>
 );
 
 // Legacy `/peptides/buy-<slug>` URLs redirect to the canonical product page with explicit 301.
-// Derived from the content directory so a new product cannot silently miss its
-// redirect, and a removed one cannot leave a redirect pointing at a 404.
-// Astro with trailingSlash: 'always' normalizes trailing slashes, so a single entry covers both forms.
-const productRedirects = Object.fromEntries(
-  contentSlugs('products').map((slug) => [
-    `/peptides/buy-${slug}/`,
-    { status: 301, destination: `/peptides/${slug}/` },
-  ])
-);
+// Handled by Cloudflare edge _redirects wildcard `/peptides/buy-* /peptides/:splat/ 301` and middleware.
 
 // https://astro.build/config
 export default defineConfig({
@@ -224,7 +216,6 @@ export default defineConfig({
   // 301 redirects for IA migration (legacy /peptides/{category} → /use-case/{slug})
   // Astro normalises trailing slashes, so a single entry covers both forms.
   redirects: {
-    ...productRedirects,
     '/sitemap.xml':              { status: 301, destination: '/sitemap-index.xml' },
     '/peptides/':                { status: 301, destination: '/catalog/' },
     '/peptides/weight-loss/':    { status: 301, destination: '/use-case/weight-loss/' },
