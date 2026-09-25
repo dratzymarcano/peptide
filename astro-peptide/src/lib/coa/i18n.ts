@@ -165,7 +165,7 @@ const en: CoaStrings = {
   sigDate: 'Date',
   footerContact: 'Technical contact',
   footerControl:
-    'Controlled document — reproduction outside the original PDF invalidates this certificate.',
+    'Controlled document: reproduction outside the original PDF invalidates this certificate.',
   footerPolicy: 'See full CoA policy',
   download: 'Download PDF',
   countryEu: 'European Union',
@@ -251,7 +251,7 @@ const de: CoaStrings = {
   sigDate: 'Datum',
   footerContact: 'Technischer Kontakt',
   footerControl:
-    'Kontrolliertes Dokument — die Reproduktion außerhalb des Originals invalidiert dieses Zertifikat.',
+    'Kontrolliertes Dokument: die Reproduktion außerhalb des Originals invalidiert dieses Zertifikat.',
   footerPolicy: 'Vollständige CoA-Richtlinie ansehen',
   download: 'PDF herunterladen',
   countryEu: 'Europäische Union',
@@ -336,7 +336,7 @@ const nl: CoaStrings = {
   sigDate: 'Datum',
   footerContact: 'Technisch contact',
   footerControl:
-    'Gecontroleerd document — reproductie buiten de originele PDF maakt dit certificaat ongeldig.',
+    'Gecontroleerd document: reproductie buiten de originele PDF maakt dit certificaat ongeldig.',
   footerPolicy: 'Volledig CoA-beleid bekijken',
   download: 'PDF downloaden',
   countryEu: 'Europese Unie',
@@ -421,7 +421,7 @@ const fr: CoaStrings = {
   sigDate: 'Date',
   footerContact: 'Contact technique',
   footerControl:
-    'Document contrôlé — toute reproduction hors du PDF original invalide ce certificat.',
+    'Document contrôlé : toute reproduction hors du PDF original invalide ce certificat.',
   footerPolicy: 'Voir la politique CoA complète',
   download: 'Télécharger le PDF',
   countryEu: 'Union européenne',
@@ -506,7 +506,7 @@ const it: CoaStrings = {
   sigDate: 'Data',
   footerContact: 'Contatto tecnico',
   footerControl:
-    'Documento controllato — la riproduzione al di fuori del PDF originale invalida questo certificato.',
+    'Documento controllato: la riproduzione al di fuori del PDF originale invalida questo certificato.',
   footerPolicy: 'Vedi la politica CoA completa',
   download: 'Scarica PDF',
   countryEu: 'Unione Europea',
@@ -591,7 +591,7 @@ const es: CoaStrings = {
   sigDate: 'Fecha',
   footerContact: 'Contacto técnico',
   footerControl:
-    'Documento controlado — la reproducción fuera del PDF original invalida este certificado.',
+    'Documento controlado: la reproducción fuera del PDF original invalida este certificado.',
   footerPolicy: 'Ver política completa de CoA',
   download: 'Descargar PDF',
   countryEu: 'Unión Europea',

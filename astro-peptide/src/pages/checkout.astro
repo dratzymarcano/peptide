@@ -10,15 +10,17 @@ const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname)
 const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 const checkoutLabelKeys = [
-  'shipping', 'payment', 'review', 'summary', 'subtotal', 'delivery', 'free', 'total', 'bitcoinDiscount',
+  'customer', 'shipping', 'payment', 'review', 'summary', 'subtotal', 'delivery', 'free', 'total', 'bitcoinDiscount',
   'ruoRequired', 'ruoRequiredBody', 'emptyCart', 'minimumRequired', 'addProducts', 'minimumBody', 'browseCatalogue',
   'orderReceived', 'completeBitcoin', 'orderConfirmed', 'orderId', 'sendExactly', 'to', 'copyAddress', 'bankInstructions',
   'orderTotal', 'continueShopping', 'firstName', 'lastName', 'email', 'shippingDetails', 'phone', 'address', 'city', 'county', 'postcode',
   'deliveryMethod', 'standardDelivery', 'standardTime', 'expressDelivery', 'expressTime', 'continuePayment',
-  'selectPayment', 'bankTransfer', 'bankTransferHelp', 'bitcoin', 'bitcoinHelp', 'reviewOrder', 'back', 'confirmOrder',
+  'selectPayment', 'bankTransfer', 'bankTransferHelp', 'crypto', 'cryptoHelp', 'bitcoin', 'bitcoinHelp', 'reviewOrder', 'back', 'confirmOrder',
   'bitcoinInvoice', 'bitcoinInvoiceError', 'researchUseOnly', 'reviewRuo', 'placingOrder', 'placeOrder',
 ] as const;
-const checkoutLabels = Object.fromEntries(checkoutLabelKeys.map((key) => [key, t(`checkout.${key}`)]));
+// `t.raw` because these are consumed by <Checkout />, which substitutes
+// {total}, {minimum} and {email} itself at render time.
+const checkoutLabels = Object.fromEntries(checkoutLabelKeys.map((key) => [key, t.raw(`checkout.${key}`)]));
 ---
 
 <Layout title={t('checkoutPage.metaTitle')} description={t('checkoutPage.metaDescription')} noindex={true}>

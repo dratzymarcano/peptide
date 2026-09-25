@@ -14,6 +14,9 @@ astro-peptide/photo-intake
 # on non-NTFS filesystems). Superseded by the photo-intake pipeline.
 product-images/
 peptides-images/
+product_img/
+competitor-reference/
+astro-peptide/translations-archive/
 
 # Test artefacts
 playwright-report

@@ -81,7 +81,7 @@ const responsibleAddressLines = (resolve('contentResponsibleAddress') ?? '')
           {resolve('vatId')
             ? <p>{resolve('vatId')}</p>
             : isKleinunternehmer
-              ? <p>Kleinunternehmer gemäß §19 UStG — es wird keine Umsatzsteuer ausgewiesen.</p>
+              ? <p>Kleinunternehmer gemäß §19 UStG (keine Ausweisung von Umsatzsteuer).</p>
               : <p class="impressum-field-missing">Wird ergänzt.</p>}
 
           {(resolve('contentResponsibleName') || responsibleAddressLines.length > 0) && (

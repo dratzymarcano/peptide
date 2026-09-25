@@ -15,7 +15,7 @@ const contactSchema = {
   '@id': 'https://peptide-kaufen.net/#organization',
   name: 'Peptide Shop',
   url: 'https://peptide-kaufen.net',
-  logo: 'https://peptide-kaufen.net/favicon.svg',
+  logo: 'https://peptide-kaufen.net/brand/peptide-shop-logo.png',
   email: 'info@peptide-kaufen.net',
   description: 'Research-grade peptides with batch-specific certificates of analysis (≥98% HPLC). Sold strictly for research use only (RUO).',
   areaServed: [
@@ -50,7 +50,6 @@ const contactSchema = {
   <!-- PAGE HERO -->
   <section class="page-hero display-typography">
     <div class="container">
-      <span class="eyebrow-rule">{t('contact.eyebrow')}</span>
       <h1>{t('contact.title')}</h1>
       <p>
         {t('contact.lead')}
@@ -65,21 +64,20 @@ const contactSchema = {
         <article>
           {Astro.url.searchParams.get('sent') === '1' && (
             <div class="card" role="status" style="padding: var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid var(--color-success, #0F7B3F);">
-              <strong>{t('contact.successTitle') || 'Message received'}</strong>
-              <p style="margin: 4px 0 0;">{t('contact.successBody') || 'Thanks — we will reply within one business day.'}</p>
+              <strong>{t('contact.successTitle')}</strong>
+              <p style="margin: 4px 0 0;">{t('contact.successBody')}</p>
             </div>
           )}
           {Astro.url.searchParams.get('error') && (
             <div class="card" role="alert" style="padding: var(--space-5); margin-bottom: var(--space-5); border-left: 4px solid var(--color-danger, #B42318);">
-              <strong>{t('contact.errorTitle') || 'Could not send'}</strong>
-              <p style="margin: 4px 0 0;">{t('contact.errorBody') || 'Please check the fields and try again, or email info@peptide-kaufen.net directly.'}</p>
+              <strong>{t('contact.errorTitle')}</strong>
+              <p style="margin: 4px 0 0;">{t('contact.errorBody')}</p>
             </div>
           )}
           <form class="card" method="post" action={href('/api/contact')} aria-label={t('contact.formAria')} style="padding: var(--space-8); display: grid; gap: var(--space-5);">
             <input type="hidden" name="locale" value={locale} />
             <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" />
             <div>
-              <span class="eyebrow">{t('contact.formEyebrow')}</span>
               <h2 style="font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing:-0.02em; margin: 4px 0 0;">{t('contact.formTitle')}</h2>
             </div>
             <div class="learning-grid">

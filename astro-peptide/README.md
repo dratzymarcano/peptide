@@ -70,3 +70,23 @@ Production gate before launch:
 3. Verify redirects on the deployed host
 4. Run Lighthouse/PageSpeed on production output
 5. Confirm legal/compliance sign-off
+## Quality gates
+
+`npm run check`, `npm run check:i18n`, `npm run seo:hreflang`, `npm run legal:check`,
+`npm run legal:claims` and `npm run coa:check` run with no extra setup and are what
+CI's `validate` job uses.
+
+The `quality-gates` job additionally runs accessibility, Lighthouse and Playwright
+suites. Their config files (`.pa11yci.json`, `lighthouserc.cjs`,
+`playwright.config.ts`) are checked in, but the runners are not yet installed:
+
+```
+npm i -D pa11y-ci @lhci/cli wait-on
+```
+
+Until that lands, `npm run test:a11y`, `test:lhci` and `test:e2e` fail with
+"command not found" — the scripts exist so the workflow references resolve, and
+so the missing dependency is the only thing left to add.
+
+Note the preview server for those gates is `wrangler dev`, not `astro preview`:
+the Cloudflare adapter builds a Worker, which `astro preview` cannot serve.

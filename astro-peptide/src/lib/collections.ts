@@ -1,12 +1,18 @@
 import { getCollection, type CollectionEntry, type CollectionKey } from 'astro:content';
-import { defaultLocale, locales } from '../i18n/config';
+import { sourceLocale, locales } from '../i18n/config';
 
 // Per-locale markdown overrides live under `src/content/<collection>/<locale>/<slug>.md`.
 // Listing pages (shop, catalog, blog index, etc.) and getStaticPaths must iterate ONLY
 // the canonical English entries — locale overrides are picked up at render time via
 // `getLocalizedEntry` in `./localizedEntry.ts`.
+//
+// Keyed to `sourceLocale`, not `defaultLocale`: the canonical files are the
+// unprefixed English ones, and every other language — German included — lives
+// in a subdirectory. Using the routing default here would have stopped
+// filtering `de/` once German moved to the root, so every German override
+// would have surfaced as a second, duplicate product in every listing.
 const LOCALE_PREFIXES = locales
-  .filter((locale) => locale !== defaultLocale)
+  .filter((locale) => locale !== sourceLocale)
   .map((locale) => `${locale}/`);
 
 const isCanonicalEntry = (entry: { id: string }): boolean =>

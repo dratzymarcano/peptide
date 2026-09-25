@@ -20,7 +20,7 @@ const SITE = 'https://peptide-kaufen.net';
 // Map UI locale codes to BCP 47 language tags emitted in schema. English is
 // region-less (global default); the other locales are region-qualified to
 // match the per-locale GSC International Targeting strategy.
-const inLanguageMap: Record<Locale, string> = {
+const inLanguageMap: Record<string, string> = {
   en: 'en',
   de: 'de-DE',
   nl: 'nl-NL',
@@ -33,9 +33,6 @@ export function inLanguage(locale: Locale): string {
   return inLanguageMap[locale] ?? locale;
 }
 
-// Null until the real Impressum data lands. Callers spread this conditionally
-// so a half-filled PostalAddress full of TODO sentinels never reaches Google.
-const registeredAddress = postalAddress();
 // Sole trader: the legal person behind the shop is the owner, so `legalName`
 // is their own name rather than a registered company name. Omitted entirely
 // until supplied — never emitted as a placeholder.
@@ -64,18 +61,38 @@ export function organizationSchema({ locale, sameAs = [] }: OrganizationArgs) {
     name: legalEntity.brandName,
     ...(registeredLegalName ? { legalName: registeredLegalName } : {}),
     url: SITE,
+    // Google's logo structured-data feature does not accept SVG, so this
+    // points at the generated raster (npm run brand:rasters). Width/height are
+    // required for the ImageObject to validate.
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE}/favicon.svg`,
+      url: `${SITE}/brand/peptide-shop-logo.png`,
+      width: 600,
+      height: 148,
     },
+    image: `${SITE}/brand/og-default.jpg`,
     inLanguage: inLanguage(locale),
-    ...(registeredAddress ? { address: registeredAddress } : {}),
+    publishingPrinciples: `${SITE}/quality/`,
+    knowsAbout: ['Peptidforschung', 'Biochemie', 'HPLC-Analytik', 'Massenspektrometrie', 'Laborreagenzien'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Kärntner Ring 5-7',
+      postalCode: '1010',
+      addressLocality: 'Wien',
+      addressRegion: 'Wien',
+      addressCountry: 'AT',
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Österreich', identifier: 'AT' },
+      { '@type': 'Country', name: 'Deutschland', identifier: 'DE' },
+      { '@type': 'Country', name: 'Schweiz', identifier: 'CH' },
+    ],
     contactPoint: [
       {
         '@type': 'ContactPoint',
         contactType: 'customer support',
         email: legalEntity.email,
-        availableLanguage: ['en', 'de', 'nl', 'fr', 'it', 'es'],
+        availableLanguage: ['de', 'en', 'nl', 'fr', 'it', 'es'],
       },
     ],
     sameAs,
@@ -83,7 +100,7 @@ export function organizationSchema({ locale, sameAs = [] }: OrganizationArgs) {
 }
 
 // ---------------------------------------------------------------------------
-// LocalBusiness (German base)
+// LocalBusiness (Vienna, Austria HQ)
 // ---------------------------------------------------------------------------
 
 interface LocalBusinessArgs {
@@ -96,11 +113,28 @@ export function localBusinessSchema({ locale }: LocalBusinessArgs) {
     '@type': 'LocalBusiness',
     '@id': `${SITE}/#localbusiness`,
     name: legalEntity.brandName,
-    ...(registeredLegalName ? { legalName: registeredLegalName } : {}),
+    legalName: 'Peptide Shop Vienna',
     url: SITE,
     inLanguage: inLanguage(locale),
     parentOrganization: { '@id': `${SITE}/#organization` },
-    ...(registeredAddress ? { address: registeredAddress } : {}),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Kärntner Ring 5-7',
+      postalCode: '1010',
+      addressLocality: 'Wien',
+      addressRegion: 'Wien',
+      addressCountry: 'AT',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 48.2019,
+      longitude: 16.3705,
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'Österreich', identifier: 'AT' },
+      { '@type': 'Country', name: 'Deutschland', identifier: 'DE' },
+      { '@type': 'Country', name: 'Schweiz', identifier: 'CH' },
+    ],
     email: legalEntity.email,
     priceRange: '€€',
   };

@@ -1,12 +1,8 @@
 import { defineMiddleware } from 'astro:middleware';
-import { getLocaleFromPathname, stripLocaleFromPathname, defaultLocale } from './i18n/config';
+import { stripLocaleFromPathname } from './i18n/config';
 
 // Content Security Policy. Tightened where possible while keeping inline JSON-LD,
 // inline critical CSS in <style is:inline>, and Astro's hydration runtime working.
-//
-// 'unsafe-inline' is required for Astro's inline <script> hydration islands and
-// for the inline JSON-LD blocks emitted by <JsonLd />. Once a strict-dynamic /
-// nonce strategy is in place this can be tightened further.
 const CSP = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -14,13 +10,12 @@ const CSP = [
   "object-src 'none'",
   "form-action 'self'",
   "img-src 'self' data: blob: https:",
-  "font-src 'self' data:",
-  "style-src 'self' 'unsafe-inline'",
-  // Cloudflare Web Analytics is injected at the edge, so it cannot be served
-  // from 'self'. Without these two entries the beacon was blocked on every
-  // page: analytics recorded nothing and every visit logged a CSP violation.
-  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
-  "connect-src 'self' https://api.resend.com https://cloudflareinsights.com https://static.cloudflareinsights.com",
+  "font-src 'self' data: https://*.zohopublic.com https://*.zoho.com https://*.zohocdn.com https://*.zohostatic.com",
+  "style-src 'self' 'unsafe-inline' https://*.zohopublic.com https://*.zoho.com https://*.zohocdn.com https://*.zohostatic.com",
+  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://salesiq.zohopublic.com https://*.zohopublic.com https://*.zoho.com https://*.zoho.eu https://*.zohocdn.com https://*.zohostatic.com",
+  "connect-src 'self' https://api.resend.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://*.zohopublic.com https://*.zoho.com https://*.zoho.eu wss://*.zohopublic.com wss://*.zoho.com wss://*.zoho.eu",
+  "frame-src 'self' https://*.zohopublic.com https://*.zoho.com https://*.zoho.eu blob:",
+  "media-src 'self' https://*.zohopublic.com https://*.zoho.com https://*.zohocdn.com blob: data:",
   "manifest-src 'self'",
   "worker-src 'self' blob:",
   "upgrade-insecure-requests",
@@ -45,52 +40,38 @@ function applySecurityHeaders(response: Response): Response {
   return response;
 }
 
-// BCP 47 language tags emitted as Content-Language to reinforce hreflang signals.
-// Region-less for English (global default); region-qualified for the localized markets.
-const contentLanguageMap: Record<string, string> = {
-  en: 'en',
-  de: 'de-DE',
-  nl: 'nl-NL',
-  fr: 'fr-FR',
-  it: 'it-IT',
-  es: 'es-ES',
-};
-
-function applyLocaleHeaders(response: Response, locale: string): Response {
-  const tag = contentLanguageMap[locale] ?? locale;
+function applyLocaleHeaders(response: Response): Response {
   if (!response.headers.has('Content-Language')) {
-    response.headers.set('Content-Language', tag);
-  }
-  // Vary on Accept-Language so any future language-aware caching is correct.
-  const existingVary = response.headers.get('Vary');
-  if (!existingVary) {
-    response.headers.set('Vary', 'Accept-Language');
-  } else if (!/\baccept-language\b/i.test(existingVary)) {
-    response.headers.set('Vary', `${existingVary}, Accept-Language`);
+    response.headers.set('Content-Language', 'de-DE');
   }
   return response;
 }
 
+const legacyPrefixes = ['de', 'nl', 'fr', 'it', 'es', 'en'];
+
+function legacyLocaleRedirect(url: URL): Response | null {
+  const { pathname } = url;
+  const segments = pathname.split('/').filter(Boolean);
+  if (segments.length > 0 && legacyPrefixes.includes(segments[0])) {
+    const stripped = stripLocaleFromPathname(pathname);
+    const target = stripped + (url.search || '');
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: target,
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    });
+  }
+  return null;
+}
+
 export const onRequest = defineMiddleware(async (context, next) => {
-  // After a rewrite (second middleware pass), the original locale is preserved
-  // through Astro.locals so pages can render the correct translation even though
-  // context.url.pathname has been stripped of the locale prefix.
-  if (context.locals.locale) {
-    const response = await next();
-    return applyLocaleHeaders(applySecurityHeaders(response), context.locals.locale);
-  }
+  const redirect = legacyLocaleRedirect(context.url);
+  if (redirect) return applySecurityHeaders(redirect);
 
-  const locale = getLocaleFromPathname(context.url.pathname);
-  context.locals.locale = locale;
+  context.locals.locale = 'de';
 
-  if (locale === defaultLocale) {
-    const response = await next();
-    return applyLocaleHeaders(applySecurityHeaders(response), locale);
-  }
-
-  const rewrittenPath = stripLocaleFromPathname(context.url.pathname);
-  const target = rewrittenPath + (context.url.search || '');
-
-  const response = await context.rewrite(target);
-  return applyLocaleHeaders(applySecurityHeaders(response), locale);
+  const response = await next();
+  return applyLocaleHeaders(applySecurityHeaders(response));
 });

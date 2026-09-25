@@ -3,13 +3,19 @@
     "timeout": 30000,
     "wait": 1500,
     "standard": "WCAG2AA",
-    "runners": ["axe", "htmlcs"],
+    "runners": [
+      "axe",
+      "htmlcs"
+    ],
     "ignore": [
       "warning",
       "notice"
     ],
     "chromeLaunchConfig": {
-      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+      "args": [
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+      ]
     }
   },
   "urls": [
@@ -23,9 +29,9 @@
     "http://127.0.0.1:4321/blog/",
     "http://127.0.0.1:4321/learn/",
     "http://127.0.0.1:4321/quality/",
-    "http://127.0.0.1:4321/de/",
-    "http://127.0.0.1:4321/de/shop/",
-    "http://127.0.0.1:4321/de/peptides/bpc-157/",
+    "http://127.0.0.1:4321/en/",
+    "http://127.0.0.1:4321/en/shop/",
+    "http://127.0.0.1:4321/en/peptides/bpc-157/",
     "http://127.0.0.1:4321/fr/",
     "http://127.0.0.1:4321/es/"
   ]

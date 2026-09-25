@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHeading from '../components/PageHeading.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import RelatedLinkList from '../components/RelatedLinkList.astro';
+import BundleCards from '../components/BundleCards';
 import { getLocaleFromPathname, localizePath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 
@@ -22,11 +24,17 @@ const breadcrumbs = [
 >
   <section class="section content-page">
     <div class="container">
+      <Breadcrumb items={breadcrumbs} />
+
       <PageHeading
-        eyebrow={t('bundles.eyebrow')}
-        title={t('bundles.title')}
-        description={t('bundles.description')}
+        eyebrow="Forschungs-Sets mit Sparvorteil"
+        title="Forschungs-Bundles & Peptid-Kombinationen"
+        description="Entdecken Sie unsere aufeinander abgestimmten Labor-Bundles für Regenerations-, Stoffwechsel- und Langlebigkeitsstudien. Inklusive 15 % Set-Rabatt und Reconstitutionslösung."
       />
+
+      <div style="margin: var(--space-8) 0 var(--space-12);">
+        <BundleCards client:load />
+      </div>
 
       <div class="content-layout">
         <article class="article-body">

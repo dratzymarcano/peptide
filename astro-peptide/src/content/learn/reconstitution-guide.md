@@ -1,6 +1,6 @@
 ---
-title: "Peptide Reconstitution & Dilution Guide"
-description: "Choose the right diluent, calculate the correct volume, and avoid the foaming, adsorption and oxidation pitfalls that ruin a fresh vial."
+title: "Leitfaden zur Rekonstitution und Verdünnung von Peptiden"
+description: "Wählen Sie das richtige Verdünnungsmittel, berechnen Sie das richtige Volumen und vermeiden Sie Schaumbildung, Adsorption und Oxidation, die ein frisches Fläschchen ruinieren."
 publishDate: "2026-05-03"
 category: "Lab Techniques"
 readTime: "9 min"
@@ -9,87 +9,89 @@ primaryKeyword: "reconstitute peptides"
 howTo: true
 tags: ["reconstitution", "dilution", "protocol", "lab-techniques"]
 meta:
-  title: "Peptide Reconstitution Guide | Peptide Shop Learn"
-  description: "Step-by-step research-peptide reconstitution: diluent selection, volume calculation, vial handling, aliquoting and concentration verification."
+  title: "Leitfaden zur Peptid-Rekonstitution | Peptide Shop"
+  description: "Schritt-für-Schritt-Anleitung zur Rekonstitution: Lösungsmittelauswahl, Volumenberechnung, Aliquotierung und Handhabung."
 ---
 
-Reconstitution is where a vial of well-characterised peptide most often loses purity — through poor solvent choice, foaming, adsorption to plasticware, or imprecise volumes. This guide describes a defensible workflow.
+Bei der Rekonstitution verliert ein Fläschchen mit gut charakterisiertem Peptid am häufigsten an Reinheit – durch schlechte Lösungsmittelauswahl, Schaumbildung, Adsorption an Kunststoffartikeln oder ungenaue Volumina. Dieser Leitfaden beschreibt einen vertretbaren Arbeitsablauf.
 
-## Step 1 — Equilibrate the vial
+## Schritt 1 – Äquilibrieren Sie das Fläschchen
 
-Remove the lyophilised vial from cold storage and let it sit, sealed, at room temperature for **20–30 minutes** before opening. Cold glass condenses atmospheric moisture; the cake will absorb it within seconds and your reported water content is suddenly wrong.
+Nehmen Sie das lyophilisierte Fläschchen aus dem Kühlraum und lassen Sie es versiegelt **20–30 Minuten** bei Raumtemperatur stehen, bevor Sie es öffnen. Kaltes Glas kondensiert die Luftfeuchtigkeit; Der Kuchen wird es innerhalb von Sekunden absorbieren und Ihr angegebener Wassergehalt ist plötzlich falsch.
 
-## Step 2 — Choose the diluent
+## Schritt 2 – Wählen Sie das Verdünnungsmittel
 
-| Diluent | When to use | Notes |
+| Verdünnungsmittel | Wann sollte | verwendet werden? Notizen |
 |---|---|---|
-| Bacteriostatic water (0.9% benzyl alcohol) | Stocks intended for repeated draws over 2–4 weeks at 4 °C | Most common for research peptide reconstitution |
-| Sterile water for injection | Single-use stocks, cell-assay aliquots | No preservative; freeze leftover aliquots immediately |
-| 0.1% acetic acid in water | Basic peptides that resist dissolution in neutral water | Particularly useful for Lys/Arg-rich sequences |
-| 1× PBS pH 7.4 | Direct addition to assays where pH must be neutral | Some peptides precipitate in PBS — test on a small aliquot first |
-| DMSO (≤5% final in assays) | Hydrophobic peptides | Stock solutions in DMSO are stable; cell-assay DMSO ≤0.1–1% |
+| Bakteriostatisches Wasser (0,9 % Benzylalkohol) | Vorräte zur wiederholten Entnahme über 2–4 Wochen bei 4 °C | Am häufigsten für die Peptidrekonstitution in der Forschung |
+| Steriles Wasser zur Injektion | Einwegbestände, Zellassay-Aliquots | Kein Konservierungsmittel; übrig gebliebene Aliquots sofort einfrieren |
+| 0,1 % Essigsäure in Wasser | Basische Peptide, die der Auflösung in neutralem Wasser widerstehen | Besonders nützlich für Lys/Arg-reiche Sequenzen |
+| 1× PBS pH 7,4 | Direkte Zugabe zu Tests, bei denen der pH-Wert neutral sein muss | Einige Peptide fallen in PBS aus – zuerst an einem kleinen Aliquot testen |
+| DMSO (≤5 % endgültig in den Tests) | Hydrophobe Peptide | Stammlösungen in DMSO sind stabil; Zelltest DMSO ≤0,1–1 % |
 
-## Step 3 — Calculate the volume
+## Schritt 3 – Berechnen Sie das Volumen
 
-Use the **net peptide content** from the COA, not the label fill mass.
+Verwenden Sie den **Nettopeptidgehalt** aus dem Echtheitszertifikat, nicht die Füllmasse des Etiketts.
 
-```
-target volume (mL) = (net peptide mass in vial, mg) / (target concentration, mg/mL)
-```
-
-Example: a vial labelled 5 mg with 88% net peptide contains 4.4 mg. To reach 1 mg/mL:
-
-```
-volume = 4.4 / 1 = 4.4 mL
+```text
+Zielvolumen (ml) = (Nettopeptidmasse im Fläschchen, mg) / (Zielkonzentration, mg/ml)
 ```
 
-If you reach the wrong concentration because you used the label mass, every downstream IC50 is wrong by the same multiplicative factor.
+Beispiel: Ein Fläschchen mit der Aufschrift 5 mg mit 88 % Nettopeptid enthält 4,4 mg. Um 1 mg/ml zu erreichen:
 
-## Step 4 — Add diluent slowly
+```text
+Volumen = 4,4 / 1 = 4,4 ml
+```
 
-Direct the diluent stream onto the **inner glass wall of the vial**, never directly onto the cake. Foam destroys peptide. The cake will dissolve from the bottom up over 1–10 minutes; do not rush.
+> 💡 **Interaktives Labor-Tool:** Nutzen Sie unseren kostenlosen [Peptid-Rechner & Rekonstitutions-Rechner](/peptid-rechner/), um die exakte Menge an bakteriostatischem Wasser (BAC) und die Einheiten auf U-100/U-50/U-30 Insulinspritzen automatisch zu berechnen.
 
-If the cake refuses to dissolve, add 1–2 µL of glacial acetic acid or warm the vial gently in your closed palm (never above 30 °C). Do not vortex.
+Wenn Sie die falsche Konzentration erreichen, weil Sie die Markierungsmasse verwendet haben, ist jeder nachgeschaltete IC50 um denselben multiplikativen Faktor falsch.
 
-## Step 5 — Confirm dissolution
+## Schritt 4 – Verdünnungsmittel langsam zugeben
 
-The solution should be **clear and free of particulates**. Cloudiness indicates one of:
+Richten Sie den Verdünnungsstrahl auf die **innere Glaswand des Fläschchens**, niemals direkt auf den Kuchen. Schaum zerstört Peptide. Der Kuchen löst sich innerhalb von 1–10 Minuten von unten nach oben auf; beeil dich nicht.
 
-- pH-driven aggregation (try 0.1% acetic acid instead of water).
-- Hydrophobic aggregation (try a small DMSO co-solvent).
-- A genuinely insoluble peptide for the chosen diluent (consult the COA).
+Wenn sich der Kuchen nicht auflöst, geben Sie 1–2 µL Eisessig hinzu oder erwärmen Sie das Fläschchen vorsichtig in Ihrer geschlossenen Handfläche (niemals über 30 °C). Nicht vortexen.
 
-A faint blue colour is normal for copper-containing peptides such as GHK-Cu.
+## Schritt 5 – Bestätigen Sie die Auflösung
 
-## Step 6 — Aliquot
+Die Lösung sollte **klar und frei von Partikeln** sein. Trübung weist auf Folgendes hin:
 
-Repeated freeze–thaw cycles are the single biggest avoidable cause of stock-solution decay. Immediately after dissolution:
+- pH-gesteuerte Aggregation (versuchen Sie es mit 0,1 % Essigsäure anstelle von Wasser).
+- Hydrophobe Aggregation (versuchen Sie es mit einem kleinen DMSO-Colösungsmittel).
+- Ein wirklich unlösliches Peptid für das gewählte Verdünnungsmittel (konsultieren Sie das COA).
 
-1. Mix gently by inversion.
-2. Pipette **single-use volumes** into low-binding tubes (Protein LoBind or equivalent).
-3. Label each aliquot with peptide name, lot, concentration, diluent and date.
-4. Freeze upright at −80 °C for long-term, −20 °C for medium-term.
+Eine schwache blaue Farbe ist bei kupferhaltigen Peptiden wie GHK-Cu normal.
 
-Each freeze–thaw cycle reduces effective concentration by 5–15% for sensitive peptides.
+## Schritt 6 – Aliquot
 
-## Step 7 — Verify (optional but recommended)
+Wiederholte Gefrier-Tau-Zyklen sind die größte vermeidbare Ursache für den Zerfall der Stammlösung. Unmittelbar nach der Auflösung:
 
-For high-stakes experiments, verify the reconstituted concentration with a quick UV scan:
+1. Vorsichtig durch Umdrehen mischen.
+2. Pipettieren Sie **Einwegvolumina** in Röhrchen mit geringer Bindung (Protein LoBind oder gleichwertig).
+3. Beschriften Sie jedes Aliquot mit Peptidname, Charge, Konzentration, Verdünnungsmittel und Datum.
+4. Langfristig aufrecht bei −80 °C und mittelfristig bei −20 °C einfrieren.
 
-- Trp-containing peptides: A280 with the calculated extinction coefficient (ProtParam value).
-- BCA or Bradford assay using a peptide standard for short sequences.
+Jeder Einfrier-Auftau-Zyklus reduziert die wirksame Konzentration für empfindliche Peptide um 5–15 %.
 
-A measured concentration within 10% of the calculated value is usually good enough; a discrepancy of 20%+ suggests poor dissolution or adsorption to the tube.
+## Schritt 7 – Überprüfen (optional, aber empfohlen)
 
-## Common pitfalls
+Überprüfen Sie bei Experimenten mit hohem Risiko die wiederhergestellte Konzentration mit einem schnellen UV-Scan:
 
-- **Polypropylene adsorption.** Short hydrophobic peptides (≤15 residues) lose 10–40% of nominal concentration to standard polypropylene tubes within minutes. Use Protein LoBind tubes, or pre-coat plasticware with 0.1% BSA where the assay tolerates it.
-- **Pipette accuracy at low volume.** Below 5 µL, a P10 pipette can read 10–15% high or low. Use larger volumes and serial dilutions.
-- **Concentration drift after freezing.** Some peptides precipitate on thawing; spin briefly and re-dissolve before drawing.
-- **Label confusion.** Always label aliquots with concentration *and* diluent. A 1 mg/mL stock in DMSO behaves differently from 1 mg/mL in PBS in every assay.
+- Trp-haltige Peptide: A280 mit dem berechneten Extinktionskoeffizienten (ProtParam-Wert).
+- BCA- oder Bradford-Assay unter Verwendung eines Peptidstandards für kurze Sequenzen.
 
-## Cross-references
+Eine gemessene Konzentration innerhalb von 10 % des berechneten Wertes ist normalerweise ausreichend; Eine Abweichung von mehr als 20 % deutet auf eine schlechte Auflösung oder Adsorption im Röhrchen hin.
 
-- [How to read a peptide COA](/learn/coa-explained/) — understanding the *net peptide content* used in step 3.
-- [Lyophilised vs liquid peptides](/learn/lyophilized-peptides/) — why the lyophilised form is the stable starting point.
-- Storage protocols: see the blog [Best Practices for Peptide Storage and Handling](/blog/peptide-storage-handling-best-practices/).
+## Häufige Fallstricke
+
+- **Polypropylen-Adsorption.** Kurze hydrophobe Peptide (≤15 Reste) verlieren innerhalb von Minuten 10–40 % der Nennkonzentration gegenüber Standard-Polypropylenröhrchen. Verwenden Sie Protein-LoBind-Röhrchen oder beschichten Sie Kunststoffgefäße mit 0,1 % BSA vor, sofern der Test dies toleriert.
+- **Pipettengenauigkeit bei geringem Volumen.** Unter 5 µL kann eine P10-Pipette 10–15 % zu hoch oder zu niedrig anzeigen. Verwenden Sie größere Volumina und serielle Verdünnungen.
+- **Konzentrationsdrift nach dem Einfrieren.** Einige Peptide fallen beim Auftauen aus; Kurz drehen und vor dem Ziehen wieder auflösen.
+- **Verwirrung bei der Beschriftung.** Beschriften Sie Aliquote immer mit der Konzentration *und* dem Verdünnungsmittel. Eine 1 mg/ml-Lösung in DMSO verhält sich in jedem Test anders als 1 mg/ml in PBS.
+
+## Querverweise
+
+- [Wie man einen Peptid-COA liest](/learn/coa-explained/) – Verständnis des in Schritt 3 verwendeten *Nettopeptidgehalts*.
+- [Lyophilisierte vs. flüssige Peptide](/learn/lyophilized-peptides/) – warum die lyophilisierte Form der stabile Ausgangspunkt ist.
+- Lagerungsprotokolle: siehe Blog [Best Practices for Peptide Storage and Handling](/blog/peptide-storage-handling-best-practices/).

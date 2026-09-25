@@ -5,6 +5,7 @@ import JsonLd from '../components/JsonLd.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { toCardProduct } from '../lib/product';
 import ShopSidebar from '../components/ShopSidebar.astro';
+import TrustBar from '../components/TrustBar.astro';
 import { researchAreas, useCases, type UseCaseSlug } from '../data/taxonomy';
 import { getLocaleFromPathname, localizePath } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
@@ -31,12 +32,26 @@ let products = allProducts.filter((product) => {
 
 const priceFor = (product: (typeof allProducts)[number]) => product.data.price ?? Number.MAX_SAFE_INTEGER;
 
+/*
+ * "Featured" sorted alphabetically by category slug, which put the mass-spec
+ * reference standards — the products with no search demand and placeholder
+ * illustrations — at the top of the catalogue, and buried BPC-157, Semaglutide
+ * and Retatrutide pages down. It now ranks by the search demand recorded in
+ * each product's frontmatter, matching the homepage's "most searched" band, so
+ * the default view opens on what people actually arrive looking for.
+ */
+const demandFor = (product: (typeof allProducts)[number]) => {
+  const raw = product.data.search_volume;
+  return typeof raw === 'number' ? raw : Number.parseInt(String(raw ?? '0').replace(/\D/g, ''), 10) || 0;
+};
+
 products = products.sort((a, b) => {
   if (sort === 'price-asc') return priceFor(a) - priceFor(b);
   if (sort === 'price-desc') return priceFor(b) - priceFor(a);
   if (sort === 'name-asc') return getLocalizedProduct(a, locale).title.localeCompare(getLocalizedProduct(b, locale).title);
   if (sort === 'purity') return b.data.purity.localeCompare(a.data.purity);
-  return a.data.category.localeCompare(b.data.category) || getLocalizedProduct(a, locale).title.localeCompare(getLocalizedProduct(b, locale).title);
+  return demandFor(b) - demandFor(a)
+    || getLocalizedProduct(a, locale).title.localeCompare(getLocalizedProduct(b, locale).title);
 });
 
 const basePath = href('/shop/');
@@ -99,7 +114,11 @@ const collectionSchema = {
         what the page is far better than a sentence about it does.
       */}
       <h1 class="shop-title">{t('shopPage.title')}</h1>
+    </div>
 
+    <TrustBar tone="light" class="shop-trust" />
+
+    <div class="container">
       <div class="shop-toolbar" aria-label={t('shopPage.controls')}>
         <button class="btn btn-secondary mobile-filter-button" type="button" data-filter-open aria-controls="filter-drawer" aria-expanded="false">
           {(selectedArea || selectedUseCase) ? t('shopPage.filtersActive') : t('shopPage.filters')}
@@ -215,6 +234,8 @@ const collectionSchema = {
     margin: var(--space-2) 0 var(--space-5);
   }
   .shop-page h1 { margin-bottom: var(--space-3); }
+  /* Full-bleed inside the section, but the grid below keeps its container. */
+  .shop-trust { margin: var(--space-6) 0 var(--space-2); }
   .shop-toolbar {
     display: grid;
     grid-template-columns: auto 1fr auto auto;

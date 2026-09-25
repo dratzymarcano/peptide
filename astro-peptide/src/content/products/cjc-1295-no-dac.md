@@ -1,7 +1,7 @@
 ---
 id: peptide-cjc-1295-no-dac
-title: CJC-1295 No DAC 5 mg — ≥99 % HPLC
-primary_keyword: cjc-1295 no dac
+title: "CJC-1295 No DAC 5 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "cjc-1295 no dac kaufen"
 search_volume: 5100
 aliases:
   - Mod GRF 1-29
@@ -10,13 +10,13 @@ aliases:
 cas: 863288-34-0
 molecular_weight: 3367.9 g/mol
 purity: ≥ 99%
-storage: "-20°C recommended (research-only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
 price: 25
-price_range: €25 per vial
-short_description: CJC-1295 No DAC GHRH analogue for growth-hormone signalling research. ≥99% HPLC purity with COA. RUO.
+price_range: "€25 pro Vial"
+short_description: "CJC-1295 Kein DAC-GHRH-Analogon für die Wachstumshormon-Signalforschung. ≥99 % HPLC-Reinheit mit COA. RUO."
 category: growth-hormone
 researchArea: hormones
 useCases:
@@ -35,81 +35,115 @@ tags:
 images:
   - /images/products/cjc-1295-no-dac.webp
 meta:
-  title: Buy CJC-1295 No DAC 5 mg — Mod GRF 1-29, ≥99% HPLC | Peptide Shop
-  description: Buy CJC-1295 No DAC (Mod GRF 1-29) 5 mg from Europe. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
+  title: "CJC-1295 No DAC 5 mg kaufen | ≥99 % | Peptide Shop"
+  description: "CJC-1295 ohne DAC (Mod GRF 1-29) 5 mg für die GH-Pulsatilitätsforschung kaufen. ≥99 % HPLC-Reinheit, chargenbezogenes COA & schneller EU-Versand."
 faqs:
-  - question: What is CJC-1295 No DAC used for in research?
-    answer: CJC-1295 No DAC (Modified GRF 1-29) is used to study GHRH receptor activation and pulsatile growth hormone release. It's a modified GHRH analog with enhanced stability for research applications.
-  - question: What is the difference between CJC-1295 with and without DAC?
-    answer: CJC-1295 without DAC (Mod GRF 1-29) has a shorter half-life and produces pulsatile GH release. CJC-1295 with DAC has Drug Affinity Complex for extended duration, producing sustained GH elevation.
-  - question: How does Mod GRF 1-29 work?
-    answer: It binds to GHRH receptors on pituitary somatotropes, stimulating cAMP production and GH release. The modifications at positions 2, 8, 15, and 27 provide enhanced stability.
-  - question: How should CJC-1295 No DAC be stored?
-    answer: Store lyophilised at -20°C. Once reconstituted, keep at 2-8°C and use within 2-3 weeks. The modifications improve but don't eliminate degradation.
-  - question: What purity is your CJC-1295 No DAC?
-    answer: Our CJC-1295 No DAC is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis with purity and mass spectrometry data.
-  - question: Can it be combined with GHRPs?
-    answer: Yes, researchers often study Mod GRF 1-29 with GHRPs like Ipamorelin or GHRP-6 to investigate GHRH-GHRP synergy. Both peptide types are available from Peptide Shop.
-  - question: How do I reconstitute it?
-    answer: Reconstitute in sterile bacteriostatic water. Add solvent slowly along the vial wall and gently swirl to dissolve.
-  - question: What sizes are available?
-    answer: CJC-1295 No DAC is available in 2mg and 5mg vials.
-  - question: What is CJC-1295 No DAC?
-    answer: CJC-1295 No DAC (Mod GRF 1-29) is a 29-amino acid stabilised GHRH analogue. It is studied for GHRH receptor activation in pituitary and growth hormone axis research. Half-life approximately 30 minutes in research models. CAS number 863288-34-0.
-  - question: What is the difference between CJC-1295 with DAC and without DAC?
-    answer: The DAC (Drug Affinity Complex) variant binds albumin, extending plasma half-life from ~30 minutes to several days. The No DAC version produces pulsatile GH release patterns, making it suited for studying acute GHRH receptor stimulation.
-  - question: Can CJC-1295 No DAC be combined with ipamorelin?
-    answer: Yes. CJC-1295 No DAC (GHRH analogue) and ipamorelin (GHSR agonist) act via complementary pathways, providing synergistic GH axis stimulation in research models.
-  - question: What is the molecular weight of CJC-1295 No DAC?
-    answer: "CJC-1295 No DAC (Mod GRF 1-29) has a molecular weight of approximately 3357.9 g/mol. Molecular formula: C149H246N44O42S."
+  - question: "Wofür wird CJC-1295 No DAC in der Forschung verwendet?"
+    answer: "CJC-1295 No DAC (Modified GRF 1-29) wird zur Untersuchung der GHRH-Rezeptoraktivierung und der pulsierenden Wachstumshormonausschüttung verwendet. Es handelt sich um ein modifiziertes GHRH-Analogon mit verbesserter Stabilität für Forschungsanwendungen."
+  - question: "Was ist der Unterschied zwischen CJC-1295 mit und ohne DAC?"
+    answer: "CJC-1295 ohne DAC (Mod GRF 1-29) hat eine kürzere Halbwertszeit und erzeugt eine pulsierende GH-Freisetzung. CJC-1295 mit DAC verfügt über einen Drug Affinity Complex für längere Dauer, der eine anhaltende GH-Erhöhung bewirkt."
+  - question: "Wie funktioniert Mod GRF 1-29?"
+    answer: "Es bindet an GHRH-Rezeptoren auf Hypophysen-Somatotropen und stimuliert so die cAMP-Produktion und die GH-Freisetzung. Die Modifikationen an den Positionen 2, 8, 15 und 27 sorgen für eine verbesserte Stabilität."
+  - question: "Wie sollte CJC-1295 No DAC gelagert werden?"
+    answer: "Lyophilisiert bei -20 °C lagern. Nach der Rekonstitution bei 2–8 °C aufbewahren und innerhalb von 2–3 Wochen verbrauchen. Die Änderungen verbessern die Verschlechterung, beseitigen sie jedoch nicht."
+  - question: "Welchen Reinheitsgrad hat Ihr CJC-1295 No DAC?"
+    answer: "Unser CJC-1295 No DAC ist laut HPLC zu ≥99 % rein. Zu jeder Charge gehört ein Analysezertifikat mit Reinheits- und Massenspektrometriedaten."
+  - question: "Kann es mit GHRPs kombiniert werden?"
+    answer: "Ja, Forscher untersuchen Mod GRF 1-29 häufig mit GHRPs wie Ipamorelin oder GHRP-6, um die GHRH-GHRP-Synergie zu untersuchen. Beide Peptidtypen sind im Peptide Shop erhältlich."
+  - question: "Wie kann ich es wiederherstellen?"
+    answer: "In sterilem bakteriostatischem Wasser rekonstituieren. Geben Sie das Lösungsmittel langsam entlang der Fläschchenwand hinzu und schwenken Sie es vorsichtig, bis es sich auflöst."
+  - question: "Welche Größen sind verfügbar?"
+    answer: "CJC-1295 Kein DAC ist in 2-mg- und 5-mg-Fläschchen erhältlich."
+  - question: "Was ist CJC-1295 No DAC?"
+    answer: "CJC-1295 No DAC (Mod GRF 1-29) ist ein mit 29 Aminosäuren stabilisiertes GHRH-Analogon. Es wird in der Hypophysen- und Wachstumshormonachsenforschung auf die Aktivierung des GHRH-Rezeptors untersucht. Halbwertszeit in Forschungsmodellen etwa 30 Minuten. CAS-Nummer 863288-34-0."
+  - question: "Was ist der Unterschied zwischen CJC-1295 mit DAC und ohne DAC?"
+    answer: "Die DAC-Variante (Drug Affinity Complex) bindet Albumin und verlängert so die Plasmahalbwertszeit von etwa 30 Minuten auf mehrere Tage. Die No DAC-Version erzeugt pulsierende GH-Freisetzungsmuster und eignet sich daher für die Untersuchung der akuten GHRH-Rezeptorstimulation."
+  - question: "Kann CJC-1295 No DAC mit Ipamorelin kombiniert werden?"
+    answer: "Ja. CJC-1295 Kein DAC (GHRH-Analogon) und Ipamorelin (GHSR-Agonist) wirken über komplementäre Wege und sorgen in Forschungsmodellen für eine synergistische Stimulation der GH-Achse."
+  - question: "Wie hoch ist das Molekulargewicht von CJC-1295 No DAC?"
+    answer: "„CJC-1295 No DAC (Mod GRF 1-29) hat ein Molekulargewicht von etwa 3357,9 g/mol. Summenformel: C149H246N44O42S.“"
 ---
 
-## CJC-1295 No DAC 2 mg research overview
+## CJC-1295 No DAC 5 mg Forschungsübersicht
 
-CJC-1295 No DAC GHRH analogue for growth-hormone signalling research. ≥99% HPLC purity with COA. RUO.
+CJC-1295 ohne DAC (Mod GRF 1-29) hatte seinen eigenen Entwicklungsweg. Als festgestellt wurde, dass die ersten 29 Aminosäuren des Wachstumshormon-Releasing-Hormons (GHRH) das gleiche Potenzial haben wie seine vollständige 44-Aminosäuren-Struktur, wurde das kürzestmögliche Fragment namens GRF 1-29 entwickelt. Es wurde auch Sermorelin genannt, hatte aber eine sehr kurze Halbwertszeit von weniger als 10 Minuten. Um die biologische Aktivität zu erhöhen und die schnelle Clearance zu verringern, wurden modifizierte Versionen synthetisiert. Analoge haben substituierte Aminosäuren innerhalb der Peptidstruktur, die resistenter gegen enzymatische Spaltung sind. Daher wurde auch der modifizierte Mod GRF 1-29 mit erhöhter Bindungsaffinität an GHRH-Rezeptoren und verlängerter Halbwertszeit entwickelt. Ursprünglich hieß es tetrasubstituiertes GRF 1-29, aber 2008 schuf ein Forscher in seiner Arbeit den Begriff modifiziertes GRF 1-29 (Mod GRF 1-29). Lassen Sie uns nun besprechen, wie sich der Mod GRF 1-29 in verschiedenen Forschungsstudien verhalten hat.
 
-CJC-1295 No DAC is a modified GHRH analogue studied for growth-hormone secretagogue and pituitary signalling research.
+## Übersicht über veröffentlichte Forschungsergebnisse
 
-Peptide Shop supplies CJC-1295 No DAC 2 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+## 1. CJC-1295 kein DAC (Mod GRF 1-29) und gastrointestinale Auswirkungen
 
-## Research use
+Forscher, die Analoga des Wachstumshormon-Releasing-Faktors (GRF) für mögliche Forschungsanwendungen untersuchten, beispielsweise im Zusammenhang mit Morbus Crohn und Kurzdarmsyndrom, fanden unerwartete gastrointestinale (GI) Nebenwirkungen bei Affen. Ein wirksames Analogon verursachte bei Affen bei längerer Infusion schweren Durchfall, bei Ratten hatte es jedoch keine erkennbaren Nebenwirkungen. Weitere Analysen ergaben, dass GRF-6 mit dem vasoaktiven intestinalen Peptidrezeptor (VPAC1-R) interagiert, was darauf hindeutet, dass dieser Rezeptor für die Durchfalleffekte verantwortlich ist. Da VPAC1-R im Magen-Darm-Trakt vorkommt und die Aktivität der glatten Muskulatur beeinflusst, könnte die Interaktion mit diesem Rezeptor die beobachteten Veränderungen der Darmmotilität bei Affen erklären.
 
-- GHRH receptor activation models
-- Growth-hormone pulse and endocrine signalling studies
-- Comparative work with GHRP peptides
+Eine weitere Studie, die die Wechselwirkungen von GRF und 14 GRF-Analoga mit vasoaktiven intestinalen Peptidrezeptoren (VIP) in Pankreasmembranen von Ratten untersuchte, ergab, dass einige GRF-Analoga die VIP-Bindung hemmen und Adenylatcyclase aktivieren können. Diese Wechselwirkung könnte auf das Potenzial für ähnliche Nebenwirkungen wie bei Affen hinweisen, wobei GRF-6 aufgrund der VPAC1-R-Wechselwirkung schweren Durchfall verursacht. Die Ergebnisse verdeutlichten, dass Veränderungen an bestimmten Positionen innerhalb der Peptidstruktur die Rezeptoraffinität und die intrinsische Aktivität deutlich verringern könnten, was darauf hindeutet, wie sich strukturelle Veränderungen in GRF-Analoga auf deren Rezeptorinteraktionen und die daraus resultierenden Nebenwirkungen auswirken könnten. Die Forschung unterstreicht die Komplexität der Rezeptorinteraktionen mit Forschungspeptiden und die Bedeutung einer sorgfältigen Analyse der Rezeptoraktivitäten in verschiedenen Spezies, um unerwünschte gastrointestinale Nebenwirkungen zu vermeiden.
 
-Use in the hormones and growth factors hub with ipamorelin, GHRP-2 and GHRP-6.
+[1] [2]
 
-## Sequence and analytical data
+## 2. CJC-1295 kein DAC (Mod GRF 1-29) bei Diabetes und Herzfunktionen
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-cjc-1295-no-dac |
-| Package size | 1 × 5 mg vial |
-| CAS number | 863288-34-0 |
-| Molecular weight | 3367.9 g/mol |
-| Purity | ≥ 99% |
-| Storage | -20°C recommended (research-only) |
+Es wurde gezeigt, dass Wachstumshormon-Releasing-Hormon-Agonisten (GHRH) ein Forschungspotenzial haben, das über die Ausschüttung von Hypophysen-Wachstumshormon (GH) hinausgeht. Diese Agonisten können die Zellproliferation fördern und verschiedene Gewebe stimulieren, die GHRH-Rezeptoren (GHRH-Rs) exprimieren. Insbesondere haben GHRH-Agonisten Auswirkungen auf die Proliferation von β-Zellen der Bauchspeicheldrüse und die Stoffwechselfunktion gezeigt, was auf ihre Relevanz für die Diabetesforschung schließen lässt. Studien deuten darauf hin, dass GHRH-Agonisten auch die Transplantation von Inseln nach einer Transplantation beeinflussen können, was ein neues Forschungsgebiet in der Diabetesforschung darstellt. Darüber hinaus haben sie sich bei der Erforschung von Herzgewebe als vielversprechend erwiesen, was sich in einer verbesserten Ejektionsfraktion, einer Verringerung der Infarktgröße und einer Abschwächung der Herzhypertrophie in Nagetiermodellen zeigt. Dies deutet auf mögliche Forschungsanwendungen im Zusammenhang mit der Herzfunktion hin, insbesondere in Modellen zur Genesung nach Herzinfarkt und Herzinsuffizienz.
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+Über ihre Relevanz für die Diabetes- und Herzforschung hinaus haben GHRH-Agonisten Wirkungen in anderen Bereichen gezeigt. Beispielsweise legen das Vorhandensein von GHRH-Rs im Augengewebe und die neuroprotektiven Wirkungen von GHRH-Agonisten bei experimenteller diabetischer Retinopathie mögliche Forschungsanwendungen für Augenerkrankungen nahe. Es wurde auch festgestellt, dass GHRH-Agonisten die Wundheilung beeinflussen, Immunzellen aktivieren und das Zentralnervensystem beeinflussen.
 
-## Reconstitution and handling
+[3]
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+## 3. CJC-1295 kein DAC (Mod GRF 1-29) und Wachstumshormonreaktionen bei Hypothyreose
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+Ein häufiges Problem bei Personen mit Hypothyreose ist die beeinträchtigte Freisetzung von Wachstumshormon (GH). Um dies besser zu verstehen, führten Forscher eine Studie durch, um die GH-Reaktionen auf den Wachstumshormon-Releasing-Faktor (GRF) bei Patienten mit primärer Hypothyreose sowohl vor als auch während der Thyroxin (T4)-Ersatztherapie zu bewerten. An der Studie nahmen vierzehn Patienten im Alter von 26 bis 60 Jahren teil, die sich vor und nach der T4-Therapie (150 Mikrogramm/Tag) GRF-Stimulationstests unterzogen. Die Ergebnisse zeigten, dass die Schilddrüsenhormonersatztherapie (T4) die GH-Reaktionen auf GRF bei neun Patienten und in der gesamten Gruppe signifikant verstärkte. Darüber hinaus bestätigten die Messungen der Fläche unter der Kurve (AUC) einen allgemeinen Anstieg der GH-Reaktion aufgrund der T4-Therapie. Diese Ergebnisse legen nahe, dass die T4-Therapie die Reaktion somatotropher Zellen auf GRF bei Patienten mit primärer Hypothyreose verbessert.
 
-## Storage
+Die Studie liefert wertvolle Einblicke in die Wechselwirkung zwischen Schilddrüsenhormon und GH und weist darauf hin, dass eine Schilddrüsenhormonersatztherapie die Reaktionsfähigkeit auf GH beeinflussen kann. Dieser Befund könnte die weitere Forschung zu Ansätzen für Patienten mit Hypothyreose beeinflussen. Bei der Verwendung von modifiziertem GRF müssen jedoch einige Überlegungen hinsichtlich möglicher Nebenwirkungen, Bioverfügbarkeit und Dosierungsskalierung angestellt werden. Obwohl GRF moderate Nebenwirkungen aufweist, ist seine Bioverfügbarkeit bei subkutaner Verabreichung hoch, während seine orale Bioverfügbarkeit relativ gering ist.
 
-Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+[4]
 
-## Related resources
+## Literatur und Referenzen
 
-- [Browse related research materials](/catalog/hormones/)
-- [View use-case hub](/use-case/muscle-recovery/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+1. T. Ito et al., „GI-Nebenwirkungen eines möglichen therapeutischen GRF-Analogons bei Affen sind wahrscheinlich auf die VIP-Rezeptoragonistenaktivität zurückzuführen“, Peptides, vol. 22, nein. 7, S. 1139–1151, Juli 2001.
+2. M. Waelbroeck, P. Robberecht, D. H. Coy, J.-C. Camus, P. D. Neef und J. Christophe, „Interaction of Growth Hormone-Releasing Factor (GRF) and 14 GRF Analoga with Vasoactive Intestinal Peptide (VIP) Receptors of Rat Pancreas. Discovery of (N-Ac-Tyr1,D-Phe2)-GRF(l-29)-NH2 as a VIP Antagonist“, Endocrinology, vol. 116, Nr. 6, S. 2643–2649, Juni 1985.
+3. A. V. Schally,
+4. R. Valcavi et al., „Wachstumshormonreaktionen auf Grf 1–29 bei Patienten mit primärer Hypothyreose vor und während der Ersatztherapie mit Thyroxin“, Clin. Endokrinol. (Oxf.), Bd. 24, nein. 6, S. 693–698, 1986.
 
-## Research-use statement
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-CJC-1295 No DAC 2 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Hormonkatalog durchsuchen](/catalog/hormones/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: HORMONES**](/catalog/hormones/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**CJC-1295 with DAC 5 mg**](/peptides/cjc-1295-dac/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Ipamorelin 5 mg**](/peptides/ipamorelin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**GHRP-2 5 mg**](/peptides/ghrp-2/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**GHRP-6 5 mg**](/peptides/ghrp-6/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: HORMONES**](/catalog/hormones/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**CJC-1295 with DAC 5 mg**](/peptides/cjc-1295-dac/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Ipamorelin 5 mg**](/peptides/ipamorelin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**GHRP-2 5 mg**](/peptides/ghrp-2/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**GHRP-6 5 mg**](/peptides/ghrp-6/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

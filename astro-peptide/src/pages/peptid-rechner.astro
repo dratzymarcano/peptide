@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import PeptideCalculator from '../components/PeptideCalculator';
+import JsonLd from '../components/JsonLd.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: 'Peptid-Rechner', url: href('/peptid-rechner/') },
+];
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Peptid-Rechner & Rekonstitutions-Dosierungsrechner',
+  description: 'Präziser wissenschaftlicher Rechner für Peptiddosierung, Verdünnung mit bakteriostatischem Wasser und Einheiten auf Insulinspritzen (U-100, U-50, U-30).',
+  url: 'https://peptide-kaufen.net/peptid-rechner/',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'All',
+  offers: {
+    '@type': 'Offer',
+    price: '0.00',
+    priceCurrency: 'EUR',
+  },
+};
+---
+
+<Layout
+  title="Peptid-Rechner | Dosierung und Rekonstitution berechnen | Peptide Shop"
+  description="Kostenloser Peptid-Rechner: Berechnen Sie sekundenschnell das benötigte Mischverhältnis mit bakteriostatischem Wasser (BAC), Dosis in mcg und Markierung auf der Insulinspritze."
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={webAppSchema} />
+
+  <section class="section">
+    <div class="container" style="max-width: 960px;">
+      <Breadcrumb items={breadcrumbs} />
+
+      <PageHeading
+        title="Peptid-Rechner & Rekonstitutions-Kalkulator"
+        description="Ermitteln Sie das exakte Mischverhältnis für Ihre Forschungsstudie: Wählen Sie Fläschchenmenge, Rekonstitutionslösung (ml) und Ziel-Dosis (mcg), um die präzise Spritzenmarkierung abzulesen."
+      />
+
+      <div style="margin-top: var(--space-8);">
+        <PeptideCalculator client:load />
+      </div>
+
+      <div class="content-body prose-content" style="margin-top: var(--space-12); max-width: 800px;">
+        <h2>Wie funktioniert die Peptid-Rekonstitution?</h2>
+        <p>
+          Forschungspeptide werden nach der Synthese in lyophilisierter (gefriergetrockneter) Form geliefert, um maximale chemische Stabilität und Haltbarkeit zu gewährleisten. Vor der In-vitro-Anwendung werden sie mit einem geeigneten sterilen Lösungsmittel rekonstituiert, üblicherweise mit <a href={href('/peptides/bacteriostatic-water/')}>bakteriostatischem Wasser (0,9 % Benzylalkohol)</a> und sterilen U-100 Feindosierspritzen.
+        </p>
+
+        <h3>Berechnungsformel</h3>
+        <p>
+          Die Ermittlung der benötigten Einheiten auf einer U-100 Insulinspritze erfolgt über eine direkte Verhältnisrechnung:
+        </p>
+        <div style="background: var(--color-surface-2); padding: 1.25rem; border-radius: 8px; border: 1px solid var(--color-border); font-family: var(--font-mono); font-size: 0.9rem;">
+          Konzentration (mcg/ml) = (Peptidmenge in mg × 1.000) ÷ Wasservolumen in ml<br />
+          Spritzen-Einheiten (U-100) = (Ziel-Dosis in mcg ÷ Konzentration in mcg/ml) × 100
+        </div>
+
+        <h3>Praxisbeispiel: BPC-157 (5 mg)</h3>
+        <ul>
+          <li><strong>Fläschcheninhalt:</strong> <a href={href('/peptides/bpc-157/')}>BPC-157 5 mg</a> (5.000 mcg)</li>
+          <li><strong>Zugefügtes BAC-Wasser:</strong> 2 ml <a href={href('/peptides/bacteriostatic-water/')}>Bakteriostatisches Wasser</a></li>
+          <li><strong>Konzentration:</strong> 5.000 mcg ÷ 2 ml = 2.500 mcg/ml (25 mcg pro U-100 Einheit)</li>
+          <li><strong>Gewünschte Dosis:</strong> 250 mcg</li>
+          <li><strong>Ergebnis:</strong> 250 mcg ÷ 25 mcg/IE = <strong>10 Einheiten (0,10 ml)</strong> auf der U-100 Spritze.</li>
+        </ul>
+
+        <h3>Häufige Fragen zur Peptidberechnung (FAQ)</h3>
+        <details class="disclose" style="margin-bottom: 0.75rem;">
+          <summary><span>Welches Wasser muss für die Rekonstitution verwendet werden?</span></summary>
+          <div class="disclose__body">
+            <p>Für Mehrfachentnahmen über mehrere Wochen wird ausschließlich <a href={href('/peptides/bacteriostatic-water/')}>bakteriostatisches Wasser (Wasser für Injektionszwecke mit 0,9 % Benzylalkohol)</a> empfohlen. Der Benzylalkohol hemmt das Bakterienwachstum im Fläschchen. Normales steriles Wasser eignet sich nur für den sofortigen Einmalgebrauch.</p>
+          </div>
+        </details>
+
+        <details class="disclose" style="margin-bottom: 0.75rem;">
+          <summary><span>Was ist der Unterschied zwischen einer U-100 und U-50 Spritze?</span></summary>
+          <div class="disclose__body">
+            <p>Eine <strong>U-100 Spritze</strong> fasst 1,0 ml Gesamtvolumen und besitzt 100 Teilstriche (1 Einheit = 0,01 ml). Eine <strong>U-50 Spritze</strong> fasst 0,5 ml mit 50 Teilstrichen. Beide haben denselben Maßstab, jedoch erlaubt eine kleinere Spritze das präzisere Ablesen von Kleinstmengen (z. B. unter 10 Einheiten).</p>
+          </div>
+        </details>
+
+        <details class="disclose" style="margin-bottom: 0.75rem;">
+          <summary><span>Wie lange ist gelöstes Peptid im Kühlschrank haltbar?</span></summary>
+          <div class="disclose__body">
+            <p>Nach Rekonstitution mit bakteriostatischem Wasser und Lagerung bei 2–8 °C im Dunkeln sind die meisten Peptide für 3 bis 4 Wochen stabil. Vermeiden Sie Temperaturschwankungen und mechanische Erschütterungen. Weitere Details zur Lagerung finden Sie in unserem <a href={href('/learn/storage-handling/')}>Leitfaden zur Peptidlagerung</a>.</p>
+          </div>
+        </details>
+
+        <div style="margin-top: var(--space-8); padding: var(--space-4); background: var(--color-surface-2); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+          <h4 style="margin: 0 0 var(--space-2); font-size: 15px; font-weight: 600;">Weiterführende Labor-Ressourcen:</h4>
+          <ul style="margin: 0; padding-left: 1.25rem; font-size: 14px;">
+            <li><a href={href('/catalog/')}>Synthetische Forschungspeptide im Gesamtkatalog</a></li>
+            <li><a href={href('/coa-policy/')}>Analysezertifikate & HPLC-Reinheitsprotokolle</a></li>
+            <li><a href={href('/shipping/')}>Laborversand & Kühlkettenlogistik in der DACH-Region</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

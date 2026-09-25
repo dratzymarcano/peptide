@@ -1,0 +1,63 @@
+---
+/**
+ * The four numbers a buyer wants before scrolling a hub page: how much is
+ * here, how pure, how cheap does it start, and is it documented.
+ *
+ * Every value is derived from the product records rendered below it, so the
+ * strip cannot drift from the catalogue the way a hand-written intro does.
+ */
+import { getLocaleFromPathname } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  count: number;
+  /** Numeric HPLC purity floor across the group, e.g. 98. */
+  purityFloor: number;
+  /** Lowest catalogue price in the group, or null when none is priced. */
+  fromPrice: number | null;
+}
+
+const { count, purityFloor, fromPrice } = Astro.props;
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+---
+
+<dl class="hub-stats">
+  <div><dt>{t('hub.statCompounds')}</dt><dd>{count}</dd></div>
+  <div><dt>{t('hub.statPurity')}</dt><dd>≥{purityFloor}%</dd></div>
+  {fromPrice !== null && (
+    <div><dt>{t('hub.statFrom')}</dt><dd>€{fromPrice.toFixed(2)}</dd></div>
+  )}
+  <div><dt>{t('hub.statCoa')}</dt><dd>{t('hub.statCoaValue')}</dd></div>
+</dl>
+
+<style>
+  .hub-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-8) 0 0;
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+  .hub-stats div { display: grid; gap: 2px; }
+  .hub-stats dt {
+    order: 2;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-ink-3);
+  }
+  .hub-stats dd {
+    order: 1;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+</style>

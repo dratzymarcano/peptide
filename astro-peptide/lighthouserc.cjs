@@ -8,8 +8,8 @@ module.exports = {
         'http://127.0.0.1:4321/catalog/',
         'http://127.0.0.1:4321/use-case/weight-loss/',
         'http://127.0.0.1:4321/blog/',
-        'http://127.0.0.1:4321/de/',
-        'http://127.0.0.1:4321/de/peptides/bpc-157/',
+        'http://127.0.0.1:4321/en/',
+        'http://127.0.0.1:4321/en/peptides/bpc-157/',
       ],
       numberOfRuns: 3,
       settings: {

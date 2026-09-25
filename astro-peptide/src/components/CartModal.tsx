@@ -1,7 +1,19 @@
 import { useStore } from '@nanostores/react';
-import { cartItems, cartTotal, isCartOpen, removeCartItem, updateQuantity } from '../scripts/cartStore';
+import { cartItems, cartTotal, isCartOpen, removeCartItem, updateQuantity, addCartItem, cartLineKey } from '../scripts/cartStore';
 
-const MIN_ORDER_AMOUNT = 200;
+const MIN_ORDER_AMOUNT = 150;
+
+const CROSS_SELL_ITEMS = [
+  {
+    id: 'supply-bac-water-10ml',
+    sku: 'supply-bac-water-10ml--10-10-ml-vials',
+    title: 'Bacteriostatic Water (30 ml)',
+    price: 22.00,
+    size: '10 × 10 mL vials',
+    thumb_src: '/images/products/bacteriostatic-water.svg',
+    thumb_alt: 'Bacteriostatic Water 30 ml',
+  },
+];
 
 interface CartModalProps {
   labels?: {
@@ -73,8 +85,7 @@ export default function CartModal({ labels, paths }: CartModalProps) {
       <aside className="cart-drawer-panel" aria-label={copy.shoppingCart} aria-modal="true" role="dialog">
         <header className="cart-drawer-header">
           <div>
-            <span className="eyebrow">{copy.cart}</span>
-            <h2>{items.length} {items.length === 1 ? copy.item : copy.items}</h2>
+            <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 600 }}>{copy.cart} ({items.length} {items.length === 1 ? copy.item : copy.items})</h2>
           </div>
           <button className="btn btn-ghost btn-sm" type="button" onClick={closeCart} aria-label={copy.closeCart}>{copy.closeCart}</button>
         </header>
@@ -87,26 +98,98 @@ export default function CartModal({ labels, paths }: CartModalProps) {
               <a className="btn btn-primary" href={paths?.catalogue || '/catalog/'} onClick={closeCart}>{copy.browseCatalogue}</a>
             </div>
           ) : (
-            <div className="cart-drawer-items">
-              {items.map((item) => (
-                <article className="cart-drawer-item" key={item.id}>
-                  <img src={item.thumb_src} alt={item.thumb_alt || item.title} loading="lazy" />
-                  <div>
-                    <h3>{item.title}</h3>
-                    {item.size && <span className="badge badge-blue">{item.size}</span>}
-                    <strong>€{(item.price * item.quantity).toFixed(2)}</strong>
-                    <div className="cart-drawer-actions">
-                      <div className="quantity-stepper" aria-label={copy.quantityFor.replace('{product}', item.title)}>
-                        <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} aria-label={copy.decreaseQuantity}>-</button>
-                        <span>{item.quantity}</span>
-                        <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label={copy.increaseQuantity}>+</button>
+            <>
+              <div className="cart-drawer-items">
+                {items.map((item) => {
+                  const itemKey = cartLineKey(item);
+                  return (
+                    <article className="cart-drawer-item" key={itemKey}>
+                      <img src={item.thumb_src} alt={item.thumb_alt || item.title} loading="lazy" />
+                      <div>
+                        <h3>{item.title}</h3>
+                        {item.size && <span className="badge badge-blue">{item.size}</span>}
+                        <strong>€{(item.price * item.quantity).toFixed(2)}</strong>
+                        <div className="cart-drawer-actions">
+                          <div className="quantity-stepper" aria-label={copy.quantityFor.replace('{product}', item.title)}>
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(itemKey, item.quantity - 1)}
+                              aria-label={copy.decreaseQuantity}
+                            >
+                              -
+                            </button>
+                            <span>{item.quantity}</span>
+                            <button
+                              type="button"
+                              onClick={() => updateQuantity(itemKey, item.quantity + 1)}
+                              aria-label={copy.increaseQuantity}
+                            >
+                              +
+                            </button>
+                          </div>
+                          <button
+                            className="btn btn-ghost btn-sm"
+                            type="button"
+                            onClick={() => removeCartItem(itemKey)}
+                          >
+                            {copy.remove}
+                          </button>
+                        </div>
                       </div>
-                      <button className="btn btn-ghost btn-sm" type="button" onClick={() => removeCartItem(item.id)}>{copy.remove}</button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="cart-drawer-crosssell" style={{ marginTop: 'var(--space-4)', paddingTop: 'var(--space-4)', borderTop: '1px solid var(--color-border)' }}>
+                <h4 style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-ink-2)', marginBottom: 'var(--space-3)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  Häufig zusammen bestellt
+                </h4>
+                <div style={{ display: 'grid', gap: 'var(--space-2)' }}>
+                  {CROSS_SELL_ITEMS.map((supply) => {
+                    const inCart = !!$cartItems[supply.sku] || !!$cartItems[supply.id];
+                    return (
+                      <div
+                        key={supply.sku}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '10px 12px',
+                          background: 'var(--color-surface-2)',
+                          border: '1px solid var(--color-border)',
+                          borderRadius: 'var(--radius-sm)',
+                          gap: '10px',
+                        }}
+                      >
+                        <img
+                          src={supply.thumb_src}
+                          alt={supply.thumb_alt}
+                          style={{ width: '38px', height: '38px', objectFit: 'contain', background: '#fff', borderRadius: '4px', padding: '2px', border: '1px solid var(--color-border)' }}
+                          loading="lazy"
+                        />
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {supply.title}
+                          </div>
+                          <div style={{ fontSize: '12px', color: 'var(--color-ink-3)' }}>
+                            €{supply.price.toFixed(2)} · {supply.size}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className={`btn ${inCart ? 'btn-ghost' : 'btn-secondary'} btn-sm`}
+                          style={{ fontSize: '12px', padding: '4px 10px', height: 'auto', whiteSpace: 'nowrap' }}
+                          onClick={() => addCartItem(supply)}
+                        >
+                          {inCart ? '+ Weiterer' : '+ Hinzufügen'}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
           )}
         </div>
 

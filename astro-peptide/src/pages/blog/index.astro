@@ -61,14 +61,14 @@ const blogSchema = {
 >
   <JsonLd schema={blogSchema} />
 
-  <section class="content-page section">
+  <section class="content-page blog-index-page section">
     <div class="container">
       <Breadcrumb items={breadcrumbs} />
 
       <div class="page-heading">
-        <span class="eyebrow">{t('blog.eyebrow')}</span>
+        <span class="badge badge-blue">Wissenschaftliches Magazin</span>
         <h1>{t('blog.title')}</h1>
-        <p>{t('blog.description')}</p>
+        <p class="heading-lead">{t('blog.description')}</p>
       </div>
 
       {featuredPost && (
@@ -79,12 +79,17 @@ const blogSchema = {
             </a>
           )}
           <div class="feature-article-body">
-            <span class="badge badge-blue">{t('blog.featuredBadge', { category: featuredPost.content.category })}</span>
+            <div class="feature-meta-top">
+              <span class="badge badge-primary">{featuredPost.content.category}</span>
+              <span class="featured-tag">★ Leitartikel</span>
+            </div>
             <h2><a href={href(`/blog/${featuredPost.entry.id}/`)}>{featuredPost.content.title}</a></h2>
             <p>{featuredPost.content.description}</p>
             <div class="article-meta">
               <span>{featuredPost.content.author}</span>
+              <span>·</span>
               <span>{new Date(featuredPost.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <a href={href(`/blog/${featuredPost.entry.id}/`)} class="feature-read-link">Artikel lesen →</a>
             </div>
           </div>
         </article>
@@ -94,24 +99,33 @@ const blogSchema = {
         <main class="article-list" aria-labelledby="latest-title">
           <div class="section-heading-row">
             <div>
-              <span class="eyebrow">{t('blog.latestEyebrow')}</span>
               <h2 id="latest-title">{t('blog.latestTitle')}</h2>
+              <span class="posts-count">({latestPosts.length} Fachberichte)</span>
             </div>
-            <a class="btn btn-secondary" href={href('/learn/')}>{t('blog.viewLearningHub')}</a>
+            <a class="btn btn-secondary btn-sm" href={href('/peptid-rechner/')}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline; vertical-align:-1px; margin-right:4px;"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg>
+              Peptid-Rechner
+            </a>
           </div>
 
           <div class="article-grid">
             {latestPosts.map((post) => (
-              <article class="article-card card">
-                {post.content.image && <img src={post.content.image} alt={post.content.title} loading="lazy" width="600" height="400" decoding="async" />}
-                <div>
-                  <span class="badge badge-blue">{post.content.category}</span>
+              <article class="article-card card" data-category={post.content.category}>
+                {post.content.image && (
+                  <a href={href(`/blog/${post.entry.id}/`)} class="article-card-thumb">
+                    <img src={post.content.image} alt={post.content.title} loading="lazy" width="600" height="400" decoding="async" />
+                  </a>
+                )}
+                <div class="article-card-body">
+                  <div class="article-card-meta-top">
+                    <span class="badge badge-blue">{post.content.category}</span>
+                  </div>
                   <h3><a href={href(`/blog/${post.entry.id}/`)}>{post.content.title}</a></h3>
                   <p>{post.content.description}</p>
                 </div>
                 <div class="article-meta">
                   <span>{new Date(post.content.publishDate).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-                  <a href={href(`/blog/${post.entry.id}/`)}>{t('blog.readArticle')}</a>
+                  <a href={href(`/blog/${post.entry.id}/`)} class="read-link">{t('blog.readArticle')} →</a>
                 </div>
               </article>
             ))}
@@ -119,11 +133,24 @@ const blogSchema = {
         </main>
 
         <aside class="content-sidebar">
-          <section class="card">
+          <section class="card topics-card">
             <h2>{t('blog.topics')}</h2>
-            <ChipList items={categories} />
+            <div class="category-pills" role="toolbar" aria-label="Kategoriefilter">
+              <button type="button" class="cat-pill active" data-category="all">Alle Themen</button>
+              {categories.map((cat) => (
+                <button type="button" class="cat-pill" data-category={cat}>{cat}</button>
+              ))}
+            </div>
           </section>
-          <section class="card">
+
+          <section class="card calculator-card">
+            <span class="badge badge-primary">Labor-Werkzeug</span>
+            <h3>Peptid-Dosierungsrechner</h3>
+            <p>Berechnen Sie exakte Mischverhältnisse für U-100-Insulinspritzen und sterile Rekonstitutionsprotokolle.</p>
+            <a class="btn btn-primary btn-block" href={href('/peptid-rechner/')}>Dosierung berechnen →</a>
+          </section>
+
+          <section class="card ruo-card">
             <h2>{t('blog.ruoTitle')}</h2>
             <p>{t('blog.ruoBody')}</p>
           </section>
@@ -131,4 +158,358 @@ const blogSchema = {
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pills = document.querySelectorAll('.cat-pill');
+      const cards = document.querySelectorAll('.article-card');
+      const countEl = document.querySelector('.posts-count');
+
+      function filterCategory(targetCat) {
+        pills.forEach((p) => {
+          if (p.getAttribute('data-category') === targetCat) {
+            p.classList.add('active');
+          } else {
+            p.classList.remove('active');
+          }
+        });
+
+        let visible = 0;
+        cards.forEach((card) => {
+          const cardCat = card.getAttribute('data-category');
+          if (targetCat === 'all' || cardCat === targetCat) {
+            card.style.display = '';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (countEl) {
+          countEl.textContent = `(${visible} Fachberichte)`;
+        }
+      }
+
+      pills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          const cat = pill.getAttribute('data-category') || 'all';
+          filterCategory(cat);
+          const url = new URL(window.location);
+          if (cat === 'all') {
+            url.searchParams.delete('category');
+          } else {
+            url.searchParams.set('category', cat);
+          }
+          window.history.replaceState({}, '', url);
+        });
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const initialCat = params.get('category');
+      if (initialCat) {
+        filterCategory(initialCat);
+      }
+    });
+  </script>
 </Layout>
+
+<style>
+  .blog-index-page {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-16);
+  }
+
+  .page-heading {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+  .page-heading h1 {
+    font-size: clamp(2.2rem, 1.5rem + 2vw, 3rem);
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin: var(--space-2) 0 var(--space-3);
+    font-family: var(--font-display);
+    color: var(--color-ink);
+  }
+  .heading-lead {
+    font-size: 1.15rem;
+    color: var(--color-ink-2);
+    max-width: 720px;
+    margin: 0;
+  }
+
+  /* Featured Article */
+  .feature-article {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: var(--space-6);
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl, 20px);
+    overflow: hidden;
+    margin-bottom: var(--space-12);
+    padding: var(--space-6);
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .feature-article:hover {
+    border-color: #BAE3F7;
+    box-shadow: 0 8px 30px -4px rgba(0, 119, 182, 0.10);
+  }
+  .feature-article-image {
+    border-radius: var(--radius-md, 12px);
+    overflow: hidden;
+    display: block;
+    aspect-ratio: 16 / 9;
+  }
+  .feature-article-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .feature-article:hover .feature-article-image img {
+    transform: scale(1.02);
+  }
+  .feature-article-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .feature-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .featured-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #B45309;
+    background: #FFFBEB;
+    border: 1px solid #FDE68A;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .feature-article-body h2 {
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .feature-article-body h2 a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .feature-article-body h2 a:hover {
+    color: var(--color-primary);
+  }
+  .feature-article-body p {
+    font-size: 0.9375rem;
+    color: var(--color-ink-2);
+    line-height: 1.55;
+    margin: 0;
+  }
+  .feature-read-link {
+    margin-left: auto;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  .feature-read-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Article List & Grid */
+  .section-heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .section-heading-row h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: inline;
+    margin: 0;
+    color: var(--color-ink);
+  }
+  .posts-count {
+    font-size: 0.875rem;
+    color: var(--color-ink-3);
+    margin-left: 6px;
+    font-weight: 500;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-5);
+  }
+  .article-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: all 0.2s ease;
+  }
+  .article-card:hover {
+    border-color: #BAE3F7;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -4px rgba(0, 119, 182, 0.08);
+  }
+  .article-card-thumb {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--color-surface-2);
+  }
+  .article-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+  .article-card:hover .article-card-thumb img {
+    transform: scale(1.03);
+  }
+  .article-card-body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+  }
+  .article-card-body h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 750;
+    line-height: 1.35;
+  }
+  .article-card-body h3 a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .article-card-body h3 a:hover {
+    color: var(--color-primary);
+  }
+  .article-card-body p {
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px var(--space-4);
+    border-top: 1px solid var(--color-border-subtle);
+    font-size: 0.75rem;
+    color: var(--color-ink-3);
+    background: #FBFDFF;
+  }
+  .read-link {
+    font-weight: 650;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .read-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Content Sidebar */
+  .content-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .topics-card,
+  .calculator-card,
+  .ruo-card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md, 12px);
+    padding: var(--space-4);
+  }
+  .category-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .cat-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-ink-2);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+    text-align: left;
+  }
+  .cat-pill:hover {
+    border-color: #0077B6;
+    color: #0077B6;
+    background: #EFF8FC;
+  }
+  .cat-pill.active {
+    background: #0077B6;
+    color: #ffffff;
+    border-color: #0077B6;
+    box-shadow: 0 2px 8px rgba(0, 119, 182, 0.2);
+  }
+
+  .calculator-card {
+    background: linear-gradient(135deg, #F8FAFC 0%, #EFF8FC 100%);
+    border: 1px solid #BAE3F7;
+  }
+  .calculator-card h3 {
+    margin: 8px 0 6px;
+    font-size: 1.05rem;
+    color: var(--color-ink);
+  }
+  .calculator-card p {
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+    margin-bottom: 12px;
+    line-height: 1.45;
+  }
+
+  .ruo-card h2 {
+    font-size: 1rem;
+    margin: 0 0 6px;
+    color: var(--color-ink);
+  }
+  .ruo-card p {
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  @media (max-width: 960px) {
+    .feature-article {
+      grid-template-columns: 1fr;
+    }
+    .content-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

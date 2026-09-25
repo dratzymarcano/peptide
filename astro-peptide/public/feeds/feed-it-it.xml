@@ -7,8 +7,9 @@
 	
 	<item>
 		<g:id>peptide-5-amino-1mq</g:id>
+		
 		<g:title>5-Amino-1MQ 50 mg 60 × 50 mg caps | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>5-Amino-1MQ NNMT-Inhibitor-Forschungsverbindung für Stoffwechsel- und NAD-Signalwegstudien. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/5-amino-1mq/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/5-amino-1mq.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -31,9 +32,166 @@
 	</item>
 
 	<item>
+		<g:id>peptide-acth-fragments-maldi-set</g:id>
+		
+		<g:title>ACTH Fragment Set (1-17 + 18-39) 2 × 0.5 mg vials (one of each fragment) | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>ACTH-Fragmentpaar (1-17) und (18-39) für die MALDI-TOF-Massenkalibrierung im Bereich 2000–2500 Da. jeweils ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/acth-fragments-maldi-set/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/acth-fragments-maldi-set.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>115.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-acth-fragments-maldi-set</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>protein-analysis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2></g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-aip-camkii-inhibitor</g:id>
+		
+		<g:title>Autocamtide-2-related Inhibitory Peptide (AIP) 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>AIP – das selektivste Ca²⁺/Calmodulin-abhängige Proteinkinase-II-Inhibitorpeptid. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/aip-camkii-inhibitor/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/aip-camkii-inhibitor.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>70.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-aip-camkii-inhibitor</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>167114-91-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-alpha-defensin-1</g:id>
+		
+		<g:title>α-Defensin 1 (HNP-1) 1 × 0.5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Humanes Neutrophile Peptid 1 (HNP-1, α-Defensin 1) für die Forschung zu angeborener Immunität und antimikrobiellen Peptiden. ≥95 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/alpha-defensin-1/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/alpha-defensin-1.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>95.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-alpha-defensin-1</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>immunology</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>99287-08-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-angiotensin-i-ms-standard</g:id>
+		
+		<g:title>Angiotensin I 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Angiotensin I, ≥99 % HPLC, geliefert als massenspektrometrischer Kalibrierungsstandard ([M+H]+ = 1297,5). RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/angiotensin-i-ms-standard/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/angiotensin-i-ms-standard.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>30.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-angiotensin-i-ms-standard</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>protein-analysis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>484-42-4</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-angiotensin-ii</g:id>
+		
+		<g:title>Angiotensin II (human) 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Angiotensin-II-Octapeptid-Referenzstandard für RAAS-, AT1/AT2-Rezeptor- und Vasokonstriktionsforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/angiotensin-ii/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/angiotensin-ii.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>40.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-angiotensin-ii</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cardiovascular</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>4474-91-3</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-anp-1-28</g:id>
+		
+		<g:title>ANP (1-28), human 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Humanes atriales natriuretisches Peptid (ANP 1-28) in Forschungsqualität für natriuretische Rezeptor- und Gefäßtonusstudien. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/anp-1-28/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/anp-1-28.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>60.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-anp-1-28</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cardiovascular</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>85637-73-6</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-aod-9604</g:id>
+		
 		<g:title>AOD-9604 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>AOD-9604 hGH fragment 177-191 analogue for metabolic and lipolysis research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>AOD-9604 hGH-Fragment 177-191-Analogon für die Stoffwechsel- und Lipolyseforschung. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/aod-9604/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/aod-9604.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -56,9 +214,114 @@
 	</item>
 
 	<item>
+		<g:id>supply-bac-water-10ml</g:id>
+		
+		<g:title>Bacteriostatic water 30 ml 10 × 10 mL vials | USP Grade purezza | verificato HPLC</g:title>
+		<g:description>Bakteriostatisches Wasser in USP-Qualität mit 0,9 % Benzylalkohol für Laborrekonstitutionsabläufe. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bacteriostatic-water/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bacteriostatic-water.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>22.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>supply-bac-water-10ml</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care &gt; Medical Supplies</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-tissue</g:custom_label_0>
+		<g:custom_label_1>USP Grade</g:custom_label_1>
+		<g:custom_label_2>7732-18-5</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-bnp-32</g:id>
+		
+		<g:title>BNP-32, human 1 × 0.5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Referenzstandard für humanes Natriuretisches Peptid vom B-Typ (BNP-32) für Herzinsuffizienz-Biomarker und ELISA-Kontrollforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bnp-32/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bnp-32.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>70.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bnp-32</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cardiovascular</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>114471-18-0</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-bombesin</g:id>
+		
+		<g:title>Bombesin 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Bombesin-Tetradecapeptid für die GRPR-/NMBR-Rezeptorforschung und Tumor-Targeting-/Bildgebungsstudien. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bombesin/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bombesin.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>55.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bombesin</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cancer-apoptosis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>31362-50-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-bpc-157-tb-500-blend</g:id>
+		
+		<g:title>BPC-157 + TB-500 Blend (5 mg / 5 mg) 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Synergistische Peptidmischung aus BPC-157 (5 mg) und TB-500 (5 mg) für In-vitro-Zellregenerations- und Angiogenesemodelle. ≥99 % HPLC-Reinheit mit chargenbezogenem COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bpc-157-tb-500-blend/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bpc-157-tb-500-blend.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>62.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bpc-157-tb-500-blend</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-tissue</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>137525-51-0 / 77591-33-4</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-bpc-157</g:id>
+		
 		<g:title>BPC-157 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Research-grade BPC-157 for cell-migration, barrier-function and cytoprotection models. ≥99% HPLC purity with lot COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>BPC-157 in Forschungsqualität für Zellmigrations-, Barrierefunktions- und Zytoprotektionsmodelle. ≥99 % HPLC-Reinheit mit Chargen-COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/bpc-157/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/bpc-157.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -81,9 +344,88 @@
 	</item>
 
 	<item>
+		<g:id>peptide-bradykinin-1-7-ms-standard</g:id>
+		
+		<g:title>Bradykinin (1-7) 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Bradykinin (1-7), ≥99 % HPLC, Low-Mass-MS-Kalibrierungsreferenz ([M+H]+ = 758,4). RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bradykinin-1-7-ms-standard/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bradykinin-1-7-ms-standard.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>25.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bradykinin-1-7-ms-standard</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>protein-analysis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>23815-89-6</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-bradykinin-acetate</g:id>
+		
+		<g:title>Bradykinin acetate 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Bradykinin (Acetatsalz) für die B1/B2-Kinin-Rezeptor-Forschung, Gefäßpermeabilitäts- und Entzündungsstudien. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bradykinin-acetate/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bradykinin-acetate.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>30.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bradykinin-acetate</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cardiovascular</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>5979-11-3</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-bsa-tryptic-digest-standard</g:id>
+		
+		<g:title>BSA Tryptic Digest LC-MS Standard 1 × 100 µg lyophilised | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Tryptischer Verdauungsstandard aus Rinderserumalbumin für die tägliche LC-MS/MS-Qualitätskontrolle, Systemeignung und Proteomik-Pipeline-Validierung. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/bsa-tryptic-digest-standard/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/bsa-tryptic-digest-standard.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>40.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-bsa-tryptic-digest-standard</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>protein-analysis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2></g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-cagrilintide</g:id>
+		
 		<g:title>Cagrilintide 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Cagrilintid-Amylin-Analogon für die Erforschung von Stoffwechsel- und Sättigungswegen. ≥99 % HPLC-Reinheit mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/cagrilintide/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/cagrilintide.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -106,9 +448,36 @@
 	</item>
 
 	<item>
+		<g:id>peptide-cjc-1295-dac</g:id>
+		
+		<g:title>CJC-1295 with DAC 5 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Langwirksames synthetisches GHRH-Analogon mit Drug Affinity Complex (DAC) zur Untersuchung verlängerter Wachstumshormonsignalwege. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/cjc-1295-dac/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/cjc-1295-dac.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>42.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-cjc-1295-dac</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>hormones</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>863288-34-0</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-cjc-1295-no-dac</g:id>
+		
 		<g:title>CJC-1295 No DAC 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>CJC-1295 No DAC GHRH analogue for growth-hormone signalling research. ≥99% HPLC purity with COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>CJC-1295 Kein DAC-GHRH-Analogon für die Wachstumshormon-Signalforschung. ≥99 % HPLC-Reinheit mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/cjc-1295-no-dac/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/cjc-1295-no-dac.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -132,8 +501,9 @@
 
 	<item>
 		<g:id>peptide-dsip</g:id>
+		
 		<g:title>DSIP 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>DSIP neuropeptide for sleep, stress-response and CNS research models. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>DSIP-Neuropeptid für Schlaf-, Stressreaktions- und ZNS-Forschungsmodelle. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/dsip/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/dsip.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -156,9 +526,36 @@
 	</item>
 
 	<item>
+		<g:id>peptide-endothelin-1</g:id>
+		
+		<g:title>Endothelin-1, human 1 × 0.5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Humanes Endothelin-1-Referenzpeptid für die Forschung zu Vasokonstriktion, Endotheldysfunktion und pulmonaler Hypertonie. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/endothelin-1/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/endothelin-1.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>70.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-endothelin-1</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cardiovascular</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>117399-94-7</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-epitalon</g:id>
+		
 		<g:title>Epitalon 10 mg 1 × 10 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Epitalon tetrapeptide for telomere, circadian and longevity-pathway research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Epitalon-Tetrapeptid für die Erforschung von Telomeren, zirkadianen und Langlebigkeitspfaden. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/epitalon/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/epitalon.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -181,9 +578,62 @@
 	</item>
 
 	<item>
+		<g:id>peptide-foxo4-dri</g:id>
+		
+		<g:title>FOXO4-DRI 10 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Retro-Inverso D-Peptid zur selektiven Induktion von Apoptose in seneszenten Zellen über die Unterbrechung der FOXO4-p53-Interaktion. ≥99 % HPLC-Reinheit mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/foxo4-dri/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/foxo4-dri.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>85.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-foxo4-dri</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>2101438-66-8</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-gastrin-i-human</g:id>
+		
+		<g:title>Gastrin I, human 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Humanes Gastrin I-Peptid mit 17 Resten für CCK/Gastrin-GPCR-Signalisierung und Magenphysiologieforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/gastrin-i-human/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/gastrin-i-human.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>55.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-gastrin-i-human</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>10047-33-3</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-gh-frag-176-191</g:id>
+		
 		<g:title>hGH Frag 176-191 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>hGH fragment 176-191 for metabolic and growth-hormone fragment research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>hGH-Fragment 176-191 für die Stoffwechsel- und Wachstumshormonfragmentforschung. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/gh-frag-176-191/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/gh-frag-176-191.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -207,8 +657,9 @@
 
 	<item>
 		<g:id>peptide-ghk-cu</g:id>
+		
 		<g:title>GHK-Cu 500 mg powder 500 mg powder | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>GHK-Cu copper tripeptide for ECM, collagen and tissue-remodelling research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>GHK-Cu-Kupfertripeptid für ECM-, Kollagen- und Geweberemodellierungsforschung. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/ghk-cu/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/ghk-cu.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -232,8 +683,9 @@
 
 	<item>
 		<g:id>peptide-ghrp-2</g:id>
+		
 		<g:title>GHRP-2 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>GHRP-2 growth-hormone secretagogue research peptide with ≥99% HPLC purity and COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>GHRP-2-Wachstumshormon-Sekretagogum-Forschungspeptid mit ≥99 % HPLC-Reinheit und COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/ghrp-2/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/ghrp-2.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -257,8 +709,9 @@
 
 	<item>
 		<g:id>peptide-ghrp-6</g:id>
+		
 		<g:title>GHRP-6 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>GHRP-6 research peptide for growth-hormone secretagogue and ghrelin pathway studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>GHRP-6-Forschungspeptid für Studien zu Wachstumshormon-Sekretagogen und Ghrelin-Signalwegen. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/ghrp-6/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/ghrp-6.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -281,9 +734,62 @@
 	</item>
 
 	<item>
+		<g:id>peptide-glu-fibrinopeptide-b</g:id>
+		
+		<g:title>[Glu1]-Fibrinopeptide B 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>[Glu1]-Fibrinopeptid B (Glu-Fib), die universelle LC-MS-Lock-Mass- und Kollisionsenergie-Tuning-Referenz. ≥99 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/glu-fibrinopeptide-b/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/glu-fibrinopeptide-b.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>40.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-glu-fibrinopeptide-b</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>protein-analysis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>103213-49-6</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-hexarelin</g:id>
+		
+		<g:title>Hexarelin 5 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Potenter synthetischer Wachstumshormon-Sekretagoga-Rezeptor (GHSR)-Agonist zur Untersuchung neuroendokriner und kardioprotektiver Signalwege. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/hexarelin/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/hexarelin.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>34.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-hexarelin</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>hormones</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>140703-51-1</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-ipamorelin</g:id>
+		
 		<g:title>Ipamorelin 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Ipamorelin selective GHRP research peptide for ghrelin receptor and GH signalling studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Ipamorelin-selektives GHRP-Forschungspeptid für Ghrelin-Rezeptor- und GH-Signalisierungsstudien. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/ipamorelin/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/ipamorelin.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -306,9 +812,62 @@
 	</item>
 
 	<item>
+		<g:id>peptide-kpv</g:id>
+		
+		<g:title>KPV 5 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>C-terminales Tripeptid (Lys-Pro-Val) von α-MSH für In-vitro-Untersuchungen antiinflammatorischer Signalwege und NF-κB-Hemmung. ≥99 % HPLC-Reinheit mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/kpv/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/kpv.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>36.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-kpv</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-tissue</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>67727-97-3</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-ll-37</g:id>
+		
+		<g:title>LL-37, human cathelicidin 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Humanes antimikrobielles Peptid Cathelicidin LL-37, die Goldstandard-Referenz für die angeborene Immunität. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/ll-37/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/ll-37.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>70.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-ll-37</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>immunology</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>154947-66-7</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-melanotan-2</g:id>
+		
 		<g:title>Melanotan-2 10 mg 1 × 10 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Melanotan-2 alpha-MSH analogue for melanocortin receptor and pigmentation research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Melanotan-2-Alpha-MSH-Analogon für die Melanocortinrezeptor- und Pigmentierungsforschung. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/melanotan-2/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/melanotan-2.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -331,9 +890,88 @@
 	</item>
 
 	<item>
+		<g:id>peptide-mia-602</g:id>
+		
+		<g:title>MIA-602 (GHRH antagonist) 1 × 2 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>MIA-602, ein GHRH-Rezeptorantagonist der Schally-Schule für die Forschung an onkologischen Zelllinien, Proliferationsmarkern und Entzündungswegen. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/mia-602/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/mia-602.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>145.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-mia-602</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cancer-apoptosis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2></g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-mots-c</g:id>
+		
+		<g:title>MOTS-c 10 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Mitochondrial abgeleitetes Peptid (16 AS) zur Erforschung der zellulären Energiehomöostase, Insulinsensitivität und AMPK-Aktivierung. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/mots-c/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/mots-c.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>46.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-mots-c</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>1627580-64-6</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-myristoylated-pki-14-22</g:id>
+		
+		<g:title>Myristoylated PKI (14-22) amide 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Zellpermeables myristoyliertes PKI (14-22)-Amid zur PKA-Hemmung in intakten Zellen in der Kinase-Signalweg-Forschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/myristoylated-pki-14-22/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/myristoylated-pki-14-22.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>60.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-myristoylated-pki-14-22</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>221019-15-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-nad-plus</g:id>
+		
 		<g:title>NAD+ 500 mg 1 × 500 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>NAD+-Forschungsverbindung für Cofaktor-, Mitochondrien- und Zellstoffwechselstudien. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/nad-plus/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/nad-plus.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -357,8 +995,9 @@
 
 	<item>
 		<g:id>peptide-o-304</g:id>
+		
 		<g:title>O-304 25 mg 3 g powder | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>O-304 AMPK activator research compound for metabolic and insulin-sensitivity studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>O-304 AMPK-Aktivator-Forschungsverbindung für Stoffwechsel- und Insulinsensitivitätsstudien. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/o-304/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/o-304.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -381,9 +1020,140 @@
 	</item>
 
 	<item>
+		<g:id>peptide-octreotide-acetate</g:id>
+		
+		<g:title>Octreotide acetate 1 × 2 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Octreotidacetat, Somatostatin-Rezeptor (SSTR2/5)-Referenz für die Tumorbildgebung und neuroendokrine Forschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/octreotide-acetate/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/octreotide-acetate.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>60.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-octreotide-acetate</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cancer-apoptosis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>83150-76-9</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-pinealon</g:id>
+		
+		<g:title>Pinealon 10 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Synthetisches kurzkettiges Tripeptid (Glu-Arg-Ala) für Untersuchungen zur neuronalen Genexpression, Zytoprotektion und oxidativen Stressabwehr. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/pinealon/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/pinealon.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>38.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-pinealon</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>neuroscience</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>172820-23-4</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-pki-6-22-amide</g:id>
+		
+		<g:title>PKI (6-22) amide 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>PKI (6-22)-Amid, das am häufigsten zitierte spezifische PKA-Inhibitorpeptid für die Kinase-Signalweg-Forschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/pki-6-22-amide/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/pki-6-22-amide.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>55.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-pki-6-22-amide</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>121932-06-7</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-pnc-27</g:id>
+		
+		<g:title>PNC-27 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>PNC-27-Fusionspeptid für den p53/HDM2-Signalweg und die membranolytische Apoptose-Tumorzellforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/pnc-27/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/pnc-27.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>95.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-pnc-27</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cancer-apoptosis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2></g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-pt-141</g:id>
+		
+		<g:title>PT-141 10 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Synthetischer zyklischer Heptapeptid-Melanocortin-Rezeptoragonist (Bremelanotid) für neurochemische und vaskuläre In-vitro-Forschung. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/pt-141/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/pt-141.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>38.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-pt-141</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>hormones</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>189745-66-9</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-retatrutide</g:id>
+		
 		<g:title>Retatrutide 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Retatrutide triple agonist research peptide for GLP-1, GIP and glucagon pathway models. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Retatrutid-Triple-Agonist-Forschungspeptid für GLP-1-, GIP- und Glucagon-Signalwegmodelle. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/retatrutide/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/retatrutide.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -407,8 +1177,9 @@
 
 	<item>
 		<g:id>peptide-selank</g:id>
+		
 		<g:title>Selank 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Selank research peptide for CNS, stress-response and neuropeptide signalling models. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Selank-Forschungspeptid für ZNS-, Stressreaktions- und Neuropeptid-Signalisierungsmodelle. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/selank/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/selank.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -432,8 +1203,9 @@
 
 	<item>
 		<g:id>peptide-semaglutide</g:id>
+		
 		<g:title>Semaglutide 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Semaglutide GLP-1 analogue for metabolic research. ≥99% HPLC purity, sealed vial and lot COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Semaglutid-GLP-1-Analogon für die Stoffwechselforschung. ≥99 % HPLC-Reinheit, versiegeltes Fläschchen und Chargen-COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/semaglutide/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/semaglutide.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -457,8 +1229,9 @@
 
 	<item>
 		<g:id>peptide-semax</g:id>
+		
 		<g:title>Semax 5 mg 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Semax ACTH(4-10) analogue for CNS, cognition and neuroprotection research. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Semax ACTH(4-10)-Analogon für ZNS-, Kognitions- und Neuroprotektionsforschung. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/semax/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/semax.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -481,9 +1254,62 @@
 	</item>
 
 	<item>
+		<g:id>peptide-ss-31</g:id>
+		
+		<g:title>SS-31 50 mg 1 × vial | ≥ 99% purezza | verificato HPLC</g:title>
+		<g:description>Mitochondrien-zielgerichtetes Tetrapeptid (Elamipretid) zur Stabilisierung von Cardiolipin und Minderung oxidativen Stresses in Zellmodellen. ≥99 % HPLC mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/ss-31/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/ss-31.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>75.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-ss-31</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 99%</g:custom_label_1>
+		<g:custom_label_2>736992-21-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-substance-p</g:id>
+		
+		<g:title>Substance P 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Substanz P Undecapeptid – Referenz-NK1-(Tachykinin)-Rezeptor-Agonist für die Schmerz- und neurogene Entzündungsforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/substance-p/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/substance-p.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>40.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-substance-p</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cell-signaling</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>33507-63-0</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-tb-500</g:id>
+		
 		<g:title>TB-500 (Thymosin β4 frag.) 1 × 5 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>TB-500 thymosin beta-4 fragment for cell-migration, actin and angiogenesis research. ≥99% HPLC purity with COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>TB-500-Thymosin-Beta-4-Fragment für Zellmigrations-, Aktin- und Angiogeneseforschung. ≥99 % HPLC-Reinheit mit COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/tb-500/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/tb-500.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -507,8 +1333,9 @@
 
 	<item>
 		<g:id>peptide-tesofensine</g:id>
+		
 		<g:title>Tesofensine 5 mg 60 × 0.5 mg caps | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Tesofensine research compound for monoamine transporter and metabolic CNS studies. COA supplied. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Tesofensin-Forschungsverbindung für Monoamintransporter- und metabolische ZNS-Studien. Echtheitszertifikat geliefert. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/tesofensine/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/tesofensine.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -531,9 +1358,88 @@
 	</item>
 
 	<item>
+		<g:id>peptide-thymalin</g:id>
+		
+		<g:title>Thymalin 1 × 10 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Thymalin-Polypeptidkomplex für die Thymusimmunologie und immunonkologische Adjuvansforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/thymalin/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/thymalin.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>40.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-thymalin</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>cancer-apoptosis</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2></g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-thymosin-alpha-1</g:id>
+		
+		<g:title>Thymosin α1 (Tα1) 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Thymosin α1 (28 Reste, N-acetyliert) für die T-Zell-Reifung, dendritische Zellen und antivirale Immunologieforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/thymosin-alpha-1/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/thymosin-alpha-1.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>55.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-thymosin-alpha-1</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>immunology</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>62304-98-7</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-thymulin</g:id>
+		
+		<g:title>Thymulin (Zn-FTS) 1 × 1 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Thymulin (zinkgebundenes FTS-Nonapeptid) für die Thymusimmunologie, T-Zell- und Immunoseneszenzforschung. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/thymulin/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/thymulin.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>70.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-thymulin</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>immunology</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>63958-90-7</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
 		<g:id>peptide-tirzepatide</g:id>
+		
 		<g:title>Tirzepatide 10 mg 1 × 10 mg vial | ≥ 99% purezza | verificato HPLC</g:title>
-		<g:description>Tirzepatide dual GIP/GLP-1 agonist research peptide with ≥99% HPLC purity and lot COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:description>Tirzepatid-Dual-GIP/GLP-1-Agonist-Forschungspeptid mit ≥99 % HPLC-Reinheit und Chargen-COA. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
 		<g:link>https://peptide-kaufen.net/it/peptides/tirzepatide/</g:link>
 		<g:image_link>https://peptide-kaufen.net/images/products/tirzepatide.webp</g:image_link>
 		<g:availability>in_stock</g:availability>
@@ -551,6 +1457,32 @@
 		<g:custom_label_0>diabetes</g:custom_label_0>
 		<g:custom_label_1>≥ 99%</g:custom_label_1>
 		<g:custom_label_2>2023788-19-2</g:custom_label_2>
+		<g:custom_label_3>research-use-only</g:custom_label_3>
+		<g:custom_label_4>runtime-localized</g:custom_label_4>
+	</item>
+
+	<item>
+		<g:id>peptide-tuftsin</g:id>
+		
+		<g:title>Tuftsin 1 × 5 mg vial | ≥ 98% purezza | verificato HPLC</g:title>
+		<g:description>Tuftsin-Tetrapeptid für die Makrophagenaktivierung, Phagozytose und Forschung zur angeborenen Immunität. ≥98 % HPLC. RUO. Solo per ricerca di laboratorio. Non destinato a uso umano o veterinario, alimentare, cosmetico, integratore o diagnostico.</g:description>
+		<g:link>https://peptide-kaufen.net/it/peptides/tuftsin/</g:link>
+		<g:image_link>https://peptide-kaufen.net/images/products/tuftsin.webp</g:image_link>
+		<g:availability>in_stock</g:availability>
+		<g:price>30.00 EUR</g:price>
+		<g:brand>Peptide Shop</g:brand>
+		<g:condition>new</g:condition>
+		<g:mpn>peptide-tuftsin</g:mpn>
+		<g:google_product_category>Health &amp; Beauty &gt; Health Care</g:google_product_category>
+		<g:product_type>Peptidi di ricerca</g:product_type>
+		<g:shipping>
+			<g:country>IT</g:country>
+			<g:service>Standard</g:service>
+			<g:price>14.90 EUR</g:price>
+		</g:shipping>
+		<g:custom_label_0>immunology</g:custom_label_0>
+		<g:custom_label_1>≥ 98%</g:custom_label_1>
+		<g:custom_label_2>9063-57-4</g:custom_label_2>
 		<g:custom_label_3>research-use-only</g:custom_label_3>
 		<g:custom_label_4>runtime-localized</g:custom_label_4>
 	</item>

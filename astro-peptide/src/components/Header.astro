@@ -1,6 +1,13 @@
 ---
 // Header — DESIGN_SPEC §5.1
 // Mega-menu by research area, accessible, no Bootstrap, no jQuery.
+/*
+ * Taxonomy labels always come from the dictionary, never from the raw records
+ * in src/data/taxonomy.ts. Those `name`/`short` fields are English source
+ * strings; rendering them directly put "Neuroscience & CNS" and "Weight-loss
+ * research" into the German header, footer and shop filters — which, now that
+ * German is served at the root, is the site's primary navigation.
+ */
 import CartIcon from './CartIcon';
 import CartModal from './CartModal';
 import CartNotification from './CartNotification';
@@ -18,33 +25,23 @@ const href = (path: string) => localizePath(path, locale);
 const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
 ---
 
-<div class="topbar">
-  <div class="container topbar__inner">
-    <span class="topbar__item"><strong>{t('nav.researchUseOnlyStrong')}</strong> {t('nav.researchUseOnlyShort')}</span>
-    <span class="topbar__min-order" aria-label={t('nav.minOrderAria')}>
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-      <strong>{t('nav.minOrderTopbar')}</strong>
-    </span>
-    <div class="topbar__right">
-      <a href="mailto:info@peptide-kaufen.net">info@peptide-kaufen.net</a>
-      <span aria-hidden="true">·</span>
-      <a href={href('/quality/')}>{t('nav.qualityTopbar')}</a>
-    </div>
-  </div>
-</div>
-
 <header class="site-header" id="site-header">
   <div class="container site-header__inner">
     <a href={href('/')} class="brand" aria-label={t('nav.homeLabel')}>
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true" class="brand__mark">
-        <rect x="1" y="1" width="30" height="30" rx="7" fill="var(--color-primary)" />
-        <line x1="8" y1="23" x2="16" y2="9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-        <line x1="16" y1="9" x2="24" y2="23" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-        <circle cx="8" cy="23" r="4.5" fill="#fff"/>
-        <circle cx="16" cy="9" r="4.5" fill="#fff"/>
-        <circle cx="24" cy="23" r="4.5" fill="#00B4A0"/>
-      </svg>
-      <span class="brand__text">Peptide Shop</span>
+      <div class="brand__mark-wrap">
+        <img
+          src="/brand/logo-mark.png"
+          width="34"
+          height="34"
+          alt="Peptide Shop Logo"
+          class="brand__mark-img"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+      <div class="brand__text-group">
+        <span class="brand__text">PEPTIDE<span class="brand__accent">SHOP</span></span>
+      </div>
     </a>
 
     <nav class="primary-nav" aria-label={t('common.primaryNavigation')}>
@@ -66,36 +63,36 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
           <div id="mega-catalog" class="mega" role="region" aria-label={t('nav.catalogueRegion')} hidden>
             <div class="container mega__inner">
               <div class="mega__col">
-                <span class="eyebrow">{t('nav.byResearchArea')}</span>
+                <div class="mega__heading">{t('nav.byResearchArea')}</div>
                 <ul class="mega__list">
                   {halfA.map((a) => (
                     <li>
                       <a href={href(`/catalog/${a.slug}/`)}>
-                        <strong>{a.name}</strong>
-                        <span class="muted">{a.short}</span>
+                        <strong>{t(`taxonomy.researchAreas.${a.slug}.name`)}</strong>
+                        <span class="muted">{t(`taxonomy.researchAreas.${a.slug}.short`)}</span>
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
               <div class="mega__col">
-                <span class="eyebrow">&nbsp;</span>
+                <div class="mega__heading" style="visibility:hidden;">&nbsp;</div>
                 <ul class="mega__list">
                   {halfB.map((a) => (
                     <li>
                       <a href={href(`/catalog/${a.slug}/`)}>
-                        <strong>{a.name}</strong>
-                        <span class="muted">{a.short}</span>
+                        <strong>{t(`taxonomy.researchAreas.${a.slug}.name`)}</strong>
+                        <span class="muted">{t(`taxonomy.researchAreas.${a.slug}.short`)}</span>
                       </a>
                     </li>
                   ))}
                 </ul>
               </div>
               <div class="mega__col mega__col--side">
-                <span class="eyebrow">{t('nav.byUseCase')}</span>
+                <div class="mega__heading">{t('nav.byUseCase')}</div>
                 <ul class="mega__list mega__list--compact">
                   {useCases.map((u) => (
-                    <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+                    <li><a href={href(`/use-case/${u.slug}/`)}>{t(`taxonomy.useCases.${u.slug}.name`)}</a></li>
                   ))}
                 </ul>
                 <div class="mega__cta">
@@ -106,6 +103,8 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
           </div>
         </li>
         <li><a class="primary-nav__link" href={href('/shop/')}>{t('nav.shop')}</a></li>
+        <li><a class="primary-nav__link" href={href('/bundles/')}>Bundles</a></li>
+        <li><a class="primary-nav__link" href={href('/peptid-rechner/')}>Rechner</a></li>
         <li><a class="primary-nav__link" href={href('/quality/')}>{t('nav.quality')}</a></li>
         <li><a class="primary-nav__link" href={href('/blog/')}>{t('nav.insights')}</a></li>
         <li><a class="primary-nav__link" href={href('/about/')}>{t('nav.about')}</a></li>
@@ -122,7 +121,7 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
           closeSearch: t('search.closeSearch'),
           close: t('common.closeMenu'),
           searching: t('search.searching'),
-          noResults: t('search.noResults'),
+          noResults: t.raw('search.noResults'),
         }}
         localePrefix={localePrefix}
         searchPath={href('/search/')}
@@ -161,7 +160,7 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
       <ul class="m-list">
         <li><a href={href('/catalog/')}><strong>{t('nav.allResearchAreas')}</strong></a></li>
         {researchAreas.map((a) => (
-          <li><a href={href(`/catalog/${a.slug}/`)}>{a.name}</a></li>
+          <li><a href={href(`/catalog/${a.slug}/`)}>{t(`taxonomy.researchAreas.${a.slug}.name`)}</a></li>
         ))}
       </ul>
     </details>
@@ -169,7 +168,7 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
       <summary>{t('nav.useCases')}</summary>
       <ul class="m-list">
         {useCases.map((u) => (
-          <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+          <li><a href={href(`/use-case/${u.slug}/`)}>{t(`taxonomy.useCases.${u.slug}.name`)}</a></li>
         ))}
       </ul>
     </details>
@@ -199,15 +198,15 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
     emptyTitle: t('cart.emptyTitle'),
     emptyModalBody: t('cart.emptyModalBody'),
     browseCatalogue: t('cart.browseCatalogue'),
-    quantityFor: t('cart.quantityFor'),
+    quantityFor: t.raw('cart.quantityFor'),
     decreaseQuantity: t('productOptions.decreaseQuantity'),
     increaseQuantity: t('productOptions.increaseQuantity'),
     remove: t('cart.remove'),
     subtotal: t('productOptions.subtotal'),
     minimumOrder: t('cart.minimumOrder'),
-    addToContinue: t('cart.addToContinue'),
+    addToContinue: t.raw('cart.addToContinue'),
     checkout: t('cart.checkout'),
-    minimum: t('cart.minimum'),
+    minimum: t.raw('cart.minimum'),
     viewCart: t('cart.viewCart'),
   }}
   paths={{ catalogue: href('/catalog/'), checkout: href('/checkout/'), cart: href('/cart/') }}
@@ -227,67 +226,59 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
 />
 
 <style>
-  .topbar {
-    background: var(--color-ink);
-    color: #E2E8F0;
-    font-size: 12px;
-    padding: 6px 0;
-  }
-  .topbar__inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    flex-wrap: wrap;
-  }
-  .topbar__right { display: inline-flex; gap: var(--space-2); align-items: center; }
-  .topbar__min-order {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 2px 10px;
-    background: rgba(144, 224, 239, 0.18);
-    color: #E0FBFC;
-    border: 1px solid rgba(144, 224, 239, 0.45);
-    border-radius: 999px;
-    font-size: 12px;
-    line-height: 1.3;
-    white-space: nowrap;
-  }
-  .topbar__min-order strong { color: #fff; font-weight: 700; }
-  /* 19px-tall links are awkward to hit on a phone; WCAG 2.2 SC 2.5.8 asks
-     for 24px. The bar keeps its height because it already has row padding. */
-  .topbar a {
-    color: #E2E8F0;
-    text-decoration: underline;
-    text-decoration-color: rgb(255 255 255 / 0.25);
-    display: inline-flex;
-    align-items: center;
-    min-height: 24px;
-  }
-  .topbar a:hover { color: #fff; }
-  @media (max-width: 600px) {
-    .topbar__inner { row-gap: 4px; }
-    .topbar__min-order { order: 2; }
-  }
-
   .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #fff;
-    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    transition: box-shadow 200ms ease;
   }
   .site-header__inner {
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    height: 64px;
+    height: 70px;
   }
 
-  .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 180ms ease;
+  }
+  .brand:hover {
+    transform: translateY(-1px);
+  }
+  .brand__mark-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 8px rgba(0, 119, 182, 0.25));
+  }
+  .brand__mark-img {
+    display: block;
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+  }
   .brand__mark { display: block; }
-  .brand__text { font-family: var(--font-display); font-weight: 700; color: var(--color-ink); font-size: 19px; letter-spacing: -0.02em; }
+  .brand__text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .brand__text {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--color-ink);
+    font-size: 19px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
   .brand__accent { color: var(--color-primary); }
 
   .primary-nav { display: none; flex: 1; }
@@ -343,6 +334,14 @@ const localePrefix = locale === defaultLocale ? '' : `/${locale}`;
     gap: var(--space-8);
     padding: 0;
     max-width: none;
+  }
+  .mega__heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+    margin-bottom: var(--space-3);
   }
   .mega__list { list-style: none; padding: 0; margin: var(--space-2) 0 0; display: grid; gap: var(--space-1); }
   .mega__list a {

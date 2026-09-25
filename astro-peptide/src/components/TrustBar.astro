@@ -1,0 +1,57 @@
+---
+/**
+ * The four facts that answer "can I rely on this?" — purity floor, per-lot
+ * certificate, dispatch, returns.
+ *
+ * Lifted out of the homepage so the same four claims appear in the same order
+ * wherever a buyer is deciding: under the hero, above the shop grid, and
+ * beneath the buy box on a product page. They were previously stated once, on
+ * the homepage, which is the one page someone arriving from a product search
+ * never sees.
+ *
+ * Every claim is substantiated elsewhere in the codebase — the purity floor by
+ * product frontmatter, dispatch and returns by src/lib/pricing.ts and the
+ * shipping page. Nothing here is a review count or a customer total, because
+ * the site has neither.
+ */
+import { getLocaleFromPathname } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  /** `dark` is the inked band used under the homepage hero. */
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+
+const { tone = 'dark', class: className = '' } = Astro.props;
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+
+const items = [
+  { icon: 'flask', title: t('home.trustBarPurityTitle'), sub: t('home.trustBarPuritySub') },
+  { icon: 'doc', title: t('home.trustBarCoaTitle'), sub: t('home.trustBarCoaSub') },
+  { icon: 'truck', title: t('home.trustBarDispatchTitle'), sub: t('home.trustBarDispatchSub') },
+  { icon: 'shield', title: t('home.trustBarReturnsTitle'), sub: t('home.trustBarReturnsSub') },
+];
+---
+
+<section class:list={['trust-bar', `trust-bar--${tone}`, className]} aria-label={t('home.trustBarCoaTitle')}>
+  <div class="container">
+    <ul class="trust-bar__list">
+      {items.map((item) => (
+        <li class="trust-bar__item">
+          <span class="trust-bar__icon" aria-hidden="true">
+            {item.icon === 'flask' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.5L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.5V3"/><path d="M7.5 15h9"/></svg>}
+            {item.icon === 'doc' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><path d="M9 13h6M9 17h4"/></svg>}
+            {item.icon === 'truck' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h11v10H2z"/><path d="M13 10h4l4 3.5V16h-8z"/><circle cx="6" cy="18.5" r="2"/><circle cx="17" cy="18.5" r="2"/></svg>}
+            {item.icon === 'shield' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>}
+          </span>
+          <span class="trust-bar__text">
+            <strong>{item.title}</strong>
+            <span>{item.sub}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

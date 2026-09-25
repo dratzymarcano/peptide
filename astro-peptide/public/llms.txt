@@ -1,0 +1,53 @@
+# Peptide Shop (peptide-kaufen.net)
+
+> Hochreine Forschungspeptide (≥99 % HPLC-Reinheit) mit chargenbezogenem Analysezertifikat (COA) für In-vitro- und Laborforschung in Deutschland, Österreich und der Schweiz.
+
+## Über Peptide Shop
+Peptide Shop ist ein spezialisierter DACH- und EU-Lieferant für synthetische Peptide und Laborreagenzien für biochemische, präklinische und universitäre Forschungszwecke (Research Use Only - RUO). Alle Chargen werden durch unabhängige Drittlabore mittels Hochleistungsflüssigkeitschromatographie (HPLC) und Massenspektrometrie (MS) auf Reinheit und molekulare Identität geprüft.
+
+- **Reinheitsstandard**: ≥99,0 % bis ≥99,8 % HPLC-Reinheit
+- **Qualitätsnachweis**: Chargenbezogenes Analysezertifikat (COA) zu jeder Lieferung
+- **Endotoxin-Kontrolle**: < 0,01 EU/mg
+- **Formulierung**: Lyophilisiertes (gefriergetrocknetes) Peptidpulver unter Stickstoffatmosphäre
+- **Lagerung**: Trocken bei -20 °C (Langzeit) bzw. 2–8 °C (Rekonstituiert mit BAC-Wasser)
+- **Logistik**: Expressversand aus der EU mit diskreter und temperaturgestützter Laborverpackung
+
+## Wichtige Seiten und Kernbereiche
+
+- [Startseite](https://peptide-kaufen.net/): Übersicht, Laborqualitätsstandards und Expressversand
+- [Gesamtkatalog](https://peptide-kaufen.net/catalog/): Alle synthetischen Forschungspeptide nach Forschungsgebiet
+- [Shop](https://peptide-kaufen.net/shop/): Vollständiges Produktsortiment mit Filtern und Reinheitsangaben
+- [Peptid-Rechner](https://peptide-kaufen.net/peptid-rechner/): Interaktiver Dosierungs- und Rekonstitutionsrechner (ml, mg, IE Einheiten)
+- [Analysezertifikate (COA)](https://peptide-kaufen.net/coa-policy/): Richtlinie zur Chargenprüfung, HPLC-Chromatogramme und MS-Spektren
+- [Qualitätsstandards](https://peptide-kaufen.net/quality/): Laborsynthese, Lyophilisierung, Kappenfarbkodierung und Reinheitskontrollen
+- [Laborzubehör](https://peptide-kaufen.net/catalog/supplies/): Bakteriostatisches Wasser (30 ml) zur sterilen Rekonstitution
+- [Versand DACH](https://peptide-kaufen.net/shipping/): Versandrichtlinien, Lieferzeiten (24–48 h) und Kühlkettenverpackung
+- [Versand Österreich](https://peptide-kaufen.net/versand-oesterreich/): Spezifische Zoll- und Versandhinweise für Österreich
+- [Versand Schweiz](https://peptide-kaufen.net/versand-schweiz/): Zollabfertigung und Expressversand in die Schweiz
+
+## Forschungsbereiche & Forschungskategorien
+
+- [Zell- & Gewebeforschung](https://peptide-kaufen.net/catalog/cell-tissue/): BPC-157, TB-500, GHK-Cu, KPV
+- [Stoffwechselforschung](https://peptide-kaufen.net/catalog/metabolic/): Semaglutid, Tirzepatid, Retatrutid, Cagrilintid, AOD-9604, 5-Amino-1MQ
+- [Neurobiologie & Kognition](https://peptide-kaufen.net/catalog/neuroscience/): Semax, Selank, Pinealon, DSIP
+- [Langlebigkeit & Epigenetik](https://peptide-kaufen.net/catalog/epigenetics/): Epithalon, FOXO4-DRI, MOTS-c, SS-31, NAD+
+- [Immunologie](https://peptide-kaufen.net/catalog/immunology/): LL-37, Thymosin Alpha-1, Thymalin, Tuftsin
+- [Kardiovaskulär & Gefäßforschung](https://peptide-kaufen.net/catalog/cardiovascular/): Bradykinin, Endothelin-1, ANP, BNP-32
+
+## Wichtigste Forschungschemikalien
+
+- [BPC-157 (5 mg & 10 mg)](https://peptide-kaufen.net/peptides/bpc-157/): CAS 137525-51-0, Pentadecapeptid für Gewebeheilungs- und Zellmigrationsmodelle.
+- [TB-500 (Thymosin Beta-4, 5 mg & 10 mg)](https://peptide-kaufen.net/peptides/tb-500/): CAS 77591-33-4, Aktin-bindendes Peptid für Angiogenese- und Wundheilungsforschung.
+- [GHK-Cu (Kupferpeptid, 50 mg)](https://peptide-kaufen.net/peptides/ghk-cu/): CAS 49557-75-7, Tripeptid-Kupfer-Komplex für Kollagensynthese und Genexpressionsstudien.
+- [Epithalon (10 mg & 20 mg)](https://peptide-kaufen.net/peptides/epitalon/): CAS 307297-39-8, Tetrapeptid zur Untersuchung der Telomeraseaktivität und Zellalterung.
+- [Semaglutid Forschung (5 mg)](https://peptide-kaufen.net/peptides/semaglutide/): CAS 910463-68-2, GLP-1-Rezeptor-Agonist für metabolische Signalwegforschung.
+- [Tirzepatid Forschung (5 mg & 10 mg)](https://peptide-kaufen.net/peptides/tirzepatide/): CAS 2023706-61-6, Dualer GIP/GLP-1-Rezeptor-Agonist für vergleichende Stoffwechselmodelle.
+- [Retatrutid Forschung (5 mg & 10 mg)](https://peptide-kaufen.net/peptides/retatrutide/): CAS 2381089-83-2, Dreifachagonist (GLP-1/GIP/Glukagon) für Insulinresistenzstudien.
+- [MOTS-c (5 mg & 10 mg)](https://peptide-kaufen.net/peptides/mots-c/): CAS 1627580-64-6, Mitochondriales Peptid für metabolische Energiehomöostase.
+- [Bakteriostatisches Wasser (30 ml)](https://peptide-kaufen.net/peptides/bacteriostatic-water/): USP-konformes Lösungsmittel mit 0,9 % Benzylalkohol zur sterilen Peptidrekonstitution.
+
+## Rechtlicher Hinweis (RUO)
+Alle auf dieser Website angebotenen Produkte sind ausschließlich für Laborforschungs- und In-vitro-Zwecke bestimmt. Sie sind nicht für humantherapeutische, veterinärmedizinische, kosmetische oder diagnostische Anwendungen zugelassen. Verkauf nur an Personen ab 18 Jahren.
+
+## Vollständige Dokumentation
+- Ausführliche Spezifikationen und CAS-Verzeichnis: [llms-full.txt](https://peptide-kaufen.net/llms-full.txt)

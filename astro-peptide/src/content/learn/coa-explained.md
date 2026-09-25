@@ -1,6 +1,6 @@
 ---
-title: "How to Read a Peptide COA"
-description: "What every field on a peptide certificate of analysis means, and how to verify identity, purity and net peptide mass before you use a vial."
+title: "So lesen Sie ein Peptid-COA"
+description: "Was jedes Feld auf einem Peptidanalysezertifikat bedeutet und wie Sie Identität, Reinheit und Nettopeptidmasse überprüfen, bevor Sie ein Fläschchen verwenden."
 publishDate: "2026-05-03"
 category: "Quality"
 readTime: "8 min"
@@ -8,83 +8,83 @@ order: 20
 primaryKeyword: "how to read coa hplc"
 tags: ["coa", "qc", "hplc", "mass-spec"]
 meta:
-  title: "How to Read a Peptide COA | Peptide Shop Learn"
-  description: "Field-by-field guide to reading a peptide certificate of analysis: identity, RP-HPLC purity, mass-spec confirmation, water content and counter-ion."
+  title: "Peptid-COA richtig lesen | Peptide Shop Leitfaden"
+  description: "Schritt-für-Schritt-Leitfaden zum Analysezertifikat: Identität, RP-HPLC-Reinheit, Massenspektrometrie, Wassergehalt und Gegenionen."
 ---
 
-A peptide certificate of analysis (COA) is a lot-specific quality record. It is the single document that tells you whether the vial in front of you matches the specification on the product page. This guide walks through every field you will see on a Peptide Shop COA and explains what it means in practice.
+Ein Peptid-Analysezertifikat (COA) ist ein losspezifischer Qualitätsnachweis. Es ist das einzige Dokument, das Ihnen sagt, ob das Fläschchen vor Ihnen mit den Spezifikationen auf der Produktseite übereinstimmt. Dieser Leitfaden geht durch alle Felder, die Sie auf einem Echtheitszertifikat von Peptide Shop sehen, und erklärt, was es in der Praxis bedeutet.
 
-## What a COA must contain
+## Was ein Echtheitszertifikat enthalten muss
 
-A complete COA includes:
+Ein vollständiger COA umfasst:
 
-1. **Product identity** — name, alternate name(s), and CAS number where one exists.
-2. **Lot number and manufacture date.** Trace any downstream result back to a specific batch.
-3. **Sequence.** Written N-to-C in one-letter or three-letter code.
-4. **Theoretical and observed mass.** Both monoisotopic (high-res) and average mass are usually reported.
-5. **Purity by RP-HPLC.** Expressed as area-percent at 220 nm.
-6. **Counter-ion identity and percentage.** Almost always TFA or acetate.
-7. **Water content.** Karl Fischer titration result.
-8. **Net peptide content.** The actual peptide mass in the vial after subtracting water and counter-ion.
-9. **Storage conditions and recommended re-test interval.**
+1. **Produktidentität** – Name, Alternativname(n) und CAS-Nummer, sofern vorhanden.
+2. **Chargennummer und Herstellungsdatum.** Verfolgen Sie alle nachgelagerten Ergebnisse auf eine bestimmte Charge zurück.
+3. **Sequenz.** Von N bis C im Ein- oder Drei-Buchstaben-Code geschrieben.
+4. **Theoretische und beobachtete Masse.** Normalerweise werden sowohl die monoisotopische (hochaufgelöste) als auch die durchschnittliche Masse angegeben.
+5. **Reinheit durch RP-HPLC.** Ausgedrückt als Flächenprozent bei 220 nm.
+6. **Identität und Prozentsatz des Gegenions.** Fast immer TFA oder Acetat.
+7. **Wassergehalt.** Ergebnis der Karl-Fischer-Titration.
+8. **Nettopeptidgehalt.** Die tatsächliche Peptidmasse im Fläschchen nach Abzug von Wasser und Gegenion.
+9. **Lagerbedingungen und empfohlenes Wiederholungstestintervall.**
 
-If any of those fields is missing, treat the document as incomplete.
+Wenn eines dieser Felder fehlt, behandeln Sie das Dokument als unvollständig.
 
-## Identity verification
+## Identitätsüberprüfung
 
-The first checkpoint is identity:
+Der erste Kontrollpunkt ist die Identität:
 
-- The **mass-spec observed mass** must match the theoretical monoisotopic mass within instrument tolerance (typically ±0.5 Da for low-resolution ESI, ±5 ppm for high-res).
-- The **HPLC retention time** alone is not identity — it is a comparator. Identity comes from the mass-spec trace.
+- Die **beobachtete Masse der Massenspezifikation** muss mit der theoretischen Monoisotopenmasse innerhalb der Instrumententoleranz übereinstimmen (typischerweise ±0,5 Da für ESI mit niedriger Auflösung, ±5 ppm für ESI mit hoher Auflösung).
+- Die **HPLC-Retentionszeit** allein ist keine Identität – sie ist ein Vergleich. Identität ergibt sich aus der Massenspezifikationsspur.
 
-If the observed mass differs by exactly +16, suspect oxidation (Met, Trp, Cys); +18 suggests hydrolysis; −18 a dehydration or cyclisation event.
+Wenn die beobachtete Masse um genau +16 abweicht, vermuten Sie Oxidation (Met, Trp, Cys); +18 deutet auf Hydrolyse hin; −18 ein Dehydrierungs- oder Zyklisierungsereignis.
 
-## Purity by RP-HPLC
+## Reinheit durch RP-HPLC
 
-Reverse-phase HPLC on a C18 column with a water–acetonitrile gradient and 0.1% TFA is the standard. The **purity value** is the integrated area of the main peak divided by the total area, expressed as a percentage at 220 nm (the peptide bond absorption maximum).
+Standard ist die Umkehrphasen-HPLC auf einer C18-Säule mit einem Wasser-Acetonitril-Gradienten und 0,1 % TFA. Der **Reinheitswert** ist die integrierte Fläche des Hauptpeaks dividiert durch die Gesamtfläche, ausgedrückt als Prozentsatz bei 220 nm (dem Absorptionsmaximum der Peptidbindung).
 
-A few points researchers regularly miss:
+Einige Punkte, die Forscher regelmäßig übersehen:
 
-- "≥98% HPLC" tells you nothing about *which* impurities make up the remaining 2%. Ask for the chromatogram if your application is impurity-sensitive.
-- Detection wavelength matters. A purity quoted at 220 nm and one at 280 nm are not interchangeable; aromatics-only assays underestimate the impurity profile.
-- A single chromatogram does not prove orthogonal purity. For very sensitive applications, request an additional purity assay (ion-pairing reverse-phase with a different gradient, or HILIC for hydrophilic peptides).
+- „≥98 % HPLC“ sagt nichts darüber aus, *welche* Verunreinigungen die restlichen 2 % ausmachen. Fordern Sie das Chromatogramm an, wenn Ihre Anwendung empfindlich auf Verunreinigungen reagiert.
+- Detektionswellenlänge ist wichtig. Die Reinheitsangaben bei 220 nm und 280 nm sind nicht austauschbar; Tests, die nur auf Aromaten basieren, unterschätzen das Verunreinigungsprofil.
+- Ein einzelnes Chromatogramm beweist nicht die orthogonale Reinheit. Fordern Sie für sehr empfindliche Anwendungen einen zusätzlichen Reinheitstest an (Ionenpaarung Umkehrphase mit einem anderen Gradienten oder HILIC für hydrophile Peptide).
 
-## Net peptide content vs gross mass
+## Nettopeptidgehalt vs. Bruttomasse
 
-A 5 mg vial does **not** contain 5 mg of peptide. The fill mass includes:
+Eine 5-mg-Durchstechflasche enthält **keine** 5 mg Peptid. Die Füllmasse umfasst:
 
-- Net peptide
-- Counter-ion (typically 5–15% TFA, 3–8% acetate)
-- Residual water (typically 2–8%)
+- Nettopeptid
+- Gegenion (typischerweise 5–15 % TFA, 3–8 % Acetat)
+- Restwasser (typischerweise 2–8 %)
 
-If the COA reports 88% net peptide content, a 5 mg vial holds 4.4 mg of peptide. Always recalculate target concentrations from the **net** value, not the label.
+Wenn das COA einen Nettopeptidgehalt von 88 % meldet, enthält ein 5-mg-Fläschchen 4,4 mg Peptid. Berechnen Sie Zielkonzentrationen immer anhand des **Nettowerts** neu, nicht anhand des Etiketts.
 
-## Counter-ion considerations
+## Überlegungen zu Gegenionen
 
-The counter-ion affects:
+Das Gegenion beeinflusst:
 
-- **Acidity in solution.** TFA salts produce mildly acidic reconstituted solutions; this can matter for cell assays and certain receptor binding studies.
-- **Mass.** The reported mass on a COA is the free-base mass; add the counter-ion contribution if you weigh the salt directly.
-- **Cytotoxicity.** TFA at high concentrations can be cytotoxic; acetate is generally preferred for cell work.
+- **Säuregehalt der Lösung.** TFA-Salze ergeben leicht saure rekonstituierte Lösungen; Dies kann für Zelltests und bestimmte Rezeptorbindungsstudien von Bedeutung sein.
+- **Masse.** Die auf einem COA angegebene Masse ist die Masse der freien Base; Fügen Sie den Gegenionenbeitrag hinzu, wenn Sie das Salz direkt wiegen.
+- **Zytotoxizität.** TFA kann in hohen Konzentrationen zytotoxisch sein; Acetat wird im Allgemeinen für Zellarbeiten bevorzugt.
 
-Salt exchange (TFA → acetate or HCl) is available on request for sensitive assays.
+Für empfindliche Tests ist auf Anfrage ein Salzaustausch (TFA → Acetat oder HCl) möglich.
 
-## Water content
+## Wassergehalt
 
-Karl Fischer titration measures hygroscopic water bound in the lyophilised cake. A typical research peptide holds 2–8% water by mass. High water content in a freshly received vial may indicate poor lyophilisation; a sudden increase on retest indicates loss of seal integrity.
+Die Karl-Fischer-Titration misst das im lyophilisierten Kuchen gebundene hygroskopische Wasser. Ein typisches Forschungspeptid enthält 2–8 Masse-% Wasser. Ein hoher Wassergehalt in einem frisch erhaltenen Fläschchen kann auf eine schlechte Lyophilisierung hinweisen; Ein plötzlicher Anstieg beim erneuten Test weist auf einen Verlust der Siegelintegrität hin.
 
-## Stability and re-test
+## Stabilität und erneuter Test
 
-Most lyophilised peptide COAs state a re-test interval of 24 months at −20 °C, sealed and protected from light. Re-test does not equal expiry — it is the date by which the analytical purity should be reconfirmed.
+Die meisten lyophilisierten Peptid-COAs geben ein Wiederholungstestintervall von 24 Monaten bei –20 °C an, versiegelt und vor Licht geschützt. Eine erneute Prüfung ist nicht gleichbedeutend mit einem Ablaufdatum – es ist das Datum, bis zu dem die analytische Reinheit erneut bestätigt werden sollte.
 
-For reconstituted peptides, the validated stability window depends on diluent and storage temperature. As a default, single-use aliquots at −80 °C carry 6–12 months of stability for most sequences; refrigerated bacteriostatic-water solutions are typically stable for 2–4 weeks.
+Bei rekonstituierten Peptiden hängt das validierte Stabilitätsfenster vom Verdünnungsmittel und der Lagertemperatur ab. Standardmäßig sind Einmal-Aliquots bei −80 °C für die meisten Sequenzen 6–12 Monate haltbar; Gekühlte bakteriostatische Wasserlösungen sind in der Regel 2–4 Wochen haltbar.
 
-## Where Peptide Shop COAs live
+## Wo Peptide Shop COAs leben
 
-Every Peptide Shop product page links to a HTML certificate per locale. The certificate is generated from the lot record on file and includes all fields above. If a paper or PDF version is required for an audit, contact us with the lot number and the locale.
+Jede Produktseite von Peptide Shop enthält einen Link zu einem HTML-Zertifikat pro Gebietsschema. Das Zertifikat wird aus dem hinterlegten Chargendatensatz erstellt und enthält alle oben genannten Felder. Wenn für ein Audit eine Papier- oder PDF-Version erforderlich ist, kontaktieren Sie uns unter Angabe der Chargennummer und des Standorts.
 
-## Cross-references
+## Querverweise
 
-- Mechanism behind reverse-phase HPLC: see [What ≥99% HPLC purity means](/learn/hplc-purity/).
-- Practical reconstitution: see [Peptide reconstitution & dilution guide](/learn/reconstitution-guide/).
-- Glossary entries for **net peptide**, **counter-ion**, **monoisotopic mass**, **Karl Fischer**: see [the glossary](/learn/glossary/).
+- Mechanismus hinter der Umkehrphasen-HPLC: siehe [Was ≥99 % HPLC-Reinheit bedeutet](/learn/hplc-purity/).
+- Praktische Rekonstitution: siehe [Leitfaden zur Rekonstitution und Verdünnung von Peptiden](/learn/reconstitution-guide/).
+- Glossareinträge für **Nettopeptid**, **Gegenion**, **monoisotopische Masse**, **Karl Fischer**: siehe [das Glossar](/learn/glossary/).

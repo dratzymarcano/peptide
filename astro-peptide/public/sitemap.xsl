@@ -59,7 +59,7 @@
           }
           tr:last-child td { border-bottom: none; }
           tr:hover td { background: #f8fafc; }
-          a { color: #2563eb; text-decoration: none; word-break: break-all; }
+          a { color: #0077b6; text-decoration: none; word-break: break-all; }
           a:hover { text-decoration: underline; }
           .num { color: #94a3b8; font-variant-numeric: tabular-nums; width: 4rem; }
           .small { color: #64748b; font-size: 0.85rem; }
@@ -71,7 +71,7 @@
             th { background: #1f2937; color: #f1f5f9; }
             th, td { border-bottom-color: #1f2937; }
             tr:hover td { background: #182338; }
-            a { color: #60a5fa; }
+            a { color: #7dcbfa; }
           }
         </style>
       </head>

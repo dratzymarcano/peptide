@@ -1,118 +1,131 @@
 ---
-title: "Best Practices for Peptide Storage and Handling"
-description: "Essential guidelines for storing lyophilised and reconstituted peptides to maintain stability and maximise shelf life."
+title: "Best Practices für die Lagerung und Handhabung von Peptiden"
+description: "Grundlegende Richtlinien für die Lagerung lyophilisierter und rekonstituierter Peptide zur Aufrechterhaltung der Stabilität und Maximierung der Haltbarkeit."
 publishDate: "2025-12-01"
-author: "Peptide Shop Editorial"
-category: "Lab Techniques"
-tags: ["storage", "handling", "stability", "protocols", "laboratory"]
+author: "Peptide Shop Redaktion"
+category: "Labormethoden & Analytik"
+tags:
+  - "peptidforschung"
+  - "forschung"
 image: "/images/lifestyle/research-lab-bench.webp"
 featured: false
 meta:
-  title: "Peptide Storage Guide | Best Practices for Researchers"
-  description: "Learn the essential guidelines for storing and handling research peptides. Proper storage techniques to maintain purity and extend shelf life."
+  title: "Best Practices für die Lagerung und Handhabung von Peptiden"
+  description: "Grundlegende Richtlinien für die Lagerung lyophilisierter und rekonstituierter Peptide zur Aufrechterhaltung der Stabilität und Maximierung der."
+---
+## Warum die richtige Lagerung wichtig ist
+
+Peptide sind empfindliche Moleküle, die sich zersetzen können, wenn sie Hitze, Feuchtigkeit, Licht oder Sauerstoff ausgesetzt werden. Die ordnungsgemäße Lagerung ist für die Aufrechterhaltung der Reinheit und Aktivität Ihrer Forschungsverbindungen von entscheidender Bedeutung.
+
+Das Befolgen dieser Richtlinien trägt dazu bei, dass Ihre Peptide während Ihres Forschungsprojekts stabil bleiben.
+
+## Lagerung lyophilisierter (gefriergetrockneter) Peptide
+
+Lyophilisierte Peptide sind die stabilste Form für die Lagerung. So halten Sie sie in optimalem Zustand:
+
+### Temperatur
+
+- **Kurzfristig (Wochen)**: Bei -20°C lagern
+- **Langfristig (Monate bis Jahre)**: Für maximale Stabilität bei -80 °C lagern
+- **Vermeiden**: Wiederholte Frost-Tau-Wechsel
+
+### Schutz vor Feuchtigkeit
+
+Lyophilisierte Peptide sind hygroskopisch – sie nehmen leicht Feuchtigkeit aus der Luft auf. Um dies zu verhindern:
+
+- Halten Sie die Fläschchen bis zur Verwendung verschlossen
+- Lassen Sie die Fläschchen vor dem Öffnen auf Raumtemperatur kommen (verhindert Kondensation)
+- In Lagerbehältern Trockenmittel verwenden
+- Arbeiten Sie zügig, wenn die Durchstechflasche geöffnet ist
+
+### Lichtschutz
+
+Viele Peptide sind lichtempfindlich. Lagern in:
+
+- Originale Bernsteinfläschchen (falls vorhanden)
+- Dunkle Aufbewahrungsboxen oder in Folie verpackt
+- Kühl-/Gefrierschränke nicht in der Nähe von Leuchtstofflampen aufstellen
+
+## Rekonstituierende Peptide
+
+Wenn Sie bereit sind, Ihre Peptide zu verwenden, befolgen Sie diese Richtlinien zur Rekonstitution:
+
+### Auswahl eines Lösungsmittels
+
+- **Bakteriostatisches Wasser** – Am gebräuchlichsten, für die meisten Peptide geeignet
+- **Sterilwasser** – Für Einmalanwendungen
+- **Essigsäure (0,1 %)** – Für basische Peptide, die schwer löslich sind
+- **DMSO** – Für hydrophobe Peptide (minimale Menge verwenden)
+
+### Rekonstitutionsprozess
+
+1. Berechnen Sie das für Ihre gewünschte Konzentration benötigte Volumen
+2. Geben Sie das Lösungsmittel langsam entlang der Seite des Fläschchens hinzu
+3. Vorsichtig schwenken – niemals kräftig schütteln oder schütteln
+4. Vollständig auflösen lassen (kann mehrere Minuten dauern)
+5. Bei anhaltender Trübung kann eine kleine Menge Essigsäure Abhilfe schaffen
+
+## Lagerung rekonstituierter Peptide
+
+In Lösung sind Peptide weniger stabil als ihre lyophilisierte Form:
+
+### Kurzfristige Lagerung (Tage bis Wochen)
+
+- Bei 2-8°C lagern (Kühlschrank)
+- Bei den meisten Peptiden innerhalb von 2–4 Wochen verbrauchen
+- Überprüfen Sie vor jedem Gebrauch, ob Niederschlag oder Trübung vorhanden ist
+
+### Langzeitlagerung (Wochen bis Monate)
+
+- Teilen Sie es in Portionen für den einmaligen Gebrauch auf, um Gefrier-Auftau-Zyklen zu vermeiden
+- Lagern Sie Aliquots bei -20 °C oder -80 °C
+- Beschriften Sie deutlich mit Datum, Konzentration und Inhalt
+
+## Peptidspezifische Überlegungen
+
+## Einige Peptide erfordern eine besondere Handhabung
+
+### GHK-Cu (Kupferpeptid)
+
+- Stark hygroskopisch – besondere Pflege durch Feuchtigkeit
+- Lösungen sind aufgrund des Kupfergehalts typischerweise blau
+- In Lösung bei 4 °C über längere Zeiträume stabil
+
+### Cysteinhaltige Peptide
+
+- Anfällig für Oxidation – Lufteinwirkung minimieren
+- Erwägen Sie die Zugabe von Reduktionsmitteln zu Lösungen
+- Verwenden Sie Argon oder Stickstoff, um die Luft in den Fläschchen zu verdrängen
+
+### Große Peptide (>30 Aminosäuren)
+
+- Empfindlicher gegenüber Aggregation
+- Möglicherweise sind bestimmte Pufferbedingungen erforderlich
+- Erwägen Sie eine Sterilfiltration nach der Rekonstitution
+
+## Übersichtstabelle
+
+| Lagerbedingungen | Lyophilisiert | Rekonstituiert |
+|-----|-------------|---------------|
+| Raumtemperatur | Tage (versiegelt) | Stunden |
+| Kühlschrank (4°C) | Wochen | 2-4 Wochen |
+| Gefrierschrank (-20°C) | Monate | 1-2 Monate |
+| Tiefkühltruhe (-80°C) | Jahre | 3-6 Monate |
+
+## Fazit
+
+Die ordnungsgemäße Lagerung und Handhabung von Peptiden ist für eine erfolgreiche Forschung von grundlegender Bedeutung. Indem Sie diese Richtlinien befolgen, können Sie sicherstellen, dass Ihre Peptide während Ihrer Experimente ihre Reinheit und Aktivität behalten.
+
+Wenn Sie Fragen zu spezifischen Anforderungen an die Lagerung von Peptiden haben, steht Ihnen unser technisches Team jederzeit zur Verfügung.
+
 ---
 
-## Why Proper Storage Matters
+### Laborreagenzien für diese Forschungsbereiche
 
-Peptides are sensitive molecules that can degrade when exposed to heat, moisture, light, or oxygen. Proper storage is essential to maintain the purity and activity of your research compounds.
+Für präklinische In-vitro-Studien, Zellkultur-Assays und Stabilitätsuntersuchungen stehen im Peptide Shop geprüfte Reagenzien mit chargenspezifischem HPLC- und MS-Zertifikat bereit:
 
-Following these guidelines will help ensure your peptides remain stable throughout your research project.
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): ≥99 % Reinheit, chargenbezogenes Analysezertifikat (COA).
+- [**BPC-157 5 mg**](/peptides/bpc-157/): ≥99 % Reinheit, chargenbezogenes Analysezertifikat (COA).
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Sterile Lösung für reproduzierbare Rekonstitutionsprotokolle.
+- [**Peptid-Dosierungsrechner**](/peptid-rechner/): Präzise Umrechnung von Konzentrationen, Lösungsvolumen und Einheiten.
 
-## Storing Lyophilised (Freeze-Dried) Peptides
-
-Lyophilised peptides are the most stable form for storage. Here's how to keep them in optimal condition:
-
-### Temperature
-
-- **Short-term (weeks)**: Store at -20°C
-- **Long-term (months to years)**: Store at -80°C for maximum stability
-- **Avoid**: Repeated freeze-thaw cycles
-
-### Protection from Moisture
-
-Lyophilised peptides are hygroscopic—they readily absorb moisture from the air. To prevent this:
-
-- Keep vials sealed until ready for use
-- Allow vials to reach room temperature before opening (prevents condensation)
-- Use desiccants in storage containers
-- Work quickly when the vial is open
-
-### Light Protection
-
-Many peptides are photosensitive. Store in:
-
-- Original amber vials (if provided)
-- Dark storage boxes or wrapped in foil
-- Refrigerators/freezers away from fluorescent lighting
-
-## Reconstituting Peptides
-
-When you're ready to use your peptides, follow these reconstitution guidelines:
-
-### Choosing a Solvent
-
-- **Bacteriostatic water** - Most common, suitable for most peptides
-- **Sterile water** - For single-use applications
-- **Acetic acid (0.1%)** - For basic peptides that are difficult to dissolve
-- **DMSO** - For hydrophobic peptides (use minimal volume)
-
-### Reconstitution Process
-
-1. Calculate the volume needed for your desired concentration
-2. Add solvent slowly down the side of the vial
-3. Gently swirl—never vortex or shake vigorously
-4. Allow to dissolve completely (may take several minutes)
-5. If cloudiness persists, a small amount of acetic acid may help
-
-## Storing Reconstituted Peptides
-
-Once in solution, peptides are less stable than their lyophilised form:
-
-### Short-term Storage (Days to Weeks)
-
-- Store at 2-8°C (refrigerator)
-- Use within 2-4 weeks for most peptides
-- Check for precipitation or cloudiness before each use
-
-### Long-term Storage (Weeks to Months)
-
-- Aliquot into single-use portions to avoid freeze-thaw cycles
-- Store aliquots at -20°C or -80°C
-- Label clearly with date, concentration, and contents
-
-## Peptide-Specific Considerations
-
-Some peptides require special handling:
-
-### GHK-Cu (Copper Peptide)
-
-- Highly hygroscopic—extra care with moisture
-- Solutions are typically blue due to copper content
-- Stable in solution at 4°C for extended periods
-
-### Cysteine-Containing Peptides
-
-- Prone to oxidation—minimise air exposure
-- Consider adding reducing agents to solutions
-- Use argon or nitrogen to displace air in vials
-
-### Large Peptides (>30 amino acids)
-
-- More sensitive to aggregation
-- May require specific buffer conditions
-- Consider sterile filtration after reconstitution
-
-## Summary Table
-
-| Storage Condition | Lyophilised | Reconstituted |
-|-------------------|-------------|---------------|
-| Room temperature | Days (sealed) | Hours |
-| Refrigerator (4°C) | Weeks | 2-4 weeks |
-| Freezer (-20°C) | Months | 1-2 months |
-| Deep freezer (-80°C) | Years | 3-6 months |
-
-## Conclusion
-
-Proper storage and handling of peptides is fundamental to successful research. By following these guidelines, you can ensure your peptides maintain their purity and activity throughout your experiments.
-
-If you have questions about specific peptide storage requirements, our technical team is always available to help.

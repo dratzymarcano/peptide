@@ -1,0 +1,83 @@
+---
+/**
+ * Analytical specifications for every product on a hub page.
+ *
+ * Hub pages carried a heading, one paragraph and a grid of cards — under 250
+ * words on the pages targeting the most commercial queries on the site, with
+ * nothing a buyer could compare across compounds. The table is real catalogue
+ * data (the same records the certificates are generated from), so it adds
+ * substance and a comparison view at once, and every row links to the product.
+ */
+import type { CollectionEntry } from 'astro:content';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import { getLocalizedProduct } from '../i18n/productContent';
+
+interface Props {
+  products: CollectionEntry<'products'>[];
+}
+
+const { products } = Astro.props;
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+---
+
+<section class="spec-block" aria-labelledby="spec-title">
+  <h2 id="spec-title">{t('hub.specTitle')}</h2>
+  <p class="spec-lead">{t('hub.specLead')}</p>
+
+  <div class="table-wrap">
+    <table class="table-clean spec-table">
+      <caption class="sr-only">{t('hub.tableCaption')}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{t('shopPage.tableProduct')}</th>
+          <th scope="col">CAS</th>
+          <th scope="col">{t('productPage.molecularWeight')}</th>
+          <th scope="col">{t('shopPage.tablePurity')}</th>
+          <th scope="col">{t('shopPage.tablePackage')}</th>
+          <th scope="col" class="num">{t('shopPage.tablePrice')}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products.map((product) => (
+          <tr>
+            <th scope="row">
+              <a href={href(`/peptides/${product.id}/`)}>{getLocalizedProduct(product, locale).cleanTitle}</a>
+            </th>
+            <td class="text-mono">{product.data.cas ?? t('productPage.notAssigned')}</td>
+            <td class="text-mono">{product.data.molecular_weight ?? t('productPage.notAssigned')}</td>
+            <td>{product.data.purity}</td>
+            <td>{product.data.package_sizes?.[0] ?? '-'}</td>
+            <td class="num">
+              {product.data.price != null ? `€${product.data.price.toFixed(2)}` : getLocalizedProduct(product, locale).priceRange}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .spec-block { margin-top: var(--space-16); }
+  .spec-block h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .spec-lead { color: var(--color-ink-3); margin: var(--space-3) 0 var(--space-6); max-width: 60ch; }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: #fff;
+  }
+  .spec-table { min-width: 780px; }
+  .spec-table th[scope='row'] { font-weight: 600; }
+  .spec-table th[scope='row'] a { color: var(--color-ink); text-decoration: none; }
+  .spec-table th[scope='row'] a:hover { color: var(--color-primary); text-decoration: underline; }
+  .spec-table .text-mono { font-size: var(--text-sm); }
+</style>

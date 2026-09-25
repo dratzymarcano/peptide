@@ -52,27 +52,37 @@ const breadcrumbs = [
     <div class="container">
       <Breadcrumb items={breadcrumbs} />
 
-      <span class="eyebrow">{t('nav.catalogue')}</span>
       <h1>{t('catalogIndex.title')}</h1>
       <p class="lead">{t('catalogIndex.lead', { productCount: products.length, areaCount: researchAreas.length })}</p>
 
       <div class="grid grid-3" style="margin-top: var(--space-12);">
         {researchAreas.map((area) => (
           <a href={href(`/catalog/${area.slug}/`)} class="card card-category" style="text-decoration:none; color:inherit;">
-            <span class="eyebrow">{areaLabel(area.slug, 'short')}</span>
             <h3>{areaLabel(area.slug, 'name')}</h3>
             <p style="color: var(--color-ink-3); font-size: var(--text-sm);">{areaLabel(area.slug, 'description')}</p>
             <div class="cta" style="display:flex; align-items:center; justify-content:space-between;">
-              <span class="badge">{t('home.productCount', { count: counts.get(area.slug) ?? 0 })}</span>
+              <span class="badge">{t('catalogIndex.productCount', { count: counts.get(area.slug) ?? 0 })}</span>
               <span class="text-primary" style="font-weight:600;">{t('catalogIndex.browse')}</span>
             </div>
           </a>
         ))}
       </div>
 
+      <div style="margin-top: var(--space-8); padding: var(--space-6); background: var(--color-surface-2); border-radius: var(--radius-lg); border: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4);">
+        <div>
+          <h3 style="margin: 0 0 var(--space-1); font-size: 1.15rem;">Laborzubehör & Rekonstitutions-Rechner</h3>
+          <p style="margin: 0; color: var(--color-ink-2); font-size: 0.9rem;">
+            Finden Sie steriles USP-bakteriostatisches Wasser (30 ml), Einweg-Feindosierspritzen sowie unseren interaktiven Dosiskalkulator.
+          </p>
+        </div>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href={href('/peptid-rechner/')} class="btn btn-primary btn-sm">Peptid-Rechner öffnen</a>
+          <a href={href('/catalog/supplies/')} class="btn btn-secondary btn-sm">Laborzubehör ansehen</a>
+        </div>
+      </div>
+
       <hr class="divider" />
 
-      <span class="eyebrow">{t('nav.useCases')}</span>
       <h2>{t('catalogIndex.useCasesTitle')}</h2>
       <p class="lead">{t('catalogIndex.useCasesLead')}</p>
       <div class="grid grid-3" style="margin-top: var(--space-8);">

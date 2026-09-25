@@ -1,6 +1,6 @@
 ---
-title: "Lyophilised vs Liquid Peptides"
-description: "Why research peptides are shipped as a freeze-dried cake, what changes once the vial is reconstituted, and when liquid formulations make sense."
+title: "Lyophilisierte vs. flüssige Peptide"
+description: "Warum Forschungspeptide als gefriergetrockneter Kuchen verschickt werden, was sich ändert, wenn das Fläschchen rekonstituiert ist und wann flüssige Formulierungen sinnvoll sind."
 publishDate: "2026-05-03"
 category: "Reference"
 readTime: "5 min"
@@ -8,63 +8,63 @@ order: 60
 primaryKeyword: "lyophilized peptide"
 tags: ["lyophilised", "formulation", "storage"]
 meta:
-  title: "Lyophilised vs Liquid Peptides | Peptide Shop Learn"
-  description: "Trade-offs between lyophilised and pre-reconstituted research peptides: stability, dosing precision, shipping, and when liquid formats are appropriate."
+  title: "Lyophilisierte vs. flüssige Peptide | Peptide Shop"
+  description: "Stabilität, Dosierungsgenauigkeit und Versandvorteile gefriergetrockneter Forschungspeptide im Vergleich zu flüssigen Lösungen."
 ---
 
-Almost every research peptide on Peptide Shop ships as a **lyophilised** (freeze-dried) cake in a sealed glass vial. This article explains why, what changes the moment the vial is reconstituted, and the narrow set of cases where a liquid formulation is preferable.
+Fast jedes Forschungspeptid auf Peptide Shop wird als **lyophilisierter** (gefriergetrockneter) Kuchen in einem versiegelten Glasfläschchen geliefert. In diesem Artikel wird erklärt, warum, was sich ändert, sobald die Durchstechflasche rekonstituiert wird, und in welchen wenigen Fällen eine flüssige Formulierung vorzuziehen ist.
 
-## What lyophilisation does
+## Was Lyophilisierung bewirkt
 
-Lyophilisation (freeze-drying) removes water from the formulation under vacuum at low temperature. The end product is a porous solid cake of peptide plus a small amount of buffering or bulking agent (often acetate, mannitol, or trehalose). With water removed:
+Durch Lyophilisierung (Gefriertrocknung) wird der Formulierung unter Vakuum und niedriger Temperatur Wasser entzogen. Das Endprodukt ist ein poröser, fester Kuchen aus Peptid und einer kleinen Menge Puffer- oder Füllstoff (häufig Acetat, Mannitol oder Trehalose). Ohne Wasser:
 
-- **Hydrolysis** of labile peptide bonds is dramatically slowed.
-- **Aggregation kinetics** drop by orders of magnitude.
-- **Microbial growth** is suppressed (water activity below 0.6 prevents most growth).
-- **Shipping at ambient temperature** becomes feasible for the short transit window.
+- Die **Hydrolyse** labiler Peptidbindungen wird drastisch verlangsamt.
+- **Aggregationskinetik** sinkt um Größenordnungen.
+- **Mikrobielles Wachstum** wird unterdrückt (eine Wasseraktivität unter 0,6 verhindert das meiste Wachstum).
+- **Versand bei Umgebungstemperatur** wird für das kurze Transportfenster möglich.
 
-A correctly lyophilised research peptide stored at `−20 °C` is typically stable for **24 months** from manufacture.
+Ein korrekt lyophilisiertes Forschungspeptid, das bei „−20 °C“ gelagert wird, ist in der Regel **24 Monate** ab der Herstellung stabil.
 
-## What changes on reconstitution
+## Was sich bei der Rekonstitution ändert
 
-The moment diluent enters the vial, every degradation pathway re-activates:
+Sobald das Verdünnungsmittel in das Fläschchen gelangt, werden alle Abbauwege erneut aktiviert:
 
-| Pathway | Lyophilised | Reconstituted |
+| Weg | Lyophilisiert | Rekonstituiert |
 |---|---|---|
-| Backbone hydrolysis | negligible | seconds–weeks, pH-dependent |
-| Met oxidation | very slow | hours–days in air |
-| Cys disulfide scrambling | very slow | minutes–hours at neutral pH |
-| Asn deamidation | slow | days–weeks |
-| Trp photo-oxidation | requires light | requires light |
-| Aggregation | very slow | minutes–weeks, sequence-dependent |
+| Rückgrathydrolyse | vernachlässigbar | Sekunden–Wochen, pH-abhängig |
+| Met-Oxidation | sehr langsam | Stunden–Tage in der Luft |
+| Cys-Disulfid-Scrambling | sehr langsam | Minuten–Stunden bei neutralem pH |
+| Asn-Desamidierung | langsam | Tage–Wochen |
+| Trp-Photooxidation | erfordert Licht | erfordert Licht |
+| Aggregation | sehr langsam | Minuten–Wochen, sequenzabhängig |
 
-Reconstituted shelf life therefore drops from years to days–weeks. Storage protocols change accordingly (see [storage & handling](/learn/storage-handling/)).
+Die rekonstituierte Haltbarkeit sinkt daher von Jahren auf Tage–Wochen. Die Speicherprotokolle ändern sich entsprechend (siehe [Speicherung und Handhabung](/learn/storage-handling/)).
 
-## Why we ship lyophilised
+## Warum wir lyophilisiert versenden
 
-1. **Stability in transit.** A 48-hour international shipment at ambient temperature is non-trivial for a liquid formulation; the lyophilised cake survives easily.
-2. **Concentration flexibility.** A single 5 mg vial can be reconstituted to anywhere from 0.5 mg/mL to 10 mg/mL depending on the assay.
-3. **Diluent flexibility.** The user picks the diluent appropriate to the assay (water, BAC water, PBS, DMSO).
-4. **Shelf-life economics.** A 24-month shelf life on a lyophilised lot supports lab planning; a 5-day liquid formulation does not.
+1. **Stabilität während des Transports.** Ein 48-stündiger internationaler Versand bei Umgebungstemperatur ist für eine flüssige Formulierung nicht trivial; der lyophilisierte Kuchen überlebt problemlos.
+2. **Konzentrationsflexibilität.** Ein einzelnes 5-mg-Fläschchen kann je nach Test auf einen Wert zwischen 0,5 mg/ml und 10 mg/ml rekonstituiert werden.
+3. **Verdünnungsmittelflexibilität.** Der Benutzer wählt das für den Test geeignete Verdünnungsmittel aus (Wasser, BAC-Wasser, PBS, DMSO).
+4. **Ökonomische Haltbarkeitsdauer.** Eine 24-monatige Haltbarkeitsdauer einer lyophilisierten Charge unterstützt die Laborplanung; Eine 5-Tage-Flüssigformulierung tut dies nicht.
 
-## When liquid makes sense
+## Wenn Flüssigkeit Sinn macht
 
-A pre-reconstituted, liquid research peptide can be appropriate when:
+Ein vorrekonstituiertes, flüssiges Forschungspeptid kann geeignet sein, wenn:
 
-- The assay is run at a fixed concentration in a defined diluent and runs daily over a short window.
-- The peptide is stable in solution for months (some short, hydrophilic, non-Met/Cys/Trp sequences).
-- The end-user does not have a `−20 °C` freezer near the bench.
+- Der Assay wird bei einer festen Konzentration in einem definierten Verdünnungsmittel durchgeführt und läuft täglich über ein kurzes Zeitfenster.
+- Das Peptid ist in Lösung über Monate hinweg stabil (einige kurze, hydrophile Nicht-Met/Cys/Trp-Sequenzen).
+- Der Endbenutzer verfügt nicht über einen Gefrierschrank mit „−20 °C“ in der Nähe der Werkbank.
 
-If you have a project with a recurring concentration requirement and want a liquid format, contact the technical team. Custom liquid formulations are case-by-case.
+Wenn Sie ein Projekt mit einer wiederkehrenden Konzentrationsanforderung haben und ein flüssiges Format wünschen, wenden Sie sich an das technische Team. Individuelle Flüssigformulierungen erfolgen von Fall zu Fall.
 
-## Practical implications
+## Praktische Implikationen
 
-- Treat every newly reconstituted vial as having a **fresh shelf-life clock** that starts at first diluent contact.
-- **Aliquot immediately** rather than re-opening a stock vial repeatedly.
-- Record the **reconstitution date and diluent** on every aliquot label.
+- Behandeln Sie jedes neu rekonstituierte Fläschchen so, als hätte es eine **frische Haltbarkeitsuhr**, die beim ersten Kontakt mit dem Verdünnungsmittel beginnt.
+- **Sofort aliquotieren**, anstatt ein Vorratsfläschchen wiederholt zu öffnen.
+- Notieren Sie das **Rekonstitutionsdatum und das Verdünnungsmittel** auf jedem Aliquotetikett.
 
-## Cross-references
+## Querverweise
 
-- [Peptide reconstitution & dilution guide](/learn/reconstitution-guide/)
-- [Peptide storage & handling best practices](/learn/storage-handling/)
-- [How to read a peptide COA](/learn/coa-explained/)
+- [Anleitung zur Rekonstitution und Verdünnung von Peptiden](/learn/reconstitution-guide/)
+- [Best Practices für die Lagerung und Handhabung von Peptiden](/learn/storage-handling/)
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)

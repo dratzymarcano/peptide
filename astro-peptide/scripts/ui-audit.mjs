@@ -38,7 +38,7 @@ const PAGES = [
   ['search', '/search/'],
   ['impressum', '/impressum/'],
   ['404', '/this-page-does-not-exist/'],
-  ['de-home', '/de/'],
+  ['en-home', '/en/'],
   ['fr-product', '/fr/peptides/ipamorelin/'],
 ];
 

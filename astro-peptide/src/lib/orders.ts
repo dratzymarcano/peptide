@@ -4,7 +4,7 @@
 // record is best-effort and used to drive confirmation emails / order-confirmation page.
 
 export type OrderStatus = 'pending' | 'paid' | 'expired' | 'failed' | 'cancelled';
-export type PaymentMethod = 'bitcoin' | 'bank' | 'card';
+export type PaymentMethod = 'bitcoin' | 'bank' | 'card' | 'crypto';
 
 export interface OrderItem {
   productId: string;

@@ -4,7 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import ChipList from '../../components/ChipList.astro';
 import JsonLd from '../../components/JsonLd.astro';
-import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { getLocaleFromPathname, localizePath, localeMeta, sourceLocale } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
 
 export const prerender = false;
@@ -28,14 +28,32 @@ const related = allArticles
   .slice(0, 4);
 
 const siteUrl = 'https://peptide-kaufen.net';
-const articleUrl = new URL(href(`/learn/${article.id}/`), Astro.site).toString();
+
+/*
+ * These reference articles are English-only markdown. The route renders the
+ * same English body under every locale prefix, so /de/learn/coa-explained/ was
+ * a verbatim duplicate of /learn/coa-explained/ that nonetheless advertised
+ * itself, via hreflang and `inLanguage`, as the German version.
+ *
+ * Both URLs stay reachable (the localized chrome is still useful to a reader
+ * who arrived in German), but the English URL is the canonical one and the
+ * page declares a single language. Translate the markdown and this collapses
+ * back to a normal six-locale cluster — see RUNTIME_TRANSLATED_COLLECTIONS in
+ * src/lib/localizedEntry.ts.
+ */
+// Built through localizePath rather than hardcoded: the unprefixed path was
+// the English one until German took the root, at which point this silently
+// started canonicalising English articles onto their German URL.
+const canonicalPath = localizePath(`/learn/${article.id}/`, sourceLocale);
+const articleUrl = new URL(canonicalPath, Astro.site).toString();
 
 const articleSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: article.data.title,
   description: article.data.meta.description,
-  inLanguage: locale,
+  inLanguage: 'en',
+  image: `${siteUrl}/brand/og-default.jpg`,
   datePublished: new Date(article.data.publishDate).toISOString(),
   dateModified: new Date(article.data.updatedDate || article.data.publishDate).toISOString(),
   mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
@@ -50,7 +68,7 @@ const articleSchema: Record<string, unknown> = {
     '@id': `${siteUrl}/#organization`,
     name: 'Peptide Shop',
     url: siteUrl,
-    logo: { '@type': 'ImageObject', url: `${siteUrl}/favicon.svg` },
+    logo: { '@type': 'ImageObject', url: `${siteUrl}/brand/peptide-shop-logo.png`, width: 600, height: 148 },
   },
 };
 
@@ -61,7 +79,7 @@ const howToSchema = article.data.howTo && article.id === 'reconstitution-guide'
       '@type': 'HowTo',
       name: 'How to reconstitute a lyophilised research peptide',
       description: 'Step-by-step reconstitution and aliquoting workflow that preserves analytical purity of a lyophilised research peptide vial.',
-      inLanguage: locale,
+      inLanguage: 'en',
       totalTime: 'PT30M',
       tool: [
         { '@type': 'HowToTool', name: 'Lyophilised peptide vial' },
@@ -94,6 +112,8 @@ const breadcrumbs = [
   title={article.data.meta.title}
   description={article.data.meta.description}
   breadcrumbs={breadcrumbs}
+  canonical={canonicalPath}
+  availableLocales={[sourceLocale]}
 >
   <JsonLd schema={schemas} />
 
@@ -136,6 +156,16 @@ const breadcrumbs = [
               </div>
             </section>
           )}
+          <section class="card" style="border: 1px solid var(--color-border); background: #ffffff;">
+            <h3 style="font-size: 1.05rem; font-weight: 600; margin: 0 0 0.5rem 0;">Peptid-Rechner</h3>
+            <p style="font-size: 0.875rem; color: var(--color-ink-2); line-height: 1.45; margin-bottom: 1rem;">
+              Berechnen Sie benötigte Dilutionsvolumina, Konzentrationen (mcg/ml) und Spritzeneinheiten (U-100, U-50, U-30) fehlerfrei.
+            </p>
+            <a class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;" href={href('/peptid-rechner/')}>
+              Zum Peptid-Rechner →
+            </a>
+          </section>
+
           <section class="card">
             <h2>{t('nav.catalogue')}</h2>
             <p>{t('learn.catalogueBody')}</p>

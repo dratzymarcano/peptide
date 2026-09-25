@@ -26,7 +26,8 @@ interface CheckoutOrderItem {
 interface CheckoutOrderPayload {
   id?: string;
   email?: string;
-  paymentMethod?: 'bank-transfer' | 'bitcoin';
+  paymentMethod?: 'bank-transfer' | 'crypto' | 'bitcoin';
+  cryptoAsset?: string;
   shippingMethod?: string;
   /** Client's own figure. Advisory only — compared, never billed on. */
   total?: number;
@@ -39,7 +40,8 @@ interface CheckoutOrderPayload {
 const isEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 function paymentMethod(input?: string): PaymentMethod {
-  return input === 'bitcoin' ? 'bitcoin' : 'bank';
+  if (input === 'crypto' || input === 'bitcoin') return 'crypto';
+  return 'bank';
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
@@ -93,6 +95,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         shipping,
         discount: 0,
         source: 'checkout',
+        cryptoAsset: payload.cryptoAsset ?? null,
       },
       items,
     });

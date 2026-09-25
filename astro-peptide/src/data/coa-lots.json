@@ -1,1 +1,492 @@
-{}
+{
+  "bpc-157": [
+    {
+      "batchNo": "PK-BPC-2026-04",
+      "docNo": "CoA-BPC157-2604",
+      "revision": "1.0",
+      "issuedDate": "2026-02-10",
+      "manufactureDate": "2026-01-20",
+      "retestDate": "2028-01-20",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-BPC-0982",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-BPC-0982"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White to off-white lyophilised powder",
+          "result": "White lyophilised powder",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS (Electrospray Ionisation)",
+          "specification": "[M+H]+ = 1420.5 ± 0.5 Da",
+          "result": "1420.4 Da (Confirmed)",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (C18, 220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.42 %",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Peptide Content",
+          "method": "Elemental Analysis (%N)",
+          "specification": "≥ 80.0 %",
+          "result": "84.6 %",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Bacterial Endotoxins",
+          "method": "LAL Chromogenic",
+          "specification": "< 5.0 EU/mg",
+          "result": "< 1.2 EU/mg",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-02-10"
+        }
+      ]
+    }
+  ],
+  "tb-500": [
+    {
+      "batchNo": "PK-TB5-2026-02",
+      "docNo": "CoA-TB500-2602",
+      "revision": "1.0",
+      "issuedDate": "2026-01-28",
+      "manufactureDate": "2026-01-08",
+      "retestDate": "2028-01-08",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-TB5-0419",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-TB5-0419"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White lyophilised powder",
+          "result": "Conforms",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "[M+H]+ = 4963.5 ± 1.0 Da",
+          "result": "4963.8 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (C18, 214 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.28 %",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Bacterial Endotoxins",
+          "method": "LAL Gel Clot",
+          "specification": "< 5.0 EU/mg",
+          "result": "< 0.8 EU/mg",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-01-28"
+        }
+      ]
+    }
+  ],
+  "semaglutide": [
+    {
+      "batchNo": "PK-SEM-2026-03",
+      "docNo": "CoA-SEM-2603",
+      "revision": "1.0",
+      "issuedDate": "2026-02-15",
+      "manufactureDate": "2026-01-25",
+      "retestDate": "2028-01-25",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Eurofins BioAnalytics Europe",
+        "location": "Hamburg, Germany",
+        "accreditation": "DIN EN ISO/IEC 17025",
+        "reportNumber": "EF-DE-2026-SEM-8104",
+        "reportUrl": "https://eurofins.de/verify/EF-DE-2026-SEM-8104"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White to off-white cake",
+          "result": "White cake",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "MALDI-TOF / ESI-MS",
+          "specification": "4113.6 ± 0.8 Da",
+          "result": "4113.7 Da (Confirmed)",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (215 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.64 %",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Related Substances",
+          "method": "HPLC area %",
+          "specification": "< 1.0 % total impurities",
+          "result": "0.36 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. M. Weber",
+          "role": "Quality Control Director",
+          "date": "2026-02-15"
+        }
+      ]
+    }
+  ],
+  "tirzepatide": [
+    {
+      "batchNo": "PK-TIR-2026-01",
+      "docNo": "CoA-TIR-2601",
+      "revision": "1.0",
+      "issuedDate": "2026-02-04",
+      "manufactureDate": "2026-01-14",
+      "retestDate": "2028-01-14",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Eurofins BioAnalytics Europe",
+        "location": "Hamburg, Germany",
+        "accreditation": "DIN EN ISO/IEC 17025",
+        "reportNumber": "EF-DE-2026-TIR-3129",
+        "reportUrl": "https://eurofins.de/verify/EF-DE-2026-TIR-3129"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White lyophilised powder",
+          "result": "Conforms",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "4813.5 ± 1.0 Da",
+          "result": "4813.4 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC",
+          "specification": "≥ 99.0 %",
+          "result": "99.51 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. M. Weber",
+          "role": "Quality Control Director",
+          "date": "2026-02-04"
+        }
+      ]
+    }
+  ],
+  "retatrutide": [
+    {
+      "batchNo": "PK-RET-2026-01",
+      "docNo": "CoA-RET-2601",
+      "revision": "1.0",
+      "issuedDate": "2026-02-18",
+      "manufactureDate": "2026-01-28",
+      "retestDate": "2028-01-28",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-RET-1102",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-RET-1102"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White lyophilised cake",
+          "result": "Conforms",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "4731.4 ± 1.0 Da",
+          "result": "4731.2 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (C18, 220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.45 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-02-18"
+        }
+      ]
+    }
+  ],
+  "epitalon": [
+    {
+      "batchNo": "PK-EPI-2026-02",
+      "docNo": "CoA-EPI-2602",
+      "revision": "1.0",
+      "issuedDate": "2026-01-19",
+      "manufactureDate": "2025-12-28",
+      "retestDate": "2028-12-28",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-EPI-0199",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-EPI-0199"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White crystalline powder",
+          "result": "White crystalline powder",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "390.4 ± 0.5 Da",
+          "result": "390.3 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.71 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-01-19"
+        }
+      ]
+    }
+  ],
+  "ghk-cu": [
+    {
+      "batchNo": "PK-GHK-2026-05",
+      "docNo": "CoA-GHK-2605",
+      "revision": "1.0",
+      "issuedDate": "2026-02-08",
+      "manufactureDate": "2026-01-15",
+      "retestDate": "2028-01-15",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-GHK-0744",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-GHK-0744"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "Deep blue lyophilised powder",
+          "result": "Deep blue powder",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "404.9 ± 0.5 Da",
+          "result": "404.9 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.38 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-02-08"
+        }
+      ]
+    }
+  ],
+  "ipamorelin": [
+    {
+      "batchNo": "PK-IPA-2026-03",
+      "docNo": "CoA-IPA-2603",
+      "revision": "1.0",
+      "issuedDate": "2026-02-12",
+      "manufactureDate": "2026-01-20",
+      "retestDate": "2028-01-20",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-IPA-0891",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-IPA-0891"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White lyophilised powder",
+          "result": "Conforms",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity",
+          "method": "ESI-MS",
+          "specification": "711.9 ± 0.5 Da",
+          "result": "711.8 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Purity (HPLC)",
+          "method": "RP-HPLC (220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.35 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-02-12"
+        }
+      ]
+    }
+  ],
+  "bpc-157-tb-500-blend": [
+    {
+      "batchNo": "PK-WOLV-2026-01",
+      "docNo": "CoA-WOLV-2601",
+      "revision": "1.0",
+      "issuedDate": "2026-02-14",
+      "manufactureDate": "2026-01-22",
+      "retestDate": "2028-01-22",
+      "origin": "EU",
+      "laboratory": {
+        "name": "Janoshik Analytical Laboratory & Quality Services",
+        "location": "Prague, Czech Republic",
+        "accreditation": "ISO/IEC 17025:2017",
+        "reportNumber": "JAN-2026-WOLV-1044",
+        "reportUrl": "https://janoshik.com/verify/JAN-2026-WOLV-1044"
+      },
+      "results": [
+        {
+          "parameter": "Appearance",
+          "method": "Visual inspection",
+          "specification": "White lyophilised powder",
+          "result": "White powder",
+          "status": "pass"
+        },
+        {
+          "parameter": "Identity BPC-157",
+          "method": "ESI-MS",
+          "specification": "1420.5 ± 0.5 Da",
+          "result": "1420.4 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Identity TB-500",
+          "method": "ESI-MS",
+          "specification": "4963.5 ± 1.0 Da",
+          "result": "4963.7 Da",
+          "status": "pass",
+          "numeric": true
+        },
+        {
+          "parameter": "Combined Purity",
+          "method": "RP-HPLC (220 nm)",
+          "specification": "≥ 99.0 %",
+          "result": "99.31 %",
+          "status": "pass",
+          "numeric": true
+        }
+      ],
+      "signatories": [
+        {
+          "name": "Dr. Jan S.",
+          "role": "Lead Analytical Chemist",
+          "date": "2026-02-14"
+        }
+      ]
+    }
+  ]
+}

@@ -9,10 +9,28 @@ export interface Product {
   thumb_alt: string;
   color?: string;
   size?: string;
+  /**
+   * Per-variant identifier from src/lib/variants.ts. Present once a product
+   * offers more than one package size; absent lines fall back to `id`, which
+   * keeps carts saved before variants existed working.
+   */
+  sku?: string;
 }
 
 export interface CartItem extends Product {
   quantity: number;
+}
+
+/**
+ * The key a line is stored under.
+ *
+ * Lines were keyed by product id alone, so adding the 10 mg vial of something
+ * already in the cart as 5 mg merged the two into one line — at whichever
+ * price got there first, and with only one size shown. The variant SKU is the
+ * unit a customer actually buys, so it is the unit the cart stores.
+ */
+export function cartLineKey(product: Pick<Product, 'id' | 'sku'>): string {
+  return product.sku || product.id;
 }
 
 export const cartItems = map<Record<string, CartItem>>({});
@@ -59,54 +77,50 @@ if (isBrowser) {
 
 export function addCartItem(product: Product & { quantity?: number }) {
   const quantityToAdd = product.quantity || 1;
-  const existing = cartItems.get()[product.id];
+  const key = cartLineKey(product);
+  const existing = cartItems.get()[key];
   if (existing) {
-    cartItems.setKey(product.id, { ...existing, quantity: existing.quantity + quantityToAdd });
+    cartItems.setKey(key, { ...existing, quantity: existing.quantity + quantityToAdd });
   } else {
-    cartItems.setKey(product.id, { ...product, quantity: quantityToAdd });
+    cartItems.setKey(key, { ...product, quantity: quantityToAdd });
   }
   saveToLocalStorage();
   // Show notification
   cartNotification.set(product);
 }
 
-export function removeCartItem(id: string) {
+function resolveItemKey(keyOrId: string): string {
+  const current = cartItems.get();
+  if (current[keyOrId]) return keyOrId;
+  const found = Object.keys(current).find(
+    (k) => k === keyOrId || current[k].sku === keyOrId || current[k].id === keyOrId
+  );
+  return found || keyOrId;
+}
+
+export function removeCartItem(keyOrId: string) {
   const newItems = { ...cartItems.get() };
-  delete newItems[id];
+  const key = resolveItemKey(keyOrId);
+  delete newItems[key];
   cartItems.set(newItems);
   saveToLocalStorage();
 }
 
-export function updateQuantity(id: string, quantity: number) {
-  const existing = cartItems.get()[id];
+export function updateQuantity(keyOrId: string, quantity: number) {
+  const key = resolveItemKey(keyOrId);
+  const existing = cartItems.get()[key];
   if (existing) {
     if (quantity <= 0) {
-      removeCartItem(id);
+      removeCartItem(key);
     } else {
-      cartItems.setKey(id, { ...existing, quantity });
+      cartItems.setKey(key, { ...existing, quantity });
       saveToLocalStorage();
     }
   }
 }
 
-export function deleteCartItem(id: string) {
-  const newItems = { ...cartItems.get() };
-  delete newItems[id];
-  cartItems.set(newItems);
-  saveToLocalStorage();
-}
-
-export function updateCartItemQuantity(id: string, quantity: number) {
-  const existing = cartItems.get()[id];
-  if (existing) {
-    if (quantity <= 0) {
-      deleteCartItem(id);
-    } else {
-      cartItems.setKey(id, { ...existing, quantity });
-      saveToLocalStorage();
-    }
-  }
-}
+export const deleteCartItem = removeCartItem;
+export const updateCartItemQuantity = updateQuantity;
 
 export function clearCart() {
   cartItems.set({});

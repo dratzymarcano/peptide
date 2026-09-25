@@ -1,6 +1,6 @@
 ---
-title: "UK Dispatch, Customs and Research Peptides"
-description: "How research-peptide shipments to and from the United Kingdom are documented, classified and cleared since the 2021 EU exit."
+title: "UK-Versand, Zoll und Forschungspeptide"
+description: "Wie Forschungspeptidlieferungen in das und aus dem Vereinigten Königreich seit dem EU-Austritt 2021 dokumentiert, klassifiziert und abgefertigt werden."
 publishDate: "2026-05-03"
 category: "Operations"
 readTime: "6 min"
@@ -8,65 +8,65 @@ order: 100
 primaryKeyword: "peptides uk customs"
 tags: ["uk", "customs", "shipping", "operations"]
 meta:
-  title: "UK Dispatch, Customs and Research Peptides | Peptide Shop Learn"
-  description: "Documentation, HS classification and customs handling for research-peptide shipments between the EU and the UK after the 2021 EU exit."
+  title: "Versand, Zoll und Forschungspeptide | Peptide Shop Leitfaden"
+  description: "Dokumentation, Zolltarif-Klassifizierung und Zollabfertigung für Forschungspeptid-Lieferungen."
 ---
 
-Since the United Kingdom's exit from the European Union in 2021, research peptide shipments between EU member states and the UK travel as international consignments rather than intra-community movements. This article describes the documentation, classification and labelling that we use to keep clearance times short and predictable.
+Seit dem Austritt des Vereinigten Königreichs aus der Europäischen Union im Jahr 2021 werden Forschungspeptidlieferungen zwischen EU-Mitgliedstaaten und dem Vereinigten Königreich als internationale Sendungen und nicht als innergemeinschaftliche Bewegungen befördert. Dieser Artikel beschreibt die Dokumentation, Klassifizierung und Kennzeichnung, die wir nutzen, um die Räumungszeiten kurz und vorhersehbar zu halten.
 
-## Movement category
+## Bewegungskategorie
 
-Research peptides shipped from our EU facility to a UK consignee move under the standard international parcel regime:
+Forschungspeptide, die von unserer EU-Einrichtung an einen Empfänger im Vereinigten Königreich versandt werden, bewegen sich im Rahmen des standardmäßigen internationalen Paketregimes:
 
-- **Origin paperwork:** commercial invoice with full product description, CAS number where applicable, net peptide mass per vial, total mass, sequence reference, value, and the line "For research use only — not for human or veterinary consumption."
-- **HS classification:** typically 2937.x (hormones, prostaglandins and their derivatives) for peptide hormones, 2933.x for non-hormone heterocyclic peptides, and 2934.x for nucleic-acid-related compounds. The exact 8- or 10-digit code depends on the peptide and is shown on the commercial invoice.
-- **Incoterms:** DAP (Delivered At Place) by default. UK import VAT and any duty are payable by the consignee on delivery unless an alternative incoterm is agreed.
+- **Ursprungsunterlagen:** Handelsrechnung mit vollständiger Produktbeschreibung, ggf. CAS-Nummer, Nettopeptidmasse pro Fläschchen, Gesamtmasse, Sequenzreferenz, Wert und der Zeile „Nur für Forschungszwecke – nicht für den menschlichen oder veterinärmedizinischen Verzehr.“
+- **HS-Klassifizierung:** typischerweise 2937.x (Hormone, Prostaglandine und ihre Derivate) für Peptidhormone, 2933.x für nicht-hormonelle heterozyklische Peptide und 2934.x für Nukleinsäure-verwandte Verbindungen. Der genaue 8- oder 10-stellige Code hängt vom Peptid ab und ist auf der Handelsrechnung angegeben.
+- **Incoterms:** Standardmäßig DAP (Delivered At Place). Die britische Einfuhrumsatzsteuer und etwaige Zölle sind vom Empfänger bei der Lieferung zu zahlen, es sei denn, es wurde ein alternativer Incoterm vereinbart.
 
-## Documentation in every shipment
+## Dokumentation in jeder Sendung
 
-Each box leaves the facility with:
+Jede Box verlässt die Einrichtung mit:
 
-1. The **commercial invoice** (paper + electronic).
-2. A printed **packing list** matching the invoice.
-3. The **lot-specific COA(s)** for every vial in the box.
-4. A **safety data sheet (SDS)** for each line item.
-5. Cold-chain indicator strips where the route requires them.
+1. Die **Handelsrechnung** (Papier + elektronisch).
+2. Eine gedruckte **Packliste** passend zur Rechnung.
+3. Die **chargenspezifischen COA(s)** für jedes Fläschchen im Karton.
+4. Ein **Sicherheitsdatenblatt (SDB)** für jede Position.
+5. Kühlketten-Indikatorstreifen dort, wo die Route sie erfordert.
 
-This combination is sufficient for HMRC clearance in the overwhelming majority of consignments.
+Diese Kombination reicht für die HMRC-Abfertigung bei der überwiegenden Mehrheit der Sendungen aus.
 
-## Controlled substances
+## Kontrollierte Substanzen
 
-A small number of research peptides are scheduled in the UK and require additional licensing before they can be supplied to a UK consignee. We will refuse a UK order silently routed through the standard checkout for any scheduled compound and will contact the customer to arrange the correct paperwork. If you are unsure whether a compound is scheduled in the UK, contact technical support before placing the order.
+Eine kleine Anzahl von Forschungspeptiden ist im Vereinigten Königreich geplant und erfordert eine zusätzliche Lizenzierung, bevor sie an einen britischen Empfänger geliefert werden können. Wir lehnen eine Bestellung aus dem Vereinigten Königreich ab, die stillschweigend über die Standardkasse für jede geplante Verbindung weitergeleitet wird, und werden den Kunden kontaktieren, um den korrekten Papierkram zu erledigen. Wenn Sie sich nicht sicher sind, ob eine Verbindung im Vereinigten Königreich geplant ist, wenden Sie sich an den technischen Support, bevor Sie die Bestellung aufgeben.
 
-## VAT and duty
+## Mehrwertsteuer und Zoll
 
-For UK consignees:
+Für britische Empfänger:
 
-- **VAT** is payable on import at the prevailing rate. Where the consignee has a UK VAT registration and a valid EORI number, we can prepare paperwork for postponed VAT accounting.
-- **Duty** is generally 0% on substances classified under 2937.x and 2933.x, but the carrier's broker is the authoritative source on the specific consignment.
+- Bei der Einfuhr ist **Mehrwertsteuer** zum geltenden Satz zu zahlen. Wenn der Empfänger über eine Umsatzsteuerregistrierung im Vereinigten Königreich und eine gültige EORI-Nummer verfügt, können wir die Unterlagen für die aufgeschobene Umsatzsteuerabrechnung vorbereiten.
+- **Der Zollsatz** beträgt im Allgemeinen 0 % für Stoffe, die unter 2937.x und 2933.x klassifiziert sind, aber der Makler des Spediteurs ist die maßgebliche Quelle für die spezifische Sendung.
 
-For non-UK / non-EU consignees, duty and tax are calculated by the destination's customs authority.
+Für Nicht-UK-/Nicht-EU-Empfänger werden Zölle und Steuern von der Zollbehörde des Zielortes berechnet.
 
-## Transit time
+## Transitzeit
 
-Typical end-to-end transit, EU lab to UK consignee:
+Typischer End-to-End-Transport vom EU-Labor zum britischen Empfänger:
 
-- **Order placed before 13:00 CET, working day:** picked, QC-checked and dispatched same day.
-- **Standard tracked airmail:** 2–4 working days door-to-door.
-- **Express courier:** 1–2 working days door-to-door.
-- **HMRC clearance:** typically same day on arrival; up to 24 hours when documentation requires manual review.
+- **Bestellung vor 13:00 Uhr MEZ, Werktag:** am selben Tag kommissioniert, qualitätsgeprüft und versandt.
+- **Standard-Luftpost mit Sendungsverfolgung:** 2–4 Werktage von Tür zu Tür.
+- **Expresskurier:** 1–2 Werktage von Tür zu Tür.
+- **HMRC-Freigabe:** normalerweise am selben Tag bei der Ankunft; bis zu 24 Stunden, wenn die Dokumentation eine manuelle Überprüfung erfordert.
 
-Cold-chain shipments use dry ice with a 72-hour temperature reserve to absorb clearance variability.
+Bei Kühlkettensendungen wird Trockeneis mit einer Temperaturreserve von 72 Stunden verwendet, um Schwankungen bei der Abfertigung auszugleichen.
 
-## Receiving guidance for UK labs
+## Wir erhalten Anleitungen für britische Labore
 
-1. Inspect the box on arrival. Photograph any external damage before opening.
-2. Confirm the lot number on each vial against the COAs in the shipment.
-3. Place the vials in `−20 °C` storage promptly.
-4. Retain the commercial invoice and the COAs together — both will be requested by your institution's procurement and EHS teams in the event of an audit.
+1. Überprüfen Sie den Karton bei der Ankunft. Fotografieren Sie vor dem Öffnen eventuelle äußere Beschädigungen.
+2. Überprüfen Sie die Chargennummer auf jedem Fläschchen anhand der Echtheitszertifikate in der Lieferung.
+3. Lagern Sie die Fläschchen umgehend bei „−20 °C“.
+4. Bewahren Sie die Handelsrechnung und die COAs zusammen auf – beide werden im Falle einer Prüfung von den Beschaffungs- und EHS-Teams Ihrer Institution angefordert.
 
-## Cross-references
+## Querverweise
 
-- [Peptide storage & handling best practices](/learn/storage-handling/)
-- [How to read a peptide COA](/learn/coa-explained/)
-- [What "for research use only" means](/learn/ruo-disclaimer/)
+- [Best Practices für die Lagerung und Handhabung von Peptiden](/learn/storage-handling/)
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)
+- [Was „nur für Forschungszwecke“ bedeutet](/learn/ruo-disclaimer/)

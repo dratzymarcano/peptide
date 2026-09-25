@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import TrustBar from '../components/TrustBar.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: 'Versand & Lieferung', url: href('/shipping/') },
+  { name: 'Versand in die Schweiz', url: href('/versand-schweiz/') },
+];
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DeliveryChargeSpecification',
+  name: 'Peptide Express-Versand in die Schweiz (3–5 Werktage)',
+  description: 'Sicherer und diskreter Versand von Forschungspeptiden in die Schweiz (Zürich, Basel, Bern, Genf, Lausanne) via Schweizerische Post Priority.',
+  areaServed: {
+    '@type': 'Country',
+    name: 'Switzerland',
+    identifier: 'CH',
+  },
+  deliveryTime: {
+    '@type': 'ShippingDeliveryTime',
+    transitTime: {
+      '@type': 'QuantitativeValue',
+      minValue: 3,
+      maxValue: 5,
+      unitCode: 'DAY',
+    },
+  },
+};
+---
+
+<Layout
+  title="Peptide bestellen Schweiz | Diskreter Versand in 3 bis 5 Tagen | Peptide Shop"
+  description="Peptide in die Schweiz liefern lassen: Zuverlässiger, diskreter Versand nach Zürich, Basel, Bern und Genf via Schweizerische Post Priority. Transparente Zollabwicklung."
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={webPageSchema} />
+
+  <section class="section">
+    <div class="container" style="max-width: 900px;">
+      <Breadcrumb items={breadcrumbs} />
+
+      <PageHeading
+        title="Peptide in die Schweiz bestellen | Zuverlässig und diskret"
+        description="Forschungsreagenzien höchster Reinheit (≥99 %) für Schweizer Universitäten, Institute und Labore. Schneller Versand via Schweizerische Post Priority."
+      />
+
+      <div class="content-layout" style="margin-top: var(--space-8);">
+        <article class="article-body prose-content">
+          <h2>Wichtige Fakten für Bestellungen aus der Schweiz</h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">🇨🇭 Schweizerische Post Priority</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Alle Sendungen in die Schweiz werden als internationale Priority-Pakete mit lückenloser Sendungsverfolgung verschickt. Laufzeit: <strong>3 bis 5 Werktage</strong>.
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">📑 Ordnungsgemäße CN22-Zolldeklaration</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Präzise Deklaration als biochemische Forschungsreagenzien zur Vermeidung von Verzögerungen bei der Prüfung durch das Bundesamt für Zoll und Grenzsicherheit (BAZG).
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">🔒 Diskrete Umverpackung</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Neutrale Verpackung ohne Werbeaufdrucke oder Hinweise auf den Inhalt. Volle Diskretion für Ihre wissenschaftlichen Bestellungen.
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">💰 Mehrwertsteuer und Freigrenzen</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Transparente Rechnungslegung gemäß den aktuellen Schweizer Einfuhrbestimmungen (MWST-Freigrenze bei Kleinsendungen).
+              </p>
+            </div>
+          </div>
+
+          <h2>Laufzeiten in Schweizer Kantone</h2>
+          <table class="table-clean" style="margin: 1.5rem 0;">
+            <thead>
+              <tr>
+                <th>Zielregion</th>
+                <th>Zustellpartner</th>
+                <th>Durchschnittliche Laufzeit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zürich, Winterthur & Aargau</strong></td>
+                <td>Schweizerische Post (Priority)</td>
+                <td>3–4 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Basel-Stadt & Basel-Landschaft</strong></td>
+                <td>Schweizerische Post (Priority)</td>
+                <td>3–4 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Bern, Luzern, Zug & Zentralschweiz</strong></td>
+                <td>Schweizerische Post (Priority)</td>
+                <td>3–4 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Romandie (Genève, Lausanne, Neuchâtel)</strong></td>
+                <td>Poste Suisse (Prioritaire)</td>
+                <td>4–5 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Tessin (Lugano, Bellinzona) & Graubünden</strong></td>
+                <td>La Posta Svizzera (Prioritaria)</td>
+                <td>4–5 Werktage</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>RUO-Hinweis für Schweizer Besteller</h2>
+          <p>
+            Sämtliche von uns angebotenen Substanzen sind ausschließlich für In-vitro-Forschungs- und Laboranwendungen vorgesehen (Research Use Only). Sie sind nicht für Humananwendungen, klinische Prüfungen oder tiermedizinische Zwecke bestimmt. Bitte prüfen Sie vorab die institutsinternen Richtlinien Ihrer Forschungseinrichtung.
+          </p>
+
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href={href('/shop/')} class="btn btn-primary">Forschungskatalog öffnen</a>
+            <a href={href('/peptid-rechner/')} class="btn btn-secondary">Zum Peptid-Rechner</a>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top: var(--space-12);">
+        <TrustBar tone="light" />
+      </div>
+    </div>
+  </section>
+</Layout>

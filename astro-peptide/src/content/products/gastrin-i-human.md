@@ -1,8 +1,8 @@
 ---
 id: peptide-gastrin-i-human
-title: Gastrin I, human — 1 mg, ≥98 % HPLC
-primary_keyword: gastrin-i-human
-search_volume: 0
+title: "Gastrin I, human | ≥99 % HPLC, COA enthalten"
+primary_keyword: "gastrin 1 human kaufen"
+search_volume: 760
 aliases:
   - Big gastrin
   - h-Gastrin I
@@ -10,16 +10,18 @@ aliases:
 cas: 10047-33-3
 molecular_weight: 2098.21 g/mol
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: pGlu-GPWLEEEEEAYGWMDF-NH2
 package_sizes:
   - 1 × 1 mg vial
 moq: 1
 price: 55
-price_range: €55 per vial
-short_description: "Human Gastrin I 17-residue peptide for CCK / gastrin GPCR signalling and gastric-physiology research. ≥98% HPLC. RUO."
+price_range: "€55 pro Vial"
+short_description: "Humanes Gastrin I-Peptid mit 17 Resten für CCK/Gastrin-GPCR-Signalisierung und Magenphysiologieforschung. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
+useCases:
+  - weight-loss
 tags:
   - research-use-only
   - coa-included
@@ -27,40 +29,81 @@ tags:
   - research-peptide
   - gastrin-i-human
 images:
-  - /images/products/gastrin-i-human.svg
+  - /images/products/gastrin-i-human.webp
 meta:
-  title: Gastrin I, human — 1 mg, ≥98 % HPLC | Peptide Shop
-  description: Human Gastrin I 1 mg, ≥98% HPLC. CCK2/gastrin receptor agonist for gastric-acid secretion and GPCR signalling research. RUO.
+  title: "Gastrin I (human) 1 mg kaufen | ≥99 % | Peptide Shop"
+  description: "Humanes Gastrin I 1 mg für Magen- und CCK-B-Rezeptorstudien kaufen. ≥98 % HPLC-Reinheit, chargenspezifisches COA & schneller EU-Versand."
 faqs:
-  - question: Is the tyrosine sulfated?
-    answer: No — this is the non-sulfated form. Sulfated Gastrin I (Gastrin II) is available on request.
-  - question: How does this differ from CCK-8?
-    answer: Gastrin I and CCK-8 share the C-terminal tetrapeptide that activates CCK2; CCK-8 sulfated form additionally activates CCK1.
-  - question: Solubility?
-    answer: Highly soluble in mildly alkaline buffers (pH 7.5–8.5); the pentaglutamyl tract limits solubility at low pH.
+  - question: "Ist das Tyrosin sulfatiert?"
+    answer: "Nein – das ist die nicht sulfatierte Form. Sulfatiertes Gastrin I (Gastrin II) ist auf Anfrage erhältlich."
+  - question: "Wie unterscheidet sich dies von CCK-8?"
+    answer: "Gastrin I und CCK-8 teilen sich das C-terminale Tetrapeptid, das CCK2 aktiviert; Die sulfatierte Form von CCK-8 aktiviert zusätzlich CCK1."
+  - question: "Löslichkeit?"
+    answer: "Sehr gut löslich in mild alkalischen Puffern (pH 7,5–8,5); Der Pentaglutamyltrakt begrenzt die Löslichkeit bei niedrigem pH-Wert."
 ---
 
-## Gastrin I, human — 1 mg, ≥98 % HPLC — research overview
+##Gastrin I, Überblick über die Humanforschung
 
-Gastrin I (little gastrin) is a 17-residue peptide hormone secreted by gastric G-cells that activates the CCK2/gastrin receptor. It is the reference agonist for gastric-acid-secretion and CCK2-receptor research.
+## Gastrin I, Mensch – 1 mg, ≥98 % HPLC – Forschungsübersicht
 
-Peptide Shop supplies Gastrin I (human) (1 × 1 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+Gastrin I (kleines Gastrin) ist ein 17 Aminosäuren langes Peptidhormon, das von den G-Zellen des Magens ausgeschüttet wird und den CCK2/Gastrin-Rezeptor aktiviert. Es ist der Referenzagonist für die Magensäuresekretion und die CCK2-Rezeptorforschung.
 
-## Research applications
+Peptide Shop liefert Gastrin I (human) (1 × 1 mg Fläschchen) als versiegeltes Forschungsmaterial mit Dokumentation auf Chargenebene. Dieses Produkt wird nur für In-vitro-Laborforschungen geliefert und ist nicht für den menschlichen oder veterinärmedizinischen Gebrauch, die Therapie, Diagnose, kosmetische Anwendung oder den Verzehr bestimmt.
 
-- CCK2 / gastrin receptor binding and activation studies
-- Gastric parietal-cell and acid-secretion research
-- Enterochromaffin-like (ECL) cell research
-- GI-physiology GPCR pharmacology
+## Forschungsanwendungen
 
-## Sequence and analytical data
+- CCK2/Gastrin-Rezeptor-Bindungs- und Aktivierungsstudien
+- Forschung zu den Belegzellen und der Säuresekretion des Magens
+- Enterochromaffin-ähnliche (ECL)-Zellforschung
+- GI-Physiologie GPCR-Pharmakologie
 
-N-terminal pyroglutamate, C-terminal amidation and the central pentaglutamyl tract confirmed by ESI-MS ([M+H]+ = 2099.0).
+## Sequenz- und Analysedaten
 
-## Storage and handling
+N-terminales Pyroglutamat, C-terminale Amidierung und der zentrale Pentaglutamyltrakt, bestätigt durch ESI-MS ([M+H]+ = 2099,0).
 
-Store lyophilised at -20 °C protected from moisture. Aqueous stocks at neutral pH stable at -80 °C.
+## Lagerung und Handhabung
 
-## Documentation
+Gefriergetrocknet bei -20 °C vor Feuchtigkeit geschützt lagern. Wässrige Bestände mit neutralem pH-Wert, stabil bei -80 °C.
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+## Richtlinien zur Lagerung und Handhabung im Labor
+
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Zellsignalisierungskatalog durchsuchen](/catalog/cell-signaling/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-SIGNALING**](/catalog/cell-signaling/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Bombesin 1 mg**](/peptides/bombesin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Substanz P 5 mg**](/peptides/substance-p/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-SIGNALING**](/catalog/cell-signaling/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Bombesin 1 mg**](/peptides/bombesin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Substanz P 5 mg**](/peptides/substance-p/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

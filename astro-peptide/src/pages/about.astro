@@ -19,7 +19,6 @@ const href = (path: string) => localizePath(path, locale);
   <!-- PAGE HERO -->
   <section class="page-hero display-typography">
     <div class="container">
-      <span class="eyebrow-rule">{t('about.eyebrow')}</span>
       <h1>{t('about.title')}</h1>
       <p>
         {t('about.lead')}
@@ -42,13 +41,17 @@ const href = (path: string) => localizePath(path, locale);
         </article>
         <aside>
           <figure class="about-figure">
-            <img
-              src="/images/lifestyle/peptide-collection-organized.webp"
-              alt={t('about.figureAlt')}
-              loading="lazy"
-              width="640"
-              height="800"
-            />
+            <picture>
+              <source srcset="/images/site/about-peptide-shop.webp" type="image/webp" />
+              <img
+                src="/images/site/about-peptide-shop.jpg"
+                alt="Peptide Shop Labor- und Qualitätsstandards für Forschungspeptide"
+                loading="lazy"
+                width="700"
+                height="700"
+                style="border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);"
+              />
+            </picture>
           </figure>
           <blockquote class="pull-quote">
             {t('about.quote')}
@@ -62,7 +65,6 @@ const href = (path: string) => localizePath(path, locale);
   <section class="section section-loose surface-mist" aria-labelledby="principles-title">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow-rule">{t('about.principlesEyebrow')}</span>
         <h2 id="principles-title" class="display">{t('about.principlesTitle')}</h2>
       </div>
       <div class="value-grid">
@@ -129,7 +131,6 @@ const href = (path: string) => localizePath(path, locale);
     <div class="container">
       <div class="split split-6-6">
         <div>
-          <span class="eyebrow-rule">{t('about.timelineEyebrow')}</span>
           <h2 id="how-we-work-title" class="display">{t('about.timelineTitle')}</h2>
           <p style="color: var(--color-ink-2); font-size: var(--text-lg);">
             {t('about.timelineLead')}
@@ -173,7 +174,6 @@ const href = (path: string) => localizePath(path, locale);
   <section class="section section-loose">
     <div class="container">
       <div class="cta-band display-typography">
-        <span class="eyebrow-rule" style="color:var(--color-accent);">{t('about.ctaEyebrow')}</span>
         <h2>{t('about.ctaTitle')}</h2>
         <p>{t('about.ctaBody')}</p>
         <div class="hero-actions">

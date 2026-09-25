@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { localizePath, type Locale } from './config';
+import { localizePath, sourceLocale, type Locale } from './config';
 
 type ProductEntry = CollectionEntry<'products'>;
 type ProductData = ProductEntry['data'];
@@ -50,7 +50,7 @@ export interface LocalizedProductData {
   bodyHtml: string;
 }
 
-const copy: Record<Exclude<Locale, 'en'>, ProductLocaleCopy> = {
+const copy: Record<string, ProductLocaleCopy> = {
   de: {
     overviewHeading: (name) => `${name} Forschungsüberblick`,
     overviewLead: (name, purity) => `${name} ist ein Forschungspeptid für kontrollierte Laboranwendungen. Die Charge wird mit ${purity} Reinheit und chargenbezogener COA-Dokumentation bereitgestellt.`,
@@ -203,14 +203,6 @@ const copy: Record<Exclude<Locale, 'en'>, ProductLocaleCopy> = {
   },
 };
 
-const tableLabels: Record<Exclude<Locale, 'en'>, Record<string, string>> = {
-  de: { field: 'Feld', detail: 'Detail', productId: 'Produkt-ID', packageSize: 'Packungsgröße', cas: 'CAS', molecularWeight: 'Molekulargewicht', purity: 'Reinheit', storage: 'Lagerung' },
-  nl: { field: 'Veld', detail: 'Detail', productId: 'Product-ID', packageSize: 'Verpakkingsgrootte', cas: 'CAS', molecularWeight: 'Molecuulgewicht', purity: 'Zuiverheid', storage: 'Opslag' },
-  fr: { field: 'Champ', detail: 'Détail', productId: 'ID produit', packageSize: 'Format', cas: 'CAS', molecularWeight: 'Poids moléculaire', purity: 'Pureté', storage: 'Conservation' },
-  it: { field: 'Campo', detail: 'Dettaglio', productId: 'ID prodotto', packageSize: 'Formato', cas: 'CAS', molecularWeight: 'Peso molecolare', purity: 'Purezza', storage: 'Conservazione' },
-  es: { field: 'Campo', detail: 'Detalle', productId: 'ID de producto', packageSize: 'Tamaño de envase', cas: 'CAS', molecularWeight: 'Peso molecular', purity: 'Pureza', storage: 'Almacenamiento' },
-};
-
 /**
  * Display name for a product, stripped of the SEO tail.
  *
@@ -248,10 +240,23 @@ function localizedFaqs(product: ProductData, name: string, locale: Exclude<Local
   ];
 }
 
+/**
+ * The translated product description.
+ *
+ * Deliberately shorter than it looks like it should be. The analytical table,
+ * the reconstitution paragraph, the storage paragraph and the research-use
+ * statement were all generated here *and* rendered by the product page itself —
+ * in its fact grid, its "Sequence data" and "Storage & handling" panels, and
+ * its RUO banner. Every product page therefore stated the same six values three
+ * times and repeated ~140 words of identical prose that 47 other products also
+ * carried, which is what left roughly 146 unique words to rank on. The page
+ * chrome is the single place those now live; this builds only what is specific
+ * to the compound. The English markdown under src/content/products/ was trimmed
+ * the same way.
+ */
 function buildBodyHtml(product: ProductEntry, locale: Exclude<Locale, 'en'>, name: string): string {
   const data = product.data;
   const text = copy[locale];
-  const labels = tableLabels[locale];
   const areaPath = data.researchArea ? localizePath(`/catalog/${data.researchArea}/`, locale) : localizePath('/catalog/', locale);
   const useCasePath = data.useCases?.[0] ? localizePath(`/use-case/${data.useCases[0]}/`, locale) : localizePath('/catalog/', locale);
 
@@ -263,26 +268,6 @@ function buildBodyHtml(product: ProductEntry, locale: Exclude<Locale, 'en'>, nam
     <h2>${escapeHtml(text.researchUseHeading)}</h2>
     <ul>${text.researchUseItems.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
 
-    <h2>${escapeHtml(text.analyticalHeading)}</h2>
-    <p>${escapeHtml(text.analyticalIntro(name))}</p>
-    <table>
-      <thead><tr><th>${escapeHtml(labels.field)}</th><th>${escapeHtml(labels.detail)}</th></tr></thead>
-      <tbody>
-        <tr><td>${escapeHtml(labels.productId)}</td><td>${escapeHtml(data.id)}</td></tr>
-        <tr><td>${escapeHtml(labels.packageSize)}</td><td>${escapeHtml(data.package_sizes.join(', '))}</td></tr>
-        <tr><td>${escapeHtml(labels.cas)}</td><td>${escapeHtml(data.cas ?? 'N/A')}</td></tr>
-        <tr><td>${escapeHtml(labels.molecularWeight)}</td><td>${escapeHtml(data.molecular_weight ?? 'N/A')}</td></tr>
-        <tr><td>${escapeHtml(labels.purity)}</td><td>${escapeHtml(data.purity)}</td></tr>
-        <tr><td>${escapeHtml(labels.storage)}</td><td>${escapeHtml(text.storage(data.storage))}</td></tr>
-      </tbody>
-    </table>
-
-    <h2>${escapeHtml(text.handlingHeading)}</h2>
-    <p>${escapeHtml(text.handlingBody)}</p>
-
-    <h2>${escapeHtml(text.storageHeading)}</h2>
-    <p>${escapeHtml(text.storageBody(data.storage))}</p>
-
     <h2>${escapeHtml(text.resourcesHeading)}</h2>
     <ul>
       <li><a href="${areaPath}">${escapeHtml(text.links.related)}</a></li>
@@ -291,8 +276,6 @@ function buildBodyHtml(product: ProductEntry, locale: Exclude<Locale, 'en'>, nam
       <li><a href="${localizePath('/blog/peptide-storage-handling-best-practices/', locale)}">${escapeHtml(text.links.storageGuide)}</a></li>
     </ul>
 
-    <h2>${escapeHtml(text.statementHeading)}</h2>
-    <p>${escapeHtml(text.statementBody(name))}</p>
   `;
 }
 
@@ -300,7 +283,7 @@ export function getLocalizedProduct(product: ProductEntry, locale: Locale): Loca
   const data = product.data;
   const cleanTitle = cleanProductTitle(data.title);
 
-  if (locale === 'en') {
+  if (locale === sourceLocale) {
     return {
       title: data.title,
       cleanTitle,

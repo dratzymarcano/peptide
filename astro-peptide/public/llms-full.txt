@@ -1,0 +1,561 @@
+# Peptide Shop - Vollständiger Laborkatalog (llms-full.txt)
+
+Origin: https://peptide-kaufen.net
+Stand: 2026
+Qualitätsstandard: ≥99,0 % HPLC-Reinheit, Endotoxin <0,01 EU/mg, chargenbezogenes COA (HPLC + MS).
+Verwendungszweck: Research Use Only (RUO). Ausschließlich für biochemische und In-vitro-Forschung im Labor.
+Sitemap: https://peptide-kaufen.net/sitemap-index.xml
+Kurzübersicht: https://peptide-kaufen.net/llms.txt
+
+---
+
+## Vollständiges Verzeichnis aller 57 Forschungspeptide & Reagenzien
+
+## Kategorie: diabetes (diabetes)
+
+### 5-Amino-1MQ 50 mg
+- URL: https://peptide-kaufen.net/peptides/5-amino-1mq/
+- CAS-Nummer: 42464-99-1
+- Molekulargewicht: 240.3 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 60 × 50 mg caps
+- Lagerungsempfehlung: Trocken und lichtgeschützt bei Raumtemperatur (15–25 °C) lagern. Dose nach Entnahme stets dicht verschließen.
+- Wissenschaftliche Einordnung: 5-Amino-1MQ NNMT-Inhibitor-Forschungsverbindung für Stoffwechsel- und NAD-Signalwegstudien. Echtheitszertifikat geliefert. RUO.
+
+### Cagrilintide 5 mg
+- URL: https://peptide-kaufen.net/peptides/cagrilintide/
+- CAS-Nummer: 2375614-45-8
+- Molekulargewicht: 3962.4 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Cagrilintid-Amylin-Analogon für die Erforschung von Stoffwechsel- und Sättigungswegen. ≥99 % HPLC-Reinheit mit COA. RUO.
+
+### O-304 25 mg
+- URL: https://peptide-kaufen.net/peptides/o-304/
+- CAS-Nummer: 1261289-97-1
+- Molekulargewicht: 319.4 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 3 g powder
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: O-304 AMPK-Aktivator-Forschungsverbindung für Stoffwechsel- und Insulinsensitivitätsstudien. Echtheitszertifikat geliefert. RUO.
+
+### Retatrutide 5 mg
+- URL: https://peptide-kaufen.net/peptides/retatrutide/
+- CAS-Nummer: 2381089-83-2
+- Molekulargewicht: 4156.48 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Retatrutid-Triple-Agonist-Forschungspeptid für GLP-1-, GIP- und Glucagon-Signalwegmodelle. Echtheitszertifikat geliefert. RUO.
+
+### Semaglutide 5 mg
+- URL: https://peptide-kaufen.net/peptides/semaglutide/
+- CAS-Nummer: 910463-68-2
+- Molekulargewicht: 4113.58 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Semaglutid-GLP-1-Analogon für die Stoffwechselforschung. ≥99 % HPLC-Reinheit, versiegeltes Fläschchen und Chargen-COA. RUO.
+
+### Tirzepatide 10 mg
+- URL: https://peptide-kaufen.net/peptides/tirzepatide/
+- CAS-Nummer: 2023788-19-2
+- Molekulargewicht: 4813.45 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 10 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Tirzepatid-Dual-GIP/GLP-1-Agonist-Forschungspeptid mit ≥99 % HPLC-Reinheit und Chargen-COA. RUO.
+
+
+## Kategorie: protein-analysis (protein-analysis)
+
+### ACTH Fragment Set (1-17 + 18-39)
+- URL: https://peptide-kaufen.net/peptides/acth-fragments-maldi-set/
+- Molekulargewicht: 2093.4 g/mol (1-17) + 2465.2 g/mol (18-39)
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 2 × 0.5 mg vials (one of each fragment)
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: ACTH-Fragmentpaar (1-17) und (18-39) für die MALDI-TOF-Massenkalibrierung im Bereich 2000–2500 Da. jeweils ≥98 % HPLC. RUO.
+
+### Angiotensin I
+- URL: https://peptide-kaufen.net/peptides/angiotensin-i-ms-standard/
+- CAS-Nummer: 484-42-4
+- Molekulargewicht: 1296.48 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Angiotensin I, ≥99 % HPLC, geliefert als massenspektrometrischer Kalibrierungsstandard ([M+H]+ = 1297,5). RUO.
+
+### Bradykinin (1-7)
+- URL: https://peptide-kaufen.net/peptides/bradykinin-1-7-ms-standard/
+- CAS-Nummer: 23815-89-6
+- Molekulargewicht: 757.85 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Bradykinin (1-7), ≥99 % HPLC, Low-Mass-MS-Kalibrierungsreferenz ([M+H]+ = 758,4). RUO.
+
+### BSA Tryptic Digest LC-MS Standard
+- URL: https://peptide-kaufen.net/peptides/bsa-tryptic-digest-standard/
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 100 µg lyophilised
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Tryptischer Verdauungsstandard aus Rinderserumalbumin für die tägliche LC-MS/MS-Qualitätskontrolle, Systemeignung und Proteomik-Pipeline-Validierung. RUO.
+
+### [Glu1]-Fibrinopeptide B
+- URL: https://peptide-kaufen.net/peptides/glu-fibrinopeptide-b/
+- CAS-Nummer: 103213-49-6
+- Molekulargewicht: 1570.57 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: [Glu1]-Fibrinopeptid B (Glu-Fib), die universelle LC-MS-Lock-Mass- und Kollisionsenergie-Tuning-Referenz. ≥99 % HPLC. RUO.
+
+
+## Kategorie: cell-signaling (cell-signaling)
+
+### Autocamtide-2-related Inhibitory Peptide (AIP)
+- URL: https://peptide-kaufen.net/peptides/aip-camkii-inhibitor/
+- CAS-Nummer: 167114-91-2
+- Molekulargewicht: 1771.0 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: AIP – das selektivste Ca²⁺/Calmodulin-abhängige Proteinkinase-II-Inhibitorpeptid. ≥98 % HPLC. RUO.
+
+### FOXO4-DRI 10 mg
+- URL: https://peptide-kaufen.net/peptides/foxo4-dri/
+- CAS-Nummer: 2101438-66-8
+- Molekulargewicht: 5358.1 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Retro-Inverso D-Peptid zur selektiven Induktion von Apoptose in seneszenten Zellen über die Unterbrechung der FOXO4-p53-Interaktion. ≥99 % HPLC-Reinheit mit COA. RUO.
+
+### Gastrin I, human
+- URL: https://peptide-kaufen.net/peptides/gastrin-i-human/
+- CAS-Nummer: 10047-33-3
+- Molekulargewicht: 2098.21 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Humanes Gastrin I-Peptid mit 17 Resten für CCK/Gastrin-GPCR-Signalisierung und Magenphysiologieforschung. ≥98 % HPLC. RUO.
+
+### MOTS-c 10 mg
+- URL: https://peptide-kaufen.net/peptides/mots-c/
+- CAS-Nummer: 1627580-64-6
+- Molekulargewicht: 2174.7 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Mitochondrial abgeleitetes Peptid (16 AS) zur Erforschung der zellulären Energiehomöostase, Insulinsensitivität und AMPK-Aktivierung. ≥99 % HPLC mit COA. RUO.
+
+### Myristoylated PKI (14-22) amide
+- URL: https://peptide-kaufen.net/peptides/myristoylated-pki-14-22/
+- CAS-Nummer: 221019-15-2
+- Molekulargewicht: 1297.6 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Zellpermeables myristoyliertes PKI (14-22)-Amid zur PKA-Hemmung in intakten Zellen in der Kinase-Signalweg-Forschung. ≥98 % HPLC. RUO.
+
+### PKI (6-22) amide
+- URL: https://peptide-kaufen.net/peptides/pki-6-22-amide/
+- CAS-Nummer: 121932-06-7
+- Molekulargewicht: 2222.6 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: PKI (6-22)-Amid, das am häufigsten zitierte spezifische PKA-Inhibitorpeptid für die Kinase-Signalweg-Forschung. ≥98 % HPLC. RUO.
+
+### SS-31 50 mg
+- URL: https://peptide-kaufen.net/peptides/ss-31/
+- CAS-Nummer: 736992-21-2
+- Molekulargewicht: 639.8 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Mitochondrien-zielgerichtetes Tetrapeptid (Elamipretid) zur Stabilisierung von Cardiolipin und Minderung oxidativen Stresses in Zellmodellen. ≥99 % HPLC mit COA. RUO.
+
+### Substance P
+- URL: https://peptide-kaufen.net/peptides/substance-p/
+- CAS-Nummer: 33507-63-0
+- Molekulargewicht: 1347.63 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Substanz P Undecapeptid – Referenz-NK1-(Tachykinin)-Rezeptor-Agonist für die Schmerz- und neurogene Entzündungsforschung. ≥98 % HPLC. RUO.
+
+
+## Kategorie: Immunologie, antimikrobielle Peptide & Abwehr (immunology)
+
+### α-Defensin 1 (HNP-1)
+- URL: https://peptide-kaufen.net/peptides/alpha-defensin-1/
+- CAS-Nummer: 99287-08-2
+- Molekulargewicht: 3442.05 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 0.5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Humanes Neutrophile Peptid 1 (HNP-1, α-Defensin 1) für die Forschung zu angeborener Immunität und antimikrobiellen Peptiden. ≥95 % HPLC. RUO.
+
+### LL-37, human cathelicidin
+- URL: https://peptide-kaufen.net/peptides/ll-37/
+- CAS-Nummer: 154947-66-7
+- Molekulargewicht: 4493.33 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Humanes antimikrobielles Peptid Cathelicidin LL-37, die Goldstandard-Referenz für die angeborene Immunität. ≥98 % HPLC. RUO.
+
+### Thymosin α1 (Tα1)
+- URL: https://peptide-kaufen.net/peptides/thymosin-alpha-1/
+- CAS-Nummer: 62304-98-7
+- Molekulargewicht: 3108.27 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Thymosin α1 (28 Reste, N-acetyliert) für die T-Zell-Reifung, dendritische Zellen und antivirale Immunologieforschung. ≥98 % HPLC. RUO.
+
+### Thymulin (Zn-FTS)
+- URL: https://peptide-kaufen.net/peptides/thymulin/
+- CAS-Nummer: 63958-90-7
+- Molekulargewicht: 857.93 g/mol (peptide, ex Zn²⁺)
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Thymulin (zinkgebundenes FTS-Nonapeptid) für die Thymusimmunologie, T-Zell- und Immunoseneszenzforschung. ≥98 % HPLC. RUO.
+
+### Tuftsin
+- URL: https://peptide-kaufen.net/peptides/tuftsin/
+- CAS-Nummer: 9063-57-4
+- Molekulargewicht: 500.6 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Tuftsin-Tetrapeptid für die Makrophagenaktivierung, Phagozytose und Forschung zur angeborenen Immunität. ≥98 % HPLC. RUO.
+
+
+## Kategorie: Kardiovaskuläre Signalwege & Gefäßfunktion (cardiovascular)
+
+### Angiotensin II (human)
+- URL: https://peptide-kaufen.net/peptides/angiotensin-ii/
+- CAS-Nummer: 4474-91-3
+- Molekulargewicht: 1046.18 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Angiotensin-II-Octapeptid-Referenzstandard für RAAS-, AT1/AT2-Rezeptor- und Vasokonstriktionsforschung. ≥98 % HPLC. RUO.
+
+### ANP (1-28), human
+- URL: https://peptide-kaufen.net/peptides/anp-1-28/
+- CAS-Nummer: 85637-73-6
+- Molekulargewicht: 3080.5 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Humanes atriales natriuretisches Peptid (ANP 1-28) in Forschungsqualität für natriuretische Rezeptor- und Gefäßtonusstudien. ≥98 % HPLC. RUO.
+
+### BNP-32, human
+- URL: https://peptide-kaufen.net/peptides/bnp-32/
+- CAS-Nummer: 114471-18-0
+- Molekulargewicht: 3464.0 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 0.5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Referenzstandard für humanes Natriuretisches Peptid vom B-Typ (BNP-32) für Herzinsuffizienz-Biomarker und ELISA-Kontrollforschung. ≥98 % HPLC. RUO.
+
+### Bradykinin acetate
+- URL: https://peptide-kaufen.net/peptides/bradykinin-acetate/
+- CAS-Nummer: 5979-11-3
+- Molekulargewicht: 1060.21 g/mol (free base)
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Bradykinin (Acetatsalz) für die B1/B2-Kinin-Rezeptor-Forschung, Gefäßpermeabilitäts- und Entzündungsstudien. ≥98 % HPLC. RUO.
+
+### Endothelin-1, human
+- URL: https://peptide-kaufen.net/peptides/endothelin-1/
+- CAS-Nummer: 117399-94-7
+- Molekulargewicht: 2491.91 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 0.5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Humanes Endothelin-1-Referenzpeptid für die Forschung zu Vasokonstriktion, Endotheldysfunktion und pulmonaler Hypertonie. ≥98 % HPLC. RUO.
+
+
+## Kategorie: hormones (hormones)
+
+### AOD-9604 5 mg
+- URL: https://peptide-kaufen.net/peptides/aod-9604/
+- CAS-Nummer: 221231-10-3
+- Molekulargewicht: 1815.1 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: AOD-9604 hGH-Fragment 177-191-Analogon für die Stoffwechsel- und Lipolyseforschung. Echtheitszertifikat geliefert. RUO.
+
+### CJC-1295 with DAC 5 mg
+- URL: https://peptide-kaufen.net/peptides/cjc-1295-dac/
+- CAS-Nummer: 863288-34-0
+- Molekulargewicht: 3647.28 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Langwirksames synthetisches GHRH-Analogon mit Drug Affinity Complex (DAC) zur Untersuchung verlängerter Wachstumshormonsignalwege. ≥99 % HPLC mit COA. RUO.
+
+### CJC-1295 No DAC 5 mg
+- URL: https://peptide-kaufen.net/peptides/cjc-1295-no-dac/
+- CAS-Nummer: 863288-34-0
+- Molekulargewicht: 3367.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: CJC-1295 Kein DAC-GHRH-Analogon für die Wachstumshormon-Signalforschung. ≥99 % HPLC-Reinheit mit COA. RUO.
+
+### hGH Frag 176-191 5 mg
+- URL: https://peptide-kaufen.net/peptides/gh-frag-176-191/
+- CAS-Nummer: 66004-57-7
+- Molekulargewicht: 1817.1 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: hGH-Fragment 176-191 für die Stoffwechsel- und Wachstumshormonfragmentforschung. Echtheitszertifikat geliefert. RUO.
+
+### GHRP-2 5 mg
+- URL: https://peptide-kaufen.net/peptides/ghrp-2/
+- CAS-Nummer: 158861-67-7
+- Molekulargewicht: 817.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: GHRP-2-Wachstumshormon-Sekretagogum-Forschungspeptid mit ≥99 % HPLC-Reinheit und COA. RUO.
+
+### GHRP-6 5 mg
+- URL: https://peptide-kaufen.net/peptides/ghrp-6/
+- CAS-Nummer: 87616-84-0
+- Molekulargewicht: 873.0 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: GHRP-6-Forschungspeptid für Studien zu Wachstumshormon-Sekretagogen und Ghrelin-Signalwegen. Echtheitszertifikat geliefert. RUO.
+
+### Hexarelin 5 mg
+- URL: https://peptide-kaufen.net/peptides/hexarelin/
+- CAS-Nummer: 140703-51-1
+- Molekulargewicht: 887.05 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Potenter synthetischer Wachstumshormon-Sekretagoga-Rezeptor (GHSR)-Agonist zur Untersuchung neuroendokriner und kardioprotektiver Signalwege. ≥99 % HPLC mit COA. RUO.
+
+### Ipamorelin 5 mg
+- URL: https://peptide-kaufen.net/peptides/ipamorelin/
+- CAS-Nummer: 170851-70-4
+- Molekulargewicht: 711.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Ipamorelin-selektives GHRP-Forschungspeptid für Ghrelin-Rezeptor- und GH-Signalisierungsstudien. Echtheitszertifikat geliefert. RUO.
+
+### Melanotan-2 10 mg
+- URL: https://peptide-kaufen.net/peptides/melanotan-2/
+- CAS-Nummer: 121062-08-6
+- Molekulargewicht: 1024.2 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 10 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Melanotan-2-Alpha-MSH-Analogon für die Melanocortinrezeptor- und Pigmentierungsforschung. Echtheitszertifikat geliefert. RUO.
+
+### PT-141 10 mg
+- URL: https://peptide-kaufen.net/peptides/pt-141/
+- CAS-Nummer: 189745-66-9
+- Molekulargewicht: 1025.2 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Synthetischer zyklischer Heptapeptid-Melanocortin-Rezeptoragonist (Bremelanotid) für neurochemische und vaskuläre In-vitro-Forschung. ≥99 % HPLC mit COA. RUO.
+
+
+## Kategorie: Laborlösungsmittel & Rekonstitutionsbedarf (supplies)
+
+### Bacteriostatic water 30 ml
+- URL: https://peptide-kaufen.net/peptides/bacteriostatic-water/
+- CAS-Nummer: 7732-18-5
+- Molekulargewicht: 18.02 g/mol
+- Reinheitsgrad: USP Grade (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 10 × 10 mL vials
+- Lagerungsempfehlung: Bei 15–25 °C lichtgeschützt lagern. Nach dem ersten Anstechen bei 2–8 °C aufbewahren und innerhalb von 28 Tagen verbrauchen.
+- Wissenschaftliche Einordnung: Bakteriostatisches Wasser in USP-Qualität mit 0,9 % Benzylalkohol für Laborrekonstitutionsabläufe. RUO.
+
+
+## Kategorie: cancer-apoptosis (cancer-apoptosis)
+
+### Bombesin
+- URL: https://peptide-kaufen.net/peptides/bombesin/
+- CAS-Nummer: 31362-50-2
+- Molekulargewicht: 1619.85 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 1 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Bombesin-Tetradecapeptid für die GRPR-/NMBR-Rezeptorforschung und Tumor-Targeting-/Bildgebungsstudien. ≥98 % HPLC. RUO.
+
+### MIA-602 (GHRH antagonist)
+- URL: https://peptide-kaufen.net/peptides/mia-602/
+- Molekulargewicht: 4060.7 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 2 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: MIA-602, ein GHRH-Rezeptorantagonist der Schally-Schule für die Forschung an onkologischen Zelllinien, Proliferationsmarkern und Entzündungswegen. ≥98 % HPLC. RUO.
+
+### Octreotide acetate
+- URL: https://peptide-kaufen.net/peptides/octreotide-acetate/
+- CAS-Nummer: 83150-76-9
+- Molekulargewicht: 1019.24 g/mol (free base)
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 2 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Octreotidacetat, Somatostatin-Rezeptor (SSTR2/5)-Referenz für die Tumorbildgebung und neuroendokrine Forschung. ≥98 % HPLC. RUO.
+
+### PNC-27
+- URL: https://peptide-kaufen.net/peptides/pnc-27/
+- Molekulargewicht: 3823.6 g/mol
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: PNC-27-Fusionspeptid für den p53/HDM2-Signalweg und die membranolytische Apoptose-Tumorzellforschung. ≥98 % HPLC. RUO.
+
+### Thymalin
+- URL: https://peptide-kaufen.net/peptides/thymalin/
+- Reinheitsgrad: ≥ 98% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 10 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Thymalin-Polypeptidkomplex für die Thymusimmunologie und immunonkologische Adjuvansforschung. ≥98 % HPLC. RUO.
+
+
+## Kategorie: Zellregeneration, Gewebemodelle & Wundheilung (cell-tissue)
+
+### BPC-157 + TB-500 Blend (5 mg / 5 mg)
+- URL: https://peptide-kaufen.net/peptides/bpc-157-tb-500-blend/
+- CAS-Nummer: 137525-51-0 / 77591-33-4
+- Molekulargewicht: 1419.53 / 4963.50 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Synergistische Peptidmischung aus BPC-157 (5 mg) und TB-500 (5 mg) für In-vitro-Zellregenerations- und Angiogenesemodelle. ≥99 % HPLC-Reinheit mit chargenbezogenem COA. RUO.
+
+### BPC-157 5 mg
+- URL: https://peptide-kaufen.net/peptides/bpc-157/
+- CAS-Nummer: 137525-51-0
+- Molekulargewicht: 1419.5 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: BPC-157 in Forschungsqualität für Zellmigrations-, Barrierefunktions- und Zytoprotektionsmodelle. ≥99 % HPLC-Reinheit mit Chargen-COA. RUO.
+
+### KPV 5 mg
+- URL: https://peptide-kaufen.net/peptides/kpv/
+- CAS-Nummer: 67727-97-3
+- Molekulargewicht: 383.49 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: C-terminales Tripeptid (Lys-Pro-Val) von α-MSH für In-vitro-Untersuchungen antiinflammatorischer Signalwege und NF-κB-Hemmung. ≥99 % HPLC-Reinheit mit COA. RUO.
+
+### TB-500 (Thymosin β4 frag.)
+- URL: https://peptide-kaufen.net/peptides/tb-500/
+- CAS-Nummer: 77591-33-4
+- Molekulargewicht: 4963.5 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: TB-500-Thymosin-Beta-4-Fragment für Zellmigrations-, Aktin- und Angiogeneseforschung. ≥99 % HPLC-Reinheit mit COA. RUO.
+
+
+## Kategorie: Neurobiologie, Kognition & Neuropeptide (neuroscience)
+
+### DSIP 5 mg
+- URL: https://peptide-kaufen.net/peptides/dsip/
+- CAS-Nummer: 62568-57-4
+- Molekulargewicht: 848.8 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: DSIP-Neuropeptid für Schlaf-, Stressreaktions- und ZNS-Forschungsmodelle. Echtheitszertifikat geliefert. RUO.
+
+### Pinealon 10 mg
+- URL: https://peptide-kaufen.net/peptides/pinealon/
+- CAS-Nummer: 172820-23-4
+- Molekulargewicht: 374.4 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Synthetisches kurzkettiges Tripeptid (Glu-Arg-Ala) für Untersuchungen zur neuronalen Genexpression, Zytoprotektion und oxidativen Stressabwehr. ≥99 % HPLC mit COA. RUO.
+
+### Selank 5 mg
+- URL: https://peptide-kaufen.net/peptides/selank/
+- CAS-Nummer: 129954-34-3
+- Molekulargewicht: 751.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Selank-Forschungspeptid für ZNS-, Stressreaktions- und Neuropeptid-Signalisierungsmodelle. Echtheitszertifikat geliefert. RUO.
+
+### Semax 5 mg
+- URL: https://peptide-kaufen.net/peptides/semax/
+- CAS-Nummer: 80714-61-0
+- Molekulargewicht: 813.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 5 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Semax ACTH(4-10)-Analogon für ZNS-, Kognitions- und Neuroprotektionsforschung. Echtheitszertifikat geliefert. RUO.
+
+### Tesofensine 5 mg
+- URL: https://peptide-kaufen.net/peptides/tesofensine/
+- CAS-Nummer: 402856-42-2
+- Molekulargewicht: 382.5 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 60 × 0.5 mg caps
+- Lagerungsempfehlung: Trocken und lichtgeschützt bei Raumtemperatur (15–25 °C) lagern. Dose nach Entnahme stets dicht verschließen.
+- Wissenschaftliche Einordnung: Tesofensin-Forschungsverbindung für Monoamintransporter- und metabolische ZNS-Studien. Echtheitszertifikat geliefert. RUO.
+
+
+## Kategorie: Langlebigkeit, Telomere & Epigenetik (epigenetics)
+
+### Epitalon 10 mg
+- URL: https://peptide-kaufen.net/peptides/epitalon/
+- CAS-Nummer: 307297-39-8
+- Molekulargewicht: 390.3 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 10 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: Epitalon-Tetrapeptid für die Erforschung von Telomeren, zirkadianen und Langlebigkeitspfaden. Echtheitszertifikat geliefert. RUO.
+
+
+## Kategorie: adhesion-ecm (adhesion-ecm)
+
+### GHK-Cu 500 mg powder
+- URL: https://peptide-kaufen.net/peptides/ghk-cu/
+- CAS-Nummer: 49557-75-7
+- Molekulargewicht: 403.9 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 500 mg powder
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: GHK-Cu-Kupfertripeptid für ECM-, Kollagen- und Geweberemodellierungsforschung. Echtheitszertifikat geliefert. RUO.
+
+
+## Kategorie: cell-permeable (cell-permeable)
+
+### NAD+ 500 mg
+- URL: https://peptide-kaufen.net/peptides/nad-plus/
+- CAS-Nummer: 53-84-9
+- Molekulargewicht: 663.4 g/mol
+- Reinheitsgrad: ≥ 99% (RP-HPLC + MS verifiziert)
+- Gebindegröße(n): 1 × 500 mg vial
+- Lagerungsempfehlung: Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden.
+- Wissenschaftliche Einordnung: NAD+-Forschungsverbindung für Cofaktor-, Mitochondrien- und Zellstoffwechselstudien. Echtheitszertifikat geliefert. RUO.
+
+---
+
+## Rechtliche Bestimmungen
+Alle hier gelisteten Produkte werden von Peptide Shop (peptide-kaufen.net) ausschließlich als Forschungschemikalien (Research Use Only - RUO) für Labor-, In-vitro- und biochemische Testanwendungen bereitgestellt. Eine Anwendung an Menschen oder Tieren, in Lebensmitteln, Kosmetika oder medizinischen Diagnoseverfahren ist strikt untersagt.

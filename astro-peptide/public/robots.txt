@@ -1,6 +1,11 @@
-# peptide-kaufen.net robots.txt
-# Default: allow all conforming crawlers; block transactional and admin paths.
+# ==============================================================================
+# peptide-kaufen.net Robots Exclusion Standard
+# AI Search & LLM Knowledge Base: https://peptide-kaufen.net/llms.txt
+# Full Monographs & CAS Index:    https://peptide-kaufen.net/llms-full.txt
+# Primary XML Sitemap:            https://peptide-kaufen.net/sitemap-index.xml
+# ==============================================================================
 
+# Standard Web Search Crawlers (Googlebot, Bingbot, Applebot, DuckDuckBot, Yandex)
 User-agent: *
 Allow: /
 Disallow: /api/
@@ -9,16 +14,54 @@ Disallow: /cart
 Disallow: /cart/
 Disallow: /checkout
 Disallow: /checkout/
+Disallow: /account
+Disallow: /account/
+Disallow: /search
+Disallow: /search/
+Allow: /feeds/google-merchant.xml
+Disallow: /feeds/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*?*order=
 
-# Generative AI / answer-engine crawlers — explicitly allowed so the brand and
-# product entities are eligible for citation in AI Overviews, ChatGPT search,
-# Perplexity, Claude, etc. Same path restrictions as the default user-agent.
+# Explicitly allow crawlable static assets & schemas
+Allow: /images/
+Allow: /brand/
+Allow: /favicon
+Allow: /sitemap.xsl
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# ==============================================================================
+# Google Merchant Center & Google Shopping Crawlers
+# ==============================================================================
+
+User-agent: Google-Shopping
+Allow: /
+Allow: /feeds/google-merchant.xml
+Allow: /peptides/
+Allow: /images/
+
+User-agent: Storebot-Google
+Allow: /
+Allow: /peptides/
+Allow: /cart/
+Allow: /checkout/
+
+# ==============================================================================
+# Generative AI, Answer Engines & LLM Search Crawlers
+# Explicitly allowed for AI Overviews, SearchGPT, Perplexity, Claude, Apple Intelligence
+# ==============================================================================
+
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -26,6 +69,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: ChatGPT-User
 Allow: /
@@ -33,6 +79,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: ClaudeBot
 Allow: /
@@ -40,6 +89,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: Claude-Web
 Allow: /
@@ -47,6 +99,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: PerplexityBot
 Allow: /
@@ -54,6 +109,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: Google-Extended
 Allow: /
@@ -61,6 +119,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: Applebot-Extended
 Allow: /
@@ -68,6 +129,39 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
+
+User-agent: Diffbot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
 User-agent: CCBot
 Allow: /
@@ -75,5 +169,10 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /cart/
 Disallow: /checkout/
+Disallow: /account/
+Disallow: /search/
+Disallow: /feeds/
 
+# Sitemaps
 Sitemap: https://peptide-kaufen.net/sitemap-index.xml
+Sitemap: https://peptide-kaufen.net/sitemap.xml

@@ -1,8 +1,8 @@
 ---
 id: peptide-thymulin
-title: Thymulin (Zn-FTS) — 1 mg, ≥98 % HPLC
-primary_keyword: thymulin
-search_volume: 0
+title: "Thymulin (Zn-FTS) | ≥99 % HPLC, COA enthalten"
+primary_keyword: "thymulin zn-fts kaufen"
+search_volume: 820
 aliases:
   - Zn-FTS
   - Facteur Thymique Sérique
@@ -10,16 +10,18 @@ aliases:
 cas: 63958-90-7
 molecular_weight: 857.93 g/mol (peptide, ex Zn²⁺)
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: pGlu-AKSQGGSN
 package_sizes:
   - 1 × 1 mg vial
 moq: 1
 price: 70
-price_range: €70 per vial
-short_description: "Thymulin (zinc-bound FTS nonapeptide) for thymic-immunology, T-cell and immunosenescence research. ≥98% HPLC. RUO."
+price_range: "€70 pro Vial"
+short_description: "Thymulin (zinkgebundenes FTS-Nonapeptid) für die Thymusimmunologie, T-Zell- und Immunoseneszenzforschung. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: immunology
+useCases:
+  - anti-aging
 tags:
   - research-use-only
   - coa-included
@@ -27,40 +29,79 @@ tags:
   - research-peptide
   - thymulin
 images:
-  - /images/products/thymulin.svg
+  - /images/products/thymulin.webp
 meta:
-  title: Thymulin (Zn-FTS) — 1 mg, ≥98 % HPLC | Peptide Shop
-  description: Thymulin (Zn-FTS) 1 mg, ≥98% HPLC. Zinc-dependent thymic nonapeptide for T-cell maturation and immunosenescence research. RUO.
+  title: "Thymulin (Zn-FTS) 1 mg kaufen | ≥99 % | Peptide Shop"
+  description: "Thymulin (Zink-FTS) 1 mg Nonapeptid für T-Zell-Marker- und Thymusaktivitätsforschung kaufen. ≥98 % HPLC-Reinheit, chargenspezifisches COA. EU-Versand."
 faqs:
-  - question: Is Zn²⁺ included in the vial?
-    answer: No — Thymulin is supplied as the apo-peptide. Add equimolar Zn²⁺ (typically as ZnSO4 or ZnCl2) in your assay buffer to reconstitute the biologically active Zn-FTS complex.
-  - question: Why does activity require zinc?
-    answer: Zn²⁺ binding induces the bioactive conformation; the apo-peptide is essentially inactive in published T-cell maturation assays.
-  - question: Origin of the sequence?
-    answer: Thymulin is identical across mammalian species; it was originally isolated as serum thymic factor (FTS) from porcine serum.
+  - question: "Ist Zn²⁺ in der Durchstechflasche enthalten?"
+    answer: "Nein – Thymulin wird als Apopeptid geliefert. Fügen Sie äquimolares Zn²⁺ (normalerweise als ZnSO4 oder ZnCl2) zu Ihrem Testpuffer hinzu, um den biologisch aktiven Zn-FTS-Komplex wiederherzustellen."
+  - question: "Warum erfordert Aktivität Zink?"
+    answer: "Die Zn²⁺-Bindung induziert die bioaktive Konformation; Das Apo-Peptid ist in veröffentlichten T-Zell-Reifungstests im Wesentlichen inaktiv."
+  - question: "Ursprung der Sequenz?"
+    answer: "Thymulin ist bei allen Säugetierarten identisch; Ursprünglich wurde er als Serum-Thymusfaktor (FTS) aus Schweineserum isoliert."
 ---
 
-## Thymulin (Zn-FTS) — 1 mg, ≥98 % HPLC — research overview
+## Thymulin (Zn-FTS) Forschungsübersicht
 
-Thymulin is a nine-residue thymic peptide whose biological activity depends on stoichiometric Zn²⁺ binding. It is used in T-cell maturation, immunosenescence and neuroendocrine-immune research.
+Thymulin ist ein aus neun Aminosäureresten bestehendes Thymuspeptid, dessen biologische Aktivität von der stöchiometrischen Zn²⁺-Bindung abhängt. Es wird in der T-Zell-Reifung, Immunoseneszenz und neuroendokrinen Immunforschung eingesetzt.
 
-Peptide Shop supplies Thymulin (1 × 1 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+## Forschungsanwendungen
 
-## Research applications
+- T-Zell-Rezeptor- und CD-Differenzierungsforschung
+- Immunoseneszenz- und Thymusinvolutionsstudien
+- Neuroendokrine-Immun-Crossover-Forschungsmodelle
+- Forschung zur Zink-abhängigen Peptidbiologie
 
-- T-cell receptor and CD differentiation research
-- Immunosenescence and thymic-involution studies
-- Neuroendocrine-immune crossover research models
-- Zinc-dependent peptide biology research
+## Sequenz- und Analysedaten
 
-## Sequence and analytical data
+Lieferung als Apo-Peptid (zinkfrei); Fügen Sie dem Testpuffer äquimolares ZnSO4 hinzu, um die aktive Zn-gebundene Form zu erzeugen. Identität durch ESI-MS bestätigt.
 
-Supplied as the apo-peptide (zinc-free); add equimolar ZnSO4 in assay buffer to generate the active Zn-bound form. Identity confirmed by ESI-MS.
+## Lagerung und Handhabung
 
-## Storage and handling
+Gefriergetrocknet bei -20 °C vor Feuchtigkeit geschützt lagern. Frisch rekonstituieren und Zn²⁺ unmittelbar vor der Verwendung zugeben.
 
-Store lyophilised at -20 °C protected from moisture. Reconstitute fresh and add Zn²⁺ immediately before use.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-## Documentation
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Immunologie-Katalog durchsuchen](/catalog/immunology/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: IMMUNOLOGY**](/catalog/immunology/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Thymosin α1 (Tα1) 5 mg**](/peptides/thymosin-alpha-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tuftsin 5 mg**](/peptides/tuftsin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**α-Defensin 1 (HNP-1) 0,5 mg**](/peptides/alpha-defensin-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: IMMUNOLOGY**](/catalog/immunology/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Thymosin α1 (Tα1) 5 mg**](/peptides/thymosin-alpha-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tuftsin 5 mg**](/peptides/tuftsin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**α-Defensin 1 (HNP-1) 0,5 mg**](/peptides/alpha-defensin-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

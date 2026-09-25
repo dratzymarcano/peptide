@@ -1,6 +1,8 @@
 ---
 import { getCanonicalCollection } from '../lib/collections';
 import { researchAreas, useCases } from '../data/taxonomy';
+import { getLocaleFromPathname } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
   selectedArea?: string;
@@ -15,6 +17,9 @@ const {
   sort = 'featured',
   view = 'grid',
 } = Astro.props;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
 
 const allProducts = await getCanonicalCollection('products');
 const areaCounts = new Map<string, number>();
@@ -53,7 +58,7 @@ const hrefWith = (changes: Record<string, string | null>) => {
     {researchAreas.map((area) => (
       <li>
         <a class:list={{ 'is-active': selectedArea === area.slug }} href={hrefWith({ area: area.slug })}>
-          {area.name}<span>{areaCounts.get(area.slug) ?? 0}</span>
+          {t(`taxonomy.researchAreas.${area.slug}.name`)}<span>{areaCounts.get(area.slug) ?? 0}</span>
         </a>
       </li>
     ))}
@@ -67,7 +72,7 @@ const hrefWith = (changes: Record<string, string | null>) => {
     {useCases.map((useCase) => (
       <li>
         <a class:list={{ 'is-active': selectedUseCase === useCase.slug }} href={hrefWith({ useCase: useCase.slug })}>
-          {useCase.name}<span>{useCaseCounts.get(useCase.slug) ?? 0}</span>
+          {t(`taxonomy.useCases.${useCase.slug}.name`)}<span>{useCaseCounts.get(useCase.slug) ?? 0}</span>
         </a>
       </li>
     ))}

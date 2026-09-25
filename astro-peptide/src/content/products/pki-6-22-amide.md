@@ -1,8 +1,8 @@
 ---
 id: peptide-pki-6-22-amide
-title: PKI (6-22) amide — 1 mg, ≥98 % HPLC
-primary_keyword: pki-6-22-amide
-search_volume: 0
+title: "PKI (6-22) amide | ≥99 % HPLC, COA enthalten"
+primary_keyword: "pki 6-22 amide kaufen"
+search_volume: 390
 aliases:
   - PKA inhibitor peptide
   - Protein Kinase Inhibitor (6-22)
@@ -10,16 +10,18 @@ aliases:
 cas: 121932-06-7
 molecular_weight: 2222.6 g/mol
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: TYADFIASGRTGRRNAI-NH2
 package_sizes:
   - 1 × 1 mg vial
 moq: 1
 price: 55
-price_range: €55 per vial
-short_description: "PKI (6-22) amide, the most widely cited specific PKA inhibitor peptide for kinase-pathway research. ≥98% HPLC. RUO."
+price_range: "€55 pro Vial"
+short_description: "PKI (6-22)-Amid, das am häufigsten zitierte spezifische PKA-Inhibitorpeptid für die Kinase-Signalweg-Forschung. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: cell-signaling
+useCases:
+  - cognitive
 tags:
   - research-use-only
   - coa-included
@@ -27,40 +29,79 @@ tags:
   - research-peptide
   - pki-6-22-amide
 images:
-  - /images/products/pki-6-22-amide.svg
+  - /images/products/pki-6-22-amide.webp
 meta:
-  title: PKI (6-22) amide — 1 mg, ≥98 % HPLC | Peptide Shop
-  description: PKI (6-22) amide 1 mg, ≥98% HPLC. Specific PKA inhibitor peptide for kinase-pathway research and cAMP-pathway studies. RUO.
+  title: "PKI (6-22) Amide 1 mg kaufen | ≥99 % | Peptide Shop"
+  description: "Hochpotenter PKA-Inhibitor PKI (6-22) Amid 1 mg für In-vitro-Kinase-Assays kaufen. ≥98 % HPLC-Reinheit, chargenspezifisches COA & schneller EU-Versand."
 faqs:
-  - question: How specific is PKI (6-22) for PKA?
-    answer: PKI (6-22) amide is one of the most selective protein-kinase inhibitors known, with sub-nanomolar Ki for PKA catalytic subunit and negligible activity on other AGC-family kinases at typical assay concentrations.
-  - question: Is this material cell-permeable?
-    answer: No. For cell-based research use the myristoylated PKI (14-22) amide variant (also catalogued).
-  - question: Recommended assay concentration?
-    answer: In-vitro PKA inhibition typically uses 0.1–10 µM; permeabilised-cell research uses 1–10 µM.
+  - question: "Wie spezifisch ist PKI (6-22) für PKA?"
+    answer: "PKI (6-22)-Amid ist einer der selektivsten bekannten Proteinkinase-Inhibitoren, mit subnanomolarem Ki für die katalytische PKA-Untereinheit und vernachlässigbarer Aktivität auf andere Kinasen der AGC-Familie bei typischen Testkonzentrationen."
+  - question: "Ist dieses Material zelldurchlässig?"
+    answer: "Nein. Für zellbasierte Forschung verwenden Sie die myristoylierte PKI (14-22)-Amidvariante (ebenfalls katalogisiert)."
+  - question: "Empfohlene Testkonzentration?"
+    answer: "Für die In-vitro-PKA-Hemmung werden typischerweise 0,1–10 µM verwendet; Die Forschung mit permeabilisierten Zellen verwendet 1–10 µM."
 ---
 
-## PKI (6-22) amide — 1 mg, ≥98 % HPLC — research overview
+## PKI (6-22)-Amid-Forschungsübersicht
 
-PKI (6-22) amide is the active fragment of the heat-stable protein-kinase inhibitor (PKI), a highly specific competitive inhibitor of cAMP-dependent protein kinase (PKA) catalytic subunit. It is the standard reference inhibitor in kinase-pathway research.
+PKI (6-22)-Amid ist das aktive Fragment des hitzestabilen Proteinkinase-Inhibitors (PKI), einem hochspezifischen kompetitiven Inhibitor der katalytischen Untereinheit der cAMP-abhängigen Proteinkinase (PKA). Es ist der Standard-Referenzinhibitor in der Kinase-Signalweg-Forschung.
 
-Peptide Shop supplies PKI (6-22) amide (1 × 1 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+Peptide Shop liefert PKI (6-22)-Amid (1 × 1 mg Fläschchen) als versiegeltes Forschungsmaterial mit Dokumentation auf Chargenebene. Dieses Produkt wird nur für In-vitro-Laborforschungen geliefert und ist nicht für den menschlichen oder veterinärmedizinischen Gebrauch, die Therapie, Diagnose, kosmetische Anwendung oder den Verzehr bestimmt.
 
-## Research applications
+## Forschungsanwendungen
 
-- PKA inhibition in in-vitro kinase assays (Ki ≈ 1–3 nM)
-- cAMP / PKA signalling pathway dissection
-- Permeabilised-cell PKA inhibition research
-- Reference control for PKA-selective small-molecule screens
+- PKA-Hemmung in In-vitro-Kinase-Assays (Ki ≈ 1–3 nM)
+- Zerlegung des cAMP/PKA-Signalwegs
+- Forschung zur PKA-Hemmung permeabilisierter Zellen
+- Referenzkontrolle für PKA-selektive Screenings kleiner Moleküle
 
-## Sequence and analytical data
+## Sequenz- und Analysedaten
 
-C-terminal amidation and identity confirmed by ESI-MS. Highly soluble in aqueous buffers.
+C-terminale Amidierung und Identität durch ESI-MS bestätigt. In wässrigen Puffern gut löslich.
 
-## Storage and handling
+## Lagerung und Handhabung
 
-Store lyophilised at -20 °C. Aqueous stock solutions are stable at -80 °C; avoid repeated freeze-thaw.
+Bei -20 °C lyophilisiert lagern. Wässrige Stammlösungen sind bei -80 °C stabil; Vermeiden Sie wiederholtes Einfrieren und Auftauen.
 
-## Documentation
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Zellsignalisierungskatalog durchsuchen](/catalog/cell-signaling/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-SIGNALING**](/catalog/cell-signaling/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Myristoylated PKI (14-22) 1 mg**](/peptides/myristoylated-pki-14-22/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**AIP CaMKII Inhibitor 1 mg**](/peptides/aip-camkii-inhibitor/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-SIGNALING**](/catalog/cell-signaling/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Myristoylated PKI (14-22) 1 mg**](/peptides/myristoylated-pki-14-22/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**AIP CaMKII Inhibitor 1 mg**](/peptides/aip-camkii-inhibitor/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

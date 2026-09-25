@@ -1,6 +1,6 @@
 ---
-title: "What ≥99% HPLC Purity Actually Means"
-description: "The chemistry behind a peptide purity number, what 99% does and does not guarantee, and when to ask for additional orthogonal data."
+title: "Was ≥99 % HPLC-Reinheit tatsächlich bedeutet"
+description: "Die Chemie hinter einer Peptidreinheitszahl, was 99 % garantiert und was nicht und wann zusätzliche orthogonale Daten angefordert werden sollten."
 publishDate: "2026-05-03"
 category: "Quality"
 readTime: "7 min"
@@ -8,69 +8,69 @@ order: 30
 primaryKeyword: "hplc purity peptides"
 tags: ["hplc", "purity", "qc"]
 meta:
-  title: "What ≥99% HPLC Purity Means | Peptide Shop Learn"
-  description: "How RP-HPLC peptide purity is measured, what it tells you about impurity profile, and when a single purity number is insufficient."
+  title: "Was ≥99 % HPLC-Reinheit bedeutet | Peptide Shop"
+  description: "Wie die RP-HPLC-Reinheit gemessen wird, was Verunreinigungsprofile aussagen und wann orthogonale Daten erforderlich sind."
 ---
 
-"≥99% HPLC purity" appears on most research-peptide product pages, but the number is more nuanced than it looks. This article explains how the value is generated, what it does and does not guarantee, and when to request orthogonal evidence.
+„≥99 % HPLC-Reinheit“ erscheint auf den meisten Forschungspeptid-Produktseiten, aber die Zahl ist nuancierter als sie aussieht. In diesem Artikel wird erläutert, wie der Wert generiert wird, was er garantiert und was nicht und wann orthogonale Beweise angefordert werden müssen.
 
-## How the number is produced
+## Wie die Zahl entsteht
 
-A purity assay on a synthetic peptide is almost always reverse-phase high-performance liquid chromatography (RP-HPLC) on a C18 column. The crude or final peptide is loaded, separated by a water–acetonitrile gradient containing 0.1% trifluoroacetic acid (TFA), and detected by UV at **220 nm** — the absorption maximum of the peptide backbone amide bond.
+Bei einem Reinheitstest für ein synthetisches Peptid handelt es sich fast immer um eine Umkehrphasen-Hochleistungsflüssigkeitschromatographie (RP-HPLC) auf einer C18-Säule. Das Roh- oder Endpeptid wird geladen, durch einen Wasser-Acetonitril-Gradienten mit 0,1 % Trifluoressigsäure (TFA) getrennt und durch UV bei **220 nm** – dem Absorptionsmaximum der Amidbindung im Peptidrückgrat – nachgewiesen.
 
-The chromatogram is integrated. The reported purity is:
+Das Chromatogramm wird integriert. Die angegebene Reinheit beträgt:
 
+```text
+Reinheit (%) = Fläche des Hauptpeaks / integrierte Gesamtfläche × 100
 ```
-purity (%) = area of main peak / total integrated area  × 100
-```
 
-A 99% purity therefore means the main peak accounts for 99% of all UV-absorbing material that elutes within the gradient window.
+Eine Reinheit von 99 % bedeutet daher, dass der Hauptpeak 99 % des gesamten UV-absorbierenden Materials ausmacht, das innerhalb des Gradientenfensters eluiert.
 
-## What 99% guarantees
+## Was 99 % garantiert
 
-It guarantees that, **under those analytical conditions**, no other UV-absorbing species accounts for more than 1% of the trace. For most research peptides, this is sufficient.
+Es garantiert, dass **unter diesen Analysebedingungen** keine andere UV-absorbierende Spezies mehr als 1 % der Spur ausmacht. Für die meisten Forschungspeptide ist dies ausreichend.
 
-## What 99% does not guarantee
+## Was 99 % nicht garantieren
 
-1. **Which impurities make up the remaining 1%.** Deletion sequences (one residue missing), epimers (D-residue at a chiral centre), oxidation products (+16 Da), or scrambled disulfides may all coelute or elute close to the main peak.
-2. **Salt and solvent burden.** Counter-ion (TFA, acetate) and residual water are not in the chromatogram. They are reported separately on the COA.
-3. **Endotoxin or microbial load.** RP-HPLC does not measure these; for cell and animal studies, request a LAL endotoxin assay.
-4. **Aggregation state.** The chromatographic conditions denature most secondary structure; aggregates that re-form on reconstitution will not appear.
-5. **Orthogonal purity.** A single C18 method may underestimate true purity by 0.5–2% if a co-eluting impurity exists.
+1. **Welche Verunreinigungen machen die verbleibenden 1 % aus?** Deletionssequenzen (ein Rest fehlt), Epimere (D-Rest an einem chiralen Zentrum), Oxidationsprodukte (+16 Da) oder durcheinandergemischte Disulfide können alle zusammen oder in der Nähe des Hauptpeaks eluieren.
+2. **Salz- und Lösungsmittelbelastung.** Gegenion (TFA, Acetat) und Restwasser sind nicht im Chromatogramm enthalten. Sie werden im COA gesondert ausgewiesen.
+3. **Endotoxin- oder mikrobielle Belastung.** RP-HPLC misst diese nicht; Fordern Sie für Zell- und Tierstudien einen LAL-Endotoxintest an.
+4. **Aggregationszustand.** Die chromatographischen Bedingungen denaturieren die meisten Sekundärstrukturen; Aggregate, die sich bei der Rekonstitution neu bilden, treten nicht auf.
+5. **Orthogonale Reinheit.** Eine einzelne C18-Methode kann die tatsächliche Reinheit um 0,5–2 % unterschätzen, wenn eine koeluierende Verunreinigung vorhanden ist.
 
-## Detection wavelength matters
+## Detektionswellenlänge ist wichtig
 
-Purity quoted at 220 nm captures all peptide-bond-containing species. Purity quoted at **280 nm** (Trp/Tyr) only captures aromatics; for a peptide without an aromatic residue, a 280 nm trace is uninformative. Always check which wavelength a quoted purity refers to.
+Die bei 220 nm angegebene Reinheit erfasst alle Spezies, die Peptidbindungen enthalten. Die bei **280 nm** (Trp/Tyr) angegebene Reinheit erfasst nur Aromaten; Für ein Peptid ohne aromatischen Rest ist eine 280-nm-Spur nicht aussagekräftig. Überprüfen Sie immer, auf welche Wellenlänge sich die angegebene Reinheit bezieht.
 
-## When to request orthogonal data
+## Wann orthogonale Daten angefordert werden sollen
 
-For most binding studies, in-vitro receptor assays and structural work, a single ≥98–99% RP-HPLC value is fine. Ask for additional evidence when:
+Für die meisten Bindungsstudien, In-vitro-Rezeptortests und Strukturarbeiten ist ein einzelner RP-HPLC-Wert von ≥98–99 % ausreichend. Fordern Sie zusätzliche Nachweise an, wenn:
 
-- The peptide will be used in a long-term in-vivo research model where impurity accumulation matters.
-- The assay is exquisitely sensitive (e.g. ion-channel electrophysiology) and trace contaminants could give false positives.
-- The peptide contains epimerisation-prone residues (Cys, Ser, Thr after Pro) and stereochemistry must be confirmed.
-- Two synthesis lots give inconsistent functional results.
+- Das Peptid wird in einem langfristigen In-vivo-Forschungsmodell verwendet, bei dem die Anreicherung von Verunreinigungen von Bedeutung ist.
+- Der Assay ist äußerst empfindlich (z. B. Ionenkanal-Elektrophysiologie) und Spuren von Verunreinigungen können zu falsch positiven Ergebnissen führen.
+- Das Peptid enthält zur Epimerisierung neigende Reste (Cys, Ser, Thr nach Pro) und die Stereochemie muss bestätigt werden.
+- Zwei Synthesechargen liefern inkonsistente funktionelle Ergebnisse.
 
-In those cases, request:
+In diesen Fällen fordern Sie Folgendes an:
 
-- **A second orthogonal HPLC method** (different column chemistry, different additive — for example, ion-pairing RP with formic acid instead of TFA).
-- **High-resolution MS** with isotope-pattern analysis, not just unit-mass ESI.
-- **Capillary electrophoresis** for charge isoforms.
-- **Chiral amino-acid analysis** if stereochemistry is in question.
+- **Eine zweite orthogonale HPLC-Methode** (andere Säulenchemie, anderes Additiv – zum Beispiel Ionenpaarung von RP mit Ameisensäure anstelle von TFA).
+- **Hochauflösende MS** mit Isotopenmusteranalyse, nicht nur Einheitsmassen-ESI.
+- **Kapillarelektrophorese** für Ladungsisoformen.
+- **Analyse chiraler Aminosäuren**, wenn Stereochemie in Frage steht.
 
-## What Peptide Shop ships
+## Was Peptide Shop versendet
 
-Every research peptide carries a lot-specific COA with at minimum:
+Jedes Forschungspeptid trägt ein losspezifisches COA mit mindestens:
 
-- RP-HPLC purity at 220 nm (chromatogram available on request).
-- ESI-MS confirmation of identity.
-- Counter-ion identity and percentage.
-- Karl Fischer water content.
-- Net peptide content.
+- RP-HPLC-Reinheit bei 220 nm (Chromatogramm auf Anfrage erhältlich).
+- ESI-MS-Identitätsbestätigung.
+- Identität und Prozentsatz der Gegenionen.
+- Karl-Fischer-Wassergehalt.
+- Nettopeptidgehalt.
 
-For the vast majority of research applications, that combination provides sufficient confidence to begin work. For specialised assays, contact technical support with the lot number and the additional data you need.
+Für die überwiegende Mehrheit der Forschungsanträge bietet diese Kombination ausreichend Sicherheit, um mit der Arbeit zu beginnen. Für spezielle Tests wenden Sie sich mit der Chargennummer und den zusätzlichen Daten, die Sie benötigen, an den technischen Support.
 
-## Cross-references
+## Querverweise
 
-- [How to read a peptide COA](/learn/coa-explained/)
-- [Peptide research glossary](/learn/glossary/) — entries on *area-percent*, *counter-ion*, *epimer*
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)
+- [Glossar zur Peptidforschung](/learn/glossary/) – Einträge zu *Flächenprozent*, *Gegenion*, *Epimer*

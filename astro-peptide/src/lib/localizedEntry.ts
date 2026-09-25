@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry, type CollectionKey } from 'astro:content';
-import { defaultLocale, locales, type Locale } from '../i18n/config';
+import { sourceLocale, locales, type Locale } from '../i18n/config';
 
 /**
  * Returns the content-collection entry for the requested slug & locale, falling
@@ -20,14 +20,35 @@ export async function getLocalizedEntry<C extends CollectionKey>(
   locale: Locale,
 ): Promise<CollectionEntry<C> | undefined> {
   const all = await getCollection(collection);
-  if (locale !== defaultLocale) {
+  if (locale !== sourceLocale) {
     const localized = all.find((entry) => entry.id === `${locale}/${slug}`);
     if (localized) return localized;
   }
   return all.find(
-    (entry) => entry.id === slug || entry.id === `${defaultLocale}/${slug}`,
+    (entry) => entry.id === slug || entry.id === `${sourceLocale}/${slug}`,
   );
 }
+
+/**
+ * Collections whose entries are translated at runtime for every locale.
+ *
+ * `productContent.ts` and `blogContent.ts` carry hand-written copy for de, nl,
+ * fr, it and es keyed by locale — not by slug — so *every* product and post
+ * renders fully localized (title, meta, body, FAQs, storage) at
+ * `/<locale>/<path>/`, with or without a markdown override. A per-locale
+ * markdown file is an upgrade to that translation, never the thing that
+ * creates it.
+ *
+ * Treating the override file as the gate is what broke hreflang: 48 products
+ * and 3 posts served six genuine language versions each, but declared only the
+ * one or two that happened to have a `<locale>/<slug>.md`. Google therefore saw
+ * ~290 live, internally linked, sitemap-absent URLs with no hreflang cluster —
+ * the classic setup for the localized pages being dropped as duplicates of the
+ * English one. `learn` is deliberately absent: those articles render their
+ * English markdown body under every locale prefix, so they are English-only
+ * and must not claim otherwise.
+ */
+const RUNTIME_TRANSLATED_COLLECTIONS = new Set<string>(['products', 'blog']);
 
 export async function getAvailableLocales<C extends CollectionKey>(
   collection: C,
@@ -35,16 +56,16 @@ export async function getAvailableLocales<C extends CollectionKey>(
 ): Promise<Locale[]> {
   const all = await getCollection(collection);
   const hasCanonical = all.some(
-    (entry) => entry.id === slug || entry.id === `${defaultLocale}/${slug}`,
+    (entry) => entry.id === slug || entry.id === `${sourceLocale}/${slug}`,
   );
-  const available = hasCanonical ? new Set<Locale>([defaultLocale]) : new Set<Locale>();
+  if (!hasCanonical) return [];
 
+  if (RUNTIME_TRANSLATED_COLLECTIONS.has(collection)) return [...locales];
+
+  const available = new Set<Locale>([sourceLocale]);
   for (const locale of locales) {
-    if (locale === defaultLocale) continue;
-    const hasLocalizedEntry = all.some(
-      (entry) => entry.id === `${locale}/${slug}`,
-    );
-    if (hasLocalizedEntry) available.add(locale);
+    if (locale === sourceLocale) continue;
+    if (all.some((entry) => entry.id === `${locale}/${slug}`)) available.add(locale);
   }
 
   return locales.filter((locale) => available.has(locale));

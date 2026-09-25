@@ -5,7 +5,10 @@ import ProductCard from '../../components/ProductCard.astro';
 import { toCardProduct } from '../../lib/product';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RUOBanner from '../../components/RUOBanner.astro';
-import { getResearchArea } from '../../data/taxonomy';
+import HubStats from '../../components/HubStats.astro';
+import ProductSpecTable from '../../components/ProductSpecTable.astro';
+import HubFaq from '../../components/HubFaq.astro';
+import { getResearchArea, researchAreas } from '../../data/taxonomy';
 import { getCanonicalCollection } from '../../lib/collections';
 import { getLocaleFromPathname, localizePath } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
@@ -20,17 +23,38 @@ const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 
 if (!meta) {
-  return Astro.redirect(href('/catalog/'), 302);
+  return Astro.redirect(href('/catalog/'), 301);
 }
 
 const areaName = t(`taxonomy.researchAreas.${meta.slug}.name`);
 const areaDescription = t(`taxonomy.researchAreas.${meta.slug}.description`);
+const areaShort = t(`taxonomy.researchAreas.${meta.slug}.short`);
 const areaKeywords = meta.keywords.map((_, index) => t(`taxonomy.researchAreas.${meta.slug}.keywords.${index}`));
 
 const all = await getCanonicalCollection('products');
 const products = all
   .filter((p) => p.data.researchArea === area)
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+// The purity floor actually stocked in this area, rather than a site-wide
+// boast. Non-numeric grades (e.g. "USP Grade" on the bacteriostatic water)
+// are excluded so they cannot drag the figure to nothing.
+const purityFloor = Math.min(
+  ...products
+    .map((entry) => Number(entry.data.purity?.match(/(\d{2,3})\s*%/)?.[1]))
+    .filter((value) => Number.isFinite(value)),
+  99,
+);
+
+const prices = products.map((entry) => entry.data.price).filter((value): value is number => typeof value === 'number');
+const fromPrice = prices.length ? Math.min(...prices) : null;
+
+// Sibling hubs. A hub page that only links downward to its own products is a
+// dead end for both a reader who guessed the wrong area and a crawler trying
+// to reach the other eleven.
+const siblingAreas = researchAreas
+  .filter((candidate) => candidate.slug !== meta.slug)
+  .slice(0, 6);
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 
@@ -65,7 +89,7 @@ const breadcrumbs = [
 
 <Layout
   title={t('catalogArea.metaTitle', { area: areaName })}
-  description={t('catalogArea.metaDescription', { description: areaDescription })}
+  description={t('catalogArea.metaDescription', { area: areaName, short: areaShort, purity: purityFloor })}
   breadcrumbs={breadcrumbs}
 >
   <JsonLd schema={[collectionPageSchema, itemListSchema]} />
@@ -74,11 +98,10 @@ const breadcrumbs = [
     <div class="container">
       <Breadcrumb items={breadcrumbs} />
 
-      <span class="eyebrow">{t('shopSidebar.researchArea')}</span>
       <h1>{t('catalogArea.title', { area: areaName })}</h1>
       <p class="lead">{areaDescription}</p>
 
-      <RUOBanner heading={t('productPage.ruoHeading')} detail={t('productPage.ruoDetail')} style="margin-top: var(--space-6);" />
+      {products.length > 0 && <HubStats count={products.length} purityFloor={purityFloor} fromPrice={fromPrice} />}
 
       {products.length === 0 ? (
         <p style="margin-top: var(--space-8); color: var(--color-ink-3);">
@@ -92,14 +115,45 @@ const breadcrumbs = [
         </div>
       )}
 
-      <hr class="divider" />
+      {products.length > 0 && (
+        <>
+          <ProductSpecTable products={products} />
+          <HubFaq group={areaName} purityFloor={purityFloor} />
+        </>
+      )}
 
-      <h2>{t('catalogArea.relatedSearches')}</h2>
-      <div style="display:flex; flex-wrap:wrap; gap: var(--space-2); margin-top: var(--space-3);">
-        {areaKeywords.map((kw) => (
-          <span class="chip" aria-label={t('catalogArea.topicAria', { topic: kw })}>{kw}</span>
-        ))}
-      </div>
+      <RUOBanner heading={t('productPage.ruoHeading')} detail={t('productPage.ruoDetail')} style="margin-top: var(--space-16);" />
+
+      <section class="hub-links" aria-labelledby="other-areas-title">
+        <h2 id="other-areas-title">{t('hub.otherAreasTitle')}</h2>
+        <div class="hub-links__row">
+          {siblingAreas.map((area) => (
+            <a class="chip" href={href(`/catalog/${area.slug}/`)}>{t(`taxonomy.researchAreas.${area.slug}.name`)}</a>
+          ))}
+          <a class="chip" href={href('/catalog/')}>{t('nav.allResearchAreas')}</a>
+        </div>
+      </section>
+
+      <section class="hub-links" aria-labelledby="related-searches-title">
+        <h2 id="related-searches-title">{t('catalogArea.relatedSearches')}</h2>
+        <div class="hub-links__row">
+          {areaKeywords.map((kw) => (
+            <span class="chip" aria-label={t('catalogArea.topicAria', { topic: kw })}>{kw}</span>
+          ))}
+        </div>
+      </section>
     </div>
   </section>
 </Layout>
+
+<style>
+  .hub-links { margin-top: var(--space-12); }
+  .hub-links h2 {
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-ink-3);
+    margin: 0 0 var(--space-4);
+  }
+  .hub-links__row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+</style>

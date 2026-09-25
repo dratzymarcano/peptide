@@ -129,9 +129,9 @@ function baseEmail(args: {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(args.title)}</title>
   </head>
-  <body style="margin:0;background:#EFF6FF;color:#0F172A;font-family:Inter,Arial,sans-serif;">
+  <body style="margin:0;background:#EFF8FC;color:#0F172A;font-family:Inter,Arial,sans-serif;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(args.preheader)}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#EFF6FF;padding:28px 12px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#EFF8FC;padding:28px 12px;">
       <tr>
         <td align="center">
           <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;">
@@ -143,7 +143,7 @@ function baseEmail(args: {
             </tr>
             <!-- Header band -->
             <tr>
-              <td style="background:#0066CC;padding:20px 28px 24px;color:#ffffff;">
+              <td style="background:#0077B6;padding:20px 28px 24px;color:#ffffff;">
                 <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E3F0FF;font-weight:700;">${escapeHtml(args.eyebrow)}</div>
                 <div style="font-size:26px;line-height:1.2;font-weight:800;margin-top:6px;">${escapeHtml(args.title)}</div>
               </td>
@@ -153,7 +153,7 @@ function baseEmail(args: {
               <td style="padding:28px;">
                 <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#334155;">${escapeHtml(args.intro)}</p>
                 ${args.body}
-                ${args.cta ? `<p style="margin:28px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0066CC;color:#ffffff;text-decoration:none;border-radius:8px;padding:13px 22px;font-weight:700;font-size:15px;">${escapeHtml(args.cta.label)}</a></p>` : ''}
+                ${args.cta ? `<p style="margin:28px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0077B6;color:#ffffff;text-decoration:none;border-radius:8px;padding:13px 22px;font-weight:700;font-size:15px;">${escapeHtml(args.cta.label)}</a></p>` : ''}
               </td>
             </tr>
             <!-- Footer -->
@@ -161,8 +161,8 @@ function baseEmail(args: {
               <td style="padding:18px 28px;background:#F8FAFC;border-top:1px solid #E2E8F0;color:#475569;font-size:13px;line-height:1.6;">
                 ${escapeHtml(args.footerNote ?? 'Peptide Shop supplies research-use materials only. Please keep this message for your records.')}
                 <br><br>
-                <a href="https://peptide-kaufen.net" style="color:#0066CC;text-decoration:none;">peptide-kaufen.net</a> ·
-                <a href="mailto:info@peptide-kaufen.net" style="color:#0066CC;text-decoration:none;">info@peptide-kaufen.net</a>
+                <a href="https://peptide-kaufen.net" style="color:#0077B6;text-decoration:none;">peptide-kaufen.net</a> ·
+                <a href="mailto:info@peptide-kaufen.net" style="color:#0077B6;text-decoration:none;">info@peptide-kaufen.net</a>
               </td>
             </tr>
           </table>
@@ -236,56 +236,86 @@ export async function sendOrderConfirmation(order: OrderSummary, options: SendOp
     : locale === 'it' ? `Ordine ${order.id} ricevuto`
     : locale === 'es' ? `Pedido ${order.id} recibido`
     : `Order ${order.id} received`;
-  const intro = 'Thank you. We have received your research-use order and will process it after compliance and payment checks are complete.';
+  const isBank = order.paymentMethod === 'bank';
+  const intro = isBank
+    ? (locale === 'de'
+        ? 'Vielen Dank für Ihre Laborbestellung. Bitte fordern Sie die Bankverbindung für eine schnellere Bearbeitung im Live-Chat beim Kundenservice an.'
+        : 'Thank you for your research order. Please request the bank account details from customer support on live chat for faster processing.')
+    : (locale === 'de'
+        ? 'Vielen Dank für Ihre Laborbestellung. Wir haben Ihre Bestellung erhalten und bereiten sie nach Eingang der Zahlung für den Expressversand vor.'
+        : 'Thank you for your research order. We have received your order and are preparing it for express dispatch once payment is received.');
   const address = addressLines(order.shippingAddress);
+  const bankLiveChatNotice = isBank
+    ? `<div style="margin:20px 0;padding:18px;background:#FEF3C7;border:1px solid #F59E0B;border-radius:8px;color:#92400E;font-size:14px;line-height:1.6;">
+        <strong style="display:block;font-size:16px;color:#78350F;margin-bottom:8px;">${locale === 'de' ? 'Wichtiger Hinweis zur Banküberweisung:' : 'Important Bank Transfer Notice:'}</strong>
+        <p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#92400E;">
+          ${locale === 'de' ? 'Bitte fordern Sie die Bankverbindung für eine schnellere Bearbeitung im Live-Chat beim Kundenservice an.' : 'Please request the bank account details from customer support on live chat for faster processing.'}
+        </p>
+        <p style="margin:0 0 14px;font-size:13px;color:#78350F;">
+          ${locale === 'de' ? `Nennen Sie unserem Support im Live-Chat auf der Website einfach Ihre Bestellnummer <strong>${escapeHtml(order.id)}</strong>. Sie erhalten die Bankdaten umgehend für eine sofortige Freigabe.` : `Simply provide your order reference <strong>${escapeHtml(order.id)}</strong> to customer support on live chat to receive the bank details immediately.`}
+        </p>
+        <a href="${config.siteUrl}" style="display:inline-block;background:#D97706;color:#ffffff;text-decoration:none;border-radius:6px;padding:10px 18px;font-weight:700;font-size:14px;">
+          ${locale === 'de' ? '💬 Live-Chat auf Website öffnen' : '💬 Open Live Chat on Website'}
+        </a>
+       </div>`
+    : '';
   const body = `${rows([
-    { label: 'Order ID', value: order.id },
-    { label: 'Payment method', value: order.paymentMethod === 'bitcoin' ? 'Bitcoin' : order.paymentMethod === 'bank' ? 'Bank transfer' : order.paymentMethod ?? 'Pending' },
-    { label: 'Order total', value: formatMoney(order.total, order.currency) },
-    { label: 'Delivery address', value: address.join(', ') },
-  ])}${orderItemsTable(order)}<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">These materials are supplied strictly for in-vitro laboratory research use. Do not use for human or veterinary administration.</p>`;
-  const text = `${subject}\n\n${intro}\n\nOrder ID: ${order.id}\nPayment method: ${order.paymentMethod ?? 'Pending'}\nTotal: ${formatMoney(order.total, order.currency)}\n\n${textOrderLines(order)}\n\n${orderUrl(config.siteUrl, order.id)}`;
+    { label: 'Bestellnummer / Order ID', value: order.id },
+    { label: 'Zahlungsart / Payment method', value: order.paymentMethod === 'bitcoin' || order.paymentMethod === 'crypto' ? 'Kryptowährung' : 'Banküberweisung (SEPA)' },
+    { label: 'Gesamtbetrag / Total', value: formatMoney(order.total, order.currency) },
+    { label: 'Lieferadresse / Delivery address', value: address.join(', ') },
+  ])}${bankLiveChatNotice}${orderItemsTable(order)}<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">Diese Reagenzien werden ausschließlich für In-Vitro-Laborforschungszwecke (Research Use Only) geliefert.</p>`;
+  const textBankNotice = isBank
+    ? `\n\nWICHTIGER HINWEIS ZUR BANKÜBERWEISUNG:\n${locale === 'de' ? 'Bitte fordern Sie die Bankverbindung für eine schnellere Bearbeitung im Live-Chat beim Kundenservice an.' : 'Please request the bank account details from customer support on live chat for faster processing.'}\nWebsite / Live-Chat: ${config.siteUrl}\nBestellnummer: ${order.id}\n`
+    : '';
+  const text = `${subject}\n\n${intro}${textBankNotice}\n\nBestellnummer: ${order.id}\nZahlungsart: ${order.paymentMethod ?? 'Banküberweisung'}\nGesamtbetrag: ${formatMoney(order.total, order.currency)}\n\n${textOrderLines(order)}\n\n${orderUrl(config.siteUrl, order.id)}`;
   const html = baseEmail({
-    preheader: `Order ${order.id} has been received.`,
-    eyebrow: 'Order received',
+    preheader: `Bestellung ${order.id} erhalten.`,
+    eyebrow: 'Bestelleingang',
     title: subject,
     intro,
     body,
-    cta: { label: 'View order', href: orderUrl(config.siteUrl, order.id) },
+    cta: { label: isBank ? (locale === 'de' ? 'Live-Chat auf Website öffnen' : 'Open Live Chat on Website') : 'Bestellung ansehen', href: isBank ? config.siteUrl : orderUrl(config.siteUrl, order.id) },
   });
   await send({ to: order.email, subject, html, text }, options);
 }
 
 export async function sendBankTransferInstructions(order: OrderSummary, options: SendOptions = {}): Promise<void> {
   const config = emailConfig(options.env);
-  const hasBankDetails = Boolean(config.bank.iban && config.bank.bic && config.bank.beneficiary);
-  const subject = `Bank transfer instructions - order ${order.id}`;
+  const locale = pickLocale(order.locale);
+  const subject = locale === 'de'
+    ? `Banküberweisung & Zahlungsdetails - Bestellung ${order.id}`
+    : `Bank Transfer & Payment Details - Order ${order.id}`;
   const reference = order.id;
-  const intro = hasBankDetails
-    ? 'Please use the payment details below and include the order reference exactly as shown.'
-    : 'Your order is reserved. Our team will review the order and send bank payment details shortly.';
-  const body = hasBankDetails
-    ? `${rows([
-        { label: 'Beneficiary', value: config.bank.beneficiary },
-        { label: 'IBAN', value: config.bank.iban },
-        { label: 'BIC / SWIFT', value: config.bank.bic },
-        { label: 'Reference', value: reference },
-        { label: 'Amount', value: formatMoney(order.total, order.currency) },
-      ])}<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">Orders are released after payment reconciliation and compliance review.</p>`
-    : `${rows([
-        { label: 'Order ID', value: order.id },
-        { label: 'Amount', value: formatMoney(order.total, order.currency) },
-        { label: 'Status', value: 'Awaiting payment details' },
-      ])}<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">You do not need to place the order again. We will contact you from our official support address.</p>`;
-  const text = hasBankDetails
-    ? `${subject}\n\nBeneficiary: ${config.bank.beneficiary}\nIBAN: ${config.bank.iban}\nBIC/SWIFT: ${config.bank.bic}\nReference: ${reference}\nAmount: ${formatMoney(order.total, order.currency)}`
-    : `${subject}\n\nOrder ID: ${order.id}\nAmount: ${formatMoney(order.total, order.currency)}\n\nOur team will send bank payment details shortly.`;
+  const intro = locale === 'de'
+    ? 'Bitte fordern Sie die Bankverbindung für eine schnellere Bearbeitung im Live-Chat beim Kundenservice an.'
+    : 'Please request the bank account details from customer support on live chat for faster processing.';
+  const body = `<div style="margin:0 0 20px;padding:18px;background:#FEF3C7;border:1px solid #F59E0B;border-radius:8px;color:#92400E;font-size:14px;line-height:1.6;">
+        <strong style="display:block;font-size:16px;color:#78350F;margin-bottom:8px;">${locale === 'de' ? 'Banküberweisung (SEPA / Vorkasse)' : 'Bank Transfer (SEPA / Prepayment)'}</strong>
+        <p style="margin:0 0 10px;font-size:15px;font-weight:700;color:#92400E;">
+          ${locale === 'de' ? 'Bitte fordern Sie die Bankverbindung für eine schnellere Bearbeitung im Live-Chat beim Kundenservice an.' : 'Please request the bank account details from customer support on live chat for faster processing.'}
+        </p>
+        <p style="margin:0 0 14px;font-size:13px;color:#78350F;">
+          ${locale === 'de' ? `Nennen Sie unserem Kundenservice im Live-Chat auf der Website (<a href="${config.siteUrl}" style="color:#B45309;font-weight:700;">${config.siteUrl}</a>) einfach Ihre Bestellnummer <strong>${escapeHtml(reference)}</strong>. Unser Support übermittelt Ihnen direkt die aktuellen Bankdaten für eine priorisierte Freigabe.` : `Simply provide your order reference <strong>${escapeHtml(reference)}</strong> to customer support on live chat at <a href="${config.siteUrl}" style="color:#B45309;font-weight:700;">${config.siteUrl}</a>. Our team will provide the current bank details immediately.`}
+        </p>
+        <a href="${config.siteUrl}" style="display:inline-block;background:#D97706;color:#ffffff;text-decoration:none;border-radius:6px;padding:10px 18px;font-weight:700;font-size:14px;">
+          ${locale === 'de' ? '💬 Live-Chat auf Website öffnen' : '💬 Open Live Chat on Website'}
+        </a>
+      </div>
+      ${rows([
+        { label: locale === 'de' ? 'Bestellnummer / Verwendungszweck' : 'Order ID / Reference', value: reference },
+        { label: locale === 'de' ? 'Zahlungsbetrag' : 'Total Amount', value: formatMoney(order.total, order.currency) },
+        { label: 'Status', value: locale === 'de' ? 'Warten auf Zahlungsbestätigung' : 'Awaiting Payment' },
+      ])}
+      <p style="margin:16px 0 0;color:#314852;font-size:14px;line-height:1.65;">${locale === 'de' ? 'Nach Eingang der Überweisung oder Bestätigung im Live-Chat wird Ihre Laborbestellung noch am selben Werktag für den Expressversand freigegeben.' : 'Upon receipt of payment or confirmation in live chat, your research order will be released for express dispatch.'}</p>`;
+  const text = `${subject}\n\nWICHTIGER HINWEIS ZUR BANKÜBERWEISUNG:\n${intro}\n\nWebsite / Live-Chat: ${config.siteUrl}\nBestellnummer / Verwendungszweck: ${reference}\nZahlungsbetrag: ${formatMoney(order.total, order.currency)}\n\nBitte halten Sie Ihre Bestellnummer bereit.`;
   const html = baseEmail({
-    preheader: hasBankDetails ? `Payment details for order ${order.id}.` : `We will send payment details for order ${order.id}.`,
-    eyebrow: 'Payment instructions',
+    preheader: `Banküberweisung für Bestellung ${order.id}.`,
+    eyebrow: locale === 'de' ? 'Zahlungsinformation' : 'Payment Information',
     title: subject,
     intro,
     body,
+    cta: { label: locale === 'de' ? 'Live-Chat auf Website öffnen' : 'Open Live Chat on Website', href: config.siteUrl },
   });
   await send({ to: order.email, subject, html, text }, options);
 }
@@ -351,6 +381,56 @@ export async function sendContactAcknowledgement(message: ContactMessage, option
     body,
   });
   await send({ to: message.email, subject, html, text }, options);
+}
+
+/**
+ * Double opt-in confirmation. Sent to the address that was typed in, and it is
+ * the only thing sent there until the recipient clicks through.
+ *
+ * §7 UWG and the DSGVO both require consent that the sender can evidence
+ * before any marketing mail goes out, and a German-facing shop with a
+ * single-step signup is a standard Abmahnung target. Nothing is recorded as a
+ * subscriber until the link in this message is followed.
+ */
+export async function sendNewsletterConfirmation(
+  recipient: { email: string; confirmUrl: string },
+  options: SendOptions = {},
+): Promise<void> {
+  const subject = 'Confirm your Peptide Shop subscription';
+  const body = `<p style="margin:0 0 16px;color:#314852;font-size:14px;line-height:1.65;">Click the button below to confirm this address. If you did not request this, ignore this message — nothing is stored and no further email will be sent.</p>
+  <p style="margin:0;"><a href="${recipient.confirmUrl}" style="display:inline-block;padding:12px 20px;background:#0077B6;color:#ffffff;text-decoration:none;border-radius:6px;font-weight:600;font-size:14px;">Confirm subscription</a></p>`;
+  const text = `${subject}\n\nConfirm this address by opening:\n${recipient.confirmUrl}\n\nIf you did not request this, ignore this message — nothing is stored.`;
+  const html = baseEmail({
+    preheader: 'One click to confirm your Peptide Shop subscription.',
+    eyebrow: 'Confirm subscription',
+    title: 'Confirm your subscription',
+    intro: 'You asked to receive product alerts, COA updates and research notes from Peptide Shop.',
+    body,
+  });
+  await send({ to: recipient.email, subject, html, text }, options);
+}
+
+/** Tells the operator an address completed double opt-in. */
+export async function sendNewsletterNotification(
+  recipient: { email: string; locale?: string | null },
+  options: SendOptions = {},
+): Promise<void> {
+  const config = emailConfig(options.env);
+  const subject = `Newsletter opt-in confirmed — ${recipient.email}`;
+  const body = rows([
+    { label: 'Email', value: recipient.email },
+    { label: 'Locale', value: recipient.locale ?? defaultLocale },
+    { label: 'Consent', value: 'Double opt-in completed' },
+  ]);
+  const text = `${subject}\n\nEmail: ${recipient.email}\nLocale: ${recipient.locale ?? defaultLocale}\nConsent: double opt-in completed`;
+  const html = baseEmail({
+    preheader: 'A subscriber confirmed their address.',
+    eyebrow: 'Newsletter',
+    title: 'Opt-in confirmed',
+    intro: 'Add this address to the mailing list.',
+    body,
+  });
+  await send({ to: config.to, subject, html, text, replyTo: recipient.email }, options);
 }
 
 export async function sendEnquiryNotification(message: EnquiryMessage, options: SendOptions = {}): Promise<void> {

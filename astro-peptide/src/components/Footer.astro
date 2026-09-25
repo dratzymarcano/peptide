@@ -17,23 +17,33 @@ const href = (path: string) => localizePath(path, locale);
     <div class="footer-grid">
       <div class="footer-col footer-col--brand">
         <a href={href('/')} class="footer-brand" aria-label={t('nav.homeLabel')}>
-          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
-            <rect x="1" y="1" width="30" height="30" rx="7" fill="var(--color-primary)" />
-            <line x1="8" y1="23" x2="16" y2="9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-            <line x1="16" y1="9" x2="24" y2="23" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.55"/>
-            <circle cx="8" cy="23" r="4.5" fill="#fff"/>
-            <circle cx="16" cy="9" r="4.5" fill="#fff"/>
-            <circle cx="24" cy="23" r="4.5" fill="#00B4A0"/>
-          </svg>
-          <span><strong>Peptide</strong>Shop</span>
+          <div class="footer-brand__mark-wrap">
+            <img
+              src="/brand/logo-mark.png"
+              width="28"
+              height="28"
+              alt="Peptide Shop Logo"
+              class="footer-brand__mark-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <span class="footer-brand__text">PEPTIDE<span class="footer-brand__accent">SHOP</span></span>
         </a>
         <p class="footer-tagline">
           {t('footer.tagline')}
         </p>
-        <div class="trust-band" style="justify-content: flex-start; padding: var(--space-3); margin-top: var(--space-4);">
-          <span class="item">{t('footer.trustHplc')}</span>
-          <span class="item">{t('footer.trustCoa')}</span>
-          <span class="item">{t('footer.trustDispatch')}</span>
+        <p style="margin-top: 10px; font-size: 13px; color: #E2E8F0; display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077B6" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><strong>Standort:</strong> Wien, Österreich</span>
+        </p>
+        <p style="font-size: 12px; color: #94A3B8; margin-top: 4px; line-height: 1.4;">
+          Express-Versand im gesamten DACH-Raum: Österreich, Deutschland &amp; Schweiz.
+        </p>
+        <div class="footer-trust-chips">
+          <span class="trust-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> {t('footer.trustHplc')}</span>
+          <span class="trust-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> {t('footer.trustCoa')}</span>
+          <span class="trust-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> {t('footer.trustDispatch')}</span>
         </div>
       </div>
 
@@ -42,7 +52,7 @@ const href = (path: string) => localizePath(path, locale);
         <ul>
           <li><a href={href('/catalog/')}>{t('nav.allResearchAreas')}</a></li>
           {featured.map((a) => (
-            <li><a href={href(`/catalog/${a.slug}/`)}>{a.name}</a></li>
+            <li><a href={href(`/catalog/${a.slug}/`)}>{t(`taxonomy.researchAreas.${a.slug}.name`)}</a></li>
           ))}
           <li><a href={href('/catalog/')}>{t('footer.viewAllAreas')}</a></li>
         </ul>
@@ -52,7 +62,7 @@ const href = (path: string) => localizePath(path, locale);
         <h4>{t('nav.useCases')}</h4>
         <ul>
           {useCases.map((u) => (
-            <li><a href={href(`/use-case/${u.slug}/`)}>{u.name}</a></li>
+            <li><a href={href(`/use-case/${u.slug}/`)}>{t(`taxonomy.useCases.${u.slug}.name`)}</a></li>
           ))}
         </ul>
       </div>
@@ -71,9 +81,13 @@ const href = (path: string) => localizePath(path, locale);
         <h4>{t('footer.orderSupport')}</h4>
         <ul>
           <li><a href={href('/shipping/')}>{t('footer.shippingDelivery')}</a></li>
-          <li><a href={href('/coa-policy/')}>{t('footer.coaPolicy')}</a></li>
+          <li><a href={href('/versand-oesterreich/')}>Peptide Versand nach Österreich</a></li>
+          <li><a href={href('/versand-schweiz/')}>Peptide Versand in die Schweiz</a></li>
+          <li><a href={href('/peptid-rechner/')}>Peptid-Dosierungsrechner (ml & IE)</a></li>
+          <li><a href={href('/bundles/')}>Forschungs-Kombinationen & Sets</a></li>
+          <li><a href={href('/catalog/supplies/')}>Bakteriostatisches Wasser & Zubehör</a></li>
+          <li><a href={href('/coa-policy/')}>Analysezertifikate (COA-Richtlinie)</a></li>
           <li><a href={href('/faq/')}>{t('footer.faq')}</a></li>
-          <li><a href={href('/contact/')}>{t('footer.contactSupport')}</a></li>
         </ul>
       </div>
 
@@ -83,6 +97,8 @@ const href = (path: string) => localizePath(path, locale);
           {t('footer.newsletterBody')}
         </p>
         <form class="newsletter" action={href('/api/newsletter')} method="post" novalidate>
+          <input type="hidden" name="locale" value={locale} />
+          <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="sr-only" />
           <label class="sr-only" for="footer-email">{t('footer.emailAddress')}</label>
           <input class="input" type="email" id="footer-email" name="email" required autocomplete="email" placeholder="you@laboratory.eu" />
           <button type="submit" class="btn btn-primary">{t('footer.subscribe')}</button>
@@ -101,7 +117,7 @@ const href = (path: string) => localizePath(path, locale);
     </div>
 
     <div class="footer-bottom">
-      <p>{t('footer.copyright', { year })}</p>
+      <p>{t('footer.copyright', { year })} · Peptide Shop HQ Wien, Österreich · DACH-Forschungslogistik</p>
       <ul class="footer-legal">
         <li><a href={href('/impressum/')}>{t('footer.impressum')}</a></li>
         <li><a href={href('/terms/')}>{t('footer.terms')}</a></li>
@@ -115,10 +131,11 @@ const href = (path: string) => localizePath(path, locale);
 
 <style>
   .site-footer {
-    background: var(--color-surface-2);
-    border-top: 1px solid var(--color-border);
-    padding-block: var(--space-16) var(--space-8);
-    margin-top: var(--space-20);
+    background: linear-gradient(180deg, #090E1A 0%, #060A14 100%);
+    color: #94A3B8;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-block: var(--space-20) var(--space-10);
+    margin-top: var(--space-24);
   }
   .footer-grid {
     display: grid;
@@ -130,79 +147,135 @@ const href = (path: string) => localizePath(path, locale);
   }
   @media (min-width: 1024px) {
     .footer-grid {
-      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr 1.2fr;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1.3fr;
     }
   }
   .footer-col h4 {
-    font-size: 13px;
+    font-family: var(--font-display);
+    font-size: 12px;
     font-weight: 700;
-    color: var(--color-ink);
+    color: #FFFFFF;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: var(--space-3);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-4);
   }
   .footer-col ul {
     list-style: none; padding: 0; margin: 0;
-    display: grid; gap: 2px;
+    display: grid; gap: 4px;
   }
   .footer-col a {
-    color: var(--color-ink-2);
-    font-size: 14px;
+    color: #94A3B8;
+    font-size: 13.5px;
     text-decoration: none;
-    /* 17px tall links are hard to hit on a phone. A 24px minimum meets
-       WCAG 2.2 SC 2.5.8; the gap above was reduced to keep the block
-       the same overall height. */
     display: inline-flex;
     align-items: center;
     min-height: 24px;
+    transition: color 150ms ease, transform 150ms ease;
   }
-  .footer-col a:hover { color: var(--color-primary); text-decoration: underline; }
+  .footer-col a:hover {
+    color: #FFFFFF;
+    transform: translateX(2px);
+  }
 
   .footer-brand {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    text-decoration: none; color: var(--color-ink); font-size: 18px;
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none;
   }
+  .footer-brand__text {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: #FFFFFF;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+  .footer-brand__accent { color: var(--color-primary); }
   .footer-tagline {
     margin-top: var(--space-3);
-    color: var(--color-ink-3);
-    font-size: 14px;
+    color: #64748B;
+    font-size: 13.5px;
+    line-height: 1.55;
     max-width: 38ch;
   }
 
-  .newsletter {
-    display: flex; gap: var(--space-2); margin-top: var(--space-2);
+  .footer-trust-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--space-4);
   }
-  .newsletter .input { flex: 1; }
+  .trust-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: #7DCBF5;
+    background: rgba(0, 119, 182, 0.12);
+    border: 1px solid rgba(0, 119, 182, 0.25);
+    padding: 3px 8px;
+    border-radius: var(--radius-xs);
+  }
+
+  .newsletter {
+    display: flex; gap: var(--space-2); margin-top: var(--space-3);
+  }
+  .newsletter .input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+  }
+  .newsletter .input:focus {
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .ruo-banner {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #94A3B8;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .ruo-banner strong {
+    color: #F59E0B;
+    font-family: var(--font-display);
+    font-size: 13px;
+  }
 
   .footer-bottom {
     margin-top: var(--space-10);
     padding-top: var(--space-6);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex; flex-wrap: wrap; gap: var(--space-4);
     justify-content: space-between; align-items: center;
-    font-size: 13px; color: var(--color-ink-3);
+    font-size: 12.5px; color: #64748B;
   }
   .footer-bottom p { margin: 0; }
-  /* Without wrapping, the German labels ("Nutzungsbedingungen",
-     "Haftungsausschluss") pushed this row to 434px inside a 390px viewport
-     and gave the whole page a horizontal scrollbar. */
   .footer-legal {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
+    gap: var(--space-2) var(--space-5);
     list-style: none;
     padding: 0;
     margin: 0;
   }
   .footer-legal a {
-    color: var(--color-ink-3);
+    color: #64748B;
     text-decoration: none;
-    /* WCAG 2.2 SC 2.5.8 asks for a 24px minimum touch target. */
     display: inline-flex;
     align-items: center;
     min-height: 24px;
+    transition: color 150ms ease;
   }
-  .footer-legal a:hover { color: var(--color-primary); }
+  .footer-legal a:hover { color: #FFFFFF; }
 
-  .muted { color: var(--color-ink-3); }
+  .muted { color: #64748B; }
 </style>

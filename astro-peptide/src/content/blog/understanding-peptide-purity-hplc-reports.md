@@ -1,65 +1,75 @@
 ---
-title: "Understanding Peptide Purity: How to Read HPLC Reports"
-description: "Learn how to interpret HPLC chromatograms and understand what purity percentages really mean for your research peptides."
+title: "Peptidreinheit verstehen: So lesen Sie HPLC-Berichte"
+description: "Erfahren Sie, wie Sie HPLC-Chromatogramme interpretieren und verstehen, was Reinheitsprozentsätze für Ihre Forschungspeptide wirklich bedeuten."
 publishDate: "2025-12-15"
-author: "Peptide Shop Editorial"
-category: "Quality Control"
-tags: ["HPLC", "purity", "quality", "laboratory", "analysis"]
+author: "Peptide Shop Redaktion"
+category: "Peptidforschung"
+tags:
+  - "peptidforschung"
+  - "forschung"
 image: "/images/lifestyle/peptide-vial-cases-coded.webp"
-featured: true
+featured: false
 meta:
-  title: "How to Read HPLC Purity Reports | Peptide Quality Guide"
-  description: "A comprehensive guide to understanding HPLC chromatograms and peptide purity analysis. Learn what to look for in your Certificate of Analysis."
+  title: "Peptidreinheit verstehen: So lesen Sie HPLC-Berichte"
+  description: "Erfahren Sie, wie Sie HPLC-Chromatogramme interpretieren und verstehen, was Reinheitsprozentsätze für Ihre Forschungspeptide wirklich bedeuten."
+---
+## Was ist HPLC und warum ist es wichtig?
+
+Die Hochleistungsflüssigkeitschromatographie (HPLC) ist der Goldstandard zur Bestimmung der Peptidreinheit. Wenn Sie Forschungspeptide kaufen, enthält das Analysezertifikat (COA) normalerweise ein HPLC-Chromatogramm, das Ihnen genau sagt, wie rein Ihre Probe ist.
+
+Für jeden Forscher, der mit Peptiden arbeitet, ist es wichtig zu verstehen, wie diese Berichte zu lesen sind.
+
+## Ein Chromatogramm lesen
+
+Ein HPLC-Chromatogramm zeigt Peaks an, die verschiedene Verbindungen in Ihrer Probe darstellen. Hier ist, worauf Sie achten sollten:
+
+### Der Hauptgipfel
+
+Der größte Peak repräsentiert Ihr Zielpeptid. Die Fläche unter diesem Peak, ausgedrückt als Prozentsatz der Gesamtfläche aller Peaks, gibt Ihnen den Reinheitswert an. Bei Peptide Shop garantieren wir eine Reinheit von ≥99 %, was bedeutet, dass der Hauptpeak mindestens 99 % der gesamten Peakfläche ausmacht.
+
+### Aufbewahrungszeit
+
+Jede Verbindung hat eine charakteristische Retentionszeit – wie lange es dauert, die HPLC-Säule zu passieren. Dies hilft bei der Identifizierung des Peptids und bestätigt, dass Sie über die richtige Verbindung verfügen.
+
+### Verunreinigungsspitzen
+
+Kleinere Peaks stellen Verunreinigungen dar, zu denen Folgendes gehören kann:
+
+- **Deletionssequenzen** – Peptide, denen eine oder mehrere Aminosäuren fehlen
+- **Verkürzte Sequenzen** – Verkürzte Versionen des Zielpeptids
+- **Oxidationsprodukte** – Oxidierte Formen bestimmter Aminosäuren
+- **TFA- oder Acetatsalze** – Gegenionen aus dem Syntheseprozess
+
+## Welchen Reinheitsgrad benötigen Sie?
+
+Unterschiedliche Forschungsanwendungen erfordern unterschiedliche Reinheitsgrade:
+
+- **≥95 % Reinheit** – Geeignet für erstes Screening und einige In-vitro-Arbeiten
+- **≥98 % Reinheit** – Empfohlen für die meisten Forschungsanwendungen
+- **≥99 % Reinheit** – Erforderlich für quantitative Studien und Forschung in Publikationsqualität
+
+Bei Peptide Shop erfüllen alle unsere Produkte den Reinheitsstandard ≥99 %, um strenge Forschungsanforderungen zu erfüllen.
+
+## Überprüfung Ihres Echtheitszertifikats
+
+Wenn Sie Ihre Peptide erhalten, überprüfen Sie das Echtheitszertifikat auf Folgendes:
+
+1. **Reinheitsprozentsatz** – Sollte der angegebenen Reinheit entsprechen oder diese übertreffen
+2. **Retentionszeit** – Sollte mit dem bekannten Wert für dieses Peptid übereinstimmen
+3. **Saubere Basislinie** – Minimales Rauschen weist auf eine qualitativ hochwertige Analyse hin
+4. **Einzelner Hauptpeak** – Das Zielpeptid sollte das Chromatogramm dominieren
+
+## Fazit
+
+Wenn Sie HPLC-Berichte verstehen, können Sie fundierte Entscheidungen über Ihre Forschungsmaterialien treffen. Fordern Sie immer den COA für alle von Ihnen gekauften Peptide an und überprüfen Sie ihn. Zögern Sie nicht, Ihrem Lieferanten Fragen zu seinen Analysemethoden zu stellen.
+
+Weitere Informationen zu unseren Qualitätsstandards finden Sie auf unserer [Seite zur Qualitätssicherung](/quality/).
+
 ---
 
-## What is HPLC and Why Does It Matter?
-
-High-Performance Liquid Chromatography (HPLC) is the gold standard for determining peptide purity. When you purchase research peptides, the Certificate of Analysis (COA) typically includes an HPLC chromatogram that tells you exactly how pure your sample is.
-
-Understanding how to read these reports is essential for any researcher working with peptides.
-
-## Reading a Chromatogram
-
-An HPLC chromatogram displays peaks that represent different compounds in your sample. Here's what to look for:
-
-### The Main Peak
-
-The largest peak represents your target peptide. The area under this peak, expressed as a percentage of the total area of all peaks, gives you the purity value. At Peptide Shop, we guarantee ≥99% purity, meaning the main peak accounts for at least 99% of the total peak area.
-
-### Retention Time
-
-Each compound has a characteristic retention time—how long it takes to pass through the HPLC column. This helps identify the peptide and confirms you have the correct compound.
-
-### Impurity Peaks
-
-Smaller peaks represent impurities, which may include:
-
-- **Deletion sequences** - Peptides missing one or more amino acids
-- **Truncated sequences** - Shortened versions of the target peptide
-- **Oxidation products** - Oxidised forms of certain amino acids
-- **TFA or acetate salts** - Counter-ions from the synthesis process
-
-## What Purity Level Do You Need?
-
-Different research applications require different purity levels:
-
-- **≥95% purity** - Suitable for initial screening and some in vitro work
-- **≥98% purity** - Recommended for most research applications
-- **≥99% purity** - Required for quantitative studies and publication-quality research
-
-At Peptide Shop, all our products meet the ≥99% purity standard to support rigorous research requirements.
-
-## Verifying Your COA
-
-When you receive your peptides, check the COA for:
-
-1. **Purity percentage** - Should match or exceed the stated purity
-2. **Retention time** - Should be consistent with the known value for that peptide
-3. **Clean baseline** - Minimal noise indicates quality analysis
-4. **Single main peak** - The target peptide should dominate the chromatogram
-
-## Conclusion
-
-Understanding HPLC reports empowers you to make informed decisions about your research materials. Always request and review the COA for any peptides you purchase, and don't hesitate to ask your supplier questions about their analytical methods.
-
-For more information about our quality standards, visit our [Quality Assurance page](/quality/).
+### Relevante Referenzsubstanzen für Ihre Laborforschung:
+* [BPC-157 5 mg (Reinheit ≥99 % HPLC)](/peptides/bpc-157/)
+* [Bakteriostatisches Wasser 30 ml](/peptides/bacteriostatic-water/)
+* [Interaktiver Peptid-Rechner](/peptid-rechner/)
+* [Bakteriostatisches Wasser zur sterilen Rekonstitution](/peptides/bacteriostatic-water/)
+* [Dosierungen im Labor berechnen: Interaktiver Peptid-Rechner](/peptid-rechner/)

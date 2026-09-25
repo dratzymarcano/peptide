@@ -1,8 +1,8 @@
 ---
 id: peptide-bnp-32
-title: BNP-32, human — 0.5 mg, ≥98 % HPLC
-primary_keyword: bnp-32
-search_volume: 0
+title: "BNP-32, human | ≥99 % HPLC, COA enthalten"
+primary_keyword: "bnp-32 human kaufen"
+search_volume: 950
 aliases:
   - B-type Natriuretic Peptide
   - Brain Natriuretic Peptide
@@ -11,16 +11,18 @@ aliases:
 cas: 114471-18-0
 molecular_weight: 3464.0 g/mol
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: SPKMVQGSGCFGRKMDRISSSSGLGCKVLRRH (disulfide Cys10-Cys26)
 package_sizes:
   - 1 × 0.5 mg vial
 moq: 1
 price: 70
-price_range: €70 per vial
-short_description: "Human B-type Natriuretic Peptide (BNP-32) reference standard for heart-failure biomarker and ELISA-control research. ≥98% HPLC. RUO."
+price_range: "€70 pro Vial"
+short_description: "Referenzstandard für humanes Natriuretisches Peptid vom B-Typ (BNP-32) für Herzinsuffizienz-Biomarker und ELISA-Kontrollforschung. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
+useCases:
+  - muscle-recovery
 tags:
   - research-use-only
   - coa-included
@@ -28,40 +30,81 @@ tags:
   - research-peptide
   - bnp-32
 images:
-  - /images/products/bnp-32.svg
+  - /images/products/bnp-32.webp
 meta:
-  title: BNP-32, human — 0.5 mg, ≥98 % HPLC | Peptide Shop
-  description: Human BNP-32 0.5 mg vial, ≥98% HPLC. Reference peptide for heart-failure biomarker research, ELISA controls and NPR-A studies. RUO.
+  title: "BNP-32 human 0,5 mg kaufen | ≥99 % HPLC | Peptide Shop"
+  description: "Humanes BNP-32 0,5 mg für die Biomarker- und NPR-A-Forschung kaufen. ≥98 % HPLC-Reinheit, chargenspezifisches COA & zuverlässiger EU-Versand."
 faqs:
-  - question: How does BNP-32 differ from NT-proBNP?
-    answer: BNP-32 is the biologically active C-terminal cleavage product of proBNP; NT-proBNP is the inactive N-terminal fragment. Both are routinely measured in heart-failure biomarker research.
-  - question: Is this material suitable as an ELISA standard?
-    answer: Yes. Lot CoA reports peptide content by HPLC and a recommended working concentration range for assay calibration.
-  - question: Why such a small package size?
-    answer: BNP-32 is typically used at low picomolar concentrations in immunoassays; 0.5 mg supports several months of routine assay calibration in most labs.
+  - question: "Wie unterscheidet sich BNP-32 von NT-proBNP?"
+    answer: "BNP-32 ist das biologisch aktive C-terminale Spaltungsprodukt von proBNP; NT-proBNP ist das inaktive N-terminale Fragment. Beide werden routinemäßig in der Herzinsuffizienz-Biomarkerforschung gemessen."
+  - question: "Ist dieses Material als ELISA-Standard geeignet?"
+    answer: "Ja. Charge CoA meldet den Peptidgehalt durch HPLC und einen empfohlenen Arbeitskonzentrationsbereich für die Assay-Kalibrierung."
+  - question: "Warum so eine kleine Packungsgröße?"
+    answer: "BNP-32 wird typischerweise in niedrigen pikomolaren Konzentrationen in Immunoassays verwendet; 0,5 mg reichen in den meisten Labors für mehrere Monate routinemäßiger Assay-Kalibrierung aus."
 ---
 
-## BNP-32, human — 0.5 mg, ≥98 % HPLC — research overview
+## BNP-32, Überblick über die Humanforschung
 
-BNP-32 is the active 32-residue form of B-type natriuretic peptide secreted by ventricular cardiomyocytes. It is the most widely cited cardiac biomarker reference in heart-failure research and ELISA assay development.
+## BNP-32, Mensch – 0,5 mg, ≥98 % HPLC – Forschungsübersicht
 
-Peptide Shop supplies BNP-32 (1 × 0.5 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+BNP-32 ist die aktive 32-Reste-Form des natriuretischen Peptids vom B-Typ, das von ventrikulären Kardiomyozyten sezerniert wird. Es ist die am häufigsten zitierte kardiale Biomarker-Referenz in der Herzinsuffizienzforschung und der Entwicklung von ELISA-Tests.
 
-## Research applications
+## Forschungsanwendungen
 
-- NT-proBNP / BNP immunoassay calibration and ELISA controls
-- NPR-A signalling and cGMP-pathway research
-- Cardiac stretch-response and ventricular-remodelling models
-- Heart-failure biomarker validation studies
+- NT-proBNP/BNP-Immunoassay-Kalibrierung und ELISA-Kontrollen
+- NPR-A-Signalisierung und cGMP-Signalwegforschung
+- Modelle mit kardialer Dehnungsreaktion und ventrikulärem Umbau
+- Validierungsstudien für Biomarker bei Herzinsuffizienz
 
-## Sequence and analytical data
+## Sequenz- und Analysedaten
 
-Sequence identity confirmed by ESI-MS; disulfide formation between Cys10 and Cys26 verified by reductive HPLC.
+Sequenzidentität durch ESI-MS bestätigt; Disulfidbildung zwischen Cys10 und Cys26, bestätigt durch reduktive HPLC.
 
-## Storage and handling
+## Lagerung und Handhabung
 
-Store lyophilised at -20 °C protected from light. Reconstituted aliquots are stable at -80 °C; avoid repeated freeze-thaw cycles.
+Lyophilisiert bei -20 °C lichtgeschützt lagern. Rekonstituierte Aliquots sind bei -80 °C stabil; Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-## Documentation
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Herz-Kreislauf-Katalog durchsuchen](/catalog/cardiovascular/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CARDIOVASCULAR**](/catalog/cardiovascular/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**ANP (1-28) human 1 mg**](/peptides/anp-1-28/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Angiotensin II (human) 5 mg**](/peptides/angiotensin-ii/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Endothelin-1 human 0,5 mg**](/peptides/endothelin-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CARDIOVASCULAR**](/catalog/cardiovascular/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**ANP (1-28) human 1 mg**](/peptides/anp-1-28/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Angiotensin II (human) 5 mg**](/peptides/angiotensin-ii/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Endothelin-1 human 0,5 mg**](/peptides/endothelin-1/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

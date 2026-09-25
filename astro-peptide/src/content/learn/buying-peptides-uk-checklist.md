@@ -1,6 +1,6 @@
 ---
-title: "Buying Research Peptides in the UK: a Checklist"
-description: "A pragmatic checklist for UK-based research labs evaluating a research-peptide supplier: documentation, QC, traceability, dispatch, payment, and red flags."
+title: "Kauf von Forschungspeptiden in Großbritannien: eine Checkliste"
+description: "Eine pragmatische Checkliste für in Großbritannien ansässige Forschungslabore, die einen Lieferanten von Forschungspeptiden bewerten: Dokumentation, Qualitätskontrolle, Rückverfolgbarkeit, Versand, Zahlung und Warnsignale."
 publishDate: "2026-05-03"
 category: "Operations"
 readTime: "10 min"
@@ -8,92 +8,92 @@ order: 120
 primaryKeyword: "buy research peptides uk"
 tags: ["uk", "procurement", "checklist", "supplier-evaluation"]
 meta:
-  title: "Buying Research Peptides in the UK: Checklist | Peptide Shop"
-  description: "Documentation, QC, traceability, dispatch and payment criteria a UK research lab should evaluate before placing a research-peptide order."
+  title: "Kauf von Forschungspeptiden in Großbritannien: Checkliste | Peptide Shop"
+  description: "Dokumentation, Qualitätskontrolle, Rückverfolgbarkeit, Versand und Zahlungskriterien für Forschungslabore."
 ---
 
-UK research labs evaluating a peptide supplier are looking at the same shortlist of criteria that procurement and EHS teams have always asked about — adapted for a market where many vendors are international, the regulatory boundary between RUO and pharmaceutical-grade is sharp, and post-2021 customs rules add a layer of paperwork. This checklist is the one we use internally and is the one we would expect any reputable supplier to be able to satisfy.
+Britische Forschungslabore, die einen Peptidlieferanten bewerten, prüfen die gleiche Auswahlliste von Kriterien, nach denen Beschaffungs- und EHS-Teams schon immer gefragt haben – angepasst an einen Markt, in dem viele Anbieter international tätig sind, die regulatorische Grenze zwischen RUO und pharmazeutischer Qualität scharf ist und die Zollbestimmungen nach 2021 eine Schicht Papierkram mit sich bringen. Diese Checkliste verwenden wir intern und wir erwarten, dass sie von jedem seriösen Lieferanten erfüllt werden kann.
 
-## 1. Documentation
+## 1. Dokumentation
 
-A supplier should be able to produce, on request, **before** you place an order:
+Ein Lieferant sollte in der Lage sein, auf Anfrage **bevor** Sie eine Bestellung aufgeben:
 
-- A specimen lot-specific certificate of analysis showing RP-HPLC purity, ESI-MS identity, water content, counter-ion percentage and net peptide content. See [how to read a peptide COA](/learn/coa-explained/).
-- A current safety data sheet for each line item.
-- Their COA policy (per-lot or per-product?). See ours: [COA policy](/coa-policy/).
+- Ein probenchargenspezifisches Analysezertifikat, das die RP-HPLC-Reinheit, die ESI-MS-Identität, den Wassergehalt, den Gegenionenprozentsatz und den Nettopeptidgehalt zeigt. Siehe [wie man ein Peptid-COA liest](/learn/coa-explained/).
+- Ein aktuelles Sicherheitsdatenblatt für jede Position.
+- Ihre COA-Richtlinie (pro Los oder pro Produkt?). Siehe unsere: [COA-Richtlinie](/coa-policy/).
 
-If a supplier cannot produce a sample COA before the order is placed, treat the omission as disqualifying.
+Wenn ein Lieferant vor der Bestellung kein Muster-Echtheitszertifikat vorlegen kann, gilt die Unterlassung als Disqualifizierung.
 
-## 2. Quality control
+## 2. Qualitätskontrolle
 
-What is on the COA, and what is not, matters as much as the headline purity number:
+Was auf dem Echtheitszertifikat steht und was nicht, ist genauso wichtig wie die Reinheitszahl in der Überschrift:
 
-- **Purity at 220 nm**, not only 280 nm.
-- **Mass-spec confirmation** (ESI-MS minimum; high-res preferred for novel sequences).
-- **Counter-ion identity and percentage** (acetate vs TFA).
-- **Water content** by Karl Fischer.
-- **Net peptide content** — derive concentrations from this, not from label fill mass.
+- **Reinheit bei 220 nm**, nicht nur bei 280 nm.
+- **Bestätigung der Massenspezifikation** (ESI-MS-Minimum; hohe Auflösung bevorzugt für neuartige Sequenzen).
+- **Identität und Prozentsatz des Gegenions** (Acetat vs. TFA).
+- **Wassergehalt** von Karl Fischer.
+- **Nettopeptidgehalt** – leiten Sie die Konzentrationen davon ab, nicht von der Füllmasse des Etiketts.
 
-A supplier whose COA omits net peptide content is reporting an incomplete result. See [What ≥99% HPLC purity actually means](/learn/hplc-purity/) for the wider context.
+Ein Lieferant, dessen COA den Nettopeptidgehalt auslässt, meldet ein unvollständiges Ergebnis. Weitere Informationen finden Sie unter [Was ≥99 % HPLC-Reinheit eigentlich bedeutet](/learn/hplc-purity/).
 
-## 3. Traceability
+## 3. Rückverfolgbarkeit
 
-- Every vial labelled with **lot number** matching the COA.
-- Lot numbers retained by the supplier for at least 2 years after lot exhaustion (regulatory standard).
-- A documented procedure for handling a non-conformance or recall.
+- Jedes Fläschchen ist mit der **Chargennummer** entsprechend dem COA gekennzeichnet.
+- Chargennummern werden vom Lieferanten für mindestens 2 Jahre nach Erschöpfung der Charge aufbewahrt (Regulierungsstandard).
+- Ein dokumentiertes Verfahren zum Umgang mit einer Nichtkonformität oder einem Rückruf.
 
-## 4. Dispatch and packaging
+## 4. Versand und Verpackung
 
-- Cold-chain shipping with temperature reserve appropriate to the route.
-- Sealed primary packaging; tamper-evident outer.
-- For UK consignees, full customs paperwork in the box: commercial invoice, packing list, COAs, SDSs. See [UK dispatch, customs and research peptides](/learn/dispatch-and-customs-uk/).
+- Kühlkettenversand mit der Route entsprechender Temperaturreserve.
+- Versiegelte Primärverpackung; manipulationssicheres Äußeres.
+- Für britische Empfänger: vollständige Zollpapiere im Karton: Handelsrechnung, Packliste, Echtheitszertifikate, Sicherheitsdatenblätter. Siehe [Versand, Zoll und Forschungspeptide im Vereinigten Königreich](/learn/dispatch-and-customs-uk/).
 
-## 5. Lead time
+## 5. Vorlaufzeit
 
-- Realistic dispatch SLA. We dispatch in-stock orders the same day if placed before 13:00 CET.
-- Honest backorder communication. A supplier who marks out-of-stock items "in stock" loses procurement trust on the first slip.
+- Realistisches Versand-SLA. Wir versenden vorrätige Bestellungen noch am selben Tag, wenn sie vor 13:00 Uhr MEZ eingehen.
+- Ehrliche Rückstandskommunikation. Ein Lieferant, der nicht vorrätige Artikel als „auf Lager“ markiert, verliert auf den ersten Blick das Vertrauen in die Beschaffung.
 
-## 6. Payment, terms and tax
+## 6. Zahlung, Konditionen und Steuern
 
-- Recognised payment methods (card, bank transfer; cryptocurrency is acceptable where the lab's institutional policy allows).
-- Clear pricing in a single currency on the order confirmation.
-- A VAT-compliant invoice on every order. UK consignees with an EORI and VAT number may be eligible for postponed VAT accounting.
-- A documented refund and return policy.
+- Anerkannte Zahlungsmethoden (Karte, Banküberweisung; Kryptowährung ist akzeptabel, sofern die institutionellen Richtlinien des Labors dies zulassen).
+- Klare Preisangabe in einer einzigen Währung in der Auftragsbestätigung.
+- Eine Rechnung mit ausgewiesener Mehrwertsteuer für jede Bestellung. Empfänger im Vereinigten Königreich mit einer EORI- und Umsatzsteuer-Identifikationsnummer haben möglicherweise Anspruch auf eine aufgeschobene Umsatzsteuerabrechnung.
+- Eine dokumentierte Rückerstattungs- und Rückgaberichtlinie.
 
-## 7. Customer support
+## 7. Kundensupport
 
-- A real technical contact who can answer compound-specific questions (reconstitution, storage, sequence-specific stability liabilities).
-- Response within one working day on technical questions, same day on order-status questions.
+- Ein echter technischer Ansprechpartner, der verbindungsspezifische Fragen beantworten kann (Rekonstitution, Lagerung, sequenzspezifische Stabilitätsverbindlichkeiten).
+- Antwort innerhalb eines Arbeitstages auf technische Fragen, am selben Tag auf Fragen zum Bestellstatus.
 
-## 8. Compliance posture
+## 8. Compliance-Haltung
 
-- A clearly published RUO statement on every product and at the point of sale. See [What "for research use only" means](/learn/ruo-disclaimer/).
-- No marketing copy that crosses into therapeutic claims (a vendor pitching peptides for human consumption is a vendor outside the RUO scope and is not the right partner for a research lab).
-- Visible address and corporate identity. A UK consignee should be able to find a registered company name on the supplier's About page.
+- Eine deutlich veröffentlichte RUO-Erklärung auf jedem Produkt und an der Verkaufsstelle. Siehe [Was „nur für Forschungszwecke“ bedeutet](/learn/ruo-disclaimer/).
+- Kein Marketingtext, der in therapeutische Aussagen übergeht (ein Anbieter, der Peptide für den menschlichen Verzehr anbietet, ist ein Anbieter außerhalb des RUO-Bereichs und nicht der richtige Partner für ein Forschungslabor).
+- Sichtbare Adresse und Corporate Identity. Ein britischer Empfänger sollte in der Lage sein, den eingetragenen Firmennamen auf der Seite „Über“ des Lieferanten zu finden.
 
-## 9. Red flags
+## 9. Rote Fahnen
 
-| Signal | Why it matters |
+| Signal | Warum es wichtig ist |
 |---|---|
-| No COA available before order | The supplier is either selling a generic spec sheet or has nothing to show. Either disqualifies. |
-| Headline purity quoted at 280 nm only | Aromatic-only detection underestimates the impurity profile for non-Trp/Tyr peptides. |
-| Marketing claims of human or veterinary efficacy | Out of scope for an RUO supplier; raises liability concerns for the buyer. |
-| No registered company address | Difficult to enforce a return; harder for procurement to onboard. |
-| "In stock" status that does not change for weeks | Inventory display likely not real-time; expect lead-time surprises. |
-| Pricing that fluctuates between page load and checkout | A revenue management tactic that does not belong in a B2B research supply relationship. |
+| Vor der Bestellung ist kein Echtheitszertifikat verfügbar | Der Lieferant verkauft entweder ein allgemeines Datenblatt oder hat nichts vorzuweisen. Beides disqualifiziert. |
+| Headline-Reinheit nur bei 280 nm angegeben | Bei der rein aromatischen Detektion wird das Verunreinigungsprofil für Nicht-Trp/Tyr-Peptide unterschätzt. |
+| Marketingaussagen hinsichtlich der Wirksamkeit bei Menschen oder Tieren | Für einen RUO-Lieferanten außerhalb des Rahmens; Dies wirft Haftungsbedenken für den Käufer auf. |
+| Keine eingetragene Firmenadresse | Es ist schwierig, eine Rückgabe durchzusetzen; es wird für die Beschaffung schwieriger, sich einzubinden. |
+| Status „Auf Lager“, der sich wochenlang nicht ändert | Die Anzeige des Lagerbestands erfolgt wahrscheinlich nicht in Echtzeit. Erwarten Sie Überraschungen in der Vorlaufzeit. |
+| Preis, der zwischen Laden der Seite und Bezahlen schwankt | Eine Revenue-Management-Taktik, die nicht in eine B2B-Forschungslieferbeziehung gehört. |
 
-## 10. After the first order
+## 10. Nach der ersten Bestellung
 
-- Confirm the COA accompanying the shipment matches the lot on the vials.
-- Place the vials in `−20 °C` storage promptly; equilibrate to room temperature before opening on first use. See [storage & handling best practices](/learn/storage-handling/).
-- Record the supplier's response time and dispatch performance. Two or three orders is enough to characterise their reliability for procurement reviews.
+- Bestätigen Sie, dass das der Sendung beiliegende Echtheitszertifikat mit der Charge auf den Fläschchen übereinstimmt.
+- Lagern Sie die Fläschchen umgehend bei „−20 °C“. Vor dem Öffnen bei der ersten Verwendung auf Raumtemperatur bringen. Siehe [Best Practices für Lagerung und Handhabung](/learn/storage-handling/).
+- Erfassen Sie die Reaktionszeit und Versandleistung des Lieferanten. Zwei bis drei Bestellungen reichen aus, um ihre Zuverlässigkeit für Beschaffungsprüfungen zu charakterisieren.
 
-## Cross-references
+## Querverweise
 
-- [How to read a peptide COA](/learn/coa-explained/)
-- [What ≥99% HPLC purity actually means](/learn/hplc-purity/)
-- [Peptide reconstitution & dilution guide](/learn/reconstitution-guide/)
-- [UK dispatch, customs and research peptides](/learn/dispatch-and-customs-uk/)
-- [What "for research use only" means](/learn/ruo-disclaimer/)
-- [COA policy](/coa-policy/)
-- [Quality programme](/quality/)
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)
+- [Was ≥99 % HPLC-Reinheit eigentlich bedeutet](/learn/hplc-purity/)
+- [Anleitung zur Rekonstitution und Verdünnung von Peptiden](/learn/reconstitution-guide/)
+- [Versand, Zoll und Forschungspeptide im Vereinigten Königreich](/learn/dispatch-and-customs-uk/)
+- [Was „nur für Forschungszwecke“ bedeutet](/learn/ruo-disclaimer/)
+- [COA-Richtlinie](/coa-policy/)
+- [Qualitätsprogramm](/quality/)

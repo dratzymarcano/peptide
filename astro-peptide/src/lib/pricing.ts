@@ -11,8 +11,9 @@
  * renders the same numbers, but this module is what the order is billed on.
  */
 import { getCanonicalCollection } from './collections';
+import { resolveVariant, variantsFor } from './variants';
 
-export const MIN_ORDER_AMOUNT = 200;
+export const MIN_ORDER_AMOUNT = 150;
 export const FREE_DELIVERY_THRESHOLD = 500;
 
 export const SHIPPING_COSTS = {
@@ -64,32 +65,6 @@ function money(value: number): number {
   return Math.round(value * 100) / 100;
 }
 
-/** "€115 per pack" → 115. Mirrors the product page's own fallback. */
-function extractPrice(priceRange: string | undefined): number | null {
-  const match = priceRange?.match(/[\d,]+(?:\.\d+)?/);
-  if (!match) return null;
-  const parsed = Number(match[0].replace(',', ''));
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-/**
- * Authoritative unit price for a product, including any active promo — the
- * same derivation `toCardProduct` uses so the buy box and the invoice agree.
- */
-function unitPriceFor(data: {
-  price?: number;
-  price_range?: string;
-  promo?: { discount_pct?: number };
-}): number | null {
-  const base = typeof data.price === 'number' ? data.price : extractPrice(data.price_range);
-  if (base === null || !Number.isFinite(base) || base <= 0) return null;
-  const discount = data.promo?.discount_pct;
-  if (typeof discount === 'number' && discount > 0 && discount <= 95) {
-    return money(base * (100 - discount) / 100);
-  }
-  return money(base);
-}
-
 function positiveInteger(value: unknown): number | null {
   const parsed = Number(value ?? 1);
   if (!Number.isFinite(parsed)) return null;
@@ -127,6 +102,11 @@ export async function priceOrder(
   for (const product of products) {
     byIdentifier.set(product.data.id, product);
     byIdentifier.set(product.id, product);
+    // Cart lines are keyed by variant SKU (`<id>--<size>`), so the order
+    // payload can name one directly.
+    for (const variant of variantsFor(product.data)) {
+      byIdentifier.set(variant.sku, product);
+    }
   }
 
   const items: PricedItem[] = [];
@@ -140,16 +120,30 @@ export async function priceOrder(
     const quantity = positiveInteger(line.quantity);
     if (quantity === null) return { ok: false, code: 'invalid_quantity', detail: identifier };
 
-    const unitPrice = unitPriceFor(product.data);
-    if (unitPrice === null) return { ok: false, code: 'product_not_purchasable', detail: identifier };
+    /*
+     * The size is priced here, from the catalogue, and an unrecognised size is
+     * refused. Trusting the client's label would let a request name the 40 mg
+     * vial and be billed the 5 mg price — the same class of hole the whole
+     * module exists to close, reopened once one product has more than one
+     * price.
+     */
+    // A cart line identifies its variant either by an explicit `variant`
+    // label or by keying the line on the variant SKU. Anything that is neither
+    // the product id nor its slug must be a SKU.
+    const isProductIdentifier = identifier === product.data.id || identifier === product.id;
+    const requestedVariant = line.variant ?? (isProductIdentifier ? undefined : identifier);
+    const variant = resolveVariant(product.data, requestedVariant);
+    if (variant === null) {
+      return { ok: false, code: 'unknown_variant', detail: `${identifier}: ${String(requestedVariant ?? '')}` };
+    }
 
     items.push({
       productId: product.data.id,
       slug: product.id,
       title: product.data.title.split(' — ')[0].split(' | ')[0].trim(),
-      variant: String(line.variant ?? 'Standard').trim().slice(0, 120) || 'Standard',
+      variant: variant.size,
       quantity,
-      unitPrice,
+      unitPrice: variant.price,
       currency,
     });
   }

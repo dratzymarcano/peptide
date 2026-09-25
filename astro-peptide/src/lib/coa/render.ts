@@ -61,7 +61,7 @@ export function renderCoaHtml(product: Product, lot: CoaLot, opts: RenderOptions
 
   const localeAttr = locale;
   const policyHref = `${SITE}${localizePath('/coa-policy/', locale)}`;
-  const pageTitle = `${t.documentTitle} — ${productName} · ${lot.batchNo}`;
+  const pageTitle = `${t.documentTitle} | ${productName} · ${lot.batchNo}`;
 
   const tableRows = rows
     .map(
@@ -135,13 +135,13 @@ export function renderCoaHtml(product: Product, lot: CoaLot, opts: RenderOptions
 <head>
   <meta charset="utf-8" />
   <title>${escapeHtml(pageTitle)}</title>
-  <meta name="description" content="${escapeHtml(`${t.documentTitle} — ${productName}, lot ${lot.batchNo}.`)}" />
+  <meta name="description" content="${escapeHtml(`${t.documentTitle}: ${productName}, lot ${lot.batchNo}.`)}" />
   <meta name="robots" content="noindex,follow" />
   <style>
     :root {
-      --color-primary:        #0066CC;
-      --color-primary-600:    #0052A5;
-      --color-primary-50:     #E3F0FF;
+      --color-primary:        #0077B6;
+      --color-primary-600:    #015BA0;
+      --color-primary-50:     #EFF8FC;
       --color-ink:            #0F172A;
       --color-ink-2:          #334155;
       --color-ink-3:          #64748B;
@@ -378,12 +378,12 @@ export function renderCoaUnavailableHtml(product: Product, opts: RenderOptions =
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>${escapeHtml(`${t.unavailableTitle} — ${productName}`)}</title>
+  <title>${escapeHtml(`${t.unavailableTitle} | ${productName}`)}</title>
   <meta name="description" content="${escapeHtml(t.unavailableIntro(productName))}" />
   <meta name="robots" content="noindex,follow" />
   <style>
     :root {
-      --color-primary: #0066CC;
+      --color-primary: #0077B6;
       --color-ink:     #0F172A;
       --color-ink-2:   #334155;
       --color-ink-3:   #64748B;

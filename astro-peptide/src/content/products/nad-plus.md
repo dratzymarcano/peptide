@@ -1,7 +1,7 @@
 ---
 id: peptide-nad-plus
-title: NAD+ 500 mg — research grade
-primary_keyword: nad+ research
+title: "NAD+ 500 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "nad+ kaufen forschung"
 search_volume: 5400
 aliases:
   - NAD+
@@ -10,13 +10,13 @@ aliases:
 cas: 53-84-9
 molecular_weight: 663.4 g/mol
 purity: ≥ 99%
-storage: "-20°C recommended (research-only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 package_sizes:
   - 1 × 500 mg vial
 moq: 1
 price: 85
-price_range: €85 per vial
-short_description: NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO.
+price_range: "€85 pro Vial"
+short_description: "NAD+-Forschungsverbindung für Cofaktor-, Mitochondrien- und Zellstoffwechselstudien. Echtheitszertifikat geliefert. RUO."
 category: cognitive
 researchArea: cell-permeable
 useCases:
@@ -35,81 +35,102 @@ tags:
 images:
   - /images/products/nad-plus.webp
 meta:
-  title: Buy NAD+ 500 mg — Research Grade Coenzyme | Peptide Shop Europe
-  description: Buy NAD+ 500 mg research grade from Europe. Cellular energy coenzyme. Lot-specific COA, EU dispatch. Research use only.
+  title: "NAD+ 500 mg kaufen | ≥99 % Reinheit, COA | Peptide Shop"
+  description: "NAD+ Coenzym 500 mg Reinsubstanz für mitochondriale Energie- und Sirtuinstudien kaufen. ≥99 % HPLC-Reinheit, chargenspezifisches COA. Schneller EU-Versand."
 faqs:
-  - question: What is NAD+ used for in research?
-    answer: NAD+ is studied in cellular energy metabolism, sirtuin activation, DNA-damage response, mitochondrial function, and ageing-biology mechanisms.
-  - question: How does NAD+ work?
-    answer: NAD+ is essential for redox reactions, serving as an electron carrier in metabolism. It also activates sirtuins and PARPs involved in DNA-damage response pathways.
-  - question: What are sirtuins?
-    answer: Sirtuins are NAD+-dependent enzymes that regulate metabolism, stress response, and ageing. Seven sirtuins (SIRT1-7) are found in mammals.
-  - question: How should NAD+ be stored?
-    answer: Store lyophilised NAD+ at -20°C. Reconstituted solutions should be kept at 2-8°C and used promptly due to stability concerns.
-  - question: What purity is your NAD+?
-    answer: Our NAD+ is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis.
-  - question: Why do NAD+ levels decline with age?
-    answer: NAD+ levels can decline in models where synthesis changes or consumption by PARP and sirtuin pathways increases. This is studied in ageing-biology research.
-  - question: How do I reconstitute NAD+?
-    answer: Reconstitute in sterile water. Use freshly prepared solutions for best results.
-  - question: What sizes are available?
-    answer: NAD+ is available in 100mg, 500mg, and 1g quantities.
-  - question: What is NAD+ and why is it used in research?
-    answer: NAD+ (nicotinamide adenine dinucleotide) is a coenzyme central to cellular energy metabolism, DNA repair, and sirtuin activation. It is studied in longevity, metabolic, and neuroprotection research models. CAS number 53-84-9.
-  - question: Why is NAD+ supplied as a research vial rather than capsules?
-    answer: The 500 mg research vial format ensures purity control, lot traceability, and flexibility for laboratory reconstitution and assay design that dietary supplement capsule formats cannot provide.
-  - question: How should NAD+ be reconstituted for research?
-    answer: Dissolve lyophilised NAD+ in sterile phosphate-buffered saline or sterile water at your required concentration. NAD+ is water-soluble. Prepare fresh solutions where possible as aqueous solutions degrade over time.
-  - question: What is the CAS number and molecular weight of NAD+?
-    answer: "NAD+ (oxidised form) CAS number: 53-84-9. Molecular formula: C21H27N7O14P2. Molecular weight: 663.43 g/mol."
+  - question: "Wofür wird NAD+ in der Forschung verwendet?"
+    answer: "NAD+ wird im zellulären Energiestoffwechsel, der Sirtuinaktivierung, der Reaktion auf DNA-Schäden, der Mitochondrienfunktion und den Mechanismen der Alterungsbiologie untersucht."
+  - question: "Wie funktioniert NAD+?"
+    answer: "NAD+ ist für Redoxreaktionen unerlässlich und dient als Elektronenträger im Stoffwechsel. Es aktiviert auch Sirtuine und PARPs, die an Reaktionswegen auf DNA-Schäden beteiligt sind."
+  - question: "Was sind Sirtuine?"
+    answer: "Sirtuine sind NAD+-abhängige Enzyme, die den Stoffwechsel, die Stressreaktion und das Altern regulieren. Bei Säugetieren kommen sieben Sirtuine (SIRT1-7) vor."
+  - question: "Wie sollte NAD+ gespeichert werden?"
+    answer: "Lagern Sie lyophilisiertes NAD+ bei -20 °C. Rekonstituierte Lösungen sollten aus Stabilitätsgründen bei 2–8 °C aufbewahrt und umgehend verwendet werden."
+  - question: "Welchen Reinheitsgrad hat Ihr NAD+?"
+    answer: "Unser NAD+ ist ≥99 % rein, wie durch HPLC bestätigt. Jeder Charge liegt ein Analysezertifikat bei."
+  - question: "Warum sinkt der NAD+-Spiegel mit zunehmendem Alter?"
+    answer: "Die NAD+-Spiegel können in Modellen sinken, in denen sich die Synthese ändert oder der Verbrauch durch PARP- und Sirtuin-Wege zunimmt. Dies wird in der altersbiologischen Forschung untersucht."
+  - question: "Wie kann ich NAD+ wiederherstellen?"
+    answer: "In sterilem Wasser rekonstituieren. Für beste Ergebnisse verwenden Sie frisch zubereitete Lösungen."
+  - question: "Welche Größen sind verfügbar?"
+    answer: "NAD+ ist in den Mengen 100 mg, 500 mg und 1 g erhältlich."
+  - question: "Was ist NAD+ und warum wird es in der Forschung verwendet?"
+    answer: "NAD+ (Nikotinamidadenindinukleotid) ist ein Coenzym, das für den zellulären Energiestoffwechsel, die DNA-Reparatur und die Sirtuinaktivierung von zentraler Bedeutung ist. Es wird in Forschungsmodellen zur Langlebigkeit, zum Stoffwechsel und zur Neuroprotektion untersucht. CAS-Nummer 53-84-9."
+  - question: "Warum wird NAD+ als Forschungsfläschchen und nicht als Kapseln geliefert?"
+    answer: "Das 500-mg-Forschungsfläschchenformat gewährleistet Reinheitskontrolle, Chargenrückverfolgbarkeit und Flexibilität für die Laborrekonstitution und das Assay-Design, die Kapselformate für Nahrungsergänzungsmittel nicht bieten können."
+  - question: "Wie sollte NAD+ für die Forschung wiederhergestellt werden?"
+    answer: "Lösen Sie lyophilisiertes NAD+ in steriler phosphatgepufferter Kochsalzlösung oder sterilem Wasser in der gewünschten Konzentration auf. NAD+ ist wasserlöslich. Bereiten Sie nach Möglichkeit frische Lösungen vor, da wässrige Lösungen mit der Zeit an Qualität verlieren."
+  - question: "Wie lautet die CAS-Nummer und das Molekulargewicht von NAD+?"
+    answer: "„NAD+ (oxidierte Form) CAS-Nummer: 53-84-9. Summenformel: C21H27N7O14P2. Molekulargewicht: 663,43 g/mol.“"
 ---
 
-## NAD+ 500 mg research overview
+## NAD+ 500 mg Forschungsübersicht
 
-NAD+ research compound for cofactor, mitochondrial and cellular metabolism studies. COA supplied. RUO.
+NAD+-Forschungsverbindung für Cofaktor-, Mitochondrien- und Zellstoffwechselstudien. Echtheitszertifikat geliefert. RUO.
 
-NAD+ is a central redox cofactor used in mitochondrial, sirtuin, PARP and cellular-energy research.
+NAD+ ist ein zentraler Redox-Cofaktor, der in der Mitochondrien-, Sirtuin-, PARP- und Zellenergieforschung verwendet wird.
 
-Peptide Shop supplies NAD+ 500 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+## Forschungsverwendung
 
-## Research use
+- Mitochondrialer Stoffwechsel und Redoxstudien
+- Sirtuin- und PARP-Signalwegmodelle
+- Zelluläre Cofaktor- und Alterungsforschung
 
-- Mitochondrial metabolism and redox studies
-- Sirtuin and PARP pathway models
-- Cellular cofactor and ageing research
+Zugeordnet zu zelldurchlässigen Cofaktor- und Langlebigkeitsforschungsclustern.
 
-Mapped to cell-permeable cofactor and longevity research clusters.
+## Verwandte Forschungsbereiche
 
-## Sequence and analytical data
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-nad-plus |
-| Package size | 1 × 500 mg vial |
-| CAS number | 53-84-9 |
-| Molecular weight | 663.4 g/mol |
-| Purity | ≥ 99% |
-| Storage | -20°C recommended (research-only) |
+- [Verwandte Forschungsmaterialien durchsuchen](/catalog/cell-permeable/)
+- [Use-Case-Hub anzeigen](/use-case/anti-aging/)
+- [COA-Richtlinie](/coa-policy/)
+- [Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-## Reconstitution and handling
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+## Verwandte Forschungsbereiche
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-## Storage
+- [Zellpermeable-Katalog durchsuchen](/catalog/cell-permeable/)
+- [Anti-Aging-Hub anzeigen](/use-case/anti-aging/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
 
-Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
 
-## Related resources
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-PERMEABLE**](/catalog/cell-permeable/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
 
-- [Browse related research materials](/catalog/cell-permeable/)
-- [View use-case hub](/use-case/anti-aging/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+- [**MOTS-c 10 mg**](/peptides/mots-c/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**SS-31 (Elamipretide) 50 mg**](/peptides/ss-31/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
 
-## Research-use statement
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
 
-NAD+ 500 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CELL-PERMEABLE**](/catalog/cell-permeable/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**MOTS-c 10 mg**](/peptides/mots-c/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**SS-31 (Elamipretide) 50 mg**](/peptides/ss-31/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

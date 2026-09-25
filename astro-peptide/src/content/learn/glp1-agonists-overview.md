@@ -1,6 +1,6 @@
 ---
-title: "GLP-1 Agonists in Metabolic Research"
-description: "An overview of the GLP-1 receptor, its single, dual and triple agonists, and the research-grade peptides used to study metabolic regulation."
+title: "GLP-1-Agonisten in der Stoffwechselforschung"
+description: "Ein Überblick über den GLP-1-Rezeptor, seine Einzel-, Doppel- und Dreifachagonisten und die forschungsfähigen Peptide, die zur Untersuchung der Stoffwechselregulation verwendet werden."
 publishDate: "2026-05-03"
 category: "Topic Overview"
 readTime: "12 min"
@@ -8,75 +8,75 @@ order: 70
 primaryKeyword: "glp-1 agonist research"
 tags: ["glp-1", "metabolic", "semaglutide", "tirzepatide", "retatrutide"]
 meta:
-  title: "GLP-1 Agonists in Metabolic Research | Peptide Shop Learn"
-  description: "Overview of GLP-1, GIP and glucagon receptor pharmacology and the research peptides — semaglutide, tirzepatide, retatrutide, cagrilintide — used to study them."
+  title: "GLP-1-Agonisten in der Stoffwechselforschung | Peptide Shop"
+  description: "Pharmakologische Übersicht zu GLP-1, GIP und Glukagon-Rezeptoren sowie Peptiden wie Semaglutid, Tirzepatid und Retatrutid."
 ---
 
-The glucagon-like peptide-1 (GLP-1) receptor sits at the centre of contemporary metabolic research. This article gives a working overview of the receptor, the single, dual and triple agonist research peptides currently in widespread use, and the experimental questions each is best suited to address.
+Der Glucagon-ähnliche Peptid-1 (GLP-1)-Rezeptor steht im Mittelpunkt der modernen Stoffwechselforschung. Dieser Artikel gibt einen Arbeitsüberblick über den Rezeptor, die derzeit weit verbreiteten Einzel-, Doppel- und Dreifach-Agonisten-Forschungspeptide und die experimentellen Fragen, die jeweils am besten beantwortet werden können.
 
-## The receptor
+## Der Rezeptor
 
-GLP-1R is a class B G-protein-coupled receptor expressed primarily in pancreatic β-cells, intestinal L-cells, the central nervous system (notably the area postrema and arcuate nucleus), the heart and the kidneys. Its endogenous ligand, GLP-1(7–36) amide, is secreted from L-cells in response to nutrient ingestion and has a half-life of 1–2 minutes due to rapid cleavage by dipeptidyl peptidase-4 (DPP-4).
+GLP-1R ist ein G-Protein-gekoppelter Rezeptor der Klasse B, der hauptsächlich in den β-Zellen der Bauchspeicheldrüse, den L-Zellen des Darms, dem Zentralnervensystem (insbesondere der Area postrema und dem Nucleus arcuatus), dem Herzen und den Nieren exprimiert wird. Sein endogener Ligand, GLP-1(7–36)-Amid, wird als Reaktion auf die Nährstoffaufnahme von L-Zellen ausgeschieden und hat aufgrund der schnellen Spaltung durch Dipeptidylpeptidase-4 (DPP-4) eine Halbwertszeit von 1–2 Minuten.
 
-Activation drives Gαs–cAMP signalling, downstream PKA and Epac activity, and — pharmacologically — β-cell glucose-dependent insulin secretion, suppression of glucagon, slowed gastric emptying, and central reduction of food intake.
+Die Aktivierung fördert die Gαs-cAMP-Signalisierung, die nachgeschaltete PKA- und Epac-Aktivität und – pharmakologisch gesehen – die glukoseabhängige Insulinsekretion der β-Zellen, die Unterdrückung von Glucagon, eine verlangsamte Magenentleerung und eine zentrale Reduzierung der Nahrungsaufnahme.
 
-## The pharmacology problem
+## Das Pharmakologieproblem
 
-The endogenous peptide is too short-lived for clinical or chronic-research use. Research peptides solve this through:
+Das endogene Peptid ist für den klinischen oder chronischen Forschungseinsatz zu kurzlebig. Forschungspeptide lösen dieses Problem durch:
 
-1. **DPP-4 resistance** — substitution of Ala-2 with α-aminoisobutyric acid (Aib) blocks DPP-4 cleavage.
-2. **Albumin binding** — fatty-acid acylation (a C16 or C18 chain via a γGlu/2×OEG linker) extends half-life from minutes to days.
-3. **Receptor co-engagement** — adding agonism at GIP and/or glucagon receptors broadens metabolic effect.
+1. **DPP-4-Resistenz** – die Substitution von Ala-2 durch α-Aminoisobuttersäure (Aib) blockiert die DPP-4-Spaltung.
+2. **Albuminbindung** – Fettsäureacylierung (eine C16- oder C18-Kette über einen γGlu/2×OEG-Linker) verlängert die Halbwertszeit von Minuten auf Tage.
+3. **Rezeptor-Co-Engagement** – Durch die Hinzufügung von Agonismus an GIP- und/oder Glucagonrezeptoren wird die metabolische Wirkung erweitert.
 
-## The research-relevant peptides
+## Die forschungsrelevanten Peptide
 
-### Semaglutide
+### Semaglutid
 
-A long-acting GLP-1 mono-agonist with Aib²-substitution and a C18 fatty diacid chain attached at Lys²⁶. Half-life ~165 hours in human; in research models, suitable for once-weekly dosing paradigms. Used for:
+Ein langwirksamer GLP-1-Monoagonist mit Aib²-Substitution und einer an Lys²⁶ gebundenen C18-Fettsäurekette. Halbwertszeit ~165 Stunden beim Menschen; in Forschungsmodellen, geeignet für einmal wöchentliche Dosierungsparadigmen. Verwendet für:
 
-- β-cell function studies.
-- Central appetite regulation.
-- Hepatic steatosis models.
-- Cardiovascular outcome research.
+- Studien zur β-Zellfunktion.
+- Zentrale Appetitregulierung.
+- Modelle der Lebersteatose.
+- Kardiovaskuläre Outcome-Forschung.
 
-[Semaglutide product page](/peptides/semaglutide/).
+[Semaglutid-Produktseite](/peptides/semaglutide/).
 
-### Tirzepatide
+### Tirzepatid
 
-A dual GIP/GLP-1 receptor agonist on a single 39-residue scaffold. Greater weight-loss efficacy than semaglutide in head-to-head pre-clinical work; the GIP component contributes to lipid metabolism beyond GLP-1 alone. Useful when distinguishing GLP-1-only from GIP-augmented effects.
+Ein dualer GIP/GLP-1-Rezeptoragonist auf einem einzigen Gerüst mit 39 Resten. Höhere Wirksamkeit bei der Gewichtsabnahme als Semaglutid in direkter präklinischer Studie; Die GIP-Komponente trägt über GLP-1 allein hinaus zum Lipidstoffwechsel bei. Nützlich bei der Unterscheidung von reinen GLP-1-Effekten und GIP-verstärkten Effekten.
 
-[Tirzepatide product page](/peptides/tirzepatide/).
+[Tirzepatid-Produktseite](/peptides/tirzepatide/).
 
 ### Retatrutide
 
-A triple GIP / GLP-1 / glucagon receptor agonist. The glucagon component adds direct hepatic energy expenditure to the GLP-1/GIP-driven appetite and insulinotropic effects. Primarily of interest in obesity and NASH research models where increased basal energy expenditure is a desired endpoint.
+Ein dreifacher GIP/GLP-1/Glucagon-Rezeptor-Agonist. Die Glucagon-Komponente trägt zusätzlich zum GLP-1/GIP-gesteuerten Appetit und zu den insulinotropen Effekten zum direkten Energieverbrauch in der Leber bei. Vor allem von Interesse für Adipositas- und NASH-Forschungsmodelle, bei denen ein erhöhter Grundenergieverbrauch ein gewünschter Endpunkt ist.
 
-[Retatrutide product page](/peptides/retatrutide/).
+[Retatrutid-Produktseite](/peptides/retatrutide/).
 
-### Cagrilintide
+### Cagrilintid
 
-An amylin analogue, not a GLP-1 agonist, but co-administered with semaglutide in many recent metabolic studies (the "CagriSema" combination). Acts at the amylin and calcitonin receptors to suppress gastric emptying and food intake by a parallel mechanism.
+Ein Amylin-Analogon, kein GLP-1-Agonist, aber in vielen neueren Stoffwechselstudien zusammen mit Semaglutid verabreicht (die „CagriSema“-Kombination). Wirkt an den Amylin- und Calcitoninrezeptoren und unterdrückt durch einen parallelen Mechanismus die Magenentleerung und die Nahrungsaufnahme.
 
-[Cagrilintide product page](/peptides/cagrilintide/).
+[Cagrilintid-Produktseite](/peptides/cagrilintide/).
 
-## Choosing between them
+## Zwischen ihnen wählen
 
-| Question | Most informative peptide |
+| Frage | Das informativste Peptid |
 |---|---|
-| Is the effect GLP-1-receptor-mediated only? | Semaglutide |
-| Does GIP co-agonism add to the GLP-1 effect? | Tirzepatide vs semaglutide |
-| Does glucagon agonism add hepatic energy expenditure? | Retatrutide vs tirzepatide |
-| Is the appetite effect dependent on amylin signalling? | Semaglutide ± cagrilintide |
-| Is DPP-4 resistance sufficient or is acylation also required for the model timescale? | Aib²-only analogue vs acylated analogue |
+| Ist die Wirkung nur GLP-1-Rezeptor-vermittelt? | Semaglutid |
+| Trägt der GIP-Co-Agonismus zum GLP-1-Effekt bei? | Tirzepatid vs. Semaglutid |
+| Führt Glucagon-Agonismus zu einem Anstieg des Energieverbrauchs in der Leber? | Retatrutid vs. Tirzepatid |
+| Hängt der Appetiteffekt von der Amylin-Signalisierung ab? | Semaglutid ± Cagrilintid |
+| Ist die DPP-4-Resistenz ausreichend oder ist für die Modellzeitskala auch eine Acylierung erforderlich? | Nur-Aib²-Analogon vs. acyliertes Analogon |
 
-## Methodological notes
+## Methodische Hinweise
 
-- **Reconstitution.** All four peptides reconstitute readily in bacteriostatic water at 2–10 mg/mL. Avoid PBS at high concentration — visible cloudiness can occur.
-- **Half-life in animal models.** Mouse and rat clearance is faster than human; published dose translation tables differ by 5–20× between species.
-- **Receptor selectivity.** When working in a primary tissue, confirm receptor expression by qPCR or IHC before attributing an effect to GLP-1R; off-target effects at GIPR and GCGR are non-trivial for tirzepatide and retatrutide.
+- **Rekonstitution.** Alle vier Peptide rekonstituieren sich leicht in bakteriostatischem Wasser bei 2–10 mg/ml. Vermeiden Sie PBS in hoher Konzentration – es kann zu sichtbarer Trübung kommen.
+- **Halbwertszeit in Tiermodellen.** Die Clearance bei Mäusen und Ratten erfolgt schneller als beim Menschen; Die veröffentlichten Dosisübersetzungstabellen unterscheiden sich zwischen den Arten um das 5- bis 20-fache.
+- **Rezeptorselektivität.** Wenn Sie in einem Primärgewebe arbeiten, bestätigen Sie die Rezeptorexpression durch qPCR oder IHC, bevor Sie GLP-1R eine Wirkung zuschreiben; Off-Target-Effekte bei GIPR und GCGR sind für Tirzepatid und Retatrutid nicht trivial.
 
-## Cross-references
+## Querverweise
 
-- [Peptide reconstitution & dilution guide](/learn/reconstitution-guide/)
-- [How to read a peptide COA](/learn/coa-explained/)
-- Use-case hub: [weight-loss research peptides](/use-case/weight-loss/)
+- [Anleitung zur Rekonstitution und Verdünnung von Peptiden](/learn/reconstitution-guide/)
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)
+- Anwendungsfall-Hub: [Peptide zur Gewichtsabnahme-Forschung](/use-case/weight-loss/)

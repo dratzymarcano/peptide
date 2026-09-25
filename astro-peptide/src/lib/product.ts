@@ -10,6 +10,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/config';
 import { getLocalizedProduct } from '../i18n/productContent';
 import { useTranslations } from '../i18n/ui';
+import { variantsFor, priceRangeFor } from './variants';
 
 export type Availability = 'in_stock' | 'low_stock' | 'out_of_stock' | 'preorder';
 
@@ -36,6 +37,10 @@ export interface CardProduct {
   availability: Availability;
   promo?: CardPromo;
   rating?: { average: number; count: number };
+  /** Number of purchasable package sizes. >1 makes the card show "from €X". */
+  variantCount: number;
+  /** SKU of the variant the card price belongs to — the cheapest one. */
+  sku: string;
 }
 
 const FALLBACK_IMAGE = '/images/peptide-default.jpg';
@@ -64,14 +69,19 @@ function applyPromo(price: number | undefined, promo?: CardPromo): number | unde
  * Normalize a product collection entry into the canonical CardProduct shape.
  * Use everywhere a ProductCard is rendered.
  */
-export function toCardProduct(entry: CollectionEntry<'products'>, locale: Locale = 'en'): CardProduct {
+export function toCardProduct(entry: CollectionEntry<'products'>, locale: Locale = 'de'): CardProduct {
   const d = entry.data;
   const localized = getLocalizedProduct(entry, locale);
   const t = useTranslations(locale);
   const slug = entry.id.replace(/^\//, '');
-  const basePrice = d.price;
-  const finalPrice = applyPromo(basePrice, d.promo);
+  // The card price is the cheapest purchasable variant, so a multi-size
+  // product advertises its entry price rather than an arbitrary one.
+  const variants = variantsFor(d);
+  const range = priceRangeFor(variants);
+  const basePrice = range ? range.low : d.price;
+  const finalPrice = range ? range.low : applyPromo(d.price, d.promo);
   const compareAt =
+    variants[0]?.compareAtPrice ??
     d.compare_at_price ??
     (d.promo?.discount_pct && basePrice ? basePrice : undefined);
 
@@ -88,13 +98,16 @@ export function toCardProduct(entry: CollectionEntry<'products'>, locale: Locale
     imageAlt: localized.cleanTitle,
     category: d.researchArea ? t(`taxonomy.researchAreas.${d.researchArea}.name`) : d.category,
     purity: d.purity,
-    packageSize: d.package_sizes?.[0],
+    // With several sizes the card names the one its price belongs to.
+    packageSize: variants[0]?.size ?? d.package_sizes?.[0],
     price: finalPrice,
     priceRange: localized.priceRange,
     compareAtPrice: compareAt,
     availability: deriveAvailability(d),
     promo: d.promo,
     rating: deriveRating(d.reviews),
+    variantCount: variants.length,
+    sku: variants[0]?.sku ?? d.id,
   };
 }
 

@@ -1,8 +1,8 @@
 ---
 id: peptide-retatrutide
-title: Retatrutide 5 mg — research grade
-primary_keyword: retatrutide research
-search_volume: 4400
+title: "Retatrutide 5 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "retatrutide kaufen"
+search_volume: 8100
 aliases:
   - LY3437943
   - Triple G
@@ -10,13 +10,13 @@ aliases:
 cas: 2381089-83-2
 molecular_weight: 4156.48 g/mol
 purity: ≥ 99%
-storage: "-20°C recommended (research-only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
 price: 129
-price_range: €129 per vial
-short_description: Retatrutide triple agonist research peptide for GLP-1, GIP and glucagon pathway models. COA supplied. RUO.
+price_range: "€129 pro Vial"
+short_description: "Retatrutid-Triple-Agonist-Forschungspeptid für GLP-1-, GIP- und Glucagon-Signalwegmodelle. Echtheitszertifikat geliefert. RUO."
 category: weight-loss
 researchArea: diabetes
 useCases:
@@ -32,87 +32,134 @@ tags:
 images:
   - /images/products/retatrutide.webp
 meta:
-  title: Buy Retatrutide 5 mg — Triple GLP-1/GIP/Glucagon Agonist | Peptide Shop
-  description: Buy retatrutide 5 mg from Europe. Triple GLP-1/GIP/glucagon agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
+  title: "Retatrutide 5 mg kaufen | ≥99 % HPLC, COA | Peptide Shop"
+  description: "Retatrutid 5 mg Triple-Agonist (GLP-1/GIP/GCGR) für die Stoffwechselforschung kaufen. ≥99 % HPLC-Reinheit, chargenbezogenes COA & schneller EU-Versand."
 faqs:
-  - question: What makes Retatrutide unique compared to other incretin peptides?
-    answer: Retatrutide is a triple agonist that activates GLP-1, GIP, and glucagon receptors simultaneously. This distinguishes it from dual agonists like tirzepatide (GIP/GLP-1) and mono-agonists like semaglutide (GLP-1 only), providing researchers a novel tool for studying multi-receptor metabolic effects.
-  - question: What is Retatrutide used for in research?
-    answer: Retatrutide is used in metabolic research to study triple receptor activation effects on glucose homeostasis, weight management, energy expenditure, hepatic lipid metabolism, and appetite regulation. The glucagon component adds unique thermogenic and lipolytic research applications.
-  - question: How should Retatrutide be stored?
-    answer: Store lyophilised Retatrutide at -20°C for optimal stability. Once reconstituted, keep at 2-8°C and use within 3-4 weeks. Avoid repeated freeze-thaw cycles and protect from light exposure.
-  - question: What purity is your Retatrutide?
-    answer: Our Retatrutide is ≥99% pure as verified by HPLC analysis. Each batch includes a Certificate of Analysis with purity data, mass spectrometry identity confirmation, and peptide content analysis.
-  - question: How does the glucagon component contribute to research?
-    answer: The glucagon receptor agonism provides unique research opportunities in studying hepatic glucose production, thermogenesis, lipolysis, and energy expenditure mechanisms not achievable with GLP-1/GIP dual agonists alone.
-  - question: What is the half-life of Retatrutide?
-    answer: Retatrutide has an extended half-life of approximately 6 days due to fatty acid modifications that enable albumin binding. This allows researchers to study sustained triple receptor activation effects.
-  - question: How do I reconstitute Retatrutide?
-    answer: Reconstitute in sterile bacteriostatic water or slightly alkaline buffer (pH 7.4-8.0). Add solvent slowly along the vial wall and gently swirl to dissolve. Avoid shaking vigorously.
-  - question: What sizes are available?
-    answer: Retatrutide is available in 5mg and 10mg vials. Larger quantities are available for institutional research projects - contact us for bulk pricing.
-  - question: What is retatrutide?
-    answer: Retatrutide (LY3437943) is a triple GLP-1/GIP/glucagon receptor agonist peptide. It targets three hormone receptors simultaneously, providing a unique pharmacological profile for obesity and metabolic pathway research. CAS number 2381089-83-2.
-  - question: How does retatrutide differ from tirzepatide and semaglutide?
-    answer: Retatrutide adds glucagon receptor agonism to the GLP-1/GIP dual agonism of tirzepatide. This triple-agonist profile makes it a uniquely complex research tool for studying combined incretin and glucagon signalling.
-  - question: What is the molecular weight of retatrutide?
-    answer: Retatrutide has an approximate molecular weight of 4723 g/mol. It is a 36-amino acid synthetic peptide with CAS number 2381089-83-2.
-  - question: What documentation is included with retatrutide?
-    answer: Each order includes a lot-specific COA with HPLC purity and identity data. Given synthesis complexity, both HPLC and mass spectrometry data are included where available.
+  - question: "Was macht Retatrutid im Vergleich zu anderen Inkretinpeptiden einzigartig?"
+    answer: "Retatrutid ist ein dreifacher Agonist, der gleichzeitig GLP-1-, GIP- und Glucagonrezeptoren aktiviert. Dies unterscheidet es von dualen Agonisten wie Tirzepatid (GIP/GLP-1) und Monoagonisten wie Semaglutid (nur GLP-1) und bietet Forschern ein neuartiges Werkzeug zur Untersuchung der metabolischen Effekte mehrerer Rezeptoren."
+  - question: "Wofür wird Retatrutid in der Forschung verwendet?"
+    answer: "Retatrutid wird in der Stoffwechselforschung eingesetzt, um die Auswirkungen der Aktivierung dreifacher Rezeptoren auf die Glukosehomöostase, das Gewichtsmanagement, den Energieverbrauch, den Fettstoffwechsel in der Leber und die Appetitregulierung zu untersuchen. Die Glucagon-Komponente bietet einzigartige thermogene und lipolytische Forschungsanwendungen."
+  - question: "Wie sollte Retatrutid aufbewahrt werden?"
+    answer: "Lagern Sie lyophilisiertes Retatrutid für eine optimale Stabilität bei -20 °C. Nach der Rekonstitution bei 2–8 °C aufbewahren und innerhalb von 3–4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen und schützen Sie es vor Lichteinwirkung."
+  - question: "Welchen Reinheitsgrad hat Ihr Retatrutid?"
+    answer: "Unser Retatrutid ist ≥99 % rein, wie durch HPLC-Analyse bestätigt. Zu jeder Charge gehört ein Analysezertifikat mit Reinheitsdaten, Massenspektrometrie-Identitätsbestätigung und Peptidgehaltsanalyse."
+  - question: "Welchen Beitrag leistet die Glucagon-Komponente zur Forschung?"
+    answer: "Der Glucagon-Rezeptor-Agonismus bietet einzigartige Forschungsmöglichkeiten bei der Untersuchung der hepatischen Glukoseproduktion, Thermogenese, Lipolyse und Energieverbrauchsmechanismen, die mit GLP-1/GIP-Dual-Agonisten allein nicht erreichbar sind."
+  - question: "Wie lang ist die Halbwertszeit von Retatrutid?"
+    answer: "Retatrutid hat aufgrund von Fettsäuremodifikationen, die die Albuminbindung ermöglichen, eine verlängerte Halbwertszeit von etwa 6 Tagen. Dies ermöglicht es Forschern, anhaltende Effekte der dreifachen Rezeptoraktivierung zu untersuchen."
+  - question: "Wie rekonstituiere ich Retatrutid?"
+    answer: "In sterilem bakteriostatischem Wasser oder leicht alkalischem Puffer (pH 7,4–8,0) rekonstituieren. Geben Sie das Lösungsmittel langsam entlang der Fläschchenwand hinzu und schwenken Sie es vorsichtig, bis es sich auflöst. Vermeiden Sie starkes Schütteln."
+  - question: "Welche Größen sind verfügbar?"
+    answer: "Retatrutid ist in 5-mg- und 10-mg-Durchstechflaschen erhältlich. Für institutionelle Forschungsprojekte stehen größere Mengen zur Verfügung – kontaktieren Sie uns für Mengenpreise."
+  - question: "Was ist Retatrutid?"
+    answer: "Retatrutid (LY3437943) ist ein dreifaches GLP-1/GIP/Glucagon-Rezeptor-Agonistenpeptid. Es zielt gleichzeitig auf drei Hormonrezeptoren ab und bietet ein einzigartiges pharmakologisches Profil für die Erforschung von Fettleibigkeit und Stoffwechselwegen. CAS-Nummer 2381089-83-2."
+  - question: "Wie unterscheidet sich Retatrutid von Tirzepatid und Semaglutid?"
+    answer: "Retatrutid fügt dem GLP-1/GIP-Doppelagonismus von Tirzepatid einen Glucagonrezeptor-Agonismus hinzu. Dieses dreifache Agonistenprofil macht es zu einem einzigartig komplexen Forschungsinstrument zur Untersuchung der kombinierten Inkretin- und Glucagon-Signalübertragung."
+  - question: "Wie hoch ist das Molekulargewicht von Retatrutid?"
+    answer: "Retatrutid hat ein ungefähres Molekulargewicht von 4723 g/mol. Es handelt sich um ein synthetisches Peptid mit 36 ​​Aminosäuren und der CAS-Nummer 2381089-83-2."
+  - question: "Welche Dokumentation liegt Retatrutid bei?"
+    answer: "Zu jeder Bestellung gehört ein losspezifisches Echtheitszertifikat mit HPLC-Reinheits- und Identitätsdaten. Aufgrund der Komplexität der Synthese werden sowohl HPLC- als auch Massenspektrometriedaten einbezogen, sofern verfügbar."
 ---
 
-## Retatrutide 10 mg research overview
+## Retatrutid 5 mg Forschungsübersicht
 
-Retatrutide triple agonist research peptide for GLP-1, GIP and glucagon pathway models. COA supplied. RUO.
+GLP-3 ist ein synthetisches Peptid, das als dreifacher Agonist des GCG-ähnlichen Peptid-1 (GLP-1), des glukoseabhängigen insulinotropen Polypeptids (GIP) und der GCG-Rezeptoren fungiert. Diese kombinatorische Rezeptorsignalisierung ermöglicht die gleichzeitige Modulation mehrerer Stoffwechselwege. Im Gegensatz zu früheren GLP-1-Rezeptoragonisten, die in erster Linie auf die Unterdrückung des Appetits und die Verbesserung des Blutzuckerspiegels abzielen, nutzt GLP-3 die Aktivierung des GCG-Rezeptors, um die Lipolyse zu stimulieren und den Grundumsatz zu erhöhen, und trägt so zu einer ausgeprägteren und nachhaltigeren Reduzierung der Adipositas bei, wie in Forschungsmodellen beobachtet.
 
-Retatrutide is a triple GLP-1, GIP and glucagon receptor agonist reference peptide for multi-incretin metabolic research.
+Die GLP-1- und GIP-Rezeptoren spielen eine wesentliche Rolle bei der Steigerung der Insulinsekretion und der Glukosehomöostase, während die GCG-Rezeptorbindung die zirkulierenden GCG-Spiegel erhöht und so katabole Prozesse fördert. Durch diesen triagonistischen Mechanismus wurde in Studien beobachtet, dass GLP-3 die Kalorienaufnahme reduziert und die Blutzuckerkontrolle beeinflusst, während es gleichzeitig den Energieverbrauch beeinflusst. Diese umfassende Modulation des Energiehaushalts stellt eine neuartige Forschungsstrategie zur Untersuchung von Fettleibigkeit, Typ-2-Diabetes und damit verbundenen Stoffwechselstörungen dar.
 
-Peptide Shop supplies Retatrutide 10 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+[1]
 
-## Research use
+## Übersicht über veröffentlichte Forschungsergebnisse
 
-- Triple-receptor agonism and metabolic signalling
-- Energy-expenditure and glucose-regulation models
-- Comparative studies against single and dual incretin agonists
+## 1. GLP-3 im Kontext der Adipositasforschung
 
-Position within diabetes and weight-loss research clusters for internal linking.
+GLP-3 stellt eine neuartige Generation von Forschungsverbindungen im Bereich der Bekämpfung von Fettleibigkeit und Antidiabetika dar und zeichnet sich durch seinen einzigartigen Wirkmechanismus aus, der die gleichzeitige Aktivierung von drei metabolisch relevanten Rezeptoren beinhaltet: dem GCG-ähnlichen Peptid-1-Rezeptor (GLP-1R), dem glukoseabhängigen insulinotropen Polypeptidrezeptor (GIPR) und dem GCG-Rezeptor (GCGR). Dieser dreifache Agonismus ermöglicht eine integrierte Modulation wichtiger Signalwege, die das Körpergewicht und die metabolische Homöostase regulieren. GLP-1 und GIP sind Inkretinhormone, die nachweislich die Insulinsekretion, den Appetit und die Blutzuckerkontrolle beeinflussen, während GCG vor allem die Lipolyse stimuliert, den Energieverbrauch erhöht und die Oxidation von Fettsäuren fördert. Als synthetisches Peptid mit verlängerter Halbwertszeit konsolidiert GLP-3 diese Effekte in einer einmal wöchentlich injizierbaren Formulierung, die in klinischen Studien untersucht wurde.
 
-## Sequence and analytical data
+Die Aktivität von GLP-3 wurde in mehreren randomisierten klinischen Phase-2-Studien untersucht und zeigte eine signifikante Gewichtsreduktion. Nach 48-wöchiger Behandlung kam es bei Teilnehmern, die Dosen von 8 mg und 12 mg erhielten, zu einer durchschnittlichen Gewichtsreduktion von 22,8 % bzw. 24,2 % – ein Ergebnis, das mit einer bariatrischen Operation vergleichbar ist. Weitere Beobachtungen umfassten einen Rückgang des Body-Mass-Index (BMI), des Taillenumfangs, des Nüchternplasmaglukosespiegels, des HbA1c und des Blutdrucks. Diese Effekte waren dosisabhängig und bei höheren Dosen besonders ausgeprägt. Bemerkenswerterweise hatte GLP-3 auch einen erheblichen Einfluss auf die Lebersteatose, wobei das Leberfettvolumen bei 12 mg nach 24 Wochen um bis zu 82,4 % reduziert wurde. Ein beträchtlicher Anteil der Teilnehmer erreichte einen Leberfettgehalt unterhalb der Schwelle für Steatose (<5 %), was auf vielversprechende Forschungsergebnisse für metabolische Lebererkrankungen wie die nichtalkoholische Steatohepatitis (NASH) hinweist.
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-retatrutide |
-| Package size | 1 × 5 mg vial |
-| CAS number | 2381089-83-2 |
-| Molecular weight | 4156.48 g/mol |
-| Purity | ≥ 99% |
-| Storage | -20°C recommended (research-only) |
+Angesichts der weltweit hohen Prävalenz von Fettleibigkeit und ihres starken Zusammenhangs mit Typ-2-Diabetes und anderen chronischen Krankheiten erweist sich GLP-3 als vielversprechender Forschungskandidat. Laufende Phase-3-Studien zielen darauf ab, das langfristige Sicherheitsprofil und die beobachtete Aktivität weiter zu etablieren. Im positiven Fall könnte GLP-3 als eine der bedeutendsten Forschungsinnovationen auf dem Gebiet der Adipositas der letzten Jahrzehnte gelten.
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+[2] - [5]
 
-## Reconstitution and handling
+## 2. GLP-3 und Typ-2-Diabetes
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+Aktuelle Daten aus klinischen Phase-2-Studien zur Bewertung der Aktivität und Sicherheit von GLP-3 bei Patienten mit Typ-2-Diabetes zeigen seine ausgeprägten Auswirkungen sowohl auf die Blutzuckerkontrolle als auch auf die Reduzierung des Körpergewichts. In einer der Studien wurden Patienten mit einem mittleren Ausgangs-Body-Mass-Index (BMI) von 35,3 kg/m² und einem durchschnittlichen HbA1c von 8,3 % randomisiert und erhielten über einen 36-wöchigen Studienzeitraum unterschiedliche Dosen von GLP-3 (im Bereich von 1 mg bis 12 mg) oder Placebo. GLP-3 zeigte eine deutliche dosisabhängige Senkung des HbA1c, wobei die höchste Dosis (12 mg) eine mittlere HbA1c-Reduktion von 2,16 Prozentpunkten gegenüber dem Ausgangswert erreichte, verglichen mit nur 0,43 % in der Placebogruppe – ein Effekt, der statistisch hochsignifikant war.
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+Neben glykämischen Veränderungen wurde auch eine deutliche Verringerung des Körpergewichts beobachtet. Bei den Teilnehmern, die die 12-mg-Dosis GLP-3 erhielten, kam es zu einem Gewichtsverlust von bis zu 16,94 %, was etwa 17,5 kg entspricht, während in der Placebogruppe nur eine Reduzierung um 3,29 % zu verzeichnen war. Der Gewichtsverlust war während des gesamten Studienzeitraums konstant und zeigte über die 36. Woche hinaus einen anhaltenden Abwärtstrend, was auf die Möglichkeit einer anhaltenden Langzeitaktivität schließen lässt. Diese Ergebnisse unterstreichen die doppelten Beobachtungen mit GLP-3 bei Patienten mit Typ-2-Diabetes, die eine ausgeprägte blutzuckersenkende Wirkung mit bemerkenswerten Anti-Fettleibigkeits-Eigenschaften kombinieren – besonders relevant angesichts des starken Zusammenhangs zwischen Fettleibigkeit, Insulinresistenz und beeinträchtigter Blutzuckerkontrolle.
 
-## Storage
+GLP-3 ist als dreifacher Agonist, der auf GLP-1-, GIP- und GCG-Rezeptoren abzielt, ein vielversprechender Forschungswirkstoff bei der Untersuchung von Typ-2-Diabetes – nicht nur aufgrund seines beobachteten Einflusses auf glykämische Parameter, sondern auch aufgrund seiner erheblichen Wirkung auf die Gewichtsreduktion. Seine Aktivität in diabetischen Studienpopulationen nähert sich den Ergebnissen an, die bei Personen mit Adipositas ohne Diabetes beobachtet wurden, was auf sein Potenzial als Untersuchungsgegenstand der nächsten Generation hinweist. Diese Ergebnisse könnten als Grundlage für weitere Forschungen zu individuelleren Ansätzen bei Patienten mit Diabetes und metabolischem Syndrom dienen, insbesondere bei Patienten mit erheblichem Übergewicht oder Adipositas.
 
-Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+[6], [7]
 
-## Related resources
+## 3. GLP-3 und seine Auswirkungen auf die Leber
 
-- [Browse related research materials](/catalog/diabetes/)
-- [View use-case hub](/use-case/weight-loss/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+Die metabolische Dysfunktion-assoziierte steatotische Lebererkrankung (MASLD), früher bekannt als nichtalkoholische Fettlebererkrankung (NAFLD), ist die weltweit am weitesten verbreitete chronische Lebererkrankung, deren Inzidenz aufgrund der weltweiten Zunahme von Fettleibigkeit und metabolischem Syndrom zunimmt. Pathophysiologisch ist MASLD stark mit einer Insulinresistenz verbunden, die zu einer Ansammlung von Leberlipiden, Entzündungen und im fortgeschrittenen Stadium zu Fibrose und Zirrhose führt.
 
-## Research-use statement
+GLP-3, ein neuartiger dreifacher Agonist der GIP-, GLP-1- und GCG-Rezeptoren, hat in der Forschung an Personen mit MASLD signifikante hepatoprotektive Wirkungen gezeigt. In einer Phase-2-Teilstudie, an der Teilnehmer mit einem Leberfettgehalt von ≥ 10 % teilnahmen, führte die 48-wöchige Verabreichung von GLP-3 zu einer starken, dosisabhängigen Reduzierung des Leberfetts. Bei Dosen von 8 mg und 12 mg erreichten die Teilnehmer in Woche 24 eine mittlere relative Reduzierung des Leberfettgehalts um 81,4 % bzw. 82,4 % (gegenüber +0,3 % in der Placebogruppe), wobei bei 79 % bzw. 86 % der Teilnehmer eine Normalisierung des Leberfettgehalts (<5 %) beobachtet wurde. Diese Effekte hielten in Woche 48 an, wobei 89 % bzw. 93 % der Teilnehmer den Leberfettspiegel unter der Steatoseschwelle hielten. Darüber hinaus nahm das Lebervolumen deutlich ab und es wurden Verbesserungen bei den Biomarkern von Leberschäden und -entzündungen beobachtet, was auf mögliche antifibrotische und entzündungshemmende Eigenschaften in diesen Modellen schließen lässt.
 
-Retatrutide 10 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+Die hepatischen Wirkungen von GLP-3 werden wahrscheinlich durch mehrere Mechanismen vermittelt. Besonders hervorzuheben ist, dass die erhebliche Verringerung der gesamten und viszeralen Adipositas eng mit einer verbesserten Insulinsensitivität zusammenhängt – einem zentralen pathophysiologischen Faktor für MASLD. Eine verstärkte Insulinwirkung verringert den Zustrom freier Fettsäuren zur Leber und unterdrückt die hepatische De-novo-Lipogenese. Darüber hinaus führte die Verabreichung von GLP-3 zu günstigen Veränderungen der Stoffwechselparameter, einschließlich Glykämie, Lipidprofil und Entzündungsmarkern. Angesichts des derzeitigen Mangels an zugelassenen Forschungsverbindungen für die metabolische Dysfunktion-assoziierte Steatohepatitis (MASH) – die fortschreitende Form der MASLD, die durch hepatozelluläre Schädigung und Fibrose gekennzeichnet ist – erweist sich GLP-3 als vielversprechender Forschungskandidat. Sein vielfältiger Wirkmechanismus, der Gewichtsreduktion, Stoffwechselnormalisierung und deutliche Leberfettentfernung umfasst, unterstreicht seine potenzielle Rolle bei der weiteren Untersuchung metabolischer Lebererkrankungen.
 
-## References
+[4]
 
-1. Jastreboff AM et al. "Triple–Hormone-Receptor Agonist Retatrutide for Obesity — A Phase 2 Trial." *N Engl J Med.* 2023;389(6):514–526. [PMID 37506189](https://pubmed.ncbi.nlm.nih.gov/37506189/)
-2. Rosenstock J et al. "Retatrutide, a GIP, GLP-1 and glucagon receptor agonist, for people with type 2 diabetes: a randomised, double-blind, placebo and active-controlled, parallel-group, phase 2 trial conducted in the USA." *Lancet.* 2023;402(10401):529–544. [PMID 37506190](https://pubmed.ncbi.nlm.nih.gov/37506190/)
-3. Coskun T et al. "LY3437943, a novel triple GIP, GLP-1, and glucagon receptor agonist for glycemic control and weight loss: From discovery to clinical proof of concept." *Cell Metab.* 2022;34(9):1234–1247.e9. [PMID 36070795](https://pubmed.ncbi.nlm.nih.gov/36070795/)
+## Literatur und Referenzen
+
+1. „Retatrutid (LY3437943): Ein neuartiges triagonistisches Peptid zur Behandlung metabolischer Erkrankungen“, 2025.
+2. Alaa Abdrabou Abouelmagd et al., „Wirksamkeit und Sicherheit von Retatrutid, einem neuartigen GLP-1-, GIP- und GCG-Rezeptoragonisten zur Behandlung von Fettleibigkeit: eine systematische Überprüfung und Metaanalyse randomisierter kontrollierter Studien“, 2025.
+3. Coskun T, Urva S, Roell WC, et al. LY3437943, ein neuartiger dreifacher GCG-, GIP- und GLP-1-Rezeptoragonist zur Blutzuckerkontrolle und Gewichtsabnahme: von der Entdeckung bis zum klinischen Proof of Concept. Zellmetabolismus 2022;34(9):1234–1247.e9. doi: 10.1016/j.cmet.2022.07.013. [DOI] [PubMed]
+4. Sanyal AJ, Kaplan LM, Frias JP, et al. Dreifacher Hormonrezeptoragonist Retatrutid für metabolische Dysfunktion-assoziierte steatotische Lebererkrankung: eine randomisierte Phase-2a-Studie. Nat Med. 2024;30(7):2037–2048. doi: 10.1038/s41591-024-03018-2. [DOI] [PMC kostenloser Artikel] [PubMed] [Google Scholar]
+5. Jastreboff AM, Kaplan LM, Frías JP, et al. Dreifach-Hormonrezeptoragonist Retatrutid gegen Fettleibigkeit – eine Phase-2-Studie. N Engl J Med. 2023;389(6):514–526. doi: 10.1056/NEJMoa2301972. [DOI] [PubMed]
+6. Rosenstock J, Frias J, Jastreboff AM, et al. Retatrutid, ein GIP-, GLP-1- und GCG-Rezeptoragonist, für Menschen mit Typ-2-Diabetes: eine randomisierte, doppelblinde, placebokontrollierte Phase-2-Studie mit parallelen Gruppen, durchgeführt in den USA. Lanzette. 2023;402(10401):529–544. doi: 10.1016/S0140-6736(23)01053-X. [DOI] [PubMed]
+7. Urva S., Coskun T., Loh MT, et al. LY3437943, ein neuartiger dreifacher GIP-, GLP-1- und GCG-Rezeptoragonist bei Menschen mit Typ-2-Diabetes: eine multizentrische, doppelblinde, placebokontrollierte, randomisierte, mehrfach ansteigende Dosisstudie der Phase 1b. Lanzette. 2022;400(10366):1869–1881. doi: 10.1016/S0140-6736(22)02033-5. [DOI] [PubMed]
+
+## Richtlinien zur Lagerung und Handhabung im Labor
+
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Diabetes-Katalog durchsuchen](/catalog/diabetes/)
+- [Hub zum Abnehmen ansehen](/use-case/weight-loss/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Cagrilintide 5 mg**](/peptides/cagrilintide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+### Weiterführende Fachartikel & wissenschaftliche Dossiers
+- [**GLP-3 & Triple-Agonisten Studien im Überblick**](/blog/glp-3-studies-and-breakthroughs-in-the-fight-against-obesity-and-type-2-diabetes/): Tiefgehende Analyse veröffentlichter Studien, Signaltransduktion und pharmakokinetischer Daten.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Cagrilintide 5 mg**](/peptides/cagrilintide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+### Weiterführende Fachartikel & wissenschaftliche Dossiers
+- [**GLP-3 & Triple-Agonisten Studien im Überblick**](/blog/glp-3-studies-and-breakthroughs-in-the-fight-against-obesity-and-type-2-diabetes/): Tiefgehende Analyse veröffentlichter Studien, Signaltransduktion und pharmakokinetischer Daten.
+

@@ -5,7 +5,10 @@ import ProductCard from '../../components/ProductCard.astro';
 import { toCardProduct } from '../../lib/product';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RUOBanner from '../../components/RUOBanner.astro';
-import { getUseCase, type UseCaseSlug } from '../../data/taxonomy';
+import HubStats from '../../components/HubStats.astro';
+import ProductSpecTable from '../../components/ProductSpecTable.astro';
+import HubFaq from '../../components/HubFaq.astro';
+import { getUseCase, useCases, type UseCaseSlug } from '../../data/taxonomy';
 import { getCanonicalCollection } from '../../lib/collections';
 import { getLocaleFromPathname, localizePath } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
@@ -20,7 +23,7 @@ const t = useTranslations(locale);
 const href = (path: string) => localizePath(path, locale);
 
 if (!meta) {
-  return Astro.redirect(href('/catalog/'), 302);
+  return Astro.redirect(href('/catalog/'), 301);
 }
 
 const useCaseName = t(`taxonomy.useCases.${meta.slug}.name`);
@@ -31,6 +34,21 @@ const all = await getCanonicalCollection('products');
 const products = all
   .filter((p) => Array.isArray(p.data.useCases) && p.data.useCases.includes(useCaseSlug))
   .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const purityFloor = Math.min(
+  ...products
+    .map((entry) => Number(entry.data.purity?.match(/(\d{2,3})\s*%/)?.[1]))
+    .filter((value) => Number.isFinite(value)),
+  99,
+);
+
+const prices = products.map((entry) => entry.data.price).filter((value): value is number => typeof value === 'number');
+const fromPrice = prices.length ? Math.min(...prices) : null;
+
+// Research areas the compounds in this application actually belong to, so the
+// page links across the taxonomy instead of terminating on itself.
+const relatedAreaSlugs = [...new Set(products.map((entry) => entry.data.researchArea).filter(Boolean))] as string[];
+const siblingUseCases = useCases.filter((candidate) => candidate.slug !== meta.slug);
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 
@@ -64,7 +82,7 @@ const breadcrumbs = [
 
 <Layout
   title={t('useCasePage.metaTitle', { useCase: useCaseName })}
-  description={t('useCasePage.metaDescription', { description: useCaseDescription })}
+  description={t('useCasePage.metaDescription', { useCase: useCaseName, description: useCaseDescription, purity: purityFloor })}
   breadcrumbs={breadcrumbs}
 >
   <JsonLd schema={[collectionPageSchema, itemListSchema]} />
@@ -73,15 +91,10 @@ const breadcrumbs = [
     <div class="container">
       <Breadcrumb items={breadcrumbs} />
 
-      <span class="eyebrow">{t('shopSidebar.useCase')}</span>
       <h1>{useCaseName}</h1>
       <p class="lead">{useCaseDescription}</p>
 
-      <RUOBanner
-        style="margin-top: var(--space-6);"
-        heading={t('productPage.ruoHeading')}
-        detail={t('useCasePage.ruoDetail')}
-      />
+      {products.length > 0 && <HubStats count={products.length} purityFloor={purityFloor} fromPrice={fromPrice} />}
 
       {products.length === 0 ? (
         <p style="margin-top: var(--space-8); color: var(--color-ink-3);">{t('useCasePage.noProducts')}</p>
@@ -92,6 +105,51 @@ const breadcrumbs = [
           ))}
         </div>
       )}
+
+      {products.length > 0 && (
+        <>
+          <ProductSpecTable products={products} />
+          <HubFaq group={useCaseName} purityFloor={purityFloor} />
+        </>
+      )}
+
+      <RUOBanner
+        style="margin-top: var(--space-16);"
+        heading={t('productPage.ruoHeading')}
+        detail={t('useCasePage.ruoDetail')}
+      />
+
+      {relatedAreaSlugs.length > 0 && (
+        <section class="hub-links" aria-labelledby="related-areas-title">
+          <h2 id="related-areas-title">{t('hub.otherAreasTitle')}</h2>
+          <div class="hub-links__row">
+            {relatedAreaSlugs.map((areaSlug) => (
+              <a class="chip" href={href(`/catalog/${areaSlug}/`)}>{t(`taxonomy.researchAreas.${areaSlug}.name`)}</a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="hub-links" aria-labelledby="other-use-cases-title">
+        <h2 id="other-use-cases-title">{t('hub.otherUseCasesTitle')}</h2>
+        <div class="hub-links__row">
+          {siblingUseCases.map((useCase) => (
+            <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{t(`taxonomy.useCases.${useCase.slug}.name`)}</a>
+          ))}
+        </div>
+      </section>
     </div>
   </section>
 </Layout>
+
+<style>
+  .hub-links { margin-top: var(--space-12); }
+  .hub-links h2 {
+    font-size: var(--text-base);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-ink-3);
+    margin: 0 0 var(--space-4);
+  }
+  .hub-links__row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+</style>

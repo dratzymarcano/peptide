@@ -1,8 +1,8 @@
 ---
 id: peptide-semaglutide
-title: Semaglutide 5 mg — research grade, COA
-primary_keyword: semaglutide research
-search_volume: 9900
+title: "Semaglutide 5 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "semaglutid forschung kaufen"
+search_volume: 12100
 aliases:
   - GLP-1 (7-37) analog
   - Ozempic peptide
@@ -10,13 +10,13 @@ aliases:
 cas: 910463-68-2
 molecular_weight: 4113.58 g/mol
 purity: ≥ 99%
-storage: "-20°C recommended (research-only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
 price: 60
-price_range: €60 per vial
-short_description: Semaglutide GLP-1 analogue for metabolic research. ≥99% HPLC purity, sealed vial and lot COA. RUO.
+price_range: "€60 pro Vial"
+short_description: "Semaglutid-GLP-1-Analogon für die Stoffwechselforschung. ≥99 % HPLC-Reinheit, versiegeltes Fläschchen und Chargen-COA. RUO."
 category: weight-loss
 researchArea: diabetes
 useCases:
@@ -32,89 +32,118 @@ tags:
 images:
   - /images/products/semaglutide.webp
 meta:
-  title: Buy Semaglutide 5 mg — GLP-1 Agonist, ≥99% HPLC | Peptide Shop Europe
-  description: Buy semaglutide 5 mg research peptide from Europe. GLP-1 receptor agonist. ≥99% HPLC purity, lot COA, EU dispatch. Research use only.
+  title: "Semaglutide 5 mg kaufen | ≥99 % HPLC, COA | Peptide Shop"
+  description: "Semaglutid 5 mg GLP-1-Rezeptoragonist für Labor- & Stoffwechselforschung kaufen. ≥99 % HPLC-Reinheit, chargenbezogenes COA & schneller EU-Versand."
 faqs:
-  - question: What is Semaglutide used for in research?
-    answer: Semaglutide is primarily used in metabolic research to study GLP-1 receptor activation, glucose-dependent insulin secretion, appetite regulation, and weight management mechanisms. Research applications include investigating beta-cell function, gastric emptying rates, and potential neuroprotective properties in disease models.
-  - question: How should I store Semaglutide peptide?
-    answer: Lyophilised Semaglutide should be stored at -20°C for long-term stability. Once reconstituted, store at 2-8°C (refrigerator) and use within 4 weeks. Avoid repeated freeze-thaw cycles and protect from light. Always store in airtight containers to prevent moisture absorption.
-  - question: What purity is your Semaglutide?
-    answer: Our Semaglutide is ≥99% pure as verified by HPLC analysis. Each batch comes with a Certificate of Analysis (COA) confirming purity, identity via mass spectrometry, and peptide content. We maintain strict quality control throughout manufacturing and shipping.
-  - question: How do I reconstitute Semaglutide for research?
-    answer: Reconstitute Semaglutide in sterile bacteriostatic water or a slightly alkaline buffer (pH 7.4-8.0). Semaglutide can be difficult to dissolve in pure water near its isoelectric point. Gently swirl the vial rather than shaking vigorously to prevent peptide degradation.
-  - question: Is this the same as Ozempic or Wegovy?
-    answer: No. Ozempic and Wegovy are brand-name prescription medications containing semaglutide as the active pharmaceutical ingredient. Our product is the raw research-grade peptide sold exclusively for laboratory research purposes, not for human consumption or medical treatment.
-  - question: What is the half-life of Semaglutide?
-    answer: Semaglutide has an extended half-life of approximately 7 days due to its C-18 fatty diacid modification that promotes albumin binding. This prolonged half-life makes it particularly valuable for studying sustained GLP-1 receptor activation in research models.
-  - question: Do you ship Semaglutide internationally?
-    answer: We offer fast delivery within the EU with next-day and standard shipping options. For international shipping enquiries, please contact our customer service team to discuss options and regulations for your specific country.
-  - question: What package sizes are available?
-    answer: Semaglutide is available in 2mg, 5mg, and 10mg vials to suit various research needs and budgets. Larger quantities are available for institutional research projects - contact us for bulk pricing and custom orders.
-  - question: What class of peptide is semaglutide?
-    answer: Semaglutide is a GLP-1 receptor agonist. It is a 31-amino acid analogue of human glucagon-like peptide-1 with a C18 fatty diacid modification that extends plasma half-life. CAS number 910463-68-2.
-  - question: Is semaglutide the same compound as in Ozempic or Wegovy?
-    answer: Semaglutide is the active pharmaceutical ingredient in Ozempic and Wegovy. The research compound supplied by Peptide Shop is for in-vitro and preclinical laboratory research only — it is not intended for human administration.
-  - question: How should semaglutide be reconstituted?
-    answer: Add sterile bacteriostatic water slowly down the vial wall and gently swirl until dissolved. Do not shake vigorously. Store reconstituted material at 2–8°C and use within 4 weeks.
-  - question: What purity is your semaglutide?
-    answer: Our semaglutide is ≥99% pure by HPLC with identity confirmation. Each batch ships with a lot-specific Certificate of Analysis.
+  - question: "Wofür wird Semaglutid in der Forschung verwendet?"
+    answer: "Semaglutid wird hauptsächlich in der Stoffwechselforschung eingesetzt, um die Aktivierung des GLP-1-Rezeptors, die glukoseabhängige Insulinsekretion, die Appetitregulierung und Mechanismen zur Gewichtskontrolle zu untersuchen. Zu den Forschungsanwendungen gehören die Untersuchung der Betazellfunktion, der Magenentleerungsraten und potenzieller neuroprotektiver Eigenschaften in Krankheitsmodellen."
+  - question: "Wie soll ich Semaglutid-Peptid aufbewahren?"
+    answer: "Lyophilisiertes Semaglutid sollte für eine langfristige Stabilität bei -20 °C gelagert werden. Nach der Rekonstitution bei 2–8 °C (Kühlschrank) lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Wechsel und schützen Sie es vor Licht. Bewahren Sie es immer in luftdichten Behältern auf, um eine Feuchtigkeitsaufnahme zu verhindern."
+  - question: "Welchen Reinheitsgrad hat Ihr Semaglutid?"
+    answer: "Unser Semaglutid ist ≥99 % rein, wie durch HPLC-Analyse bestätigt. Jeder Charge liegt ein Analysezertifikat (COA) bei, das die Reinheit, Identität mittels Massenspektrometrie und den Peptidgehalt bestätigt. Wir unterliegen während der gesamten Herstellung und dem Versand einer strengen Qualitätskontrolle."
+  - question: "Wie rekonstituiere ich Semaglutid für Forschungszwecke?"
+    answer: "Rekonstituieren Sie Semaglutid in sterilem bakteriostatischem Wasser oder einem leicht alkalischen Puffer (pH 7,4–8,0). Es kann schwierig sein, Semaglutid in der Nähe seines isoelektrischen Punktes in reinem Wasser aufzulösen. Schwenken Sie das Fläschchen vorsichtig, anstatt es kräftig zu schütteln, um einen Peptidabbau zu verhindern."
+  - question: "Ist das dasselbe wie Ozempic oder Wegovy?"
+    answer: "Nein. Ozempic und Wegovy sind verschreibungspflichtige Markenmedikamente, die Semaglutid als pharmazeutischen Wirkstoff enthalten. Bei unserem Produkt handelt es sich um rohes Peptid in Forschungsqualität, das ausschließlich für Laborforschungszwecke verkauft wird, nicht für den menschlichen Verzehr oder die medizinische Behandlung."
+  - question: "Wie lang ist die Halbwertszeit von Semaglutid?"
+    answer: "Semaglutid hat aufgrund seiner C-18-Fettsäuremodifikation, die die Albuminbindung fördert, eine verlängerte Halbwertszeit von etwa 7 Tagen. Diese verlängerte Halbwertszeit macht es besonders wertvoll für die Untersuchung der anhaltenden GLP-1-Rezeptoraktivierung in Forschungsmodellen."
+  - question: "Versenden Sie Semaglutid international?"
+    answer: "Wir bieten eine schnelle Lieferung innerhalb der EU mit Versandoptionen am nächsten Tag und Standardversand. Für internationale Versandanfragen wenden Sie sich bitte an unser Kundendienstteam, um die Optionen und Vorschriften für Ihr spezifisches Land zu besprechen."
+  - question: "Welche Packungsgrößen sind verfügbar?"
+    answer: "Semaglutid ist in Fläschchen mit 2 mg, 5 mg und 10 mg erhältlich, um unterschiedlichen Forschungsanforderungen und Budgets gerecht zu werden. Für institutionelle Forschungsprojekte stehen größere Mengen zur Verfügung – kontaktieren Sie uns für Mengenpreise und Sonderanfertigungen."
+  - question: "Zu welcher Peptidklasse gehört Semaglutid?"
+    answer: "Semaglutid ist ein GLP-1-Rezeptoragonist. Es handelt sich um ein 31 Aminosäuren langes Analogon des menschlichen Glucagon-ähnlichen Peptids 1 mit einer C18-Fettsäuremodifikation, die die Plasmahalbwertszeit verlängert. CAS-Nummer 910463-68-2."
+  - question: "Ist Semaglutid die gleiche Verbindung wie in Ozempic oder Wegovy?"
+    answer: "Semaglutid ist der pharmazeutische Wirkstoff in Ozempic und Wegovy. Der von Peptide Shop bereitgestellte Forschungswirkstoff ist ausschließlich für die In-vitro- und präklinische Laborforschung bestimmt – er ist nicht für die Verabreichung am Menschen bestimmt."
+  - question: "Wie sollte Semaglutid rekonstituiert werden?"
+    answer: "Geben Sie steriles, bakteriostatisches Wasser langsam an der Wand des Fläschchens hinzu und schwenken Sie es vorsichtig, bis es sich aufgelöst hat. Nicht kräftig schütteln. Rekonstituiertes Material bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen."
+  - question: "Welche Reinheit hat Ihr Semaglutid?"
+    answer: "Unser Semaglutid ist laut HPLC mit Identitätsbestätigung zu ≥99 % rein. Jede Charge wird mit einem chargenspezifischen Analysezertifikat geliefert."
 ---
 
-## Semaglutide 5 mg research overview
+## Semaglutid 5 mg Forschungsübersicht
 
-Semaglutide GLP-1 analogue for metabolic research. ≥99% HPLC purity, sealed vial and lot COA. RUO.
+Semaglutid-GLP-1-Analogon für die Stoffwechselforschung. ≥99 % HPLC-Reinheit, versiegeltes Fläschchen und Chargen-COA. RUO.
 
-Semaglutide is a long-acting GLP-1 receptor agonist analogue used to study incretin signalling, glucose homeostasis and appetite-regulation pathways.
+Semaglutid ist ein langwirksames GLP-1-Rezeptor-Agonist-Analogon, das zur Untersuchung der Inkretinsignalisierung, der Glukosehomöostase und der Appetitregulierungswege verwendet wird.
 
-Peptide Shop supplies Semaglutide 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+## Forschungsverwendung
 
-## Research use
+- Aktivierung des GLP-1-Rezeptors und nachgeschaltete Signalübertragung
+- Modelle zur Insulinsekretion und Glucagonregulation
+- Forschung zu Stoffwechsel, Sättigung und Magenentleerung
 
-- GLP-1 receptor activation and downstream signalling
-- Insulin secretion and glucagon regulation models
-- Metabolic, satiety and gastric-emptying research
+Vergleichen Sie mit Tirzepatid, Retatrutid und Cagrilintid im Bereich Diabetes und Stoffwechsel.
 
-Compare with tirzepatide, retatrutide and cagrilintide on the diabetes and metabolism hub.
+## Verwandte Forschungsbereiche
 
-## Sequence and analytical data
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-semaglutide |
-| Package size | 1 × 5 mg vial |
-| CAS number | 910463-68-2 |
-| Molecular weight | 4113.58 g/mol |
-| Purity | ≥ 99% |
-| Storage | -20°C recommended (research-only) |
+- [Verwandte Forschungsmaterialien durchsuchen](/catalog/diabetes/)
+- [Use-Case-Hub anzeigen](/use-case/weight-loss/)
+- [COA-Richtlinie](/coa-policy/)
+- [Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+## Literatur und Referenzen
 
-## Reconstitution and handling
+1. Lau J et al. „Entdeckung des einmal wöchentlichen Glucagon-Like Peptide-1 (GLP-1)-Analogons Semaglutid.“ *J Med Chem.* 2015;58(18):7370–7380. [PMID 26308095](https://pubmed.ncbi.nlm.nih.gov/26308095/)
+2. Marso SP et al. „Semaglutid und kardiovaskuläre Ergebnisse bei Patienten mit Typ-2-Diabetes.“ *N Engl J Med.* 2016;375(19):1834–1844. [PMID 27633186](https://pubmed.ncbi.nlm.nih.gov/27633186/)
+3. Gabery S et al. „Semaglutid senkt das Körpergewicht von Nagetieren über verteilte Nervenbahnen.“ *JCI Insight.* 2020;5(6):e133429. [PMID 32213704](https://pubmed.ncbi.nlm.nih.gov/32213704/)
+4. Blundell J et al. „Auswirkungen von einmal wöchentlichem Semaglutid auf Appetit, Energieaufnahme, Energieverbrauch, Magenentleerung und Blutzucker bei Personen mit Fettleibigkeit.“ *Diabetes Obes Metab.* 2017;19(9):1242–1251. [PMID 28266779](https://pubmed.ncbi.nlm.nih.gov/28266779/)
+5. Wilding JPH et al. „Einmal wöchentliches Semaglutid bei Erwachsenen mit Übergewicht oder Adipositas.“ *N Engl J Med.* 2021;384(11):989–1002. [PMID 33567185](https://pubmed.ncbi.nlm.nih.gov/33567185/)
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-## Storage
+## Verwandte Forschungsbereiche
 
-Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-## Related resources
+- [Diabetes-Katalog durchsuchen](/catalog/diabetes/)
+- [Hub zum Abnehmen ansehen](/use-case/weight-loss/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
 
-- [Browse related research materials](/catalog/diabetes/)
-- [View use-case hub](/use-case/weight-loss/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
 
-## Research-use statement
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
 
-Semaglutide 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Retatrutide 5 mg**](/peptides/retatrutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Cagrilintide 5 mg**](/peptides/cagrilintide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
 
-## References
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
 
-1. Lau J et al. "Discovery of the Once-Weekly Glucagon-Like Peptide-1 (GLP-1) Analogue Semaglutide." *J Med Chem.* 2015;58(18):7370–7380. [PMID 26308095](https://pubmed.ncbi.nlm.nih.gov/26308095/)
-2. Marso SP et al. "Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes." *N Engl J Med.* 2016;375(19):1834–1844. [PMID 27633186](https://pubmed.ncbi.nlm.nih.gov/27633186/)
-3. Gabery S et al. "Semaglutide lowers body weight in rodents via distributed neural pathways." *JCI Insight.* 2020;5(6):e133429. [PMID 32213704](https://pubmed.ncbi.nlm.nih.gov/32213704/)
-4. Blundell J et al. "Effects of once-weekly semaglutide on appetite, energy intake, energy expenditure, gastric emptying, and blood glucose in subjects with obesity." *Diabetes Obes Metab.* 2017;19(9):1242–1251. [PMID 28266779](https://pubmed.ncbi.nlm.nih.gov/28266779/)
-5. Wilding JPH et al. "Once-Weekly Semaglutide in Adults with Overweight or Obesity." *N Engl J Med.* 2021;384(11):989–1002. [PMID 33567185](https://pubmed.ncbi.nlm.nih.gov/33567185/)
+### Weiterführende Fachartikel & wissenschaftliche Dossiers
+- [**Einführung in GLP-1-Agonisten in der Stoffwechselforschung**](/blog/introduction-glp1-agonists-metabolic-research/): Tiefgehende Analyse veröffentlichter Studien, Signaltransduktion und pharmakokinetischer Daten.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Retatrutide 5 mg**](/peptides/retatrutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Cagrilintide 5 mg**](/peptides/cagrilintide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**5-Amino-1MQ (60 × 50 mg)**](/peptides/5-amino-1mq/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+### Weiterführende Fachartikel & wissenschaftliche Dossiers
+- [**Einführung in GLP-1-Agonisten in der Stoffwechselforschung**](/blog/introduction-glp1-agonists-metabolic-research/): Tiefgehende Analyse veröffentlichter Studien, Signaltransduktion und pharmakokinetischer Daten.
+

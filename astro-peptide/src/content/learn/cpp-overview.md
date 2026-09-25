@@ -1,6 +1,6 @@
 ---
-title: "Cell-Penetrating Peptides Explained"
-description: "What CPPs are, the main classes, the cargo-delivery mechanisms, and the research applications where they substitute for transfection reagents."
+title: "Zelldurchdringende Peptide erklärt"
+description: "Was CPPs sind, die Hauptklassen, die Ladungstransportmechanismen und die Forschungsanwendungen, bei denen sie Transfektionsreagenzien ersetzen."
 publishDate: "2026-05-03"
 category: "Topic Overview"
 readTime: "9 min"
@@ -8,63 +8,63 @@ order: 80
 primaryKeyword: "cell penetrating peptide"
 tags: ["cpp", "cell-permeable", "delivery", "tat"]
 meta:
-  title: "Cell-Penetrating Peptides Explained | Peptide Shop Learn"
-  description: "Overview of cell-penetrating peptides: classes, uptake mechanisms, cargo conjugation strategies and research applications in cell biology."
+  title: "Zelldurchdringende Peptide erklärt | Peptide Shop Leitfaden"
+  description: "Übersicht über zelldurchdringende Peptide (CPPs): Klassen, Aufnahmemechanismen, Konjugationsstrategien und zellbiologische Anwendungen."
 ---
 
-Cell-penetrating peptides (CPPs) are short sequences — typically 5–30 residues — that cross the plasma membrane and can carry covalent or non-covalent cargo into the cytoplasm. They have become a standard tool in cell biology where transfection reagents are unsuitable, and they are an active area of therapeutic research.
+Zellpenetrierende Peptide (CPPs) sind kurze Sequenzen – typischerweise 5–30 Reste –, die die Plasmamembran durchqueren und kovalente oder nichtkovalente Ladung in das Zytoplasma transportieren können. Sie sind zu einem Standardwerkzeug in der Zellbiologie geworden, wo Transfektionsreagenzien ungeeignet sind, und sie sind ein aktiver Bereich der therapeutischen Forschung.
 
-## The main classes
+## Die Hauptklassen
 
-| Class | Example | Length | Net charge | Origin |
+| Klasse | Beispiel | Länge | Nettogebühr | Herkunft |
 |---|---|---|---|---|
-| Cationic | TAT (47–57) | 9 | +8 | HIV-1 trans-activator |
-| Cationic | Penetratin (Antp 43–58) | 16 | +7 | Drosophila Antennapedia |
-| Cationic, oligoArg | R8, R9 | 8–9 | +8/+9 | Synthetic |
-| Amphipathic | MPG, Pep-1 | 21–27 | varies | Chimeric |
-| Hydrophobic | C105Y | 10 | 0 | α1-antitrypsin |
+| Kationisch | TAT (47–57) | 9 | +8 | HIV-1-Transaktivator |
+| Kationisch | Penetratin (Antp 43–58) | 16 | +7 | Drosophila Antennapedia |
+| Kationisch, oligoArg | R8, R9 | 8–9 | +8/+9 | Synthetisch |
+| Amphipathisch | MPG, Pep-1 | 21–27 | variiert | Chimär |
+| Hydrophob | C105Y | 10 | 0 | α1-Antitrypsin |
 
-## Uptake mechanisms
+## Aufnahmemechanismen
 
-CPP uptake is **concentration-, sequence-, cargo- and cell-type-dependent**. At low concentration (≤1 µM), uptake is dominantly **endocytic** (macropinocytosis, caveolae- or clathrin-mediated, depending on cell type). At higher concentration (>5 µM), **direct translocation** through transient inverted micelles becomes appreciable.
+Die CPP-Aufnahme ist **konzentrations-, sequenz-, ladungs- und zelltypabhängig**. Bei niedriger Konzentration (≤1 µM) erfolgt die Aufnahme überwiegend **endozytisch** (Makropinozytose, Caveolae- oder Clathrin-vermittelt, je nach Zelltyp). Bei höheren Konzentrationen (>5 µM) wird die **direkte Translokation** durch transiente invertierte Mizellen spürbar.
 
-Practical consequence: a CPP that works at 10 µM via direct translocation may *not* work at 1 µM via endocytosis if the cargo is endosomally degraded. Always titrate.
+Praktische Konsequenz: Ein CPP, das bei 10 µM über direkte Translokation funktioniert, funktioniert möglicherweise *nicht* bei 1 µM über Endozytose, wenn die Ladung endosomal abgebaut wird. Titrieren Sie immer.
 
-## Cargo strategies
+## Frachtstrategien
 
-### Covalent conjugation
+### Kovalente Konjugation
 
-- **N-terminal extension** of the cargo peptide with the CPP sequence (ideal for short peptide cargos).
-- **Disulfide linkage** (cleaved in the reducing cytosol — releases free cargo).
-- **Maleimide–thiol** conjugation to a Cys-containing cargo.
-- **Click chemistry** (azide–alkyne) for orthogonal labelling.
+- **N-terminale Verlängerung** des Frachtpeptids mit der CPP-Sequenz (ideal für kurze Peptidladungen).
+- **Disulfidbindung** (im reduzierenden Zytosol gespalten – setzt freie Ladung frei).
+- **Maleimid-Thiol**-Konjugation zu einer Cys-haltigen Ladung.
+- **Klicken Sie auf Chemie** (Azid-Alkin) für orthogonale Markierung.
 
-### Non-covalent complexation
+### Nichtkovalente Komplexierung
 
-- MPG and Pep-1 form non-covalent complexes with siRNA, plasmids and proteins by electrostatics.
-- Rapid to set up, but stoichiometry is harder to control.
+- MPG und Pep-1 bilden durch Elektrostatik nichtkovalente Komplexe mit siRNA, Plasmiden und Proteinen.
+- Schneller Aufbau, aber die Stöchiometrie ist schwerer zu kontrollieren.
 
-## Research applications
+## Forschungsanwendungen
 
-- **Intracellular peptide inhibitors.** Bring a 10–20 mer inhibitor of a protein–protein interaction into the cytoplasm without transfection (e.g. the AIP-CaMKII inhibitor used in synaptic plasticity work; see [AIP-CaMKII inhibitor](/peptides/aip-camkii-inhibitor/)).
-- **Imaging probes.** CPP-fluorophore conjugates label live cells without electroporation.
-- **siRNA delivery.** CPP–siRNA complexes for primary cells refractory to lipoplex transfection.
-- **Mitochondrial targeting.** Adding a triphenylphosphonium tail to a CPP can direct cargo to the inner mitochondrial membrane.
+- **Intrazelluläre Peptidinhibitoren.** Bringen Sie einen 10–20-mer-Inhibitor einer Protein-Protein-Wechselwirkung ohne Transfektion in das Zytoplasma (z. B. der AIP-CaMKII-Inhibitor, der bei synaptischen Plastizitätsarbeiten verwendet wird; siehe [AIP-CaMKII-Inhibitor](/peptides/aip-camkii-inhibitor/)).
+- **Bildgebungssonden.** CPP-Fluorophor-Konjugate markieren lebende Zellen ohne Elektroporation.
+- **siRNA-Lieferung.** CPP-siRNA-Komplexe für primäre Zellen, die gegenüber Lipoplex-Transfektion refraktär sind.
+- **Mitochondriales Targeting.** Das Hinzufügen eines Triphenylphosphonium-Schwanzes zu einem CPP kann die Ladung zur inneren Mitochondrienmembran leiten.
 
-## Pitfalls
+## Fallstricke
 
-1. **Trypan-blue artefact.** Many cationic CPPs permeabilise damaged cells faster than intact ones. Confirm uptake by orthogonal microscopy and a viability stain other than trypan blue.
-2. **Cytotoxicity at high concentration.** All cationic CPPs perturb membranes above ~10–20 µM; titrate downwards rather than up.
-3. **Endosomal trapping.** A fluorescent puncta-only pattern indicates endosomal trapping; pair with a small-molecule endosomal escape enhancer or switch CPP class.
-4. **Serum binding.** Some CPPs bind serum albumin and lose activity in 10% FBS; pre-test in serum-free or low-serum conditions and add serum stepwise.
+1. **Trypanblau-Artefakt.** Viele kationische CPPs permeabilisieren beschädigte Zellen schneller als intakte. Bestätigen Sie die Aufnahme durch orthogonale Mikroskopie und eine andere Lebensfähigkeitsfärbung als Trypanblau.
+2. **Zytotoxizität bei hoher Konzentration.** Alle kationischen CPPs stören Membranen über ~10–20 µM; Titrieren Sie eher nach unten als nach oben.
+3. **Endosomale Einklemmung.** Ein fluoreszierendes puncta-only-Muster weist auf eine endosomale Einklemmung hin; Kombinieren Sie es mit einem niedermolekularen endosomalen Escape-Enhancer oder wechseln Sie die CPP-Klasse.
+4. **Serumbindung.** Einige CPPs binden Serumalbumin und verlieren in 10 % FBS ihre Aktivität; Führen Sie einen Vortest unter serumfreien oder serumarmen Bedingungen durch und geben Sie das Serum schrittweise hinzu.
 
-## Sequence selection in practice
+## Sequenzauswahl in der Praxis
 
-Start with TAT (47–57) or R8 for proof-of-principle. If endosomal trapping dominates, switch to penetratin or an amphipathic class such as MPG. If the cargo is sensitive to disulfide reduction, use a stable thioether or click linkage rather than a disulfide.
+Beginnen Sie mit TAT (47–57) oder R8 für den Grundsatznachweis. Wenn das endosomale Einfangen vorherrscht, wechseln Sie zu Penetratin oder einer amphipathischen Klasse wie MPG. Wenn die Ladung empfindlich auf Disulfidreduktion reagiert, verwenden Sie einen stabilen Thioether oder eine Klickverbindung anstelle eines Disulfids.
 
-## Cross-references
+## Querverweise
 
-- Catalog hub: [cell-permeable peptides](/catalog/cell-permeable/)
-- Catalog hub: [cell-signaling peptides](/catalog/cell-signaling/)
-- [Peptide reconstitution & dilution guide](/learn/reconstitution-guide/)
-- [Peptide storage & handling best practices](/learn/storage-handling/)
+- Katalog-Hub: [zellpermeable Peptide](/catalog/cell-permeable/)
+- Katalog-Hub: [Zellsignalpeptide](/catalog/cell-signaling/)
+- [Anleitung zur Rekonstitution und Verdünnung von Peptiden](/learn/reconstitution-guide/)
+- [Best Practices für die Lagerung und Handhabung von Peptiden](/learn/storage-handling/)

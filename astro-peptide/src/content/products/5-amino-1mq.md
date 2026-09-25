@@ -1,7 +1,7 @@
 ---
 id: peptide-5-amino-1mq
-title: 5-Amino-1MQ 50 mg — NNMT inhibitor
-primary_keyword: 5-amino-1mq
+title: "5-Amino-1MQ 50 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "5-amino-1mq kaufen"
 search_volume: 2400
 aliases:
   - 5-Amino-1-Methylquinolinium
@@ -9,13 +9,13 @@ aliases:
 cas: 42464-99-1
 molecular_weight: 240.3 g/mol
 purity: ≥ 99%
-storage: Room temperature, protected from light
+storage: "Trocken und lichtgeschützt bei Raumtemperatur (15–25 °C) lagern. Dose nach Entnahme stets dicht verschließen."
 package_sizes:
   - 60 × 50 mg caps
 moq: 1
 price: 125
-price_range: €125 per pack
-short_description: 5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO.
+price_range: "€125 per pack"
+short_description: "5-Amino-1MQ NNMT-Inhibitor-Forschungsverbindung für Stoffwechsel- und NAD-Signalwegstudien. Echtheitszertifikat geliefert. RUO."
 category: weight-loss
 researchArea: diabetes
 useCases:
@@ -34,81 +34,111 @@ tags:
 images:
   - /images/products/5-amino-1mq.webp
 meta:
-  title: Buy 5-Amino-1MQ (60 × 50 mg capsules) — NNMT Inhibitor | Peptide Shop
-  description: Buy 5-Amino-1MQ NNMT inhibitor capsules from Europe. 60 × 50 mg. HPLC-verified purity, lot-specific COA, EU dispatch. Research use only.
+  title: "5-Amino-1MQ Kapseln kaufen | ≥99 % HPLC | Peptide Shop"
+  description: "5-Amino-1MQ NNMT-Inhibitor (60 × 50 mg) für die Laborforschung kaufen. ≥99 % HPLC-Reinheit, Chargen-COA & schneller EU-Versand. Jetzt bestellen."
 faqs:
-  - question: What forms of 5-Amino-1MQ are available?
-    answer: "We offer 5-Amino-1MQ in two convenient forms: Oral Capsules (50mg per capsule) for precise dosing convenience, and High-Purity Powder (99%) for flexible research applications. Both forms maintain the same exceptional purity standards."
-  - question: What is 5-Amino-1MQ used for in research?
-    answer: 5-Amino-1MQ is used to study nicotinamide N-methyltransferase (NNMT) inhibition and its effects on cellular metabolism, NAD+ levels, energy expenditure, and adipose tissue function. It's a key tool for metabolic ageing and obesity research.
-  - question: What is NNMT and why is its inhibition researched?
-    answer: NNMT is an enzyme that methylates nicotinamide, consuming SAM (S-adenosylmethionine). High NNMT activity is associated with obesity and metabolic dysfunction. Inhibition may preserve NAD+ precursors and improve metabolic function.
-  - question: How does 5-Amino-1MQ affect NAD+ metabolism?
-    answer: By inhibiting NNMT, 5-Amino-1MQ may preserve nicotinamide for NAD+ synthesis rather than methylation. This research application connects to NAD+ biology and cellular energy metabolism.
-  - question: How should 5-Amino-1MQ be stored?
-    answer: Store at room temperature, protected from light and moisture. Both capsule and powder forms are stable at ambient conditions when kept dry. Capsules should be kept in their original container.
-  - question: What purity is your 5-Amino-1MQ?
-    answer: Our 5-Amino-1MQ is ≥99% pure as verified by HPLC. Both capsule and powder forms meet this purity standard. Each batch includes a Certificate of Analysis with purity and identity data.
-  - question: What is the difference between capsules and powder?
-    answer: Oral Capsules (50mg) offer precise, pre-measured doses ideal for consistent research protocols. High-Purity Powder (99%) provides flexibility for custom concentration preparation and larger-scale studies.
-  - question: What is the minimum order requirement?
-    answer: A site-wide minimum order value of €150 applies; combine multiple items to reach the threshold. This applies to any combination of capsules or powder forms.
-  - question: What is 5-Amino-1MQ?
-    answer: 5-Amino-1-methylquinolinium (5-Amino-1MQ) is a small-molecule NNMT (nicotinamide N-methyltransferase) inhibitor. It is studied for effects on NAD+ metabolism, adipogenesis inhibition, and energy expenditure. CAS number 5765-44-6.
-  - question: What is NNMT and why is it a research target?
-    answer: NNMT methylates nicotinamide, reducing NAD+ availability and affecting cellular metabolism. Inhibiting NNMT has been studied as a strategy to increase NAD+ levels, reduce adipogenesis, and modulate metabolic pathways in obesity and metabolic disease research.
-  - question: Why is 5-Amino-1MQ supplied as capsules?
-    answer: 5-Amino-1MQ is supplied as oral capsules (60 × 50 mg) because research protocols frequently involve oral bioavailability studies and in-vivo metabolic experiments. The capsule format matches how it is administered in animal model protocols.
-  - question: What is the CAS number for 5-Amino-1MQ?
-    answer: "CAS number: 5765-44-6. Molecular formula: C10H11ClN2 (as HCl salt). It is a quinolinium compound and NNMT inhibitor distinct from 1-methylnicotinamide."
+  - question: "„Welche Formen von 5-Amino-1MQ gibt es?“"
+    answer: "„Wir bieten 5-Amino-1MQ in zwei praktischen Formen an: Orale Kapseln (50 mg pro Kapsel) für eine präzise Dosierung und hochreines Pulver (99 %) für flexible Forschungsanwendungen. Beide Formen weisen die gleichen außergewöhnlichen Reinheitsstandards auf.“"
+  - question: "„Wofür wird 5-Amino-1MQ in der Forschung verwendet?“"
+    answer: "„5-Amino-1MQ wird verwendet, um die Hemmung der Nicotinamid-N-Methyltransferase (NNMT) und ihre Auswirkungen auf den Zellstoffwechsel, den NAD+-Spiegel, den Energieverbrauch und die Funktion des Fettgewebes zu untersuchen. Es ist ein wichtiges Instrument für die Erforschung metabolischer Alterung und Fettleibigkeit.“"
+  - question: "„Was ist NNMT und warum wird seine Hemmung erforscht?“"
+    answer: "„NNMT ist ein Enzym, das Nikotinamid methyliert und dabei SAM (S-Adenosylmethionin) verbraucht. Eine hohe NNMT-Aktivität ist mit Fettleibigkeit und Stoffwechselstörungen verbunden. Durch die Hemmung können NAD+-Vorläufer erhalten und die Stoffwechselfunktion verbessert werden.“"
+  - question: "„Wie beeinflusst 5-Amino-1MQ den NAD+-Stoffwechsel?“"
+    answer: "„Durch die Hemmung von NNMT kann 5-Amino-1MQ Nicotinamid für die NAD+-Synthese statt für die Methylierung konservieren. Diese Forschungsanwendung stellt eine Verbindung zur NAD+-Biologie und zum zellulären Energiestoffwechsel her.“"
+  - question: "„Wie ist 5-Amino-1MQ aufzubewahren?“"
+    answer: "„Bei Raumtemperatur, vor Licht und Feuchtigkeit geschützt lagern. Sowohl die Kapsel- als auch die Pulverform sind bei trockenerer Aufbewahrung bei Umgebungsbedingungen stabil. Kapseln sollten im Originalbehälter aufbewahrt werden.“"
+  - question: "„Welche Reinheit hat Ihr 5-Amino-1MQ?“"
+    answer: "„Unser 5-Amino-1MQ ist laut HPLC zu ≥99 % rein. Sowohl Kapsel- als auch Pulverformen erfüllen diesen Reinheitsstandard. Zu jeder Gebühr gehört ein Analysezertifikat mit Reinheits- und Identitätsdaten.“"
+  - question: "„Was ist der Unterschied zwischen Kapseln und Pulver?“"
+    answer: "„Orale Kapseln (50 mg) bieten präzise, ​​vorab abgemessene Dosen, ideal für konsistente Forschungsprotokolle. Hochreines Pulver (99 %) bietet Flexibilität bei der Herstellung individueller Konzentrationen und groß angelegter Studien.“"
+  - question: "„Was ist die Mindestbestellmenge?“"
+    answer: "„Es gilt ein standortweiter Mindestbestellwert von 150 €; Kombinieren Sie mehrere Elemente, um den Schwellenwert zu erreichen. Dies gilt für jede Kombination von Kapseln oder Pulverformen.“"
+  - question: "„Was ist 5-Amino-1MQ?“"
+    answer: "„5-Amino-1-methylchinolinium (5-Amino-1MQ) ist ein niedermolekularer NNMT-Inhibitor (Nicotinamid-N-Methyltransferase). Es wird auf Auswirkungen auf den NAD+-Metabolismus, die Hemmung der Adipogenese und den Energieverbrauch untersucht. CAS-Nummer 5765-44-6.“"
+  - question: "„Was ist NNMT und warum ist es ein Forschungsziel?“"
+    answer: "„NNMT methyliert Nikotinamid, verringert die Verfügbarkeit von NAD+ und beeinflusst den Zellstoffwechsel. Die Hemmung von NNMT wurde als Strategie zur Erhöhung des NAD+-Spiegels, zur Reduzierung der Adipogenese und zur Modulation von Stoffwechselwegen in der Forschung zu Fettleibigkeit und Stoffwechselerkrankungen untersucht.“"
+  - question: "„Warum wird 5-Amino-1MQ als Kapseln geliefert?“"
+    answer: "„5-Amino-1MQ wird als orale Kapseln (60 × 50 mg) geliefert, da Forschungsprotokolle häufig orale Bioverfügbarkeitsstudien und In-vivo-Stoffwechselexperimente umfassen. Das Kapselformat entspricht der Verabreichung in Tiermodellprotokollen.“"
+  - question: "„Wie lautet die CAS-Nummer für 5-Amino-1MQ?“"
+    answer: "„CAS-Nummer: 5765-44-6. Summenformel: C10H11ClN2 (als HCl-Salz). Es handelt sich um eine Chinoliniumverbindung und einen NNMT-Inhibitor, der sich von 1-Methylnicotinamid unterscheidet.“"
 ---
 
-## 5-Amino-1MQ 50 mg research overview
+## 5-Amino-1MQ 50 mg Forschungsübersicht
 
-5-Amino-1MQ NNMT inhibitor research compound for metabolic and NAD-pathway studies. COA supplied. RUO.
+5-Amino-1MQ NNMT-Inhibitor-Forschungsverbindung für Stoffwechsel- und NAD-Signalwegstudien. Echtheitszertifikat geliefert. RUO.
 
-5-Amino-1MQ is an NNMT inhibitor research compound studied in NAD metabolism, adipocyte function and cellular-energy models.
+5-Amino-1MQ ist eine NNMT-Inhibitor-Forschungsverbindung, die im NAD-Metabolismus, in der Adipozytenfunktion und in Zellenergiemodellen untersucht wird.
 
-Peptide Shop supplies 5-Amino-1MQ 50 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+## Forschungsverwendung
 
-## Research use
+- NNMT-Inhibitionsstudien
+- NAD-Weg- und Methylierungsforschung
+- Adipozyten- und Stoffwechselreaktionsmodelle
 
-- NNMT inhibition studies
-- NAD-pathway and methylation research
-- Adipocyte and metabolic-response models
+Zuordnung zu Diabetes-, Stoffwechsel- und Cofaktor-Forschungsclustern.
 
-Mapped to diabetes, metabolism and cofactor research clusters.
+## Lagerung
 
-## Sequence and analytical data
+Ungeöffnetes Material unter den angegebenen Bedingungen lagern: Raumtemperatur, vor Licht geschützt. Bewahren Sie die Fläschchen verschlossen, trocken und vor Licht geschützt auf. Rekonstituierte Lösungen sollten unter validierten Laborbedingungen gelagert und gemäß internen SOPs und geltenden Regeln für Forschungsabfälle entsorgt werden.
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-5-amino-1mq |
-| Package size | 60 × 50 mg caps |
-| CAS number | 42464-99-1 |
-| Molecular weight | 240.3 g/mol |
-| Purity | ≥ 99% |
-| Storage | Room temperature, protected from light |
+## Verwandte Forschungsbereiche
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-## Reconstitution and handling
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+- [Verwandte Forschungsmaterialien durchsuchen](/catalog/diabetes/)
+- [Use-Case-Hub anzeigen](/use-case/weight-loss/)
+- [COA-Richtlinie](/coa-policy/)
+- [Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-## Storage
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigte die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-Store unopened material according to the stated condition: Room temperature, protected from light. Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+## Verwandte Forschungsbereiche
 
-## Related resources
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-- [Browse related research materials](/catalog/diabetes/)
-- [View use-case hub](/use-case/weight-loss/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-## Research-use statement
+- [Diabetes-Katalog durchsuchen](/catalog/diabetes/)
+- [Hub zum Abnehmen ansehen](/use-case/weight-loss/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
 
-5-Amino-1MQ 50 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**O-304 pan-AMPK Aktivator**](/peptides/o-304/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**MOTS-c 10 mg**](/peptides/mots-c/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tesofensine (60 × 0,5 mg)**](/peptides/tesofensine/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**O-304 pan-AMPK Aktivator**](/peptides/o-304/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**MOTS-c 10 mg**](/peptides/mots-c/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+

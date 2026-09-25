@@ -1,9 +1,22 @@
 import { useStore } from '@nanostores/react';
-import { cartItems, cartTotal, deleteCartItem, updateCartItemQuantity } from '../scripts/cartStore';
+import { cartItems, cartTotal, deleteCartItem, updateCartItemQuantity, addCartItem, cartLineKey } from '../scripts/cartStore';
 
 const FREE_DELIVERY_THRESHOLD = 500;
 const SHIPPING_COST = 9.90;
-const MIN_ORDER_AMOUNT = 200;
+const MIN_ORDER_AMOUNT = 150;
+
+const CROSS_SELL_ITEMS = [
+  {
+    id: 'supply-bac-water-10ml',
+    sku: 'supply-bac-water-10ml--10-10-ml-vials',
+    title: 'Bacteriostatic Water (30 ml)',
+    price: 22.00,
+    size: '10 × 10 mL vials',
+    thumb_src: '/images/products/bacteriostatic-water.svg',
+    thumb_alt: 'Bacteriostatic Water 30 ml',
+    desc: 'USP-konformes Rekonstitutionsmedium mit 0,9 % Benzylalkohol für verlängerte Lagerstabilität im Kühlschrank.',
+  },
+];
 
 interface ShoppingCartProps {
   labels?: {
@@ -102,37 +115,93 @@ export default function ShoppingCart({ labels, paths }: ShoppingCartProps) {
       <section className="commerce-main" aria-labelledby="cart-items-title">
         <div className="commerce-status card">
           <div>
-            <span className="eyebrow">{copy.checkoutReady}</span>
-            <h2 id="cart-items-title">{(products.length === 1 ? copy.itemSelected : copy.itemsSelected).replace('{count}', String(products.length))}</h2>
+            <h2 id="cart-items-title" style={{ margin: 0, fontSize: '20px' }}>{(products.length === 1 ? copy.itemSelected : copy.itemsSelected).replace('{count}', String(products.length))}</h2>
           </div>
           <p>{qualifiesForFreeDelivery ? copy.freeDeliveryReached : copy.addForFreeDelivery.replace('{amount}', remainingForFreeDelivery.toFixed(2))}</p>
         </div>
 
         <div className="cart-items-list">
-          {products.map((product) => (
-            <article className="cart-line card" key={product.id}>
-              <img src={product.thumb_src} alt={product.thumb_alt} loading="lazy" />
-              <div className="cart-line-body">
-                <div>
-                  <h3>{product.title}</h3>
-                  {product.size && <span className="badge badge-blue">{product.size}</span>}
-                  <p className="cart-line-note">{copy.ruoLine}</p>
-                </div>
-                <div className="cart-line-actions">
-                  <div className="quantity-stepper" aria-label={copy.quantityFor.replace('{product}', product.title)}>
-                    <button type="button" onClick={() => updateCartItemQuantity(product.id, product.quantity - 1)} aria-label={copy.decreaseQuantity}>-</button>
-                    <span>{product.quantity}</span>
-                    <button type="button" onClick={() => updateCartItemQuantity(product.id, product.quantity + 1)} aria-label={copy.increaseQuantity}>+</button>
+          {products.map((product) => {
+            const itemKey = cartLineKey(product);
+            return (
+              <article className="cart-line card" key={itemKey}>
+                <img src={product.thumb_src} alt={product.thumb_alt} loading="lazy" />
+                <div className="cart-line-body">
+                  <div>
+                    <h3>{product.title}</h3>
+                    {product.size && <span className="badge badge-blue">{product.size}</span>}
+                    <p className="cart-line-note">{copy.ruoLine}</p>
                   </div>
-                  <button className="btn btn-ghost btn-sm" type="button" onClick={() => deleteCartItem(product.id)}>{copy.remove}</button>
+                  <div className="cart-line-actions">
+                    <div className="quantity-stepper" aria-label={copy.quantityFor.replace('{product}', product.title)}>
+                      <button
+                        type="button"
+                        onClick={() => updateCartItemQuantity(itemKey, product.quantity - 1)}
+                        aria-label={copy.decreaseQuantity}
+                      >
+                        -
+                      </button>
+                      <span>{product.quantity}</span>
+                      <button
+                        type="button"
+                        onClick={() => updateCartItemQuantity(itemKey, product.quantity + 1)}
+                        aria-label={copy.increaseQuantity}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      className="btn btn-ghost btn-sm"
+                      type="button"
+                      onClick={() => deleteCartItem(itemKey)}
+                    >
+                      {copy.remove}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="cart-line-price">
-                <strong>€{(product.price * product.quantity).toFixed(2)}</strong>
-                {product.quantity > 1 && <span>€{product.price.toFixed(2)} {copy.each}</span>}
-              </div>
-            </article>
-          ))}
+                <div className="cart-line-price">
+                  <strong>€{(product.price * product.quantity).toFixed(2)}</strong>
+                  {product.quantity > 1 && <span>€{product.price.toFixed(2)} {copy.each}</span>}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="cart-crosssell-section" style={{ marginTop: 'var(--space-6)' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: 'var(--space-3)' }}>
+            Empfohlenes Laborzubehör für Ihre Rekonstitution
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-4)' }}>
+            {CROSS_SELL_ITEMS.map((item) => {
+              const inCart = !!$cartItems[item.sku] || !!$cartItems[item.id];
+              return (
+                <div key={item.sku} className="card" style={{ display: 'flex', gap: 'var(--space-4)', padding: 'var(--space-4)', alignItems: 'center' }}>
+                  <img
+                    src={item.thumb_src}
+                    alt={item.thumb_alt}
+                    style={{ width: '64px', height: '64px', objectFit: 'contain', background: '#fff', borderRadius: 'var(--radius-sm)', border: '1px solid var(--color-border)', padding: '4px' }}
+                    loading="lazy"
+                  />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, fontSize: '14px', marginBottom: '2px' }}>{item.title}</div>
+                    <div style={{ fontSize: '12px', color: 'var(--color-ink-3)', marginBottom: '8px' }}>{item.desc}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <strong style={{ fontSize: '15px' }}>€{item.price.toFixed(2)}</strong>
+                      <button
+                        type="button"
+                        className={`btn ${inCart ? 'btn-ghost' : 'btn-secondary'} btn-sm`}
+                        style={{ fontSize: '12px', padding: '6px 12px' }}
+                        onClick={() => addCartItem(item)}
+                      >
+                        {inCart ? '+ Weiteres Set' : '+ Hinzufügen'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

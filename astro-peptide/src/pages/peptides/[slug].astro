@@ -4,20 +4,24 @@ import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
 import ProductOptions from '../../components/ProductOptions';
+import ProductCrossSell from '../../components/ProductCrossSell';
+import ProductStickyBar from '../../components/ProductStickyBar';
 import ProductGallery from '../../components/ProductGallery';
 import ProductCard from '../../components/ProductCard.astro';
 import { toCardProduct } from '../../lib/product';
 import ProductFAQs from '../../components/ProductFAQs.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import RUOBanner from '../../components/RUOBanner.astro';
+import TrustBar from '../../components/TrustBar.astro';
 import { getResearchArea, useCases, type UseCaseSlug } from '../../data/taxonomy';
-import { getLocaleFromPathname, localizePath, localeMeta } from '../../i18n/config';
+import { getLocaleFromPathname, localizePath, localeMeta, sourceLocale } from '../../i18n/config';
 import { useTranslations } from '../../i18n/ui';
 import { getLocalizedProduct } from '../../i18n/productContent';
 import { getAvailableLocales, getLocalizedEntry } from '../../lib/localizedEntry';
 import { inLanguage } from '../../lib/schema';
 import { DEFAULT_LOCALE as DEFAULT_COA_LOCALE, SUPPORTED_LOCALES as SUPPORTED_COA_LOCALES } from '../../lib/coa/i18n';
 import entities from '../../data/entities.json';
+import { variantsFor, priceRangeFor } from '../../lib/variants';
 
 export const prerender = false;
 
@@ -39,7 +43,7 @@ const availableLocales = await getAvailableLocales('products', currentSlug);
 // `src/content/products/`, prefer its frontmatter (title, meta, faqs,
 // short_description, storage, price_range) and rendered body for non-English
 // locales. Falls back to the runtime helper otherwise.
-const localeOverride = locale !== 'en'
+const localeOverride = locale !== sourceLocale
   ? await getLocalizedEntry('products', currentSlug, locale)
   : undefined;
 const hasOverride = !!(localeOverride && localeOverride.id !== currentSlug);
@@ -75,7 +79,16 @@ const productUseCases = (product.data.useCases ?? [])
     return useCase ? { slug: useCase.slug, name: t(`taxonomy.useCases.${useCase.slug}.name`) } : undefined;
   })
   .filter((useCase): useCase is { slug: UseCaseSlug; name: string } => Boolean(useCase));
-const alternateCoaLocales = SUPPORTED_COA_LOCALES.filter((coaLocale) => coaLocale !== DEFAULT_COA_LOCALE);
+const pageCoaLocale = (SUPPORTED_COA_LOCALES as readonly string[]).includes(locale)
+  ? (locale as (typeof SUPPORTED_COA_LOCALES)[number])
+  : DEFAULT_COA_LOCALE;
+const coaHtmlPath = pageCoaLocale === DEFAULT_COA_LOCALE
+  ? `/coa/${currentSlug}.html`
+  : `/coa/${currentSlug}.${pageCoaLocale}.html`;
+const coaPdfPath = pageCoaLocale === DEFAULT_COA_LOCALE
+  ? `/api/coa/${currentSlug}.pdf`
+  : `/api/coa/${currentSlug}.pdf?lang=${pageCoaLocale}`;
+const alternateCoaLocales = SUPPORTED_COA_LOCALES.filter((coaLocale) => coaLocale !== pageCoaLocale);
 
 const extractPrice = (priceStr: string): number => {
   const match = priceStr?.match(/[\d,]+(?:\.\d+)?/);
@@ -83,6 +96,9 @@ const extractPrice = (priceStr: string): number => {
 };
 
 const productPrice = product.data.price ?? extractPrice(product.data.price_range);
+const variants = variantsFor(product.data);
+const variantRange = priceRangeFor(variants);
+const hasMultipleVariants = variants.length > 1;
 const reviews = product.data.reviews ?? [];
 const averageRating = reviews.length > 0
   ? reviews.reduce((sum: number, review: { rating: number }) => sum + review.rating, 0) / reviews.length
@@ -130,6 +146,111 @@ const relatedProducts = allProductsForLookup
 
 const priceValidUntil = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
+/*
+ * Delivery and returns are identical for every package size, so they are
+ * declared once and attached to each Offer. Google reads them per Offer for
+ * merchant listings, so they cannot only live on the AggregateOffer wrapper.
+ */
+const OFFER_COUNTRIES = ['AT', 'DE', 'CH', 'NL', 'FR', 'IT', 'ES', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'];
+const sharedOfferTerms = {
+  priceCurrency: 'EUR',
+  priceValidUntil,
+  availability: 'https://schema.org/InStock',
+  itemCondition: 'https://schema.org/NewCondition',
+  seller: {
+    '@type': 'Organization',
+    name: 'Peptide Shop',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Wien',
+      addressCountry: 'AT',
+    },
+  },
+  hasMerchantReturnPolicy: {
+    '@type': 'MerchantReturnPolicy',
+    applicableCountry: OFFER_COUNTRIES,
+    returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+    merchantReturnDays: 14,
+    returnMethod: 'https://schema.org/ReturnByMail',
+    returnFees: 'https://schema.org/FreeReturn',
+    refundType: 'https://schema.org/FullRefund',
+    merchantReturnLink: 'https://peptide-kaufen.net/terms/#widerruf',
+  },
+  shippingDetails: [
+    {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'AT' },
+      shippingRate: { '@type': 'MonetaryAmount', value: '9.90', currency: 'EUR' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 2, unitCode: 'DAY' },
+      },
+    },
+    {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'DE' },
+      shippingRate: { '@type': 'MonetaryAmount', value: '9.90', currency: 'EUR' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' },
+      },
+    },
+    {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'CH' },
+      shippingRate: { '@type': 'MonetaryAmount', value: '14.90', currency: 'EUR' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 4, unitCode: 'DAY' },
+      },
+    },
+    {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: { '@type': 'DefinedRegion', addressCountry: ['NL', 'FR', 'IT', 'ES', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'] },
+      shippingRate: { '@type': 'MonetaryAmount', value: '9.90', currency: 'EUR' },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 1, unitCode: 'DAY' },
+        transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 5, unitCode: 'DAY' },
+      },
+    },
+  ],
+};
+
+/*
+ * One Offer per package size once there is more than one, wrapped in an
+ * AggregateOffer whose low/high is what Google renders as the price range. A
+ * single Offer can carry only one price, so leaving the shape fixed while the
+ * page shows several would put the markup and the page in disagreement — which
+ * is a structured-data violation, not just an inaccuracy.
+ */
+const offerNode = hasMultipleVariants && variantRange
+  ? {
+      '@type': 'AggregateOffer',
+      url: productUrl,
+      priceCurrency: 'EUR',
+      lowPrice: variantRange.low.toFixed(2),
+      highPrice: variantRange.high.toFixed(2),
+      offerCount: variants.length,
+      offers: variants.map((variant) => ({
+        '@type': 'Offer',
+        url: productUrl,
+        sku: variant.sku,
+        name: variant.size,
+        price: variant.price.toFixed(2),
+        ...sharedOfferTerms,
+      })),
+    }
+  : {
+      '@type': 'Offer',
+      url: productUrl,
+      price: (variants[0]?.price ?? productPrice).toFixed(2),
+      ...sharedOfferTerms,
+    };
+
 const productSchema = {
   '@context': 'https://schema.org',
   '@type': 'Product',
@@ -139,58 +260,14 @@ const productSchema = {
   image: [productImageUrl],
   sku: product.data.id,
   mpn: product.data.id,
-  brand: 'Peptide Shop',
+  brand: {
+    '@type': 'Brand',
+    name: 'Peptide Shop',
+  },
   category: researchAreaName ?? product.data.category,
   ...(productEntity?.sameAs?.length ? { sameAs: productEntity.sameAs } : {}),
   ...(additionalProperties.length ? { additionalProperty: additionalProperties } : {}),
-  offers: {
-    '@type': 'Offer',
-    url: productUrl,
-    priceCurrency: 'EUR',
-    price: productPrice.toFixed(2),
-    priceValidUntil,
-    availability: 'https://schema.org/InStock',
-    itemCondition: 'https://schema.org/NewCondition',
-    seller: {
-      '@type': 'Organization',
-      name: 'Peptide Shop',
-    },
-    hasMerchantReturnPolicy: {
-      '@type': 'MerchantReturnPolicy',
-      applicableCountry: ['DE', 'NL', 'FR', 'IT', 'ES', 'AT', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'],
-      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-      merchantReturnDays: 14,
-      returnMethod: 'https://schema.org/ReturnByMail',
-      returnFees: 'https://schema.org/FreeReturn',
-    },
-    shippingDetails: {
-      '@type': 'OfferShippingDetails',
-      shippingDestination: {
-        '@type': 'DefinedRegion',
-        addressCountry: ['DE', 'NL', 'FR', 'IT', 'ES', 'AT', 'BE', 'PL', 'SE', 'DK', 'FI', 'PT'],
-      },
-      shippingRate: {
-        '@type': 'MonetaryAmount',
-        value: '9.90',
-        currency: 'EUR',
-      },
-      deliveryTime: {
-        '@type': 'ShippingDeliveryTime',
-        handlingTime: {
-          '@type': 'QuantitativeValue',
-          minValue: 0,
-          maxValue: 1,
-          unitCode: 'DAY',
-        },
-        transitTime: {
-          '@type': 'QuantitativeValue',
-          minValue: 1,
-          maxValue: 5,
-          unitCode: 'DAY',
-        },
-      },
-    },
-  },
+  offers: offerNode,
   ...(reviewObjects.length ? { review: reviewObjects } : {}),
   ...(aggregateRating ? { aggregateRating } : {}),
 };
@@ -262,94 +339,144 @@ const breadcrumbs = [
         </div>
 
         <div class="pdp__info">
-          <span class="eyebrow">{researchAreaName ?? product.data.category.replace(/-/g, ' ')}</span>
+          <div class="pdp__header-meta">
+            <span class="pdp-status-pill">
+              <span class="pdp-status-dot"></span>
+              <span>Auf Lager · Versandbereit in 24h</span>
+            </span>
+            {researchArea && (
+              <a href={href(`/catalog/${researchArea.slug}/`)} class="pdp-category-pill">
+                {researchAreaName ?? researchArea.name}
+              </a>
+            )}
+          </div>
+
           <h1 class="pdp__title">{cleanTitle}</h1>
 
           <div class="pdp__badges" aria-label={t('productPage.qualityBadges')}>
-            <span class="badge badge-success">{product.data.purity}</span>
-            <span class="badge">{t('productPage.coaSupported')}</span>
-            <span class="badge badge-warning">RUO</span>
+            <span class="pdp-badge pdp-badge--purity">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{product.data.purity} Reinheit (HPLC)</span>
+            </span>
+            <span class="pdp-badge pdp-badge--coa">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span>{t('productPage.coaSupported')}</span>
+            </span>
+            <span class="pdp-badge pdp-badge--form">Lyophilisiertes Pulver</span>
+            <span class="pdp-badge pdp-badge--ruo">RUO Laborstandard</span>
           </div>
 
-          <aside class="buy-box card" aria-label={t('productPage.purchaseOptions')}>
-          <ProductOptions
-            client:load
-            id={product.data.id}
-            title={localizedProduct.title}
-            basePrice={productPrice}
-            packageSizes={product.data.package_sizes}
-            moq={product.data.moq}
-            image={productImage}
-            category={product.data.category}
-            labels={{
-              price: t('productOptions.price'),
-              perVial: t('productOptions.perVial'),
-              defaultPackage: t('productOptions.defaultPackage'),
-              quantity: t('productOptions.quantity'),
-              selectQuantity: t('productOptions.selectQuantity'),
-              decreaseQuantity: t('productOptions.decreaseQuantity'),
-              increaseQuantity: t('productOptions.increaseQuantity'),
-              orderSummary: t('productOptions.orderSummary'),
-              subtotal: t('productOptions.subtotal'),
-              delivery: t('productOptions.delivery'),
-              free: t('productOptions.free'),
-              calculatedAtCheckout: t('productOptions.calculatedAtCheckout'),
-              addToCart: t('cartActions.addToCart'),
-              addedToCart: t('cartActions.addedToCart'),
-              minimumNote: t('productOptions.minimumNote'),
-              ruoNote: t('productOptions.ruoNote'),
-            }}
-          />
-          <div class="buy-box__links">
-            <a href={href('/coa-policy/')} class="btn btn-secondary btn-block">{t('productPage.coaPolicyRequests')}</a>
-            <a href={href('/shipping/')} class="btn btn-ghost btn-block">{t('productPage.shippingDetails')}</a>
-          </div>
+          <aside id="pdp-buy-box" class="buy-box card" aria-label={t('productPage.purchaseOptions')}>
+            <ProductOptions
+              client:load
+              id={product.data.id}
+              title={localizedProduct.title}
+              basePrice={variants[0]?.price ?? productPrice}
+              packageSizes={product.data.package_sizes}
+              variants={variants}
+              moq={product.data.moq}
+              image={productImage}
+              category={product.data.category}
+              labels={{
+                price: t('productOptions.price'),
+                perVial: t('productOptions.perVial'),
+                defaultPackage: t('productOptions.defaultPackage'),
+                quantity: t('productOptions.quantity'),
+                selectQuantity: t('productOptions.selectQuantity'),
+                decreaseQuantity: t('productOptions.decreaseQuantity'),
+                increaseQuantity: t('productOptions.increaseQuantity'),
+                orderSummary: t('productOptions.orderSummary'),
+                subtotal: t('productOptions.subtotal'),
+                delivery: t('productOptions.delivery'),
+                free: t('productOptions.free'),
+                calculatedAtCheckout: t('productOptions.calculatedAtCheckout'),
+                addToCart: t('cartActions.addToCart'),
+                addedToCart: t('cartActions.addedToCart'),
+                minimumNote: t('productOptions.minimumNote'),
+                ruoNote: t('productOptions.ruoNote'),
+                size: t('productOptions.size'),
+                selectSize: t('productOptions.selectSize'),
+                saveVsSmallest: t.raw('productOptions.saveVsSmallest'),
+              }}
+            />
           </aside>
 
-          {/* Four numbers a buyer scans before anything else, value first. */}
+          {/* Scientific Specification Tiles */}
           <dl class="fact-grid">
             {product.data.cas && (
-              <div class="fact"><dt>CAS</dt><dd>{product.data.cas}</dd></div>
+              <div class="fact">
+                <dt>CAS-Nummer</dt>
+                <dd class="text-mono">{product.data.cas}</dd>
+              </div>
             )}
             {product.data.molecular_weight && (
-              <div class="fact"><dt>{t('productPage.molecularWeight')}</dt><dd>{product.data.molecular_weight}</dd></div>
+              <div class="fact">
+                <dt>{t('productPage.molecularWeight')}</dt>
+                <dd class="text-mono">{product.data.molecular_weight}</dd>
+              </div>
             )}
-            <div class="fact"><dt>{t('productPage.packageSizes')}</dt><dd>{product.data.package_sizes.join(', ')}</dd></div>
-            <div class="fact"><dt>{t('productPage.storage')}</dt><dd>{localizedProduct.storage.split('(')[0].trim()}</dd></div>
+            <div class="fact">
+              <dt>{t('productPage.packageSizes')}</dt>
+              <dd>{(hasMultipleVariants ? variants.map((variant) => variant.size) : product.data.package_sizes).join(', ')}</dd>
+            </div>
+            <div class="fact">
+              <dt>{t('productPage.storage')}</dt>
+              <dd>{localizedProduct.storage.split('(')[0].trim()}</dd>
+            </div>
           </dl>
 
           <div class="hub-links">
             {researchArea && <a class="chip" href={href(`/catalog/${researchArea.slug}/`)}>{researchAreaName ?? researchArea.name}</a>}
             {productUseCases.map((useCase) => useCase && (
-              <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{useCase.name}</a>
+              <a class="chip" href={href(`/use-case/${useCase.slug}/`)}>{t(`taxonomy.useCases.${useCase.slug}.name`)}</a>
             ))}
           </div>
         </div>
       </div>
 
-      {/*
-        Detail is collapsed by default. The anchor-link tab strip that used to
-        sit here scrolled to sections that were already fully expanded below
-        it, so the page opened with several screens of prose nobody had asked
-        for. Description stays open as the one section most people want.
-      */}
+      <ProductCrossSell
+        client:load
+        currentProductId={product.data.id}
+        currentProductTitle={cleanTitle}
+        currentProductPrice={variants[0]?.price ?? productPrice}
+        currentProductImage={productImage}
+      />
+
+      <TrustBar tone="light" class="pdp-trust" />
+
+      {/* Laboratory Documentation Hub */}
       <div class="pdp-detail">
         <details class="disclose" id="description" open>
-          <summary><span>{t('productPage.description')}</span></summary>
+          <summary>
+            <div class="disclose__title-group">
+              <span class="disclose__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1 2-2h1"/><path d="M14 8V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5"/></svg>
+              </span>
+              <span>{t('productPage.description')}</span>
+            </div>
+          </summary>
           <div class="disclose__body prose-content">
-            {locale === 'en' ? <Content /> : (OverrideContent ? <OverrideContent /> : <Fragment set:html={localizedProduct.bodyHtml} />)}
+            {locale === sourceLocale ? <Content /> : (OverrideContent ? <OverrideContent /> : <Fragment set:html={localizedProduct.bodyHtml} />)}
           </div>
         </details>
 
         <details class="disclose" id="data">
-          <summary><span>{t('productPage.sequenceData')}</span></summary>
+          <summary>
+            <div class="disclose__title-group">
+              <span class="disclose__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+              <span>{t('productPage.sequenceData')}</span>
+            </div>
+          </summary>
           <div class="disclose__body">
             <table class="table-clean">
               <tbody>
-                <tr><th scope="row">{t('productPage.productId')}</th><td>{product.data.id}</td></tr>
-                <tr><th scope="row">CAS</th><td>{product.data.cas ?? t('productPage.notAssigned')}</td></tr>
-                <tr><th scope="row">{t('productPage.molecularWeight')}</th><td>{product.data.molecular_weight ?? t('productPage.notAssigned')}</td></tr>
-                <tr><th scope="row">{t('productPage.purity')}</th><td>{product.data.purity}</td></tr>
+                <tr><th scope="row">{t('productPage.productId')}</th><td class="text-mono">{product.data.id}</td></tr>
+                <tr><th scope="row">CAS</th><td class="text-mono">{product.data.cas ?? t('productPage.notAssigned')}</td></tr>
+                <tr><th scope="row">{t('productPage.molecularWeight')}</th><td class="text-mono">{product.data.molecular_weight ?? t('productPage.notAssigned')}</td></tr>
+                <tr><th scope="row">{t('productPage.purity')}</th><td><strong class="text-success">{product.data.purity} (HPLC)</strong></td></tr>
+                {productEntity?.molecularFormula && <tr><th scope="row">Summenformel</th><td class="text-mono">{productEntity.molecularFormula}</td></tr>}
                 {product.data.sequence && <tr><th scope="row">{t('productPage.sequence')}</th><td class="text-mono">{product.data.sequence}</td></tr>}
               </tbody>
             </table>
@@ -357,40 +484,93 @@ const breadcrumbs = [
         </details>
 
         <details class="disclose" id="storage">
-          <summary><span>{t('productPage.storageHandling')}</span></summary>
+          <summary>
+            <div class="disclose__title-group">
+              <span class="disclose__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+              </span>
+              <span>{t('productPage.storageHandling')}</span>
+            </div>
+          </summary>
           <div class="disclose__body">
             <p>{localizedProduct.storage}</p>
             <p>{t('productPage.storageHandlingBody')}</p>
+
+            <div class="sop-protocol-box">
+              <div class="sop-header">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077B6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                <strong>Labor-Standardarbeitsanweisung (SOP) zur Rekonstitution</strong>
+              </div>
+              <ol class="sop-steps">
+                <li><strong>Temperierung:</strong> Vial und Diluent vor dem Lösen 10–15 Minuten bei kontrollierter Raumtemperatur (20–25 °C) akklimatisieren lassen. Septum mit 70 % Isopropanol desinfizieren.</li>
+                <li><strong>Rekonstitution:</strong> Ausschließlich <a href={href('/peptides/bacteriostatic-water/')}>bakteriostatisches Wasser (30 ml)</a> oder steriles Wasser für Injektionszwecke verwenden. Den Diluent-Strahl langsam an der Glasinnenwand herunterlaufen lassen (nicht direkt auf den Peptidkuchen richten).</li>
+                <li><strong>Lösungsvorgang:</strong> Fläschchen vorsichtig mit leicht kreisenden Bewegungen schwenken, bis eine optisch klare Lösung vorliegt. Niemals schütteln oder vortexen, um Scherbelastung und Denaturierung zu verhindern.</li>
+                <li><strong>Lagerung der Lösung:</strong> Rekonstituiertes Peptid stets bei 2 °C bis 8 °C lagern und innerhalb von 28 Tagen im Forschungsversuch verbrauchen. Vor Licht und wiederholtem Einfrieren/Auftauen schützen.</li>
+              </ol>
+              <div class="sop-footer">
+                <span>Berechnen Sie das exakte Mischverhältnis für Ihre Laboreinheiten:</span>
+                <a href={href('/peptid-rechner/')} class="sop-calc-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+                  <span>Zum Peptid-Dosierungsrechner →</span>
+                </a>
+              </div>
+            </div>
           </div>
         </details>
 
         <details class="disclose" id="coa">
-          <summary><span>{t('productPage.certificate')}</span></summary>
-          <div class="disclose__body">
-            <p>{t('productPage.coaBody')}</p>
-            <div class="coa-actions">
-              <a class="btn btn-primary" href={`/api/coa/${currentSlug}.pdf`} download>
-                {t('productPage.downloadCoa')}
-              </a>
-              <a class="btn btn-secondary" href={`/coa/${currentSlug}.html`} target="_blank" rel="noopener">
-                {t('productPage.previewHtml')}
-              </a>
-              <a class="btn btn-ghost" href={href('/coa-policy/')}>{t('productPage.coaPolicy')}</a>
+          <summary>
+            <div class="disclose__title-group">
+              <span class="disclose__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </span>
+              <span>{t('productPage.certificate')}</span>
             </div>
-            <details class="coa-langs">
-              <summary>{t('productPage.otherLanguages')}</summary>
-              <ul>
-                {alternateCoaLocales.map((coaLocale) => (
-                  <li><a href={`/api/coa/${currentSlug}.pdf?lang=${coaLocale}`} download>{localeMeta[coaLocale].name} (PDF)</a> · <a href={`/coa/${currentSlug}.${coaLocale}.html`} target="_blank" rel="noopener">HTML</a></li>
-                ))}
-              </ul>
-            </details>
+          </summary>
+          <div class="disclose__body">
+            <div class="coa-card">
+              <div class="coa-card__info">
+                <span class="coa-card__badge">Chargenbezogene Qualitätskontrolle</span>
+                <h4 class="coa-card__title">Analysenzertifikat (COA) für {cleanTitle}</h4>
+                <p class="coa-card__desc">
+                  Jede Charge wird vor Freigabe durch unabhängige Hochleistungsflüssigkeitschromatographie (HPLC) und Massenspektrometrie (MS) auf Reinheit (≥{product.data.purity}), Identität und Gehalt geprüft.
+                </p>
+              </div>
+
+              <div class="coa-actions">
+                <a class="btn btn-primary btn-coa" href={coaPdfPath} download>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>{t('productPage.downloadCoa')} (PDF)</span>
+                </a>
+                <a class="btn btn-secondary btn-coa" href={coaHtmlPath} target="_blank" rel="noopener">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>{t('productPage.previewHtml')}</span>
+                </a>
+                <a class="btn btn-ghost" href={href('/coa-policy/')}>{t('productPage.coaPolicy')}</a>
+              </div>
+
+              <details class="coa-langs">
+                <summary>{t('productPage.otherLanguages')}</summary>
+                <ul>
+                  {alternateCoaLocales.map((coaLocale) => (
+                    <li><a href={`/api/coa/${currentSlug}.pdf?lang=${coaLocale}`} download>{localeMeta[coaLocale]?.name ?? coaLocale.toUpperCase()} (PDF)</a> · <a href={`/coa/${currentSlug}.${coaLocale}.html`} target="_blank" rel="noopener">HTML</a></li>
+                  ))}
+                </ul>
+              </details>
+            </div>
           </div>
         </details>
 
         {localizedProduct.faqs.length > 0 && (
           <details class="disclose" id="faqs">
-            <summary><span>{t('productPage.faqs')}</span></summary>
+            <summary>
+              <div class="disclose__title-group">
+                <span class="disclose__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span>{t('productPage.faqs')}</span>
+              </div>
+            </summary>
             <div class="disclose__body">
               <ProductFAQs productName={cleanTitle} faqs={localizedProduct.faqs} heading="" />
             </div>
@@ -406,7 +586,6 @@ const breadcrumbs = [
 
       {relatedProducts.length > 0 && (
         <section class="section related-section" aria-labelledby="related-title">
-          <span class="eyebrow">{t('productPage.relatedEyebrow')}</span>
           <h2 id="related-title">{t('productPage.relatedTitle', { area: researchAreaName ?? t('productPage.relatedFallbackArea') })}</h2>
           <div class="grid grid-4" style="margin-top: var(--space-8);">
             {relatedProducts.map((related) => (
@@ -417,74 +596,205 @@ const breadcrumbs = [
       )}
     </div>
   </section>
+
+  <ProductStickyBar
+    client:idle
+    id={product.data.id}
+    title={cleanTitle}
+    price={variants[0]?.price ?? productPrice}
+    image={productImage}
+    packageSize={variants[0]?.size ?? product.data.package_sizes[0] ?? '1 Vial'}
+    variants={variants}
+  />
 </Layout>
 
 <style>
-  .product-page { padding-top: var(--space-8); }
+  .product-page { padding-top: var(--space-8); padding-bottom: var(--space-16); }
 
-  /* Two columns: the image gets the larger share. */
+  /* Two columns: the media gets a balanced share, buy box stays comfortably wide */
   .pdp {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-    gap: clamp(var(--space-6), 4vw, var(--space-10));
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 460px);
+    gap: clamp(var(--space-6), 4vw, var(--space-12));
     align-items: start;
     margin-top: var(--space-6);
   }
-  .pdp__media { position: sticky; top: 88px; min-width: 0; }
+  .pdp__media { position: sticky; top: 96px; min-width: 0; }
   .pdp__info { min-width: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+
+  /* Eyebrow & Status Row */
+  .pdp__header-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .pdp-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #047857;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: -0.01em;
+  }
+  .pdp-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #059669;
+    box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+    animation: pdp-pulse 2s infinite ease-in-out;
+  }
+  @keyframes pdp-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.85); }
+  }
+  .pdp-category-pill {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8125rem;
+    font-weight: 550;
+    color: var(--color-ink-3);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    padding: 3px 10px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .pdp-category-pill:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary-100);
+    background: #EFF8FC;
+  }
+
   .pdp__title {
     margin: 0;
-    font-size: clamp(2rem, 1.4rem + 2vw, 2.75rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 1.3rem + 2.2vw, 2.85rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--color-ink);
+    font-family: var(--font-display);
   }
-  .pdp__badges,
-  .hub-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-  .pdp__info .eyebrow { margin-bottom: calc(var(--space-2) * -1); }
 
-  /* Value-first tiles scan faster than a dt/dd run of labels. */
+  /* Laboratory Verification & Standard Badges */
+  .pdp__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .pdp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pdp-badge--purity {
+    background: #ECFDF5;
+    color: #047857;
+    border: 1px solid #A7F3D0;
+  }
+  .pdp-badge--coa {
+    background: #EFF8FC;
+    color: #015BA0;
+    border: 1px solid #BAE3F7;
+  }
+  .pdp-badge--form {
+    background: var(--color-surface-2);
+    color: var(--color-ink-2);
+    border: 1px solid var(--color-border);
+  }
+  .pdp-badge--ruo {
+    background: #FFFBEB;
+    color: #B45309;
+    border: 1px solid #FDE68A;
+    font-weight: 700;
+  }
+
+  /* Buy Box Card Container */
+  .buy-box.card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl, 16px);
+    padding: clamp(var(--space-4), 3vw, var(--space-6));
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+    margin-top: 2px;
+  }
+
+  /* Fact Grid: Clinical Laboratory Data Tiles */
   .fact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: var(--space-3);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: var(--space-2);
     margin: 0;
   }
   .fact {
     padding: var(--space-3) var(--space-4);
-    background: var(--color-surface-2);
+    background: #FFFFFF;
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md, 0.75rem);
+    border-radius: var(--radius-md, 12px);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .fact:hover {
+    border-color: var(--color-border-strong);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   }
   .fact dt {
-    font-size: var(--text-xs);
+    font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     color: var(--color-ink-3);
-    font-weight: 600;
+    font-weight: 650;
+    margin-bottom: 2px;
   }
   .fact dd {
-    margin: 2px 0 0;
-    font-weight: 650;
+    margin: 0;
+    font-weight: 700;
     color: var(--color-ink);
-    font-size: var(--text-sm);
+    font-size: 0.875rem;
     line-height: 1.35;
   }
+  .text-mono {
+    font-family: var(--font-mono);
+    letter-spacing: -0.01em;
+  }
 
-  .buy-box { gap: var(--space-4); margin: 0; }
-  .buy-box h2 { font-size: var(--text-lg); }
-  .buy-box__links { display: grid; gap: var(--space-2); margin-top: var(--space-4); }
+  .hub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
 
-  /* Collapsed detail: one row per topic, opened on demand. */
+  /* Executive Laboratory Documentation Hub */
   .pdp-detail {
     display: grid;
-    gap: var(--space-3);
+    gap: var(--space-4);
     margin-top: var(--space-12);
   }
   .disclose {
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg, 1rem);
-    background: var(--color-surface);
+    border-radius: var(--radius-lg, 16px);
+    background: #FFFFFF;
     overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .disclose:hover {
+    border-color: var(--color-border-strong);
+  }
+  .disclose[open] {
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+    border-color: #CBD5E1;
   }
   .disclose > summary {
     display: flex;
@@ -493,43 +803,164 @@ const breadcrumbs = [
     gap: var(--space-4);
     padding: var(--space-4) var(--space-5);
     cursor: pointer;
-    font-weight: 650;
+    font-weight: 700;
     font-size: var(--text-lg);
     list-style: none;
     transition: background 0.15s ease;
+    user-select: none;
   }
   .disclose > summary::-webkit-details-marker { display: none; }
   .disclose > summary:hover { background: var(--color-surface-2); }
+  .disclose__title-group {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-ink);
+  }
+  .disclose__icon {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--color-surface-2);
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
   .disclose > summary::after {
     content: '';
     flex: none;
-    width: 10px; height: 10px;
+    width: 9px;
+    height: 9px;
     border-right: 2px solid var(--color-ink-3);
     border-bottom: 2px solid var(--color-ink-3);
     transform: rotate(45deg) translate(-2px, -2px);
-    transition: transform 0.2s ease;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .disclose[open] > summary::after { transform: rotate(-135deg) translate(-2px, -2px); }
-  .disclose[open] > summary { border-bottom: 1px solid var(--color-border); }
-  .disclose__body { padding: var(--space-5); }
+  .disclose[open] > summary::after {
+    transform: rotate(-135deg) translate(-2px, -2px);
+  }
+  .disclose[open] > summary {
+    border-bottom: 1px solid var(--color-border);
+    background: #FBFDFF;
+  }
+  .disclose__body {
+    padding: clamp(var(--space-4), 3vw, var(--space-6));
+    color: var(--color-ink-2);
+    line-height: 1.65;
+  }
   .disclose__body > :first-child { margin-top: 0; }
-  .product-content { gap: var(--space-4); }
-  .prose-content :global(h2),
-  .prose-content :global(h3) { margin-top: var(--space-6); }
-  .prose-content :global(p),
-  .product-detail-layout p { color: var(--color-ink-2); }
-  .related-section { padding-bottom: 0; }
+
+  /* SOP Reconstitution Protocol Card */
+  .sop-protocol-box {
+    margin-top: var(--space-5);
+    padding: var(--space-5);
+    background: #F8FAFC;
+    border-radius: var(--radius-md, 12px);
+    border: 1px solid var(--color-border);
+  }
+  .sop-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-ink);
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-3);
+  }
+  .sop-steps {
+    margin: 0 0 var(--space-4);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.875rem;
+    color: var(--color-ink-2);
+  }
+  .sop-steps li strong {
+    color: var(--color-ink);
+  }
+  .sop-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+  }
+  .sop-calc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 650;
+    color: var(--color-primary);
+    background: #EFF8FC;
+    border: 1px solid #BAE3F7;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .sop-calc-btn:hover {
+    background: #D6EEF8;
+    color: var(--color-primary-600);
+  }
+
+  /* COA Analytical Card */
+  .coa-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .coa-card__badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #047857;
+    background: #ECFDF5;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+  }
+  .coa-card__title {
+    margin: 0 0 6px;
+    font-size: 1.125rem;
+    color: var(--color-ink);
+  }
+  .coa-card__desc {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-ink-2);
+  }
   .coa-actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-    margin-top: var(--space-4);
   }
-  .coa-langs { margin-top: var(--space-4); font-size: var(--text-sm); color: var(--color-ink-2); }
+  .btn-coa {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .coa-langs {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-ink-2);
+  }
   .coa-langs summary { cursor: pointer; color: var(--color-primary); font-weight: 600; }
   .coa-langs ul { margin: var(--space-3) 0 0; padding-left: var(--space-5); display: grid; gap: var(--space-2); }
   .coa-langs a { color: var(--color-primary); text-decoration: none; }
   .coa-langs a:hover { text-decoration: underline; }
+
+  .prose-content :global(h2),
+  .prose-content :global(h3) { margin-top: var(--space-6); color: var(--color-ink); }
+  .prose-content :global(p) { color: var(--color-ink-2); line-height: 1.65; }
+  .related-section { padding-bottom: 0; }
+
   @media (max-width: 960px) {
     .pdp { grid-template-columns: 1fr; }
     .pdp__media { position: static; }
@@ -541,7 +972,694 @@ const breadcrumbs = [
 </style>
 
 <style is:global>
-  /* ProductGallery — the image is the largest element on the page. */
+  /* ==========================================================================
+     GLOBAL PRECISION STYLES FOR REACT PDP COMPONENTS
+     ========================================================================== */
+
+  /* --- 1. PRODUCT OPTIONS & CONSOLE --- */
+  .product-options-precision {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .pdp-price-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-4);
+  }
+  .pdp-price-main {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .pdp-price-amount {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--color-ink);
+    line-height: 1;
+  }
+  .pdp-currency {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-right: 2px;
+    color: var(--color-ink-2);
+  }
+  .pdp-value {
+    font-size: 2.25rem;
+    letter-spacing: -0.03em;
+  }
+  .pdp-price-compare {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pdp-old-price {
+    font-size: 1.05rem;
+    color: var(--color-ink-3);
+    text-decoration: line-through;
+  }
+  .pdp-save-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #047857;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: -0.01em;
+  }
+  .pdp-price-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+  }
+  .pdp-dot-sep { opacity: 0.5; }
+  .pdp-spec-pill {
+    font-weight: 650;
+    color: var(--color-ink);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+  }
+
+  /* Volume Discount Tiers */
+  .pdp-volume-tiers {
+    margin-bottom: var(--space-4);
+  }
+  .pdp-tiers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.8125rem;
+  }
+  .pdp-tiers-title {
+    font-weight: 650;
+    color: var(--color-ink);
+  }
+  .pdp-tiers-active-savings {
+    color: #059669;
+    font-weight: 650;
+    font-size: 0.75rem;
+  }
+  .pdp-tiers-hint {
+    color: var(--color-ink-3);
+    font-size: 0.75rem;
+  }
+  .pdp-tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .pdp-tier-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 4px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 3px;
+    user-select: none;
+  }
+  .pdp-tier-button:hover {
+    border-color: #BAE3F7;
+    background: #F8FAFC;
+    transform: translateY(-1px);
+  }
+  .pdp-tier-button.is-active {
+    border-color: var(--color-primary);
+    background: #EFF8FC;
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+  .pdp-tier-count {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .pdp-tier-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-ink-3);
+  }
+  .pdp-tier-badge--green {
+    color: #047857;
+    font-weight: 750;
+  }
+
+  /* Multi-Variant Selector */
+  .pdp-variants-field {
+    margin-bottom: var(--space-4);
+  }
+  .pdp-field-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 650;
+    color: var(--color-ink);
+    margin-bottom: 6px;
+  }
+  .pdp-variant-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pdp-variant-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: #FFFFFF;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .pdp-variant-chip:hover {
+    border-color: #BAE3F7;
+    background: #F8FAFC;
+  }
+  .pdp-variant-chip.is-selected {
+    border-color: var(--color-primary);
+    background: #EFF8FC;
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+  .pdp-variant-size {
+    font-weight: 650;
+    font-size: 0.875rem;
+    color: var(--color-ink);
+  }
+  .pdp-variant-price {
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+  }
+
+  /* Quantity Stepper */
+  .pdp-qty-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+  }
+  .pdp-qty-label {
+    font-size: 0.875rem;
+    font-weight: 650;
+    color: var(--color-ink);
+  }
+  .pdp-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1.5px solid var(--color-border);
+    border-radius: 10px;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+  .pdp-stepper-btn {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-ink-2);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .pdp-stepper-btn:hover:not(:disabled) {
+    background: var(--color-surface-2);
+    color: var(--color-primary);
+  }
+  .pdp-stepper-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .pdp-stepper-input {
+    width: 44px;
+    height: 36px;
+    border: none;
+    text-align: center;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--color-ink);
+    background: transparent;
+    -moz-appearance: textfield;
+  }
+  .pdp-stepper-input::-webkit-outer-spin-button,
+  .pdp-stepper-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Order Summary Card & Free Shipping Bar */
+  .pdp-summary-card {
+    background: #F8FAFC;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8125rem;
+  }
+  .pdp-summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-ink-2);
+  }
+  .pdp-summary-val {
+    font-weight: 650;
+    color: var(--color-ink);
+  }
+  .pdp-summary-saved {
+    color: #059669;
+    font-weight: 600;
+  }
+  .pdp-shipping-bar-wrap {
+    width: 100%;
+    height: 5px;
+    background: #E2E8F0;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .pdp-shipping-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0077B6 0%, #059669 100%);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+  .pdp-shipping-msg {
+    font-size: 0.75rem;
+    color: var(--color-ink-3);
+    line-height: 1.4;
+  }
+
+  /* Primary CTA Button */
+  .pdp-cta-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #0077B6 0%, #015BA0 100%);
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px -2px rgba(0, 119, 182, 0.42), 0 2px 4px -1px rgba(0, 119, 182, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .pdp-cta-btn:hover:not(:disabled) {
+    background: linear-gradient(180deg, #0088D4 0%, #0066A2 100%);
+    box-shadow: 0 6px 20px -2px rgba(0, 119, 182, 0.52);
+    transform: translateY(-1px);
+  }
+  .pdp-cta-btn:active:not(:disabled) {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 119, 182, 0.3);
+  }
+  .pdp-cta-btn.is-added {
+    background: linear-gradient(180deg, #059669 0%, #047857 100%);
+    box-shadow: 0 4px 14px -2px rgba(5, 150, 105, 0.4);
+    cursor: default;
+  }
+  .pdp-btn-content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* High Trust Reassurance List */
+  .pdp-micro-trust {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .pdp-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 0.8125rem;
+    color: var(--color-ink-2);
+    line-height: 1.35;
+  }
+  .pdp-trust-item svg {
+    flex-shrink: 0;
+  }
+
+  /* RUO Footnote */
+  .pdp-compliance-footnote {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: var(--space-3);
+    padding: 8px 10px;
+    background: var(--color-surface-2);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 0.6875rem;
+    color: var(--color-ink-3);
+    line-height: 1.45;
+  }
+  .pdp-footnote-tag {
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 0.625rem;
+    letter-spacing: 0.05em;
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  /* --- 2. PRODUCT CROSS-SELL COMPANION --- */
+  .pdp-cross-sell {
+    margin-top: var(--space-8);
+  }
+  .pdp-cross-sell__card {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-4);
+    align-items: center;
+    padding: var(--space-4) var(--space-5);
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 16px);
+    box-shadow: 0 2px 10px -2px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .pdp-cross-sell__card:hover {
+    border-color: #BAE3F7;
+    box-shadow: 0 4px 16px -2px rgba(0, 119, 182, 0.08);
+  }
+  .pdp-cross-sell__visual {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .pdp-cross-sell__thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 4px;
+  }
+  .pdp-cross-sell__badge {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    background: rgba(15, 23, 42, 0.78);
+    color: #FFFFFF;
+    font-size: 0.5625rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 1px 0;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .pdp-cross-sell__content {
+    min-width: 0;
+  }
+  .pdp-cross-sell__eyebrow {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 2px;
+  }
+  .pdp-cross-sell__title {
+    margin: 0 0 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .pdp-cross-sell__desc {
+    margin: 0 0 6px;
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+    line-height: 1.4;
+  }
+  .pdp-cross-sell__calc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .pdp-cross-sell__calc-link:hover {
+    color: var(--color-primary-600);
+    text-decoration: underline;
+  }
+  .pdp-cross-sell__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .pdp-cross-sell__price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .pdp-cross-sell__amount {
+    font-size: 1.125rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--color-ink);
+  }
+  .pdp-cross-sell__unit {
+    font-size: 0.6875rem;
+    color: var(--color-ink-3);
+  }
+  .pdp-cross-sell__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-primary);
+    background: #EFF8FC;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  .pdp-cross-sell__btn:hover {
+    background: var(--color-primary);
+    color: #FFFFFF;
+  }
+  .pdp-cross-sell__btn.is-added {
+    background: #059669;
+    border-color: #059669;
+    color: #FFFFFF;
+  }
+
+  @media (max-width: 680px) {
+    .pdp-cross-sell__card {
+      grid-template-columns: 1fr;
+      text-align: left;
+    }
+    .pdp-cross-sell__action {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid var(--color-border);
+      padding-top: 10px;
+    }
+  }
+
+  /* --- 3. PRODUCT STICKY QUICK-ADD BAR --- */
+  .pdp-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.08);
+    transform: translateY(105%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .pdp-sticky-bar.is-visible {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .pdp-sticky-bar__inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 10px var(--container-pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .pdp-sticky-bar__product {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+  .pdp-sticky-bar__thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    object-fit: contain;
+    background: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .pdp-sticky-bar__meta {
+    min-width: 0;
+  }
+  .pdp-sticky-bar__title {
+    display: block;
+    font-weight: 750;
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pdp-sticky-bar__sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--color-ink-3);
+  }
+  .pdp-sticky-bar__size {
+    font-weight: 600;
+    color: var(--color-ink-2);
+  }
+  .pdp-sticky-bar__select {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+    background: #FFFFFF;
+    color: var(--color-ink);
+  }
+  .pdp-sticky-bar__stock {
+    color: #059669;
+    font-weight: 600;
+  }
+  .pdp-sticky-bar__action {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-shrink: 0;
+  }
+  .pdp-sticky-bar__price-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .pdp-sticky-bar__price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    line-height: 1;
+  }
+  .pdp-sticky-bar__vat {
+    font-size: 0.625rem;
+    color: var(--color-ink-3);
+  }
+  .pdp-sticky-bar__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(180deg, #0077B6 0%, #015BA0 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 119, 182, 0.35);
+    transition: all 0.18s ease;
+  }
+  .pdp-sticky-bar__btn:hover {
+    background: linear-gradient(180deg, #0088D4 0%, #0066A2 100%);
+    transform: translateY(-1px);
+  }
+  .pdp-sticky-bar__btn.is-added {
+    background: #059669;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+  }
+  .pdp-sticky-bar__options-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: #FFFFFF;
+    color: var(--color-ink-3);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .pdp-sticky-bar__options-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    background: #EFF8FC;
+  }
+
+  @media (max-width: 640px) {
+    .pdp-sticky-bar__title { max-width: 140px; }
+    .pdp-sticky-bar__options-btn { display: none; }
+    .pdp-sticky-bar__btn { padding: 0 12px; font-size: 0.8125rem; }
+  }
+
+  /* --- 4. GALLERY ZOOM & LIGHTBOX --- */
   .pgallery { display: grid; gap: var(--space-3); }
   .pgallery__frame {
     position: relative;
@@ -602,7 +1720,6 @@ const breadcrumbs = [
   .pgallery__lightbox {
     position: fixed;
     inset: 0;
-    /* Above the sticky header (10011) and the cart drawer. */
     z-index: 10020;
     display: grid;
     place-items: center;

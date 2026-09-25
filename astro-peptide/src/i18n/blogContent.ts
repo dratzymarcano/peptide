@@ -1,6 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from './config';
-import { defaultLocale, localizePath } from './config';
+import { sourceLocale, localizePath } from './config';
 
 type BlogData = CollectionEntry<'blog'>['data'];
 
@@ -21,7 +21,7 @@ export interface LocalizedBlogPost extends BlogTranslation {
   featured: boolean;
 }
 
-const blogContent: Record<string, Record<Locale, BlogTranslation>> = {
+const blogContent: Record<string, Record<string, BlogTranslation>> = {
   'peptide-storage-handling-best-practices': {
     en: {
       title: 'Best Practices for Peptide Storage and Handling',
@@ -523,7 +523,7 @@ const blogContent: Record<string, Record<Locale, BlogTranslation>> = {
 };
 
 export function getLocalizedBlogPost(slug: string, locale: Locale, fallback: BlogData): LocalizedBlogPost {
-  const localized = blogContent[slug]?.[locale] ?? blogContent[slug]?.[defaultLocale];
+  const localized = blogContent[slug]?.[locale] ?? blogContent[slug]?.[sourceLocale];
   const translation = localized ?? {
     title: fallback.title,
     description: fallback.description,

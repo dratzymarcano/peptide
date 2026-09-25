@@ -19,6 +19,7 @@ if (!sitemapPath) {
 const xml = readFileSync(sitemapPath, 'utf8');
 const urlBlocks = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
 const clusters = new Map();
+const singleLanguageUrls = [];
 const failures = [];
 
 function firstMatch(source, pattern) {
@@ -38,6 +39,21 @@ for (const block of urlBlocks) {
 		continue;
 	}
 	const links = parseLinks(block);
+
+	/*
+	 * A page published in a single language carries no alternate cluster, and
+	 * that is correct: an hreflang set consisting of one self-reference plus
+	 * x-default asserts nothing. The /learn/ reference articles are English-only
+	 * markdown served under every locale prefix, so they canonicalise to the
+	 * English URL and declare no alternates at all. Requiring a cluster here
+	 * would only be satisfiable by advertising five translations that do not
+	 * exist.
+	 */
+	if (links.length === 0) {
+		singleLanguageUrls.push(loc);
+		continue;
+	}
+
 	const languageLinks = links.filter((link) => link.lang !== 'x-default');
 	const xDefault = links.find((link) => link.lang === 'x-default');
 	const duplicateLangs = links.map((link) => link.lang).filter((lang, index, langs) => langs.indexOf(lang) !== index);
@@ -45,7 +61,14 @@ for (const block of urlBlocks) {
 	if (!xDefault) failures.push(`${loc}: missing x-default hreflang.`);
 	if (duplicateLangs.length) failures.push(`${loc}: duplicate hreflang values: ${[...new Set(duplicateLangs)].join(', ')}.`);
 	if (!languageLinks.some((link) => link.href === loc)) failures.push(`${loc}: self URL is not present as a language alternate.`);
-	if (!languageLinks.some((link) => link.lang === 'en')) failures.push(`${loc}: missing English default alternate.`);
+	// The locale served at the unprefixed root must appear in every cluster,
+	// because x-default points at it.
+	if (!languageLinks.some((link) => link.lang === 'de')) failures.push(`${loc}: missing German root-locale alternate.`);
+	// A cluster of one is the ambiguous middle ground: it claims to be part of
+	// a language group while naming no other member.
+	if (languageLinks.length === 1) {
+		failures.push(`${loc}: declares a one-member hreflang cluster — publish the alternates or declare none.`);
+	}
 
 	clusters.set(loc, links);
 }
@@ -71,4 +94,7 @@ if (failures.length > 0) {
 	process.exit(1);
 }
 
-console.log(`hreflang validation OK: ${clusters.size} sitemap URLs have reciprocal clusters with x-default.`);
+console.log(
+	`hreflang validation OK: ${clusters.size} sitemap URLs have reciprocal clusters with x-default` +
+		(singleLanguageUrls.length ? `, ${singleLanguageUrls.length} single-language URLs correctly declare none.` : '.')
+);

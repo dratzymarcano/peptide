@@ -1,5 +1,14 @@
 #!/usr/bin/env node
-// Apply diacritic maps to dictionary VALUES only (preserves JSON keys).
+/**
+ * Apply diacritic maps to dictionary VALUES only (preserves JSON keys).
+ *
+ * Interpolation placeholders are masked before substitution and restored
+ * afterwards. Without that, the Spanish map's `area → área` entry rewrote the
+ * `{area}` token inside five strings, so every Spanish research-area page
+ * shipped the literal "{área}" in its <title>, <h1> and JSON-LD — the token no
+ * longer matched the `area` key the page interpolates against. A placeholder
+ * is code; only the prose around it is translatable text.
+ */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -32,17 +41,34 @@ const compiled = entries.map(([from, to]) => {
 });
 
 let count = 0;
-function fix(value) {
-  if (typeof value === 'string') {
-    let out = value;
-    for (const { re, fn } of compiled) {
-      out = out.replace(re, (m) => {
-        count++;
-        return fn(m);
-      });
-    }
-    return out;
+
+// U+E000 is a private-use codepoint: it cannot occur in real copy, so it is
+// safe as a mask sentinel and cannot itself match a \b word boundary rule.
+const MASK = '\uE000';
+
+function fixString(value) {
+  const placeholders = [];
+  const masked = value.replace(/\{[^}]*\}/g, (match) => {
+    placeholders.push(match);
+    return `${MASK}${placeholders.length - 1}${MASK}`;
+  });
+
+  let out = masked;
+  for (const { re, fn } of compiled) {
+    out = out.replace(re, (m) => {
+      count++;
+      return fn(m);
+    });
   }
+
+  return out.replace(
+    new RegExp(`${MASK}(\\d+)${MASK}`, 'g'),
+    (_match, index) => placeholders[Number(index)],
+  );
+}
+
+function fix(value) {
+  if (typeof value === 'string') return fixString(value);
   if (Array.isArray(value)) return value.map(fix);
   if (value && typeof value === 'object') {
     const next = {};

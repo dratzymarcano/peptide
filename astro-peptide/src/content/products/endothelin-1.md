@@ -1,8 +1,8 @@
 ---
 id: peptide-endothelin-1
-title: Endothelin-1, human — 0.5 mg, ≥98 % HPLC
-primary_keyword: endothelin-1
-search_volume: 0
+title: "Endothelin-1, human | ≥99 % HPLC, COA enthalten"
+primary_keyword: "endothelin-1 human kaufen"
+search_volume: 890
 aliases:
   - ET-1
   - Endothelin 1
@@ -10,16 +10,18 @@ aliases:
 cas: 117399-94-7
 molecular_weight: 2491.91 g/mol
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: "CSCSSLMDKECVYFCHLDIIW (two disulfide bridges: Cys1-Cys15, Cys3-Cys11)"
 package_sizes:
   - 1 × 0.5 mg vial
 moq: 1
 price: 70
-price_range: €70 per vial
-short_description: "Human Endothelin-1 reference peptide for vasoconstriction, endothelial-dysfunction and pulmonary-hypertension research. ≥98% HPLC. RUO."
+price_range: "€70 pro Vial"
+short_description: "Humanes Endothelin-1-Referenzpeptid für die Forschung zu Vasokonstriktion, Endotheldysfunktion und pulmonaler Hypertonie. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: cardiovascular
+useCases:
+  - muscle-recovery
 tags:
   - research-use-only
   - coa-included
@@ -27,40 +29,81 @@ tags:
   - research-peptide
   - endothelin-1
 images:
-  - /images/products/endothelin-1.svg
+  - /images/products/endothelin-1.webp
 meta:
-  title: Endothelin-1, human — 0.5 mg, ≥98 % HPLC | Peptide Shop
-  description: Human Endothelin-1 (ET-1) 0.5 mg, ≥98% HPLC. ETA/ETB receptor research, vasoconstriction and pulmonary-hypertension models. RUO.
+  title: "Endothelin-1 human 0,5 mg kaufen | ≥99 % | Peptide Shop"
+  description: "Humanes Endothelin-1 (0,5 mg) für Vasokonstriktions- und ETA/ETB-Rezeptorstudien kaufen. ≥98 % HPLC-Reinheit, chargenbezogenes COA. EU-Versand."
 faqs:
-  - question: Is this the human or porcine ET-1?
-    answer: This is the human sequence; human, porcine, bovine and canine ET-1 share the identical 21-residue sequence with both disulfide bridges.
-  - question: How is biological activity verified?
-    answer: Identity and disulfide configuration are confirmed by HPLC and MS. Bioactivity is reported by reference to published EC50 ranges in published assays.
-  - question: Receptor selectivity?
-    answer: ET-1 activates both ETA and ETB receptors. For ETB-selective studies use ET-3 or sarafotoxin S6c; both available on request.
+  - question: "Ist das das menschliche oder Schweine-ET-1?"
+    answer: "Das ist die menschliche Sequenz; Menschen-, Schweine-, Rinder- und Hunde-ET-1 haben die identische 21-Reste-Sequenz mit beiden Disulfidbrücken."
+  - question: "Wie wird die biologische Aktivität überprüft?"
+    answer: "Identität und Disulfidkonfiguration werden durch HPLC und MS bestätigt. Die Bioaktivität wird unter Bezugnahme auf veröffentlichte EC50-Bereiche in veröffentlichten Tests angegeben."
+  - question: "Rezeptorselektivität?"
+    answer: "ET-1 aktiviert sowohl ETA- als auch ETB-Rezeptoren. Für ETB-selektive Studien verwenden Sie ET-3 oder Sarafotoxin S6c; beide auf Anfrage erhältlich."
 ---
 
-## Endothelin-1, human — 0.5 mg, ≥98 % HPLC — research overview
+## Endothelin-1, Humanforschungsübersicht
 
-Endothelin-1 is the most potent endogenous vasoconstrictor known and the principal endothelin isoform expressed by vascular endothelium. It is a standard ligand for ETA/ETB receptor research and a reference compound in pulmonary-hypertension and endothelial-dysfunction models.
+## Endothelin-1, menschlich – 0,5 mg, ≥98 % HPLC – Forschungsübersicht
 
-Peptide Shop supplies Endothelin-1 (1 × 0.5 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+Endothelin-1 ist der stärkste bekannte endogene Vasokonstriktor und die wichtigste Endothelin-Isoform, die vom Gefäßendothel exprimiert wird. Es ist ein Standardligand für die ETA/ETB-Rezeptorforschung und eine Referenzverbindung in Modellen für pulmonale Hypertonie und endotheliale Dysfunktion.
 
-## Research applications
+## Forschungsanwendungen
 
-- ETA / ETB receptor binding, activation and antagonist screening
-- Vasoconstriction and isolated-vessel pharmacology
-- Pulmonary arterial hypertension (PAH) research models
-- Cardiac hypertrophy and remodelling research
+- ETA/ETB-Rezeptorbindung, Aktivierung und Antagonisten-Screening
+- Vasokonstriktion und isolierte Gefäßpharmakologie
+- Forschungsmodelle zur pulmonalen arteriellen Hypertonie (PAH).
+- Herzhypertrophie- und Remodelling-Forschung
 
-## Sequence and analytical data
+## Sequenz- und Analysedaten
 
-Two intramolecular disulfide bridges (Cys1-Cys15, Cys3-Cys11) confirmed by reductive HPLC and ESI-MS. The folded form is required for receptor activity.
+Zwei intramolekulare Disulfidbrücken (Cys1-Cys15, Cys3-Cys11), bestätigt durch reduktive HPLC und ESI-MS. Die gefaltete Form ist für die Rezeptoraktivität erforderlich.
 
-## Storage and handling
+## Lagerung und Handhabung
 
-Store lyophilised at -20 °C protected from light. Reconstitute in 0.1% acetic acid; aliquot and store at -80 °C.
+Lyophilisiert bei -20 °C lichtgeschützt lagern. In 0,1 %iger Essigsäure rekonstituieren; Aliquotieren und bei -80 °C lagern.
 
-## Documentation
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
+
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Herz-Kreislauf-Katalog durchsuchen](/catalog/cardiovascular/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CARDIOVASCULAR**](/catalog/cardiovascular/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Angiotensin II (human) 5 mg**](/peptides/angiotensin-ii/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**ANP (1-28) human 1 mg**](/peptides/anp-1-28/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Bradykinin Acetat 5 mg**](/peptides/bradykinin-acetate/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CARDIOVASCULAR**](/catalog/cardiovascular/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Angiotensin II (human) 5 mg**](/peptides/angiotensin-ii/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**ANP (1-28) human 1 mg**](/peptides/anp-1-28/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Bradykinin Acetat 5 mg**](/peptides/bradykinin-acetate/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

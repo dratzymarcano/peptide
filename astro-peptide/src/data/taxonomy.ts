@@ -30,7 +30,7 @@ export const researchAreas: ResearchArea[] = [
     name: 'Neuroscience & CNS',
     short: 'CNS, neuroprotection, cognition',
     description:
-      'Reference peptides used in cognition, neuroprotection and CNS receptor studies — including nootropic candidates and sleep-related neuropeptides.',
+      'Reference peptides used in cognition, neuroprotection and CNS receptor studies, including nootropic candidates and sleep-related neuropeptides.',
     icon: 'brain',
     keywords: ['nootropic peptides', 'CNS research peptides', 'neuroprotective peptides'],
   },

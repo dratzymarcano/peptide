@@ -1,6 +1,6 @@
 ---
-title: "CAS Numbers for Peptides"
-description: "What a CAS number identifies, when a peptide has one, when it does not, and how to use it for SDS, customs and inventory matching."
+title: "CAS-Nummern für Peptide"
+description: "Was eine CAS-Nummer identifiziert, wann ein Peptid eine hat und wann nicht, und wie man sie für Sicherheitsdatenblätter, Zoll- und Bestandsabgleiche verwendet."
 publishDate: "2026-05-03"
 category: "Reference"
 readTime: "4 min"
@@ -8,53 +8,53 @@ order: 90
 primaryKeyword: "peptide cas number"
 tags: ["cas", "reference", "regulatory"]
 meta:
-  title: "CAS Numbers for Peptides | Peptide Shop Learn"
-  description: "What a CAS Registry Number identifies, why some research peptides have one and others do not, and how to use it for SDS and customs."
+  title: "CAS-Nummern für Peptide | Peptide Shop Leitfaden"
+  description: "Was eine CAS-Nummer identifiziert, warum manche Peptide eine besitzen und wie man sie für Sicherheitsdatenblätter nutzt."
 ---
 
-The CAS Registry Number — assigned by the Chemical Abstracts Service of the American Chemical Society — is the standard global identifier for a defined chemical substance. For peptide buyers, it is the most reliable cross-reference between catalogues, safety data sheets, customs paperwork and inventory systems.
+Die CAS-Registrierungsnummer – vergeben vom Chemical Abstracts Service der American Chemical Society – ist die weltweite Standardkennung für eine definierte chemische Substanz. Für Peptidkäufer ist es die zuverlässigste Querreferenz zwischen Katalogen, Sicherheitsdatenblättern, Zollpapieren und Inventarsystemen.
 
-## What a CAS number identifies
+## Was eine CAS-Nummer identifiziert
 
-A CAS number identifies a **specific molecular entity in a specific salt and isotopic form**. Two peptides with the same primary sequence but different counter-ions (acetate vs TFA) can be assigned different CAS numbers. A peptide acid and its corresponding amide are different substances and may carry different CAS numbers.
+Eine CAS-Nummer identifiziert eine **spezifische molekulare Einheit in einer bestimmten Salz- und Isotopenform**. Zwei Peptiden mit derselben Primärsequenz, aber unterschiedlichen Gegenionen (Acetat vs. TFA) können unterschiedliche CAS-Nummern zugewiesen werden. Eine Peptidsäure und ihr entsprechendes Amid sind unterschiedliche Substanzen und können unterschiedliche CAS-Nummern tragen.
 
-The number itself has no chemical meaning — it is purely an ascending registration index.
+Die Zahl selbst hat keine chemische Bedeutung – es handelt sich lediglich um einen aufsteigenden Registrierungsindex.
 
-## When a peptide has one
+## Wenn ein Peptid eines hat
 
-A CAS number is assigned when a defined substance is registered, typically because:
+Eine CAS-Nummer wird zugewiesen, wenn ein bestimmter Stoff registriert wird, typischerweise aus folgenden Gründen:
 
-- It has been described in the published literature with a structure.
-- It has been registered for commercial sale.
-- It has been registered for regulatory or pharmacopeia listing.
+- Es wurde in der veröffentlichten Literatur mit einer Struktur beschrieben.
+- Es wurde zum kommerziellen Verkauf angemeldet.
+- Es wurde für die Aufnahme in die Zulassung oder in die Pharmakopöe registriert.
 
-Most named research peptides — semaglutide, tirzepatide, BPC-157, TB-500, melanotan-2, GHK-Cu, semax, selank, epitalon, the bradykinins, angiotensins, GHRPs, and so on — have CAS numbers. The number on the COA is the one assigned to the **free base** unless the salt form is explicitly noted.
+Die meisten genannten Forschungspeptide – Semaglutid, Tirzepatid, BPC-157, TB-500, Melanotan-2, GHK-Cu, Semax, Selank, Epitalon, die Bradykinine, Angiotensine, GHRPs usw. – haben CAS-Nummern. Die Nummer auf dem Echtheitszertifikat ist diejenige, die der **freien Base** zugeordnet ist, es sei denn, die Salzform ist ausdrücklich angegeben.
 
-## When it does not
+## Wenn nicht
 
-Several legitimate categories of research peptide do **not** have a CAS number:
+Mehrere legitime Kategorien von Forschungspeptiden haben **keine** CAS-Nummer:
 
-- **Custom synthesis sequences** that have never been published or commercialised under that exact identity.
-- **Mass-spec calibration mixtures and protein digests** (e.g. the BSA tryptic digest) that are mixtures rather than single substances.
-- **Newly disclosed analogues** whose registration has not yet been processed.
-- **Internal research codes** used before a public name has been assigned.
+- **Benutzerdefinierte Synthesesequenzen**, die noch nie unter dieser genauen Identität veröffentlicht oder kommerzialisiert wurden.
+- **Massenspezifische Kalibrierungsmischungen und Proteinaufschlüsse** (z. B. der BSA-tryptische Aufschluss), bei denen es sich eher um Mischungen als um Einzelsubstanzen handelt.
+- **Neu bekannt gegebene Analoga**, deren Registrierung noch nicht bearbeitet wurde.
+- **Interne Forschungscodes**, die vor der Zuweisung eines öffentlichen Namens verwendet werden.
 
-The absence of a CAS number is not a quality signal. A custom-synthesis peptide at ≥99% HPLC purity with a full COA is a defined research substance whether or not CAS has issued a registration.
+Das Fehlen einer CAS-Nummer ist kein Qualitätssignal. Ein individuell synthetisiertes Peptid mit einer HPLC-Reinheit von ≥99 % und einem vollständigen COA ist eine definierte Forschungssubstanz, unabhängig davon, ob das CAS eine Registrierung erteilt hat oder nicht.
 
-## Practical use
+## Praktischer Nutzen
 
-| Use | Notes |
+| Verwenden Sie | Notizen |
 |---|---|
-| **SDS / safety** | Match the CAS on the SDS to the CAS on the COA before relying on the SDS hazard class. |
-| **Customs declaration** | The CAS number, not the trivial name, is the customs-broker-friendly identifier. Peptide acetate salts often clear under their CAS even when the trivial name is unfamiliar. |
-| **Inventory / LIMS** | Use the CAS as a primary key in inventory; trivial names drift, CAS numbers do not. |
-| **Cross-supplier comparison** | Same CAS = same defined substance, regardless of vendor or salt notation. Use it to confirm two suppliers are quoting the same compound before comparing price. |
+| **SDB / Sicherheit** | Vergleichen Sie den CAS auf dem Sicherheitsdatenblatt mit dem CAS auf dem Echtheitszertifikat, bevor Sie sich auf die Gefahrenklasse des Sicherheitsdatenblatts verlassen. |
+| **Zollanmeldung** | Die CAS-Nummer, nicht der Trivialname, ist die zollmaklerfreundliche Kennung. Peptidacetatsalze werden häufig unter ihrem CAS angezeigt, selbst wenn der Trivialname unbekannt ist. |
+| **Inventar / LIMS** | Verwenden Sie den CAS als Primärschlüssel im Inventar. Trivialnamen driften, CAS-Nummern nicht. |
+| **Anbieterübergreifender Vergleich** | Gleicher CAS = gleicher definierter Stoff, unabhängig vom Hersteller oder der Salzbezeichnung. Verwenden Sie es, um zu bestätigen, dass zwei Lieferanten die gleiche Verbindung anbieten, bevor Sie den Preis vergleichen. |
 
-## On Peptide Shop COAs
+## Auf Peptide Shop COAs
 
-Every Peptide Shop COA lists the CAS number where one exists. Where it does not, the field is marked **"N/A — defined substance, sequence and identity confirmed by ESI-MS"** rather than left blank.
+In jedem Echtheitszertifikat von Peptide Shop ist die CAS-Nummer aufgeführt, sofern eine solche vorhanden ist. Ist dies nicht der Fall, wird das Feld mit **„N/A – definierter Stoff, Sequenz und Identität durch ESI-MS bestätigt“** gekennzeichnet und nicht leer gelassen.
 
-## Cross-references
+## Querverweise
 
-- [How to read a peptide COA](/learn/coa-explained/)
-- [Peptide research glossary](/learn/glossary/) — entries on *CAS number* and *counter-ion*.
+- [Wie man ein Peptid-COA liest](/learn/coa-explained/)
+- [Glossar zur Peptidforschung](/learn/glossary/) – Einträge zu *CAS-Nummer* und *Gegenion*.

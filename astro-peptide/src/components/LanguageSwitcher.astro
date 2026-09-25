@@ -26,7 +26,7 @@ const alternateLinks = locales.map((locale) => ({
 // The English flag needs a clipPath, whose id must stay unique when this
 // component renders more than once (floating + in-drawer).
 const clipId = `lsf-en-${variant}`;
-const flagSvg: Record<Locale, string> = {
+const flagSvg: Record<string, string> = {
   en: `<svg viewBox="0 0 60 45" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><clipPath id="${clipId}"><path d="M0 0v45h60V0z"/></clipPath><path fill="#012169" d="M0 0h60v45H0z"/><path d="M0 0l60 45m0-45L0 45" stroke="#fff" stroke-width="6"/><path d="M0 0l60 45m0-45L0 45" clip-path="url(#${clipId})" stroke="#C8102E" stroke-width="3"/><path d="M30 0v45M0 22.5h60" stroke="#fff" stroke-width="10"/><path d="M30 0v45M0 22.5h60" stroke="#C8102E" stroke-width="6"/></svg>`,
   de: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#000" d="M0 0h60v12H0z"/><path fill="#DD0000" d="M0 12h60v12H0z"/><path fill="#FFCE00" d="M0 24h60v12H0z"/></svg>',
   nl: '<svg viewBox="0 0 60 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#AE1C28" d="M0 0h60v12H0z"/><path fill="#fff" d="M0 12h60v12H0z"/><path fill="#21468B" d="M0 24h60v12H0z"/></svg>',
@@ -36,6 +36,7 @@ const flagSvg: Record<Locale, string> = {
 };
 ---
 
+{locales.length > 1 && (
 <div class={`language-switcher language-switcher--${variant}`} data-language-switcher>
   <button
     class="language-switcher__trigger"
@@ -43,7 +44,7 @@ const flagSvg: Record<Locale, string> = {
     aria-haspopup="menu"
     aria-expanded="false"
     aria-controls={listId}
-    aria-label={`${t('common.changeLanguage')}. ${t('common.currentLanguage', { language: localeMeta[activeLocale].name })}`}
+    aria-label={`${t('common.changeLanguage')}. ${t('common.currentLanguage', { language: localeMeta[activeLocale]?.name || 'English' })}`}
     title={t('common.changeLanguage')}
   >
     <svg class="language-switcher__globe" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -52,10 +53,10 @@ const flagSvg: Record<Locale, string> = {
       <path d="M12 3a14 14 0 0 1 0 18" />
       <path d="M12 3a14 14 0 0 0 0 18" />
     </svg>
-    <span class="language-switcher__active-flag" aria-hidden="true" set:html={flagSvg[activeLocale]} />
+    <span class="language-switcher__active-flag" aria-hidden="true" set:html={flagSvg[activeLocale] || flagSvg.en} />
     <span class="language-switcher__active-label">
       <span class="language-switcher__hint">{t('common.changeLanguage')}</span>
-      <span class="language-switcher__current">{localeMeta[activeLocale].name}</span>
+      <span class="language-switcher__current">{localeMeta[activeLocale]?.name || 'English'}</span>
     </span>
     <svg class="language-switcher__chevron" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <polyline points="6 9 12 15 18 9" />
@@ -79,9 +80,10 @@ const flagSvg: Record<Locale, string> = {
     ))}
   </ul>
 </div>
+)}
 
 <style>
-  /* Language switcher — uses global design tokens (.btn-secondary look + card panel). */
+  /* Language switcher: uses global design tokens (.btn-secondary look + card panel). */
   .language-switcher {
     position: fixed;
     left: var(--space-4);

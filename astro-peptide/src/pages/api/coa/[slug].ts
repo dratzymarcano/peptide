@@ -13,7 +13,7 @@
  */
 import type { APIRoute } from 'astro';
 import { getCanonicalCollection } from '../../../lib/collections';
-import { normalizeLocale } from '../../../lib/coa/i18n';
+import { DEFAULT_LOCALE, normalizeLocale } from '../../../lib/coa/i18n';
 
 export const prerender = false;
 
@@ -41,6 +41,9 @@ export const GET: APIRoute = async ({ params, url, redirect }) => {
     return json({ code: 'product_not_found' }, 404);
   }
 
-  const target = `/coa/${slug}${locale !== 'en' ? `.${locale}` : ''}.html`;
+  // Mirrors the filename scheme in src/pages/coa/[variant].html.ts, which
+  // suffixes every locale except the COA module's own default. Hardcoding 'en'
+  // here would silently 404 the moment that default changed.
+  const target = `/coa/${slug}${locale !== DEFAULT_LOCALE ? `.${locale}` : ''}.html`;
   return redirect(target, 302);
 };

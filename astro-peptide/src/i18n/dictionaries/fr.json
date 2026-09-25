@@ -71,7 +71,7 @@
     "ruo": "Réservé à la recherche. Non destiné à un usage humain ou vétérinaire."
   },
   "shopPage": {
-    "metaTitle": "Acheter des peptides de recherche | Peptide Shop Europe",
+    "metaTitle": "Acheter des peptides de recherche | Peptide Shop",
     "metaDescription": "Acheter des peptides de qualité recherche en ligne. Filtrez par domaine, pureté et application. Vérifiés HPLC, COA sur chaque commande. EU.",
     "eyebrow": "Boutique",
     "title": "Catalogue de peptides de recherche.",
@@ -81,7 +81,7 @@
     "filtersActive": "Filtres (actifs)",
     "showing": "{shown} produits affichés sur {total}",
     "sortLabel": "Trier les produits",
-    "sortFeatured": "Tri : Sélection",
+    "sortFeatured": "Les plus recherchés",
     "sortPriceAsc": "Prix : croissant",
     "sortPriceDesc": "Prix : décroissant",
     "sortNameAsc": "Nom : A-Z",
@@ -156,7 +156,8 @@
     "viewDetails": "Voir les détails de {product}",
     "view": "Voir",
     "outOfStockAria": "{product} est en rupture de stock",
-    "outOfStock": "Rupture de stock"
+    "outOfStock": "Rupture de stock",
+    "from": "à partir de"
   },
   "cartActions": {
     "addToCart": "Ajouter au panier",
@@ -183,75 +184,66 @@
     "free": "Gratuite",
     "calculatedAtCheckout": "Calculée au paiement",
     "minimumNote": "Une valeur minimale de commande de 200 € s’applique au paiement.",
-    "ruoNote": "Réservé à la recherche. Non destiné à un usage humain ou vétérinaire."
+    "ruoNote": "Réservé à la recherche. Non destiné à un usage humain ou vétérinaire.",
+    "size": "Format",
+    "selectSize": "Choisir le conditionnement",
+    "saveVsSmallest": "{percent} % d’économie"
   },
   "home": {
-    "metaTitle": "Acheter des peptides · Vérifiés en laboratoire, COA inclus | Peptide Shop",
-    "metaDescription": "Acheter des peptides de qualité recherche en Europe. Tests HPLC par lot, COA pour chaque produit, expédition EU discrète. Uniquement à des fins de recherche.",
+    "metaTitle": "Acheter des peptides — un COA par lot | Peptide Shop",
+    "metaDescription": "Achetez des peptides de recherche en Europe. Analyse HPLC, certificat du lot consultable avant la commande, expédition UE, retour sous 14 jours. Usage recherche uniquement.",
     "schemaFeaturedProducts": "Peptides de recherche en vedette",
-    "heroEyebrow": "Acheter des peptides · vérifiés en laboratoire",
-    "heroTitle": "Acheter des peptides vérifiés en laboratoire pour recherche exigeante.",
-    "heroLead": "Chaque lot est testé par HPLC et expédié avec un certificat d’analyse propre au lot. Conçu pour les laboratoires qui jugent un fournisseur sur sa documentation, pas sur son emballage.",
-    "heroPrimary": "Acheter des peptides",
-    "heroSecondary": "Comment nous documentons la qualité →",
-    "heroMetaPurity": "Seuil de pureté HPLC",
-    "heroMetaProducts": "peptides au catalogue",
-    "heroMetaCoa": "= 1 COA, à chaque fois",
-    "qualityCardAria": "Qualité en un coup d’œil",
-    "qualityCardEyebrow": "Qualité en un coup d’œil",
-    "qualityCardTitle": "Une chaîne de traçabilité documentée.",
-    "qualityItem1Title": "CoA propre au lot",
-    "qualityItem1Body": "Trace HPLC, MS lorsque attribuée, déclaration d’identité et de pureté.",
-    "qualityItem2Title": "Expédition chaîne du froid",
-    "qualityItem2Body": "Préparation discrète avec consignes de manipulation par classe de produit.",
-    "qualityItem3Title": "Étiquetage RUO",
-    "qualityItem3Body": "Réservé à la recherche — jamais présenté comme thérapie ou complément.",
-    "qualityCardAction": "Lire le cadre qualité →",
-    "serviceHighlights": "Points forts du service",
-    "trustPurity": "Pureté HPLC",
-    "trustTraceability": "Traçabilité lot-vers-COA",
-    "trustDispatch": "Expédition dans la semaine",
-    "trustCompliance": "Étiquetage axé conformité",
-    "trustCoaLanguages": "COA en EN · DE · NL · FR · IT · ES",
-    "whyEyebrow": "Pourquoi Peptide Shop",
-    "whyTitle": "Conçu pour les laboratoires qui lisent d’abord le certificat.",
-    "whyLead": "La plupart des catalogues cachent les preuves analytiques. Nous les affichons sur la page produit, dans le CoA et dans le flux documentaire — afin que les achats et les chercheurs n’aient pas à courir après les données.",
-    "value1Title": "Pureté vérifiée par HPLC",
-    "value1Body": "Chaque lot est testé avec des méthodes en phase inverse validées. La trace analytique fait partie du CoA reçu à l’expédition.",
-    "value2Title": "Livraison centrée documents",
-    "value2Body": "Les CoA propres au lot sont téléchargeables en EN, DE, FR et ES — en HTML statique et PDF généré dynamiquement.",
-    "value3Title": "Préparation discrète",
-    "value3Body": "Stocké, emballé et expédié avec consignes de manipulation par classe de produit. Pas de transbordement, pas de retard surprise.",
-    "value4Title": "Conformité RUO sans ambiguïté",
-    "value4Body": "Chaque page produit, listing et CoA porte un cadre réservé à la recherche. Nous ne commercialisons ni ne suggérons d’usage thérapeutique.",
-    "researchAreasEyebrow": "Catalogue",
-    "researchAreasTitle": "Parcourir par domaine de recherche.",
-    "researchAreasDescription": "Navigation en hubs organisée autour de la science, pas de catégories lifestyle.",
-    "researchAreasAction": "Voir tous les domaines →",
-    "productCount": "{count} produits",
-    "view": "Voir →",
+    "heroEyebrow": "Peptides de recherche · expédiés depuis l’UE",
+    "heroTitle": "Acheter des peptides avec le certificat joint.",
+    "heroLead": "Chaque lot est analysé par HPLC, et son certificat figure sur la fiche produit avant la commande — pas dans un e-mail après coup.",
+    "heroPrimary": "Voir les peptides",
+    "heroSecondary": "Voir un certificat",
     "useCasesEyebrow": "Par application",
-    "useCasesTitle": "Applications de recherche courantes.",
-    "useCasesLead": "Les hubs d’application regroupent les composés entre domaines de recherche — utile lorsque le protocole expérimental traverse plusieurs systèmes biologiques.",
+    "useCasesTitle": "Trouvez les composés selon votre sujet d’étude.",
     "browseProducts": "Parcourir les produits →",
-    "featuredEyebrow": "Produits en vedette",
-    "featuredTitle": "Peptides catalogue, prêts à expédier.",
-    "featuredDescription": "Les cartes produit compactes mènent aux spécifications, téléchargements CoA et commandes.",
-    "featuredAction": "Ouvrir la boutique →",
-    "statProducts": "Peptides au catalogue",
-    "statPurity": "Seuil de pureté HPLC",
-    "statCoaDocuments": "Documents CoA disponibles",
-    "statCoaLanguages": "Langues COA — EN · DE · NL · FR · IT · ES",
-    "insightsEyebrow": "Articles",
-    "insightsTitle": "Notes du laboratoire.",
-    "insightsDescription": "Notes pratiques sur stockage, manipulation, revue CoA et reproductibilité.",
-    "insightsAction": "Tous les articles →",
-    "readArticle": "Lire l’article →",
-    "ctaEyebrow": "Prêt quand vous l’êtes",
-    "ctaTitle": "Acheter des peptides — la boutique peptides la plus documentée d'Europe.",
-    "ctaBody": "Parcourez {count} peptides au catalogue avec documentation vérifiable, ou contactez-nous pour des exigences COA spécifiques ou des achats plus importants.",
-    "ctaPrimary": "Acheter des peptides",
-    "ctaSecondary": "Contacter l’équipe supply"
+    "ctaEyebrow": "Quand vous voulez",
+    "ctaTitle": "Chaque lot documenté. Chaque certificat lisible.",
+    "ctaBody": "Parcourez {count} peptides du catalogue, ou interrogez l’équipe sur les approvisionnements importants et la documentation sur mesure.",
+    "ctaPrimary": "Voir les peptides",
+    "ctaSecondary": "Contacter l’équipe",
+    "trustBarPurityTitle": "HPLC ≥98 %",
+    "trustBarPuritySub": "Seuil de pureté sur chaque peptide du catalogue",
+    "trustBarCoaTitle": "Un COA par lot",
+    "trustBarCoaSub": "Consultable avant l’achat, en six langues",
+    "trustBarDispatchTitle": "Expédition UE",
+    "trustBarDispatchSub": "Emballé sous 1 jour ouvré, 1 à 5 jours de transit",
+    "trustBarReturnsTitle": "Retour sous 14 jours",
+    "trustBarReturnsSub": "Retour postal gratuit des flacons non ouverts",
+    "popularEyebrow": "Les plus recherchés",
+    "popularTitle": "Les peptides que les chercheurs consultent le plus.",
+    "popularAction": "Voir les {count} peptides",
+    "storyEyebrow": "Comment ça marche",
+    "storyTitle": "Quatre étapes, toutes vérifiables.",
+    "storyLead": "Rien de la chaîne n’est masqué. Chaque étape laisse un document que vous pouvez lire.",
+    "storyStep": "Étape {n}",
+    "proofEyebrow": "Des preuves, pas des promesses",
+    "proofTitle": "Chaque flacon part avec son propre certificat.",
+    "proofLead": "Identité, pureté et méthode derrière chaque valeur — émis pour le lot exact que vous recevez, jamais une fiche type.",
+    "proofBullet1": "Résultat de pureté HPLC et méthode chromatographique",
+    "proofBullet2": "Confirmation d’identité par spectrométrie de masse le cas échéant",
+    "proofBullet3": "Référence de lot, aspect et condition de conservation",
+    "proofBullet4": "Téléchargeable en HTML ou PDF, en six langues",
+    "proofPrimary": "Ouvrir un certificat type",
+    "proofSecondary": "Notre politique de COA",
+    "proofFigureAlt": "Certificat d’analyse d’un lot de peptide de recherche",
+    "orderingEyebrow": "Commande",
+    "orderingTitle": "Ce qui vous attend au paiement.",
+    "orderMinTitle": "Commande minimum {min} €",
+    "orderMinBody": "Nous fournissons des quantités de laboratoire ; les commandes démarrent à {min} €.",
+    "orderShipTitle": "Livraison {standard} €",
+    "orderShipBody": "Standard 3 à 5 jours ouvrés. Express {express} €, 1 à 2 jours. Offerte au-delà de {freeFrom} €.",
+    "orderPayTitle": "Virement ou Bitcoin",
+    "orderPayBody": "Les commandes réglées en Bitcoin bénéficient de {btcDiscount} % de remise. Aucune donnée de carte n’est conservée.",
+    "orderReturnsTitle": "Retour sous 14 jours",
+    "orderReturnsBody": "Les flacons non ouverts peuvent être renvoyés par la poste sous 14 jours, sans frais.",
+    "faqEyebrow": "Avant de commander",
+    "faqTitle": "Les questions qui reviennent le plus.",
+    "faqAction": "Lire la FAQ complète"
   },
   "about": {
     "metaTitle": "À propos de Peptide Shop | Peptides de recherche",
@@ -261,7 +253,7 @@
     "lead": "Peptide Shop sert les laboratoires et chercheurs qualifiés qui jugent un fournisseur aux certificats accompagnant chaque lot — pas à la couleur de la boîte.",
     "whatTitle": "Ce que nous faisons",
     "whatBody1": "Nous fournissons des peptides de recherche catalogue et des matériaux de laboratoire associés pour les workflows in vitro. Le site est structuré autour de domaines de recherche, hubs d’application et pages produit afin de passer rapidement du contexte biologique aux spécifications.",
-    "whatBody2": "Chaque page produit relie le domaine auquel elle appartient et le certificat d’analyse que vous pouvez prévisualiser ou télécharger en un clic — en anglais, allemand, français ou espagnol.",
+    "whatBody2": "Chaque page produit relie le domaine auquel elle appartient et le certificat d’analyse de son lot — dans chacune des six langues du site.",
     "figureAlt": "Flacons de peptides de recherche organisés dans un coffret de protection avec seringues",
     "quote": "« La documentation doit voyager avec la molécule, pas la poursuivre. »",
     "principlesEyebrow": "Principes opérationnels",
@@ -282,7 +274,7 @@
     "timeline2Title": "Vérification analytique",
     "timeline2Body": "La pureté HPLC est confirmée selon la spécification produit. La spectrométrie de masse confirme l’identité lorsque définie.",
     "timeline3Title": "Libération du lot & génération CoA",
-    "timeline3Body": "Un certificat propre au lot est généré et indexé. Disponible immédiatement en HTML ou PDF en EN, DE, FR, ES.",
+    "timeline3Body": "Un certificat propre au lot est émis et rattaché au lot — en HTML ou PDF, dans les six langues du site.",
     "timeline4Title": "Expédition discrète",
     "timeline4Body": "Chaîne du froid lorsque nécessaire. Les documents accompagnent le colis; les copies numériques sont liées depuis la page produit.",
     "ctaEyebrow": "Réservé à la recherche",
@@ -358,7 +350,11 @@
     "linkShippingTitle": "Expédition",
     "linkShippingSubtitle": "Planification d’expédition",
     "linkQualityTitle": "Qualité",
-    "linkQualitySubtitle": "Cadre de test"
+    "linkQualitySubtitle": "Cadre de test",
+    "successTitle": "Message reçu",
+    "successBody": "Merci — nous répondons sous un jour ouvré. Vérifiez vos spams si rien n’arrive.",
+    "errorTitle": "Message non envoyé",
+    "errorBody": "Vérifiez les champs et réessayez, ou écrivez directement à info@peptide-kaufen.net."
   },
   "support": {
     "relatedInfo": "Informations associées",
@@ -450,11 +446,11 @@
     "shippingLinkSubtitle": "Informations d’expédition",
     "disclaimerLinkSubtitle": "Limites RUO",
     "privacyMetaTitle": "Politique de confidentialité | Peptide Shop",
-    "privacyMetaDescription": "Politique de confidentialite expliquant comment Peptide Shop traite les demandes, commandes, donnees de livraison et dossiers de conformite.",
+    "privacyMetaDescription": "Politique de confidentialité expliquant comment Peptide Shop traite les demandes, les commandes, les données de livraison et les dossiers de conformité.",
     "privacyTitle": "Politique de confidentialité",
     "privacyDescription": "Nous collectons uniquement les informations nécessaires au fonctionnement du site, aux réponses, au traitement des commandes et aux dossiers légaux d’usage recherche.",
     "privacyCollectTitle": "Informations collectées",
-    "privacyCollectBody": "Nous pouvons collecter les coordonnees, informations de commande, informations de livraison, statut de paiement, correspondance de conformite et donnees techniques d utilisation du site.",
+    "privacyCollectBody": "Nous pouvons collecter les coordonnées, les informations de commande, les informations de livraison, le statut de paiement, la correspondance de conformité et les données techniques d'utilisation du site.",
     "privacyUseTitle": "Utilisation des informations",
     "privacyUseEnquiries": "Répondre aux demandes et requêtes support.",
     "privacyUseOrders": "Traiter les commandes et organiser l’expédition.",
@@ -635,7 +631,7 @@
     "back": "Back",
     "confirmOrder": "Confirmer la commande à usage de recherche",
     "bitcoinInvoice": "Facture Bitcoin",
-    "bitcoinInvoiceError": "La facture Bitcoin n'a pas pu etre creee. Reessayez ou choisissez le virement bancaire.",
+    "bitcoinInvoiceError": "La facture Bitcoin n'a pas pu être créée. Réessayez ou choisissez le virement bancaire.",
     "researchUseOnly": "Réservé à la recherche.",
     "reviewRuo": "En passant cette commande, vous confirmez que les produits seront utilisés uniquement pour la recherche en laboratoire in vitro.",
     "placingOrder": "Commande en cours...",
@@ -643,54 +639,57 @@
   },
   "catalogIndex": {
     "schemaName": "Catalogue de peptides de recherche",
-    "schemaDescription": "Parcourez les peptides de qualité recherche par domaine, notamment neurosciences, cardiovasculaire, diabete et métabolisme, hormones, immunologie et plus encore.",
+    "schemaDescription": "Parcourez les peptides de qualité recherche par domaine, notamment neurosciences, cardiovasculaire, diabète et métabolisme, hormones, immunologie et plus encore.",
     "metaTitle": "Catalogue de peptides de recherche | Parcourir par domaine",
-    "metaDescription": "Parcourez les peptides de recherche par domaine : neurosciences, cardiovasculaire, diabete et métabolisme, hormones, immunologie, longévité et plus encore. >=98% HPLC. RUO.",
+    "metaDescription": "Parcourez les peptides de recherche par domaine : neurosciences, cardiovasculaire, diabète et métabolisme, hormones, immunologie, longévité. Pureté HPLC ≥98 %, un COA par lot. Usage recherche uniquement.",
     "title": "Parcourir les peptides de recherche par domaine",
-    "lead": "{productCount} peptides de qualité recherche organisés dans {areaCount} domaines. Tous les composés sont vendus uniquement pour la recherche in-vitro et en laboratoire (RUO) et livrés avec un certificat d analyse HPLC.",
+    "lead": "{productCount} peptides de qualité recherche organisés dans {areaCount} domaines. Tous les composés sont vendus uniquement pour la recherche in vitro et en laboratoire (RUO) et livrés avec un certificat d'analyse HPLC.",
     "browse": "Parcourir ->",
     "browseCatalogue": "Parcourir le catalogue",
     "useCasesTitle": "Parcourir par usage de recherche",
-    "useCasesLead": "Groupements d acces rapide pour les applications de recherche les plus demandees."
+    "useCasesLead": "Groupements d'accès rapide pour les applications de recherche les plus demandées.",
+    "productCount": "{count} produits",
+    "view": "Voir →"
   },
   "catalogArea": {
     "schemaName": "Peptides de recherche {area}",
-    "metaTitle": "Peptides de recherche {area} | Peptide Shop",
-    "metaDescription": "{description} Pureté HPLC >=98%, COA pour chaque lot. Vendu uniquement pour la recherche in-vitro (RUO).",
+    "metaTitle": "{area} — peptides de recherche | Peptide Shop",
+    "metaDescription": "Peptides de recherche {area} : {short}. Pureté HPLC ≥{purity} %, un COA par lot, expédition UE. Usage recherche uniquement.",
     "title": "Peptides de recherche {area}",
-    "noProducts": "Aucun produit n est actuellement associe a ce domaine de recherche.",
+    "noProducts": "Aucun produit n'est actuellement associé à ce domaine de recherche.",
     "requestQuote": "Demander un devis sur mesure",
-    "relatedSearches": "Recherches associees",
+    "relatedSearches": "Recherches associées",
     "topicAria": "Sujet : {topic}"
   },
   "useCasePage": {
-    "metaTitle": "{useCase} | Peptides de recherche | Peptide Shop",
-    "metaDescription": "{description} HPLC >=98%, COA de lot. Usage de recherche uniquement.",
-    "ruoDetail": "Ces composés ne sont pas approuves pour un usage thérapeutique humain ou veterinaire.",
-    "noProducts": "Aucun produit n est actuellement groupe sous cet usage."
+    "metaTitle": "{useCase} | Peptide Shop",
+    "metaDescription": "{useCase} : {description} HPLC ≥{purity} %, un COA par lot, expédition UE. Usage recherche uniquement.",
+    "ruoDetail": "Ces composés ne sont pas approuvés pour un usage thérapeutique humain ou vétérinaire.",
+    "noProducts": "Aucun produit n'est actuellement regroupé sous cet usage."
   },
   "searchPage": {
     "metaTitle": "Recherche | Peptide Shop",
-    "resultsMetaTitle": "Resultats de recherche pour {query} | Peptide Shop",
+    "resultsMetaTitle": "Résultats de recherche pour {query} | Peptide Shop",
     "metaDescription": "Recherchez dans le catalogue Peptide Shop et les notes de recherche.",
     "title": "Rechercher dans le catalogue",
     "lead": "Trouvez des peptides, des indications COA, des notes de stockage et du contenu par domaine de recherche.",
     "queryLabel": "Requete de recherche",
     "placeholder": "Rechercher par peptide, CAS, usage ou domaine",
     "tooShort": "Saisissez au moins deux caracteres pour rechercher.",
-    "noResults": "Aucun resultat trouve.",
-    "resultOne": "1 resultat pour \"{query}\".",
-    "resultMany": "{count} resultats pour \"{query}\".",
+    "noResults": "Aucun résultat trouvé.",
+    "resultOne": "1 résultat pour \"{query}\".",
+    "resultMany": "{count} résultats pour \"{query}\".",
     "products": "Produits",
     "researchNotes": "Notes de recherche",
-    "pages": "Pages"
+    "pages": "Pages",
+    "readArticle": "Lire l’article →"
   },
   "notFound": {
     "metaTitle": "Page introuvable | Peptide Shop",
-    "metaDescription": "La page demandee est introuvable. Recherchez dans le catalogue Peptide Shop ou parcourez les hubs de recherche.",
+    "metaDescription": "La page demandée est introuvable. Recherchez dans le catalogue Peptide Shop ou parcourez les hubs de recherche.",
     "eyebrow": "Erreur 404",
     "title": "Page introuvable.",
-    "lead": "La page a peut-etre ete deplacee pendant la refonte du catalogue. Recherchez dans le catalogue ou parcourez un hub de recherche.",
+    "lead": "La page a peut-être été déplacée pendant la refonte du catalogue. Recherchez dans le catalogue ou parcourez un hub de recherche.",
     "searchPlaceholder": "Rechercher BPC-157, GLP-1, numéro CAS...",
     "topAreas": "Principaux domaines de recherche"
   },
@@ -699,7 +698,7 @@
       "neuroscience": {
         "name": "Neurosciences & SNC",
         "short": "SNC, neuroprotection, cognition",
-        "description": "Peptides de référence utilisés dans les etudes de cognition, de neuroprotection et de récepteurs du SNC, y compris des candidats nootropes et des neuropeptides liés au sommeil.",
+        "description": "Peptides de référence utilisés dans les études de cognition, de neuroprotection et de récepteurs du SNC, y compris des candidats nootropes et des neuropeptides liés au sommeil.",
         "keywords": {
           "0": "peptides nootropes",
           "1": "peptides de recherche SNC",
@@ -708,46 +707,46 @@
       },
       "cardiovascular": {
         "name": "Cardiovasculaire & vasculaire",
-        "short": "Endothelium, tonus vasculaire, réparation",
-        "description": "Peptides références dans les modeles de recherche cardiovasculaire, de réparation endotheli ale et de tonus vasculaire.",
+        "short": "Endothélium, tonus vasculaire, réparation",
+        "description": "Peptides de référence utilisés dans les modèles de recherche cardiovasculaire, de réparation endothéliale et de tonus vasculaire.",
         "keywords": {
           "0": "peptides de recherche cardiovasculaire",
           "1": "peptides de réparation vasculaire"
         }
       },
       "diabetes": {
-        "name": "Diabete & métabolisme",
+        "name": "Diabète & métabolisme",
         "short": "Glucose, insuline, GLP-1 / GIP / GCG",
-        "description": "Composés de référence GLP-1, GIP et agonistes doubles/triples, ainsi que des candidats pour la sensibilisation a l insuline et le métabolisme adipocytaire en recherche métabolique.",
+        "description": "Composés de référence GLP-1, GIP et agonistes doubles/triples, ainsi que des candidats pour la sensibilisation à l'insuline et le métabolisme adipocytaire en recherche métabolique.",
         "keywords": {
           "0": "peptides de recherche GLP-1",
           "1": "peptides de recherche métabolique",
-          "2": "recherche sur les incretines"
+          "2": "recherche sur les incrétines"
         }
       },
       "cancer-apoptosis": {
         "name": "Cancer & apoptose",
-        "short": "Apoptose, voies antiproliferatives",
-        "description": "Reactifs peptidiques utilisés dans les travaux sur suppresseurs de tumeurs, induction de l apoptose et lignes cellulaires antiproliferatives.",
+        "short": "Apoptose, voies antiprolifératives",
+        "description": "Réactifs peptidiques utilisés dans les travaux sur les suppresseurs de tumeurs, l'induction de l'apoptose et les lignées cellulaires antiprolifératives.",
         "keywords": {
           "0": "peptides de recherche sur le cancer",
-          "1": "peptides pour essais d apoptose"
+          "1": "peptides pour essais d'apoptose"
         }
       },
       "adhesion-ecm": {
-        "name": "Adhesion & MEC",
-        "short": "Adhesion cellulaire, MEC et modeles de plaie",
-        "description": "Peptides impliques dans la recherche sur l adhesion cellulaire, la matrice extracellulaire et la réparation des plaies.",
+        "name": "Adhésion & MEC",
+        "short": "Adhésion cellulaire, MEC et modèles de plaie",
+        "description": "Peptides impliqués dans la recherche sur l'adhésion cellulaire, la matrice extracellulaire et la réparation des plaies.",
         "keywords": {
-          "0": "peptides d adhesion cellulaire",
+          "0": "peptides d'adhésion cellulaire",
           "1": "peptides de recherche MEC",
           "2": "recherche peptidique sur cicatrisation"
         }
       },
       "cell-tissue": {
         "name": "Réparation cellulaire & tissulaire",
-        "short": "Migration cellulaire, gastrique, modeles tendineux",
-        "description": "Peptides de référence utilisés dans les modeles de réparation tendineuse, gastrique et du tissu conjonctif.",
+        "short": "Migration cellulaire, gastrique, modèles tendineux",
+        "description": "Peptides de référence utilisés dans les modèles de réparation tendineuse, gastrique et du tissu conjonctif.",
         "keywords": {
           "0": "peptides de réparation tissulaire",
           "1": "recherche BPC-157",
@@ -757,7 +756,7 @@
       "immunology": {
         "name": "Immunologie",
         "short": "Immunité innée/adaptative, cytokines",
-        "description": "Peptides de référence immunomodulateurs utilisés dans la recherche sur les cytokines et l immunité innée/adaptative.",
+        "description": "Peptides de référence immunomodulateurs utilisés dans la recherche sur les cytokines et l'immunité innée/adaptative.",
         "keywords": {
           "0": "peptides immunomodulateurs",
           "1": "peptides de recherche en immunologie"
@@ -766,7 +765,7 @@
       "epigenetics": {
         "name": "Épigénétique & longévité",
         "short": "Télomères, sirtuines et chronobiologie",
-        "description": "Composés de référence utilisés dans la recherche sur l age épigénétique, les télomères et les rythmes circadiens.",
+        "description": "Composés de référence utilisés dans la recherche sur l'âge épigénétique, les télomères et les rythmes circadiens.",
         "keywords": {
           "0": "recherche epitalon",
           "1": "peptides de longévité",
@@ -775,18 +774,18 @@
       },
       "hormones": {
         "name": "Hormones & facteurs de croissance",
-        "short": "GH, GHRH, ghréline, melanocortine",
+        "short": "GH, GHRH, ghréline, mélanocortine",
         "description": "Peptides de référence pour hormone de croissance, analogues GHRH, mimétiques de la ghréline et mélanocortines en recherche endocrinologique.",
         "keywords": {
           "0": "peptides de recherche GHRP",
           "1": "peptides de recherche GHRH",
-          "2": "recherche melanocortine"
+          "2": "recherche mélanocortine"
         }
       },
       "cell-signaling": {
         "name": "Signalisation cellulaire",
         "short": "GPCR, kinases et sondes second messager",
-        "description": "Ligands peptidiques et sondes utilisés pour etudier l activation des récepteurs et les voies de signalisation en aval.",
+        "description": "Ligands peptidiques et sondes utilisés pour étudier l'activation des récepteurs et les voies de signalisation en aval.",
         "keywords": {
           "0": "peptides ligands GPCR",
           "1": "peptides de recherche en signalisation"
@@ -802,9 +801,9 @@
         }
       },
       "cell-permeable": {
-        "name": "Cell-permeables & cofacteurs",
-        "short": "Precurseurs NAD+, analogues de cofacteurs",
-        "description": "Cofacteurs cell-permeables et composés de la voie NAD+ utilisés dans les etudes mitochondriales et métaboliques.",
+        "name": "Cell-perméables & cofacteurs",
+        "short": "Précurseurs NAD+, analogues de cofacteurs",
+        "description": "Cofacteurs cell-perméables et composés de la voie NAD+ utilisés dans les études mitochondriales et métaboliques.",
         "keywords": {
           "0": "recherche NAD+",
           "1": "composés de recherche cofacteurs"
@@ -814,19 +813,19 @@
     "useCases": {
       "weight-loss": {
         "name": "Recherche métabolique",
-        "description": "Peptides de référence agonistes GLP-1, GIP, glucagon et amyline utilisés dans les modeles métaboliques et de poids corporel."
+        "description": "Peptides de référence agonistes GLP-1, GIP, glucagon et amyline utilisés dans les modèles métaboliques et de poids corporel."
       },
       "muscle-recovery": {
-        "name": "Recherche sur recuperation musculaire et tissulaire",
-        "description": "Peptides de référence utilisés dans les modeles de recuperation des tendons, ligaments et muscles."
+        "name": "Recherche sur la récupération musculaire et tissulaire",
+        "description": "Peptides de référence utilisés dans les modèles de récupération des tendons, ligaments et muscles."
       },
       "cognitive": {
         "name": "Recherche cognitive",
-        "description": "Peptides de référence nootropes et actifs sur le SNC utilisés dans la cognition, la neuroprotection et la reponse au stress."
+        "description": "Peptides de référence nootropes et actifs sur le SNC utilisés dans la cognition, la neuroprotection et la réponse au stress."
       },
       "anti-aging": {
-        "name": "Recherche longévité & anti-age",
-        "description": "Composés de référence liés aux télomères, aux facteurs de croissance et a la voie NAD+ utilisés en recherche sur la longévité."
+        "name": "Recherche longévité & anti-âge",
+        "description": "Composés de référence liés aux télomères, aux facteurs de croissance et à la voie NAD+ utilisés en recherche sur la longévité."
       },
       "tanning": {
         "name": "Recherche sur la pigmentation",
@@ -955,5 +954,31 @@
     "legalNote": "Conformément au § 9 Jugendschutzgesetz (Allemagne), l’accès à ce site est réservé aux adultes.",
     "confirm": "Oui, j’ai 18 ans ou plus",
     "deny": "Non, ramenez-moi"
+  },
+  "hub": {
+    "statCompounds": "Composés référencés",
+    "statPurity": "Seuil de pureté HPLC",
+    "statFrom": "À partir de",
+    "statCoa": "Certificat d’analyse",
+    "statCoaValue": "Par lot",
+    "specTitle": "Les spécifications en un coup d’œil",
+    "specLead": "Les valeurs ci-dessous proviennent des mêmes fiches produit que celles utilisées pour générer chaque certificat d’analyse.",
+    "tableCaption": "Spécifications analytiques de chaque composé de ce groupe",
+    "otherAreasTitle": "Autres domaines de recherche",
+    "otherUseCasesTitle": "Autres applications",
+    "faqTitle": "Questions sur ce groupe",
+    "faq1Q": "Quelle pureté attendre des composés {group} ?",
+    "faq1A": "Chaque composé de ce groupe est spécifié à {purity} % de pureté HPLC au minimum. La valeur exacte du lot que vous recevez figure sur son certificat d’analyse, avec la méthode chromatographique employée.",
+    "faq2Q": "Ces composés sont-ils livrés avec une documentation ?",
+    "faq2A": "Oui. Un certificat d’analyse est émis pour le lot concerné : identité, pureté, aspect et condition de conservation. Il est disponible dans les six langues du site, en HTML ou en PDF.",
+    "faq3Q": "Puis-je commander des composés {group} pour un usage humain ou vétérinaire ?",
+    "faq3A": "Non. Tout ce groupe est fourni strictement pour la recherche en laboratoire in vitro. Ces matériaux ne sont ni des médicaments, ni des aliments, ni des compléments, ni des cosmétiques, ni des diagnostics, et ne doivent pas être administrés à des humains ou à des animaux."
+  },
+  "newsletter": {
+    "pending": "Presque — ouvrez le lien de confirmation que nous venons de vous envoyer.",
+    "confirmed": "Inscription confirmée. Merci.",
+    "expired": "Ce lien de confirmation a expiré. Merci de vous réinscrire.",
+    "invalid": "Cette adresse e-mail semble incorrecte. Vérifiez-la et réessayez.",
+    "error": "Nous n’avons pas pu enregistrer votre demande. Réessayez plus tard."
   }
 }

@@ -81,7 +81,7 @@ const hrefWith = (changes: Record<string, string | null>) => {
             class:list={["sidebar-link", { 'is-active': selectedArea === area.slug }]}
             href={hrefWith({ area: area.slug })}
           >
-            <span>{area.name}</span>
+            <span>{t(`taxonomy.researchAreas.${area.slug}.name`)}</span>
             <span class="sidebar-count">{areaCounts.get(area.slug) ?? 0}</span>
           </a>
         </li>
@@ -103,7 +103,7 @@ const hrefWith = (changes: Record<string, string | null>) => {
             class:list={["sidebar-link", { 'is-active': selectedUseCase === useCase.slug }]}
             href={hrefWith({ useCase: useCase.slug })}
           >
-            <span>{useCase.name}</span>
+            <span>{t(`taxonomy.useCases.${useCase.slug}.name`)}</span>
             <span class="sidebar-count">{useCaseCounts.get(useCase.slug) ?? 0}</span>
           </a>
         </li>

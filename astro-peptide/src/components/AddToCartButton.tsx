@@ -3,6 +3,13 @@ import { useState } from 'react';
 
 interface AddToCartButtonProps {
   id: string;
+  /**
+   * Variant SKU for the size this button adds. Without it a line added from a
+   * card keys on the product id and collides with a line of a different size
+   * added from the product page — one of them silently taking the other's
+   * price. See cartLineKey in src/scripts/cartStore.ts.
+   */
+  sku?: string;
   title: string;
   price: number;
   thumb_src?: string;
@@ -15,7 +22,7 @@ interface AddToCartButtonProps {
   };
 }
 
-export default function AddToCartButton({ id, title, price, thumb_src = '/images/peptide-default.jpg', thumb_alt, color, size, labels }: AddToCartButtonProps) {
+export default function AddToCartButton({ id, sku, title, price, thumb_src = '/images/peptide-default.jpg', thumb_alt, color, size, labels }: AddToCartButtonProps) {
   const [added, setAdded] = useState(false);
   const addToCartLabel = labels?.addToCart ?? 'Add to Cart';
   const addedToCartLabel = labels?.addedToCart ?? 'Added to Cart';
@@ -23,6 +30,7 @@ export default function AddToCartButton({ id, title, price, thumb_src = '/images
   const handleClick = () => {
     addCartItem({
       id,
+      sku,
       title,
       price,
       thumb_src,

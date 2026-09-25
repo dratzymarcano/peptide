@@ -1,7 +1,7 @@
 ---
 id: peptide-cagrilintide
-title: Cagrilintide 5 mg — ≥99 % HPLC
-primary_keyword: cagrilintide research
+title: "Cagrilintide 5 mg | ≥99 % HPLC, COA enthalten"
+primary_keyword: "cagrilintide kaufen"
 search_volume: 2900
 aliases:
   - AM833
@@ -10,13 +10,13 @@ aliases:
 cas: 2375614-45-8
 molecular_weight: 3962.4 g/mol
 purity: ≥ 99%
-storage: "-20°C recommended (research-only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
 price: 115
-price_range: €115 per vial
-short_description: Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO.
+price_range: "€115 pro Vial"
+short_description: "Cagrilintid-Amylin-Analogon für die Erforschung von Stoffwechsel- und Sättigungswegen. ≥99 % HPLC-Reinheit mit COA. RUO."
 category: weight-loss
 researchArea: diabetes
 useCases:
@@ -32,81 +32,102 @@ tags:
 images:
   - /images/products/cagrilintide.webp
 meta:
-  title: Buy Cagrilintide 5 mg — GLP-1/Amylin Dual Agonist | Peptide Shop Europe
-  description: Buy cagrilintide 5 mg from Europe. GLP-1/amylin receptor agonist. ≥99% HPLC purity, lot COA. EU dispatch. Research use only.
+  title: "Cagrilintide 5 mg kaufen | ≥99 % HPLC, COA | Peptide Shop"
+  description: "Cagrilintid 5 mg Amylin-Analogon für In-vitro-Stoffwechsel- & Sättigungsstudien kaufen. ≥99 % HPLC-Reinheit, chargenbezogenes COA & schneller EU-Versand."
 faqs:
-  - question: What is Cagrilintide used for in research?
-    answer: Cagrilintide is used in metabolic research to study amylin receptor signalling, appetite regulation, gastric emptying, and glucagon suppression. It provides a long-acting tool for investigating amylin's role in energy homeostasis.
-  - question: How is Cagrilintide different from pramlintide?
-    answer: Cagrilintide is a long-acting amylin analog with an acylated fatty acid side chain enabling weekly research dosing, while pramlintide requires more frequent administration. This extended duration enables different experimental paradigms.
-  - question: What is amylin's role in metabolism?
-    answer: Amylin is co-secreted with insulin from pancreatic beta cells. It slows gastric emptying, suppresses glucagon secretion, and promotes satiety through central nervous system actions. Cagrilintide enables research into these pathways.
-  - question: How should Cagrilintide be stored?
-    answer: Store lyophilised Cagrilintide at -20°C. Once reconstituted, keep at 2-8°C and use within 3 weeks. The fatty acid modification provides good stability but standard peptide handling applies.
-  - question: What purity is your Cagrilintide?
-    answer: Our Cagrilintide is ≥99% pure as verified by HPLC. Each batch includes a Certificate of Analysis with purity data and mass spectrometry identity confirmation.
-  - question: How do I reconstitute Cagrilintide?
-    answer: Reconstitute in sterile bacteriostatic water or appropriate buffer. Add solvent slowly and gently swirl to dissolve. Avoid shaking.
-  - question: Can Cagrilintide be studied with GLP-1 agonists?
-    answer: Yes, research often investigates cagrilintide in combination with semaglutide (the 'CagriSema' approach) to study complementary satiety mechanisms. Both peptides are available from Peptide Shop.
-  - question: What sizes are available?
-    answer: Cagrilintide is available in 2mg and 5mg vials suitable for various research scales.
-  - question: What is cagrilintide?
-    answer: Cagrilintide (AM833) is a long-acting synthetic amylin and calcitonin receptor agonist studied in metabolic research. Unlike GLP-1 agonists, it targets amylin receptors, making it a unique tool for studying complementary appetite-regulating pathways. CAS number 2413571-02-3.
-  - question: What makes cagrilintide different from semaglutide and tirzepatide?
-    answer: Cagrilintide acts via amylin and calcitonin receptors, while semaglutide, tirzepatide, and retatrutide target incretin (GLP-1/GIP) receptors. This distinct mechanism makes it valuable for studying combined amylin/GLP-1 pathway interactions.
-  - question: What is the molecular structure of cagrilintide?
-    answer: Cagrilintide is a 33-amino acid synthetic peptide with a fatty acid conjugation that extends plasma half-life. CAS number 2413571-02-3.
-  - question: What documentation is included with cagrilintide?
-    answer: Each order includes a lot-specific COA with HPLC purity data and identity confirmation. HPLC and mass spectrometry data are provided where available, given synthesis complexity.
+  - question: "Wofür wird Cagrilintid in der Forschung verwendet?"
+    answer: "Cagrilintid wird in der Stoffwechselforschung zur Untersuchung der Amylinrezeptor-Signalisierung, der Appetitregulierung, der Magenentleerung und der Glucagon-Unterdrückung eingesetzt. Es bietet ein langwirksames Instrument zur Untersuchung der Rolle von Amylin bei der Energiehomöostase."
+  - question: "Wie unterscheidet sich Cagrilintid von Pramlintid?"
+    answer: "Cagrilintid ist ein langwirksames Amylinanalogon mit einer acylierten Fettsäureseitenkette, das eine wöchentliche Forschungsdosierung ermöglicht, während Pramlintid eine häufigere Verabreichung erfordert. Diese verlängerte Dauer ermöglicht unterschiedliche experimentelle Paradigmen."
+  - question: "Welche Rolle spielt Amylin im Stoffwechsel?"
+    answer: "Amylin wird gemeinsam mit Insulin aus den Betazellen der Bauchspeicheldrüse ausgeschieden. Es verlangsamt die Magenentleerung, unterdrückt die Glucagonsekretion und fördert das Sättigungsgefühl durch die Wirkung auf das Zentralnervensystem. Cagrilintid ermöglicht die Erforschung dieser Signalwege."
+  - question: "Wie sollte Cagrilintid aufbewahrt werden?"
+    answer: "Lagern Sie lyophilisiertes Cagrilintid bei -20 °C. Nach der Rekonstitution bei 2–8 °C aufbewahren und innerhalb von 3 Wochen verbrauchen. Die Fettsäuremodifikation sorgt für eine gute Stabilität, es gilt jedoch die übliche Peptidhandhabung."
+  - question: "Welchen Reinheitsgrad hat Ihr Cagrilintid?"
+    answer: "Unser Cagrilintid ist laut HPLC zu ≥99 % rein. Zu jeder Charge gehört ein Analysezertifikat mit Reinheitsdaten und Massenspektrometrie-Identitätsbestätigung."
+  - question: "Wie rekonstituiere ich Cagrilintid?"
+    answer: "In sterilem bakteriostatischem Wasser oder einem geeigneten Puffer rekonstituieren. Geben Sie das Lösungsmittel langsam hinzu und schwenken Sie es vorsichtig, bis es sich auflöst. Vermeiden Sie Schütteln."
+  - question: "Kann Cagrilintide mit GLP-1-Agonisten untersucht werden?"
+    answer: "Ja, in der Forschung wird Cagrilintid oft in Kombination mit Semaglutid untersucht (der „CagriSema“-Ansatz), um komplementäre Sättigungsmechanismen zu untersuchen. Beide Peptide sind im Peptide Shop erhältlich."
+  - question: "Welche Größen sind verfügbar?"
+    answer: "Cagrilintid ist in 2-mg- und 5-mg-Durchstechflaschen erhältlich, die für verschiedene Forschungsmaßstäbe geeignet sind."
+  - question: "Was ist Cagrilintid?"
+    answer: "Cagrilintid (AM833) ist ein langwirksamer synthetischer Amylin- und Calcitonin-Rezeptoragonist, der in der Stoffwechselforschung untersucht wurde. Im Gegensatz zu GLP-1-Agonisten zielt es auf Amylinrezeptoren ab und ist damit ein einzigartiges Instrument zur Untersuchung komplementärer Appetitregulierungswege. CAS-Nummer 2413571-02-3."
+  - question: "Was unterscheidet Cagrilintid von Semaglutid und Tirzepatid?"
+    answer: "Cagrilintid wirkt über Amylin- und Calcitoninrezeptoren, während Semaglutid, Tirzepatid und Retatrutid auf Inkretinrezeptoren (GLP-1/GIP) abzielen. Dieser besondere Mechanismus macht es wertvoll für die Untersuchung kombinierter Wechselwirkungen zwischen Amylin und GLP-1-Signalweg."
+  - question: "Wie ist die molekulare Struktur von Cagrilintid?"
+    answer: "Cagrilintid ist ein synthetisches Peptid mit 33 Aminosäuren und einer Fettsäurekonjugation, die die Plasmahalbwertszeit verlängert. CAS-Nummer 2413571-02-3."
+  - question: "Welche Dokumentation liegt Cagrilintid bei?"
+    answer: "Zu jeder Bestellung gehört ein losspezifisches Echtheitszertifikat mit HPLC-Reinheitsdaten und Identitätsbestätigung. Aufgrund der Komplexität der Synthese werden HPLC- und Massenspektrometriedaten bereitgestellt, sofern verfügbar."
 ---
 
-## Cagrilintide 5 mg research overview
+## Cagrilintid 5 mg Forschungsübersicht
 
-Cagrilintide amylin analogue for metabolic and satiety-pathway research. ≥99% HPLC purity with COA. RUO.
+Cagrilintid-Amylin-Analogon für die Erforschung von Stoffwechsel- und Sättigungswegen. ≥99 % HPLC-Reinheit mit COA. RUO.
 
-Cagrilintide is an amylin analogue studied in appetite, satiety and metabolic signalling research models.
+Cagrilintid ist ein Amylin-Analogon, das in Forschungsmodellen zu Appetit, Sättigung und Stoffwechselsignalen untersucht wurde.
 
-Peptide Shop supplies Cagrilintide 5 mg as a sealed research material with lot-level documentation where available. This product is supplied for in-vitro laboratory research only and is not intended for human or veterinary diagnostic, therapeutic, cosmetic or consumption purposes.
+## Forschungsverwendung
 
-## Research use
+- Studien zum Amylin-Rezeptor-Signalweg
+- Sättigungs- und Stoffwechselreaktionsmodelle
+- Kombinationsforschung mit Verbindungen des GLP-1-Signalwegs
 
-- Amylin receptor pathway studies
-- Satiety and metabolic-response models
-- Combination research with GLP-1 pathway compounds
+Am besten gruppiert mit GLP-1- und Inkretin-Produkten in den Bereichen Diabetes und Gewichtsverlust.
 
-Best grouped with GLP-1 and incretin products in the diabetes and weight-loss hubs.
+## Verwandte Forschungsbereiche
 
-## Sequence and analytical data
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-| Field | Detail |
-|---|---|
-| Product ID | peptide-cagrilintide |
-| Package size | 1 × 5 mg vial |
-| CAS number | 2375614-45-8 |
-| Molecular weight | 3962.4 g/mol |
-| Purity | ≥ 99% |
-| Storage | -20°C recommended (research-only) |
+- [Verwandte Forschungsmaterialien durchsuchen](/catalog/diabetes/)
+- [Use-Case-Hub anzeigen](/use-case/weight-loss/)
+- [COA-Richtlinie](/coa-policy/)
+- [Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
 
-Batch-specific documentation may include HPLC purity, identity confirmation and lot information. Refer to the supplied COA or the COA policy for current documentation scope.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-## Reconstitution and handling
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-Allow lyophilised material to equilibrate before opening to reduce condensation risk. Add validated solvent slowly down the vial wall, avoid vigorous shaking, and record the final concentration in the laboratory notebook or LIMS.
+## Verwandte Forschungsbereiche
 
-Use aseptic technique, calibrated pipettes or syringes, and validated diluent choices for the assay system. Reconstituted materials should be aliquoted where appropriate to reduce repeated freeze-thaw exposure.
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
 
-## Storage
+- [Diabetes-Katalog durchsuchen](/catalog/diabetes/)
+- [Hub zum Abnehmen ansehen](/use-case/weight-loss/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
 
-Store unopened material according to the stated condition: -20°C recommended (research-only). Keep vials sealed, dry and protected from light. Reconstituted solutions should be stored under validated laboratory conditions and discarded according to internal SOPs and applicable research-waste rules.
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
 
-## Related resources
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
 
-- [Browse related research materials](/catalog/diabetes/)
-- [View use-case hub](/use-case/weight-loss/)
-- [COA policy](/coa-policy/)
-- [Peptide storage and handling](/blog/peptide-storage-handling-best-practices/)
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Retatrutide 5 mg**](/peptides/retatrutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
 
-## Research-use statement
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
 
-Cagrilintide 5 mg is sold by Peptide Shop for research use only. It is not a medicine, food, cosmetic, supplement or diagnostic product. Buyers are responsible for ensuring lawful purchase, storage, handling and disposal under their institutional and local requirements.
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: DIABETES**](/catalog/diabetes/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Semaglutide 5 mg**](/peptides/semaglutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Tirzepatide 5 mg**](/peptides/tirzepatide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Retatrutide 5 mg**](/peptides/retatrutide/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

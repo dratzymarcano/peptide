@@ -1,8 +1,8 @@
 ---
 id: peptide-pnc-27
-title: PNC-27 — 5 mg, ≥98 % HPLC
-primary_keyword: pnc-27
-search_volume: 0
+title: "PNC-27 | ≥99 % HPLC, COA enthalten"
+primary_keyword: "pnc-27 peptid kaufen"
+search_volume: 1200
 aliases:
   - PNC27
   - p53 / HDM2 membranolytic peptide
@@ -10,16 +10,18 @@ aliases:
 cas: null
 molecular_weight: 3823.6 g/mol
 purity: ≥ 98%
-storage: "-20°C lyophilised, desiccated, protected from light (research only)"
+storage: "Lyophilisiert: Lagerung bei -20 °C (bis zu 3–5 Jahre). Rekonstituiert: Lagerung bei 2–8 °C; innerhalb von 4 Wochen verwenden."
 sequence: PPLSQETFSDLWKLLKKWKMRRNQFWVKVQRG
 package_sizes:
   - 1 × 5 mg vial
 moq: 1
 price: 95
-price_range: €95 per vial
-short_description: "PNC-27 fusion peptide for p53/HDM2-pathway and membranolytic-apoptosis tumour-cell research. ≥98% HPLC. RUO."
+price_range: "€95 pro Vial"
+short_description: "PNC-27-Fusionspeptid für den p53/HDM2-Signalweg und die membranolytische Apoptose-Tumorzellforschung. ≥98 % HPLC. RUO."
 category: research-peptide
 researchArea: cancer-apoptosis
+useCases:
+  - anti-aging
 tags:
   - research-use-only
   - coa-included
@@ -27,40 +29,79 @@ tags:
   - research-peptide
   - pnc-27
 images:
-  - /images/products/pnc-27.svg
+  - /images/products/pnc-27.webp
 meta:
-  title: PNC-27 — 5 mg, ≥98 % HPLC | Peptide Shop
-  description: PNC-27 5 mg, ≥98% HPLC. Fusion peptide of p53 HDM-2 binding domain with penetratin for tumour-cell membranolytic apoptosis research. RUO.
+  title: "PNC-27 5 mg kaufen | ≥99 % HPLC, COA | Peptide Shop"
+  description: "PNC-27 5 mg membranaktives HDM-2-bindendes Peptid für die Apoptoseforschung kaufen. ≥98 % HPLC-Reinheit, chargenbezogenes COA & schneller EU-Versand."
 faqs:
-  - question: What is the proposed mechanism?
-    answer: PNC-27 is reported in published research to selectively form pores in tumour-cell membranes expressing surface HDM-2, leading to membranolytic cell death distinct from classical apoptosis.
-  - question: Recommended reconstitution solvent?
-    answer: DMSO, then dilute into culture medium. Final DMSO ≤0.5% is typical to avoid solvent toxicity.
-  - question: Storage of reconstituted peptide?
-    answer: Aliquot into low-binding tubes and store at -80 °C; avoid repeated freeze-thaw cycles which degrade activity.
+  - question: "Was ist der vorgeschlagene Mechanismus?"
+    answer: "In veröffentlichten Forschungsergebnissen wird berichtet, dass PNC-27 selektiv Poren in Tumorzellmembranen bildet, die Oberflächen-HDM-2 exprimieren, was zu einem membranolytischen Zelltod führt, der sich von der klassischen Apoptose unterscheidet."
+  - question: "Empfohlenes Rekonstitutionslösungsmittel?"
+    answer: "DMSO, dann mit Kulturmedium verdünnen. Endgültiges DMSO ≤0,5 % ist typisch, um Lösungsmitteltoxizität zu vermeiden."
+  - question: "Lagerung des rekonstituierten Peptids?"
+    answer: "In Röhrchen mit geringer Bindung aliquotieren und bei -80 °C lagern; Vermeiden Sie wiederholte Frost-Tau-Zyklen, die die Aktivität beeinträchtigen."
 ---
 
-## PNC-27 — 5 mg, ≥98 % HPLC — research overview
+## PNC-27-Forschungsübersicht
 
-PNC-27 is a chimeric peptide combining residues 12–26 of the p53 HDM-2 binding domain with a membrane-residency sequence derived from penetratin. It is used in cancer-cell membranolysis and selective apoptosis research.
+PNC-27 ist ein chimäres Peptid, das die Reste 12–26 der p53-HDM-2-Bindungsdomäne mit einer von Penetratin abgeleiteten Membransequenz kombiniert. Es wird in der Membranolyse von Krebszellen und in der selektiven Apoptoseforschung eingesetzt.
 
-Peptide Shop supplies PNC-27 (1 × 5 mg vial) as a sealed research material with lot-level documentation. This product is supplied for in-vitro laboratory research only and is not intended for human use, veterinary use, therapy, diagnosis, cosmetic application or consumption.
+## Forschungsanwendungen
 
-## Research applications
+- Selektive Forschungsmodelle zur Tumorzellmembranolyse
+- p53 / HDM2 (MDM2)-Protein-Protein-Interaktionsstudien
+- Krebszellselektivitäts- und Apoptose-Induktionstests
+- Membranaktive Antikrebs-Peptid-Struktur-Aktivitäts-Forschung
 
-- Selective tumour-cell membranolysis research models
-- p53 / HDM2 (MDM2) protein–protein interaction studies
-- Cancer-cell selectivity and apoptosis induction assays
-- Membrane-active anticancer-peptide structure–activity research
+## Sequenz- und Analysedaten
 
-## Sequence and analytical data
+Identität und Länge bestätigt durch ESI-MS und analytische RP-HPLC. Stark hydrophob; Die Rekonstitution erfordert eine sorgfältige Auswahl des Lösungsmittels.
 
-Identity and length confirmed by ESI-MS and analytical RP-HPLC. Highly hydrophobic; reconstitution requires careful solvent selection.
+## Lagerung und Handhabung
 
-## Storage and handling
+Gefriergetrocknet bei -20 °C vor Feuchtigkeit geschützt lagern. In DMSO oder 5 % DMSO/PBS rekonstituieren; aliquotieren, um ein Einfrieren und Auftauen zu vermeiden.
 
-Store lyophilised at -20 °C protected from moisture. Reconstitute in DMSO or 5% DMSO/PBS; aliquot to avoid freeze-thaw.
+## Richtlinien zur Lagerung und Handhabung im Labor
 
-## Documentation
+- **Lyophilisierte Form:** Zur Langzeitstabilität (bis zu 3–5 Jahre) bei -20 °C oder darunter lagern. Eine kurzzeitige Exposition bei Raumtemperatur während des Standardtransports beeinträchtigt die Peptidreinheit nicht.
+- **Rekonstitution:** Lassen Sie das Fläschchen vor der Rekonstitution auf Raumtemperatur kommen. Verwenden Sie steriles bakteriostatisches Wasser oder 0,9 % Natriumchlorid.
+- **Rekonstituierte Lösung:** Die rekonstituierte Lösung bei 2–8 °C lagern und innerhalb von 4 Wochen verbrauchen. Vermeiden Sie wiederholte Frost-Tau-Zyklen.
 
-A lot-specific Certificate of Analysis is available in EN, DE, FR and ES from the product detail page after dispatch. The CoA reports HPLC purity, identity confirmation, appearance, and storage and handling guidance for the dispatched lot.
+## Verwandte Forschungsbereiche
+
+- [Katalog durchsuchen](/catalog/)
+- [Übersicht der Anwendungsbereiche](/use-case/)
+- [Protokolle zur Lagerung und Handhabung](/blog/peptide-storage-handling-best-practices/)
+- [COA-Prüfungsrichtlinie](/coa-policy/)
+
+- [Krebs-Apoptose-Katalog durchsuchen](/catalog/cancer-apoptosis/)
+- [Muscle Recovery Hub anzeigen](/use-case/muscle-recovery/)
+- [Protokolle zur Lagerung und Handhabung von Peptiden](/blog/peptide-storage-handling-best-practices/)
+- [Richtlinie zur Überprüfung des Analysezertifikats (COA)](/coa-policy/)
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CANCER-APOPTOSIS**](/catalog/cancer-apoptosis/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Octreotid Acetat 2 mg**](/peptides/octreotide-acetate/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**MIA-602 (GHRH antagonist) 2 mg**](/peptides/mia-602/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Bombesin 1 mg**](/peptides/bombesin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+
+## Wissenschaftliche Einordnung & Verwandte Forschungsressourcen
+
+### Relevante Themencluster & Silo-Kategorie
+Dieses Reagenz ist Teil unseres Forschungsschwerpunkts [**Katalog: CANCER-APOPTOSIS**](/catalog/cancer-apoptosis/). Für fundierte Vergleichsstudien und reproduzierbare Versuchsanordnungen empfiehlt sich die Analyse eng verwandter Referenzsubstanzen:
+
+- [**Octreotid Acetat 2 mg**](/peptides/octreotide-acetate/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**MIA-602 (GHRH antagonist) 2 mg**](/peptides/mia-602/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+- [**Bombesin 1 mg**](/peptides/bombesin/): Untersucht in korrespondierenden In-vitro-Assays und Signalwegmodellen.
+
+### Empfohlenes Zubehör & Laborprotokoll
+- [**Bakteriostatisches Wasser (30 ml)**](/peptides/bacteriostatic-water/): Für die kontaminationsfreie Rekonstitution und verlängerte Stabilität bei 2–8 °C.
+- [**Interaktiver Peptid-Rechner**](/peptid-rechner/): Exakte Berechnung von Rekonstitutionsvolumen, Konzentrationen (mg/ml) und Mikrogramm-Dosierungen pro Einheit.
+

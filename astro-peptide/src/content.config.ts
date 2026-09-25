@@ -32,6 +32,24 @@ const productsCollection = defineCollection({
     package_sizes: z.array(z.string()),
     moq: z.number(),
     price: z.number().optional(),
+    /**
+     * Package-size variants. Omit for a single-size product: `price` plus
+     * `package_sizes[0]` then derives the one variant, which is exactly the
+     * previous behaviour and renders no size selector.
+     *
+     * When present this is authoritative — `price` is ignored for purchasing.
+     * Sizes must be distinct: src/lib/variants.ts derives each SKU from the
+     * label, so two identical labels would collapse onto one cart line.
+     */
+    variants: z.array(z.object({
+      size: z.string().min(1),
+      price: z.number().positive(),
+      compare_at_price: z.number().positive().optional(),
+    })).min(1).optional()
+      .refine(
+        (list) => !list || new Set(list.map((v) => v.size)).size === list.length,
+        { message: 'variant sizes must be unique within a product' },
+      ),
     price_range: z.string(),
     short_description: z.string(),
     category: z.string(),
@@ -84,6 +102,10 @@ const blogCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.string(),
+    // Feeds BlogPosting.dateModified. Without it every post reported
+    // dateModified === datePublished forever, so a revised article looked
+    // untouched to Google no matter how much of it changed.
+    updatedDate: z.string().optional(),
     author: z.string().default('Peptide Shop Team'),
     category: z.string(),
     tags: z.array(z.string()).optional(),

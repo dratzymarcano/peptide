@@ -9,7 +9,11 @@ const rootDir = fileURLToPath(new URL('..', import.meta.url));
 const productsDir = join(rootDir, 'src/content/products');
 const outputDir = join(rootDir, 'public/feeds');
 const site = SITE_ORIGIN;
-const defaultLocale = 'en';
+// Mirrors src/i18n/config.ts: German is served at the unprefixed root, English
+// markdown is the content source. Feed URLs must follow the routing default or
+// every German feed entry points at a 301.
+const defaultLocale = 'de';
+const sourceLocale = 'en';
 
 const localeMeta = {
 	en: { language: 'en', term: 'Peptide', purity: 'purity', hplc: 'HPLC verified', ruo: 'For laboratory research use only. Not for human or veterinary use, food, cosmetics, supplements or diagnostics.' },
@@ -61,7 +65,7 @@ function localizePath(path, locale) {
 
 function localizedProductData(product, locale) {
 	const localizedPath = join(productsDir, locale, `${product.slug}.md`);
-	const data = locale !== defaultLocale && existsSync(localizedPath)
+	const data = locale !== sourceLocale && existsSync(localizedPath)
 		? { ...product.data, ...parseFrontmatter(localizedPath) }
 		: product.data;
 	const meta = localeMeta[locale];
@@ -103,6 +107,44 @@ function availability(product) {
 	return 'in_stock';
 }
 
+/**
+ * Package-size variants, mirroring src/lib/variants.ts.
+ *
+ * This script is plain Node reading frontmatter with `yaml`, so it cannot
+ * import the typed resolver. The two must agree on the SKU rule, because the
+ * SKU is what `g:id` publishes to Merchant Center and what the cart keys a
+ * line by — change one and change the other.
+ */
+function variantSku(productId, size) {
+	const suffix = String(size)
+		.toLowerCase()
+		.replace(/[×x]/g, ' ')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
+	return suffix ? `${productId}--${suffix}` : productId;
+}
+
+function variantsFor(data) {
+	const declared = Array.isArray(data.variants) ? data.variants : [];
+	const rows = declared.length
+		? declared.map((v) => ({ size: v.size, price: Number(v.price) }))
+		: [{
+			size: data.package_sizes?.[0] ?? 'Standard',
+			price: Number(data.price ?? String(data.price_range ?? '').match(/[\d,.]+/)?.[0]?.replace(',', '.') ?? 0),
+		}];
+	const discount = Number(data.promo?.discount_pct ?? 0);
+	return rows
+		.filter((row) => Number.isFinite(row.price) && row.price > 0)
+		.map((row) => ({
+			sku: variantSku(data.id, row.size),
+			size: row.size,
+			price: discount > 0 && discount <= 95
+				? Math.round((row.price * (100 - discount)) / 100 * 100) / 100
+				: row.price,
+		}))
+		.sort((a, b) => a.price - b.price);
+}
+
 function googleCategory(product) {
 	return product.data.category === 'supplies'
 		? 'Health & Beauty > Health Care > Medical Supplies'
@@ -113,23 +155,30 @@ function feedItem(product, feed) {
 	const data = product.data;
 	const localized = localizedProductData(product, feed.locale);
 	const image = data.images?.[0] ?? '/images/peptide-default.jpg';
-	const price = Number(data.price ?? String(data.price_range ?? '').match(/[\d,.]+/)?.[0]?.replace(',', '.') ?? 0);
 	const link = `${site}${localizePath(`/peptides/${product.slug}/`, feed.locale)}`;
 	const imageLink = image.startsWith('http') ? image : `${site}${image}`;
 	const labels = [data.researchArea, ...(data.useCases ?? []), ...(data.tags ?? [])].filter(Boolean);
 
-	return `
+	// One item per buyable size. A feed carrying only the cheapest variant
+	// advertises a price the shopper cannot get for the size they land on,
+	// which Merchant Center disapproves as a price mismatch. `item_group_id`
+	// ties them back together as one product.
+	const variants = variantsFor(data);
+	const isGrouped = variants.length > 1;
+
+	return variants.map((variant) => `
 	<item>
-		<g:id>${escapeXml(data.id || product.slug)}</g:id>
-		<g:title>${escapeXml(localized.title.slice(0, 150))}</g:title>
+		<g:id>${escapeXml(isGrouped ? variant.sku : (data.id || product.slug))}</g:id>
+		${isGrouped ? `<g:item_group_id>${escapeXml(data.id || product.slug)}</g:item_group_id>` : ''}
+		<g:title>${escapeXml((isGrouped ? `${localized.title} — ${variant.size}` : localized.title).slice(0, 150))}</g:title>
 		<g:description>${escapeXml(localized.description.slice(0, 5000))}</g:description>
 		<g:link>${escapeXml(link)}</g:link>
 		<g:image_link>${escapeXml(imageLink)}</g:image_link>
 		<g:availability>${availability(product)}</g:availability>
-		<g:price>${price.toFixed(2)} EUR</g:price>
+		<g:price>${variant.price.toFixed(2)} EUR</g:price>
 		<g:brand>Peptide Shop</g:brand>
 		<g:condition>new</g:condition>
-		<g:mpn>${escapeXml(data.id || product.slug)}</g:mpn>
+		<g:mpn>${escapeXml(isGrouped ? variant.sku : (data.id || product.slug))}</g:mpn>
 		<g:google_product_category>${escapeXml(googleCategory(product))}</g:google_product_category>
 		<g:product_type>${escapeXml(feed.productType)}</g:product_type>
 		<g:shipping>
@@ -142,7 +191,7 @@ function feedItem(product, feed) {
 		<g:custom_label_2>${escapeXml((data.cas || '').toString())}</g:custom_label_2>
 		<g:custom_label_3>${escapeXml(labels.includes('research-use-only') ? 'research-use-only' : 'standard')}</g:custom_label_3>
 		<g:custom_label_4>${existsSync(join(productsDir, feed.locale, `${product.slug}.md`)) ? 'markdown-localized' : 'runtime-localized'}</g:custom_label_4>
-	</item>`;
+	</item>`).join('');
 }
 
 function writeFeed(feed, products) {

@@ -38,8 +38,6 @@ interface Props {
   packageSize?: string;
   shortDescription?: string;
 
-  /** Visual variant. `compact` hides the description. */
-  variant?: 'default' | 'compact';
 }
 
 const props = Astro.props as Props;
@@ -59,9 +57,10 @@ const p: CardProduct = props.product ?? {
   price: props.price,
   priceRange: props.priceRange ?? '',
   availability: 'in_stock',
+  variantCount: 1,
+  sku: props.id ?? '',
 };
 
-const variant = props.variant ?? 'default';
 const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
 const t = useTranslations(locale);
 const productUrl = p.url.startsWith('/') ? localizePath(p.url, locale) : p.url;
@@ -83,7 +82,12 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
       width="300"
       height="300"
     />
-    {p.purity && <span class="purity-pill" aria-hidden="true">{p.purity}</span>}
+    {p.purity && (
+      <span class="purity-pill" aria-hidden="true">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        {p.purity} HPLC
+      </span>
+    )}
     {p.promo && (
       <span class="promo-ribbon" aria-label={t('productCard.promotion', { label: p.promo.label })}>
         {p.promo.label}
@@ -92,15 +96,16 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
   </a>
 
   <div class="body">
-    {p.category && (
-      <span class="badge" aria-hidden="true">{p.category.replace(/-/g, ' ')}</span>
-    )}
+    <div class="card-meta-row">
+      {p.category && (
+        <span class="badge badge-category" aria-hidden="true">{p.category.replace(/-/g, ' ')}</span>
+      )}
+      {p.packageSize && <span class="spec-chip">{p.packageSize}</span>}
+    </div>
 
     <h3 class="title">
       <a href={productUrl}>{p.title}</a>
     </h3>
-
-    {p.packageSize && <p class="meta">{p.packageSize}</p>}
 
     {/*
       The truncated description was removed: at 90 characters it cut mid-
@@ -190,6 +195,9 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
           </div>
         </div>
       </div>
+      {p.variantCount > 1 && (
+        <span class="price-from">{t('productCard.from')}</span>
+      )}
       <ProductLivePrice
         client:visible
         id={p.id}
@@ -219,6 +227,8 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
         <AddToCartButton
           client:load
           id={p.id}
+          sku={p.sku}
+          size={p.packageSize}
           title={p.title}
           price={p.price}
           thumb_src={p.image}
@@ -249,74 +259,124 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
     display: flex;
     flex-direction: column;
     height: 100%;
+    border-radius: var(--radius-lg);
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    transition: all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-product:hover {
+    border-color: rgba(0, 119, 182, 0.35);
+    box-shadow: 0 16px 32px -8px rgba(0, 119, 182, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    transform: translateY(-3px);
   }
   .card-product .img-wrap {
     position: relative;
     display: block;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    /* Product shots are a single vial on a light backdrop. `cover` cropped
-       the cap and label off at card proportions; `contain` keeps the whole
-       vial visible, which is the point of the image. */
-    background: var(--color-surface-2);
+    background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+    border-bottom: 1px solid var(--color-border);
   }
   .card-product .img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 220ms ease;
+    padding: var(--space-4);
+    transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .card-product:hover .img-wrap img { transform: scale(1.03); }
+  .card-product:hover .img-wrap img {
+    transform: scale(1.06);
+    filter: drop-shadow(0 8px 16px rgba(0, 119, 182, 0.08));
+  }
 
   .card-product .purity-pill {
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgb(255 255 255 / 0.92);
-    backdrop-filter: blur(6px);
-    color: var(--color-primary);
-    font-size: 11px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-accent);
+    border: 1px solid rgba(5, 150, 105, 0.25);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 4px 8px;
-    border-radius: 999px;
-    box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+    letter-spacing: 0.02em;
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 6px rgba(5, 150, 105, 0.12);
   }
   .card-product .promo-ribbon {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: var(--color-accent, #d63b3b);
+    background: linear-gradient(135deg, #0077B6 0%, #015BA0 100%);
     color: #fff;
-    font-size: 11px;
+    font-family: var(--font-display);
+    font-size: 10.5px;
     font-weight: 700;
     letter-spacing: 0.04em;
-    padding: 4px 8px;
-    border-radius: 999px;
-    box-shadow: 0 1px 4px rgb(15 23 42 / 0.18);
+    padding: 3px 9px;
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 8px rgba(0, 119, 182, 0.3);
   }
 
   .card-product .body {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    padding: var(--space-4);
+    padding: var(--space-5);
     flex: 1 1 auto;
   }
-  .card-product .title a {
-    color: inherit;
-    text-decoration: none;
-    /* The image above links to the same product and is a large target, so
-       this already satisfies WCAG 2.2's equivalent-control exception — but a
-       20px-tall title is still fiddly to tap, so give it the 24px minimum. */
-    display: inline-flex;
+  .card-meta-row {
+    display: flex;
     align-items: center;
-    min-height: 24px;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  .badge-category {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: var(--color-primary-50);
+    color: var(--color-primary-700);
+    padding: 2px 8px;
+    border-radius: var(--radius-xs);
+  }
+  .spec-chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-ink-3);
+    font-weight: 500;
+  }
+
+  .card-product .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+  .card-product .title a {
+    color: var(--color-ink);
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 150ms ease;
   }
   .card-product .title a:hover,
   .card-product .title a:focus-visible {
     color: var(--color-primary);
-    text-decoration: underline;
   }
   .card-product .meta-desc { color: var(--color-ink-3); }
 
@@ -346,6 +406,14 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
     flex-direction: column;
     gap: 4px;
   }
+  /* Marks the figure below as the entry price of a range rather than the
+     price. Without it a €59.95 card next to a €249 checkout reads as a
+     bait-and-switch. */
+  .card-product .price-from {
+    font-size: var(--text-xs);
+    color: var(--color-ink-3);
+    line-height: 1;
+  }
   .card-product .price {
     display: flex;
     align-items: baseline;
@@ -374,7 +442,7 @@ const ratingPct = p.rating ? Math.round((p.rating.average / 5) * 100) : 0;
   .card-product .availability-in-stock .availability-dot { background: #1aa260; }
   .card-product .availability-low-stock .availability-dot { background: #f5b301; }
   .card-product .availability-out-of-stock .availability-dot { background: #d63b3b; }
-  .card-product .availability-preorder .availability-dot { background: #3b82f6; }
+  .card-product .availability-preorder .availability-dot { background: #0077B6; }
 
   .card-product .actions {
     display: flex;

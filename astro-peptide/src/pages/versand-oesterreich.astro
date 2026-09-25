@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import TrustBar from '../components/TrustBar.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { getLocaleFromPathname, localizePath } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+export const prerender = false;
+
+const locale = (Astro.locals.locale ?? getLocaleFromPathname(Astro.url.pathname));
+const t = useTranslations(locale);
+const href = (path: string) => localizePath(path, locale);
+
+const breadcrumbs = [
+  { name: t('common.home'), url: href('/') },
+  { name: 'Versand & Lieferung', url: href('/shipping/') },
+  { name: 'Versand nach Österreich', url: href('/versand-oesterreich/') },
+];
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DeliveryChargeSpecification',
+  name: 'Peptide Inland-Expressversand Österreich aus Wien (24–48 h)',
+  description: 'Schneller Inlandsversand von Forschungspeptiden direkt aus unserem Logistikzentrum in Wien nach ganz Österreich (Wien, Graz, Linz, Salzburg, Innsbruck). Keine Auslandsgrenzen.',
+  areaServed: {
+    '@type': 'Country',
+    name: 'Austria',
+    identifier: 'AT',
+  },
+  deliveryTime: {
+    '@type': 'ShippingDeliveryTime',
+    transitTime: {
+      '@type': 'QuantitativeValue',
+      minValue: 1,
+      maxValue: 2,
+      unitCode: 'DAY',
+    },
+  },
+};
+---
+
+<Layout
+  title="Peptide kaufen Österreich | Inlands-Express aus Wien in 24–48 h | Peptide Shop"
+  description="Peptide in Österreich bestellen: Schnelle Inlandslieferung direkt aus Wien nach Graz, Linz, Salzburg und ganz Österreich in 24–48 Stunden. 100 % zollfrei und diskret verpackt."
+  breadcrumbs={breadcrumbs}
+>
+  <JsonLd schema={webPageSchema} />
+
+  <section class="section">
+    <div class="container" style="max-width: 900px;">
+      <Breadcrumb items={breadcrumbs} />
+
+      <PageHeading
+        title="Peptide nach Österreich bestellen | Inlands-Express aus Wien"
+        description="Forschungspeptide mit chargenbezogenem HPLC-Analysezertifikat. Schneller Inlandsversand aus unserem Standort in Wien nach Graz, Linz, Salzburg und ganz Österreich in 24 bis 48 Stunden."
+      />
+
+      {/* REGIONAL SHIPPING NOTICE */}
+      <div style="margin-top: var(--space-6); padding: 1.25rem 1.5rem; background: var(--color-surface-2); border: 1px solid var(--color-border); border-radius: 12px; display: flex; align-items: flex-start; gap: 1rem;">
+        <div>
+          <strong style="color: var(--color-ink); display: block; font-size: 1rem; margin-bottom: 0.25rem;">
+            Inlandsversand direkt aus Wien – Höchste Zuverlässigkeit & Schnelligkeit
+          </strong>
+          <p style="margin: 0; color: var(--color-ink-2); font-size: 0.9rem; line-height: 1.5;">
+            Mit Unternehmenssitz und Zentrallager in <strong>Wien (Österreich)</strong> versenden wir alle Bestellungen ohne Grenzübertritt per Inlands-Express. Die Regellaufzeit nach ganz Österreich beträgt <strong>24 bis 48 Stunden</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-layout" style="margin-top: var(--space-8);">
+        <article class="article-body prose-content">
+          <h2>Ihre Vorteile beim Versand nach Österreich</h2>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">🇦🇹 Inländischer Versand aus Wien</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Unser Logistikzentrum befindet sich in 1010 Wien. Es gibt keinerlei Zollkontrollen, Auslandsverzögerungen oder Einfuhrabgaben – direkter Inlandstransport innerhalb Österreichs.
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">📦 Österreichische Post & DPD</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Die Zustellung erfolgt verlässlich über DPD oder die Österreichische Post direkt an Ihre Laboradresse, Ihr Büro oder an eine Postfiliale bzw. Abholstation.
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">🔒 Diskrete Laborverpackung</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Neutrale Umverpackung ohne Nennung von Produktnamen oder Inhaltsstoffen. Höchste Diskretion und Transportschutz für Ihre Forschungsreagenzien.
+              </p>
+            </div>
+
+            <div style="background: #ffffff; padding: 1.25rem; border-radius: 10px; border: 1px solid var(--color-border);">
+              <h3 style="margin-top: 0; font-size: 1rem; color: var(--color-ink);">❄️ Temperaturgeschützter Transport</h3>
+              <p style="font-size: 0.88rem; color: var(--color-ink-2); margin-bottom: 0; line-height: 1.5;">
+                Lyophilisierte Peptide weisen bei Umgebungstemperatur eine hohe Stabilität auf. Für temperaturempfindliche Sequenzen erfolgt der Versand mit zusätzlichen Kühlelementen.
+              </p>
+            </div>
+          </div>
+
+          <h2>Lieferzeiten nach Bundesländern</h2>
+          <table class="table-clean" style="margin: 1.5rem 0;">
+            <thead>
+              <tr>
+                <th>Region / Bundesland</th>
+                <th>Versanddienstleister</th>
+                <th>Regellaufzeit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Wien & Niederösterreich</strong></td>
+                <td>Österreichische Post / DPD</td>
+                <td>1–2 Werktage (oft 24h)</td>
+              </tr>
+              <tr>
+                <td><strong>Oberösterreich (Linz, Wels)</strong></td>
+                <td>Österreichische Post / DPD</td>
+                <td>1–2 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Steiermark (Graz), Burgenland & Kärnten</strong></td>
+                <td>Österreichische Post / DPD</td>
+                <td>1–2 Werktage</td>
+              </tr>
+              <tr>
+                <td><strong>Salzburg, Tirol & Vorarlberg</strong></td>
+                <td>Österreichische Post / DPD</td>
+                <td>1–2 Werktage</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>Beliebte Forschungspeptide mit Sofortversand nach Österreich</h2>
+          <p>
+            Alle nachfolgenden Referenzsubstanzen sind ab Lager verfügbar und werden mit chargenspezifischem HPLC/MS-Analysezertifikat geliefert:
+          </p>
+          <ul>
+            <li><strong><a href={href('/peptides/bpc-157/')}>BPC-157 (5 mg & 10 mg)</a>:</strong> Das führende Pentadekapeptid für zelluläre Wundheilungs- und Geweberegenerationsstudien.</li>
+            <li><strong><a href={href('/peptides/tb-500/')}>TB-500 / Thymosin Beta-4 (5 mg & 10 mg)</a>:</strong> Erforschung von Aktin-Regulation und Zytoprotektion.</li>
+            <li><strong><a href={href('/peptides/semaglutide/')}>Semaglutid (5 mg)</a>:</strong> GLP-1-Rezeptoragonist für metabolische Grundlagenforschung.</li>
+            <li><strong><a href={href('/peptides/tirzepatide/')}>Tirzepatid (10 mg & 15 mg)</a>:</strong> Dualer GLP-1 / GIP-Agonist zur Erforschung von Insulinsekretion.</li>
+            <li><strong><a href={href('/peptides/bacteriostatic-water/')}>Bakteriostatisches Wasser (30 ml)</a>:</strong> Reinstes Lösungsmittel für die Rekonstitution.</li>
+          </ul>
+
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href={href('/shop/')} class="btn btn-primary">Gesamten Katalog ansehen</a>
+            <a href={href('/peptid-rechner/')} class="btn btn-secondary">Zum Peptid-Rechner</a>
+          </div>
+        </article>
+      </div>
+
+      <div style="margin-top: var(--space-12);">
+        <TrustBar tone="light" />
+      </div>
+    </div>
+  </section>
+</Layout>
