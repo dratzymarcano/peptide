@@ -64,7 +64,7 @@ export default function ProductOptions({
     calculatedAtCheckout: labels?.calculatedAtCheckout ?? 'Im Checkout berechnet',
     addToCart: labels?.addToCart ?? 'In den Warenkorb',
     addedToCart: labels?.addedToCart ?? 'Im Warenkorb ✓',
-    minimumNote: labels?.minimumNote ?? 'Mindestbestellwert von 150 € für Laborbestellungen.',
+    minimumNote: labels?.minimumNote ?? 'Mindestbestellwert von 200 € für Laborbestellungen.',
     ruoNote: labels?.ruoNote ?? 'Ausschließlich für In-vitro- und Laborforschungszwecke (RUO).',
     size: labels?.size ?? 'Packungsgröße',
     selectSize: labels?.selectSize ?? 'Größe wählen',

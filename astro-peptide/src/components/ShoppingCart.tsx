@@ -3,7 +3,7 @@ import { cartItems, cartTotal, deleteCartItem, updateCartItemQuantity, addCartIt
 
 const FREE_DELIVERY_THRESHOLD = 500;
 const SHIPPING_COST = 9.90;
-const MIN_ORDER_AMOUNT = 150;
+const MIN_ORDER_AMOUNT = 200;
 
 const CROSS_SELL_ITEMS = [
   {

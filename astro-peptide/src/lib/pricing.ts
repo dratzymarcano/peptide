@@ -13,7 +13,7 @@
 import { getCanonicalCollection } from './collections';
 import { resolveVariant, variantsFor } from './variants';
 
-export const MIN_ORDER_AMOUNT = 150;
+export const MIN_ORDER_AMOUNT = 200;
 export const FREE_DELIVERY_THRESHOLD = 500;
 
 export const SHIPPING_COSTS = {

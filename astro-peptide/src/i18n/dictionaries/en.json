@@ -27,7 +27,7 @@
     "researchUseOnlyStrong": "Research use only.",
     "researchUseOnlyShort": "Not for human or veterinary use.",
     "qualityTopbar": "≥98% HPLC · COA on every batch",
-    "minOrderTopbar": "€150 minimum order",
+    "minOrderTopbar": "€200 minimum order",
     "minOrderAria": "Minimum order value"
   },
   "footer": {
@@ -183,7 +183,7 @@
     "delivery": "Delivery",
     "free": "Free",
     "calculatedAtCheckout": "Calculated at checkout",
-    "minimumNote": "A minimum order value of €150 applies at checkout.",
+    "minimumNote": "A minimum order value of €200 applies at checkout.",
     "ruoNote": "For research use only. Not for human or veterinary use.",
     "size": "Size",
     "selectSize": "Select package size",
@@ -417,7 +417,7 @@
     "faqStorageQ": "How should lyophilised peptides be stored?",
     "faqStorageA": "Follow the storage condition on the product page and COA. Many lyophilised peptides are stored frozen, sealed, dry and protected from light.",
     "faqMinimumQ": "Is there a minimum order value?",
-    "faqMinimumA": "Yes. A minimum order value of €150 applies at checkout.",
+    "faqMinimumA": "Yes. A minimum order value of €200 applies at checkout.",
     "stillNeedHelp": "Still need help?",
     "stillNeedHelpBody": "For specific batch, COA or dispatch questions, include product and order details in your message.",
     "browseByRoute": "Browse by route",

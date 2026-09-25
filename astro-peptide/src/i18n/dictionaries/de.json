@@ -27,7 +27,7 @@
     "researchUseOnlyStrong": "Nur für Forschungszwecke.",
     "researchUseOnlyShort": "Nicht für die Anwendung bei Menschen oder Tieren.",
     "qualityTopbar": "≥98 % HPLC · COA für jede Charge",
-    "minOrderTopbar": "Mindestbestellwert 150 €",
+    "minOrderTopbar": "Mindestbestellwert 200 €",
     "minOrderAria": "Mindestbestellwert"
   },
   "footer": {
@@ -183,7 +183,7 @@
     "delivery": "Lieferung",
     "free": "Kostenlos",
     "calculatedAtCheckout": "Wird an der Kasse berechnet",
-    "minimumNote": "An der Kasse gilt ein Mindestbestellwert von 150 €.",
+    "minimumNote": "An der Kasse gilt ein Mindestbestellwert von 200 €.",
     "ruoNote": "Nur für Forschungszwecke. Nicht für die Anwendung bei Menschen oder Tieren.",
     "size": "Größe",
     "selectSize": "Packungsgröße wählen",
@@ -417,7 +417,7 @@
     "faqStorageQ": "Wie sollten lyophilisierte Peptide gelagert werden?",
     "faqStorageA": "Folgen Sie der Lagerbedingung auf Produktseite und COA. Viele lyophilisierte Peptide werden gefroren, versiegelt, trocken und lichtgeschützt gelagert.",
     "faqMinimumQ": "Gibt es einen Mindestbestellwert?",
-    "faqMinimumA": "Ja. An der Kasse gilt ein Mindestbestellwert von 150 €.",
+    "faqMinimumA": "Ja. An der Kasse gilt ein Mindestbestellwert von 200 €.",
     "stillNeedHelp": "Benötigen Sie weiterhin Hilfe?",
     "stillNeedHelpBody": "Bei spezifischen Chargen-, COA- oder Versandfragen geben Sie Produkt- und Bestelldetails in Ihrer Nachricht an.",
     "browseByRoute": "Nach Route browsen",

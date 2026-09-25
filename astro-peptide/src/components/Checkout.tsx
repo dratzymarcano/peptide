@@ -22,7 +22,7 @@ const SHIPPING_COSTS: Record<ShippingMethod, { price: number; labelKey: string; 
   },
 };
 
-const MIN_ORDER_AMOUNT = 150;
+const MIN_ORDER_AMOUNT = 200;
 const FREE_DELIVERY_THRESHOLD = 500;
 
 const checkoutSteps: Step[] = ['customer', 'shipping', 'payment'];

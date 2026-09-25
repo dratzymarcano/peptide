@@ -1,7 +1,7 @@
 import { useStore } from '@nanostores/react';
 import { cartItems, cartTotal, isCartOpen, removeCartItem, updateQuantity, addCartItem, cartLineKey } from '../scripts/cartStore';
 
-const MIN_ORDER_AMOUNT = 150;
+const MIN_ORDER_AMOUNT = 200;
 
 const CROSS_SELL_ITEMS = [
   {

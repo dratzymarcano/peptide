@@ -52,7 +52,7 @@ faqs:
   - question: "„Was ist der Unterschied zwischen Kapseln und Pulver?“"
     answer: "„Orale Kapseln (50 mg) bieten präzise, ​​vorab abgemessene Dosen, ideal für konsistente Forschungsprotokolle. Hochreines Pulver (99 %) bietet Flexibilität bei der Herstellung individueller Konzentrationen und groß angelegter Studien.“"
   - question: "„Was ist die Mindestbestellmenge?“"
-    answer: "„Es gilt ein standortweiter Mindestbestellwert von 150 €; Kombinieren Sie mehrere Elemente, um den Schwellenwert zu erreichen. Dies gilt für jede Kombination von Kapseln oder Pulverformen.“"
+    answer: "„Es gilt ein standortweiter Mindestbestellwert von 200 €; Kombinieren Sie mehrere Elemente, um den Schwellenwert zu erreichen. Dies gilt für jede Kombination von Kapseln oder Pulverformen.“"
   - question: "„Was ist 5-Amino-1MQ?“"
     answer: "„5-Amino-1-methylchinolinium (5-Amino-1MQ) ist ein niedermolekularer NNMT-Inhibitor (Nicotinamid-N-Methyltransferase). Es wird auf Auswirkungen auf den NAD+-Metabolismus, die Hemmung der Adipogenese und den Energieverbrauch untersucht. CAS-Nummer 5765-44-6.“"
   - question: "„Was ist NNMT und warum ist es ein Forschungsziel?“"
