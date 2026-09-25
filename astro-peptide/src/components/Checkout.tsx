@@ -265,7 +265,7 @@ export default function Checkout({ labels, paths, locale = 'de' }: CheckoutProps
   }
 
   async function createServerOrder(serverOrderId: string) {
-    const response = await fetch('/api/orders', {
+    const response = await fetch('/api/orders/', {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

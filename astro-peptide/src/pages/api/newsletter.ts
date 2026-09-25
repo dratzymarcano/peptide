@@ -15,6 +15,7 @@ import { env as cfEnv } from 'cloudflare:workers';
 import { sendNewsletterConfirmation, type EmailEnv } from '../../lib/email/sender';
 import { createToken, signingSecret } from '../../lib/newsletterToken';
 import { localizePath, isLocale, defaultLocale } from '../../i18n/config';
+import { checkSpam } from '../../lib/antiSpam';
 
 export const prerender = false;
 
@@ -28,6 +29,8 @@ interface NewsletterPayload {
   email?: string;
   locale?: string;
   hp?: string;
+  website?: string;
+  _ts?: string;
 }
 
 async function readPayload(request: Request): Promise<NewsletterPayload> {
@@ -48,9 +51,18 @@ export const POST: APIRoute = async ({ request, redirect, locals, url }) => {
   // the path is localized — passing it through produced "/?newsletter=error/".
   const back = (status: string) => `${localizePath('/', locale)}?newsletter=${status}`;
 
-  // Honeypot — bots get the same answer a person does.
-  if (payload.hp) {
-    return wantsJson ? json({ success: true }) : redirect(back('pending'), 303);
+  const clientIp = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for');
+  const spamCheck = checkSpam({
+    email: payload.email,
+    hp: payload.hp,
+    website: payload.website,
+    _ts: payload._ts,
+    clientIp,
+  });
+
+  if (spamCheck.isSpam) {
+    console.warn(`[newsletter] spam detected (${spamCheck.reason}) from IP: ${clientIp ?? 'unknown'}`);
+    return wantsJson ? json({ success: true, status: 'pending', filtered: true }) : redirect(back('pending'), 303);
   }
 
   const email = (payload.email ?? '').trim().slice(0, 200);

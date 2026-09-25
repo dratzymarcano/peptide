@@ -8,6 +8,7 @@ import {
   sendOrderNotification,
   type EmailEnv,
 } from '../../lib/email/sender';
+import { checkSpam } from '../../lib/antiSpam';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -57,6 +58,17 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   if (!email || !isEmail(email)) {
     return json({ success: false, code: 'invalid_order' }, 400);
+  }
+
+  const spamCheck = checkSpam({
+    email,
+    hp: (payload as unknown as { hp?: string }).hp,
+    clientIp: request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for'),
+  });
+
+  if (spamCheck.isSpam) {
+    console.warn('[orders] spam/disposable email rejected:', spamCheck.reason);
+    return json({ success: false, code: 'invalid_email_domain' }, 400);
   }
 
   // Prices, subtotal, shipping and total are derived from the catalogue. The

@@ -92,7 +92,12 @@ function escapeHtml(value: unknown): string {
 }
 
 function formatMoney(value: number, currency: string): string {
-  return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(value);
+  const cur = currency ? currency.toUpperCase() : 'EUR';
+  try {
+    return new Intl.NumberFormat('de-AT', { style: 'currency', currency: cur }).format(value);
+  } catch {
+    return `${value.toFixed(2)} ${cur}`;
+  }
 }
 
 function orderUrl(siteUrl: string, orderId: string): string {
@@ -123,46 +128,49 @@ function baseEmail(args: {
   footerNote?: string;
 }): string {
   return `<!doctype html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${escapeHtml(args.title)}</title>
   </head>
-  <body style="margin:0;background:#EFF8FC;color:#0F172A;font-family:Inter,Arial,sans-serif;">
+  <body style="margin:0;background:#EFF8FC;color:#0F172A;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
     <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">${escapeHtml(args.preheader)}</div>
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#EFF8FC;padding:28px 12px;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#EFF8FC;padding:32px 12px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
             <!-- Logo bar -->
             <tr>
-              <td style="padding:20px 28px 0;background:#ffffff;">
-                <img src="https://peptide-kaufen.net/brand/peptide-shop-logo.svg" alt="Peptide Shop" width="160" height="39" style="display:block;height:39px;width:160px;">
+              <td style="padding:24px 28px 20px;background:#ffffff;">
+                <a href="https://peptide-kaufen.net" style="text-decoration:none;display:inline-block;">
+                  <img src="https://peptide-kaufen.net/brand/peptide-shop-logo.png" alt="Peptide Shop" width="170" height="42" style="display:block;height:auto;max-height:42px;width:170px;border:0;">
+                </a>
               </td>
             </tr>
             <!-- Header band -->
             <tr>
-              <td style="background:#0077B6;padding:20px 28px 24px;color:#ffffff;">
-                <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#E3F0FF;font-weight:700;">${escapeHtml(args.eyebrow)}</div>
-                <div style="font-size:26px;line-height:1.2;font-weight:800;margin-top:6px;">${escapeHtml(args.title)}</div>
+              <td style="background:#0077B6;padding:24px 28px;color:#ffffff;">
+                <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#BAE6FD;font-weight:700;">${escapeHtml(args.eyebrow)}</div>
+                <div style="font-size:24px;line-height:1.25;font-weight:800;margin-top:6px;color:#ffffff;">${escapeHtml(args.title)}</div>
               </td>
             </tr>
             <!-- Body -->
             <tr>
-              <td style="padding:28px;">
-                <p style="margin:0 0 20px;font-size:16px;line-height:1.65;color:#334155;">${escapeHtml(args.intro)}</p>
+              <td style="padding:28px 28px 32px;">
+                <p style="margin:0 0 22px;font-size:16px;line-height:1.6;color:#334155;">${escapeHtml(args.intro)}</p>
                 ${args.body}
-                ${args.cta ? `<p style="margin:28px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0077B6;color:#ffffff;text-decoration:none;border-radius:8px;padding:13px 22px;font-weight:700;font-size:15px;">${escapeHtml(args.cta.label)}</a></p>` : ''}
+                ${args.cta ? `<div style="margin:30px 0 0;"><a href="${escapeHtml(args.cta.href)}" style="display:inline-block;background:#0077B6;color:#ffffff;text-decoration:none;border-radius:8px;padding:14px 26px;font-weight:700;font-size:15px;box-shadow:0 2px 4px rgba(0,119,182,0.25);">${escapeHtml(args.cta.label)}</a></div>` : ''}
               </td>
             </tr>
             <!-- Footer -->
             <tr>
-              <td style="padding:18px 28px;background:#F8FAFC;border-top:1px solid #E2E8F0;color:#475569;font-size:13px;line-height:1.6;">
-                ${escapeHtml(args.footerNote ?? 'Peptide Shop supplies research-use materials only. Please keep this message for your records.')}
+              <td style="padding:22px 28px;background:#F8FAFC;border-top:1px solid #E2E8F0;color:#64748B;font-size:12px;line-height:1.65;">
+                <strong style="color:#1E293B;display:block;font-size:13px;margin-bottom:4px;">Peptide Shop · Labor- &amp; Forschungsreagenzien</strong>
+                Kärntner Ring 5–7, 1010 Wien, Österreich<br>
+                Kundenservice: <a href="mailto:info@peptide-kaufen.net" style="color:#0077B6;text-decoration:none;font-weight:600;">info@peptide-kaufen.net</a> · Web: <a href="https://peptide-kaufen.net" style="color:#0077B6;text-decoration:none;font-weight:600;">peptide-kaufen.net</a>
                 <br><br>
-                <a href="https://peptide-kaufen.net" style="color:#0077B6;text-decoration:none;">peptide-kaufen.net</a> ·
-                <a href="mailto:info@peptide-kaufen.net" style="color:#0077B6;text-decoration:none;">info@peptide-kaufen.net</a>
+                <span style="color:#94A3B8;">${escapeHtml(args.footerNote ?? 'Rechtlicher Hinweis: Alle angebotenen Produkte sind ausnahmslos für In-vitro-Labor- und Forschungszwecke (Research Use Only · RUO) bestimmt. Nicht für diagnostische, therapeutische oder humanmedizinische Zwecke geeignet.')}</span>
               </td>
             </tr>
           </table>
@@ -367,17 +375,23 @@ export async function sendContactNotification(message: ContactMessage, options: 
 }
 
 export async function sendContactAcknowledgement(message: ContactMessage, options: SendOptions = {}): Promise<void> {
-  const subject = 'We received your Peptide Shop message';
+  const isDe = !message.locale || message.locale === 'de';
+  const subject = isDe
+    ? 'Ihre Anfrage an Peptide Shop ist eingegangen'
+    : 'We received your Peptide Shop message';
+  const intro = isDe
+    ? `Hallo ${message.name}, vielen Dank für Ihre Kontaktaufnahme. Unser wissenschaftlicher Kundenservice in Wien hat Ihre Nachricht erhalten und wird sich in der Regel innerhalb eines Werktages bei Ihnen melden.`
+    : `Thanks ${message.name}. Our support team in Vienna has received your message and will reply within one business day.`;
   const body = `${rows([
-    { label: 'Topic', value: message.topic || 'General enquiry' },
-    { label: 'Response target', value: 'Within one business day' },
-  ])}<p style="margin:0;color:#314852;font-size:14px;line-height:1.65;">For order-specific questions, please keep your order ID or batch reference ready so our team can help quickly.</p>`;
-  const text = `${subject}\n\nThanks ${message.name}, we received your message and will reply within one business day.\n\nTopic: ${message.topic || 'General enquiry'}`;
+    { label: isDe ? 'Betreff / Thema' : 'Topic', value: message.topic || (isDe ? 'Allgemeine Anfrage' : 'General enquiry') },
+    { label: isDe ? 'Antwortzeit' : 'Response target', value: isDe ? 'Innerhalb eines Werktages' : 'Within one business day' },
+  ])}<p style="margin:0;color:#334155;font-size:14px;line-height:1.65;">${isDe ? 'Bei Fragen zu einer bestehenden Bestellung halten Sie bitte Ihre Bestellnummer bereit.' : 'For order-specific questions, please keep your order ID or batch reference ready.'}</p>`;
+  const text = `${subject}\n\n${intro}\n\n${isDe ? 'Betreff' : 'Topic'}: ${message.topic || 'General enquiry'}`;
   const html = baseEmail({
-    preheader: 'Your message has reached Peptide Shop support.',
-    eyebrow: 'Message received',
-    title: 'We received your message',
-    intro: `Thanks ${message.name}. Our support team has your message and will reply as soon as possible.`,
+    preheader: isDe ? 'Ihre Nachricht an Peptide Shop ist eingegangen.' : 'Your message has reached Peptide Shop support.',
+    eyebrow: isDe ? 'Nachricht erhalten' : 'Message received',
+    title: subject,
+    intro,
     body,
   });
   await send({ to: message.email, subject, html, text }, options);

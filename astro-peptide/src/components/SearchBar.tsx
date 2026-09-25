@@ -66,7 +66,7 @@ export default function SearchBar({ labels, localePrefix = '', searchPath = '/se
 
       setIsLoading(true);
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}&lang=${encodeURIComponent(locale)}`);
+        const response = await fetch(`/api/search/?q=${encodeURIComponent(query.trim())}&lang=${encodeURIComponent(locale)}`);
         if (response.ok) {
           const data = await response.json();
           setResults(data.results || []);

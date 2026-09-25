@@ -98,7 +98,9 @@ const href = (path: string) => localizePath(path, locale);
         </p>
         <form class="newsletter" action={href('/api/newsletter')} method="post" novalidate>
           <input type="hidden" name="locale" value={locale} />
-          <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" class="sr-only" />
+          <input type="hidden" name="_ts" value={Date.now()} />
+          <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;" />
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none;" />
           <label class="sr-only" for="footer-email">{t('footer.emailAddress')}</label>
           <input class="input" type="email" id="footer-email" name="email" required autocomplete="email" placeholder="you@laboratory.eu" />
           <button type="submit" class="btn btn-primary">{t('footer.subscribe')}</button>
